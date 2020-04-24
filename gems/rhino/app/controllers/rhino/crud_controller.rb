@@ -5,7 +5,7 @@ module Rhino
     include Api::Filtration
 
     # Confirm we are calling authorize and scope correctly
-    after_action :verify_authorized, except: :models
+    after_action :verify_authorized
     after_action :verify_policy_scoped, only: %i[index show]
 
     def create
@@ -48,14 +48,6 @@ module Rhino
         return
       end
       @success = true
-    end
-
-    def models
-      if Rails.env.development?
-        render json: FrontEndHelper.generate_front_end_models
-      else
-        not_found
-      end
     end
 
     protected

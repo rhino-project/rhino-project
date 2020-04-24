@@ -55,10 +55,6 @@ module Rhino
     base_owner.to_s.humanize.classify.constantize
   end
 
-  def self.resource_from_path(path)
-    path.remove(%r{^\/#{namespace}\/}).split('/').first
-  end
-
   def self.resource_by_association(association)
     proxy_models[association.options[:class_name]]&.safe_constantize || association.klass
   end
