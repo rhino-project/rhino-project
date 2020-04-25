@@ -3,7 +3,7 @@
 # .underscore will automatically replace '::' with '/'
 skip_descendants = false unless defined?(skip_descendants)
 skip_ancestors = false unless defined?(skip_ancestors)
-partial_path = 'api/' + model.class.name.underscore
+partial_path = 'rhino/' + model.class.name.underscore
 klass = partial_path.split('/').last
 partial_path = partial_path.pluralize
 if lookup_context.template_exists? klass, partial_path, true
