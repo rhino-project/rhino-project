@@ -15,7 +15,18 @@ module Rhino
     end
 
     def self.index
-      JSON.pretty_generate(Rhino.resources.map(&:describe))
+      JSON.pretty_generate({
+        components: {
+          schemas: Rhino.resources.map(&:describe)
+        },
+        info: {
+          'x-rhino-info': {
+            version: Rhino::VERSION,
+            modules: {
+            }
+          }
+        }
+      })
     end
   end
 end
