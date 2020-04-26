@@ -8,16 +8,15 @@ module Rhino
 
         class_methods do
           def includable_models
-            # Remove through relationships and has_many that are not nested
-            # FIXME Handle specific included has_many models
-            # FIXME Handle specific excluded models
-            includables = reflections.reject { |name, reflection| includable_filter(name, reflection) }
+            # FIXME: Remove polymorphic relationships, not handled yet
+            includables = reflections.reject { |_name, reflection| reflection.polymorphic? }
 
             includables = includables.each_with_object({}) do |(name, reflection), hash|
               hash[name] = {
                 klass: Rhino.resource_by_association(reflection),
                 macro: reflection.macro,
-                nullable: reflection.options[:optional] || false
+                nullable: reflection.options[:optional] || false,
+                default: default?(name, reflection)
               }
 
               hash
@@ -28,10 +27,10 @@ module Rhino
 
           private
 
-          def includable_filter(name, reflection)
-            reflection.through_reflection? ||
-              reflection.polymorphic? ||
-              (reflection.macro == :has_many && !nested_attributes_options.key?(name.to_sym))
+          def default?(name, reflection)
+            !reflection.through_reflection? &&
+              (reflection.macro == :belongs_to ||
+                nested_attributes_options.key?(name.to_sym))
           end
         end
       end
