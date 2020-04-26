@@ -82,8 +82,8 @@ module Rhino
         # Must be logged in to see anything
         return scope.none unless base_owner
 
-        # Can see everything if its global
-        return scope.all if scope.global_owner?
+        # Can see everything if its owned globally
+        return scope.all if scope.global_owned?
 
         # Join all the way to the base owner and see if it matches
         scope.joins(scope.joins_for_base_owner).where("#{Rhino.base_owner_class.table_name}.id": base_owner.id)

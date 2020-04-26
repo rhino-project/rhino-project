@@ -26,6 +26,17 @@ module Rhino
           self.owned_by == :global
         end
 
+        # Test if rhino_owner[rdoc-ref:rhino_owner] is the base owner
+        # Also available on the instance
+        def global_owned?
+          chained_scope = self
+          while !chained_scope.base_owner? && !chained_scope.global_owner? # rubocop:disable Style/WhileUntilModifier
+            chained_scope = chained_scope.owned_by.to_s.classify.constantize
+          end
+
+          chained_scope.global_owner?
+        end
+
         # In Rhino the owner specifies which reference is next in the hierarchy.
         # A resource can only have one owned.  This owner will either be global
         # for resources that are not owned by the base owner or a belongs to
