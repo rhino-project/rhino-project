@@ -2,22 +2,38 @@
 
 module Rhino
   class CrudPolicy
-    attr_reader :base_owner, :record
+    attr_reader :auth_owner, :record
 
-    def initialize(base_owner, record)
-      @base_owner = base_owner
+    def initialize(auth_owner, record)
+      @auth_owner = auth_owner
       @record = record
     end
 
-    def action?(chain_command)
+    def action?(chain_command) # rubocop:disable  Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       # We must have a valid user and record to check
-      return false unless base_owner && record
+      return false unless auth_owner && record
 
       # If this record is the base owner check for ownership
-      return record.id == base_owner.id if record.class.base_owner?
+      # This check works like global_owner? on many relationships
+      if record.base_owner?
+        # If both auth owner and the base owner are the same (ie user)
+        # Just check the ids
+        return auth_owner.id == record.id if Rhino.same_owner?
+
+        # Get list of users ids from base_owner
+        ids = if record.is_a? ActiveRecord::Associations::CollectionProxy
+                record.map { |o| o.send(Rhino.base_to_auth).pluck(:id) }.flatten
+              else
+                record.send(Rhino.base_to_auth).map(&:id)
+              end
+
+        return ids.include?(auth_owner.id)
+      end
+
+      return record.id == auth_owner.id if record.auth_owner?
 
       # Chain to the next owned record (until we find the base_owner)
-      Pundit.policy(base_owner, record.owner).send(chain_command)
+      Pundit.policy(auth_owner, record.owner).send(chain_command)
     end
 
     ###
@@ -37,7 +53,7 @@ module Rhino
     # Index
     ###
     def index?
-      return false unless base_owner
+      return false unless auth_owner
 
       true
     end
@@ -72,19 +88,22 @@ module Rhino
     end
 
     class Scope
-      attr_reader :base_owner, :scope
+      attr_reader :auth_owner, :scope
 
-      def initialize(base_owner, scope)
-        @base_owner = base_owner
+      def initialize(auth_owner, scope)
+        @auth_owner = auth_owner
         @scope = scope
       end
 
       def resolve
         # Must be logged in to see anything
-        return scope.none unless base_owner
+        return scope.none unless auth_owner
 
-        # Join all the way to the base owner and see if it matches
-        scope.joins(scope.joins_for_base_owner).where("#{Rhino.base_owner_class.table_name}.id": base_owner.id)
+        # Join all the way to the auth owner
+        base_owner_scope = scope.joins(scope.joins_for_auth_owner)
+
+        # Check to see if the auth owner ids match up
+        base_owner_scope.where("#{Rhino.auth_owner.table_name}.id": auth_owner.id)
       end
     end
   end

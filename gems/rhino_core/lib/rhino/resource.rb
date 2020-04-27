@@ -39,18 +39,28 @@ module Rhino
 
       # FIXME: do we want to create a scope using this?
       # FIXME: how to handle nil/globally owned
-      def joins_for_base_owner
-        return {} if base_owner?
+      def joins_for_auth_owner # rubocop:disable Metrics/AbcSize
+        return {} if auth_owner?
+
+        # Find the reflection to the auth owner
+        return Rhino.base_to_auth if base_owner?
 
         # FIXME: There is probably a more rubyish way to do this
         chained_scope = self
         joins = []
 
-        while chained_scope.owned_by != Rhino.base_owner
+        # The ownership could be a many, so we classify first
+        while chained_scope.owned_by.to_s.classify != Rhino.base_owner.to_s.classify
           joins << chained_scope.owned_by
           chained_scope = chained_scope.owned_by.to_s.classify.constantize
         end
-        joins.reverse.inject(Rhino.base_owner) { |a, n| { n => a } }
+        joins << chained_scope.owned_by
+
+        joins = joins.reverse
+        # Only chain extra to auth if its not the same
+        joins = joins.inject(Rhino.same_owner? ? {} : Rhino.base_to_auth) { |a, n| { n => a } }
+
+        joins
       end
     end
   end

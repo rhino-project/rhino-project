@@ -12,9 +12,6 @@ module Rhino
   # The root path for the api ie '/api'
   mattr_accessor :namespace, default: :api
 
-  # Base owner
-  mattr_accessor :base_owner, default: :user
-
   # List of resources
   mattr_accessor :resources, default: []
 
@@ -65,13 +62,40 @@ module Rhino
     sieve.use Rhino::Sieve::Limit, default_limit: 20
   end
 
-  # FIXME: Cache this - Devise has some nice code in devise.rb to do this
-  def self.base_owner_class
-    base_owner.to_s.humanize.classify.constantize
+  def self.auth_owner
+    @@auth_owner_ref.get
+  end
+
+  # Set the auth owner reference object to access the mailer.
+  def self.auth_owner=(class_name)
+    @@auth_owner_ref = ref(class_name) # rubocop:disable Style/ClassVars
+  end
+  self.auth_owner = 'User'
+
+  def self.base_owner
+    @@base_owner_ref.get
+  end
+
+  # Set the mailer reference object to access the mailer.
+  def self.base_owner=(class_name)
+    @@base_owner_ref = ref(class_name) # rubocop:disable Style/ClassVars
+  end
+  self.base_owner = 'User'
+
+  def self.same_owner?
+    base_owner == auth_owner
+  end
+
+  def self.base_to_auth
+    return auth_owner.model_name.i18n_key if same_owner?
+
+    base_owner.reflections.find { |_name, reflection| reflection.klass == auth_owner }&.first&.to_sym
   end
 
   # Default way to set up Rhino
   def self.setup
     yield self
+
+    raise NotImplementedError, "#{Rhino.base_owner} must have reflection for #{Rhino.auth_owner}" if base_to_auth.nil?
   end
 end
