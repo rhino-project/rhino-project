@@ -19,14 +19,20 @@ module Rhino
         components: {
           schemas: Rhino.resources.map(&:describe)
         },
-        info: {
-          'x-rhino-info': {
-            version: Rhino::VERSION,
-            modules: {
-            }
+        info: describe_info
+      })
+    end
+
+    def self.describe_info
+      {
+        'x-rhino-info': {
+          version: Rhino::VERSION,
+          authOwner: Rhino.auth_owner.model_name.singular,
+          baseOwner: Rhino.base_owner.model_name.singular,
+          modules: {
           }
         }
-      })
+      }
     end
   end
 end

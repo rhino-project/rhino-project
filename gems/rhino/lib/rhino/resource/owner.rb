@@ -8,16 +8,22 @@ module Rhino
       included do
         class_attribute :owned_by, default: nil
 
-        delegate :base_owner?, :global_owner?, to: :class
+        delegate :auth_owner?, :base_owner?, :global_owner?, to: :class
       end
 
       # The self is actually required to work with class_attribute properly
       # rubocop:disable Style/RedundantSelf
-      class_methods do
+      class_methods do # rubocop:disable  Metrics/BlockLength
+        # Test if rhino_owner[rdoc-ref:rhino_owner] is the auth owner
+        # Also available on the instance
+        def auth_owner?
+          self == Rhino.auth_owner
+        end
+
         # Test if rhino_owner[rdoc-ref:rhino_owner] is the base owner
         # Also available on the instance
         def base_owner?
-          name.underscore.to_sym == Rhino.base_owner
+          self == Rhino.base_owner
         end
 
         # Test if rhino_owner[rdoc-ref:rhino_owner] is the base owner
@@ -30,8 +36,8 @@ module Rhino
         # Also available on the instance
         def global_owned?
           chained_scope = self
-          while !chained_scope.base_owner? && !chained_scope.global_owner? # rubocop:disable Style/WhileUntilModifier
-            chained_scope = chained_scope.owned_by.to_s.classify.constantize
+          while !chained_scope.auth_owner? && !chained_scope.base_owner? && !chained_scope.global_owner?
+            chained_scope = chained_scope.owned_by.to_s.classify.safe_constantize
           end
 
           chained_scope.global_owner?
@@ -79,7 +85,7 @@ module Rhino
 
         # Sets rhino_owner[rdoc-ref:rhino_owner] to be the base owner
         def rhino_owner_base(**options)
-          rhino_owner(Rhino.base_owner, options)
+          rhino_owner(Rhino.base_owner.model_name.i18n_key, options)
         end
 
         # Sets rhino_owner[rdoc-ref:rhino_owner] to be global
