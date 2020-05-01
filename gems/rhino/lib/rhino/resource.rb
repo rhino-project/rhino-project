@@ -5,11 +5,12 @@ module Rhino
     extend ActiveSupport::Concern
 
     include Rhino::Resource::Owner
-    include Rhino::Resource::Attributes
-    include Rhino::Resource::Included
+    include Rhino::Resource::Properties
     include Rhino::Resource::Reference
     include Rhino::Resource::Describe
     include Rhino::Resource::Routing
+    include Rhino::Resource::Params
+    include Rhino::Resource::Serialization
 
     included do
       class_attribute :_policy_class, default: Rhino::CrudPolicy

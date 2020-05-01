@@ -6,12 +6,26 @@ module Rhino
       extend ActiveSupport::Concern
 
       included do
-        delegate :describe, to: :class
+        class_attribute :_references, default: []
+
+        delegate :references, :references_for_serialization, to: :class
+
+        def fetch_reference
+          raise NotImplementedError, '#fetch_reference is not implemented'
+        end
       end
 
       class_methods do
-        def fetch_reference
-          raise NotImplementedError, '#fetch_reference is not implemented'
+        def rhino_references(references)
+          self._references = references
+        end
+
+        def references
+          self._references # rubocop:disable Style/RedundantSelf
+        end
+
+        def references_for_serialization
+          raise NotImplementedError, '#references_for_serialization is not implemented'
         end
       end
     end

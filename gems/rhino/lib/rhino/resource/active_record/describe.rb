@@ -18,7 +18,7 @@ module Rhino
               pluralReadableName: model_name.human.pluralize,
               ownedBy: owned_by,
               path: "#{Rhino.namespace}/#{route_path}",
-              attributes: viewable_attributes.map { |attribute| describe_attribute(attribute) }
+              attributes: export_properties.map { |property| describe_property(property) }
             }
           end
         end
