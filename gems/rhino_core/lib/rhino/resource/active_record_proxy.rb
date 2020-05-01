@@ -13,7 +13,7 @@ module Rhino
       attr_reader :active_record
 
       rhino_owner_global
-      rhino_included_models except: %i[record blob]
+      # rhino_included_models except: %i[record blob]
 
       # Init this specific instance
       def initialize(active_record)

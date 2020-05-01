@@ -9,11 +9,12 @@ module Rhino
       include Rhino::Resource
 
       # Active Record implementations
-      include Rhino::Resource::ActiveRecord::Attributes
-      include Rhino::Resource::ActiveRecord::Included
+      include Rhino::Resource::ActiveRecord::Properties
       include Rhino::Resource::ActiveRecord::Reference
       include Rhino::Resource::ActiveRecord::Describe
       include Rhino::Resource::ActiveRecord::Routing
+      include Rhino::Resource::ActiveRecord::Params
+      include Rhino::Resource::ActiveRecord::Serialization
     end
   end
 end

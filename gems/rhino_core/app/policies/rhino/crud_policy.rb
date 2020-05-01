@@ -33,7 +33,7 @@ module Rhino
     end
 
     def permitted_attributes_for_create
-      record.class.creatable_attributes
+      record.create_params
     end
 
     ###
@@ -60,7 +60,7 @@ module Rhino
     end
 
     def permitted_attributes_for_update
-      record.class.updatable_attributes
+      record.update_params
     end
 
     ###

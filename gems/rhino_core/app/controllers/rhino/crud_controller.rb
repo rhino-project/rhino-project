@@ -9,12 +9,12 @@ module Rhino
     after_action :verify_policy_scoped, only: %i[index show]
 
     def create
-      @model = authorize klass.new(klass.transform_creatable_params(permitted_attributes(klass.new)))
+      @model = authorize klass.new(klass.transform_create_params(permitted_attributes(klass.new)))
       unless @model.save
         unprocessable @model.errors
         return
       end
-      @success = true
+      render json: @model.to_caching_json(current_user)
     end
 
     def index
@@ -24,21 +24,22 @@ module Rhino
         filter: (permitted_filter_params[:filter] || {}).to_hash
       )
 
-      @total = @models.count
-      render
+      render json: { results: @models.eager_load_refs.map { |m| m.to_caching_json(current_user) }, total: @models.count }
     end
 
     def show
-      @model = authorize find_resource(policy_scope(klass))
+      @model = authorize find_resource(policy_scope(klass).eager_load_refs)
+
+      render json: @model.to_caching_json(current_user)
     end
 
     def update
       @model = authorize find_resource
-      unless @model.update(klass.transform_updatable_params(permitted_attributes(@model)))
+      unless @model.update(klass.transform_update_params(permitted_attributes(@model)))
         unprocessable @model.errors
         return
       end
-      @success = true
+      render json: @model.to_caching_json(current_user)
     end
 
     def destroy
@@ -47,7 +48,7 @@ module Rhino
         unprocessable @model.errors
         return
       end
-      @success = true
+      render json: @model.to_caching_json(current_user)
     end
 
     protected
