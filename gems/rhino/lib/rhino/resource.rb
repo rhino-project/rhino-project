@@ -37,7 +37,7 @@ module Rhino
       end
 
       def permitted_filter_params
-        column_names
+        attribute_names
       end
 
       # FIXME: do we want to create a scope using this?

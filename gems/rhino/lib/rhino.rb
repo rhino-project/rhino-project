@@ -47,22 +47,9 @@ module Rhino
   end
   self.resources = []
 
-  # List of models that need to be wrapped in MetaModel
-  mattr_accessor :proxy_models, default: {}
-
   # FIXME: Cache this - Devise has some nice code in devise.rb to do this
   def self.base_owner_class
     base_owner.to_s.humanize.classify.constantize
-  end
-
-  def self.resource_by_association(association)
-    proxy_models[association.options[:class_name]]&.safe_constantize || association.klass
-  end
-
-  def self.resource_instance(inst)
-    return proxy_models[inst.class.name].constantize.new inst if proxy_models.key?(inst.class.name)
-
-    inst
   end
 
   # Default way to set up Rhino
