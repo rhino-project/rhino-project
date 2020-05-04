@@ -8,16 +8,6 @@ module Rhino
 
         included do
           scope :eager_load_refs, -> { includes(klass.references) } if defined?(scope)
-
-          def fetch_reference(name)
-            ref = send(name)
-
-            # Nothing if the related object does not exist
-            # For instance, it might be optional
-            return nil unless ref
-
-            Rhino.resource_instance(ref)
-          end
         end
 
         class_methods do

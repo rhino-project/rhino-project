@@ -9,10 +9,6 @@ module Rhino
         class_attribute :_references, default: []
 
         delegate :references, :references_for_serialization, to: :class
-
-        def fetch_reference
-          raise NotImplementedError, '#fetch_reference is not implemented'
-        end
       end
 
       class_methods do

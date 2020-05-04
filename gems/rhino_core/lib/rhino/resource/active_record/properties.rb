@@ -12,7 +12,7 @@ module Rhino
           end
 
           def readable_properties
-            props = column_names - foreign_key_properties
+            props = attribute_names - foreign_key_properties
 
             props.concat(reference_properties)
 
@@ -62,7 +62,7 @@ module Rhino
 
           def writeable_properties
             # Direct properties for this model
-            props = column_names - automatic_properties - foreign_key_properties
+            props = attribute_names - automatic_properties - foreign_key_properties
 
             props.concat(reference_properties)
 
