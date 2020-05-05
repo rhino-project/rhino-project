@@ -10,10 +10,8 @@ module Rhino
 
     def create
       @model = authorize klass.new(klass.transform_create_params(permitted_attributes(klass.new)))
-      unless @model.save
-        unprocessable @model.errors
-        return
-      end
+      @model.save!
+
       render json: @model.to_caching_json(current_user)
     end
 
@@ -35,19 +33,15 @@ module Rhino
 
     def update
       @model = authorize find_resource
-      unless @model.update(klass.transform_update_params(permitted_attributes(@model)))
-        unprocessable @model.errors
-        return
-      end
+      @model.update!(klass.transform_update_params(permitted_attributes(@model)))
+
       render json: @model.to_caching_json(current_user)
     end
 
     def destroy
       @model = authorize find_resource
-      unless @model.destroy
-        unprocessable @model.errors
-        return
-      end
+      @model.destroy!
+
       render json: @model.to_caching_json(current_user)
     end
 
