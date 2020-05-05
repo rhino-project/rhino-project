@@ -6,33 +6,25 @@ module Rhino
     include Pundit
 
     # https://api.rubyonrails.org/classes/AbstractController/Base.html#method-c-abstract-21
-    # Prevents the utility methods below from showing up as actions in RestController
+    # Prevents the utility methods below from showing up as actions in CrudController
     abstract!
 
     respond_to :json
 
     rescue_from Exception, with: :handle_uncaught_error
-    around_action :catch_not_found
-    around_action :catch_parameter_missing
 
-    # FIXME: Should all pundit handling be in rest_controller?
-    rescue_from Pundit::NotAuthorizedError do |_|
-      forbidden
-    end
-
-    def catch_not_found
-      yield
-    rescue ActiveRecord::RecordNotFound
-      render json: { errors: ['Not found.'] },
-             status: :not_found
-    end
-
-    def catch_parameter_missing
-      yield
-    rescue ActionController::ParameterMissing => e
+    rescue_from ActionController::ParameterMissing do |e|
       render json: { errors: [e.message] },
              status: :bad_request
     end
+
+    # FIXME: Should all pundit handling be in crud_controller?
+    rescue_from Pundit::NotAuthorizedError, with: :forbidden
+
+    rescue_from ActiveRecord::RecordInvalid do |e|
+      unprocessable e.record.errors
+    end
+    rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def handle_uncaught_error(exception)
       logger.info('Internal server error' +
