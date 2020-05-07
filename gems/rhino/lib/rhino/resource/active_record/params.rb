@@ -16,21 +16,7 @@ module Rhino
           end
 
           def transform_create_params(params)
-            params.transform_keys do |param_key|
-              association = reflect_on_association(param_key)
-
-              # Its a regular attribute
-              next param_key unless association
-
-              # FIXME
-              # Hack to rewrite for attachment
-              next param_key.remove('_attachment') if param_key.end_with?('_attachment')
-
-              # Nested need _attributes - we don't want the client to have to do that
-              next "#{param_key}_attributes" if association.macro == :has_many
-
-              association.foreign_key
-            end
+            transform_params(params)
           end
 
           def transform_update_params(params)
@@ -42,13 +28,14 @@ module Rhino
           # FIXME: This should be renamed about params
           def writeable_params(type) # rubocop:disable Metrics/AbcSize
             # Direct attributes for this model
-            attrs = send("#{type}_properties")
+            # We want a copy, not to alter the class_attribute itself
+            params = send("#{type}_properties").dup
 
             references.each do |r|
               name = r.is_a?(Hash) ? r.keys.first : r
               association = reflect_on_association(name)
 
-              next attrs << name.to_s if %i[has_one belongs_to].include?(association.macro)
+              params -= [name.to_s] if association.macro == :has_many
 
               next unless nested_attributes_options.key?(name)
 
@@ -60,10 +47,45 @@ module Rhino
               # The nested association editable attributes are editable
               # The nested attributes of the nested association are also editable
               # FIXME: Do we need to handle :update_only option?
-              attrs << { name.to_s => [ref.identifier_property] + ref.send("#{type}_params").reject { |wa| wa.is_a?(Hash) } + destroy }
+              next params << { name.to_s => [ref.identifier_property] + ref.send("#{type}_params") + destroy }
             end
 
-            attrs
+            params
+          end
+
+          # Rebuild the params
+          def transform_params(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+            hash = {}
+            params.each do |param_key, param_value|
+              association = parent.reflect_on_association(param_key)
+
+              # Its a regular attribute
+              next hash[param_key] = param_value unless association
+
+              # FIXME
+              # Hack to rewrite for attachment
+              next hash[param_key.remove('_attachment')] = param_value if param_key.end_with?('_attachment')
+
+              # Transform the nested attributes as well
+              # Nested need _attributes - we don't want the client to have to do that
+              if parent.nested_attributes_options.key?(param_key.to_sym)
+                attr_key = "#{param_key}_attributes"
+
+                # has_many nested should be an array
+                next hash[attr_key] = param_value.map { |pv| parent.transform_params(pv, association.klass) } if association.macro == :has_many
+
+                # has_one/belongs_to is just the values
+                # if its a cardinal though, such as blog: 1 instead of blog: {name : 'my blog' }
+                # fallback to transforming to the foreign key
+                next hash[attr_key] = parent.transform_params(param_value, association.klass) if param_value.is_a?(ActionController::Parameters)
+              end
+
+              # Map association name to foreign key, ie blog => blog_id
+              hash[association.foreign_key] = param_value
+            end
+
+            # Force permit since we should have already been permitted at this point
+            ActionController::Parameters.new(hash).permit!
           end
         end
       end
