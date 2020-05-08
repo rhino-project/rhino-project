@@ -4,7 +4,10 @@ require 'rhino/engine'
 require 'active_support'
 
 module Rhino
+  extend ActiveSupport::Autoload
   extend ActiveSupport::Concern
+
+  autoload :SieveStack, 'rhino/sieve'
 
   # The root path for the api ie '/api'
   mattr_accessor :namespace, default: :api
@@ -14,6 +17,9 @@ module Rhino
 
   # List of resources
   mattr_accessor :resources, default: []
+
+  # sieves
+  mattr_accessor :sieves
 
   ##
   # Stolen from devise
@@ -46,6 +52,16 @@ module Rhino
     @@resource_refs = class_names.map { |class_name| ref(class_name) } # rubocop:disable Style/ClassVars
   end
   self.resources = []
+
+  self.sieves = Rhino::SieveStack.new do |sieve|
+    sieve.use Rhino::Sieve::Filter
+
+    sieve.use Rhino::Sieve::Order
+
+    sieve.use Rhino::Sieve::Offset
+
+    sieve.use Rhino::Sieve::Limit, default_limit: 20
+  end
 
   # FIXME: Cache this - Devise has some nice code in devise.rb to do this
   def self.base_owner_class

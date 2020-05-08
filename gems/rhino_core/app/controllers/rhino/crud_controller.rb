@@ -2,8 +2,6 @@
 
 module Rhino
   class CrudController < BaseController
-    include Api::Filtration
-
     # Confirm we are calling authorize and scope correctly
     after_action :verify_authorized
     after_action :verify_policy_scoped, only: %i[index show]
@@ -17,11 +15,8 @@ module Rhino
 
     def index
       authorize klass
-      @models = filter(
-        objects: policy_scope(klass),
-        filter: (permitted_filter_params[:filter] || {}).to_hash
-      )
 
+      @models = klass.sieves.resolve(policy_scope(klass), params)
       render json: { results: @models.eager_load_refs.map { |m| m.to_caching_json(current_user) }, total: @models.count }
     end
 
@@ -63,10 +58,6 @@ module Rhino
     def find_resource(scope = klass.all)
       scope = scope.friendly if scope.respond_to? :friendly
       scope.find(params[:id])
-    end
-
-    def permitted_filter_params
-      params.permit(filter: @klass.permitted_filter_params)
     end
   end
 end

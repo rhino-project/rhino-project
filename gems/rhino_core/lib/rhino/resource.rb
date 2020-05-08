@@ -11,6 +11,7 @@ module Rhino
     include Rhino::Resource::Routing
     include Rhino::Resource::Params
     include Rhino::Resource::Serialization
+    include Rhino::Resource::Sieves
 
     included do
       class_attribute :_policy_class, default: Rhino::CrudPolicy
@@ -34,10 +35,6 @@ module Rhino
 
       def rhino_policy(policy)
         self._policy_class = "rhino/#{policy}_policy".classify.constantize
-      end
-
-      def permitted_filter_params
-        attribute_names
       end
 
       # FIXME: do we want to create a scope using this?
