@@ -15,12 +15,8 @@ module Rhino
             writeable_params('update')
           end
 
-          def transform_create_params(params)
-            transform_params(params)
-          end
-
-          def transform_update_params(params)
-            transform_create_params(params)
+          def transform_params(params)
+            transform_params_recursive(params)
           end
 
           protected
@@ -54,7 +50,7 @@ module Rhino
           end
 
           # Rebuild the params
-          def transform_params(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+          def transform_params_recursive(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
             hash = {}
             params.each do |param_key, param_value|
               association = parent.reflect_on_association(param_key)
@@ -72,12 +68,16 @@ module Rhino
                 attr_key = "#{param_key}_attributes"
 
                 # has_many nested should be an array
-                next hash[attr_key] = param_value.map { |pv| parent.transform_params(pv, association.klass) } if association.macro == :has_many
+                if association.macro == :has_many
+                  next hash[attr_key] = param_value.map { |pv| parent.transform_params_recursive(pv, association.klass) }
+                end
 
                 # has_one/belongs_to is just the values
                 # if its a cardinal though, such as blog: 1 instead of blog: {name : 'my blog' }
                 # fallback to transforming to the foreign key
-                next hash[attr_key] = parent.transform_params(param_value, association.klass) if param_value.is_a?(ActionController::Parameters)
+                if param_value.is_a?(ActionController::Parameters)
+                  next hash[attr_key] = parent.transform_params_recursive(param_value, association.klass)
+                end
               end
 
               # Map association name to foreign key, ie blog => blog_id
