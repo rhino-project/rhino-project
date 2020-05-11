@@ -7,7 +7,7 @@ module Rhino
     after_action :verify_policy_scoped, only: %i[index show]
 
     def create
-      @model = authorize klass.new(klass.transform_create_params(permitted_attributes(klass.new)))
+      @model = authorize klass.new(klass.transform_params(permitted_attributes(klass.new)))
       @model.save!
 
       render json: @model.to_caching_json(current_user)
@@ -28,7 +28,7 @@ module Rhino
 
     def update
       @model = authorize find_resource
-      @model.update!(klass.transform_update_params(permitted_attributes(@model)))
+      @model.update!(klass.transform_params(permitted_attributes(@model)))
 
       render json: @model.to_caching_json(current_user)
     end
