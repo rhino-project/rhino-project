@@ -8,6 +8,7 @@ module Rhino
     autoload :Limit
     autoload :Offset
     autoload :Order
+    autoload :Search
   end
 
   class SieveStack

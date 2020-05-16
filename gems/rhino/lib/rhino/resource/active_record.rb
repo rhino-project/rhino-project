@@ -15,6 +15,7 @@ module Rhino
       include Rhino::Resource::ActiveRecord::Routing
       include Rhino::Resource::ActiveRecord::Params
       include Rhino::Resource::ActiveRecord::Serialization
+      include Rhino::Resource::ActiveRecord::Search
     end
   end
 end

@@ -56,6 +56,8 @@ module Rhino
   self.sieves = Rhino::SieveStack.new do |sieve|
     sieve.use Rhino::Sieve::Filter
 
+    sieve.use Rhino::Sieve::Search
+
     sieve.use Rhino::Sieve::Order
 
     sieve.use Rhino::Sieve::Offset
