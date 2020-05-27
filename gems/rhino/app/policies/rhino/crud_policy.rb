@@ -9,12 +9,9 @@ module Rhino
       @record = record
     end
 
-    def action?(chain_command) # rubocop:disable Metrics/AbcSize
+    def action?(chain_command)
       # We must have a valid user and record to check
       return false unless base_owner && record
-
-      # Globally owned can never be edited
-      return false if record.class.global_owner?
 
       # If this record is the base owner check for ownership
       return record.id == base_owner.id if record.class.base_owner?
@@ -52,6 +49,10 @@ module Rhino
       action?(:show?)
     end
 
+    def permitted_attributes_for_show
+      record.show_params
+    end
+
     ###
     # Update
     ###
@@ -78,12 +79,9 @@ module Rhino
         @scope = scope
       end
 
-      def resolve # rubocop:disable Metrics/AbcSize
+      def resolve
         # Must be logged in to see anything
         return scope.none unless base_owner
-
-        # Can see everything if its owned globally
-        return scope.all if scope.global_owned?
 
         # Join all the way to the base owner and see if it matches
         scope.joins(scope.joins_for_base_owner).where("#{Rhino.base_owner_class.table_name}.id": base_owner.id)

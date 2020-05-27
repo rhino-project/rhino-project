@@ -19,6 +19,7 @@ module Rhino
         class_attribute :_update_properties_except, default: []
 
         # delegate :readable_properties, :writeable_properties, to: :class
+        delegate :identifier_property, to: :class
         delegate :read_properties, :create_properties, :update_properties, to: :class
         delegate :export_properties, to: :class
 

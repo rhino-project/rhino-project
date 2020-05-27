@@ -7,37 +7,37 @@ module Rhino
     after_action :verify_policy_scoped, only: %i[index show]
 
     def create
-      @model = authorize klass.new(klass.transform_params(permitted_attributes(klass.new)))
-      @model.save!
+      @model = authorize klass.new(permit_and_transform(klass.new))
+      @model.save
 
-      render json: @model.to_caching_json(current_user)
+      permit_and_render
     end
 
     def index
       authorize klass
 
       @models = klass.sieves.resolve(policy_scope(klass), params)
-      render json: { results: @models.eager_load_refs.map { |m| m.to_caching_json(current_user) }, total: @models.count }
+      render json: { results: @models.eager_load_refs.map { |m| permit_model(m) }, total: @models.count }
     end
 
     def show
       @model = authorize find_resource(policy_scope(klass).eager_load_refs)
 
-      render json: @model.to_caching_json(current_user)
+      permit_and_render
     end
 
     def update
       @model = authorize find_resource
-      @model.update!(klass.transform_params(permitted_attributes(@model)))
+      @model.update!(permit_and_transform)
 
-      render json: @model.to_caching_json(current_user)
+      permit_and_render
     end
 
     def destroy
       @model = authorize find_resource
       @model.destroy!
 
-      render json: @model.to_caching_json(current_user)
+      permit_and_render
     end
 
     protected
@@ -58,6 +58,22 @@ module Rhino
     def find_resource(scope = klass.all)
       scope = scope.friendly if scope.respond_to? :friendly
       scope.find(params[:id])
+    end
+
+    def permit_and_transform(model = @model)
+      klass.transform_params(permitted_attributes(model))
+    end
+
+    def permit_model(model = @model)
+      model_policy = Pundit.policy(current_user, model)
+
+      model_params = ActionController::Parameters.new(model.to_caching_json)
+      model_params[:can_current_user_edit] = model_policy.update?
+      model_params.permit(model_policy.permitted_attributes_for_show + [:can_current_user_edit])
+    end
+
+    def permit_and_render
+      render json: permit_model
     end
   end
 end

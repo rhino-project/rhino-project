@@ -8,7 +8,11 @@ module Rhino
       included do
         class_attribute :_references, default: []
 
-        delegate :references, :references_for_serialization, to: :class
+        delegate :references, to: :class
+
+        def references_for_serialization
+          raise NotImplementedError, '#references_for_serialization is not implemented'
+        end
       end
 
       class_methods do
@@ -18,10 +22,6 @@ module Rhino
 
         def references
           self._references # rubocop:disable Style/RedundantSelf
-        end
-
-        def references_for_serialization
-          raise NotImplementedError, '#references_for_serialization is not implemented'
         end
       end
     end

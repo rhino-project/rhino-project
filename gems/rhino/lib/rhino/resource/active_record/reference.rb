@@ -8,30 +8,40 @@ module Rhino
 
         included do
           scope :eager_load_refs, -> { includes(klass.references) } if defined?(scope)
-        end
 
-        class_methods do
           def references_for_serialization
             serialize_references(references)
           end
 
           private
 
-          def serialize_references(references, parent = self) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+          # FIXME: Duplicated in params.rb
+          def reference_to_sym(reference)
+            reference.is_a?(Hash) ? reference.keys.first : reference
+          end
+
+          # FIXME: Duplicated in params.rb
+          def reference_from_sym(sym)
+            ref = try(sym)
+            return unless ref
+
+            # This is mostly how serializable_hash does it
+            # Get the first object
+            return ref.first if ref.respond_to?(:to_ary)
+
+            ref
+          end
+
+          def serialize_references(references)
             hash = {}
             references.each do |ref_item|
-              ref_name = if ref_item.is_a?(Hash)
-                           ref_item.keys.first
-                         else
-                           ref_item
-                         end
+              sym = reference_to_sym(ref_item)
 
-              ref = parent.reflect_on_association(ref_name)&.klass
+              ref = reference_from_sym(sym)
 
-              hash[ref_name] = {}
-              hash[ref_name][:only] = ref.read_properties
-              hash[ref_name][:include] = serialize_references(ref_item[ref_name], ref) if ref_item.is_a?(Hash)
-              hash[ref_name][:methods] = [:display_name]
+              hash[sym] = {}
+              hash[sym][:methods] = :display_name
+              hash[sym][:include] = serialize_references(ref_item[sym], ref) if ref_item.is_a?(Hash)
             end.flatten.compact
 
             hash
