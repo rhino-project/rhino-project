@@ -6,48 +6,106 @@ module Rhino
       module Params
         extend ActiveSupport::Concern
 
-        class_methods do # rubocop:disable Metrics/BlockLength
+        included do # rubocop:disable Metrics/BlockLength
           def create_params
             writeable_params('create')
+          end
+
+          def show_params
+            readable_params('show')
           end
 
           def update_params
             writeable_params('update')
           end
 
+          private
+
+          def reference_to_sym(reference)
+            reference.is_a?(Hash) ? reference.keys.first : reference
+          end
+
+          def instance_from_sym(sym)
+            ref = try(sym)
+            return unless ref
+
+            # This is mostly how serializable_hash does it
+            # Get the first object
+            return ref.first if ref.respond_to?(:to_ary)
+
+            ref
+          end
+
+          def assoc_from_sym(sym)
+            self.class.reflect_on_association(sym)
+          end
+
+          def params_by_type(type)
+            # FIXME: Direct attributes for this model we want a copy, not to
+            # alter the class_attribute itself
+            send("#{type}_properties").dup
+          end
+
+          def params_without_refs(type)
+            params_by_type(type) - references.map { |r| reference_to_sym(r).to_s }
+          end
+
+          def readable_params(type, refs = references)
+            # FIXME: Use type here
+            # Remove all references from the params, they will be re-added
+            # in the block below if they are readable
+            params = params_without_refs('read')
+
+            # Now iterate on the references passed in and expand them
+            refs.each do |r|
+              sym = reference_to_sym(r)
+
+              ref = instance_from_sym(sym)
+              next unless ref
+
+              next_refs = r.is_a?(Hash) ? r[sym] : []
+              params << { sym.to_s => ref.send('readable_params', type, next_refs) }
+            end
+
+            # Display name is always allowed
+            params << 'display_name'
+          end
+
+          def writeable_params(type, refs = references) # rubocop:disable Metrics/AbcSize
+            # Remove all references from the params, they will be re-added
+            # in the block below if they are writeable
+            params = params_without_refs(type)
+
+            refs.each do |r|
+              sym = reference_to_sym(r)
+              assoc = assoc_from_sym(sym)
+
+              # Not nested, but we accept the ref name as the foreign key
+              # if its a singular resource
+              unless nested_attributes_options.key?(sym)
+                params << sym.to_s if assoc.macro.in?(%i[belongs_to has_one])
+                next
+              end
+
+              # The identifier_property (primary key) is editable so that updates can occur
+              # The nested association editable attributes are editable
+              # The nested attributes of the nested association are also editable
+              # This does not handle nested for a polymorphic model, but neither does rails
+              # FIXME: Do we need to handle :update_only option?
+              destroy = [*('_destroy' if nested_attributes_options[sym][:allow_destroy])]
+              params << { sym.to_s => [assoc.klass.identifier_property] + assoc.klass.new.send("#{type}_params") + destroy }
+            end
+
+            params
+          end
+        end
+
+        class_methods do
           def transform_params(params)
             transform_params_recursive(params)
           end
 
           protected
-
-          # FIXME: This should be renamed about params
-          def writeable_params(type) # rubocop:disable Metrics/AbcSize
-            # Direct attributes for this model
-            # We want a copy, not to alter the class_attribute itself
-            params = send("#{type}_properties").dup
-
-            references.each do |r|
-              name = r.is_a?(Hash) ? r.keys.first : r
-              association = reflect_on_association(name)
-
-              params -= [name.to_s] if association.macro == :has_many
-
-              next unless nested_attributes_options.key?(name)
-
-              options = nested_attributes_options[name]
-              ref = name.to_s.classify.constantize
-              destroy = [*('_destroy' if options[:allow_destroy])]
-
-              # The identifier_property (primary key) is editable so that updates can occur
-              # The nested association editable attributes are editable
-              # The nested attributes of the nested association are also editable
-              # FIXME: Do we need to handle :update_only option?
-              next params << { name.to_s => [ref.identifier_property] + ref.send("#{type}_params") + destroy }
-            end
-
-            params
-          end
 
           # Rebuild the params
           def transform_params_recursive(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize

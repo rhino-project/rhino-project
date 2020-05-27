@@ -42,6 +42,11 @@ module Rhino
 
           private
 
+          # FIXME: Duplicated in params.rb
+          def reference_to_sym(reference)
+            reference.is_a?(Hash) ? reference.keys.first : reference
+          end
+
           # FIXME: Include counter caches as well
           def automatic_properties
             [identifier_property] + send(:all_timestamp_attributes_in_model)
@@ -51,12 +56,16 @@ module Rhino
             reflect_on_all_associations(:belongs_to).map(&:foreign_key)
           end
 
-          def reference_properties
+          def reference_properties(read = true)
             references.map do |r|
-              name = r.is_a?(Hash) ? r.keys.first : r
-              association = reflect_on_association(name)
+              sym = reference_to_sym(r)
 
-              name if %i[has_one belongs_to].include?(association.macro) || nested_attributes_options.key?(name)
+              # All references are readable
+              next sym if read
+
+              # Writeable if a one type or accepting nested
+              association = reflect_on_association(sym)
+              sym if %i[has_one belongs_to].include?(association.macro) || nested_attributes_options.key?(sym)
             end.compact
           end
 
@@ -64,7 +73,7 @@ module Rhino
             # Direct properties for this model
             props = attribute_names - automatic_properties - foreign_key_properties
 
-            props.concat(reference_properties)
+            props.concat(reference_properties(false))
 
             props.map(&:to_s)
           end

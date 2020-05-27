@@ -5,5 +5,5 @@ class ResourceParent < ApplicationRecord
 
   has_many :resources
 
-  rhino_base_owner
+  rhino_owner_base
 end
