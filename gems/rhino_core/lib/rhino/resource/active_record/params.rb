@@ -50,11 +50,16 @@ module Rhino
             params_by_type(type) - references.map { |r| reference_to_sym(r).to_s }
           end
 
-          def readable_params(type, refs = references)
+          def readable_params(type, refs = references) # rubocop:disable Metrics/AbcSize
             # FIXME: Use type here
             # Remove all references from the params, they will be re-added
             # in the block below if they are readable
             params = params_without_refs('read')
+
+            # JSON columns need special handling - allow all the nested params
+            self.class.columns.select { |col| col.sql_type.in?(%w[json jsonb]) && params.index(col.name) }.each do |col|
+              params[params.index(col.name)] = { col.name => {} }
+            end
 
             # Now iterate on the references passed in and expand them
             refs.each do |r|
