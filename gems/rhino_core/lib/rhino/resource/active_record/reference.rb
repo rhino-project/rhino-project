@@ -37,11 +37,9 @@ module Rhino
             references.each do |ref_item|
               sym = reference_to_sym(ref_item)
 
-              ref = reference_from_sym(sym)
-
               hash[sym] = {}
               hash[sym][:methods] = :display_name
-              hash[sym][:include] = serialize_references(ref_item[sym], ref) if ref_item.is_a?(Hash)
+              hash[sym][:include] = serialize_references(ref_item[sym]) if ref_item.is_a?(Hash)
             end.flatten.compact
 
             hash
