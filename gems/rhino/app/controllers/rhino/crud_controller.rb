@@ -8,7 +8,7 @@ module Rhino
 
     def create
       @model = authorize klass.new(permit_and_transform(klass.new))
-      @model.save
+      @model.save!
 
       permit_and_render
     end
