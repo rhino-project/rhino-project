@@ -11,7 +11,7 @@ module Rhino
       def resolve(scope, params)
         return @app.resolve(scope, params) unless params.key?(:filter)
 
-        filter = params[:filter]
+        filter = params[:filter].permit!.to_h
         scope = scope.joins(get_joins(filter))
 
         @app.resolve(apply_filters(scope, scope.klass, filter).distinct(:id), params)
