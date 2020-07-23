@@ -37,7 +37,7 @@ module Rhino
               creatable: creatable_properties.include?(property),
               updatable: updatable_properties.include?(property),
               nullable: property_nullable?(name)
-            }
+            }.merge(property_validations(property))
           end
 
           private
@@ -98,6 +98,30 @@ module Rhino
 
             # raise UnknownpropertyType
             'unknown'
+          end
+
+          def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+            constraint_hash = {}
+
+            # https://swagger.io/specification/
+
+            validators_on(property).each do |v|
+              if v.is_a? ActiveModel::Validations::NumericalityValidator
+                constraint_hash[:minimum] = v.options[:greater_than] + 1
+                constraint_hash[:maximum] = v.options[:less_than] - 1
+              end
+
+              if v.is_a? ::ActiveRecord::Validations::LengthValidator
+                constraint_hash[:minLength] = v.options[:minimum] || v.options[:is]
+                constraint_hash[:maxLength] = v.options[:maximum] || v.options[:is]
+              end
+
+              if v.is_a? ActiveModel::Validations::InclusionValidator # rubocop:disable Style/IfUnlessModifier
+                constraint_hash[:enum] = v.options[:in]
+              end
+            end
+
+            constraint_hash.compact
           end
 
           def property_nullable?(name)
