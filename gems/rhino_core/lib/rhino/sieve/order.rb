@@ -10,7 +10,11 @@ module Rhino
       # order=name
       def resolve(scope, params)
         order = if params[:order]
-                  "#{scope.table_name}.#{params[:order]}"
+                  if params[:order][0] == '-'
+                    "#{scope.table_name}.#{params[:order][1..]} desc"
+                  else
+                    "#{scope.table_name}.#{params[:order]}"
+                  end
                 else
                   nil
                 end
