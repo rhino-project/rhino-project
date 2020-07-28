@@ -7,9 +7,10 @@ module Rhino
         extend ActiveSupport::Concern
 
         class_methods do
-          def describe # rubocop:disable Metrics/AbcSize
+          def describe # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
             {
               model: model_name.singular,
+              modelPlural: model_name.collection,
               name: model_name.name.camelize(:lower),
               pluralName: model_name.name.camelize(:lower).pluralize,
               capitalizedName: model_name.name,
