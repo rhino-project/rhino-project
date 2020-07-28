@@ -87,6 +87,8 @@ module Rhino
 
             return :identifier if name == identifier_property
 
+            return :string if defined_enums.key?(name)
+
             # Use the column type if its an property from the db
             return columns_hash[name.to_s].type if columns_hash.key?(name.to_s)
 
@@ -100,7 +102,7 @@ module Rhino
             'unknown'
           end
 
-          def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+          def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
             constraint_hash = {}
 
             # https://swagger.io/specification/
@@ -120,6 +122,8 @@ module Rhino
                 constraint_hash[:enum] = v.options[:in]
               end
             end
+
+            constraint_hash[:enum] = defined_enums[property].keys if defined_enums.key?(property)
 
             constraint_hash.compact
           end
