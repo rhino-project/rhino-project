@@ -12,9 +12,6 @@ module Rhino
   # The root path for the api ie '/api'
   mattr_accessor :namespace, default: :api
 
-  # List of resources
-  mattr_accessor :resources, default: []
-
   # sieves
   mattr_accessor :sieves
 
@@ -48,7 +45,13 @@ module Rhino
   def self.resources=(class_names)
     @@resource_refs = class_names.map { |class_name| ref(class_name) } # rubocop:disable Style/ClassVars
   end
-  self.resources = []
+  # List of resources
+  # Explicit to avoid ref getting too early
+  self.resources = if Rails.env.development?
+                     ['ActiveStorage::Attachment', 'Rhino::ResourceInfo']
+                   else
+                     ['ActiveStorage::Attachment']
+                   end
 
   self.sieves = Rhino::SieveStack.new do |sieve|
     sieve.use Rhino::Sieve::Filter
