@@ -33,9 +33,9 @@ module Rhino
               name: name,
               readableName: name.titleize,
               type: property_type(property),
-              readable: readable_properties.include?(property),
-              creatable: creatable_properties.include?(property),
-              updatable: updatable_properties.include?(property),
+              readable: read_properties.include?(property),
+              creatable: create_properties.include?(property),
+              updatable: update_properties.include?(property),
               nullable: property_nullable?(name)
             }.merge(property_validations(property))
           end
