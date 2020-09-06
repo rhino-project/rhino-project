@@ -12,6 +12,9 @@ module Rhino
   # The root path for the api ie '/api'
   mattr_accessor :namespace, default: :api
 
+  # Include Rhino::Resource::ActiveRecord by default
+  mattr_accessor :auto_include_active_record, default: true
+
   # sieves
   mattr_accessor :sieves
 
