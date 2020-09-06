@@ -6,7 +6,7 @@ module Rhino
       extend ActiveSupport::Concern
 
       # Base
-      include Rhino::Resource::ActiveRecord
+      include Rhino::Resource::ActiveRecord unless Rhino.auto_include_active_record
 
       included do
         attribute :url

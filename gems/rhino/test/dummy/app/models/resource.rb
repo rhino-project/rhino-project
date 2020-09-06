@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Resource < ApplicationRecord
-  include Rhino::Resource::ActiveRecord
-
   belongs_to :resource_parent
   has_many :resource_children
 
