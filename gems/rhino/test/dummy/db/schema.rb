@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,37 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_508_001_728) do
-  create_table 'categories', force: :cascade do |t|
-    t.string 'name'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+ActiveRecord::Schema.define(version: 2020_09_05_145945) do
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'resource_children', force: :cascade do |t|
-    t.string 'string_prop'
-    t.integer 'resource_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['resource_id'], name: 'index_resource_children_on_resource_id'
+  create_table "property_resources", force: :cascade do |t|
+    t.string "prop_one"
+    t.string "prop_two"
+    t.string "prop_three"
+    t.string "prop_four"
+    t.string "prop_five"
+    t.string "prop_six"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'resource_parents', force: :cascade do |t|
-    t.string 'string_prop'
-    t.integer 'integer_prop'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "resource_children", force: :cascade do |t|
+    t.string "string_prop"
+    t.integer "resource_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_id"], name: "index_resource_children_on_resource_id"
   end
 
-  create_table 'resources', force: :cascade do |t|
-    t.string 'string_prop'
-    t.integer 'integer_prop'
-    t.integer 'resource_parent_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['resource_parent_id'], name: 'index_resources_on_resource_parent_id'
+  create_table "resource_parents", force: :cascade do |t|
+    t.string "string_prop"
+    t.integer "integer_prop"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key 'resource_children', 'resources'
-  add_foreign_key 'resources', 'resource_parents'
+  create_table "resources", force: :cascade do |t|
+    t.string "string_prop"
+    t.integer "integer_prop"
+    t.integer "resource_parent_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["resource_parent_id"], name: "index_resources_on_resource_parent_id"
+  end
+
+  add_foreign_key "resource_children", "resources"
+  add_foreign_key "resources", "resource_parents"
 end
