@@ -122,7 +122,11 @@ module Rhino
 
     def build(app = nil, &block)
       instrumenting = ActiveSupport::Notifications.notifier.listening?(InstrumentationProxy::EVENT_NAME)
-      sieves.freeze.reverse.inject(app || block) do |a, e|
+
+      # Freeze only production so that reloading works
+      sieves.freeze unless Rails.env.development?
+
+      sieves.reverse.inject(app || block) do |a, e|
         if instrumenting
           e.build_instrumented(a)
         else
