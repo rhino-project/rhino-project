@@ -46,7 +46,9 @@ module Rhino
 
   # Set the resource classes reference array to access the resource classes.
   def self.resources=(class_names)
-    @@resource_refs = class_names.map { |class_name| ref(class_name) } # rubocop:disable Style/ClassVars
+    # to_s because if resources are added to ie resources += ['User']
+    # there will be constants in the list
+    @@resource_refs = class_names.map { |class_name| ref(class_name.to_s) } # rubocop:disable Style/ClassVars
   end
   # List of resources
   # Explicit to avoid ref getting too early
