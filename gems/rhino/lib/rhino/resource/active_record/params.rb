@@ -57,8 +57,8 @@ module Rhino
             params = params_without_refs('read')
 
             # JSON columns need special handling - allow all the nested params
-            self.class.columns.select { |col| col.sql_type.in?(%w[json jsonb]) && params.index(col.name) }.each do |col|
-              params[params.index(col.name)] = { col.name => {} }
+            self.class.attribute_names.select { |attr| self.class.attribute_types[attr].type.to_s.in?(%w[json jsonb]) && params.index(attr) }.each do |attr| # rubocop:disable Layout/LineLength
+              params[params.index(attr)] = { attr => {} }
             end
 
             # Now iterate on the references passed in and expand them
