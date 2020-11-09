@@ -90,7 +90,7 @@ module Rhino
             return :string if defined_enums.key?(name)
 
             # Use the column type if its an property from the db
-            return columns_hash[name.to_s].type if columns_hash.key?(name.to_s)
+            return attribute_types[name.to_s].type if attribute_types.key?(name.to_s)
 
             if reflections.key?(name)
               return :array if reflections[name].macro == :has_many
