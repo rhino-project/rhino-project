@@ -6,11 +6,11 @@ module Rhino
     config.autoload_paths << File.expand_path('../../app/resources', __dir__)
 
     ActiveSupport.on_load(:active_record) do
-      include Rhino::Resource::ActiveRecord if Rhino.auto_include_active_record
+      include Rhino::Resource::ActiveRecordExtension if Rhino.auto_include_active_record
     end
 
     ActiveSupport.on_load(:active_storage_attachment) do
-      include Rhino::Resource::ActiveStorage
+      include Rhino::Resource::ActiveStorageExtension
     end
   end
 end

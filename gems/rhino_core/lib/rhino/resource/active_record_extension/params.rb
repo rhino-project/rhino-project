@@ -2,7 +2,7 @@
 
 module Rhino
   module Resource
-    module ActiveRecord
+    module ActiveRecordExtension
       module Params
         extend ActiveSupport::Concern
 
