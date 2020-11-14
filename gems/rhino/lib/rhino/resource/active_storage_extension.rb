@@ -2,11 +2,11 @@
 
 module Rhino
   module Resource
-    module ActiveStorage
+    module ActiveStorageExtension
       extend ActiveSupport::Concern
 
       # Base
-      include Rhino::Resource::ActiveRecord unless Rhino.auto_include_active_record
+      include Rhino::Resource::ActiveRecordExtension unless Rhino.auto_include_active_record
 
       included do
         attribute :url
