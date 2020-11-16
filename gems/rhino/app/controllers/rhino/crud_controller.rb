@@ -72,7 +72,8 @@ module Rhino
 
       model_params = ActionController::Parameters.new(model.to_caching_json)
       model_params[:can_current_user_edit] = model_policy.update?
-      model_params.permit(model_policy.permitted_attributes_for_show + [:can_current_user_edit])
+      model_params[:can_current_user_destroy] = model_policy.destroy?
+      model_params.permit(model_policy.permitted_attributes_for_show + %i[can_current_user_edit can_current_user_destroy])
     end
 
     def permit_and_render

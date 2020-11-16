@@ -1,109 +1,60 @@
 # frozen_string_literal: true
 
 module Rhino
-  class CrudPolicy
-    attr_reader :auth_owner, :record
-
-    def initialize(auth_owner, record)
-      @auth_owner = auth_owner
-      @record = record
-    end
-
-    def action?(chain_command) # rubocop:disable  Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-      # We must have a valid user and record to check
-      return false unless auth_owner && record
-
-      # If this record is the base owner check for ownership
-      # This check works like global_owner? on many relationships
-      if record.base_owner?
-        # If both auth owner and the base owner are the same (ie user)
-        # Just check the ids
-        return auth_owner.id == record.id if Rhino.same_owner?
-
-        # Get list of users ids from base_owner
-        ids = if record.is_a? ActiveRecord::Associations::CollectionProxy
-                record.map { |o| o.send(Rhino.base_to_auth).pluck(:id) }.flatten
-              else
-                record.send(Rhino.base_to_auth).map(&:id)
-              end
-
-        return ids.include?(auth_owner.id)
-      end
-
-      return record.id == auth_owner.id if record.auth_owner?
-
-      # Chain to the next owned record (until we find the base_owner)
-      Pundit.policy(auth_owner, record.owner).send(chain_command)
-    end
-
-    ###
-    # Create
-    ###
-    def create?
-      # :update? is on purpose - if we chain to the parent for permission we are
-      # updating the parent
-      action?(:update?)
-    end
-
-    def permitted_attributes_for_create
-      record.create_params
-    end
-
-    ###
-    # Index
-    ###
-    def index?
+  # FIXME: Same role scoping for permitted params
+  class CrudPolicy < ::Rhino::BasePolicy
+    def check_action(action)
+      # We must have a valid user
+      # FIXME: Support unauthed user
       return false unless auth_owner
 
-      true
-    end
+      # If any role allows the action, return true
+      # There should only be multiple roles in the case of index because we
+      # can't trace to a specifc owner
+      # FIXME: Make sure this is ok for create - ie the ownership is enforced/checked
+      Rhino.base_owner.roles_for_auth(auth_owner, record).each do |role, _base_owner_array|
+        policy_class = Rhino::PolicyHelper.find_policy(role)
+        next unless policy_class
 
-    ###
-    # Show
-    ###
-    def show?
-      action?(:show?)
-    end
-
-    def permitted_attributes_for_show
-      record.show_params
-    end
-
-    ###
-    # Update
-    ###
-    def update?
-      action?(:update?)
-    end
-
-    def permitted_attributes_for_update
-      record.update_params
-    end
-
-    ###
-    # Destroy
-    ###
-    def destroy?
-      action?(:destroy?)
-    end
-
-    class Scope
-      attr_reader :auth_owner, :scope
-
-      def initialize(auth_owner, scope)
-        @auth_owner = auth_owner
-        @scope = scope
+        return true if policy_class.new(auth_owner, record).send(action)
       end
 
-      def resolve
-        # Must be logged in to see anything
-        return scope.none unless auth_owner
+      false
+    end
 
-        # Join all the way to the auth owner
-        base_owner_scope = scope.joins(scope.joins_for_auth_owner)
+    def method_missing(method, *args, &block)
+      return authorize_action(check_action(method)) if action_method?(method)
 
-        # Check to see if the auth owner ids match up
-        base_owner_scope.where("#{Rhino.auth_owner.table_name}.id": auth_owner.id)
+      super
+    end
+
+    def respond_to_missing?(method, *)
+      action_method?(method) || super
+    end
+
+    class Scope < ::Rhino::BasePolicy::Scope
+      def resolve # rubocop:disable Metrics/AbcSize
+        role_scopes = []
+
+        pk = Rhino.base_owner.primary_key
+        tn = Rhino.base_owner.table_name
+
+        # Get every role for the auth owner
+        Rhino.base_owner.roles_for_auth(auth_owner).each do |role, base_owner_array|
+          base_owner_array.each do |base_owner|
+            scope_class = Rhino::PolicyHelper.find_policy_scope(role)
+            next unless scope_class
+
+            # Collect all the role based scopes
+            scope_instance = scope_class.new(auth_owner, scope)
+            role_scopes << scope_instance.resolve.select(pk.to_sym).joins(scope.joins_for_base_owner).where("#{tn}.#{pk}": base_owner[pk])
+          end
+        end
+
+        # UNION all the role based scopes
+        # The front end needs to filter per base owner as appropriate
+        # Select with present? because scope.none with produce empty sql string
+        scope.where("#{pk} in (#{role_scopes.map(&:to_sql).select(&:present?).join(' UNION ')})")
       end
     end
   end

@@ -9,6 +9,23 @@ module Rhino
         class_attribute :owned_by, default: nil
 
         delegate :auth_owner?, :base_owner?, :global_owner?, to: :class
+        delegate :joins_for, :joins_for_auth_owner, :joins_for_base_owner, to: :class
+      end
+
+      def base_owner_ids
+        klass = self.class
+        pk = klass.primary_key
+        bo = Rhino.base_owner
+
+        klass.joins(klass.joins_for_base_owner).where("#{pk}": attributes[pk]).pluck("#{bo.table_name}.#{bo.primary_key}")
+      end
+
+      def auth_owner_ids
+        klass = self.class
+        pk = klass.primary_key
+        ao = Rhino.auth_owner
+
+        klass.joins(klass.joins_for_auth_owner).where("#{pk}": attributes[pk]).pluck("#{ao.table_name}.#{ao.primary_key}")
       end
 
       # The self is actually required to work with class_attribute properly
@@ -91,6 +108,57 @@ module Rhino
         # Sets rhino_owner[rdoc-ref:rhino_owner] to be global
         def rhino_owner_global(**options)
           rhino_owner(:global, options)
+        end
+
+        def joins_for_auth_owner
+          return {} if auth_owner?
+
+          # Find the reflection to the auth owner
+          return Rhino.base_to_auth if base_owner?
+
+          joins = simple_joins_for_base_owner
+
+          # Only chain extra to auth if its not the same
+          joins.inject(Rhino.same_owner? ? {} : Rhino.base_to_auth) { |a, n| { n => a } }
+        end
+
+        def joins_for_base_owner
+          return {} if base_owner?
+
+          return Rhino.auth_to_base if auth_owner?
+
+          joins = simple_joins_for_base_owner
+
+          joins.inject({}) { |a, n| { n => a } }
+        end
+
+        def joins_for(parent)
+          return {} if parent.to_s.classify == self.to_s.classify
+
+          joins = simple_joins_for(parent)
+
+          joins.inject({}) { |a, n| { n => a } }
+        end
+
+        private
+
+        def simple_joins_for(parent)
+          # FIXME: There is probably a more rubyish way to do this
+          chained_scope = self
+          joins = []
+
+          # The ownership could be a many, so we classify first
+          while chained_scope.owned_by.to_s.classify != parent.to_s.classify
+            joins << chained_scope.owned_by
+            chained_scope = chained_scope.owned_by.to_s.classify.constantize
+          end
+          joins << chained_scope.owned_by
+
+          joins.reverse
+        end
+
+        def simple_joins_for_base_owner
+          simple_joins_for(Rhino.base_owner)
         end
       end
       # rubocop:enable Style/RedundantSelf
