@@ -6,111 +6,110 @@ module Rhino
       module Params
         extend ActiveSupport::Concern
 
-        included do # rubocop:disable Metrics/BlockLength
-          def create_params
-            writeable_params('create')
+        included do
+        end
+
+        def create_params
+          writeable_params('create')
+        end
+
+        def show_params
+          readable_params('show')
+        end
+
+        def update_params
+          writeable_params('update')
+        end
+
+        protected
+
+        def reference_to_sym(reference)
+          reference.is_a?(Hash) ? reference.keys.first : reference
+        end
+
+        def instance_from_sym(sym)
+          ref = try(sym)
+          return unless ref
+
+          # This is mostly how serializable_hash does it
+          # Get the first object
+          return ref.first if ref.respond_to?(:to_ary)
+
+          ref
+        end
+
+        def assoc_from_sym(sym)
+          self.class.reflect_on_association(sym)
+        end
+
+        def params_by_type(type)
+          # FIXME: Direct attributes for this model we want a copy, not to
+          # alter the class_attribute itself
+          send("#{type}_properties").dup
+        end
+
+        def params_without_refs(type)
+          params_by_type(type) - references.map { |r| reference_to_sym(r).to_s }
+        end
+
+        def readable_params(type, refs = references) # rubocop:disable Metrics/AbcSize
+          # FIXME: Use type here
+          # Remove all references from the params, they will be re-added
+          # in the block below if they are readable
+          params = params_without_refs('read')
+
+          # JSON columns need special handling - allow all the nested params
+          self.class.attribute_names.select { |attr| self.class.attribute_types[attr].type.to_s.in?(%w[json jsonb]) && params.index(attr) }.each do |attr| # rubocop:disable Layout/LineLength
+            params[params.index(attr)] = { attr => {} }
           end
 
-          def show_params
-            readable_params('show')
+          # Now iterate on the references passed in and expand them
+          refs.each do |r|
+            sym = reference_to_sym(r)
+
+            ref = instance_from_sym(sym)
+            next unless ref
+
+            next_refs = r.is_a?(Hash) ? r[sym] : []
+            params << { sym.to_s => ref.send('readable_params', type, next_refs) }
           end
 
-          def update_params
-            writeable_params('update')
-          end
+          # Display name is always allowed
+          params << 'display_name'
+        end
 
-          private
+        def writeable_params(type, refs = references) # rubocop:disable Metrics/AbcSize
+          # Remove all references from the params, they will be re-added
+          # in the block below if they are writeable
+          params = params_without_refs(type)
 
-          def reference_to_sym(reference)
-            reference.is_a?(Hash) ? reference.keys.first : reference
-          end
+          refs.each do |r|
+            sym = reference_to_sym(r)
+            assoc = assoc_from_sym(sym)
 
-          def instance_from_sym(sym)
-            ref = try(sym)
-            return unless ref
-
-            # This is mostly how serializable_hash does it
-            # Get the first object
-            return ref.first if ref.respond_to?(:to_ary)
-
-            ref
-          end
-
-          def assoc_from_sym(sym)
-            self.class.reflect_on_association(sym)
-          end
-
-          def params_by_type(type)
-            # FIXME: Direct attributes for this model we want a copy, not to
-            # alter the class_attribute itself
-            send("#{type}_properties").dup
-          end
-
-          def params_without_refs(type)
-            params_by_type(type) - references.map { |r| reference_to_sym(r).to_s }
-          end
-
-          def readable_params(type, refs = references) # rubocop:disable Metrics/AbcSize
-            # FIXME: Use type here
-            # Remove all references from the params, they will be re-added
-            # in the block below if they are readable
-            params = params_without_refs('read')
-
-            # JSON columns need special handling - allow all the nested params
-            self.class.attribute_names.select { |attr| self.class.attribute_types[attr].type.to_s.in?(%w[json jsonb]) && params.index(attr) }.each do |attr| # rubocop:disable Layout/LineLength
-              params[params.index(attr)] = { attr => {} }
+            # Not nested, but we accept the ref name as the foreign key
+            # if its a singular resource
+            unless nested_attributes_options.key?(sym)
+              params << sym.to_s if assoc.macro.in?(%i[belongs_to has_one])
+              next
             end
 
-            # Now iterate on the references passed in and expand them
-            refs.each do |r|
-              sym = reference_to_sym(r)
-
-              ref = instance_from_sym(sym)
-              next unless ref
-
-              next_refs = r.is_a?(Hash) ? r[sym] : []
-              params << { sym.to_s => ref.send('readable_params', type, next_refs) }
-            end
-
-            # Display name is always allowed
-            params << 'display_name'
+            # The identifier_property (primary key) is editable so that updates can occur
+            # The nested association editable attributes are editable
+            # The nested attributes of the nested association are also editable
+            # This does not handle nested for a polymorphic model, but neither does rails
+            # FIXME: Do we need to handle :update_only option?
+            destroy = [*('_destroy' if nested_attributes_options[sym][:allow_destroy])]
+            params << { sym.to_s => [assoc.klass.identifier_property] + assoc.klass.new.send("#{type}_params") + destroy }
           end
 
-          def writeable_params(type, refs = references) # rubocop:disable Metrics/AbcSize
-            # Remove all references from the params, they will be re-added
-            # in the block below if they are writeable
-            params = params_without_refs(type)
-
-            refs.each do |r|
-              sym = reference_to_sym(r)
-              assoc = assoc_from_sym(sym)
-
-              # Not nested, but we accept the ref name as the foreign key
-              # if its a singular resource
-              unless nested_attributes_options.key?(sym)
-                params << sym.to_s if assoc.macro.in?(%i[belongs_to has_one])
-                next
-              end
-
-              # The identifier_property (primary key) is editable so that updates can occur
-              # The nested association editable attributes are editable
-              # The nested attributes of the nested association are also editable
-              # This does not handle nested for a polymorphic model, but neither does rails
-              # FIXME: Do we need to handle :update_only option?
-              destroy = [*('_destroy' if nested_attributes_options[sym][:allow_destroy])]
-              params << { sym.to_s => [assoc.klass.identifier_property] + assoc.klass.new.send("#{type}_params") + destroy }
-            end
-
-            params
-          end
+          params
         end
 
         class_methods do
           def transform_params(params)
             transform_params_recursive(params)
           end
-
-          protected
 
           # Rebuild the params
           def transform_params_recursive(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
