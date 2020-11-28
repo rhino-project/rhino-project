@@ -27,7 +27,7 @@ module Rhino
             writeable_properties
           end
 
-          def describe_property(property)
+          def describe_property(property) # rubocop:disable Metrics/AbcSize
             name = property_name(property).to_s
             {
               name: name,
@@ -36,8 +36,9 @@ module Rhino
               readable: read_properties.include?(property),
               creatable: create_properties.include?(property),
               updatable: update_properties.include?(property),
-              nullable: property_nullable?(name)
-            }.merge(property_validations(property))
+              nullable: property_nullable?(name),
+              default: property_default(name)
+            }.merge(property_validations(property)).compact
           end
 
           private
@@ -134,6 +135,14 @@ module Rhino
             return columns_hash[name.to_s].null if columns_hash.key?(name.to_s)
 
             false
+          end
+
+          def property_default(name)
+            # FIXME: This will not handle datetime fields
+            # https://github.com/rails/rails/issues/27077 sets the default in the db
+            # but Blog.new does not set the default value like other attributes
+            # https://nubinary.atlassian.net/browse/NUB-298
+            _default_attributes[name].type_cast(_default_attributes[name].value_before_type_cast)
           end
         end
       end
