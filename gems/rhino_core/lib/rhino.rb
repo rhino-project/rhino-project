@@ -80,6 +80,10 @@ module Rhino
   end
   self.auth_owner = 'User'
 
+  def self.auth_owner_sym
+    auth_owner.to_s.underscore.pluralize.to_sym
+  end
+
   def self.base_owner
     @@base_owner_ref.get
   end
@@ -90,6 +94,10 @@ module Rhino
   end
   self.base_owner = 'User'
 
+  def self.base_owner_sym
+    base_owner.to_s.underscore.pluralize.to_sym
+  end
+
   def self.same_owner?
     base_owner == auth_owner
   end
@@ -97,7 +105,17 @@ module Rhino
   def self.base_to_auth
     return auth_owner.model_name.i18n_key if same_owner?
 
-    base_owner.reflections.find { |_name, reflection| reflection.klass == auth_owner }&.first&.to_sym
+    return auth_owner_sym if base_owner.reflections.key?(auth_owner_sym.to_s)
+
+    nil
+  end
+
+  def self.auth_to_base
+    return auth_owner.model_name.i18n_key if same_owner?
+
+    return base_owner_sym if auth_owner.reflections.key?(base_owner_sym.to_s)
+
+    nil
   end
 
   # Default way to set up Rhino

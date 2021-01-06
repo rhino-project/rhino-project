@@ -8,7 +8,7 @@ module Rhino
 
     rhino_routing only: [:index], path: 'info/models'
     rhino_controller :simple
-    rhino_policy :none
+    rhino_policy :resource_info
 
     def self.describe
       ''

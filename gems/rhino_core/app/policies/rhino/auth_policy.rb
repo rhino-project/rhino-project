@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 module Rhino
-  class AuthPolicy
-    attr_reader :base_owner_context, :record
+  class AuthPolicy < ::Rhino::BasePolicy
+    set_callback :authorize_action, :before, :check_auth
 
-    def initialize(base_owner_context, record)
-      @base_owner_context = base_owner_context
-      @record = record
+    def check_auth
+      auth_owner.present?
     end
 
-    def action?
-      return false unless base_owner_context.base_owner
+    class Scope < ::Rhino::BasePolicy::Scope
+      def resolve
+        return scope.none unless auth_owner.present?
 
-      true
+        scope
+      end
     end
   end
 end
