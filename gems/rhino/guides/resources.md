@@ -1,0 +1,182 @@
+# Rhino Resources
+
+This guide is an introduction to Rhino Resources
+
+---
+
+## What is a Resource?
+
+A Resource is a web resource, manipulated via a REST api. Resources may be created, updated, destroyed or read (CRUD) based on permissions of the system.
+
+### Types of resources
+
+A Resource can be anything that responds the Rhino::Resource interface. Most common is an Active Record based resource. Types of resources include:
+
+#### Rhino::Resource
+
+> The Resource interface to be implemented. Implementations can include it directly and supply a few additional methods or create new module which can then itself be included. See `rhino/rhino/app/resources/rhino/resource_info.rb` for an example.
+
+#### Rhino::Resource::ActiveRecordExtension
+
+> An Active Record resource implementation that exposes all attributes of the model and validatations
+
+#### Rhino::Resource::ActiveStorage
+
+> A further extension of Rhino::Resource::ActiveRecordExtension that is included in ActiveStorage::Attachment
+
+#### Rhino::Resource::ActiveRecordTree
+
+> A further extension of Rhino::Resource::ActiveRecordExtension that includes the ancestry gem and returns API responses in a heirarchal format
+
+### Ownership
+
+With a couple of exceptions, every resource is owned by another resource. For instance a blog post may be owned by a blog. In the case of an Active Record based resource, ownership is usually a belongs_to relationship.
+
+```ruby
+class BlogPost < ApplicationRecord
+  belongs_to :blog
+
+  rhino_owner :blog
+end
+```
+
+The resource owner must be explicitly specified for every resource.
+
+There are three special types of owners.
+
+#### Auth Owner
+
+> The resource that controls authentication, by default the provided 'User' Resource.
+
+#### Base Owner
+
+> The Resource that is the top level in the hierarchy of other Resources, by default the provided 'User' Resource, but there cases like rhino_organizations where it may be different from the Auth Owner, for instance a company may own the blogs and users may come and go.
+
+```ruby
+class Blog < ApplicationRecord
+  belongs_to :company
+
+  rhino_owner_base
+end
+```
+
+#### Global Owner
+
+> If a Resource is shared across multiple Base and Auth Owners, it is a global resource. Global Resources may have a hierarchy as well.
+
+```ruby
+class Category < ApplicationRecord
+  rhino_owner_global
+end
+```
+
+### Properties
+
+Properties are attributes or fields of a Resource. In the case of an Active Record based Resource, these fields are inferred from the model attributes.
+
+#### Restricting properties
+
+Properties on a Resource can be restricted with configuration directives based on type of operation (read, create, update) using the only and except directives
+
+```ruby
+class User < ApplicationRecord
+  rhino_properties_read only: %i[id uid name email]
+  rhino_properties_create only: %i[name nickname email]
+  rhino_properties_update only: %i[name nickname]
+end
+```
+
+```ruby
+class User < ApplicationRecord
+  rhino_properties_read except: %i[password]
+end
+```
+
+### References
+
+References of a Resource are links to other related Resources, they are a special type of property and must be explicitly configured to be included in the API response.
+
+```ruby
+class BlogPost < ApplicationRecord
+  belongs_to :blog
+
+  rhino_owner :blog
+  rhino_references [:blog]
+end
+```
+
+## Describing resources
+
+All resources must respond to the describe method.
+
+```javascript
+{
+       "model": "user",
+       "modelPlural": "users",
+       "name": "user",
+       "pluralName": "users",
+       "capitalizedName": "User",
+       "capitalizedPluralName": "Users",
+       "readableName": "User",
+       "pluralReadableName": "Users",
+       "ownedBy": null,
+       "path": "api/users",
+       "attributes": [
+         {
+           "name": "id",
+           "readableName": "Id",
+           "type": "identifier",
+           "readable": true,
+           "creatable": false,
+           "updatable": false,
+           "nullable": false
+         },
+         {
+           "name": "uid",
+           "readableName": "Uid",
+           "type": "string",
+           "readable": true,
+           "creatable": false,
+           "updatable": false,
+           "nullable": false,
+           "default": ""
+         },
+         {
+           "name": "name",
+           "readableName": "Name",
+           "type": "string",
+           "readable": true,
+           "creatable": true,
+           "updatable": true,
+           "nullable": true
+         },
+         {
+           "name": "email",
+           "readableName": "Email",
+           "type": "string",
+           "readable": true,
+           "creatable": true,
+           "updatable": false,
+           "nullable": true
+         },
+         {
+           "name": "nickname",
+           "readableName": "Nickname",
+           "type": "string",
+           "readable": false,
+           "creatable": true,
+           "updatable": true,
+           "nullable": true
+         }
+       ]
+     }
+```
+
+### Default values
+
+### Validations
+
+- Validations
+- Default values
+- Readable/creatable/nullable
+- Types
