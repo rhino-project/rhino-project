@@ -17,7 +17,7 @@ module Rhino
       class_attribute :_policy_class, default: Rhino::CrudPolicy
 
       def owner
-        send self.class.owned_by
+        send self.class.resource_owned_by
       end
 
       def display_name
