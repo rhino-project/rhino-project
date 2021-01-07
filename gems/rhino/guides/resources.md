@@ -111,72 +111,165 @@ All resources must respond to the describe method.
 
 ```javascript
 {
-       "model": "user",
-       "modelPlural": "users",
-       "name": "user",
-       "pluralName": "users",
-       "capitalizedName": "User",
-       "capitalizedPluralName": "Users",
-       "readableName": "User",
-       "pluralReadableName": "Users",
-       "ownedBy": null,
-       "path": "api/users",
-       "attributes": [
-         {
-           "name": "id",
-           "readableName": "Id",
-           "type": "identifier",
-           "readable": true,
-           "creatable": false,
-           "updatable": false,
-           "nullable": false
-         },
-         {
-           "name": "uid",
-           "readableName": "Uid",
-           "type": "string",
-           "readable": true,
-           "creatable": false,
-           "updatable": false,
-           "nullable": false,
-           "default": ""
-         },
-         {
-           "name": "name",
-           "readableName": "Name",
-           "type": "string",
-           "readable": true,
-           "creatable": true,
-           "updatable": true,
-           "nullable": true
-         },
-         {
-           "name": "email",
-           "readableName": "Email",
-           "type": "string",
-           "readable": true,
-           "creatable": true,
-           "updatable": false,
-           "nullable": true
-         },
-         {
-           "name": "nickname",
-           "readableName": "Nickname",
-           "type": "string",
-           "readable": false,
-           "creatable": true,
-           "updatable": true,
-           "nullable": true
-         }
-       ]
-     }
+ "model": "blog",
+ "modelPlural": "blogs",
+ "name": "blog",
+ "pluralName": "blogs",
+ "capitalizedName": "Blog",
+ "capitalizedPluralName": "Blogs",
+ "readableName": "Blog",
+ "pluralReadableName": "Blogs",
+ "ownedBy": "organization",
+ "path": "api/blogs",
+ "attributes": [
+   {
+     "name": "id",
+     "readableName": "Id",
+     "type": "identifier",
+     "readable": true,
+     "creatable": false,
+     "updatable": false,
+     "nullable": false
+   },
+   {
+     "name": "title",
+     "readableName": "Title",
+     "type": "string",
+     "readable": true,
+     "creatable": true,
+     "updatable": true,
+     "nullable": true
+   },
+   {
+     "name": "created_at",
+     "readableName": "Created At",
+     "type": "datetime",
+     "readable": true,
+     "creatable": false,
+     "updatable": false,
+     "nullable": false
+   },
+   {
+     "name": "updated_at",
+     "readableName": "Updated At",
+     "type": "datetime",
+     "readable": true,
+     "creatable": false,
+     "updatable": false,
+     "nullable": false
+   },
+   {
+     "name": "published_at",
+     "readableName": "Published At",
+     "type": "datetime",
+     "readable": true,
+     "creatable": true,
+     "updatable": true,
+     "nullable": true
+   },
+   {
+     "name": "user",
+     "readableName": "User",
+     "type": "reference",
+     "readable": true,
+     "creatable": true,
+     "updatable": true,
+     "nullable": false
+   },
+   {
+     "name": "category",
+     "readableName": "Category",
+     "type": "reference",
+     "readable": true,
+     "creatable": true,
+     "updatable": true,
+     "nullable": false
+   },
+   {
+     "name": "blog_posts",
+     "readableName": "Blog Posts",
+     "type": "array",
+     "readable": true,
+     "creatable": false,
+     "updatable": false,
+     "nullable": false
+   }
+ ]
+}
 ```
 
-### Default values
+### Attributes (Properties)
 
-### Validations
+This field is called attributes for historical reasons, but is the list of properties available on the resource.
 
-- Validations
-- Default values
-- Readable/creatable/nullable
-- Types
+Readable/creatable/nullable
+
+#### Types
+
+Supported types include:
+
+- string
+- text
+- datetime
+- date
+- time
+- integer
+- identifier (primary key/id)
+- array (usually an array of references)
+- reference
+
+#### Default values
+
+The OpenAPI spec default descriptor is supported. Active Record based resources will automatically translate default values.
+
+```javascript
+{
+  "name": "published",
+  "readableName": "Published",
+  "type": "boolean",
+  "readable": true,
+  "creatable": true,
+  "updatable": true,
+  "nullable": true,
+  "default": false
+},
+```
+
+#### Validations
+
+The OpenAPI spec minimum, maximum, minLength, maxLength and enum constraints are all supported.
+
+Active Record based resources will automatically translate some validations automatically such as:
+
+- ActiveModel::Validations::NumericalityValidator
+- ActiveRecord::Validations::LengthValidator
+- ActiveModel::Validations::InclusionValidator
+
+```javascript
+{
+  "name": "hand",
+  "readableName": "Hand",
+  "type": "string",
+  "readable": true,
+  "creatable": true,
+  "updatable": true,
+  "nullable": true,
+  "minLength": 1,
+  "maxLength": 1,
+  "enum": [
+    "L",
+    "R"
+  ]
+},
+{
+  "name": "year",
+  "readableName": "Year",
+  "type": "integer",
+  "readable": true,
+  "creatable": true,
+  "updatable": true,
+  "nullable": true,
+  "minimum": 1982,
+  "maximum": 2030
+},
+```
