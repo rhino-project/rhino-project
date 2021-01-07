@@ -13,6 +13,56 @@ http://localhost:3002/api/info/models
 
 This is the output the description of all resources.
 
+### Routing and Controllers
+
+By default Resources will have the standard CRUD based routing (ie resource: :blogs from rails). Routes can be altered with rhino configuration directives.
+
+```ruby
+class Blog < ApplicationRecord
+  rhino_routing only: [:index]
+end
+```
+
+```ruby
+class Blog < ApplicationRecord
+  rhino_routing except: [:destroy], path: 'my_custom_blog_endpoint'
+end
+```
+
+Globally owned resources will only have index and show available by default
+
+The default controller for Resources in Rhino::CrudController, but this can be altered
+
+```ruby
+class Blog < ApplicationRecord
+  rhino_controller :simple
+end
+```
+
+#### Built In Controllers
+
+#### Rhino::BaseController
+
+> Base for others to inherit from that provides basic initialization, error handling, pundit and cors
+
+#### Rhino::CrudController
+
+> Provides basic CRUD actions (index, show, create, update, destroy) and enforces policy authorization, scoping and parameratization as well as sieve support
+
+#### Rhino::SimpleController
+
+> Maps an action to a method on the Resource itself. Enforces policy authorization but nothing else.
+
+#### API Name Spacing
+
+By default all API routes are available under '/api', but this can be configured with a setting in the initializer
+
+```ruby
+Rhino.setup do |config|
+  config.namespace = 'my_custom_api'
+end
+```
+
 ### Parameters
 
 Parameters are what is accepted or returned from the API as properties for the Resource. Parameters by default reflect the properties of a resource, but can be overwritten by the resource itself or policies.
