@@ -17,7 +17,7 @@ module Rhino
               capitalizedPluralName: model_name.name.pluralize,
               readableName: model_name.human,
               pluralReadableName: model_name.human.pluralize,
-              ownedBy: owned_by,
+              ownedBy: resource_owned_by,
               path: "#{Rhino.namespace}/#{route_path}",
               attributes: export_properties.map { |property| describe_property(property) }
             }

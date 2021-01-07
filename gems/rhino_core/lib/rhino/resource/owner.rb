@@ -6,7 +6,7 @@ module Rhino
       extend ActiveSupport::Concern
 
       included do
-        class_attribute :owned_by, default: nil
+        class_attribute :resource_owned_by, default: nil
 
         delegate :auth_owner?, :base_owner?, :global_owner?, to: :class
         delegate :joins_for, :joins_for_auth_owner, :joins_for_base_owner, to: :class
@@ -46,7 +46,7 @@ module Rhino
         # Test if rhino_owner[rdoc-ref:rhino_owner] is the base owner
         # Also available on the instance
         def global_owner?
-          self.owned_by == :global
+          self.resource_owned_by == :global
         end
 
         # Test if rhino_owner[rdoc-ref:rhino_owner] is the base owner
@@ -54,7 +54,7 @@ module Rhino
         def global_owned?
           chained_scope = self
           while !chained_scope.auth_owner? && !chained_scope.base_owner? && !chained_scope.global_owner?
-            chained_scope = chained_scope.owned_by.to_s.classify.safe_constantize
+            chained_scope = chained_scope.resource_owned_by.to_s.classify.safe_constantize
           end
 
           chained_scope.global_owner?
@@ -96,7 +96,7 @@ module Rhino
         #   end
         #
         def rhino_owner(name, **_options)
-          self.owned_by = name
+          self.resource_owned_by = name
           rhino_policy :global if global_owned?
         end
 
@@ -148,11 +148,11 @@ module Rhino
           joins = []
 
           # The ownership could be a many, so we classify first
-          while chained_scope.owned_by.to_s.classify != parent.to_s.classify
-            joins << chained_scope.owned_by
-            chained_scope = chained_scope.owned_by.to_s.classify.constantize
+          while chained_scope.resource_owned_by.to_s.classify != parent.to_s.classify
+            joins << chained_scope.resource_owned_by
+            chained_scope = chained_scope.resource_owned_by.to_s.classify.constantize
           end
-          joins << chained_scope.owned_by
+          joins << chained_scope.resource_owned_by
 
           joins.reverse
         end
