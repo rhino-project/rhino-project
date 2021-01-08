@@ -13,19 +13,11 @@ module Rhino
       end
 
       def base_owner_ids
-        klass = self.class
-        pk = klass.primary_key
-        bo = Rhino.base_owner
-
-        klass.joins(klass.joins_for_base_owner).where("#{pk}": attributes[pk]).pluck("#{bo.table_name}.#{bo.primary_key}")
+        owner_ids(:joins_for_base_owner)
       end
 
       def auth_owner_ids
-        klass = self.class
-        pk = klass.primary_key
-        ao = Rhino.auth_owner
-
-        klass.joins(klass.joins_for_auth_owner).where("#{pk}": attributes[pk]).pluck("#{ao.table_name}.#{ao.primary_key}")
+        owner_ids(:joins_for_auth_owner)
       end
 
       # The self is actually required to work with class_attribute properly
@@ -162,6 +154,21 @@ module Rhino
         end
       end
       # rubocop:enable Style/RedundantSelf
+    end
+
+    private
+
+    # We use the parent as the starting point because if the record is not
+    # persisted yet, we won't be able to find it
+    def owner_ids(joins)
+      bo = Rhino.base_owner
+
+      return [] unless owner
+
+      parent_klass = owner.class
+      pk = parent_klass.primary_key
+
+      parent_klass.joins(parent_klass.send(joins)).where("#{pk}": owner[pk]).pluck("#{bo.table_name}.#{bo.primary_key}")
     end
   end
 end
