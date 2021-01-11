@@ -42,65 +42,77 @@ module Rhino
           self.class.reflect_on_association(sym)
         end
 
-        def params_by_type(type)
+        def props_by_type(type)
           # FIXME: Direct attributes for this model we want a copy, not to
           # alter the class_attribute itself
           send("#{type}_properties").dup
         end
 
-        def params_without_refs(type)
-          params_by_type(type) - references.map { |r| reference_to_sym(r).to_s }
-        end
+        def readable_params(type, refs = references) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+          params = []
 
-        def readable_params(type, refs = references) # rubocop:disable Metrics/AbcSize
-          # FIXME: Use type here
-          # Remove all references from the params, they will be re-added
-          # in the block below if they are readable
-          params = params_without_refs('read')
+          refs_index = refs.index_by { |r| reference_to_sym(r) }
 
-          # JSON columns need special handling - allow all the nested params
-          self.class.attribute_names.select { |attr| self.class.attribute_types[attr].type.to_s.in?(%w[json jsonb]) && params.index(attr) }.each do |attr| # rubocop:disable Layout/LineLength
-            params[params.index(attr)] = { attr => {} }
-          end
+          props_by_type('read').each do |prop|
+            desc = describe_property(prop)
+            prop_sym = prop.to_sym
 
-          # Now iterate on the references passed in and expand them
-          refs.each do |r|
-            sym = reference_to_sym(r)
+            # If its a reference or an array of references
+            if desc[:type] == :reference || (desc[:type] == :array && desc[:items].key?(:$ref))
+              next unless refs_index.key?(prop_sym)
 
-            ref = instance_from_sym(sym)
-            next unless ref
+              next_refs = refs_index[prop_sym].is_a?(Hash) ? refs_index[prop_sym][prop_sym] : []
+              ref = instance_from_sym(prop_sym)
 
-            next_refs = r.is_a?(Hash) ? r[sym] : []
-            params << { sym.to_s => ref.send('readable_params', type, next_refs) }
+              # FIXME: This will be blank in the array case; is this ok?
+              next unless ref
+
+              next params << { prop.to_s => ref.send('readable_params', type, next_refs) }
+            end
+
+            # JSON columns need special handling - allow all the nested params
+            next params << { prop => {} } if desc[:type].in?(%w[json jsonb])
+
+            # Generic array of scalars
+            next params << { prop => [] } if desc[:type] == :array
+
+            # Otherwise prop and param are equivalent
+            params << prop
           end
 
           # Display name is always allowed
           params << 'display_name'
         end
 
-        def writeable_params(type, refs = references) # rubocop:disable Metrics/AbcSize
-          # Remove all references from the params, they will be re-added
-          # in the block below if they are writeable
-          params = params_without_refs(type)
+        def writeable_params(type, _refs = references) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+          params = []
 
-          refs.each do |r|
-            sym = reference_to_sym(r)
-            assoc = assoc_from_sym(sym)
+          props_by_type(type).each do |prop|
+            desc = describe_property(prop)
+            prop_sym = prop.to_sym
 
-            # Not nested, but we accept the ref name as the foreign key
-            # if its a singular resource
-            unless nested_attributes_options.key?(sym)
-              params << sym.to_s if assoc.macro.in?(%i[belongs_to has_one])
-              next
+            # An array of references
+            if desc[:type] == :array && desc[:items].key?(:$ref)
+              # We only accept if the active record accepts it
+              next unless nested_attributes_options.key?(prop_sym)
+
+              assoc = assoc_from_sym(prop.to_sym)
+
+              # The identifier_property (primary key) is editable so that updates can occur
+              # The nested association editable attributes are editable
+              # The nested attributes of the nested association are also editable
+              # This does not handle nested for a polymorphic model, but neither does rails
+              # FIXME: Do we need to handle :update_only option?
+              destroy = [*('_destroy' if nested_attributes_options[prop_sym][:allow_destroy])]
+              next params << { prop => [assoc.klass.identifier_property] + assoc.klass.new.send("#{type}_params") + destroy }
             end
 
-            # The identifier_property (primary key) is editable so that updates can occur
-            # The nested association editable attributes are editable
-            # The nested attributes of the nested association are also editable
-            # This does not handle nested for a polymorphic model, but neither does rails
-            # FIXME: Do we need to handle :update_only option?
-            destroy = [*('_destroy' if nested_attributes_options[sym][:allow_destroy])]
-            params << { sym.to_s => [assoc.klass.identifier_property] + assoc.klass.new.send("#{type}_params") + destroy }
+            # Generic array of scalars
+            next params << { prop => [] } if desc[:type] == :array
+
+            # Otherwise prop and param are equivalent
+            # We also accept the ref name as the foreign key if its a singular resource
+            params << prop
           end
 
           params
