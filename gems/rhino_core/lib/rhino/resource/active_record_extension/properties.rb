@@ -3,7 +3,7 @@
 module Rhino
   module Resource
     module ActiveRecordExtension
-      module Properties
+      module Properties # rubocop:disable Metrics/ModuleLength
         extend ActiveSupport::Concern
 
         class_methods do # rubocop:disable Metrics/BlockLength
@@ -27,18 +27,20 @@ module Rhino
             writeable_properties
           end
 
-          def describe_property(property) # rubocop:disable Metrics/AbcSize
+          def describe_property(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
             name = property_name(property).to_s
             {
               name: name,
               readableName: name.titleize,
-              type: property_type(property),
               readable: read_properties.include?(property),
               creatable: create_properties.include?(property),
               updatable: update_properties.include?(property),
               nullable: property_nullable?(name),
               default: property_default(name)
-            }.merge(property_validations(property)).compact
+            }
+              .merge(property_type(property))
+              .merge(property_validations(property))
+              .compact
           end
 
           private
@@ -83,24 +85,47 @@ module Rhino
             property.is_a?(Hash) ? property.keys.first : property
           end
 
-          def property_type(property) # rubocop:disable Metrics/AbcSize
+          def property_type_raw(property) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength,  Metrics/PerceivedComplexity
             name = property_name(property)
 
             return :identifier if name == identifier_property
 
             return :string if defined_enums.key?(name)
 
-            # Use the column type if its an property from the db
+            # FIXME: Hack for tags for now
+            if attribute_types.key?(name.to_s) && attribute_types[name.to_s].class.to_s == 'ActsAsTaggableOn::Taggable::TagListType'
+              return {
+                type: :array,
+                items: {
+                  type: 'string'
+                }
+              }
+            end
+
+            # Use the attribute type if possible
             return attribute_types[name.to_s].type if attribute_types.key?(name.to_s)
 
             if reflections.key?(name)
-              return :array if reflections[name].macro == :has_many
+              return :reference unless reflections[name].macro == :has_many
 
-              return :reference
+              return {
+                type: :array,
+                items: {
+                  '$ref'.to_sym => "#/components/schemas/#{name}"
+                }
+              }
             end
 
             # raise UnknownpropertyType
             'unknown'
+          end
+
+          def property_type(property)
+            pt = property_type_raw(property)
+
+            return pt if pt.is_a? Hash
+
+            { type: property_type_raw(property) }
           end
 
           def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
