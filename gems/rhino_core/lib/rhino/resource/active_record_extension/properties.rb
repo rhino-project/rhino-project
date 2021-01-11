@@ -154,12 +154,22 @@ module Rhino
             constraint_hash.compact
           end
 
-          def property_nullable?(name)
-            return references[name][:nullable] || false if references.include?(name)
+          # If there is a presence validator in the model it is not nullable.
+          # if there is no optional: true on an association, rails will add a
+          # presence validator automatically
+          # Otherwise check the db for the actual column or foreign key setting
+          def property_nullable?(name) # rubocop:disable Metrics/AbcSize
+            # Check for presence validator
+            if validators.select { |v| v.is_a? ActiveRecord::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
+              return false
+            end
 
-            return columns_hash[name.to_s].null if columns_hash.key?(name.to_s)
+            name = reflections[name].foreign_key if reflections.key?(name)
 
-            false
+            # Check the column null setting
+            columns_hash[name].null if columns_hash.key?(name)
+
+            true
           end
 
           def property_default(name)
