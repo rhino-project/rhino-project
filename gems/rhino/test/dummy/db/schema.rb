@@ -10,7 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_05_145945) do
+ActiveRecord::Schema.define(version: 2021_01_11_232256) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "blog_posts", force: :cascade do |t|
+    t.bigint "blog_id", null: false
+    t.string "title"
+    t.text "body"
+    t.boolean "published"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_id"], name: "index_blog_posts_on_blog_id"
+  end
+
+  create_table "blogs", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.datetime "published_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_blogs_on_category_id"
+    t.index ["user_id"], name: "index_blogs_on_user_id"
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -18,41 +63,39 @@ ActiveRecord::Schema.define(version: 2020_09_05_145945) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "property_resources", force: :cascade do |t|
-    t.string "prop_one"
-    t.string "prop_two"
-    t.string "prop_three"
-    t.string "prop_four"
-    t.string "prop_five"
-    t.string "prop_six"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table "users", force: :cascade do |t|
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.string "name"
+    t.string "nickname"
+    t.string "image"
+    t.string "email"
+    t.jsonb "tokens"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "allow_password_change", default: false, null: false
+    t.boolean "approved", default: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  create_table "resource_children", force: :cascade do |t|
-    t.string "string_prop"
-    t.integer "resource_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["resource_id"], name: "index_resource_children_on_resource_id"
-  end
-
-  create_table "resource_parents", force: :cascade do |t|
-    t.string "string_prop"
-    t.integer "integer_prop"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "resources", force: :cascade do |t|
-    t.string "string_prop"
-    t.integer "integer_prop"
-    t.integer "resource_parent_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["resource_parent_id"], name: "index_resources_on_resource_parent_id"
-  end
-
-  add_foreign_key "resource_children", "resources"
-  add_foreign_key "resources", "resource_parents"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_posts", "blogs"
+  add_foreign_key "blogs", "categories"
+  add_foreign_key "blogs", "users"
 end
