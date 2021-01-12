@@ -15,6 +15,14 @@ module Rhino
   # Include Rhino::Resource::ActiveRecordExtension by default
   mattr_accessor :auto_include_active_record, default: true
 
+  mattr_accessor :resources, default: if Rails.env.development?
+                                        ['ActiveStorage::Attachment', 'Rhino::ResourceInfo']
+                                      else
+                                        ['ActiveStorage::Attachment']
+                                      end
+
+  mattr_accessor :resource_classes
+
   # sieves
   mattr_accessor :sieves
 
@@ -40,23 +48,11 @@ module Rhino
   ##
 
   # Get the resource classes from the resource reference object.
-  def self.resources
-    @@resource_refs.map(&:get)
-  end
+  def self.resource_classes
+    resource_classes ||= resources.map(&:constantize)
 
-  # Set the resource classes reference array to access the resource classes.
-  def self.resources=(class_names)
-    # to_s because if resources are added to ie resources += ['User']
-    # there will be constants in the list
-    @@resource_refs = class_names.map { |class_name| ref(class_name.to_s) } # rubocop:disable Style/ClassVars
+    resource_classes
   end
-  # List of resources
-  # Explicit to avoid ref getting too early
-  self.resources = if Rails.env.development?
-                     ['ActiveStorage::Attachment', 'Rhino::ResourceInfo']
-                   else
-                     ['ActiveStorage::Attachment']
-                   end
 
   self.sieves = Rhino::SieveStack.new do |sieve|
     sieve.use Rhino::Sieve::Filter
@@ -121,7 +117,5 @@ module Rhino
   # Default way to set up Rhino
   def self.setup
     yield self
-
-    raise NotImplementedError, "#{Rhino.base_owner} must have reflection for #{Rhino.auth_owner}" if base_to_auth.nil?
   end
 end

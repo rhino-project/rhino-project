@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   scope Rhino.namespace do
-    Rhino.resources.each do |m|
+    Rhino.resource_classes.each do |m|
       resources m.route_key, path: m.route_path, controller: m.controller_name, only: m.routes, rhino_resource: m.name
     end
 
