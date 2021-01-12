@@ -17,7 +17,7 @@ module Rhino
     def self.index
       JSON.pretty_generate({
         components: {
-          schemas: Rhino.resources.map(&:describe)
+          schemas: Rhino.resource_classes.map(&:describe)
         },
         info: describe_info
       })
