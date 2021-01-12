@@ -167,7 +167,7 @@ module Rhino
             name = reflections[name].foreign_key if reflections.key?(name)
 
             # Check the column null setting
-            columns_hash[name].null if columns_hash.key?(name)
+            return columns_hash[name].null if columns_hash.key?(name)
 
             true
           end
