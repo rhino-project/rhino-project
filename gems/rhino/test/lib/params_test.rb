@@ -5,7 +5,7 @@ require 'test_helper'
 class ParamsTest < ActiveSupport::TestCase
   test 'Blog has create_params' do
     assert_equal Blog.new.create_params, %w[
-      title published_at user banner_attachment
+      title published_at user category banner_attachment
     ]
   end
 
