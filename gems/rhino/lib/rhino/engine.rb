@@ -27,6 +27,17 @@ module Rhino
       end
     end
 
+    initializer 'rhino.register_module' do
+      config.after_initialize do
+        Rhino.registered_modules[:rhino] = {
+          version: Rhino::VERSION,
+          authOwner: Rhino.auth_owner.model_name.singular,
+          baseOwner: Rhino.base_owner.model_name.singular,
+          oauth: Rhino::OmniauthHelper.strategies
+        }
+      end
+    end
+
     def check_owner_reflections
       raise "#{Rhino.base_owner} must have reflection for #{Rhino.auth_owner}" if Rhino.base_to_auth.nil?
 
