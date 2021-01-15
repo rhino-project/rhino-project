@@ -33,11 +33,13 @@ class PropertyTest < ActiveSupport::TestCase
 
   test 'tag list is an array of strings' do
     assert_equal BlogPost.describe_property('tag_list'), {
-      name: 'tag_list',
-      readableName: 'Tag List',
-      readable: true,
-      creatable: true,
-      updatable: true,
+      "x-rhino-attribute": {
+        name: 'tag_list',
+        readableName: 'Tag List',
+        readable: true,
+        creatable: true,
+        updatable: true
+      },
       nullable: true,
       type: :array,
       items: {

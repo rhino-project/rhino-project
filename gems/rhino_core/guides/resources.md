@@ -110,92 +110,148 @@ end
 All resources must respond to the describe method.
 
 ```javascript
-{
- "model": "blog",
- "modelPlural": "blogs",
- "name": "blog",
- "pluralName": "blogs",
- "capitalizedName": "Blog",
- "capitalizedPluralName": "Blogs",
- "readableName": "Blog",
- "pluralReadableName": "Blogs",
- "ownedBy": "organization",
- "path": "api/blogs",
- "attributes": [
-   {
-     "name": "id",
-     "readableName": "Id",
-     "type": "identifier",
-     "readable": true,
-     "creatable": false,
-     "updatable": false,
-     "nullable": false
-   },
-   {
-     "name": "title",
-     "readableName": "Title",
-     "type": "string",
-     "readable": true,
-     "creatable": true,
-     "updatable": true,
-     "nullable": true
-   },
-   {
-     "name": "created_at",
-     "readableName": "Created At",
-     "type": "datetime",
-     "readable": true,
-     "creatable": false,
-     "updatable": false,
-     "nullable": false
-   },
-   {
-     "name": "updated_at",
-     "readableName": "Updated At",
-     "type": "datetime",
-     "readable": true,
-     "creatable": false,
-     "updatable": false,
-     "nullable": false
-   },
-   {
-     "name": "published_at",
-     "readableName": "Published At",
-     "type": "datetime",
-     "readable": true,
-     "creatable": true,
-     "updatable": true,
-     "nullable": true
-   },
-   {
-     "name": "user",
-     "readableName": "User",
-     "type": "reference",
-     "readable": true,
-     "creatable": true,
-     "updatable": true,
-     "nullable": false
-   },
-   {
-     "name": "category",
-     "readableName": "Category",
-     "type": "reference",
-     "readable": true,
-     "creatable": true,
-     "updatable": true,
-     "nullable": false
-   },
-   {
-     "name": "blog_posts",
-     "readableName": "Blog Posts",
-     "type": "array",
-     "readable": true,
-     "creatable": false,
-     "updatable": false,
-     "nullable": false
-   }
- ]
-}
+"blog": {
+  "x-rhino-model": {
+    "model": "blog",
+    "modelPlural": "blogs",
+    "name": "blog",
+    "pluralName": "blogs",
+    "readableName": "Blog",
+    "pluralReadableName": "Blogs",
+    "ownedBy": "user",
+    "path": "api/blogs"
+  },
+  "properties": {
+    "id": {
+      "x-rhino-attribute": {
+        "name": "id",
+        "readableName": "Id",
+        "readable": true,
+        "creatable": false,
+        "updatable": false
+      },
+      "nullable": false,
+      "type": "identifier"
+    },
+    "title": {
+      "x-rhino-attribute": {
+        "name": "title",
+        "readableName": "Title",
+        "readable": true,
+        "creatable": true,
+        "updatable": true
+      },
+      "nullable": false,
+      "type": "string"
+    },
+    "published_at": {
+      "x-rhino-attribute": {
+        "name": "published_at",
+        "readableName": "Published At",
+        "readable": true,
+        "creatable": true,
+        "updatable": true
+      },
+      "nullable": true,
+      "type": "datetime"
+    },
+    "created_at": {
+      "x-rhino-attribute": {
+        "name": "created_at",
+        "readableName": "Created At",
+        "readable": true,
+        "creatable": false,
+        "updatable": false
+      },
+      "nullable": false,
+      "type": "datetime"
+    },
+    "updated_at": {
+      "x-rhino-attribute": {
+        "name": "updated_at",
+        "readableName": "Updated At",
+        "readable": true,
+        "creatable": false,
+        "updatable": false
+      },
+      "nullable": false,
+      "type": "datetime"
+    },
+    "user": {
+      "x-rhino-attribute": {
+        "name": "user",
+        "readableName": "User",
+        "readable": true,
+        "creatable": true,
+        "updatable": true
+      },
+      "nullable": false,
+      "type": "reference",
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/user"
+        }
+      ]
+    },
+    "category": {
+      "x-rhino-attribute": {
+        "name": "category",
+        "readableName": "Category",
+        "readable": true,
+        "creatable": true,
+        "updatable": true
+      },
+      "nullable": true,
+      "type": "reference",
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/category"
+        }
+      ]
+    },
+    "banner_attachment": {
+      "x-rhino-attribute": {
+        "name": "banner_attachment",
+        "readableName": "Banner Attachment",
+        "readable": true,
+        "creatable": true,
+        "updatable": true
+      },
+      "nullable": true,
+      "type": "reference",
+      "anyOf": [
+        {
+          "$ref": "#/components/schemas/active_storage_attachment"
+        }
+      ]
+    },
+    "blog_posts": {
+      "x-rhino-attribute": {
+        "name": "blog_posts",
+        "readableName": "Blog Posts",
+        "readable": true,
+        "creatable": false,
+        "updatable": false
+      },
+      "nullable": true,
+      "type": "array",
+      "items": {
+        "type": "reference",
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/blog_post"
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "title",
+    "created_at",
+    "updated_at",
+    "user"
+  ]
+  }
 ```
 
 ### Attributes (Properties)
