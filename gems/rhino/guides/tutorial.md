@@ -118,7 +118,7 @@ config.resources += ['User', 'Blog', 'BlogPost']
 belongs_to :category, optional: true
 
 
-rhino_references [:user, :category, :banner_attachment, :blog_posts]
+rhino_references [:user, :category, :banner_attachment]
 ```
 
 6. Update rhino config `config/initializers/rhino.rb` adding Category as resource
