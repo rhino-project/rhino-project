@@ -56,7 +56,7 @@ module Rhino
           end
 
           def foreign_key_properties
-            reflect_on_all_associations(:belongs_to).map(&:foreign_key)
+            reflect_on_all_associations(:belongs_to).map(&:foreign_key).map(&:to_s)
           end
 
           def reference_properties(read = true)
