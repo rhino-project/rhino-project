@@ -58,7 +58,8 @@ module Rhino
             prop_sym = prop.to_sym
 
             # If its a reference or an array of references
-            if desc[:type] == :reference || (desc[:type] == :array && desc[:items].key?(:$ref))
+            # FIXME: anyOf is a hack for now
+            if desc[:type] == :reference || (desc[:type] == :array && (desc[:items].key?(:$ref) || desc[:items].key?(:anyOf)))
               next unless refs_index.key?(prop_sym)
 
               next_refs = refs_index[prop_sym].is_a?(Hash) ? refs_index[prop_sym][prop_sym] : []
@@ -84,7 +85,7 @@ module Rhino
           params << 'display_name'
         end
 
-        def writeable_params(type, _refs = references) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+        def writeable_params(type, _refs = references) # rubocop:disable Metrics/AbcSize,  Metrics/CyclomaticComplexity, Metrics/MethodLength
           params = []
 
           props_by_type(type).each do |prop|
@@ -92,7 +93,7 @@ module Rhino
             prop_sym = prop.to_sym
 
             # An array of references
-            if desc[:type] == :array && desc[:items].key?(:$ref)
+            if desc[:type] == :array && (desc[:items].key?(:$ref) || desc[:items].key?(:anyOf))
               # We only accept if the active record accepts it
               next unless nested_attributes_options.key?(prop_sym)
 
