@@ -36,9 +36,6 @@ module Rhino
       def resolve # rubocop:disable Metrics/AbcSize
         role_scopes = []
 
-        pk = Rhino.base_owner.primary_key
-        tn = Rhino.base_owner.table_name
-
         # Get every role for the auth owner
         Rhino.base_owner.roles_for_auth(auth_owner).each do |role, base_owner_array|
           base_owner_array.each do |base_owner|
@@ -46,15 +43,24 @@ module Rhino
             next unless scope_class
 
             # Collect all the role based scopes
+            # Use the scope for this role and join/select the base owner
             scope_instance = scope_class.new(auth_owner, scope)
-            role_scopes << scope_instance.resolve.select(pk.to_sym).joins(scope.joins_for_base_owner).where("#{tn}.#{pk}": base_owner[pk])
+            role_scopes << scope_instance.resolve.select(tnpk(scope)).joins(scope.joins_for_base_owner).where(tnpk(Rhino.base_owner) => base_owner.id)
           end
         end
 
+        # Select with present? because scope.none with produce empty sql string
+        role_scopes = role_scopes.map(&:to_sql).select(&:present?)
+
         # UNION all the role based scopes
         # The front end needs to filter per base owner as appropriate
-        # Select with present? because scope.none with produce empty sql string
-        scope.where("#{pk} in (#{role_scopes.map(&:to_sql).select(&:present?).join(' UNION ')})")
+        scope.where("#{tnpk(scope)} in (#{role_scopes.join(' UNION ')})")
+      end
+
+      private
+
+      def tnpk(scope)
+        "#{scope.table_name}.#{scope.primary_key}"
       end
     end
   end
