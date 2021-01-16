@@ -13,25 +13,57 @@ module Rhino
       include Rhino::Resource::ActiveStorageExtension
     end
 
-    config.after_initialize do
-      raise NotImplementedError, "#{Rhino.base_owner} must have reflection for #{Rhino.auth_owner}" if Rhino.base_to_auth.nil?
-
-      raise NotImplementedError, "#{Rhino.auth_owner} must have reflection for #{Rhino.base_owner}" if Rhino.auth_to_base.nil?
-
-      Rhino.resource_classes.each do |resource|
-        raise NotImplementedError, "#{resource} does not have rhino ownership set" unless check_ownership(resource)
-      end
-
-      Rails.application.reloader.to_prepare do
-        Rhino.resource_classes = nil
+    initializer 'rhino.check_resources' do
+      config.after_initialize do
+        check_resources
       end
     end
 
-    def self.check_ownership(resource)
-      # Special case
-      return true if resource.ancestors.include?(Rhino::Resource::ActiveStorageExtension)
+    initializer 'rhino.resource_reloader' do
+      config.after_initialize do
+        Rails.application.reloader.to_prepare do
+          Rhino.resource_classes = nil
+        end
+      end
+    end
 
-      resource.auth_owner? || resource.base_owner? || resource.resource_owned_by.present?
+    def check_owner_reflections
+      raise "#{Rhino.base_owner} must have reflection for #{Rhino.auth_owner}" if Rhino.base_to_auth.nil?
+
+      raise "#{Rhino.auth_owner} must have reflection for #{Rhino.base_owner}" if Rhino.auth_to_base.nil?
+    end
+
+    def check_ownership(resource)
+      # Special case
+      return if resource.ancestors.include?(Rhino::Resource::ActiveStorageExtension)
+
+      # Owners are not themselves owned
+      return if resource.auth_owner? || resource.base_owner?
+
+      raise "#{resource} does not have rhino ownership set" unless resource.resource_owned_by.present?
+    end
+
+    def check_references(resource)
+      # Handle things like rhino_references [{ blog_post: [:blog] }]
+      # Just check the top level ones for now
+      top_level_references = resource.references.flat_map { |ref| ref.is_a?(Hash) ? ref.keys : ref }
+
+      # Some resource types don't have reflections
+      top_level_reflections = resource.try(:reflections)&.keys&.map(&:to_sym) || []
+
+      # All references should have a reflection
+      delta = top_level_references - top_level_reflections
+
+      raise "#{resource} has references #{delta} that do not exist as associations" if delta.present?
+    end
+
+    def check_resources
+      check_owner_reflections
+
+      Rhino.resource_classes.each do |resource|
+        check_ownership(resource)
+        check_references(resource)
+      end
     end
   end
 end
