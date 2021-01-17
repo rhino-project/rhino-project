@@ -12,6 +12,7 @@ class Blog < ApplicationRecord
 
   rhino_owner_base
   rhino_references %i[user category banner_attachment blog_posts]
+  rhino_search [:title]
 
   validates :title, presence: true
 end

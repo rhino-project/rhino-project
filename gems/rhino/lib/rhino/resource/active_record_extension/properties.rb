@@ -30,11 +30,15 @@ module Rhino
           def describe_property(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
             name = property_name(property).to_s
             {
-              name: name,
-              readableName: name.titleize,
-              readable: read_properties.include?(property),
-              creatable: create_properties.include?(property),
-              updatable: update_properties.include?(property),
+              "x-rhino-attribute": {
+                name: name,
+                readableName: name.titleize,
+                readable: read_properties.include?(property),
+                creatable: create_properties.include?(property),
+                updatable: update_properties.include?(property)
+              },
+              readOnly: property_read_only?(name),
+              writeOnly: property_write_only?(name),
               nullable: property_nullable?(name),
               default: property_default(name)
             }
@@ -85,6 +89,15 @@ module Rhino
             property.is_a?(Hash) ? property.keys.first : property
           end
 
+          def ref_descriptor(name)
+            {
+              type: :reference,
+              anyOf: [
+                { '$ref'.to_sym => "#/components/schemas/#{name.singularize}" }
+              ]
+            }
+          end
+
           def property_type_raw(property) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength,  Metrics/PerceivedComplexity
             name = property_name(property)
 
@@ -106,13 +119,13 @@ module Rhino
             return attribute_types[name.to_s].type if attribute_types.key?(name.to_s)
 
             if reflections.key?(name)
-              return :reference unless reflections[name].macro == :has_many
+              # FIXME: The tr hack is to match how model_name in rails handles modularized classes
+              class_name = reflections[name].options[:class_name]&.underscore&.tr('/', '_') || name
+              return ref_descriptor(class_name) unless reflections[name].macro == :has_many
 
               return {
                 type: :array,
-                items: {
-                  '$ref'.to_sym => "#/components/schemas/#{name}"
-                }
+                items: ref_descriptor(class_name)
               }
             end
 
@@ -144,9 +157,7 @@ module Rhino
                 constraint_hash[:maxLength] = v.options[:maximum] || v.options[:is]
               end
 
-              if v.is_a? ActiveModel::Validations::InclusionValidator # rubocop:disable Style/IfUnlessModifier
-                constraint_hash[:enum] = v.options[:in]
-              end
+              constraint_hash[:enum] = v.options[:in] if v.is_a? ActiveModel::Validations::InclusionValidator
             end
 
             constraint_hash[:enum] = defined_enums[property].keys if defined_enums.key?(property)
@@ -158,6 +169,7 @@ module Rhino
           # if there is no optional: true on an association, rails will add a
           # presence validator automatically
           # Otherwise check the db for the actual column or foreign key setting
+          # Return nil instead of false for compaction
           def property_nullable?(name) # rubocop:disable Metrics/AbcSize
             # Check for presence validator
             if validators.select { |v| v.is_a? ActiveRecord::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
@@ -168,6 +180,20 @@ module Rhino
 
             # Check the column null setting
             return columns_hash[name].null if columns_hash.key?(name)
+
+            true
+          end
+
+          # Return nil instead of false for compaction
+          def property_read_only?(name)
+            return unless read_properties.include?(name) && (create_properties.exclude?(name) && update_properties.exclude?(name))
+
+            true
+          end
+
+          # Return nil instead of false for compaction
+          def property_write_only?(name)
+            return unless (create_properties.include?(name) || update_properties.include?(name)) && read_properties.exclude?(name)
 
             true
           end
