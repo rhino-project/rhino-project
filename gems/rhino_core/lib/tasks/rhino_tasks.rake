@@ -7,10 +7,10 @@ namespace :rhino do
   desc 'Install Rhino'
   task install: %w[environment run_installer copy_migrations]
 
-  desc 'Export Rhino resource information for client'
-  task resource_export: :environment do
+  desc 'Export Rhino Open API information for client'
+  task open_api_export: :environment do
     File.open('static.js', 'w') do |f|
-      f.write "const api = #{Rhino::ResourceInfo.index};\n\n"
+      f.write "const api = #{Rhino::OpenApiInfo.index};\n\n"
       f.write("export default api;\n")
     end
   end
