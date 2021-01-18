@@ -45,7 +45,9 @@ module Rhino
             # Collect all the role based scopes
             # Use the scope for this role and join/select the base owner
             scope_instance = scope_class.new(auth_owner, scope)
-            role_scopes << scope_instance.resolve.select(tnpk(scope)).joins(scope.joins_for_base_owner).where(tnpk(Rhino.base_owner) => base_owner.id)
+            # NUB-367 default scopes with includes can cause problems
+            scope_instance = scope_instance.resolve.unscope(:includes)
+            role_scopes << scope_instance.select(tnpk(scope)).joins(scope.joins_for_base_owner).where(tnpk(Rhino.base_owner) => base_owner.id)
           end
         end
 
