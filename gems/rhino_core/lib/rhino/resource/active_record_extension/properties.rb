@@ -172,7 +172,7 @@ module Rhino
           # Return nil instead of false for compaction
           def property_nullable?(name) # rubocop:disable Metrics/AbcSize
             # Check for presence validator
-            if validators.select { |v| v.is_a? ActiveRecord::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
+            if validators.select { |v| v.is_a? ::ActiveRecord::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
               return false
             end
 
