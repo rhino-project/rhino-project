@@ -6,7 +6,7 @@ module Rhino
 
     include DeviseTokenAuth::Concerns::User
 
-    rhino_properties_read only: %i[id uid name email]
+    rhino_properties_read only: %i[id name nickname email image]
     rhino_properties_create only: %i[name nickname email]
     rhino_properties_update only: %i[name nickname]
 
