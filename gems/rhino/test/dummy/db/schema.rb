@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_14_134739) do
+ActiveRecord::Schema.define(version: 2021_01_27_132326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,13 @@ ActiveRecord::Schema.define(version: 2021_01_14_134739) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["blog_post_id"], name: "index_og_meta_tags_on_blog_post_id"
+  end
+
+  create_table "property_lists", force: :cascade do |t|
+    t.json "json_prop"
+    t.jsonb "jsonb_prop"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "taggings", id: :serial, force: :cascade do |t|
