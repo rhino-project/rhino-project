@@ -6,6 +6,7 @@ module Rhino
       ActiveSupport.on_load(:active_record) do
         require_relative 'resource/active_record_extension'
         require_relative 'resource/active_record_tree'
+        require_relative 'resource/active_model_extension'
 
         include Rhino::Resource::ActiveRecordExtension if Rhino.auto_include_active_record
       end
@@ -108,7 +109,7 @@ module Rhino
       Rhino.resource_classes.each do |resource|
         check_ownership(resource)
         check_references(resource)
-        check_owner_reference(resource)
+        check_owner_reference(resource) if resource.ancestors.include?(Rhino::Resource::ActiveRecordExtension)
       end
     end
   end
