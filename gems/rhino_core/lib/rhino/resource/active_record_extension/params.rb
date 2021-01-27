@@ -72,7 +72,7 @@ module Rhino
             end
 
             # JSON columns need special handling - allow all the nested params
-            next params << { prop => {} } if desc[:type].in?(%w[json jsonb])
+            next params << { prop => {} } if desc[:type].in?(%i[json jsonb])
 
             # Generic array of scalars
             next params << { prop => [] } if desc[:type] == :array
@@ -85,7 +85,7 @@ module Rhino
           params << 'display_name'
         end
 
-        def writeable_params(type, _refs = references) # rubocop:disable Metrics/AbcSize,  Metrics/CyclomaticComplexity, Metrics/MethodLength
+        def writeable_params(type, _refs = references) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
           params = []
 
           props_by_type(type).each do |prop|
@@ -107,6 +107,9 @@ module Rhino
               destroy = [*('_destroy' if nested_attributes_options[prop_sym][:allow_destroy])]
               next params << { prop => [assoc.klass.identifier_property] + assoc.klass.new.send("#{type}_params") + destroy }
             end
+
+            # JSON columns need special handling - allow all the nested params
+            next params << { prop => {} } if desc[:type].in?(%i[json jsonb])
 
             # Generic array of scalars
             next params << { prop => [] } if desc[:type] == :array
