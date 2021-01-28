@@ -35,8 +35,8 @@ module Rhino
           version: Rhino::VERSION,
           authOwner: Rhino.auth_owner.model_name.singular,
           baseOwner: Rhino.base_owner.model_name.singular,
-          modules: {
-          }
+          oauth: Rhino::OmniauthHelper.strategies,
+          modules: {}
         }
       }
     end

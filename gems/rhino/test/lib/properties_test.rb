@@ -20,7 +20,7 @@ class PropertyTest < ActiveSupport::TestCase
   end
 
   test 'read properties can be marked only' do
-    assert_equal User.new.read_properties, %w[id uid name email]
+    assert_equal User.new.read_properties, %w[id name nickname email image]
   end
 
   test 'create properties can be marked only' do
