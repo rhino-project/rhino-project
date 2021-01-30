@@ -31,12 +31,8 @@ module Rhino
       {
         title: "#{Rails.application.class.module_parent_name} API",
         version: '0.0.0',
-        'x-rhino-info': {
-          version: Rhino::VERSION,
-          authOwner: Rhino.auth_owner.model_name.singular,
-          baseOwner: Rhino.base_owner.model_name.singular,
-          oauth: Rhino::OmniauthHelper.strategies,
-          modules: {}
+        'x-rhino': {
+          modules: Rhino.registered_modules
         }
       }
     end

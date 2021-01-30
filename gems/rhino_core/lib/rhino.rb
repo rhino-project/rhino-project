@@ -23,6 +23,8 @@ module Rhino
 
   mattr_accessor :resource_classes
 
+  mattr_accessor :registered_modules, default: {}
+
   # sieves
   mattr_accessor :sieves
 
