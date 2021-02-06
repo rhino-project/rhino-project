@@ -105,6 +105,10 @@ class BlogPost < ApplicationRecord
 end
 ```
 
+#### References to owner
+
+A reference to the owner of a resource should always be included so that resources can be created.
+
 ## Describing resources
 
 All resources must respond to the describe method.

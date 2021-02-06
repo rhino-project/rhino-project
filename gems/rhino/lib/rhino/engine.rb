@@ -38,6 +38,20 @@ module Rhino
       end
     end
 
+    def top_level_references(resource)
+      # Handle things like rhino_references [{ blog_post: [:blog] }]
+      # Just check the top level ones for now
+      resource.references.flat_map { |ref| ref.is_a?(Hash) ? ref.keys : ref }
+    end
+
+    def unowned?(resource)
+      # Special case
+      return true if resource.ancestors.include?(Rhino::Resource::ActiveStorageExtension)
+
+      # Owners are not themselves owned
+      resource.auth_owner? || resource.base_owner? || resource.global_owner?
+    end
+
     def check_owner_reflections
       raise "#{Rhino.base_owner} must have reflection for #{Rhino.auth_owner}" if Rhino.base_to_auth.nil?
 
@@ -45,27 +59,28 @@ module Rhino
     end
 
     def check_ownership(resource)
-      # Special case
-      return if resource.ancestors.include?(Rhino::Resource::ActiveStorageExtension)
-
-      # Owners are not themselves owned
-      return if resource.auth_owner? || resource.base_owner?
+      return if unowned?(resource)
 
       raise "#{resource} does not have rhino ownership set" unless resource.resource_owned_by.present?
     end
 
     def check_references(resource)
-      # Handle things like rhino_references [{ blog_post: [:blog] }]
-      # Just check the top level ones for now
-      top_level_references = resource.references.flat_map { |ref| ref.is_a?(Hash) ? ref.keys : ref }
-
       # Some resource types don't have reflections
       top_level_reflections = resource.try(:reflections)&.keys&.map(&:to_sym) || []
 
       # All references should have a reflection
-      delta = top_level_references - top_level_reflections
+      delta = top_level_references(resource) - top_level_reflections
 
       raise "#{resource} has references #{delta} that do not exist as associations" if delta.present?
+    end
+
+    def check_owner_reference(resource)
+      return if unowned?(resource)
+
+      # If its in the list, we're good
+      return if top_level_references(resource).include?(resource.resource_owned_by)
+
+      raise "#{resource} does not have a reference to its owner #{resource.resource_owned_by}"
     end
 
     def check_resources
@@ -74,6 +89,7 @@ module Rhino
       Rhino.resource_classes.each do |resource|
         check_ownership(resource)
         check_references(resource)
+        check_owner_reference(resource)
       end
     end
   end
