@@ -12,3 +12,11 @@ inject_into_file 'app/models/user.rb', after: "class User < Rhino::User\n" do
   has_many :roles, through: :users_roles
   RUBY
 end
+
+gsub_file 'config/initializers/rhino.rb', "  # config.base_owner = 'Organization'", "  config.base_owner = 'Organization'"
+
+inject_into_file 'config/initializers/rhino.rb', after: /^\s*config\.resources.+\n/ do
+  <<-'RUBY'
+  config.resources += ['Organization']
+  RUBY
+end
