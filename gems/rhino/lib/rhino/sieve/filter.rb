@@ -34,6 +34,10 @@ module Rhino
             bs = base.reflections[key.to_s].klass
             objects = apply_filters(objects, bs, val)
           else
+            parts = key.split('::')
+            # If there is a specifier like 'category::tree::subtree' we skip it
+            next unless parts.length == 1
+
             table = base.to_s.tableize
             objects = objects.where(table => { key => val })
           end
