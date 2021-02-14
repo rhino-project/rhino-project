@@ -119,6 +119,11 @@ end
 > Filter based on properties, including properties of referenced resources
 > http://localhost:3002/api/blogs?category=health
 
+#### Rhino::Sieve::FilterTree
+
+> Filter based on ancestry hierarchy,
+> http://localhost:3002/api/blogs?category::tree::subtree=health or http://localhost:3002/api/blogs?category::tree::descendants=health
+
 #### Rhino::Sieve::Limit
 
 > Limit the number of resources returned.
