@@ -5,6 +5,7 @@ module Rhino
     extend ActiveSupport::Autoload
 
     autoload :Filter
+    autoload :FilterTree
     autoload :Limit
     autoload :Offset
     autoload :Order
