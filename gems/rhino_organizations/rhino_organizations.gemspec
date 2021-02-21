@@ -9,10 +9,10 @@ Gem::Specification.new do |spec|
   spec.version     = RhinoOrganizations::VERSION
   spec.authors     = ['JP Rosevear']
   spec.email       = ['jprosevear@gmail.com']
-  spec.homepage    = ''
-  spec.summary     = ''
-  spec.description = ''
-  spec.license     = ''
+  spec.homepage    = ""
+  spec.summary     = ""
+  spec.description = ""
+  spec.license      = ""
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
