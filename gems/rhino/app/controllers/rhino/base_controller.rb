@@ -5,6 +5,8 @@ module Rhino
     include DeviseTokenAuth::Concerns::SetUserByToken
     include Pundit
 
+    include Rhino::SetCurrentUser
+
     # https://api.rubyonrails.org/classes/AbstractController/Base.html#method-c-abstract-21
     # Prevents the utility methods below from showing up as actions in CrudController
     abstract!
