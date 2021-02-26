@@ -10,7 +10,7 @@ module Rhino
         match[1].downcase.to_sym
       end.compact.uniq
 
-      strategies += [:developer] if Rails.env.development?
+      strategies += [:developer] if Rails.env.development? && !Rake.application.top_level_tasks.include?('rhino:open_api_export')
 
       strategies
     end
