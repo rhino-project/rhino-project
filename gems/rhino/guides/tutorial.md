@@ -6,7 +6,7 @@ This guide is a step-by-step tutorial to launch and customize the application
 
 Make sure you have below installed:
 
-    - Ruby version: 2.6.5
+    - Ruby version: 2.6.6
     - Bundler 2.1.4
     - Rails: 6.0.3.4
     - PostgreSQL: 9.4 or newer
@@ -210,7 +210,7 @@ config.resources += ['User', 'Blog', 'BlogPost', 'Category', 'OgMetaTag']
 
 4. Add `belongs_to :organization` to `app/models/blog.rb`
 
-5.  Update rhino config `config/initializers/rhino.rb` add Organization as resource and set it as the base owner
+5. Update rhino config `config/initializers/rhino.rb` add Organization as resource and set it as the base owner
 
 ```Ruby
 config.base_owner = 'Organization'
@@ -219,7 +219,7 @@ config.resources += ['User', 'Blog', 'BlogPost', 'Category', 'OgMetaTag' , 'Orga
 ```
 
 6.  Use seed data to add organizations
-   Add below to `db/seeds.rb`
+    Add below to `db/seeds.rb`
 
 ```Ruby
 def generate_blogs(user, org)
