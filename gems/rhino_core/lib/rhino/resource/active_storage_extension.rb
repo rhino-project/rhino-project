@@ -16,7 +16,7 @@ module Rhino
         end
 
         def display_name
-          filename
+          filename.to_s
         end
       end
     end
