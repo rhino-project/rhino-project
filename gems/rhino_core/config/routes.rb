@@ -14,10 +14,7 @@ Rails.application.routes.draw do
 
     post 'filestack_pictures/upload_policy', to: 'filestack_pictures#upload_policy'
     post 'filestack_pictures', to: 'filestack_pictures#create'
-    get 'stripe/prices' , to: 'api/stripe/stripe#prices'
-    post 'stripe/create-checkout-session' ,to: 'api/stripe/stripe#create_checkout_session'
-    get 'stripe/customer' ,to: 'api/stripe/stripe#customer'
-    get 'stripe/subscriptions' ,to: 'api/stripe/stripe#subscriptions'
+
 
     # get 'info/models', controller: 'rhino/crud', action: 'models' if Rails.env.development?
   end
