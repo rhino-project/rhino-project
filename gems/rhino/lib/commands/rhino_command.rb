@@ -14,7 +14,7 @@ module Rails
         end
       end
 
-      def dummy(*args)
+      def rhino_command(extra_path, args)
         # Default to just rhino/rhino if no obvious module
         module_name = if Dir.exist?("rhino/rhino_#{args[0]}")
                         args.shift
@@ -22,7 +22,7 @@ module Rails
                         nil
                       end
         module_base = ['rhino', module_name].compact.join('_')
-        module_path = "rhino/#{module_base}/test/dummy"
+        module_path = ["rhino/#{module_base}", extra_path].compact.join('/')
         db_name = "#{module_base}_dummy"
 
         # Getting existing variables and re-use
@@ -30,8 +30,16 @@ module Rails
 
         inside(module_path) do
           # Override DB_NAME so multiple can run in parallel
-          run "DB_NAME=#{db_name} BUNDLE_GEMFILE='../../../../Gemfile' bin/rails #{args.join(' ')}"
+          run "DB_NAME=#{db_name} BUNDLE_GEMFILE='#{__dir__}/../../../../Gemfile' bin/rails #{args.join(' ')}"
         end
+      end
+
+      def dummy(*args)
+        rhino_command('test/dummy', args)
+      end
+
+      def test(*args)
+        rhino_command(nil, args << 'test')
       end
     end
   end
