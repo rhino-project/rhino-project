@@ -17,7 +17,7 @@ module Rhino
         delegate :routes, to: :class
       end
 
-      # rubocop:disable Style/RedundantSelf
+      # rubocop:disable Style/RedundantSelf, Metrics/BlockLength
       class_methods do
         def route_key
           self._route_key
@@ -25,6 +25,18 @@ module Rhino
 
         def route_path
           self._route_path ||= route_key
+        end
+
+        def route_path_frontend
+          route_path.camelize(:lower)
+        end
+
+        def route_frontend
+          "/#{route_path_frontend}"
+        end
+
+        def route_api
+          "/#{Rhino.namespace}/#{route_path}"
         end
 
         def routes
@@ -50,7 +62,15 @@ module Rhino
           self.controller_name = "rhino/#{controller}"
         end
       end
-      # rubocop:enable Style/RedundantSelf
+      # rubocop:enable Style/RedundantSelf, Metrics/BlockLength
+    end
+
+    def route_frontend
+      "#{self.class.route_frontend}/#{id}"
+    end
+
+    def route_api
+      "#{self.class.route_api}/#{id}"
     end
   end
 end
