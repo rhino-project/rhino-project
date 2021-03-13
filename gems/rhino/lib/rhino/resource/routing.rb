@@ -9,8 +9,8 @@ module Rhino
         class_attribute :_route_key, default: name.demodulize.underscore.pluralize
         class_attribute :_route_path, default: nil
 
-        class_attribute :_routes, default: nil
-        class_attribute :_routes_except, default: []
+        class_attribute :_rhino_routes, default: nil
+        class_attribute :_rhino_routes_except, default: []
 
         class_attribute :controller_name, default: 'rhino/crud'
 
@@ -40,22 +40,22 @@ module Rhino
         end
 
         def routes
-          unless self._routes
+          unless self._rhino_routes
             if global_owner? # rubocop:disable Style/ConditionalAssignment
-              self._routes = %i[index show]
+              self._rhino_routes = %i[index show]
             else
-              self._routes = %i[index create show update destroy]
+              self._rhino_routes = %i[index create show update destroy]
             end
           end
-          self._routes - self._routes_except
+          self._rhino_routes - self._rhino_routes_except
         end
 
         def rhino_routing(**options)
           self._route_key = options.delete(:key) if options.key?(:key)
           self._route_path = options.delete(:path) if options.key?(:path)
 
-          self._routes = options.delete(:only) if options.key?(:only)
-          self._routes_except = options.delete(:except) if options.key?(:except)
+          self._rhino_routes = options.delete(:only) if options.key?(:only)
+          self._rhino_routes_except = options.delete(:except) if options.key?(:except)
         end
 
         def rhino_controller(controller)
