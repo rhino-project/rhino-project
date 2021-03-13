@@ -23,7 +23,7 @@ module Rhino
                 readableName: model_name.human,
                 pluralReadableName: model_name.human.pluralize,
                 ownedBy: resource_owned_by,
-                path: "#{Rhino.namespace}/#{route_path}"
+                path: route_api
               },
               type: :object,
               properties: properties,
