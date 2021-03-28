@@ -1,5 +1,16 @@
 # frozen_string_literal: true
 
+require_relative 'resource/owner'
+require_relative 'resource/properties'
+require_relative 'resource/reference'
+require_relative 'resource/describe'
+require_relative 'resource/routing'
+require_relative 'resource/params'
+require_relative 'resource/serialization'
+require_relative 'resource/sieves'
+
+require_relative '../../app/policies/rhino/crud_policy'
+
 module Rhino
   module Resource
     extend ActiveSupport::Concern
