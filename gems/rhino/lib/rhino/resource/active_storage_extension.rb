@@ -14,7 +14,7 @@ module Rhino
         rhino_policy :active_storage_upload
 
         def url
-          Rails.application.routes.url_helpers.rails_blob_url(self)
+          Rails.application.routes.url_helpers.rails_blob_url(self, only_path: false)
         end
 
         def display_name

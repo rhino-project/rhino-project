@@ -17,7 +17,6 @@ module Rhino
       end
 
       private
-
       def parse
         @direction = parse_direction
         @column_name = parse_column_name

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+require "test_helper"
 
 class DescribeTest < ActiveSupport::TestCase
-  test 'x-rhino-model searchable is true if there is at least one element in rhino_search list' do
+  test "x-rhino-model searchable is true if there is at least one element in rhino_search list" do
     # Blog has rhino_search [:title]
     assert Blog.describe[:'x-rhino-model'][:searchable]
     # BlogPost doesn't have any search set

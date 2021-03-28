@@ -32,7 +32,6 @@ module Rhino
       end
 
       private
-
       # We do this to carry things like methods all the way through the
       # serialization
       def arrange_serializable_with_options(options = nil)

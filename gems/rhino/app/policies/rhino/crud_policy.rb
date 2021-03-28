@@ -63,7 +63,6 @@ module Rhino
       end
 
       private
-
       def tnpk(scope)
         "#{scope.table_name}.#{scope.primary_key}"
       end
