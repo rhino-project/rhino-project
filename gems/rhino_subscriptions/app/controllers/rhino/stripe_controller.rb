@@ -60,7 +60,6 @@ module Rhino
     end
 
     private
-
     def checkout_session(customer_id, args)
       ::Stripe::Checkout::Session.create(
         success_url: ENV['FRONT_END_URL'] + args['success_url'],

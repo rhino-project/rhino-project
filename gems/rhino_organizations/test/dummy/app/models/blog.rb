@@ -2,7 +2,7 @@
 
 class Blog < ApplicationRecord
   belongs_to :organization
-  belongs_to :author, default: -> { Rhino::Current.user }, class_name: 'User', foreign_key: :user_id
+  belongs_to :author, default: -> { Rhino::Current.user }, class_name: "User", foreign_key: :user_id
 
   belongs_to :category, optional: true
   has_many :blog_posts, dependent: :destroy
