@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'base_policy'
+
 module Rhino
   # FIXME: Same role scoping for permitted params
   class CrudPolicy < ::Rhino::BasePolicy
