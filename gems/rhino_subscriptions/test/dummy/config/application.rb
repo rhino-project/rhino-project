@@ -14,6 +14,21 @@ module Dummy
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+          :headers => :any,
+          :methods => [:get, :post, :put, :patch, :delete, :options],
+          expose: ['access-token', 'client', 'uid']
+      end
+    end
+
+    config.action_controller.allow_forgery_protection = false
+
+    # Error indexes for nested attribute errors
+    # https://blog.bigbinary.com/2016/07/07/errors-can-be-indexed-with-nested-attrbutes-in-rails-5.html
+    config.active_record.index_nested_attribute_errors = true
   end
 end
-
