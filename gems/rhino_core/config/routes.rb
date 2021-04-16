@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     end
   end
 
+  # Active storage related
+  post '/rails/active_storage/direct_uploads', to: 'rhino/direct_uploads#create'
+
   match "*#{Rhino.namespace}", to: 'rhino/base#not_found', via: :all, constraints: lambda { |request|
     request.url[/\/rails\/active_storage\//].nil?
   }
