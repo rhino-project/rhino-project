@@ -63,6 +63,7 @@ module Rhino
             reflect_on_all_associations(:belongs_to).map(&:foreign_key).map(&:to_s)
           end
 
+          # rubocop:todo Style/OptionalBooleanParameter
           def reference_properties(read = true)
             references.map do |r|
               sym = reference_to_sym(r)
@@ -72,9 +73,12 @@ module Rhino
 
               # Writeable if a one type or accepting nested
               association = reflect_on_association(sym)
+              # rubocop:todo Performance/CollectionLiteralInLoop
               sym if %i[has_one belongs_to].include?(association.macro) || nested_attributes_options.key?(sym)
+              # rubocop:enable Performance/CollectionLiteralInLoop
             end.compact
           end
+          # rubocop:enable Style/OptionalBooleanParameter
 
           def writeable_properties
             # Direct properties for this model
@@ -170,7 +174,7 @@ module Rhino
           # presence validator automatically
           # Otherwise check the db for the actual column or foreign key setting
           # Return nil instead of false for compaction
-          def property_nullable?(name) # rubocop:disable Metrics/AbcSize
+          def property_nullable?(name)
             # Check for presence validator
             if validators.select { |v| v.is_a? ::ActiveRecord::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
               return false

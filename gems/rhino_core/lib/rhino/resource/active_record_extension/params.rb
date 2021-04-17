@@ -128,6 +128,7 @@ module Rhino
           end
 
           # Rebuild the params
+          # rubocop:todo Metrics/CyclomaticComplexity
           def transform_params_recursive(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
             hash = {}
             params.each do |param_key, param_value|
@@ -165,6 +166,7 @@ module Rhino
             # Force permit since we should have already been permitted at this point
             ActionController::Parameters.new(hash).permit!
           end
+          # rubocop:enable Metrics/CyclomaticComplexity
         end
       end
     end

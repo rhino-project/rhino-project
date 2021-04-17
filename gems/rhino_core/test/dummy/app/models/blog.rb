@@ -4,7 +4,7 @@ class Blog < ApplicationRecord
   belongs_to :user
 
   # NUB-347
-  belongs_to :category, optional: true, foreign_key: :category_id
+  belongs_to :category, optional: true
 
   has_many :blog_posts, dependent: :destroy
 
