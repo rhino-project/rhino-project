@@ -10,7 +10,7 @@ Make sure you have below installed:
     - Bundler 2.1.4
     - Rails: 6.0.3.4
     - PostgreSQL: 9.4 or newer
-    - node 12.16.1
+    - node 14.16.1
 
 ## Launch the application
 
@@ -204,22 +204,35 @@ config.resources += ['User', 'Blog', 'BlogPost', 'Category', 'OgMetaTag']
 
 1. Creating roles and organizations and update user `rails rhino_organizations:install`
 
-2. `rails g migration add_organization_to_blog organization:references`
-
-3. Add created models to db `rails db:migrate`
-
-4. Add `belongs_to :organization` to `app/models/blog.rb`
-
-5. Update rhino config `config/initializers/rhino.rb` add Organization as resource and set it as the base owner
+2. Update `app/models/blog.rb` as follows
 
 ```Ruby
-config.base_owner = 'Organization'
 
-config.resources += ['User', 'Blog', 'BlogPost', 'Category', 'OgMetaTag' , 'Organization']
+class Blog < ApplicationRecord
+  belongs_to :organization
+  belongs_to :author, default: -> { Rhino::Current.user }, class_name: 'User', foreign_key: :user_id
+
+  belongs_to :category, optional: true
+  has_many :blog_posts, dependent: :destroy
+
+  has_one_attached :banner
+
+  rhino_owner_base
+  rhino_references %i[author organization category banner_attachment blog_posts]
+  rhino_properties_create except: [:author]
+  rhino_properties_update except: [:author]
+  rhino_search [:title]
+
+  validates :title, presence: true
+end
+
+
 ```
 
-6.  Use seed data to add organizations
-    Add below to `db/seeds.rb`
+3. `rails g migration add_organization_to_blog organization:references`
+
+4. Use seed data to add organizations
+   Add below to `db/seeds.rb`
 
 ```Ruby
 def generate_blogs(user, org)
@@ -285,6 +298,8 @@ if Rails.env.development?
 end
 ```
 
-Then `rails db:drop` and `rails db:setup`
+5. Then `rails db:drop` and `rails db:setup`
+
+6. Add created models to db `rails db:migrate`
 
 7. Run the server to check the results `rails s`
