@@ -10,6 +10,9 @@ namespace :rhino do
   desc 'Generate Rhino module'
   task module: %w[environment run_module]
 
+  desc 'Generate fulle Rhino module'
+  task module_full: %w[environment run_module_full]
+
   desc 'Export Rhino Open API information for client'
   task open_api_export: :environment do
     File.open('static.js', 'w') do |f|
@@ -26,5 +29,9 @@ namespace :rhino do
 
   task run_module: :environment do
     Rails::Command.invoke :generate, ['rhino:module']
+  end
+
+  task run_module_full: :environment do
+    Rails::Command.invoke :generate, ['rhino:module', '--full']
   end
 end

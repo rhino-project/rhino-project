@@ -8,9 +8,11 @@ Modules in Rhino extend functionality.
 
 ### Creating a module
 
-A new module can be created with `rails rhino:module`. Module names should describe the functionality provided rather than the technology used, for instance 'rhino_subscriptions' instead of 'rhino_stripe'.
+A new module can be created with `rails rhino:module` or `rails rhino:module_full`. A full module should be use if you must provide models, controllers or other more complex functionality.
 
-Each module provides an installation command for instance `rails rhino_organizations:install` that installs migrations (if any) and allows you to do any other setup work in `install_generator.rb`.
+Module names should describe the functionality provided rather than the technology used, for instance 'rhino_subscriptions' instead of 'rhino_stripe'.
+
+Each module provides an installation command for instance `rails rhino_jobs:install` that installs migrations (if any) and allows you to do any other setup work in `install_generator.rb`.
 
 ### Module registration
 
