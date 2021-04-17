@@ -5,6 +5,9 @@ module Rhino
     class ModuleGenerator < ::Rails::Generators::Base
       attr_reader :module_name, :module_path
 
+      class_option :full, type: :boolean, default: false,
+                          desc: 'Full plugin generation'
+
       class_option :skip_plugin, type: :boolean, default: false,
                                  desc: 'Skip plugin generation'
 
@@ -18,7 +21,10 @@ module Rhino
         return if options[:skip_plugin]
 
         say "Creating #{module_name}"
-        rails_command("plugin new #{module_path} --full")
+
+        plugin_command = "plugin new #{module_path}"
+        plugin_command = "#{plugin_command} --full" if options[:full]
+        rails_command(plugin_command)
       end
 
       def remove_license
@@ -56,19 +62,23 @@ module Rhino
       end
 
       # Gross hack for now
+      DUMMY_SETUP_FILES = [
+        'config/database.yml',
+        'config/initializers/devise_token_auth.rb',
+        'config/initializers/devise.rb',
+        'app/models/user.rb',
+        'db/migrate/20210111014230_devise_token_auth_create_users.rhino_engine.rb'
+      ].freeze
+
       def dummy_setup
+        return unless options[:full]
+
         rhino_dummy = Rails.root.join('rhino/rhino/test/dummy')
         module_dummy = Rails.root.join("#{module_path}/test/dummy")
 
         remove_file "#{module_dummy}/config/database.yml"
 
-        [
-          'config/database.yml',
-          'config/initializers/devise_token_auth.rb',
-          'config/initializers/devise.rb',
-          'app/models/user.rb',
-          'db/migrate/20210111014230_devise_token_auth_create_users.rhino_engine.rb'
-        ].each do |file|
+        DUMMY_SETUP_FILES.each do |file|
           copy_file "#{rhino_dummy}/#{file}", "#{module_dummy}/#{file}"
         end
       end
