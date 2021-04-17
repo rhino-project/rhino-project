@@ -24,7 +24,7 @@ class EngineTest < ActiveSupport::TestCase
 
   test 'raises error if rhino_references called multiple times' do
     exp = assert_raises StandardError do
-      class BadResourceMultipleReferenceCalls < ApplicationRecord
+      class BadResourceMultipleReferenceCalls < ApplicationRecord # rubocop:todo Lint/ConstantDefinitionInBlock
         rhino_references [:a]
         rhino_references [:b]
       end
@@ -33,7 +33,7 @@ class EngineTest < ActiveSupport::TestCase
   end
 
   test 'raises error if owner is not a reference' do
-    class BadResourceNoOwnerRef < ApplicationRecord
+    class BadResourceNoOwnerRef < ApplicationRecord # rubocop:todo Lint/ConstantDefinitionInBlock
       rhino_owner_base
     end
     exp = assert_raises StandardError do

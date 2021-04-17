@@ -24,7 +24,7 @@ class ParamsTest < ActiveSupport::TestCase
   end
 
   %i[create update show].each do |action_type|
-    %i[json jsonb].each do |prop_type|
+    %i[json jsonb].each do |prop_type| # rubocop:todo Performance/CollectionLiteralInLoop
       test "PropertyList #{action_type} returns #{prop_type} hash" do
         assert_includes PropertyList.new.send("#{action_type}_params"), { "#{prop_type}_prop" => {} }
       end
