@@ -3,8 +3,7 @@
 module Rhino
   module Generators
     class ModuleGenerator < ::Rails::Generators::Base
-      attr_reader :module_name
-      attr_reader :module_path
+      attr_reader :module_name, :module_path
 
       class_option :skip_plugin, type: :boolean, default: false,
                                  desc: 'Skip plugin generation'
