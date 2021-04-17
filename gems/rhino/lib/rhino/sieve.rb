@@ -81,9 +81,11 @@ module Rhino
       yield(self) if block_given?
     end
 
+    # rubocop:todo Style/ExplicitBlockArgument
     def each
       @sieves.each { |x| yield x }
     end
+    # rubocop:enable Style/ExplicitBlockArgument
 
     delegate :[], :size, :last, to: :sieves
 
