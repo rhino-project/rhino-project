@@ -20,7 +20,7 @@ module Rhino
 
     def create_checkout_session
       # TODO: check for exiting sessions to avoid errors
-      sc = get_stripe_customer(Rhino::StripeCustomer.find_by(user: current_user))
+      sc = get_stripe_customer(params['base_owner_id'])
 
       session = checkout_session(sc.customer_id, params)
       sc.current_stripe_session_id = session.id
@@ -31,27 +31,19 @@ module Rhino
       }
     end
 
-    def get_stripe_customer(stripe_customer)
-      if stripe_customer
-        stripe_customer
-      else
-        customer = ::Stripe::Customer.create(email: current_user.email)
-        Rhino::StripeCustomer.create!(user: current_user, customer_id: customer.id)
-      end
-    end
-
     def customer
-      user = current_user
-      customer = ::Stripe::Customer.list({ email: user.email })
-
+      stripe_customer = Rhino::StripeCustomer.find_by(base_owner_id: params['base_owner_id'])
+      customer = ::Stripe::Customer.retrieve({
+        id: stripe_customer['customer_id']
+      })
       render json: {
         customer: customer.data[0]
       }
     end
 
     def subscriptions
-      # stripe_customer= customer
-      stripe_customer = Rhino::StripeCustomer.find_by(user: current_user)
+      stripe_customer = Rhino::StripeCustomer.find_by(base_owner_id: params['base_owner_id'])
+
       if !stripe_customer
         render json: {}
       else
@@ -67,6 +59,8 @@ module Rhino
       end
     end
 
+    private
+
     def checkout_session(customer_id, args)
       ::Stripe::Checkout::Session.create(
         success_url: ENV['FRONT_END_URL'] + args['success_url'],
@@ -79,6 +73,13 @@ module Rhino
         }],
         customer: customer_id
       )
+    end
+
+    def get_stripe_customer(_base_owner_id)
+      Rhino::StripeCustomer.find_or_create_by!(base_owner_id: params['base_owner_id']) do |stripe_customer|
+        customer = ::Stripe::Customer.create(email: current_user.email)
+        stripe_customer.customer_id = customer.id
+      end
     end
   end
 end
