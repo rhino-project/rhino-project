@@ -120,7 +120,19 @@ module Rhino
             end
 
             # Use the attribute type if possible
-            return attribute_types[name.to_s].type if attribute_types.key?(name.to_s)
+
+            if attribute_types.key?(name.to_s)
+              atype = attribute_types[name.to_s].type
+
+              if %i[datetime date time].include?(atype)
+                return {
+                  type: 'string',
+                  format: atype
+                }
+              end
+
+              return atype
+            end
 
             if reflections.key?(name)
               # FIXME: The tr hack is to match how model_name in rails handles modularized classes
