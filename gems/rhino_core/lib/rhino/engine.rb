@@ -5,6 +5,7 @@ module Rhino
     initializer 'rhino.active_record_extension' do
       ActiveSupport.on_load(:active_record) do
         require_relative 'resource/active_record_extension'
+        require_relative 'resource/active_record_tree'
 
         include Rhino::Resource::ActiveRecordExtension if Rhino.auto_include_active_record
       end
