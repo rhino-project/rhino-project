@@ -30,18 +30,23 @@ module Rhino
       # rubocop:disable Style/RedundantSelf
       class_methods do # rubocop:disable Metrics/BlockLength
         def rhino_properties_read(**options)
-          self._read_properties_only = options[:only].map(&:to_s) if options.key?(:only)
-          self._read_properties_except = options[:except].map(&:to_s) if options.key?(:except)
+          self._read_properties_only = Array.wrap(options[:only]).map(&:to_s) if options.key?(:only)
+          self._read_properties_except = Array.wrap(options[:except]).map(&:to_s) if options.key?(:except)
         end
 
         def rhino_properties_create(**options)
-          self._create_properties_only = options[:only].map(&:to_s) if options.key?(:only)
-          self._create_properties_except = options[:except].map(&:to_s) if options.key?(:except)
+          self._create_properties_only = Array.wrap(options[:only]).map(&:to_s) if options.key?(:only)
+          self._create_properties_except = Array.wrap(options[:except]).map(&:to_s) if options.key?(:except)
         end
 
         def rhino_properties_update(**options)
-          self._update_properties_only = options[:only].map(&:to_s) if options.key?(:only)
-          self._update_properties_except = options[:except].map(&:to_s) if options.key?(:except)
+          self._update_properties_only = Array.wrap(options[:only]).map(&:to_s) if options.key?(:only)
+          self._update_properties_except = Array.wrap(options[:except]).map(&:to_s) if options.key?(:except)
+        end
+
+        def rhino_properties_write(**options)
+          rhino_properties_create(options)
+          rhino_properties_update(options)
         end
 
         def identifier_property
