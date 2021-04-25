@@ -266,17 +266,28 @@ Readable/creatable/nullable
 
 #### Types
 
-Supported types include:
+Types are based on the OpenAPI data types https://swagger.io/docs/specification/data-models/data-types/ and may include format modifiers. These are mapped automatically by the `describe_property` method.
 
-- string
-- text
-- datetime
-- date
-- time
-- integer
-- identifier (primary key/id)
-- array (usually an array of references)
-- reference
+Formats may be overridden for instance a year of birth recorded as an integer `rhino_properties_format dob_year: :year`
+
+In the front end the type/format is mapped as follows:
+
+| Type              |   Format    |                               Component |
+| ----------------- | :---------: | --------------------------------------: |
+| identifier        |    none     |                                    none |
+| string            |    none     |                                   Input |
+| string            | enum (prop) |                      ModelFormFieldEnum |
+| string            |    date     |                  ModelFormFieldDatetime |
+| string            |  datetime   |                  ModelFormFieldDatetime |
+| string            |    time     |                  ModelFormFieldDatetime |
+| integer           |    none     |                   ModelFormFieldInteger |
+| integer           |    year     |                      ModelFormFieldYear |
+| text              |    none     |                        Input (textarea) |
+| boolean           |    none     |                  CustomInput (checkbox) |
+| array (string)    |    none     |                               Typeahead |
+| array (reference) |    none     | ModelFormFieldArray/ModelNestedManyForm |
+| reference         |    none     |                 ModelFormFieldReference |
+| reference         |    file     |                      ModelFormFieldFile |
 
 #### Default values
 

@@ -18,6 +18,8 @@ module Rhino
         class_attribute :_update_properties_only, default: nil
         class_attribute :_update_properties_except, default: []
 
+        class_attribute :_properties_format, default: {}
+
         # delegate :readable_properties, :writeable_properties, to: :class
         delegate :identifier_property, to: :class
         delegate :read_properties, :create_properties, :update_properties, to: :class
@@ -47,6 +49,10 @@ module Rhino
         def rhino_properties_write(**options)
           rhino_properties_create(options)
           rhino_properties_update(options)
+        end
+
+        def rhino_properties_format(format)
+          self._properties_format = format
         end
 
         def identifier_property

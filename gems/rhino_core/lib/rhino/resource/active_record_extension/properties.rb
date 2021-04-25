@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
+require_relative 'properties_describe'
+
 module Rhino
   module Resource
     module ActiveRecordExtension
-      module Properties # rubocop:disable Metrics/ModuleLength
+      module Properties
         extend ActiveSupport::Concern
+
+        include Rhino::Resource::ActiveRecordExtension::PropertiesDescribe
 
         class_methods do # rubocop:disable Metrics/BlockLength
           def identifier_property
@@ -25,26 +29,6 @@ module Rhino
 
           def updatable_properties
             writeable_properties
-          end
-
-          def describe_property(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-            name = property_name(property).to_s
-            {
-              "x-rhino-attribute": {
-                name: name,
-                readableName: name.titleize,
-                readable: read_properties.include?(property),
-                creatable: create_properties.include?(property),
-                updatable: update_properties.include?(property)
-              },
-              readOnly: property_read_only?(name),
-              writeOnly: property_write_only?(name),
-              nullable: property_nullable?(name),
-              default: property_default(name)
-            }
-              .merge(property_type(property))
-              .merge(property_validations(property))
-              .compact
           end
 
           private
@@ -87,141 +71,6 @@ module Rhino
             props.concat(reference_properties(false))
 
             props.map(&:to_s)
-          end
-
-          def property_name(property)
-            property.is_a?(Hash) ? property.keys.first : property
-          end
-
-          def ref_descriptor(name)
-            {
-              type: :reference,
-              anyOf: [
-                { '$ref'.to_sym => "#/components/schemas/#{name.singularize}" }
-              ]
-            }
-          end
-
-          def property_type_raw(property) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength,  Metrics/PerceivedComplexity
-            name = property_name(property)
-
-            return :identifier if name == identifier_property
-
-            return :string if defined_enums.key?(name)
-
-            # FIXME: Hack for tags for now
-            if attribute_types.key?(name.to_s) && attribute_types[name.to_s].class.to_s == 'ActsAsTaggableOn::Taggable::TagListType'
-              return {
-                type: :array,
-                items: {
-                  type: 'string'
-                }
-              }
-            end
-
-            # Use the attribute type if possible
-
-            if attribute_types.key?(name.to_s)
-              atype = attribute_types[name.to_s].type
-
-              if %i[datetime date time].include?(atype)
-                return {
-                  type: 'string',
-                  format: atype
-                }
-              end
-
-              return atype
-            end
-
-            if reflections.key?(name)
-              # FIXME: The tr hack is to match how model_name in rails handles modularized classes
-              class_name = reflections[name].options[:class_name]&.underscore&.tr('/', '_') || name
-              return ref_descriptor(class_name) unless reflections[name].macro == :has_many
-
-              return {
-                type: :array,
-                items: ref_descriptor(class_name)
-              }
-            end
-
-            # raise UnknownpropertyType
-            'unknown'
-          end
-
-          def property_type(property)
-            pt = property_type_raw(property)
-
-            return pt if pt.is_a? Hash
-
-            { type: property_type_raw(property) }
-          end
-
-          def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
-            constraint_hash = {}
-
-            # https://swagger.io/specification/
-
-            validators_on(property).each do |v|
-              if v.is_a? ActiveModel::Validations::NumericalityValidator
-                constraint_hash[:minimum] = v.options[:greater_than] + 1
-                constraint_hash[:maximum] = v.options[:less_than] - 1
-              end
-
-              if v.is_a? ::ActiveRecord::Validations::LengthValidator
-                constraint_hash[:minLength] = v.options[:minimum] || v.options[:is]
-                constraint_hash[:maxLength] = v.options[:maximum] || v.options[:is]
-              end
-
-              constraint_hash[:pattern] = JsRegex.new(v.options[:with]).source if v.is_a? ::ActiveModel::Validations::FormatValidator
-
-              constraint_hash[:enum] = v.options[:in] if v.is_a? ActiveModel::Validations::InclusionValidator
-            end
-
-            constraint_hash[:enum] = defined_enums[property].keys if defined_enums.key?(property)
-
-            constraint_hash.compact
-          end
-
-          # If there is a presence validator in the model it is not nullable.
-          # if there is no optional: true on an association, rails will add a
-          # presence validator automatically
-          # Otherwise check the db for the actual column or foreign key setting
-          # Return nil instead of false for compaction
-          def property_nullable?(name)
-            # Check for presence validator
-            if validators.select { |v| v.is_a? ::ActiveRecord::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
-              return false
-            end
-
-            name = reflections[name].foreign_key if reflections.key?(name)
-
-            # Check the column null setting
-            return columns_hash[name].null if columns_hash.key?(name)
-
-            true
-          end
-
-          # Return nil instead of false for compaction
-          def property_read_only?(name)
-            return unless read_properties.include?(name) && (create_properties.exclude?(name) && update_properties.exclude?(name))
-
-            true
-          end
-
-          # Return nil instead of false for compaction
-          def property_write_only?(name)
-            return unless (create_properties.include?(name) || update_properties.include?(name)) && read_properties.exclude?(name)
-
-            true
-          end
-
-          def property_default(name)
-            # FIXME: This will not handle datetime fields
-            # https://github.com/rails/rails/issues/27077 sets the default in the db
-            # but Blog.new does not set the default value like other attributes
-            # https://nubinary.atlassian.net/browse/NUB-298
-            _default_attributes[name].type_cast(_default_attributes[name].value_before_type_cast)
           end
         end
       end
