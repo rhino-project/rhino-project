@@ -157,7 +157,7 @@ module Rhino
             { type: property_type_raw(property) }
           end
 
-          def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
+          def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
             constraint_hash = {}
 
             # https://swagger.io/specification/
@@ -172,6 +172,8 @@ module Rhino
                 constraint_hash[:minLength] = v.options[:minimum] || v.options[:is]
                 constraint_hash[:maxLength] = v.options[:maximum] || v.options[:is]
               end
+
+              constraint_hash[:pattern] = JsRegex.new(v.options[:with]).source if v.is_a? ::ActiveModel::Validations::FormatValidator
 
               constraint_hash[:enum] = v.options[:in] if v.is_a? ActiveModel::Validations::InclusionValidator
             end
