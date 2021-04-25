@@ -65,7 +65,7 @@ export const changeAlert = () => {
 };
 ```
 
-and update _globalOverriden_ like below:
+and update _globalOverrides_ like below:
 
 ```
 import { editBlogForm, changeAlert } from 'pages/editBlogFrom';
