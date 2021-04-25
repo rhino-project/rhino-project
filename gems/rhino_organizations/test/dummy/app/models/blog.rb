@@ -11,8 +11,7 @@ class Blog < ApplicationRecord
 
   rhino_owner_base
   rhino_references %i[author organization category banner_attachment blog_posts]
-  rhino_properties_create except: [:author]
-  rhino_properties_update except: [:author]
+  rhino_properties_write except: :author
   rhino_search [:title]
 
   validates :title, presence: true
