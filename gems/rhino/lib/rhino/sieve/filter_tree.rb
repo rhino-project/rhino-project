@@ -7,7 +7,7 @@ module Rhino
 
       def apply_filters(objects, base, filter) # rubocop:disable Metrics/AbcSize
         filter.each do |key, val|
-          if val.is_a? Hash
+          if val.is_a?(Hash) && base.reflections[key.to_s]
             # joined table filter
             bs = base.reflections[key.to_s].klass
             objects = apply_filters(objects, bs, val)
