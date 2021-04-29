@@ -17,3 +17,11 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.file_fixture_path = ActiveSupport::TestCase.fixture_path + '/files'
   ActiveSupport::TestCase.fixtures :all
 end
+
+class ActiveSupport::TestCase
+  # Run tests in parallel with specified workers
+  parallelize(workers: :number_of_processors)
+
+  # Add more helper methods to be used by all tests here...
+  include FactoryBot::Syntax::Methods
+end

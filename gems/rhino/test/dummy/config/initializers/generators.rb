@@ -15,5 +15,5 @@ Rails.application.config.generators do |g|
   g.scaffold_controller :scaffold_controller, helper: false
 
   # No specs by default
-  g.test_framework nil
+  g.test_framework :mini_test
 end
