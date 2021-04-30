@@ -19,7 +19,6 @@ module Rhino
     end
 
     def create_checkout_session
-      # TODO: check for exiting sessions to avoid errors
       sc = get_stripe_customer(params['base_owner_id'])
 
       session = checkout_session(sc.customer_id, params)
@@ -57,6 +56,13 @@ module Rhino
         }
 
       end
+    end
+
+    def check_session_id
+      stripe_customer = Rhino::StripeCustomer.find_by(base_owner_id: params['base_owner_id'])
+      render json: {
+        session_matched: ((stripe_customer && stripe_customer['current_stripe_session_id']) == params['session_id'])
+      }
     end
 
     private
