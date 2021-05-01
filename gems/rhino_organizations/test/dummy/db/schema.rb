@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_010616) do
+ActiveRecord::Schema.define(version: 2021_05_01_141754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,11 +67,18 @@ ActiveRecord::Schema.define(version: 2021_01_15_010616) do
 
   create_table "og_meta_tags", force: :cascade do |t|
     t.bigint "blog_post_id", null: false
-    t.string "tag_name"
     t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "og_tag_id"
     t.index ["blog_post_id"], name: "index_og_meta_tags_on_blog_post_id"
+    t.index ["og_tag_id"], name: "index_og_meta_tags_on_og_tag_id"
+  end
+
+  create_table "og_tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -161,6 +168,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_010616) do
   add_foreign_key "blogs", "organizations"
   add_foreign_key "blogs", "users"
   add_foreign_key "og_meta_tags", "blog_posts"
+  add_foreign_key "og_meta_tags", "og_tags"
   add_foreign_key "taggings", "tags"
   add_foreign_key "users_roles", "organizations"
   add_foreign_key "users_roles", "roles"
