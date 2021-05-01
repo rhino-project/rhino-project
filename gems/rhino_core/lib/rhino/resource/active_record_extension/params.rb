@@ -114,6 +114,13 @@ module Rhino
             # Generic array of scalars
             next params << { prop => [] } if desc[:type] == :array
 
+            # Accept { blog_post: { :id }} as well as { blog_post: 3 } below
+            if desc[:type] == :reference
+              assoc = assoc_from_sym(prop.to_sym)
+
+              params << { prop => [assoc.klass.identifier_property] }
+            end
+
             # Otherwise prop and param are equivalent
             # We also accept the ref name as the foreign key if its a singular resource
             params << prop
@@ -129,7 +136,7 @@ module Rhino
 
           # Rebuild the params
           # rubocop:todo Metrics/CyclomaticComplexity
-          def transform_params_recursive(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+          def transform_params_recursive(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/PerceivedComplexity
             hash = {}
             params.each do |param_key, param_value|
               association = parent.reflect_on_association(param_key)
@@ -160,6 +167,11 @@ module Rhino
               end
 
               # Map association name to foreign key, ie blog => blog_id
+              # or blog: { id: } => blog_id
+              if param_value.is_a?(ActionController::Parameters)
+                next hash[association.foreign_key] = param_value[association.klass.identifier_property]
+              end
+
               hash[association.foreign_key] = param_value
             end
 

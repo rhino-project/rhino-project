@@ -22,6 +22,10 @@ if Rails.env.development?
   Organization.destroy_all
   Role.destroy_all
   Blog.destroy_all
+  OgTag.destroy_all
+
+  OgTag.create!(name: 'fb')
+  OgTag.create!(name: 'twitter')
 
   user = User.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password')
   user2 = User.create!(email: 'other@example.com', password: 'password', password_confirmation: 'password')
