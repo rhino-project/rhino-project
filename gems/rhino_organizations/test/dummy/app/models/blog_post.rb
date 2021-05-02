@@ -9,7 +9,7 @@ class BlogPost < ApplicationRecord
   acts_as_taggable_on :tags
 
   rhino_owner :blog
-  rhino_references %i[blog og_meta_tags]
+  rhino_references [:blog, { og_meta_tags: [:og_tag] }]
 
   validates :title, presence: true
   validates :body, presence: true
