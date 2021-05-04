@@ -10,6 +10,7 @@ module Rhino
     autoload :Offset
     autoload :Order
     autoload :Search
+    autoload :Helpers
   end
 
   class SieveStack

@@ -254,5 +254,23 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
     @params = { 'foo' => 'bar' }
     expect_results_from_all
   end
+
+  test "works with aliased fields like in blog post's aliased_creation_date <> created_at" do
+    sign_in
+    seed
+
+    # from blog 1
+    @nested_instance1.update created_at: '1900-01-01'
+    @nested_instance2.update created_at: '1900-01-01'
+    # from blog 2
+    @nested_instance3.update created_at: '2021-05-04'
+
+    conditions = { 'gt' => '2000-01-01' }
+    @params = { 'created_at' => conditions }
+    expect_results_from_blog2
+
+    @params = { 'aliased_creation_date' => conditions }
+    expect_results_from_blog2
+  end
 end
 # rubocop:enable Metrics/ClassLength
