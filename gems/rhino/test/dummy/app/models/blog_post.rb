@@ -13,4 +13,8 @@ class BlogPost < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+
+  default_scope { order(created_at: :desc) }
+
+  alias_attribute :aliased_creation_date, :created_at
 end
