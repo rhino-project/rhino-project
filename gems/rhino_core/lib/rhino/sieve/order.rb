@@ -37,7 +37,7 @@ module Rhino
                 else
                   @param[1..]
                 end
-        @scope.attribute_aliases[param] || param
+        Sieve::Helpers.real_column_name(@scope, param)
       end
 
       def string?

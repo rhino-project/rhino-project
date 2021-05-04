@@ -37,6 +37,7 @@ module Rhino
 
       def apply_filters(scope, base, filter)
         filter.each do |key, val|
+          key = Sieve::Helpers.real_column_name(scope, key)
           key_is_reflection = base.reflections.key? key
           key_is_attribute = base.attribute_names.include? key
           next unless key_is_reflection || key_is_attribute
