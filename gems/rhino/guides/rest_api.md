@@ -116,8 +116,7 @@ end
 
 #### Rhino::Sieve::Filter
 
-> Filter based on properties, including properties of referenced resources
-> http://localhost:3002/api/blogs?category=health
+> Filter based on properties, including properties of referenced resources [read more](./rest_api_filtering.md).
 
 #### Rhino::Sieve::FilterTree
 
