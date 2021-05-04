@@ -23,12 +23,18 @@ module Rhino
                 readableName: model_name.human,
                 pluralReadableName: model_name.human.pluralize,
                 ownedBy: resource_owned_by,
-                path: route_api
+                path: route_api,
+                searchable: searchable?
               },
               type: :object,
               properties: properties,
               required: required
             }.compact
+          end
+
+          # returns true if the model's rhino_search is set with at least one field
+          def searchable?
+            @rhino_searchable_properties.present?
           end
         end
       end
