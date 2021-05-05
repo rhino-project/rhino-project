@@ -4,15 +4,15 @@ require 'test_helper'
 
 class RoutingTest < ActiveSupport::TestCase
   test 'Global owned resources routes are index/show only' do
-    assert_equal Category.routes, %i[index show]
+    assert_equal(%i[index show], Category.routes)
   end
 
   test 'Resources routes are CRUD' do
-    assert_equal Blog.routes, %i[index create show update destroy]
+    assert_equal(%i[index create show update destroy], Blog.routes)
   end
 
   test 'Frontend class route' do
-    assert_equal BlogPost.route_frontend, '/blogPosts'
+    assert_equal('/blogPosts', BlogPost.route_frontend)
   end
 
   test 'Frontend instance route' do
@@ -21,7 +21,7 @@ class RoutingTest < ActiveSupport::TestCase
   end
 
   test 'API class route' do
-    assert_equal BlogPost.route_api, '/api/blog_posts'
+    assert_equal('/api/blog_posts', BlogPost.route_api)
   end
 
   test 'API instance route' do
