@@ -7,7 +7,6 @@ class OgMetaTag < ApplicationRecord
   rhino_owner :blog_post
   rhino_references [{ blog_post: [:blog] }, :og_tag]
 
-  validates :og_tag, presence: true
   validates :value, presence: true
 
   def display_name
