@@ -39,12 +39,12 @@ module Rails
       end
 
       def test(*args)
-        rhino_command(nil, args << 'test')
+        rhino_command(nil, args.prepend('test'))
       end
 
       def coverage(*args)
         ENV['COVERAGE'] = '1'
-        test(args << 'test')
+        test(args)
       end
     end
   end
