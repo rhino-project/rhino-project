@@ -27,6 +27,11 @@ class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
     @nested_instance3 = create_nested_instance @instance2
   end
 
+  def setup
+    sign_in
+    seed
+  end
+
   def fetch
     get url, params: { 'filter' => @params }, headers: @headers
     assert_response :ok
@@ -137,10 +142,7 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
     expect_results_from_blog2
   end
 
-  test "works with any nested field and the defaut operation is eq e.g. '?filter[blog][title]=something'" do
-    sign_in
-    seed
-
+  test "works with any nested field and the default operation is eq e.g. '?filter[blog][title]=something'" do
     @params = { 'blog' => { 'title' => @instance1.title } }
     expect_results_from_blog1
 
@@ -156,10 +158,21 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
     expect_results_from_blog2
   end
 
-  test "accepts operator gt e.g. '?filter[blog][created_at][gt]=1999-12-31'" do
-    sign_in
-    seed
+  test "works with when default operation is eq with array e.g. '?filter[blog][id][]=1&filter[blog][id][]=2'" do
+    # single item
+    @params = { 'blog' => {
+      'id' => [@instance1.id]
+    } }
+    expect_results_from_blog1
 
+    # multiple items
+    @params = { 'blog' => {
+      'id' => [@instance1.id, @instance2.id]
+    } }
+    expect_results_from_all
+  end
+
+  test "accepts operator gt e.g. '?filter[blog][created_at][gt]=1999-12-31'" do
     @instance1.update created_at: '1999-12-31'
     @instance2.update created_at: '2000-01-01'
 
@@ -170,9 +183,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   test "accepts operator lt e.g. '?filter[blog][created_at][lt]=1999-12-31'" do
-    sign_in
-    seed
-
     @instance1.update created_at: '1999-12-31'
     @instance2.update created_at: '2000-01-01'
 
@@ -183,9 +193,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   test 'accepts combinations of operators lt and gt' do
-    sign_in
-    seed
-
     @instance1.update created_at: '1999-12-31'
     @instance2.update created_at: '2000-01-01'
     create :blog, created_at: '2001-01-01'
@@ -200,9 +207,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   test "accepts operator gteq e.g. '?filter[blog][created_at][gteq]=1999-12-31'" do
-    sign_in
-    seed
-
     @instance1.update created_at: '1999-12-31'
     @instance2.update created_at: '2000-01-01'
 
@@ -213,9 +217,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   test "accepts operator lteq e.g. '?filter[blog][created_at][lteq]=1999-12-31'" do
-    sign_in
-    seed
-
     @instance1.update created_at: '1999-12-31'
     @instance2.update created_at: '2000-01-01'
 
@@ -226,9 +227,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   test "accepts operator eq e.g. '?filter[blog][title][eq]=1999-12-31'" do
-    sign_in
-    seed
-
     @params = { 'blog' => {
       'title' => { 'eq' => @instance1.title }
     } }
@@ -236,9 +234,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   test "accepts operator diff e.g. '?filter[blog][title][diff]=1999-12-31'" do
-    sign_in
-    seed
-
     @params = { 'blog' => {
       'title' => {
         'diff' => @instance1.title
@@ -248,17 +243,11 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   test 'ignores any unknown field' do
-    sign_in
-    seed
-
     @params = { 'foo' => 'bar' }
     expect_results_from_all
   end
 
   test "works with aliased fields like in blog post's aliased_creation_date <> created_at" do
-    sign_in
-    seed
-
     # from blog 1
     @nested_instance1.update created_at: '1900-01-01'
     @nested_instance2.update created_at: '1900-01-01'
