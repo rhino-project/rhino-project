@@ -241,6 +241,23 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
     expect_results_from_blog2
   end
 
+  test "accepts operator is_null e.g. ?filter[title][is_null]=true" do
+    # blog posts from blog1 now all have published equal to nil
+    @instance1.blog_posts.all.each { |el| el.update(published: nil) }
+    # blog posts from blog1 now all have published different from nil
+    @instance2.blog_posts.all.each { |el| el.update(published: true) }
+
+    @params = { "published" => {
+      "is_null" => true
+    } }
+    expect_results_from_blog1
+
+    @params = { "published" => {
+      "is_null" => false
+    } }
+    expect_results_from_blog2
+  end
+
   test "ignores any unknown field" do
     @params = { "foo" => "bar" }
     expect_results_from_all
