@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'rhino/engine'
+require "rhino/engine"
 
 module <%= module_name.camelize %>
   class Engine < ::Rails::Engine
-    config.autoload_paths << File.expand_path('../../lib', __dir__)
+    config.autoload_paths << File.expand_path("../../lib", __dir__)
 
-    initializer '<%= module_name %>.register_module' do
+    initializer "<%= module_name %>.register_module" do
       config.after_initialize do
         if true
           Rhino.registered_modules[:<%= module_name %>] = {

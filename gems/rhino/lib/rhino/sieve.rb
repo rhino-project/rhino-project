@@ -140,7 +140,6 @@ module Rhino
     end
 
     private
-
     def assert_index(index, where)
       i = index.is_a?(Integer) ? index : sieves.index { |m| m.klass == index }
       raise "No such sieve to insert #{where}: #{index.inspect}" unless i

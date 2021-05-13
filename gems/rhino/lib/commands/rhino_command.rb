@@ -18,9 +18,9 @@ module Rails
         # Default to just rhino/rhino if no obvious module
         module_name = if Dir.exist?("rhino/rhino_#{args[0]}")
                         args.shift
-                      else
+        else
                         nil
-                      end
+        end
         module_base = ['rhino', module_name].compact.join('_')
         module_path = ["rhino/#{module_base}", extra_path].compact.join('/')
         db_name = "#{module_base}_dummy"

@@ -18,7 +18,6 @@ module Rhino
       end
 
       private
-
       def get_joins(base, filter)
         res = []
         filter.each do |key, val|

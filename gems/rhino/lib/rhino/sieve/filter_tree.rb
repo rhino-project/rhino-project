@@ -4,7 +4,6 @@ module Rhino
   module Sieve
     class FilterTree < Rhino::Sieve::Filter
       private
-
       def apply_filters(objects, base, filter) # rubocop:disable Metrics/AbcSize
         filter.each do |key, val|
           if val.is_a?(Hash) && base.reflections[key.to_s]
