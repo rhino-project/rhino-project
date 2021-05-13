@@ -29,6 +29,42 @@ In order to use them, one must chain them under the column name. For example, if
 /blog_posts?filter[created_at][gt]=2002-06-30
 ```
 
+### Null-aware operators
+
+Using query params to compare fields to `null` is always tricky, because everything from query params is treated as text, so using:
+
+```
+/blog_posts?filter[title][eq]=null
+```
+
+would not compare the `title` to the `null` value, instead it would compare it to a string `"null"`.
+
+The `is_null` operator can be used to achieve explicit `null` comparison. Using `true` as argument makes the database query look for records that have a field equal to `null`. Using `false`, on the other hand, make the database query look for records that **do not** have a field equal to `null`.
+
+Therefore,
+
+```
+/blog_posts?filter[title][is_null]=true
+```
+
+translates to something like
+
+```
+... WHERE title IS NULL
+```
+
+whereas
+
+```
+/blog_posts?filter[title][is_null]=false
+```
+
+translates to something like
+
+```
+... WHERE title IS NOT NULL
+```
+
 ### Combining operators
 
 Using more than one operator for a single field is supported, so searching for objects with a certain column in a range of two values is simple. In order to fetch all blog posts created **between** June 30th 2002 and July 8th 2014:

@@ -84,7 +84,7 @@ module Rhino
         scope
       end
 
-      def merge_where_clause(base, scope, column_name, value, operation = nil)   # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+      def merge_where_clause(base, scope, column_name, value, operation = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
         arel_node = base.arel_table[column_name]
         where_clause = case operation
                        when 'eq' then arel_node.eq(value)
@@ -93,6 +93,7 @@ module Rhino
                        when 'gteq' then arel_node.gteq(value)
                        when 'lteq' then arel_node.lteq(value)
                        when 'diff' then arel_node.not_eq(value)
+                       when 'is_null' then apply_is_null(arel_node, value)
                        else
                          if value.is_a? Array
                            arel_node.in(value)
@@ -101,6 +102,14 @@ module Rhino
                          end
                        end
         scope.where(where_clause)
+      end
+
+      def apply_is_null(arel_node, value)
+        if ActiveModel::Type::Boolean::FALSE_VALUES.include?(value)
+          arel_node.not_eq(nil)
+        else
+          arel_node.eq(nil)
+        end
       end
     end
   end
