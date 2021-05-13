@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'ffaker'
+require "ffaker"
 
 FactoryBot.define do
   factory :blog do
@@ -27,7 +27,7 @@ FactoryBot.define do
     email { FFaker::Internet.safe_email }
     name { FFaker::Name.name }
     nickname { FFaker::Name.first_name }
-    password { 'password' }
+    password { "password" }
     uid { FFaker::Guid.guid }
   end
 end

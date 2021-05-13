@@ -44,7 +44,6 @@ module Rhino
     end
 
     protected
-
     # The params are wrapped with 'rest' if the rest_controller is called directly
     # instead of via a customization class
     #
@@ -57,7 +56,6 @@ module Rhino
     end
 
     private
-
     def find_resource(scope = klass.all)
       scope = scope.friendly if scope.respond_to? :friendly
       scope.find(params[:id])

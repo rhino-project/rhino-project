@@ -28,7 +28,6 @@ module Rhino
           end
 
           private
-
           def property_name(property)
             property.is_a?(Hash) ? property.keys.first : property
           end

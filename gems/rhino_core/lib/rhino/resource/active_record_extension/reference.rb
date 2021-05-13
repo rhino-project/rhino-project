@@ -14,7 +14,6 @@ module Rhino
           end
 
           private
-
           # FIXME: Duplicated in params.rb
           def reference_to_sym(reference)
             reference.is_a?(Hash) ? reference.keys.first : reference

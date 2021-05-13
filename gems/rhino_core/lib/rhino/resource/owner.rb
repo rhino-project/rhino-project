@@ -133,7 +133,6 @@ module Rhino
         end
 
         private
-
         def simple_joins_for(parent)
           # FIXME: There is probably a more rubyish way to do this
           chained_scope = self
@@ -157,7 +156,6 @@ module Rhino
     end
 
     private
-
     # We use the parent as the starting point because if the record is not
     # persisted yet, we won't be able to find it
     def owner_ids(joins)

@@ -22,7 +22,6 @@ module Rhino
         end
 
         protected
-
         def reference_to_sym(reference)
           reference.is_a?(Hash) ? reference.keys.first : reference
         end
