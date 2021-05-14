@@ -4,8 +4,8 @@ require "test_helper"
 
 class Rhino::UserPolicyTest < PolicyTestCase
   def setup
-    @current_user = build :user
-    @another_user = build :user
+    @current_user = create :user
+    @another_user = create :user
   end
 
   %i[index show create update destroy].each do |action_type|
