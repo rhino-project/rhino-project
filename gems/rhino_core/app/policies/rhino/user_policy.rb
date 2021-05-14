@@ -1,28 +1,22 @@
 # frozen_string_literal: true
 
 module Rhino
-  class UserPolicy < ::Rhino::BasePolicy
-    def check_auth
-      return false unless auth_owner
-
-      record.id == auth_owner.id
-    end
-
-    def index?
-      true
-    end
-
-    def show?
-      true
-    end
-
+  class UserPolicy < ::Rhino::ViewerPolicy
+    # Updatable only for this user
     def update?
-      true
+      authorize_action(record&.id == auth_owner&.id)
     end
 
     class Scope < ::Rhino::ViewerPolicy::Scope
-      def resolve
-        super.where(id: auth_owner&.id)
+      # We allow other users in the org to view the user
+      def resolve # rubocop:disable Metrics/AbcSize
+        base_owner_pk = "#{Rhino.base_owner.table_name}.#{Rhino.base_owner.primary_key}"
+
+        # Base owners for the user
+        base_owners = scope.joins(scope.joins_for_base_owner).where(id: auth_owner&.id).pluck(base_owner_pk)
+
+        # Users related to the base owners
+        scope.joins(scope.joins_for_base_owner).where(base_owner_pk => base_owners).distinct
       end
     end
   end
