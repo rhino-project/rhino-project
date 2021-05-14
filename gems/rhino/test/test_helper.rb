@@ -24,6 +24,11 @@ if ActiveSupport::TestCase.respond_to?(:fixture_path=)
   ActiveSupport::TestCase.fixtures :all
 end
 
+# Load all test helpers
+# https://guides.rubyonrails.org/testing.html#eagerly-requiring-helpers
+# But we are in an engine so use that root - Rails.root would point to dummy
+Dir[Rhino::Engine.root.join("test", "test_helpers", "**", "*.rb")].sort.each { |file| require file }
+
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
