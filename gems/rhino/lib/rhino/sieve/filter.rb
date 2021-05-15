@@ -68,10 +68,6 @@ module Rhino
       end
 
       def apply_column_filter(base, scope, column_name, column_value)
-        parts = column_name.split('::')
-        # If there is a specifier like 'category::tree::subtree' we skip it
-        return scope unless parts.length == 1
-
         if column_value.is_a?(Hash)
           # it is a more complex query, possibly using operators like gt, lt, etc.
           # more than one operator per-field is allowed
@@ -84,16 +80,14 @@ module Rhino
         scope
       end
 
-      def merge_where_clause(base, scope, column_name, value, operation = nil) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/MethodLength
+      BASIC_AREL_OPS = %w[eq gt lt gteq lteq].freeze
+      def merge_where_clause(base, scope, column_name, value, operation = nil) # rubocop:disable Metrics/MethodLength
         arel_node = base.arel_table[column_name]
         where_clause = case operation
-                       when 'eq' then arel_node.eq(value)
-                       when 'gt' then arel_node.gt(value)
-                       when 'lt' then arel_node.lt(value)
-                       when 'gteq' then arel_node.gteq(value)
-                       when 'lteq' then arel_node.lteq(value)
+                       when *BASIC_AREL_OPS then arel_node.send(operation, value)
                        when 'diff' then arel_node.not_eq(value)
                        when 'is_null' then apply_is_null(arel_node, value)
+                       when /^tree_(.*)/ then apply_tree(Regexp.last_match(1), base, column_name, arel_node, value)
                        else
                          if value.is_a? Array
                            arel_node.in(value)
@@ -110,6 +104,12 @@ module Rhino
         else
           arel_node.eq(nil)
         end
+      end
+
+      def apply_tree(operation, base, column_name, arel_node, value)
+        subquery = base.where(column_name => value).map(&operation.to_sym).flatten.map(&column_name.to_sym)
+
+        arel_node.in(subquery)
       end
     end
   end
