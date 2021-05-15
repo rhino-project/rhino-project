@@ -22,11 +22,30 @@ The Filter sieve supports many comparison operators. They are all unary, meaning
 - `lteq`: **less than or equal to**
 - `eq`: **equal to**
 - `diff`: **different from**
+- `tree_*`: **tree operators (see below)**
 
-In order to use them, one must chain them under the column name. For example, if it is needed to fetch blog posts created after June 30th 2002:
+In order to use an operation, one must chain them under the column name. For example, if it is needed to fetch blog posts created after June 30th 2002:
 
 ```
 /blog_posts?filter[created_at][gt]=2002-06-30
+```
+
+### Tree Operators
+
+Tree operators can act on has_ancestry models (Rhino::Resource::ActiveRecordTree) and can execute any of the tree navigation commands from the node passed in. Commands act as per [https://github.com/stefankroes/ancestry#tree-navigation] and the available list is:
+
+- tree_parent
+- tree_root
+- tree_ancestors
+- tree_children
+- tree_descendants
+- tree_indirects
+- tree_siblings
+- tree_subtree
+- tree_path
+
+```
+/blogs?filter[category][tree_subtree]=1
 ```
 
 ### Null-aware operators
