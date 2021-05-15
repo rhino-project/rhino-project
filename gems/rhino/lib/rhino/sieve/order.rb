@@ -48,7 +48,8 @@ module Rhino
       end
 
       def order
-        @scope.arel_table[@column_name].send @direction
+        # nulls_last should generally be the desired user experience
+        @scope.arel_table[@column_name].send(@direction).nulls_last
       end
 
       def apply_order

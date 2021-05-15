@@ -12,15 +12,17 @@ class RhinoSieveOrderTestHelper < ActionDispatch::IntegrationTest
                  "client" => @response.headers["client"] }
   end
 
-  def seed
+  def seed # rubocop:disable Metrics/AbcSize
     @current_user = create :user
-    @blog = create :blog, user: @current_user
+    @blog = create :blog, user: @current_user, published_at: Time.zone.now
     @middle_instance = create :blog_post, blog: @blog, created_at: Time.zone.now
     @oldest_instance = create :blog_post, blog: @blog, created_at: Time.zone.now - 1.day
     @newest_instance = create :blog_post, blog: @blog, created_at: Time.zone.now + 1.day
+    @oldest_blog = create :blog, user: @current_user, published_at: Time.zone.now - 1.day
+    @null_blog = create :blog, user: @current_user, published_at: nil
   end
 
-  def fetch
+  def fetch(url = self.url)
     get url, params: { "order" => @params }, headers: @headers
     assert_response :ok
     @json = JSON.parse(@response.body)
@@ -32,16 +34,20 @@ class RhinoSieveOrderTest < RhinoSieveOrderTestHelper
     "/api/blog_posts"
   end
 
+  def assert_order(results, *instances)
+    instances.each_with_index do |instance, idx|
+      assert_equal instance.id, results[idx]["id"]
+    end
+  end
+
   test "BlogPost.all sql orders by created_at DESC" do
     assert_match(/ORDER BY .*created_at.? DESC/, BlogPost.all.to_sql)
   end
 
   test "BlogPost default scope orders by created_at DESC" do
     seed
-    instances = BlogPost.all
-    assert_equal @newest_instance.id, instances[0].id
-    assert_equal @middle_instance.id, instances[1].id
-    assert_equal @oldest_instance.id, instances[2].id
+    results = BlogPost.all
+    assert_order results, @newest_instance, @middle_instance, @oldest_instance
   end
 
   test "order[created_at] overrides default_ordering to created_at ASC" do
@@ -50,10 +56,7 @@ class RhinoSieveOrderTest < RhinoSieveOrderTestHelper
     @params = "created_at"
     fetch
 
-    instances = @json["results"]
-    assert_equal @oldest_instance.id, instances[0]["id"]
-    assert_equal @middle_instance.id, instances[1]["id"]
-    assert_equal @newest_instance.id, instances[2]["id"]
+    assert_order @json["results"], @oldest_instance, @middle_instance, @newest_instance
   end
 
   test "order[-created_at] overrides default ordering to created_at DESC" do
@@ -62,10 +65,7 @@ class RhinoSieveOrderTest < RhinoSieveOrderTestHelper
     @params = "-created_at"
     fetch
 
-    instances = @json["results"]
-    assert_equal @newest_instance.id, instances[0]["id"]
-    assert_equal @middle_instance.id, instances[1]["id"]
-    assert_equal @oldest_instance.id, instances[2]["id"]
+    assert_order @json["results"], @newest_instance, @middle_instance, @oldest_instance
   end
 
   test "ordering by non-existing columns should ignore order param and use default ordering" do
@@ -74,10 +74,7 @@ class RhinoSieveOrderTest < RhinoSieveOrderTestHelper
     @params = "zzzcreated_atzzz"
     fetch
 
-    instances = @json["results"]
-    assert_equal @newest_instance.id, instances[0]["id"]
-    assert_equal @middle_instance.id, instances[1]["id"]
-    assert_equal @oldest_instance.id, instances[2]["id"]
+    assert_order @json["results"], @newest_instance, @middle_instance, @oldest_instance
   end
 
   test "ordering works for aliased fields like created_at <> aliased_creation_date" do
@@ -86,9 +83,24 @@ class RhinoSieveOrderTest < RhinoSieveOrderTestHelper
     @params = "aliased_creation_date"
     fetch
 
-    instances = @json["results"]
-    assert_equal @oldest_instance.id, instances[0]["id"]
-    assert_equal @middle_instance.id, instances[1]["id"]
-    assert_equal @newest_instance.id, instances[2]["id"]
+    assert_order @json["results"], @oldest_instance, @middle_instance, @newest_instance
+  end
+
+  test "ordering puts nulls last for asc" do
+    seed
+    sign_in
+    @params = "published_at"
+    fetch("/api/blogs")
+
+    assert_order @json["results"], @oldest_blog, @blog, @null_blog
+  end
+
+  test "ordering puts nulls last for desc" do
+    seed
+    sign_in
+    @params = "-published_at"
+    fetch("/api/blogs")
+
+    assert_order @json["results"], @blog, @oldest_blog, @null_blog
   end
 end
