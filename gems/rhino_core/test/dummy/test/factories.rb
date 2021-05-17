@@ -2,6 +2,7 @@
 
 require "ffaker"
 
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :blog do
     category
@@ -30,4 +31,11 @@ FactoryBot.define do
     password { "password" }
     uid { FFaker::Guid.guid }
   end
+
+  factory :og_meta_tag do
+    blog_post
+    tag_name { FFaker::Lorem.word }
+    value { FFaker::Lorem.paragraph }
+  end
 end
+# rubocop:enable Metrics/BlockLength
