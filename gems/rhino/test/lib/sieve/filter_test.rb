@@ -2,6 +2,11 @@
 
 class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
   protected
+  def setup
+    sign_in
+    seed
+  end
+
   def sign_in
     @current_user = create :user
     post "/api/auth/sign_in", params: {
@@ -26,15 +31,51 @@ class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
     @nested_instance3 = create_nested_instance @instance2
   end
 
-  def setup
-    sign_in
-    seed
-  end
-
   def fetch
     get url, params: { "filter" => @params }, headers: @headers
     assert_response :ok
     @json = JSON.parse(@response.body)
+  end
+
+  def expect_empty
+    fetch
+    assert_equal 0, @json["total"]
+    assert_equal 0, @json["results"].length
+  end
+
+  def response_ids
+    @json["results"].map { |el| el["id"] }.sort
+  end
+
+  def response_ids_from_key(key)
+    @json["results"].map { |el| el[key]["id"] }.sort
+  end
+end
+
+# rubocop:disable Metrics/ClassLength
+class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
+  def url
+    "/api/blog_posts"
+  end
+
+  def instance_name
+    "blog"
+  end
+
+  def create_instance
+    create :blog, user: @current_user
+  end
+
+  def create_nested_instance(instance)
+    create :blog_post, blog: instance
+  end
+
+  def expect_results_from_blog1
+    expect_results_from_instance1
+  end
+
+  def expect_results_from_blog2
+    expect_results_from_instance2
   end
 
   def expect_results_from_instance1
@@ -78,51 +119,7 @@ class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
   end
   # rubocop:enable Metrics/AbcSize
 
-  def expect_empty
-    fetch
-    assert_equal 0, @json["total"]
-    assert_equal 0, @json["results"].length
-  end
-
-  def response_ids
-    @json["results"].map { |el| el["id"] }.sort
-  end
-
-  def response_ids_from_key(key)
-    @json["results"].map { |el| el[key]["id"] }.sort
-  end
-end
-
-# rubocop:disable Metrics/ClassLength
-class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
-  def url
-    "/api/blog_posts"
-  end
-
-  def instance_name
-    "blog"
-  end
-
-  def create_instance
-    create :blog, user: @current_user
-  end
-
-  def create_nested_instance(instance)
-    create :blog_post, blog: instance
-  end
-
-  def expect_results_from_blog1
-    expect_results_from_instance1
-  end
-
-  def expect_results_from_blog2
-    expect_results_from_instance2
-  end
-
   test "should work with the name of the relationship as key and id as value e.g. '?filter[blog]=1'" do
-    sign_in
-    seed
-
     @params = { "blog" => @instance1.id }
     expect_results_from_blog1
 
@@ -131,9 +128,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   test "works with the id as a nested field e.g. '?filter[blog][id]=1'" do
-    sign_in
-    seed
-
     @params = { "blog" => { "id" => @instance1.id } }
     expect_results_from_blog1
 
@@ -279,3 +273,85 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 end
 # rubocop:enable Metrics/ClassLength
+
+class RhinoSieveFilterLongChainTest < RhinoSieveTestHelper
+  def url
+    "/api/og_meta_tags"
+  end
+
+  def seed
+    @blog1 = create :blog, user: @current_user
+    @blog_post1 = create :blog_post, blog: @blog1
+    @tag1 = create :og_meta_tag, blog_post: @blog_post1
+
+    @blog2 = create :blog, user: @current_user
+    @blog_post2 = create :blog_post, blog: @blog2
+    @tag2 = create :og_meta_tag, blog_post: @blog_post2
+  end
+
+  def expect_results_to_be_instance(instance)
+    fetch
+    assert_equal 1, @json["total"]
+    assert_equal 1, @json["results"].length
+
+    assert_equal instance.id, @json["results"][0]["id"]
+  end
+
+  def expect_results_to_be_instances(ids)
+    fetch
+    assert_equal ids.length, @json["total"]
+    assert_equal ids.length, @json["results"].length
+
+    assert_equal ids, response_ids
+  end
+
+  test "should work for querying an association with a 2 model-long chain of joins" do
+    @params = { "blog_post" => {
+      "blog" => @tag1.blog_post.blog.id
+    } }
+    expect_results_to_be_instance @tag1
+
+    @params = { "blog_post" => {
+      "blog" => @tag2.blog_post.blog.id
+    } }
+    expect_results_to_be_instance @tag2
+  end
+
+  test "should work for querying a field with a 2 model-long chain of joins" do
+    @params = { "blog_post" => {
+      "blog" => {
+        "title" => @tag1.blog_post.blog.title
+      }
+    } }
+    expect_results_to_be_instance @tag1
+
+    @params = { "blog_post" => {
+      "blog" => {
+        "title" => @tag2.blog_post.blog.title
+      }
+    } }
+    expect_results_to_be_instance @tag2
+  end
+
+  test "should work for querying a field with a 3 model-long chain of joins" do
+    setup
+    @params = { "blog_post" => {
+      "blog" => {
+        "user" => {
+          "name" => @tag1.blog_post.blog.user.name
+        }
+      }
+    } }
+    expect_results_to_be_instances([@tag1.id, @tag2.id])
+  end
+
+  test "should work for querying an association with a 3 model-long chain of joins" do
+    setup
+    @params = { "blog_post" => {
+      "blog" => {
+        "user" => @tag1.blog_post.blog.user.id
+      }
+    } }
+    expect_results_to_be_instances([@tag1.id, @tag2.id])
+  end
+end
