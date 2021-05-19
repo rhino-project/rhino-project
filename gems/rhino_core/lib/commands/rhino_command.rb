@@ -14,7 +14,7 @@ module Rails
         end
       end
 
-      def rhino_command(extra_path, args)
+      def rhino_command(extra_path, base_command, *args)
         # Default to just rhino/rhino if no obvious module
         module_name = if Dir.exist?("rhino/rhino_#{args[0]}")
                         args.shift
@@ -30,21 +30,21 @@ module Rails
 
         inside(module_path) do
           # Override DB_NAME so multiple can run in parallel
-          run "DB_NAME=#{db_name} BUNDLE_GEMFILE='#{__dir__}/../../../../Gemfile' bin/rails #{args.join(' ')}"
+          run "DB_NAME=#{db_name} BUNDLE_GEMFILE='#{__dir__}/../../../../Gemfile' bin/rails #{base_command} #{args.join(' ')}"
         end
       end
 
       def dummy(*args)
-        rhino_command('test/dummy', args)
+        rhino_command('test/dummy', nil, *args)
       end
 
       def test(*args)
-        rhino_command(nil, args.prepend('test'))
+        rhino_command(nil, 'test', *args)
       end
 
       def coverage(*args)
         ENV['COVERAGE'] = '1'
-        test(args)
+        test(*args)
       end
     end
   end
