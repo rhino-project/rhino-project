@@ -34,7 +34,7 @@ module Rhino
 
           # returns true if the model's rhino_search is set with at least one field
           def searchable?
-            @rhino_searchable_properties.present?
+            @rhino_is_searchable == true
           end
         end
       end
