@@ -19,7 +19,7 @@ module Rhino
       @models = klass.sieves.resolve(policy_scope(klass), params)
       render json: {
         results: @models.eager_load_refs.map { |m| permit_model(m) },
-        total: @models.unscope(:limit, :offset).count
+        total: @models.unscope(:limit, :offset).reselect(:id).count
       }
     end
 

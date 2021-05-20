@@ -29,8 +29,10 @@ class RhinoSieveOrderTestHelper < ActionDispatch::IntegrationTest
     @null_blog = create :blog, user: @current_user, published_at: nil
   end
 
-  def fetch(url = self.url)
-    get url, params: { "order" => @params }, headers: @headers
+  def fetch(url = self.url, filter: nil)
+    params = { "order" => @params }
+    params["filter"] = filter if filter
+    get url, params: params, headers: @headers
     assert_response :ok
     @json = JSON.parse(@response.body)
   end
@@ -145,5 +147,83 @@ class RhinoSieveOrderTest < RhinoSieveOrderTestHelper
     fetch("/api/blogs")
 
     assert_order @json["results"], @blog, @oldest_blog, @null_blog
+  end
+end
+
+class RhinoSieveOrderRelatedModelsTest < RhinoSieveOrderTestHelper
+  def url
+    "/api/og_meta_tags"
+  end
+
+  # rubocop:disable Metrics/AbcSize
+  def seed
+    @current_user = create :user
+
+    now = Time.zone.now
+    @newest_blog1 = create :blog, user: @current_user, published_at: now
+    @newest_blog2 = create :blog, user: @current_user, published_at: now
+    @oldest_blog = create :blog, user: @current_user, published_at: now - 1.day
+
+    @middle_blog_post = create :blog_post, blog: @oldest_blog, created_at: Time.zone.now
+    @oldest_blog_post = create :blog_post, blog: @newest_blog2, created_at: Time.zone.now - 1.day
+    @newest_blog_post = create :blog_post, blog: @newest_blog1, created_at: Time.zone.now + 1.day
+
+    @middle_instance = create :og_meta_tag, blog_post: @middle_blog_post
+    @oldest_instance = create :og_meta_tag, blog_post: @oldest_blog_post
+    @newest_instance = create :og_meta_tag, blog_post: @newest_blog_post
+  end
+  # rubocop:enable Metrics/AbcSize
+
+  test "ignores order clauses with invalid nested models" do
+    @params = "blog_post.created_at"
+    fetch
+
+    assert_order @json["results"], @oldest_instance, @middle_instance, @newest_instance
+
+    @params = "blog_post.invalid_model.name,blog_post.created_at"
+    fetch
+
+    assert_order @json["results"], @oldest_instance, @middle_instance, @newest_instance
+  end
+
+  test "ordering through related model attribute works" do
+    @params = "blog_post.created_at"
+    fetch
+
+    assert_order @json["results"], @oldest_instance, @middle_instance, @newest_instance
+
+    @params = "-blog_post.created_at"
+    fetch
+
+    assert_order @json["results"], @newest_instance, @middle_instance, @oldest_instance
+  end
+
+  test "combining multiple ordering clauses through related model works" do
+    @params = "blog_post.blog.published_at,blog_post.created_at"
+    fetch
+
+    assert_order @json["results"], @middle_instance, @oldest_instance, @newest_instance
+
+    @params = "blog_post.blog.published_at,-blog_post.created_at"
+    fetch
+
+    assert_order @json["results"], @middle_instance, @newest_instance, @oldest_instance
+
+    @params = "-blog_post.blog.published_at,blog_post.created_at"
+    fetch
+
+    assert_order @json["results"], @oldest_instance, @newest_instance, @middle_instance
+
+    @params = "-blog_post.created_at,-blog_post.blog.published_at"
+    fetch
+
+    assert_order @json["results"], @newest_instance, @middle_instance, @oldest_instance
+  end
+
+  test "works combined with the filter sieve" do
+    @params = "blog_post.created_at"
+    fetch filter: { blog_post: { created_at: { gt: "1970-01-01" } } }
+
+    assert_order @json["results"], @oldest_instance, @middle_instance, @newest_instance
   end
 end
