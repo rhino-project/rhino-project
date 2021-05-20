@@ -130,8 +130,7 @@ end
 
 #### Rhino::Sieve::Order
 
-> Sorting of the results - leading underscore denotes descending order ('\_')
-> http://localhost:3002/api/blogs?order=title http://localhost:3002/api/blogs?order=title
+> Sorting of the results [read more](./rest_api_ordering.md).
 
 #### Rhino::Sieve::Search
 
