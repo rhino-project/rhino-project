@@ -16,7 +16,7 @@ module Rhino
   mattr_accessor :auto_include_active_record, default: true
 
   mattr_accessor :resources, default: if Rails.env.development?
-                                        ['ActiveStorage::Attachment', 'Rhino::OpenApiInfo']
+                                        ['ActiveStorage::Attachment', 'Rhino::OpenApiInfo', 'Rhino::InfoGraph']
                                       else
                                         ['ActiveStorage::Attachment']
                                       end
