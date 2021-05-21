@@ -17,49 +17,64 @@ module Rhino
       end
 
       private
-      def parse
-        @direction = parse_direction
-        @column_name = parse_column_name
+      def parse(param)
+        direction = parse_direction(param)
+        column_name = parse_column_name(param, direction)
+        [direction, column_name]
       end
 
-      def parse_direction
-        if @param[0] == '-'
+      def parse_direction(param)
+        if param[0] == '-'
           :desc
         else
           :asc
         end
       end
 
-      def parse_column_name
-        param = if @direction == :asc
-                  @param
+      def parse_column_name(param, direction)
+        param = if direction == :asc
+                  param
                 else
-                  @param[1..]
+                  param[1..]
                 end
         Sieve::Helpers.real_column_name(@scope, param)
       end
 
-      def string?
-        @param.is_a? String
+      def string?(param)
+        param.is_a? String
       end
 
-      def valid?
-        @scope.attribute_names.include? @column_name
+      def valid?(column_name)
+        @scope.attribute_names.include? column_name
       end
 
-      def order
+      def order(direction, column_name)
         # nulls_last should generally be the desired user experience
-        @scope.arel_table[@column_name].send(@direction).nulls_last
+        @scope.arel_table[column_name].send(direction).nulls_last
+      end
+
+      def build_clause(param)
+        return nil unless string?(param)
+
+        direction, column_name = parse(param)
+        if valid? column_name
+          order(direction, column_name)
+        else
+          nil
+        end
       end
 
       def apply_order
-        return @scope unless string?
+        return @scope unless string?(@param)
 
-        parse
-        if valid?
-          @scope.reorder(order)
-        else
+        clauses = @param.split(',')
+                        .map { |el| build_clause(el) }
+                        .filter { |el| !el.nil? }
+        if clauses.empty?
           @scope
+        else
+          @scope = @scope.reorder(nil)
+          clauses.inject(@scope) { |acc, el| acc.order(el) }
         end
       end
     end
