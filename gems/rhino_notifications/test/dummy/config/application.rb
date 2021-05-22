@@ -20,16 +20,6 @@ module Dummy
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*',
-          :headers => :any,
-          :methods => [:get, :post, :put, :patch, :delete, :options],
-          expose: ['access-token', 'client', 'uid']
-      end
-    end
-
     config.action_controller.allow_forgery_protection = false
 
     # Error indexes for nested attribute errors
