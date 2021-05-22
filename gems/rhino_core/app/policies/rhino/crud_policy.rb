@@ -15,7 +15,7 @@ module Rhino
       # can't trace to a specifc owner
       # FIXME: Make sure this is ok for create - ie the ownership is enforced/checked
       Rhino.base_owner.roles_for_auth(auth_owner, record).each do |role, _base_owner_array|
-        policy_class = Rhino::PolicyHelper.find_policy(role)
+        policy_class = Rhino::PolicyHelper.find_policy(role, record)
         next unless policy_class
 
         return true if policy_class.new(auth_owner, record).send(action)
@@ -41,7 +41,7 @@ module Rhino
         # Get every role for the auth owner
         Rhino.base_owner.roles_for_auth(auth_owner).each do |role, base_owner_array|
           base_owner_array.each do |base_owner|
-            scope_class = Rhino::PolicyHelper.find_policy_scope(role)
+            scope_class = Rhino::PolicyHelper.find_policy_scope(role, scope)
             next unless scope_class
 
             # Collect all the role based scopes
