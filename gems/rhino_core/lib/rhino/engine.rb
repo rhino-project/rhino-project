@@ -19,6 +19,19 @@ module Rhino
       end
     end
 
+    # https://guides.rubyonrails.org/engines.html#overriding-models-and-controllers
+    # Use root instead of Rails.root to scope for this engine
+    initializer 'rhino.overrides' do
+      overrides = "#{root}/app/overrides"
+      Rails.autoloaders.main.ignore(overrides)
+
+      config.to_prepare do
+        Dir.glob("#{overrides}/**/*_override.rb").each do |override|
+          load override
+        end
+      end
+    end
+
     initializer 'rhino.check_resources' do
       config.after_initialize do
         check_resources

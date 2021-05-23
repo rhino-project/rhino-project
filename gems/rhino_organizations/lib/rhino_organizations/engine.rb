@@ -16,15 +16,15 @@ module RhinoOrganizations
       end
     end
 
+    # https://guides.rubyonrails.org/engines.html#overriding-models-and-controllers
+    # Use root instead of Rails.root to scope for this engine
     initializer 'rhino_organizations.overrides' do
-      Rails.autoloaders.main.ignore("#{paths.path}/app/controllers/overrides")
+      overrides = "#{root}/app/overrides"
+      Rails.autoloaders.main.ignore(overrides)
 
-      config.after_initialize do
-        if Rhino.resources.include?('Organization')
-          overrides = "#{paths.path}/app/controllers/overrides"
-          Dir.glob("#{overrides}/**/*.rb").each do |override|
-            load override
-          end
+      config.to_prepare do
+        Dir.glob("#{overrides}/**/*_override.rb").each do |override|
+          load override
         end
       end
     end
