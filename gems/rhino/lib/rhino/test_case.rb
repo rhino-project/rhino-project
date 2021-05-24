@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "test_case/override"
 require_relative "test_case/policy"
 
 module Rhino

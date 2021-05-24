@@ -33,3 +33,7 @@ Rhino itself overrides some classes of dependent gems.
 ### DeviseTokenAuth::OmniauthCallbacksController
 
 > Overrides `omniauth_success` in order to create a new organization on registration
+
+## Testing Overrides
+
+Rhino provides Rhino::TestCase::Override for testing policies.
