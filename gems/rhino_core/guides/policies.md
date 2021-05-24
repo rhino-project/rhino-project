@@ -123,4 +123,4 @@ Rhino provides a number of builtin policies that can be used directly or inherit
 
 ## Testing Policies
 
-Rhino provides PolicyTestCase for testing policies.
+Rhino provides Rhino::TestCase::Policy for testing policies.
