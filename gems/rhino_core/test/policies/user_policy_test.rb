@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class Rhino::UserPolicyTest < PolicyTestCase
+class Rhino::UserPolicyTest < Rhino::TestCase::Policy
   def setup
     @current_user = create :user
     @another_user = create :user

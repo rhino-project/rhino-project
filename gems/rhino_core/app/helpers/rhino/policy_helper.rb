@@ -2,21 +2,41 @@
 
 module Rhino
   module PolicyHelper
-    def self.find_policy(base_name, additional_scope = nil)
-      base_name = base_name.to_s if base_name.is_a? Symbol
-      base_name = base_name.capitalize
+    module_function
 
-      base_scope = 'Policy'
-      base_scope += "::#{additional_scope}"
+    # Looks for the policy associated with a role and resource
+    #
+    # If a policy for a role and resource is not found, looks for the policy
+    # associated with the role.
+    #
+    # === Examples
+    #
+    #   find_policy(:author, Blog)
+    #
+    def find_policy(role, resource, additional_class = nil)
+      role = role.to_s if role.is_a? Symbol
+      role = role.classify
 
-      policy_constant = "#{base_name}#{base_scope}".safe_constantize
+      resource = resource.klass if resource.respond_to?(:klass)
+      resource = resource.to_s.classify
+
+      policy_class = 'Policy'
+      policy_class = "#{policy_class}::#{additional_class}" if additional_class
+
+      # Look for role and resource specific policy
+      policy_constant = "#{role}#{resource}#{policy_class}".safe_constantize
       return policy_constant if policy_constant.present?
 
-      "Rhino::#{base_name}#{base_scope}".safe_constantize
+      # Fall back to just the role specific policy
+      policy_constant = "#{role}#{policy_class}".safe_constantize
+      return policy_constant if policy_constant.present?
+
+      # Fall back just to the rhino version
+      "Rhino::#{role}#{policy_class}".safe_constantize
     end
 
-    def self.find_policy_scope(base_name)
-      find_policy(base_name, 'Scope')
+    def find_policy_scope(role, resource)
+      find_policy(role, resource, 'Scope')
     end
   end
 end
