@@ -9,25 +9,34 @@ class Rhino::UserPolicyTest < Rhino::TestCase::Policy
   end
 
   %i[index show create update destroy].each do |action_type|
-    test "#{self.class} does not allow #{action_type} for unauthenticated user" do
-      assert_not_permit nil, nil, action_type
+    test "#{testing_policy} does not allow #{action_type} for unauthenticated user" do
+      assert_not_permit nil, @current_user, action_type
     end
   end
 
+  # Current user
   %i[create destroy].each do |action_type|
-    test "#{self.class} does not allow #{action_type} for authenticated user" do
+    test "#{testing_policy} does not allow #{action_type} for authenticated user" do
       assert_not_permit @current_user, @current_user, action_type
     end
   end
 
-  %i[index show update].each do |action_type|
-    test "#{self.class} allows #{action_type} for authenticated user" do
+  %i[update].each do |action_type|
+    test "#{testing_policy} allows #{action_type} for authenticated user" do
       assert_permit @current_user, @current_user, action_type
     end
   end
 
+  %i[index show].each do |action_type|
+    test "#{testing_policy} allows #{action_type} for authenticated user and returns correct user" do
+      assert_permit @current_user, @current_user, action_type
+      assert_scope_only @current_user, User, [@current_user]
+    end
+  end
+
+  # Another user
   %i[update].each do |action_type|
-    test "#{self.class} does not allow #{action_type} for another user" do
+    test "#{testing_policy} does not allow #{action_type} for another user" do
       assert_not_permit @current_user, @another_user, action_type
     end
   end
