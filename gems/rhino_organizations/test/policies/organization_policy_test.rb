@@ -16,27 +16,36 @@ class Rhino::OrganizationPolicyTest < Rhino::TestCase::Policy
   end
 
   %i[index show create update destroy].each do |action_type|
-    test "#{self.class} does not allow #{action_type} for unauthenticated user" do
-      assert_not_permit nil, nil, action_type
+    test "#{testing_policy} does not allow #{action_type} for unauthenticated user" do
+      assert_not_permit nil, @organization, action_type
     end
   end
 
+  # Current user
   %i[create update destroy].each do |action_type|
-    test "#{self.class} does not allow #{action_type} for authenticated user" do
+    test "#{testing_policy} does not allow #{action_type} for authenticated user" do
       assert_not_permit @organization, @current_user, action_type
     end
   end
 
   %i[index show].each do |action_type|
-    test "#{self.class} allows #{action_type} for authenticated user with admin role" do
+    test "#{testing_policy} allows #{action_type} for authenticated user with admin role and returns correct organization" do
       assert_permit @current_user, @organization, action_type
+      assert_scope_only @current_user, Organization, [@organization]
     end
   end
 
-  # FIXME: index and show access handled by scoping; is this ok?
+  # Another user
   %i[create update destroy].each do |action_type|
-    test "#{self.class} does not allow #{action_type} for user in another organization with admin role" do
+    test "#{testing_policy} does not allow #{action_type} for user in another organization with admin role" do
       assert_not_permit @another_user, @organization, action_type
+    end
+  end
+
+  %i[index show].each do |action_type|
+    test "#{testing_policy} allows #{action_type} for authenticated user in another organization with admin role and returns correct organization" do
+      assert_permit @another_user, @organization, action_type
+      assert_scope_only @another_user, Organization, [@another_organization]
     end
   end
 end
