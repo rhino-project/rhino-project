@@ -128,7 +128,7 @@ module Rhino
           params
         end
 
-        class_methods do
+        class_methods do # rubocop:todo Metrics/BlockLength
           def transform_params(params)
             transform_params_recursive(params)
           end
@@ -144,8 +144,12 @@ module Rhino
               next hash[param_key] = param_value unless association
 
               # FIXME
-              # Hack to rewrite for attachment
-              next hash[param_key.remove('_attachment')] = param_value if param_key.end_with?('_attachment')
+              # Hack to rewrite for attachment and guard against object resubmission
+              if param_key.end_with?('_attachment')
+                hash[param_key.remove('_attachment')] = param_value if param_value.is_a? String
+
+                next
+              end
 
               # Transform the nested attributes as well
               # Nested need _attributes - we don't want the client to have to do that
