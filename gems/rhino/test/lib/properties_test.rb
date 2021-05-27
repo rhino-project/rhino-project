@@ -50,6 +50,6 @@ class PropertyTest < ActiveSupport::TestCase
 
   # NUB-347
   test "foreign key symbols should be removed from readable properties" do
-    assert_equal(%w[id title published_at created_at updated_at user category banner_attachment blog_posts], Blog.read_properties)
+    assert_equal(%w[id title published_at created_at updated_at user blogs_categories banner_attachment blog_posts], Blog.read_properties)
   end
 end
