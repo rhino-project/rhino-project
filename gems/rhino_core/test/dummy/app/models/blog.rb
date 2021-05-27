@@ -13,7 +13,7 @@ class Blog < ApplicationRecord
   has_one_attached :banner
 
   rhino_owner_base
-  rhino_references [:user, {blogs_categories: %i[blog category]}, :banner_attachment, :blog_posts]
+  rhino_references [:user, { blogs_categories: %i[blog category] }, :banner_attachment, :blog_posts]
   rhino_properties_format blogs_categories: :join_table_simple
   rhino_search [:title]
 
