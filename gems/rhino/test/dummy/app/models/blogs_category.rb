@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BlogsCategory < ApplicationRecord
   belongs_to :blog
   belongs_to :category
@@ -7,7 +9,5 @@ class BlogsCategory < ApplicationRecord
 
   validates :category, uniqueness: { scope: :blog }
 
-  def display_name
-    category.display_name
-  end
+  delegate :display_name, to: :category
 end
