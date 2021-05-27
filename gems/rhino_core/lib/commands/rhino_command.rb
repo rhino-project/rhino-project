@@ -22,6 +22,10 @@ module Rails
         rhino_command(nil, "test", *args)
       end
 
+      def rails(*args)
+        rhino_command(nil, nil, *args)
+      end
+
       def coverage(*args)
         ENV["COVERAGE"] = "1"
         test(*args)
