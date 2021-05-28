@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-if ENV["COVERAGE"]
-  require "simplecov"
-end
+require "simplecov" if ENV["COVERAGE"]
 
 # Configure Rails Environment
 ENV["RAILS_ENV"] = "test"
