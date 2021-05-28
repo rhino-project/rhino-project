@@ -40,4 +40,21 @@ class Rhino::UserPolicyTest < Rhino::TestCase::Policy
       assert_not_permit @current_user, @another_user, action_type
     end
   end
+
+  ##
+  # Failure/edge cases
+  ##
+  %i[update].each do |action_type| # rubocop:todo Style/CombinableLoops
+    test "#{testing_policy} does not allow #{action_type} for nil user" do
+      assert_not_permit nil, @current_user, action_type
+    end
+
+    test "#{testing_policy} does not allow #{action_type} for nil record" do
+      assert_not_permit @current_user, nil, action_type
+    end
+  end
+
+  test "#{testing_policy} returns no scope for nil user" do
+    assert_scope_empty nil, User
+  end
 end

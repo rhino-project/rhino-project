@@ -21,18 +21,32 @@ module Rhino
       assert_empty resolved.to_a.difference(expected), msg
     end
 
+    def assert_scope_empty(user, scope)
+      resolved = scope(user, scope)
+      msg = "User #{user.inspect} should have no scope, but receives #{resolved.inspect}"
+      assert_equal 0, resolved.count, msg
+    end
+
     def policy_test_name
       self.class.ancestors.find { |a| a.to_s.end_with?("PolicyTest") }
     end
 
-    def scope(user, scope)
+    def policy_instance(user, record)
+      klass = policy_test_name.to_s.gsub(/Test/, "")
+      klass.constantize.new(user, record)
+    end
+
+    def policy_scope_instance(user, scope)
       klass = policy_test_name.to_s.gsub(/Test/, "::Scope")
-      klass.constantize.new(user, scope).resolve
+      klass.constantize.new(user, scope)
+    end
+
+    def scope(user, scope)
+      policy_scope_instance(user, scope).resolve
     end
 
     def permit(user, record, action)
-      klass = policy_test_name.to_s.gsub(/Test/, "")
-      klass.constantize.new(user, record).public_send("#{action}?")
+      policy_instance(user, record).public_send("#{action}?")
     end
   end
 end
