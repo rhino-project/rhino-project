@@ -35,6 +35,10 @@ module Rhino
     def method_missing(method, *args, &block)
       return authorize_action(false) if action_method?(method)
 
+      # FIXME: Why hard code permitted_attributes_for_create/show/update since
+      # this would work?
+      # FIXME: If the method does not exist should this crash?
+      # a missing action returns false so its inconsistent
       action = permitted_method(method)
       return record.send("#{action}_params") if action
 
