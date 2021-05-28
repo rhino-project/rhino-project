@@ -5,7 +5,7 @@ require "test_helper"
 class ParamsTest < ActiveSupport::TestCase
   test "Blog has create_params" do
     assert_equal([
-                   "title", "published_at", { "user" => ["id"] }, "user", {"blogs_categories"=>["id", {"blog"=>["id"]}, "blog", {"category"=>["id"]}, "category", "_destroy"]}, { "banner_attachment" => ["id"] }, "banner_attachment" # rubocop:disable Layout/LineLength
+                   "title", "published_at", { "user" => ["id"] }, "user", { "blogs_categories" => ["id", { "blog" => ["id"] }, "blog", { "category" => ["id"] }, "category", "_destroy"] }, { "banner_attachment" => ["id"] }, "banner_attachment" # rubocop:disable Layout/LineLength
                  ], Blog.new.create_params)
   end
 
