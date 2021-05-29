@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_18_002228) do
+ActiveRecord::Schema.define(version: 2021_05_26_194208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,9 +59,16 @@ ActiveRecord::Schema.define(version: 2021_05_18_002228) do
     t.datetime "published_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_blogs_on_category_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
+  end
+
+  create_table "blogs_categories", force: :cascade do |t|
+    t.bigint "blog_id"
+    t.bigint "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_id"], name: "index_blogs_categories_on_blog_id"
+    t.index ["category_id"], name: "index_blogs_categories_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -153,8 +160,9 @@ ActiveRecord::Schema.define(version: 2021_05_18_002228) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blog_posts", "blogs"
-  add_foreign_key "blogs", "categories"
   add_foreign_key "blogs", "users"
+  add_foreign_key "blogs_categories", "blogs"
+  add_foreign_key "blogs_categories", "categories"
   add_foreign_key "og_meta_tags", "blog_posts"
   add_foreign_key "taggings", "tags"
 end
