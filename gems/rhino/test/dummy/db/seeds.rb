@@ -9,11 +9,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 if Rails.env.development?
   user = User.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password')
-  3.times do
+  5.times do
     Category.create!(name: FFaker::Book.unique.genre)
   end
   5.times  do
-    blog = Blog.create!(user_id: user.id, title: FFaker::Book.unique.author, category_id: Category.ids.sample)
+    blog = Blog.create!(user_id: user.id, title: FFaker::Book.unique.author)
+    Category.all.sample(rand(1..3)).each do |category|
+      BlogsCategory.create!(blog: blog, category: category)
+    end
     20.times do
       BlogPost.create!(blog_id: blog.id, title: FFaker::Book.unique.title, body: FFaker::Book.unique.description, published: [true, false].sample)
     end
