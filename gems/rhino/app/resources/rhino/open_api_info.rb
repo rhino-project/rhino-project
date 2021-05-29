@@ -74,6 +74,7 @@ module Rhino
       new_path
     end
 
+    PATH_IGNORES = ["Rhino::OpenApiInfo", "Rhino::InfoGraph"].freeze
     def self.describe_paths # rubocop:todo Metrics/AbcSize
       routes = Rails.application.routes.routes
 
@@ -83,7 +84,7 @@ module Rhino
 
       # Get rid of non-rhino paths
       # Rhino paths have rhino_resource set as an attribute when the routes are created
-      paths.transform_values! { |v| v.select { |p| p[:rhino_resource].present? && p[:rhino_resource] != "Rhino::OpenApiInfo" } }
+      paths.transform_values! { |v| v.select { |p| p[:rhino_resource].present? && PATH_IGNORES.exclude?(p[:rhino_resource]) } }
 
       # Remove empty hashes
       paths.compact_blank!
