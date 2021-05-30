@@ -18,7 +18,7 @@ A Resource can be anything that responds the Rhino::Resource interface. Most com
 
 #### Rhino::Resource::ActiveRecordExtension
 
-> An Active Record resource implementation that exposes all attributes of the model and validatations
+> An Active Record resource implementation that exposes all attributes of the model (including relations) and validations
 
 #### Rhino::Resource::ActiveStorage
 
@@ -27,6 +27,10 @@ A Resource can be anything that responds the Rhino::Resource interface. Most com
 #### Rhino::Resource::ActiveRecordTree
 
 > A further extension of Rhino::Resource::ActiveRecordExtension that includes the ancestry gem and returns API responses in a heirarchal format
+
+#### Rhino::Resource::ActiveModelExtension
+
+> An Active Model resource implementation that exposes all attributes of the model and validations. Active Models must also implement the BackingStore interface
 
 ### Ownership
 
