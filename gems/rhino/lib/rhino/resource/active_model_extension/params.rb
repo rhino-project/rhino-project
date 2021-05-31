@@ -84,6 +84,7 @@ module Rhino
             params << "display_name"
           end
 
+          # rubocop:todo Metrics/PerceivedComplexity
           def writeable_params(type, _refs = references) # rubocop:disable Metrics/AbcSize,  Metrics/CyclomaticComplexity, Metrics/MethodLength
             params = []
 
@@ -115,8 +116,12 @@ module Rhino
               params << prop
             end
 
+            # Allow id in if its an update so we can find the original record
+            params << identifier_property if type == "update"
+
             params
           end
+          # rubocop:enable Metrics/PerceivedComplexity
 
           class_methods do
             def transform_params(params)
