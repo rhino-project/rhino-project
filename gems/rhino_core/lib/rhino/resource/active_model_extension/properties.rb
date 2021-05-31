@@ -8,7 +8,7 @@ module Rhino
 
         class_methods do # rubocop:disable Metrics/BlockLength
           def identifier_property
-            # primary_key
+            "id"
           end
 
           def readable_properties
@@ -53,10 +53,8 @@ module Rhino
               reference.is_a?(Hash) ? reference.keys.first : reference
             end
 
-            # FIXME: Include counter caches as well
             def automatic_properties
-              # [identifier_property] + send(:all_timestamp_attributes_in_model)
-              []
+              [identifier_property]
             end
 
             def foreign_key_properties
