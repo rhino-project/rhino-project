@@ -37,8 +37,9 @@ module Rhino
 
           class_methods do # rubocop:todo Metrics/BlockLength
             def backing_store_index
-              idx = 0
+              sheet.reload
 
+              idx = 0
               sheet.list.map do |row|
                 idx += 1
                 row_to_instance(row, idx)
@@ -57,6 +58,8 @@ module Rhino
             end
 
             def backing_store_show(id)
+              sheet.reload
+
               row_to_instance(sheet.list[id.to_i - 1], id)
             end
 
