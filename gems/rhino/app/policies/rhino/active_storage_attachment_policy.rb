@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 module Rhino
-  class ActiveStorageUploadPolicy < ::Rhino::AuthPolicy
+  class ActiveStorageAttachmentPolicy < ::Rhino::AuthPolicy
     def create?
+      authorize_action(true)
+    end
+
+    def show?
       authorize_action(true)
     end
 
