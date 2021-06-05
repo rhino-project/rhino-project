@@ -15,10 +15,10 @@ module Rhino
   # Include Rhino::Resource::ActiveRecordExtension by default
   mattr_accessor :auto_include_active_record, default: true
 
-  mattr_accessor :resources, default: if Rails.env.development?
-                                        ['ActiveStorage::Attachment', 'Rhino::OpenApiInfo', 'Rhino::InfoGraph']
-                                      else
+  mattr_accessor :resources, default: if Rails.env.production?
                                         ['ActiveStorage::Attachment']
+                                      else
+                                        ['ActiveStorage::Attachment', 'Rhino::OpenApiInfo', 'Rhino::InfoGraph']
                                       end
 
   mattr_accessor :resource_classes
