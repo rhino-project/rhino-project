@@ -3,12 +3,20 @@
 require "test_helper"
 
 class RoutingTest < ActiveSupport::TestCase
+  test "Default route key" do
+    assert_equal("open_api_infos", Rhino::OpenApiInfo.route_key)
+  end
+
   test "Global owned resources routes are index/show only" do
     assert_equal(%i[index show], Category.routes)
   end
 
   test "Resources routes are CRUD" do
     assert_equal(%i[index create show update destroy], Blog.routes)
+  end
+
+  test "Routing path can be overriden" do
+    assert_equal("info/openapi", Rhino::OpenApiInfo.route_path)
   end
 
   test "Frontend class route" do
