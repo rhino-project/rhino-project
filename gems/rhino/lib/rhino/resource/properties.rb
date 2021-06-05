@@ -2,6 +2,30 @@
 
 module Rhino
   module Resource
+    # == Rhino \Resource \Properties
+    #
+    # Provides a way to control what properties are exposed on resources as well
+    # as an interface for resource implementations to implement and existence
+    # utilities.
+    #
+    # Read, create and update properties can be constrained with only and except
+    # directives:
+    #
+    #   class User
+    #     include ActiveModel::AttributeMethods
+    #
+    #     rhino_properties_read except: :password
+    #     rhino_properties_create only: [:email]
+    #     rhino_properties_update only: [:name]
+    #   end
+    #
+    # rdoc-ref:rhino_properties_write constrains both create and update.
+    #
+    # Resource implementations need to implement the following methods:
+    #   identifier_property
+    #   readable_properties
+    #   creatable_properties
+    #   updatable_properties
     module Properties
       extend ActiveSupport::Concern
 
@@ -20,12 +44,10 @@ module Rhino
 
         class_attribute :_properties_format, default: {}
 
-        # delegate :readable_properties, :writeable_properties, to: :class
         delegate :identifier_property, to: :class
         delegate :read_properties, :create_properties, :update_properties, to: :class
-        delegate :export_properties, to: :class
+        delegate :all_properties, to: :class
 
-        # delegate :creatable_properties, :updatable_properties, to: :class
         delegate :describe_property, to: :class
       end
 
@@ -46,6 +68,9 @@ module Rhino
           self._update_properties_except = Array.wrap(options[:except]).map(&:to_s) if options.key?(:except)
         end
 
+        # Constrain create and update properties
+        # Accepts only: and except: as either a single property or an array of
+        # properties
         def rhino_properties_write(**options)
           rhino_properties_create(options)
           rhino_properties_update(options)
@@ -71,6 +96,7 @@ module Rhino
           raise NotImplementedError, '#updatable_properties is not implemented'
         end
 
+        # Return list of read properties for the resource (show and index)
         def read_properties
           # If :only was not set explicitly, select only the default includables
           # and extended models, leaving out the excepted models
@@ -87,6 +113,12 @@ module Rhino
           self._read_properties
         end
 
+        # Check if read property exists
+        def read_property?(property)
+          read_properties.include?(property)
+        end
+
+        # Return list of create properties for the resource
         def create_properties
           unless self._create_properties
             # If create only was set, use that
@@ -100,6 +132,12 @@ module Rhino
           self._create_properties
         end
 
+        # Check if create property exists
+        def create_property?(property)
+          create_properties.include?(property)
+        end
+
+        # Return list of update properties for the resource
         def update_properties
           unless self._update_properties
             # If update only was set, use that
@@ -113,16 +151,22 @@ module Rhino
           self._update_properties
         end
 
-        def describe_property
-          raise NotImplementedError, '#describe_property is not implemented'
+        # Check if update property exists
+        def update_property?(property)
+          update_properties.include?(property)
         end
 
-        def export_properties
-          [
-            read_properties,
-            create_properties,
-            update_properties
-          ].flatten.map(&:to_s).uniq
+        def all_properties
+          readable_properties.concat(creatable_properties, updatable_properties).uniq.map(&:to_s)
+        end
+
+        # Check if property exists
+        def property?(property)
+          all_properties.include?(property)
+        end
+
+        def describe_property
+          raise NotImplementedError, '#describe_property is not implemented'
         end
       end
       # rubocop:enable Style/RedundantSelf

@@ -8,7 +8,7 @@ module Rhino
 
         class_methods do
           def describe # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
-            properties = export_properties.index_with { |p| describe_property(p) }
+            properties = all_properties.index_with { |p| describe_property(p) }
 
             required = properties.reject { |_p, d| d[:nullable] || d[:readOnly] }.keys
             # required: [] is not valid and will be compacted away

@@ -2,12 +2,13 @@
 
 require "test_helper"
 
-class PropertyTest < ActiveSupport::TestCase
+class ActiveRecordExtensionPropertyTest < ActiveSupport::TestCase
   test "required references should not be nullable" do
     assert_not BlogPost.new.describe_property("blog")[:nullable]
   end
 
   test "optional references should be nullable" do
+    skip "No current optional reference"
     assert Blog.new.describe_property("category")[:nullable]
   end
 
@@ -17,18 +18,6 @@ class PropertyTest < ActiveSupport::TestCase
 
   test "required properties with not null db column should not be nullable" do
     assert_not Blog.new.describe_property("updated_at")[:nullable]
-  end
-
-  test "read properties can be marked only" do
-    assert_equal(%w[id name nickname email image], User.new.read_properties)
-  end
-
-  test "create properties can be marked only" do
-    assert_equal(%w[name nickname email], User.new.create_properties)
-  end
-
-  test "update properties can be marked only" do
-    assert_equal(%w[name nickname], User.new.update_properties)
   end
 
   test "tag list is an array of strings" do
