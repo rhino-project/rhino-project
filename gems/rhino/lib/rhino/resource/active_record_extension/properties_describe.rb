@@ -9,6 +9,8 @@ module Rhino
         class_methods do # rubocop:disable Metrics/BlockLength
           def describe_property(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
             name = property_name(property).to_s
+            raise StandardError, "#{name} is not a valid property" unless property?(name)
+
             {
               "x-rhino-attribute": {
                 name: name,
