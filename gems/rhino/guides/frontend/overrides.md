@@ -8,12 +8,14 @@ Overrides are implemented in Rhino as hooks to allow developers to customize pro
 
 ### Configuration
 
-Overrides can be customized in 'src/hooks/overrides.js'. The overrides are implemented in all the components regarding models such as create, updates, edit, index and show.
-To override props or component edit 'globalOverrides'. ( Find the variable in 'models/overrides.js')
+Overrides can be customized in `src/hooks/overrides.js`. The overrides are implemented in all the components regarding models such as create, updates, edit, index and show.
+To override props or component edit `globalOverrides`. ( Find the variable in `models/overrides.js`)
 
 ### Configuration example
 
-Let's try to override 'show' component for a specific model like blogs. By default, all the _readable_ props are expected to be shown by the order that they are sent in API. With the right globalOverrides and without changing API, developeers are able to change the order of props. To do so, add the code snippet below to globalOverriden:
+#### Override paths and add components to paths
+
+Let's try to override `show` component for a specific model like blogs. By default, all the _readable_ props are expected to be shown by the order that they are sent in API. With the right globalOverrides and without changing API, developeers are able to change the order of props. To do so, add the code snippet below to globalOverriden:
 
 ```
 const globalOverrides = {
@@ -45,7 +47,7 @@ const globalOverrides = {
 
 Another use case is to pass customized components to be the specific component of a model. Paths can also be functions and receive the same set of props a ModelFormField would.
 
-Taking the later example, let's add some customization to edit form. Create your functions at 'src/pages/editBlogForm.js'
+Taking the later example, let's add some customization to edit form. Create your functions at `src/pages/editBlogForm.js`
 
 ```
 import React from 'react';
@@ -115,6 +117,30 @@ export default globalOverrides;
 ```
 
 So we managed to add alerts and action button to Blogs edit page but passing the function in globalOverrides
+
+#### Override components
+
+It is possible to override components of a significant model and its actions. To do so, add `component: componentName` to the desired model action like the example below:
+
+```
+import ModelIndexCard from 'components/models/ModelIndexCard';
+
+const globalOverrides = {
+  blog: {
+    index: {
+      ModelIndexTable: {
+        component: ModelIndexCard,
+        props: {
+          paths: ['title', 'category', 'published_at']
+        }
+      }
+    }
+  }
+};
+
+```
+
+In the above example the predefined component `ModelIndexCard` is imported to override blogs indexing view instead of `ModelIndexTable`. By applying this component override, blogs indexing would show card-based view instead of table-based one.
 
 ### Read more
 
