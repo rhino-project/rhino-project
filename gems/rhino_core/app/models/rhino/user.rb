@@ -17,6 +17,8 @@ module Rhino
            :recoverable, :rememberable, :trackable, :validatable,
            :confirmable, :omniauthable
 
+    validates :email, uniqueness: { case_sensitive: false }
+
     def confirmation_required?
       false
     end

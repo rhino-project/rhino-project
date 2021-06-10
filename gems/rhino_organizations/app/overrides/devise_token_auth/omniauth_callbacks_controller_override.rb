@@ -10,6 +10,10 @@ module DeviseTokenAuth::OmniauthCallbacksController::Extensions
       # Create if this is the first time we've seen the user
       create_organization(resource) if @oauth_registration
     end
+  rescue ActiveRecord::RecordInvalid
+    # Technically this could be something else, but this is the most common
+    # devise_token_auth calls save! which is why we catch it here
+    render_data_or_redirect("authFailure", error: "Email address in use")
   end
 end
 
