@@ -16,6 +16,10 @@ You can use `class_eval` as noted in the above guide, or if you need to call `su
 
 Rhino itself overrides some classes of dependent gems.
 
+### DeviseTokenAuth::ConfirmationsController
+
+> Overrides `show` in order to redirect to the front end if an error is thrown
+
 ### DeviseTokenAuth::PasswordsController
 
 > Overrides `render_edit_error` in order to redirect to the front end if password reset token has expired
