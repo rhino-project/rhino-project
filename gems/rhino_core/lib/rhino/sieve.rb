@@ -92,6 +92,7 @@ module Rhino
     def unshift(klass, *args, &block)
       sieves.unshift(build_sieve(klass, args, block))
     end
+    ruby2_keywords(:unshift) if respond_to?(:ruby2_keywords, true)
 
     def initialize_copy(other)
       self.sieves = other.sieves.dup
@@ -101,6 +102,7 @@ module Rhino
       index = assert_index(index, :before)
       sieves.insert(index, build_sieve(klass, args, block))
     end
+    ruby2_keywords(:insert) if respond_to?(:ruby2_keywords, true)
 
     alias insert_before insert
 
@@ -108,12 +110,14 @@ module Rhino
       index = assert_index(index, :after)
       insert(index + 1, *args, &block)
     end
+    ruby2_keywords(:insert_after) if respond_to?(:ruby2_keywords, true)
 
     def swap(target, *args, &block)
       index = assert_index(target, :before)
       insert(index, *args, &block)
       sieves.delete_at(index + 1)
     end
+    ruby2_keywords(:swap) if respond_to?(:ruby2_keywords, true)
 
     def delete(target)
       sieves.delete_if { |m| m.klass == target }
@@ -122,6 +126,7 @@ module Rhino
     def use(klass, *args, &block)
       sieves.push(build_sieve(klass, args, block))
     end
+    ruby2_keywords(:use) if respond_to?(:ruby2_keywords, true)
 
     def build(app = nil, &block)
       instrumenting = ActiveSupport::Notifications.notifier.listening?(InstrumentationProxy::EVENT_NAME)
