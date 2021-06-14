@@ -19,6 +19,7 @@ module Rhino
       resolved = scope(user, scope)
       msg = "User #{user.inspect} should be scoped to #{expected.inspect}, but receives #{resolved.inspect}"
       assert_empty resolved.to_a.difference(expected), msg
+      assert_empty expected.difference(resolved.to_a), msg
     end
 
     def assert_scope_empty(user, scope)
