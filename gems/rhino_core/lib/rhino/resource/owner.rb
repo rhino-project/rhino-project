@@ -93,13 +93,13 @@ module Rhino
         end
 
         # Sets rhino_owner[rdoc-ref:rhino_owner] to be the base owner
-        def rhino_owner_base(**options)
-          rhino_owner(Rhino.base_owner.model_name.i18n_key, options)
+        def rhino_owner_base(...)
+          rhino_owner(Rhino.base_owner.model_name.i18n_key, ...)
         end
 
         # Sets rhino_owner[rdoc-ref:rhino_owner] to be global
-        def rhino_owner_global(**options)
-          rhino_owner(:global, options)
+        def rhino_owner_global(...)
+          rhino_owner(:global, ...)
         end
 
         def joins_for_auth_owner
