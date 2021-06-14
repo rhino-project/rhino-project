@@ -17,7 +17,7 @@ module Rhino
       role = role.to_s if role.is_a? Symbol
       role = role.classify
 
-      resource = resource.klass if resource.respond_to?(:klass)
+      resource = resource.class if resource.class != Class
       resource = resource.to_s.classify
 
       policy_class = 'Policy'
