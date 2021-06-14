@@ -71,9 +71,9 @@ module Rhino
         # Constrain create and update properties
         # Accepts only: and except: as either a single property or an array of
         # properties
-        def rhino_properties_write(**options)
-          rhino_properties_create(options)
-          rhino_properties_update(options)
+        def rhino_properties_write(...)
+          rhino_properties_create(...)
+          rhino_properties_update(...)
         end
 
         def rhino_properties_format(format)
