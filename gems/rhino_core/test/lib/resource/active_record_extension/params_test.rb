@@ -11,7 +11,7 @@ class ParamsTest < ActiveSupport::TestCase
 
   test "Blog has show_params" do
     assert_equal([
-                   "id", "title", "published_at", "created_at", "updated_at", { "user" => %w[id name nickname email image display_name] }, { "blogs_categories" => ["id", "created_at", "updated_at", { "blog" => %w[id title published_at created_at updated_at display_name] }, { "category" => %w[id name created_at updated_at display_name] }, "display_name"] }, { "banner_attachment" => %w[id name record_type created_at url display_name] }, { "blog_posts" => ["id", "title", "body", "published", "created_at", "updated_at", { "tag_list" => [] }, "display_name"] }, "display_name"
+                   "id", "title", "published_at", "created_at", "updated_at", { "user" => %w[id name nickname email image display_name] }, { "blogs_categories" => ["id", "created_at", "updated_at", { "blog" => %w[id title published_at created_at updated_at display_name] }, { "category" => %w[id name created_at updated_at display_name] }, "display_name"] }, { "banner_attachment" => %w[id name record_type created_at url display_name] }, { "blog_posts" => ["id", "title", "body", "published", "created_at", "updated_at", { "tag_list" => [] }, "display_name"] }, "display_name" # rubocop:disable Layout/LineLength
                  ], Blog.show_params)
   end
 
