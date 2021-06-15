@@ -26,7 +26,7 @@ module Rhino
               send("#{type}_properties").dup
             end
 
-            # FIXME Refs are not handled
+            # FIXME: Refs are not handled
             def readable_params(_type, _refs = references)
               params = []
               props_by_type("read").each do |prop|
@@ -43,7 +43,7 @@ module Rhino
               params << "display_name"
             end
 
-            # FIXME Refs are not handled
+            # FIXME: Refs are not handled
             def writeable_params(type, _refs = references)
               params = []
 
