@@ -36,14 +36,20 @@ class PropertyTest < ActiveSupport::TestCase
     end
   end
 
-  test "all properties are returned" do
-    all_props = PropertyList.property_list("read").concat(
-      PropertyList.property_list("create"),
-      PropertyList.property_list("update")
-    )
-    all_class = new_isolated_property_class
+  test "only read, create and update properties are returned" do
+    except_string = <<~END_EXCEPT
+      rhino_properties_read except: :read_property_0
+      rhino_properties_create except: :create_property_0
+      rhino_properties_update except: :update_property_0
+    END_EXCEPT
+    except_class = new_isolated_property_class(except_string)
 
-    assert_equal all_props, all_class.all_properties
+    all_props = (PropertyList.property_list("read") +
+      PropertyList.property_list("create") +
+      PropertyList.property_list("update")).uniq -
+                %w[read_property_0 create_property_0 update_property_0]
+
+    assert_equal all_props, except_class.all_properties
   end
 
   %w[read create update].each do |property_type|
