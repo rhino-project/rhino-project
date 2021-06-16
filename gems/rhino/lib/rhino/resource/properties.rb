@@ -42,6 +42,8 @@ module Rhino
         class_attribute :_update_properties_only, default: nil
         class_attribute :_update_properties_except, default: []
 
+        class_attribute :_all_properties, default: nil
+
         class_attribute :_properties_format, default: {}
 
         delegate :identifier_property, to: :class
@@ -157,7 +159,9 @@ module Rhino
         end
 
         def all_properties
-          readable_properties.concat(creatable_properties, updatable_properties).uniq.map(&:to_s)
+          self._all_properties = (read_properties + create_properties + update_properties).uniq.map(&:to_s) unless self._all_properties
+
+          self._all_properties
         end
 
         # Check if property exists
