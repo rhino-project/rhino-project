@@ -20,9 +20,21 @@ Rhino itself overrides some classes of dependent gems.
 
 > Overrides `show` in order to redirect to the front end if an error is thrown
 
+### DeviseTokenAuth::OmniauthCallbacksController
+
+> Overrides `omniauth_success` in order to set the auth cookie before redirect so client is logged in.
+
 ### DeviseTokenAuth::PasswordsController
 
 > Overrides `render_edit_error` in order to redirect to the front end if password reset token has expired
+
+### DeviseTokenAuth::SessionsController
+
+> Overrides `render_destroy_error` in order to clean the auth cookie if there's any error during sign out.
+
+### DeviseTokenAuth::TokenValidationsController
+
+> Overrides `render_validate_token_error` in order to clean the auth cookie if there's any error in validating the current token.
 
 ### ActiveStorage::DirectUploadsController
 
