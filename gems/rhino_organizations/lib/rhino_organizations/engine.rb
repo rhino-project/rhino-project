@@ -23,8 +23,11 @@ module RhinoOrganizations
       Rails.autoloaders.main.ignore(overrides)
 
       config.to_prepare do
-        Dir.glob("#{overrides}/**/*_override.rb").each do |override|
-          load override
+        # FIXME: Only necessary because this module is in tree NUB-682
+        if Rhino.resources.include?('Organization')
+          Dir.glob("#{overrides}/**/*_override.rb").each do |override|
+            load override
+          end
         end
       end
     end
