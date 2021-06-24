@@ -7,8 +7,16 @@ module DeviseTokenAuth::OmniauthCallbacksController::Extensions
 
   def omniauth_success
     super do |resource|
-      # Create if this is the first time we've seen the user
-      create_organization(resource) if @oauth_registration
+      if Rhino.resources.include?("Organization") && @oauth_registration
+        # Create if this is the first time we've seen the user
+        create_organization(resource)
+      end
+    end
+
+    # set a server cookie if configured
+    if DeviseTokenAuth.cookie_enabled
+      auth_header = @resource.build_auth_header(@token.token, @token.client)
+      cookies[DeviseTokenAuth.cookie_name] = DeviseTokenAuth.cookie_attributes.merge(value: auth_header.to_json)
     end
   rescue ActiveRecord::RecordInvalid
     # Technically this could be something else, but this is the most common

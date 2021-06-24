@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 DeviseTokenAuth.setup do |config|
+  config.cookie_enabled = true
+  config.cookie_attributes = {
+    secure: true,
+    httponly: true,
+    expires: 1.day,
+    same_site: "None"
+    # WARNING: the :domain attribute specifies to whom the cookie will be sent to. It's recommended to leave it empty, so it acts in the most restrictive way as per https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html#domain-and-path-attributes
+  }
   # By default the authorization headers will change after each request. The
   # client is responsible for keeping track of the changing tokens. Change
   # this to false to prevent the Authorization header from changing after
