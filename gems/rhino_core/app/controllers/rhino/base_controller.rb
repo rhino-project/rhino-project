@@ -2,6 +2,7 @@
 
 module Rhino
   class BaseController < ActionController::API
+    include ActionController::Cookies
     include DeviseTokenAuth::Concerns::SetUserByToken
     include Pundit
 
