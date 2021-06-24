@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class Rhino::ActiveStorageUploadPolicyTest < Rhino::TestCase::Policy
+class Rhino::ActiveStorageAttachmentPolicyTest < Rhino::TestCase::Policy
   def setup
     @current_user = create :user
   end
@@ -14,13 +14,13 @@ class Rhino::ActiveStorageUploadPolicyTest < Rhino::TestCase::Policy
   end
 
   # Current user
-  %i[index show update destroy].each do |action_type|
+  %i[index update destroy].each do |action_type|
     test "#{testing_policy} does not allow #{action_type} for authenticated user" do
       assert_not_permit @current_user, ActiveStorage::Attachment, action_type
     end
   end
 
-  %i[create].each do |action_type|
+  %i[create show].each do |action_type|
     test "#{testing_policy} allows #{action_type} for authenticated user" do
       assert_permit @current_user, ActiveStorage::Attachment, action_type
     end
