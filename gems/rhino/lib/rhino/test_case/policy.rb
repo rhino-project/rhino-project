@@ -22,6 +22,13 @@ module Rhino
       assert_empty expected.difference(resolved.to_a), msg
     end
 
+    def assert_params(user, record, action, expected)
+      permitted_params = params(user, record, action)
+      msg = "User #{user.inspect} should be permitted #{action} params for #{record}, but isn't"
+      assert_empty permitted_params.to_a.difference(expected), msg
+      assert_empty expected.difference(permitted_params.to_a), msg
+    end
+
     def assert_scope_empty(user, scope)
       resolved = scope(user, scope)
       msg = "User #{user.inspect} should have no scope, but receives #{resolved.inspect}"
@@ -48,6 +55,10 @@ module Rhino
 
     def permit(user, record, action)
       policy_instance(user, record).public_send("#{action}?")
+    end
+
+    def params(user, record, action)
+      policy_instance(user, record).public_send("permitted_attributes_for_#{action}")
     end
   end
 end
