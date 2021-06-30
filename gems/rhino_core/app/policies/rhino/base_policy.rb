@@ -16,14 +16,6 @@ module Rhino
       @record = record
     end
 
-    def action_method?(method)
-      method.to_s.ends_with?('?')
-    end
-
-    def permitted_method(method)
-      method.to_s.match(/^permitted_attributes_for_(.*)/)&.captures&.first
-    end
-
     # Authorize the action with a default permission
     # Ensure the callbacks are run
     def authorize_action(permission)
@@ -32,21 +24,24 @@ module Rhino
       end
     end
 
-    def method_missing(method, *args, &block)
-      return authorize_action(false) if action_method?(method)
-
-      # FIXME: Why hard code permitted_attributes_for_create/show/update since
-      # this would work?
-      # FIXME: If the method does not exist should this crash?
-      # a missing action returns false so its inconsistent
-      action = permitted_method(method)
-      return record.send("#{action}_params") if action
-
-      super
+    def index?
+      authorize_action(false)
     end
 
-    def respond_to_missing?(method, *)
-      method.to_s =~ /\?$/ || permitted_method(method) || super
+    def show?
+      authorize_action(false)
+    end
+
+    def create?
+      authorize_action(false)
+    end
+
+    def update?
+      authorize_action(false)
+    end
+
+    def destroy?
+      authorize_action(false)
     end
 
     def permitted_attributes_for_create

@@ -3,7 +3,11 @@
 require_relative 'base_policy'
 
 module Rhino
-  # FIXME: Same role scoping for permitted params
+  # CrudPolicy finds the role for the auth owner and then uses that role
+  # to look up a corresponding policy.
+  #
+  # Authorization for an action, scoping and permitted params are then
+  # delegated to that policy
   class CrudPolicy < ::Rhino::BasePolicy
     def check_action(action)
       # We must have a valid user
@@ -12,7 +16,7 @@ module Rhino
 
       # If any role allows the action, return true
       # There should only be multiple roles in the case of index because we
-      # can't trace to a specifc owner
+      # can't trace to a specific owner for the ActiveRecord class
       # FIXME: Make sure this is ok for create - ie the ownership is enforced/checked
       Rhino.base_owner.roles_for_auth(auth_owner, record).each do |role, _base_owner_array|
         policy_class = Rhino::PolicyHelper.find_policy(role, record)
@@ -24,14 +28,49 @@ module Rhino
       false
     end
 
-    def method_missing(method, *args, &block)
-      return authorize_action(check_action(method)) if action_method?(method)
+    def permitted_attributes(action)
+      # There should only be one match because record should be a instance not a class
+      # for show/create/update
+      Rhino.base_owner.roles_for_auth(auth_owner, record).each do |role, _base_owner_array|
+        policy_class = Rhino::PolicyHelper.find_policy(role, record)
 
-      super
+        return policy_class.new(auth_owner, record).send("permitted_attributes_for_#{action}") if policy_class
+      end
+
+      # Return nothing if we didn't find a policy
+      []
     end
 
-    def respond_to_missing?(method, *)
-      action_method?(method) || super
+    def index?
+      authorize_action(check_action(:index?))
+    end
+
+    def show?
+      authorize_action(check_action(:show?))
+    end
+
+    def create?
+      authorize_action(check_action(:create?))
+    end
+
+    def update?
+      authorize_action(check_action(:update?))
+    end
+
+    def destroy?
+      authorize_action(check_action(:destroy?))
+    end
+
+    def permitted_attributes_for_create
+      permitted_attributes(:create)
+    end
+
+    def permitted_attributes_for_show
+      permitted_attributes(:show)
+    end
+
+    def permitted_attributes_for_update
+      permitted_attributes(:update)
     end
 
     class Scope < ::Rhino::BasePolicy::Scope
