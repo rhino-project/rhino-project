@@ -5,10 +5,9 @@ require "test_helper"
 class Rhino::BasePolicyTest < Rhino::TestCase::Policy
   def setup
     @current_user = create :user
-    @another_user = create :user
   end
 
-  class Rhino::BasePolicyTest::DummyModelPermittedParams < ApplicationRecord
+  class Rhino::BasePolicyTest::DummyModel < ApplicationRecord
     self.table_name = "dummies"
 
     attribute :create_attr, :string
@@ -20,51 +19,22 @@ class Rhino::BasePolicyTest < Rhino::TestCase::Policy
     rhino_properties_update only: %i[update_attr]
   end
 
-  ##
-  # Custom actions and their permitted params
-  ##
-  test "#{testing_policy} extracts custom action name for permitted params" do
-    assert_equal "customaction", policy_instance(@current_user, Dummy).permitted_method("permitted_attributes_for_customaction")
-  end
-
-  test "#{testing_policy} does not crash extracting custom action name for permitted params" do
-    assert_nil policy_instance(@current_user, Dummy).permitted_method("garbage")
-  end
-
-  test "#{testing_policy} does not permit an unknown action" do
-    assert_not_permit @current_user, Dummy, :unknown
-  end
-
-  test "#{testing_policy} calls for method missing when permitted param" do
-    assert_raises NoMethodError do
-      policy_instance(@current_user, Dummy).send(:permitted_attributes_for_customaction)
+  %i[index show create update destroy].each do |action_type|
+    test "#{testing_policy} does not allow #{action_type} for unauthenticated user" do
+      assert_not_permit nil, Rhino::BasePolicyTest::DummyModel, action_type
     end
-  end
 
-  test "#{testing_policy} calls super for method missing when not action or permitted param" do
-    assert_raises NoMethodError do
-      policy_instance(@current_user, Dummy).send(:another_method)
+    test "#{testing_policy} does not allow #{action_type} for authenticated user" do
+      assert_not_permit @current_user, Rhino::BasePolicyTest::DummyModel, action_type
     end
-  end
-
-  test "#{testing_policy} responds to any action name" do
-    assert_respond_to policy_instance(@current_user, Dummy), :unknown?
-  end
-
-  test "#{testing_policy} responds to any permitted params" do
-    assert_respond_to policy_instance(@current_user, Dummy), :permitted_attributes_for_customaction
-  end
-
-  test "#{testing_policy} calls super for respond to when not action or permitted param" do
-    assert_not policy_instance(@current_user, Dummy).respond_to? :another_method
   end
 
   test "#{testing_policy} returns no scope for user" do
-    assert_scope_empty @current_user, User
+    assert_scope_empty @current_user, Rhino::BasePolicyTest::DummyModel
   end
 
   test "#{testing_policy} returns no scope for nil user" do
-    assert_scope_empty nil, User
+    assert_scope_empty nil, Rhino::BasePolicyTest::DummyModel
   end
 
   ##
@@ -74,7 +44,7 @@ class Rhino::BasePolicyTest < Rhino::TestCase::Policy
     test "#{testing_policy} permit correct params for #{action_type}" do
       expected = ["#{action_type}_attr"]
       expected += ["display_name"] if action_type == :show
-      ar = Rhino::BasePolicyTest::DummyModelPermittedParams.new
+      ar = Rhino::BasePolicyTest::DummyModel.new
 
       assert_equal expected, policy_instance(@current_user, ar).send("permitted_attributes_for_#{action_type}")
     end
