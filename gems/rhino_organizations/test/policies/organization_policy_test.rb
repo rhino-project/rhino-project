@@ -22,9 +22,9 @@ class Rhino::OrganizationPolicyTest < Rhino::TestCase::Policy
   end
 
   # Current user
-  %i[create update destroy].each do |action_type|
+  %i[create destroy].each do |action_type|
     test "#{testing_policy} does not allow #{action_type} for authenticated user" do
-      assert_not_permit @organization, @current_user, action_type
+      assert_not_permit @current_user, @organization, action_type
     end
   end
 
@@ -32,6 +32,12 @@ class Rhino::OrganizationPolicyTest < Rhino::TestCase::Policy
     test "#{testing_policy} allows #{action_type} for authenticated user with admin role and returns correct organization" do
       assert_permit @current_user, @organization, action_type
       assert_scope_only @current_user, Organization, [@organization]
+    end
+  end
+
+  %i[update].each do |action_type|
+    test "#{testing_policy} allows #{action_type} for authenticated admin user" do
+      assert_permit @current_user, @organization, action_type
     end
   end
 
