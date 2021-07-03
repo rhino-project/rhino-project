@@ -5,6 +5,7 @@ module Rhino
     self.abstract_class = true
 
     rhino_policy :organization
+    rhino_properties_write only: :name
 
     def self.roles_for_auth(auth_owner, record = nil)
       return {} unless auth_owner
