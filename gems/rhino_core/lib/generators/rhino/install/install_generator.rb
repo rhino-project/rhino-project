@@ -10,6 +10,11 @@ module Rhino
         template 'user.rb', 'app/models/user.rb'
       end
 
+      def install_account
+        say 'Installing account to app/models'
+        template 'account.rb', 'app/models/account.rb'
+      end
+
       def install_initializer
         say 'Installing initializer'
         template 'rhino.rb', 'config/initializers/rhino.rb'

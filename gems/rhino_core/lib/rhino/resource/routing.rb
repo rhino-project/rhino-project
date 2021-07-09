@@ -6,8 +6,9 @@ module Rhino
       extend ActiveSupport::Concern
 
       included do
-        class_attribute :_route_key, default: name.demodulize.underscore.pluralize
+        class_attribute :_route_key, default: nil
         class_attribute :_route_path, default: nil
+        class_attribute :_route_singular, default: false
 
         class_attribute :_rhino_routes, default: nil
         class_attribute :_rhino_routes_except, default: []
@@ -20,11 +21,19 @@ module Rhino
       # rubocop:disable Style/RedundantSelf, Metrics/BlockLength
       class_methods do
         def route_key
-          self._route_key
+          self._route_key ||= if route_singular?
+            name.demodulize.underscore
+          else
+            name.demodulize.underscore.pluralize
+          end
         end
 
         def route_path
           self._route_path ||= route_key
+        end
+
+        def route_singular?
+          self._route_singular
         end
 
         def route_path_frontend
@@ -53,6 +62,7 @@ module Rhino
         def rhino_routing(**options)
           self._route_key = options.delete(:key) if options.key?(:key)
           self._route_path = options.delete(:path) if options.key?(:path)
+          self._route_singular = options.delete(:singular) if options.key?(:singular)
 
           self._rhino_routes = options.delete(:only) if options.key?(:only)
           self._rhino_routes_except = options.delete(:except) if options.key?(:except)
