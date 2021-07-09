@@ -7,7 +7,13 @@ module Rhino
         extend ActiveSupport::Concern
 
         class_methods do
-          delegate :route_key, to: :model_name
+          def route_key
+            if route_singular?
+              model_name.singular_route_key
+            else
+              model_name.route_key
+            end
+          end
         end
       end
     end
