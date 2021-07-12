@@ -2,11 +2,6 @@
 
 module Rhino
   class UserPolicy < ::Rhino::ViewerPolicy
-    # Updatable only for this user
-    def update?
-      authorize_action(record&.id == auth_owner&.id)
-    end
-
     class Scope < ::Rhino::ViewerPolicy::Scope
       # We allow other users in the org to view the user
       def resolve # rubocop:disable Metrics/AbcSize

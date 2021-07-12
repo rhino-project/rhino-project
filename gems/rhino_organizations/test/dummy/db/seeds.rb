@@ -37,6 +37,10 @@ if Rails.env.development?
   org << Organization.create!(name: "Editor Org")
   org << Organization.create!(name: "Author Org")
 
+  o = Organization.create!(name: "Separate org for other@example.com")
+  role = Role.find_or_create_by!(name: "admin")
+  ur = UsersRole.create!(user: user2, organization: o, role: role)
+
   role = Role.find_or_create_by!(name: "admin")
   ur = UsersRole.create!(user: user, organization: org[0], role: role)
 
