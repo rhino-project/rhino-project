@@ -17,5 +17,6 @@ Rhino.setup do |config|
   # config.namespace = :api
 
   # The list of resources exposed in the API
-  config.resources += ['User', 'Blog', 'BlogPost', 'BlogsCategory', 'Category', 'OgMetaTag', 'GoogleSheet']
+  config.resources += ['User', 'Account']
+  config.resources += ['Blog', 'BlogPost', 'BlogsCategory', 'Category', 'OgMetaTag', 'GoogleSheet']
 end
