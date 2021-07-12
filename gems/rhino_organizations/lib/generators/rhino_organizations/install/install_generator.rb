@@ -30,7 +30,7 @@ module RhinoOrganizations
       def install_initializer
         gsub_file 'config/initializers/rhino.rb', "  # config.base_owner = 'Organization'", "  config.base_owner = \"Organization\""
 
-        data = 'config.resources += ["Organization", "UsersRole"]'
+        data = 'config.resources += ["Organization", "UsersRole", "Role"]'
         inject_into_file 'config/initializers/rhino.rb', optimize_indentation(data, 2), after: /^\s*config\.resources.+\n/
       end
     end
