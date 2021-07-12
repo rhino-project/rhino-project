@@ -7,7 +7,7 @@ module Rhino
     after_action :verify_policy_scoped, only: %i[index show]
 
     def create
-      @model = authorize klass.new(permit_and_transform(klass.new))
+      @model = authorize klass.new(permit_and_transform(klass))
       @model.save!
 
       permit_and_render
