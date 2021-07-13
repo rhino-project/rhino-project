@@ -11,13 +11,11 @@ Overrides are implemented in Rhino as hooks to allow developers to customize pro
 Overrides can be customized in `src/hooks/overrides.js`. The overrides are implemented in all the components regarding models such as create, updates, edit, index and show.
 To override props or component edit `globalOverrides`. ( Find the variable in `models/overrides.js`)
 
-### Configuration example
-
-#### Override paths and add components to paths
+### Override paths and add components to paths
 
 Let's try to override `show` component for a specific model like blogs. By default, all the _readable_ props are expected to be shown by the order that they are sent in API. With the right globalOverrides and without changing API, developeers are able to change the order of props. To do so, add the code snippet below to globalOverriden:
 
-```
+```javascript
 const globalOverrides = {
   blog: {
     index: {
@@ -25,23 +23,23 @@ const globalOverrides = {
         ModelTable: {
           props: {
             paths: [
-              'author.display_name',
-              'category.display_name',
-              'title',
-              'published_at'
-            ]
-          }
-        }
-      }
+              "author.display_name",
+              "category.display_name",
+              "title",
+              "published_at",
+            ],
+          },
+        },
+      },
     },
     show: {
       ModelShowDescription: {
         props: {
-          paths: ['author', 'title', 'category', 'published_at']
-        }
-      }
-    }
-  }
+          paths: ["author", "title", "category", "published_at"],
+        },
+      },
+    },
+  },
 };
 ```
 
@@ -49,28 +47,26 @@ Another use case is to pass customized components to be the specific component o
 
 Taking the later example, let's add some customization to edit form. Create your functions at `src/pages/editBlogForm.js`
 
-```
-import React from 'react';
-import { Alert } from 'reactstrap';
-import { Button } from 'components/buttons';
+```javascript
+import React from "react";
+import { Alert } from "reactstrap";
+import { Button } from "components/buttons";
 
-export const editBlogForm = ( model ) => {
+export const editBlogForm = (model) => {
   return (
-    <Alert color="primary">
-      Changes in {model} might need admin approval.
-    </Alert>
+    <Alert color="primary">Changes in {model} might need admin approval.</Alert>
   );
 };
 
 export const changeAlert = () => {
-  return <Button to={'some/other/page'}>Check Permissions</Button>;
+  return <Button to={"some/other/page"}>Check Permissions</Button>;
 };
 ```
 
 and update _globalOverrides_ like below:
 
-```
-import { editBlogForm, changeAlert } from 'pages/editBlogFrom';
+```javascript
+import { editBlogForm, changeAlert } from "pages/editBlogFrom";
 
 const globalOverrides = {
   blog: {
@@ -79,46 +75,93 @@ const globalOverrides = {
         ModelTable: {
           props: {
             paths: [
-              'author.display_name',
-              'category.display_name',
-              'title',
-              'published_at'
-            ]
-          }
-        }
-      }
+              "author.display_name",
+              "category.display_name",
+              "title",
+              "published_at",
+            ],
+          },
+        },
+      },
     },
     edit: {
       ModelEditForm: {
         props: {
           paths: [
-            () => editBlogForm('blog'),
-            'title',
-            'category',
-            'published_at',
-            'author',
-            () => changeAlert()
-          ]
-        }
-      }
+            () => editBlogForm("blog"),
+            "title",
+            "category",
+            "published_at",
+            "author",
+            () => changeAlert(),
+          ],
+        },
+      },
     },
     show: {
       ModelShowDescription: {
         props: {
-          paths: ['author', 'title', 'category', 'published_at']
-        }
-      }
-    }
-  }
+          paths: ["author", "title", "category", "published_at"],
+        },
+      },
+    },
+  },
 };
 
 export default globalOverrides;
-
 ```
 
 So we managed to add alerts and action button to Blogs edit page but passing the function in globalOverrides
 
-#### Override components
+### Paths as a function
+
+`paths` can be an array of string (or functions) or a **function that returns an array**. It can receive as arguments the current user's roles and the resources in context. For instance, `paths` related to `create` would receive `null`as `resource`, whereas the `edit` case would lead to `resource` being the current record. For `index`, the list of resources would be passed.
+
+For example, if it was desired to hide some fileds from non-admin users:
+
+```javascript
+const globalOverrides = {
+  blog: {
+    index: {
+      ModelIndexTable: {
+        ModelTable: {
+          props: {
+            paths: (roles, resource) => {
+              if (roles.includes("admin")) {
+                return ["title", "category", "published_at", "author"];
+              }
+              return [["title", "author"]];
+            },
+          },
+        },
+      },
+    },
+  },
+};
+```
+
+It's also possible to show/hide fields based on the resource state:
+
+```javascript
+const globalOverrides = {
+  blog: {
+    edit: {
+      ModelForm: {
+        props: {
+          paths: (roles, resource) => {
+            if (resource.published_at != null) {
+              return ["title", "category", "author"];
+            }
+            return ["title", "category", "published_at", "author"];
+          },
+        },
+      },
+    },
+  },
+};
+```
+
+### Override components
 
 It is possible to override components of a significant model and its actions. To do so, add `component: componentName` to the desired model action like the example below:
 
