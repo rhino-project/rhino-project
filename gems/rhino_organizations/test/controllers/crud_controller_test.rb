@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require_relative "../requests/organizations/organization_controller_test"
 
 class OrganizationsCrudTest < Rhino::TestCase::OrganizationControllerTest
   test "creates blog" do
