@@ -5,7 +5,7 @@ module Rhino
     extend ActiveSupport::Concern
 
     protected
-      # The params are wrapped with 'rest' if the rest_controller is called directly
+      # The params are wrapped with 'crud' if the crud_controller is called directly
       # instead of via a customization class
       #
       # Protected to prevent polluting the action method
@@ -17,14 +17,6 @@ module Rhino
       end
 
     private
-      def find_resource
-        policy_scope(klass).first
-      end
-
-      def authorize_resource
-        authorize find_resource
-      end
-
       def permit_and_transform(model = @model)
         klass.transform_params(permitted_attributes(model))
       end
