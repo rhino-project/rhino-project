@@ -2,6 +2,8 @@
 
 module Rhino
   class CrudController < BaseController
+    include Rhino::Permit
+
     # Confirm we are calling authorize and scope correctly
     after_action :verify_authorized
     after_action :verify_policy_scoped, only: %i[index show]
@@ -43,39 +45,10 @@ module Rhino
       permit_and_render
     end
 
-    protected
-    # The params are wrapped with 'rest' if the rest_controller is called directly
-    # instead of via a customization class
-    #
-    # Protected to prevent polluting the action method
-    #
-    # FIXME: Couldn't find a way to call wrap_parameters appropriately
-    # FIXME: Will some sort of namespacing break this?
-    def pundit_params_for(_record)
-      params.require(controller_name)
-    end
-
     private
-    def find_resource(scope = klass.all)
-      scope = scope.friendly if scope.respond_to? :friendly
-      scope.find(params[:id])
-    end
-
-    def permit_and_transform(model = @model)
-      klass.transform_params(permitted_attributes(model))
-    end
-
-    def permit_model(model = @model)
-      model_policy = Pundit.policy(current_user, model)
-
-      model_params = ActionController::Parameters.new(model.to_caching_json)
-      model_params[:can_current_user_edit] = model_policy.update?
-      model_params[:can_current_user_destroy] = model_policy.destroy?
-      model_params.permit(model_policy.permitted_attributes_for_show + %i[can_current_user_edit can_current_user_destroy])
-    end
-
-    def permit_and_render
-      render json: permit_model
-    end
+      def find_resource(scope = klass.all)
+        scope = scope.friendly if scope.respond_to? :friendly
+        scope.find(params[:id])
+      end
   end
 end
