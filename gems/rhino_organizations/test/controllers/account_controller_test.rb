@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "test_helper"
-require_relative "../requests/organizations/organization_controller_test"
 
 class OrganizationAccountControllerTest < Rhino::TestCase::OrganizationControllerTest
   test "returns current user on get" do
