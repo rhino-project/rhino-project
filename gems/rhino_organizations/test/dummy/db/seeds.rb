@@ -46,6 +46,8 @@ if Rails.env.development?
 
   role = Role.find_or_create_by!(name: "admin")
   ur = UsersRole.create!(user: user, organization: org[1], role: role)
+  role = Role.find_or_create_by!(name: "admin")
+  ur = UsersRole.create!(user: user2, organization: org[1], role: role)
 
   role = Role.find_or_create_by!(name: "viewer")
   ur = UsersRole.create!(user: user, organization: org[2], role: role)
