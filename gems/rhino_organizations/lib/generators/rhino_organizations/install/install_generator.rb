@@ -20,7 +20,7 @@ module RhinoOrganizations
         inject_into_file 'app/models/user.rb', optimize_indentation(data, 2), after: "class User < Rhino::User\n"
 
         data = <<-'RUBY'
-        has_many :users_roles, dependent: :destroy, foreign_key: :user_id
+        has_many :users_roles, dependent: :destroy, foreign_key: :user_id, inverse_of: false
         has_many :organizations, through: :users_roles
         has_many :roles, through: :users_roles
         RUBY
