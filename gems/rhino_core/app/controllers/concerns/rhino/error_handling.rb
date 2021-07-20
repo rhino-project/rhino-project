@@ -34,7 +34,6 @@ module Rhino
       end
 
       def forbidden
-        cookies.delete(DeviseTokenAuth.cookie_name, domain: DeviseTokenAuth.cookie_attributes[:domain])
         render json: { errors: ['Access denied.'] }, status: :forbidden
       end
 

@@ -7,12 +7,6 @@ class Rhino::EditorPolicyTest < Rhino::TestCase::Policy
     @current_user = create :user
   end
 
-  %i[index show create update destroy].each do |action_type|
-    test "#{testing_policy} does not allow #{action_type} for unauthenticated user" do
-      assert_not_permit nil, Dummy, action_type
-    end
-  end
-
   # Current user
   %i[index show update].each do |action_type|
     test "#{testing_policy} allows #{action_type} for authenticated user" do
