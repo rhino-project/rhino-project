@@ -15,12 +15,6 @@ class Rhino::OrganizationPolicyTest < Rhino::TestCase::Policy
     create :users_role, user: @another_user, organization: @another_organization, role: @admin_role
   end
 
-  %i[index show create update destroy].each do |action_type|
-    test "#{testing_policy} does not allow #{action_type} for unauthenticated user" do
-      assert_not_permit nil, @organization, action_type
-    end
-  end
-
   # Current user
   %i[create destroy].each do |action_type|
     test "#{testing_policy} does not allow #{action_type} for authenticated user" do

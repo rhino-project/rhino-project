@@ -8,7 +8,8 @@ FactoryBot.define do
     category
     published_at { FFaker::Time.date }
     title { FFaker::Book.title }
-    user
+    organization
+    author
   end
 
   factory :blog_post do

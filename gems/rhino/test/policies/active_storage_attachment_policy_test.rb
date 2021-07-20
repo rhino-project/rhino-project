@@ -7,12 +7,6 @@ class Rhino::ActiveStorageAttachmentPolicyTest < Rhino::TestCase::Policy
     @current_user = create :user
   end
 
-  %i[index show create update destroy].each do |action_type|
-    test "#{testing_policy} does not allow #{action_type} for unauthenticated user" do
-      assert_not_permit nil, ActiveStorage::Attachment, action_type
-    end
-  end
-
   # Current user
   %i[index update destroy].each do |action_type|
     test "#{testing_policy} does not allow #{action_type} for authenticated user" do

@@ -118,42 +118,41 @@ class CrudControllerUnauthenticatedTest < Rhino::TestCase::ControllerTest
     @blog = create :blog, user: @current_user
   end
 
-  test "index forbidden for unauthenticated user" do
+  test "index unauthorized for unauthenticated user" do
     get blogs_path, xhr: true
 
-    assert_response_forbidden
+    assert_response_unauthorized
   end
 
-  test "show forbidden for unauthenticated user" do
-    skip
+  test "show unauthorized for unauthenticated user" do
     get blog_path(@blog), xhr: true
 
-    assert_response_forbidden
+    assert_response_unauthorized
   end
 
-  test "create forbidden for unauthenticated user" do
+  test "create unauthorized for unauthenticated user" do
     blog_attr = attributes_for(:blog).merge(user: @current_user.id)
 
     assert_no_difference "Blog.count" do
       post blogs_path, params: { crud: blog_attr }, xhr: true
     end
 
-    assert_response_forbidden
+    assert_response_unauthorized
   end
 
-  test "uppdate forbidden for unauthenticated user" do
+  test "update unauthorized for unauthenticated user" do
     updated_title = attributes_for(:blog)[:title]
 
     patch blog_path(@blog), params: { crud: { title: updated_title } }, xhr: true
 
-    assert_response_forbidden
+    assert_response_unauthorized
   end
 
-  test "destroy forbidden for unauthenticated user" do
+  test "destroy unauthorized for unauthenticated user" do
     assert_no_difference "Blog.count" do
       delete blog_path(@blog), xhr: true
     end
 
-    assert_response_forbidden
+    assert_response_unauthorized
   end
 end

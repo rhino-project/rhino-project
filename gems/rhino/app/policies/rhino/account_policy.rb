@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Rhino
-  class AccountPolicy < ::Rhino::AuthPolicy
+  class AccountPolicy < ::Rhino::BasePolicy
     # Show and update only for this user
     # It should only ever be current user, but this is a safety check
 
@@ -13,9 +13,9 @@ module Rhino
       authorize_action(auth_owned?)
     end
 
-    class Scope < ::Rhino::AuthPolicy::Scope
+    class Scope < ::Rhino::BasePolicy::Scope
       def resolve
-        super.where(id: auth_owner&.id)
+        scope.where(id: auth_owner&.id)
       end
     end
 

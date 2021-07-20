@@ -20,12 +20,6 @@ class Rhino::UsersRolePolicyTest < Rhino::TestCase::Policy
 end
 
 class Rhino::RegularUserUsersRolePolicy < Rhino::UsersRolePolicyTest
-  %i[index show create update destroy].each do |action_type|
-    test "#{testing_policy} does not allow #{action_type} for unauthenticated user" do
-      assert_not_permit nil, @org_regular_user, action_type
-    end
-  end
-
   %i[create].each do |action_type|
     test "#{testing_policy} does not allow #{action_type} for users with regular role" do
       form = build(:users_role, organization: @organization, user: @regular_user, role: @regular_role)
