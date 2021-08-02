@@ -129,7 +129,7 @@ module Rhino
                 # FIXME
                 # Hack to rewrite for attachment and guard against object resubmission
                 if param_key.end_with?("_attachment")
-                  hash[param_key.remove("_attachment")] = param_value if param_value.is_a? String
+                  hash[param_key.remove("_attachment")] = param_value if param_value.is_a?(String) || param_value.nil?
 
                   next
                 end
