@@ -44,28 +44,21 @@ module Rhino
         param.is_a? String
       end
 
-      def get_joins(base, path)
-        if path.empty?
-          [{}, base]
-        else
-          key = path.first
-          key_is_reflection = base.reflections.key? key
-          return nil unless key_is_reflection
+      def get_joins(base, path, _last_base)
+        return {} if path.empty?
 
-          reflection_model = base.reflections[key].klass
-          reflection_result, last_base = get_joins(reflection_model, path[1..])
-          return nil unless reflection_result
+        # Convert to nested hash
+        join_tables = path.reverse.inject({}) { |assigned_value, key| { key => assigned_value } }
 
-          [{ path.first => reflection_result }, last_base]
-        end
+        ArelHelpers.join_association(base, join_tables, Arel::Nodes::InnerJoin, {})
+      rescue StandardError
+        nil
       end
 
       def build_select_clause(model, path, field)
-        if path.empty?
-          "#{model.to_s.tableize}.*"
-        else
-          "#{model.to_s.tableize}.#{field}"
-        end
+        return model.arel_table[Arel.star] if path.empty?
+
+        model.arel_table[field]
       end
 
       def split_field_path(column_name)
@@ -78,9 +71,14 @@ module Rhino
       def analyze(column_name)
         path, field = split_field_path(column_name)
 
-        join_clauses, last_base = get_joins(@scope.klass, path)
+        last_base = if path.last.blank?
+            @scope
+          else
+            path.last.classify.safe_constantize
+          end
         return nil unless last_base&.attribute_names&.include? field
 
+        join_clauses = get_joins(@scope.klass, path, last_base)
         select_clause = build_select_clause(last_base, path, field)
 
         [join_clauses, last_base.arel_table[field], select_clause]

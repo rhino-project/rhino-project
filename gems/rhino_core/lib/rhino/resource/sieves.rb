@@ -4,6 +4,7 @@ module Rhino
   module Resource
     module Sieves
       extend ActiveSupport::Concern
+      include ArelHelpers::ArelTable
 
       included do
         class_attribute :_sieves
