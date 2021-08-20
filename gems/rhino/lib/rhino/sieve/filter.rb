@@ -18,7 +18,7 @@ module Rhino
       end
 
       private
-      def get_joins(base, filter)
+      def get_joins_hash(base, filter)
         res = []
         filter.each do |key, val|
           value_is_hash = val.is_a? Hash
@@ -29,9 +29,14 @@ module Rhino
 
           # in the next recursion, the associations will have to be checked against this current key, not the initial model
           reflection_model = base.reflections[key.to_s].klass
-          res << { key => get_joins(reflection_model, val) }
+          res << { key => get_joins_hash(reflection_model, val) }
         end
         res
+      end
+
+      def get_joins(base, filter)
+        joins_hash = get_joins_hash(base, filter)
+        ArelHelpers.join_association(base, joins_hash, Arel::Nodes::InnerJoin, {})
       end
 
       def apply_filters(scope, base, filter)
@@ -63,8 +68,7 @@ module Rhino
       end
 
       def apply_association_filter(base, scope, key, value)
-        table = base.to_s.tableize
-        scope.where(table => { key => value })
+        scope.where(base.arel_table[base.reflections[key].foreign_key].eq(value))
       end
 
       def apply_column_filter(base, scope, column_name, column_value)

@@ -33,8 +33,10 @@ class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
     @nested_instance3 = create_nested_instance @instance2
   end
 
-  def fetch
-    get url, params: { "filter" => @params }, headers: @headers
+  def fetch(search: nil)
+    params = { "filter" => @params }
+    params["search"] = search if search
+    get url, params: params, headers: @headers
     assert_response :ok
     @json = JSON.parse(@response.body)
   end
@@ -355,5 +357,20 @@ class RhinoSieveFilterLongChainTest < RhinoSieveTestHelper
       }
     } }
     expect_results_to_be_instances([@tag1.id, @tag2.id])
+  end
+
+  test "should work with search sieve" do
+    setup
+    @params = { "blog_post" => {
+      "blog" => {
+        "user" => @tag1.blog_post.blog.user.id
+      }
+    } }
+
+    fetch(search: @blog_post1.title)
+    assert_equal 1, @json["total"]
+    assert_equal 1, @json["results"].length
+
+    assert_equal [@tag1.id], response_ids
   end
 end

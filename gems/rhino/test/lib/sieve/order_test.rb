@@ -29,9 +29,10 @@ class RhinoSieveOrderTestHelper < ActionDispatch::IntegrationTest
     @null_blog = create :blog, user: @current_user, published_at: nil
   end
 
-  def fetch(url = self.url, filter: nil)
+  def fetch(url = self.url, filter: nil, search: nil)
     params = { "order" => @params }
     params["filter"] = filter if filter
+    params["search"] = search if search
     get url, params: params, headers: @headers
     assert_response :ok
     @json = JSON.parse(@response.body)
@@ -225,5 +226,12 @@ class RhinoSieveOrderRelatedModelsTest < RhinoSieveOrderTestHelper
     fetch filter: { blog_post: { created_at: { gt: "1970-01-01" } } }
 
     assert_order @json["results"], @oldest_instance, @middle_instance, @newest_instance
+  end
+
+  test "works combined with the search sieve" do
+    @params = "blog_post.created_at"
+    fetch search: @oldest_instance.blog_post.title
+
+    assert_order @json["results"], @oldest_instance
   end
 end
