@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "test_helper"
+
 class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
   protected
   def setup
