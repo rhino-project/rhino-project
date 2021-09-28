@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rhino/engine'
+require 'validators/country_validator'
 require 'active_support'
 
 module Rhino
