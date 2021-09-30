@@ -7,9 +7,9 @@ module RhinoOrganizations
 
       def install_models # rubocop:todo Metrics/MethodLength
         say 'Copying rhino_organizations models to app/models'
-        copy_file "#{__dir__}/templates/organization.rb", 'app/models/organization.rb'
-        copy_file "#{__dir__}/templates/role.rb", 'app/models/role.rb'
-        copy_file "#{__dir__}/templates/users_role.rb", 'app/models/users_role.rb'
+        copy_file "#{__dir__}/templates/models/organization.rb", 'app/models/organization.rb'
+        copy_file "#{__dir__}/templates/models/role.rb", 'app/models/role.rb'
+        copy_file "#{__dir__}/templates/models/users_role.rb", 'app/models/users_role.rb'
 
         data = <<-'RUBY'
         has_many :users_roles, dependent: :destroy
@@ -32,6 +32,22 @@ module RhinoOrganizations
 
         data = 'config.resources += ["Organization", "UsersRole", "Role"]'
         inject_into_file 'config/initializers/rhino.rb', optimize_indentation(data, 2), after: /^\s*config\.resources.+\n/
+      end
+
+      def install_active_admin # rubocop:disable Metrics/MethodLength
+        say 'Copying rhino_organization ActiveAdmin files and configurations'
+        copy_file "#{__dir__}/templates/admin/users_roles.rb", 'app/admin/users_roles.rb'
+        data = <<-'RUBY'
+        br
+        br
+        panel "User Roles" do
+          table_for user.users_roles do
+            column :organization
+            column :role
+          end
+        end
+        RUBY
+        inject_into_file 'app/admin/users.rb', optimize_indentation(data, 4), after: "default_main_content\n"
       end
     end
   end
