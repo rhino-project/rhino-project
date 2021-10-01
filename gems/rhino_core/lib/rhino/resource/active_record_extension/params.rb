@@ -81,8 +81,11 @@ module Rhino
 
                 # An array of references
                 if desc[:type] == :array && (desc[:items].key?(:$ref) || desc[:items].key?(:anyOf))
+                  # FIXME: Hack for has_many_attached
+                  next params << { prop => [] } if desc.dig(:items, :anyOf)[0]&.dig(:$ref) == "#/components/schemas/active_storage_attachment"
+
                   # We only accept if the active record accepts it
-                  next unless nested_attributes_options.key?(prop_sym)
+                  next unless nested_attributes_options.key?(prop_sym) || desc.dig(:items, :anyOf)[0]&.dig(:$ref)
 
                   assoc = assoc_from_sym(prop_sym)
 
@@ -127,9 +130,14 @@ module Rhino
                 next hash[param_key] = param_value unless association
 
                 # FIXME
-                # Hack to rewrite for attachment and guard against object resubmission
+                # Hack to rewrite for attachment/attachments and guard against object resubmission
                 if param_key.end_with?("_attachment")
                   hash[param_key.remove("_attachment")] = param_value if param_value.is_a?(String) || param_value.nil?
+
+                  next
+                end
+                if param_key.end_with?("_attachments")
+                  hash[param_key.remove("_attachments")] = param_value if param_value.is_a?(Array) || param_value.nil?
 
                   next
                 end
