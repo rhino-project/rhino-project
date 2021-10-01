@@ -22,6 +22,16 @@ class ParamsTest < ActiveSupport::TestCase
     end
   end
 
+  # has_many_attached checks
+  %i[create update].each do |action_type| # rubocop:todo Style/CombinableLoops
+    test "BlogPost #{action_type} params include image_attachments" do
+      assert_includes BlogPost.send("#{action_type}_params"), { "image_attachments" => [] }
+    end
+  end
+  test "BlogPost show params include image_attachments" do
+    assert_includes BlogPost.show_params, { "image_attachments" => %w[id name record_type created_at url display_name] }
+  end
+
   %i[create update show].each do |action_type|
     %i[json jsonb].each do |prop_type| # rubocop:todo Performance/CollectionLiteralInLoop
       test "PropertyList #{action_type} returns #{prop_type} hash" do

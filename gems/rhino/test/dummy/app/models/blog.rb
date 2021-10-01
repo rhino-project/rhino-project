@@ -14,7 +14,7 @@ class Blog < ApplicationRecord
 
   rhino_owner_base
   rhino_references [:user, { blogs_categories: %i[blog category] }, :banner_attachment, :blog_posts]
-  rhino_properties_format blogs_categories: :join_table_simple, country: :country
+  rhino_properties_format blogs_categories: :join_table_simple, banner_attachment: :image, country: :country
   rhino_search [:title]
 
   validates :title, presence: true

@@ -56,9 +56,11 @@ module Rhino
 
               # Writeable if a one type or accepting nested
               association = reflect_on_association(sym)
-              # rubocop:todo Performance/CollectionLiteralInLoop
-              sym if %i[has_one belongs_to].include?(association.macro) || nested_attributes_options.key?(sym)
-              # rubocop:enable Performance/CollectionLiteralInLoop
+              # rubocop:todo Performance/CollectionLiteralInLoop, Layout/LineLength
+              if %i[has_one belongs_to].include?(association.macro) || nested_attributes_options.key?(sym) || association.class_name == "ActiveStorage::Attachment"
+                sym
+              end
+              # rubocop:enable Performance/CollectionLiteralInLoop, Layout/LineLength
             end.compact
           end
           # rubocop:enable Style/OptionalBooleanParameter
