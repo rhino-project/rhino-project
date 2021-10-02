@@ -57,6 +57,20 @@ Use phonelib for backend validation. It is built based on [Google's libphonenumb
     end
 ```
 
+#### Country
+
+Use the country validator based on [countries gem](https://github.com/countries/countries) for backend validation. Your model might look something like this:
+
+```ruby
+  # Validate the optional country
+  validates :country, country: { allow_blank: true }
+```
+
+```ruby
+  # Validate the required alpha3 country
+  validates :country, country: { alpha3: true }
+```
+
 ### Default values
 
 The OpenAPI spec default descriptor is supported. Active Record based resources will automatically translate default values.
