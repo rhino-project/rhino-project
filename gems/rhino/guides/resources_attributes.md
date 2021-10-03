@@ -26,6 +26,7 @@ In the front end the type/format is mapped as follows:
 | string            |       date        |                  ModelFormFieldDatetime |
 | string            |     datetime      |                  ModelFormFieldDatetime |
 | string            |       phone       |                     ModelFormFieldPhone |
+| string            |      country      |                   ModelFormFieldCountry |
 | string            |       time        |                  ModelFormFieldDatetime |
 | integer           |       none        |                   ModelFormFieldInteger |
 | integer           |       year        |                      ModelFormFieldYear |
