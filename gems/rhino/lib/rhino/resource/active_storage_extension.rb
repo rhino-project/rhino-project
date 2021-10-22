@@ -21,6 +21,16 @@ module Rhino
           filename.to_s
         end
       end
+
+      class_methods do
+        def readable_properties
+          super + ["signed_id"]
+        end
+      end
+
+      def serializable_hash(options = nil)
+        super(options).merge("signed_id" => signed_id)
+      end
     end
   end
 end
