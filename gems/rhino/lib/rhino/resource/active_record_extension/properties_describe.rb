@@ -56,6 +56,20 @@ module Rhino
             { type: atype }
           end
 
+          def nested_array_options(name)
+            ref_sym = name.to_sym
+
+            array_options = {}
+
+            if nested_attributes_options[ref_sym]
+              array_options[:creatable] = true
+              array_options[:updatable] = true
+              array_options[:destroyable] = nested_attributes_options[ref_sym][:allow_destroy]
+            end
+
+            { "x-rhino-attribute-array": array_options.merge(_properties_array[ref_sym] || {}) }
+          end
+
           def property_type_and_format_ref(name)
             # FIXME: The tr hack is to match how model_name in rails handles modularized classes
             class_name = reflections[name].options[:class_name]&.underscore&.tr('/', '_') || name
@@ -63,7 +77,7 @@ module Rhino
 
             {
               type: :array,
-              items: ref_descriptor(class_name)
+              items: ref_descriptor(class_name).merge(nested_array_options(name))
             }
           end
 
