@@ -26,7 +26,7 @@ module Rhino
     #   readable_properties
     #   creatable_properties
     #   updatable_properties
-    module Properties
+    module Properties # rubocop:todo Metrics/ModuleLength
       extend ActiveSupport::Concern
 
       included do
@@ -45,6 +45,7 @@ module Rhino
         class_attribute :_all_properties, default: nil
 
         class_attribute :_properties_format, default: {}
+        class_attribute :_properties_array, default: {}
 
         delegate :identifier_property, to: :class
         delegate :read_properties, :create_properties, :update_properties, to: :class
@@ -80,6 +81,10 @@ module Rhino
 
         def rhino_properties_format(format)
           self._properties_format = format
+        end
+
+        def rhino_properties_array(options)
+          self._properties_array = options
         end
 
         def identifier_property

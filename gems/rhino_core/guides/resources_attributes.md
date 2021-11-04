@@ -72,6 +72,17 @@ Use the country validator based on [countries gem](https://github.com/countries/
   validates :country, country: { alpha3: true }
 ```
 
+### Array attributes
+
+Arrays for nested attributes can be limited by
+
+```ruby
+accepts_nested_attributes_for :og_meta_tags, allow_destroy: true
+
+# Disallow creation of new og_meta_tags
+rhino_properties_array og_meta_tags: { creatable: false }
+```
+
 ### Default values
 
 The OpenAPI spec default descriptor is supported. Active Record based resources will automatically translate default values.

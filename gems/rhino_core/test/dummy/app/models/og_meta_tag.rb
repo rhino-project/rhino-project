@@ -5,6 +5,7 @@ class OgMetaTag < ApplicationRecord
 
   rhino_owner :blog_post
   rhino_references [{ blog_post: [:blog] }]
+  rhino_properties_update except: :tag_name
   rhino_search([], { blog_post: %i[title] })
 
   validates :tag_name, presence: true
