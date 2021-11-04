@@ -3,7 +3,7 @@
 module Rhino
   module Resource
     module ActiveRecordExtension
-      module Params
+      module Params # rubocop:todo Metrics/ModuleLength
         extend ActiveSupport::Concern
 
         class_methods do # rubocop:todo Metrics/BlockLength
@@ -89,13 +89,30 @@ module Rhino
 
                   assoc = assoc_from_sym(prop_sym)
 
-                  # The identifier_property (primary key) is editable so that updates can occur
-                  # The nested association editable attributes are editable
-                  # The nested attributes of the nested association are also editable
                   # This does not handle nested for a polymorphic model, but neither does rails
                   # FIXME: Do we need to handle :update_only option?
-                  destroy = [*("_destroy" if nested_attributes_options[prop_sym][:allow_destroy])]
-                  next params << { prop => [assoc.identifier_property] + assoc.send("#{type}_params") + destroy }
+                  # FIXME: If a nested resource attribute is create only, the backend will allow it to be
+                  # updated because create/update are merged together - the frontedn UI shows the right
+                  # thing though NUB-844
+                  assoc_params = []
+
+                  array_attributes = desc[:items][:"x-rhino-attribute-array"]
+
+                  if array_attributes[:updatable]
+                    # If the attribute is updatable, we need to accept the id param
+                    assoc_params << assoc.identifier_property
+
+                    # If the attribute is updatable, we need to accept its updatable params
+                    assoc_params << assoc.send("writeable_params", "update")
+                  end
+
+                  # If the attribute is creatable, we need to accept its creatable params
+                  assoc_params << assoc.send("writeable_params", "create") if array_attributes[:creatable]
+
+                  # If its destroyable, accept the _destroy param
+                  assoc_params << "_destroy" if nested_attributes_options[prop_sym][:allow_destroy]
+
+                  next params << { prop => assoc_params.flatten.uniq }
                 end
 
                 # JSON columns need special handling - allow all the nested params
