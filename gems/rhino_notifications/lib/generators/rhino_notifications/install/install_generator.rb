@@ -9,6 +9,10 @@ module RhinoNotifications
         generate 'activity_notification:install'
         generate 'activity_notification:migration'
       end
+
+      def user_as_target
+        inject_into_file "app/models/user.rb", "#{optimize_indentation('acts_as_target email: :email', 2)}\n", after: "class User < Rhino::User\n"
+      end
     end
   end
 end
