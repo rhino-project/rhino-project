@@ -19,6 +19,21 @@ module RhinoJobs
           "scheduler: bundle exec rails resque:scheduler\n"
         end
       end
+
+      def update_heroku_yml
+        data = <<-'RUBY'
+        run:
+          worker:
+            image: web
+            command:
+              - QUEUE=* bundle exec rails resque:work
+          scheduler:
+            image: web
+            command:
+              - bundle exec rails resque:scheduler
+        RUBY
+        inject_into_file 'heroku.yml', optimize_indentation(data, 0)
+      end
     end
   end
 end
