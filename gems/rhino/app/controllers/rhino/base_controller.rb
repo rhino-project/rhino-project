@@ -8,6 +8,7 @@ module Rhino
 
     include Rhino::ErrorHandling
     include Rhino::SetCurrentUser
+    include Rhino::PaperTrailWhodunnit
 
     # https://api.rubyonrails.org/classes/AbstractController/Base.html#method-c-abstract-21
     # Prevents the utility methods below from showing up as actions in CrudController
