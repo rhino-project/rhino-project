@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_01_141754) do
+ActiveRecord::Schema.define(version: 2021_12_07_212517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,10 +152,28 @@ ActiveRecord::Schema.define(version: 2021_05_01_141754) do
     t.datetime "updated_at", null: false
     t.boolean "allow_password_change", default: false, null: false
     t.boolean "approved", default: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.integer "invited_by_id"
+    t.string "invited_by_type"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+  end
+
+  create_table "users_role_invites", force: :cascade do |t|
+    t.string "email", null: false
+    t.bigint "organization_id", null: false
+    t.bigint "role_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["organization_id"], name: "index_users_role_invites_on_organization_id"
+    t.index ["role_id"], name: "index_users_role_invites_on_role_id"
   end
 
   create_table "users_roles", force: :cascade do |t|
@@ -178,6 +196,8 @@ ActiveRecord::Schema.define(version: 2021_05_01_141754) do
   add_foreign_key "og_meta_tags", "blog_posts"
   add_foreign_key "og_meta_tags", "og_tags"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "users_role_invites", "organizations"
+  add_foreign_key "users_role_invites", "roles"
   add_foreign_key "users_roles", "organizations"
   add_foreign_key "users_roles", "roles"
   add_foreign_key "users_roles", "users"
