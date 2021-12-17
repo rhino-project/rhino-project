@@ -4,7 +4,7 @@ require "test_helper"
 
 class OrganizationAccountControllerTest < Rhino::TestCase::OrganizationControllerTest
   test "returns current user on get" do
-    sign_in_with_organization
+    sign_in_with_organization_and_admin_user
     get account_path, xhr: true
 
     assert_response_ok
@@ -13,7 +13,7 @@ class OrganizationAccountControllerTest < Rhino::TestCase::OrganizationControlle
 
   CHANGED_NAME = "Test Name"
   test "returns current user on patch" do
-    sign_in_with_organization
+    sign_in_with_organization_and_admin_user
     patch account_path, params: { account: { name: CHANGED_NAME } }, xhr: true
 
     assert_response_ok
