@@ -4,7 +4,7 @@ require "test_helper"
 
 class OrganizationsCrudTest < Rhino::TestCase::OrganizationControllerTest
   test "creates blog" do
-    sign_in_with_organization
+    sign_in_with_organization_and_admin_user
     post blogs_path, params: { crud: { organization: @current_organization.id, title: "Test Blog" } }, xhr: true
 
     assert_response_ok
