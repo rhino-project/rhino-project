@@ -10,6 +10,7 @@ module RhinoOrganizations
         copy_file "#{__dir__}/templates/models/organization.rb", 'app/models/organization.rb'
         copy_file "#{__dir__}/templates/models/role.rb", 'app/models/role.rb'
         copy_file "#{__dir__}/templates/models/users_role.rb", 'app/models/users_role.rb'
+        copy_file "#{__dir__}/templates/models/users_role_invite.rb", 'app/models/users_role_invite.rb'
 
         data = <<-'RUBY'
         has_many :users_roles, dependent: :destroy
@@ -30,7 +31,7 @@ module RhinoOrganizations
       def install_initializer
         gsub_file 'config/initializers/rhino.rb', "  # config.base_owner = 'Organization'", "  config.base_owner = \"Organization\""
 
-        data = 'config.resources += ["Organization", "UsersRole", "Role"]'
+        data = 'config.resources += ["Organization", "UsersRole", "Role", "UsersRoleInvite"]'
         inject_into_file 'config/initializers/rhino.rb', optimize_indentation(data, 2), after: /^\s*config\.resources.+\n/
       end
 

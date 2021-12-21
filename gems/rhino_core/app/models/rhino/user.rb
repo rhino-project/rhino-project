@@ -15,7 +15,7 @@ module Rhino
     # Include default devise modules.
     devise :database_authenticatable, :registerable,
            :recoverable, :rememberable, :trackable, :validatable,
-           :confirmable, :omniauthable
+           :confirmable, :omniauthable, :invitable
 
     validates :email, uniqueness: { case_sensitive: false }
 
