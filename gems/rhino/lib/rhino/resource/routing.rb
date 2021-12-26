@@ -84,12 +84,12 @@ module Rhino
         nil
       else
         base_owner_ids = self.class.joins(joins).where(id: id).pluck(base_owner_pk)
-        if base_owner_ids.length != 1
+        if base_owner_ids.length == 1
+          base_owner_ids.first
+        else
           # if this Model doesn't have a clear single path to the base owner Model,
           # we shouldn't include it in the frontend url
           nil
-        else
-          base_owner_ids.first
         end
       end
 

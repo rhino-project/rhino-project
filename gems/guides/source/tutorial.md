@@ -6,13 +6,11 @@ This guide is a step-by-step tutorial to launch and customize the application
 
 Make sure you have below installed:
 
-- Ruby version: 3.0.2
-- Bundler 2.2.20
-- Rails: 6.1.4
-- PostgreSQL: 9.4 or newer
-- node 14.16.1
-
-See the README for more details on how to set these prerequistes up.
+    - Ruby version: 3.1.2
+    - Bundler  2.3.11
+    - Rails: 7.0.2.3
+    - PostgreSQL: 12 or newer
+    - node 14.16.1
 
 ## Launch the application
 

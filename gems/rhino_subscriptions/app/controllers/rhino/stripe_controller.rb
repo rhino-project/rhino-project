@@ -43,9 +43,7 @@ module Rhino
     def subscriptions
       stripe_customer = Rhino::StripeCustomer.find_by(base_owner_id: params['base_owner_id'])
 
-      if !stripe_customer
-        render json: {}
-      else
+      if stripe_customer
         customer = ::Stripe::Customer.retrieve({
           id: stripe_customer['customer_id'],
           expand: ['subscriptions']
@@ -55,6 +53,8 @@ module Rhino
           subscriptions: customer.subscriptions.data
         }
 
+      else
+        render json: {}
       end
     end
 

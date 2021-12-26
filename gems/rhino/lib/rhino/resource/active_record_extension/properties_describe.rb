@@ -38,7 +38,7 @@ module Rhino
             {
               type: :reference,
               anyOf: [
-                { '$ref'.to_sym => "#/components/schemas/#{name.singularize}" }
+                { :$ref => "#/components/schemas/#{name.singularize}" }
               ]
             }
           end
@@ -161,9 +161,9 @@ module Rhino
           # presence validator automatically
           # Otherwise check the db for the actual column or foreign key setting
           # Return nil instead of false for compaction
-          def property_nullable?(name) # rubocop:todo Metrics/CyclomaticComplexity,Metrics/AbcSize
+          def property_nullable?(name) # rubocop:todo Metrics/AbcSize
             # Check for any presence validator
-            return false if validators_on(name).any? { |v| v.is_a? ::ActiveRecord::Validations::PresenceValidator }
+            return false if validators_on(name).any?(::ActiveRecord::Validations::PresenceValidator)
 
             # https://guides.rubyonrails.org/active_record_validations.html#numericality
             # By default, numericality doesn't allow nil values. You can use allow_nil: true option to permit it.
