@@ -34,7 +34,7 @@ module Rhino
       # If user is logged in, but no record, they are still an admin for their data
       # Otherwise owner must match to be an admin
       # A list of roles as hash keys with an array of base_owners for each
-      return { 'admin': [auth_owner] } if !record.respond_to?(:base_owner_ids) || record.base_owner_ids.include?(auth_owner&.id)
+      return { admin: [auth_owner] } if !record.respond_to?(:base_owner_ids) || record.base_owner_ids.include?(auth_owner&.id)
 
       {}
     end

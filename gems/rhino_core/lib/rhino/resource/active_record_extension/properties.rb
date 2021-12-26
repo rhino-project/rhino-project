@@ -48,7 +48,7 @@ module Rhino
 
           # rubocop:todo Style/OptionalBooleanParameter
           def reference_properties(read = true)
-            references.map do |r|
+            references.filter_map do |r|
               sym = reference_to_sym(r)
 
               # All references are readable
@@ -61,7 +61,7 @@ module Rhino
                 sym
               end
               # rubocop:enable Performance/CollectionLiteralInLoop, Layout/LineLength
-            end.compact
+            end
           end
           # rubocop:enable Style/OptionalBooleanParameter
 

@@ -63,7 +63,7 @@ module Rhino
             end
 
             def reference_properties(read = true) # rubocop:todo Style/OptionalBooleanParameter
-              references.map do |r|
+              references.filter_map do |r|
                 sym = reference_to_sym(r)
 
                 # All references are readable
@@ -74,7 +74,7 @@ module Rhino
                 # rubocop:todo Performance/CollectionLiteralInLoop
                 sym if %i[has_one belongs_to].include?(association.macro) || nested_attributes_options.key?(sym)
                 # rubocop:enable Performance/CollectionLiteralInLoop
-              end.compact
+              end
             end
 
             def writeable_properties
@@ -94,7 +94,7 @@ module Rhino
               {
                 type: :reference,
                 anyOf: [
-                  { "$ref".to_sym => "#/components/schemas/#{name.singularize}" }
+                  { :$ref => "#/components/schemas/#{name.singularize}" }
                 ]
               }
             end
