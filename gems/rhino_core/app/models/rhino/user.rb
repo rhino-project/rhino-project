@@ -12,10 +12,11 @@ module Rhino
 
     rhino_policy :user
 
-    # Include default devise modules.
-    devise :database_authenticatable, :registerable,
-           :recoverable, :rememberable, :trackable, :validatable,
-           :confirmable, :omniauthable, :invitable
+    def self.devise_modules_to_load
+      modules = %i[database_authenticatable registerable recoverable rememberable trackable validatable confirmable omniauthable]
+      modules.push :invitable if Rhino.resources.include?("Organization")
+    end
+    devise(*devise_modules_to_load)
 
     validates :email, uniqueness: { case_sensitive: false }
 

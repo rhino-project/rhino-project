@@ -2,8 +2,7 @@
 
 Rails.application.routes.draw do
   scope Rhino.namespace do
-    mount_devise_token_auth_for 'User', { at: "auth", skip: ['invitations'] }
-    devise_for :users, controllers: { invitations: 'rhino/invitations' }, only: [:invitations]
+    mount_devise_token_auth_for 'User', at: "auth"
 
     Rhino.resource_classes.each do |m|
       if m.route_singular?
