@@ -28,6 +28,10 @@ module RhinoOrganizations
         inject_into_file 'app/models/account.rb', optimize_indentation(data, 2), after: "class Account < Rhino::Account\n"
       end
 
+      def install_devise_invitable
+        generate "devise_invitable:install"
+      end
+
       def install_initializer
         gsub_file 'config/initializers/rhino.rb', "  # config.base_owner = 'Organization'", "  config.base_owner = \"Organization\""
 
