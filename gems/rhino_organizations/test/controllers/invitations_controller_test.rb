@@ -32,8 +32,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
     assert_response :unprocessable_entity
     assert_equal(
       { "status" => "error",
-        "errors" => { "password" => ["is too short (minimum is 6 characters)",
-                                     "is too short (minimum is 6 characters)"] } },
+        "errors" => { "password" => ["is too short (minimum is 6 characters)"] } },
       JSON.parse(response.body)
     )
   end
@@ -52,7 +51,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
     assert_response :unprocessable_entity
     assert_equal(
       { "status" => "error",
-        "errors" => { "password_confirmation" => ["doesn't match Password", "doesn't match Password"] } },
+        "errors" => { "password_confirmation" => ["doesn't match Password"] } },
       JSON.parse(response.body)
     )
   end
