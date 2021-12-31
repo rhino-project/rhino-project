@@ -2,6 +2,7 @@
 
 require 'rhino/engine'
 require 'validators/country_validator'
+require 'validators/email_validator'
 require 'active_support'
 
 module Rhino
