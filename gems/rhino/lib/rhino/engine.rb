@@ -2,6 +2,10 @@
 
 module Rhino
   class Engine < ::Rails::Engine
+    config.before_configuration do
+      raise ".env file must exist in development - see README.md" if Rails.env.development? && !File.exist?(Rails.root.join(".env"))
+    end
+
     initializer 'rhino.active_record_extension' do
       ActiveSupport.on_load(:active_record) do
         require_relative 'resource/active_record_extension'
