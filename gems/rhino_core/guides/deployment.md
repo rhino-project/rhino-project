@@ -30,7 +30,7 @@ The server requires the following environment variables to be set:
     RAILS_LOG_TO_STDOUT=enabled
     RAILS_SERVE_STATIC_FILES=enabled
     ROOT_URL=https://<server-host-name>
-    SECRET_KEY_BASE=84de524c5cc836b5eaf8e2b5ee36e771f0bc5dfb0b63e76b58fe155d32cb3c71ca48f5a39f4992c5aaa3bb9d323d9ab1529b526bb2349bf2e09fd44385ab234c", # rubocop:disable Layout/LineLength
+    SECRET_KEY_BASE=84de524c5cc836b5eaf8e2b5ee36e771f0bc5dfb0b63e76b58fe155d32cb3c71ca48f5a39f4992c5aaa3bb9d323d9ab1529b526bb2349bf2e09fd44385ab234c
     SENDGRID_API_KEY=<sendgrid-api-key>
 
 ### Client
@@ -41,6 +41,8 @@ The client requires the following environment variables to be set:
 
     REACT_APP_API_ROOT_PATH=https://<server-host-name>
     NODE_ENV=production
+
+Any additional environment variables that need to be passed into that app should be prefixed with REACT_APP
 
 ## Heroku Docker
 
