@@ -2,6 +2,7 @@
 
 module Rhino
   class CrudController < BaseController
+    include Rhino::Authenticated
     include Rhino::Permit
 
     # Confirm we are calling authorize and scope correctly

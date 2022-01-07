@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Rhino
-  class ActiveStorageAttachmentPolicy < ::Rhino::AuthPolicy
+  class ActiveStorageAttachmentPolicy < ::Rhino::BasePolicy
     def create?
       authorize_action(true)
     end
@@ -10,7 +10,7 @@ module Rhino
       authorize_action(true)
     end
 
-    class Scope < ::Rhino::AuthPolicy::Scope
+    class Scope < ::Rhino::BasePolicy::Scope
     end
   end
 end
