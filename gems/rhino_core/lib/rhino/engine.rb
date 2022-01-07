@@ -3,7 +3,11 @@
 module Rhino
   class Engine < ::Rails::Engine
     config.before_configuration do
-      raise ".env file must exist in development - see README.md" if Rails.env.development? && !File.exist?(Rails.root.join(".env"))
+      # When running the dummy apps through rails commands the .env file won't exist in the root
+      # but the DB_NAME variable will have been set by rhino_comman
+      if Rails.env.development? && (!File.exist?(Rails.root.join(".env")) && ENV["DB_NAME"].blank?)
+        raise ".env file must exist in development - see README.md"
+      end
     end
 
     initializer 'rhino.active_record_extension' do
