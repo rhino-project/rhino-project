@@ -97,9 +97,9 @@ Rhino provides a number of builtin policies that can be used directly or inherit
 
 > Base for others to inherit from that provides basic initialization and defaults to dis-allowing all actions and scoping to no resources.
 
-#### Rhino::AuthPolicy
+#### Rhino::CrudPolicy
 
-> Checks for an authenticated auth owner (user)
+> The default for most Resources, it inherits from BasePolicy. It obtains the roles for the auth owner (user) and then composes the corresponding policies for the user. If any role of a user allows the action. The scopes for the Auth Owner (user) are unioned together.
 
 #### Rhino::ViewerPolicy
 
@@ -112,10 +112,6 @@ Rhino provides a number of builtin policies that can be used directly or inherit
 #### Rhino::EditorPolicy
 
 > Inherits from ViewerPolicy and allows an authenticated users to view (index? and show?), and edit (update?)
-
-#### Rhino::CrudPolicy
-
-> The default for most Resources, it inherits from BasePolicy. It obtains the roles for the auth owner (user) and then composes the corresponding policies for the user. If any role of a user allows the action. The scopes for the Auth Owner (user) are unioned together.
 
 #### Rhino::GlobalPolicy
 

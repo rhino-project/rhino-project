@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Rhino
-  class ViewerPolicy < ::Rhino::AuthPolicy
+  class ViewerPolicy < ::Rhino::BasePolicy
     def index?
       authorize_action(true)
     end
@@ -10,9 +10,9 @@ module Rhino
       authorize_action(true)
     end
 
-    class Scope < ::Rhino::AuthPolicy::Scope
+    class Scope < ::Rhino::BasePolicy::Scope
       def resolve
-        super.all
+        scope.all
       end
     end
   end

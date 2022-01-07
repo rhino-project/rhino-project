@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'base_policy'
+require_relative "base_policy"
 
 module Rhino
   # CrudPolicy finds the role for the auth owner and then uses that role
@@ -10,10 +10,6 @@ module Rhino
   # delegated to that policy
   class CrudPolicy < ::Rhino::BasePolicy
     def check_action(action)
-      # We must have a valid user
-      # FIXME: Support unauthed user
-      return false unless auth_owner
-
       # If any role allows the action, return true
       # There should only be multiple roles in the case of index because we
       # can't trace to a specific owner for the ActiveRecord class
@@ -102,9 +98,9 @@ module Rhino
       end
 
       private
-      def tnpk(scope)
-        "#{scope.table_name}.#{scope.primary_key}"
-      end
+        def tnpk(scope)
+          "#{scope.table_name}.#{scope.primary_key}"
+        end
     end
   end
 end
