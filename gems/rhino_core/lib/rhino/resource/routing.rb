@@ -75,8 +75,29 @@ module Rhino
       # rubocop:enable Style/RedundantSelf, Metrics/BlockLength
     end
 
-    def route_frontend
-      "#{self.class.route_frontend}/#{id}"
+    def route_frontend # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+      base_owner_pk = "#{Rhino.base_owner.table_name}.#{Rhino.base_owner.primary_key}"
+
+      joins = joins_for_base_owner
+      base_owner_id = if joins.empty?
+        # if this is Model is the base owner, we don't to include it in frontend url
+        nil
+      else
+        base_owner_ids = self.class.joins(joins).where(id: id).pluck(base_owner_pk)
+        if base_owner_ids.length != 1
+          # if this Model doesn't have a clear single path to the base owner Model,
+          # we shouldn't include it in the frontend url
+          nil
+        else
+          base_owner_ids.first
+        end
+      end
+
+      if base_owner_id.nil?
+        "#{self.class.route_frontend}/#{id}"
+      else
+        "/#{base_owner_id}#{self.class.route_frontend}/#{id}"
+      end
     end
 
     def route_api
