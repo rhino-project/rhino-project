@@ -55,7 +55,7 @@ Third-party cookie are often used for advertisment purposes and are related to m
 
 ### SameSite attribute
 
-This is an important attribute that can restrict cookies usage even more. For an API, however, they need to be more relaxed, so `SameSite=None` is currently the used setting. Read more about [SameSite definition](https://web.dev/samesite-cookies-explained/) and [text](https://link)
+This is an important attribute that can restrict cookies usage even more. For an API, however, they need to be more relaxed, so `SameSite=None` is currently the used setting. Read more about SameSite definition in [here](https://web.dev/samesite-cookies-explained/) and in this [issue](https://github.com/google/google-api-javascript-client/issues/561).
 
 Rhino Server also sets these cookies to be secure, meaning they can only be served through a https connection. Due to recent changes and restrictions to cookies,
 
