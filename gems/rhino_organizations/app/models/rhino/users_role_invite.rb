@@ -5,7 +5,8 @@ module Rhino
     self.abstract_class = true
 
     rhino_policy :users_role
-    rhino_owner :organization
+    # FIXME: Only necessary because this module is in tree NUB-910
+    rhino_owner :organization if Rhino.resources.include?("Organization")
     rhino_references %i[role organization]
 
     rhino_controller :users_role_invite
