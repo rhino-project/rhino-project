@@ -34,14 +34,19 @@ class ActiveSupport::TestCase
   # make each process running tests a separate command for simple cov.
   # in the end, they will all get merged and not overwrite each other's results
   # https://github.com/simplecov-ruby/simplecov/issues/718#issuecomment-538201587
-  if ENV["COVERAGE"]
-    parallelize_setup do |worker|
-      SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
-    end
 
-    parallelize_teardown do |_worker|
-      SimpleCov.result
-    end
+  parallelize_setup do |worker|
+    SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}" if ENV["COVERAGE"]
+
+    # https://guides.rubyonrails.org/active_storage_overview.html#discarding-files-created-during-tests
+    ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{worker}"
+  end
+
+  parallelize_teardown do |_worker|
+    SimpleCov.result if ENV["COVERAGE"]
+
+    # https://guides.rubyonrails.org/active_storage_overview.html#cleaning-up-fixtures
+    FileUtils.rm_rf(ActiveStorage::Blob.services.fetch(:test).root)
   end
 
   # Add more helper methods to be used by all tests here...

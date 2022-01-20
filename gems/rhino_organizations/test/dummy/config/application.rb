@@ -28,5 +28,9 @@ module Dummy
     # Error indexes for nested attribute errors
     # https://blog.bigbinary.com/2016/07/07/errors-can-be-indexed-with-nested-attrbutes-in-rails-5.html
     config.active_record.index_nested_attribute_errors = true
+
+    # Necessary for ActiveStorage integration
+    # Rhino::Resource::ActiveStorageExtension#url needs this to be set
+    Rails.application.routes.default_url_options[:host] = ENV["ROOT_URL"]
   end
 end

@@ -10,11 +10,16 @@ module Rhino
 
       included do
         attribute :url
+        attribute :url_attachment
 
         rhino_policy :active_storage_attachment
 
         def url
           Rails.application.routes.url_helpers.rails_blob_url(self, only_path: false)
+        end
+
+        def url_attachment
+          Rails.application.routes.url_helpers.rails_blob_url(self, only_path: false, disposition: :attachment)
         end
 
         def display_name
