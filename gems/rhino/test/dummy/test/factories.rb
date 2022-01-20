@@ -8,6 +8,14 @@ FactoryBot.define do
     published_at { FFaker::Time.date }
     title { FFaker::Book.title }
     user
+
+    after(:build) do |blog|
+      blog.banner.attach(
+        io: File.open(Rhino::Engine.root.join("test", "fixtures", "files", "banner.jpg")),
+        filename: "banner.jpg",
+        content_type: "image/jpeg"
+      )
+    end
   end
 
   factory :blog_post do
