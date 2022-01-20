@@ -11,7 +11,7 @@ class ParamsTest < ActiveSupport::TestCase
 
   test "Blog has show_params" do
     assert_equal([
-                   "id", "title", "published_at", "created_at", "updated_at", "country", { "user" => %w[id name nickname email image display_name] }, { "blogs_categories" => ["id", "created_at", "updated_at", { "blog" => %w[id title published_at created_at updated_at country display_name] }, { "category" => %w[id name created_at updated_at display_name] }, "display_name"] }, { "banner_attachment" => %w[id name record_type created_at url signed_id display_name] }, { "blog_posts" => ["id", "title", "body", "published", "created_at", "updated_at", "status", { "tag_list" => [] }, "display_name"] }, "display_name" # rubocop:disable Layout/LineLength
+                   "id", "title", "published_at", "created_at", "updated_at", "country", { "user" => %w[id name nickname email image display_name] }, { "blogs_categories" => ["id", "created_at", "updated_at", { "blog" => %w[id title published_at created_at updated_at country display_name] }, { "category" => %w[id name created_at updated_at display_name] }, "display_name"] }, { "banner_attachment" => %w[id name record_type created_at url url_attachment signed_id display_name] }, { "blog_posts" => ["id", "title", "body", "published", "created_at", "updated_at", "status", { "tag_list" => [] }, "display_name"] }, "display_name" # rubocop:disable Layout/LineLength
                  ], Blog.show_params)
   end
 
@@ -30,7 +30,7 @@ class ParamsTest < ActiveSupport::TestCase
     end
   end
   test "BlogPost show params include image_attachments" do
-    assert_includes BlogPost.show_params, { "image_attachments" => %w[id name record_type created_at url signed_id display_name] }
+    assert_includes BlogPost.show_params, { "image_attachments" => %w[id name record_type created_at url url_attachment signed_id display_name] }
   end
 
   %i[create update show].each do |action_type|
