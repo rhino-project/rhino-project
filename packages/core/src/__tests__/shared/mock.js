@@ -3,14 +3,14 @@ import { renderHook } from '@testing-library/react-hooks/dom';
 import env from 'config';
 import React from 'react';
 import { QueryClientProvider } from 'react-query';
-import AuthProvider from 'contexts/AuthContext';
-import { useAuth } from 'hooks/auth';
+import AuthProvider from 'rhino/contexts/AuthContext';
+import { useAuth } from 'rhino/hooks/auth';
 import {
   AUTH_BASE_PATH,
   AUTH_CREATE_END_POINT,
   AUTH_DESTROY_END_POINT,
   AUTH_VALIDATE_TOKEN_END_POINT
-} from 'lib/networking';
+} from 'rhino/lib/networking';
 
 const defaultUser = {
   id: 1,

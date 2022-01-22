@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelWrapper wraps children in model classes 1`] = `
+<div
+  className="model-bar model-bar-foo"
+>
+  <p>
+    wrapped
+  </p>
+</div>
+`;
+
+exports[`ModelWrapper wraps children with custom wrapper 1`] = `
+<div
+  className="foobar"
+>
+  <p>
+    wrapped
+  </p>
+</div>
+`;
