@@ -122,8 +122,23 @@ module Rhino
 
             validators_on(property).each do |v|
               if v.is_a? ActiveModel::Validations::NumericalityValidator
-                constraint_hash[:minimum] = v.options[:greater_than] + 1
-                constraint_hash[:maximum] = v.options[:less_than] - 1
+                if v.options.key?(:greater_than)
+                  constraint_hash[:minimum] = v.options[:greater_than]
+                  constraint_hash[:exclusiveMinimum] = true
+                end
+
+                if v.options.key?(:less_than)
+                  constraint_hash[:maximum] = v.options[:less_than]
+                  constraint_hash[:exclusiveMaximum] = true
+                end
+
+                constraint_hash[:minimum] = v.options[:greater_than_or_equal_to] if v.options.key?(:greater_than_or_equal_to)
+                constraint_hash[:maximum] = v.options[:less_than_or_equal_to] if v.options.key?(:less_than_or_equal_to)
+
+                if v.options.key?(:in)
+                  constraint_hash[:minimum] = v.options[:in].min
+                  constraint_hash[:maximum] = v.options[:in].max
+                end
               end
 
               if v.is_a? ::ActiveRecord::Validations::LengthValidator
@@ -146,10 +161,14 @@ module Rhino
           # presence validator automatically
           # Otherwise check the db for the actual column or foreign key setting
           # Return nil instead of false for compaction
-          def property_nullable?(name)
-            # Check for presence validator
-            if validators.select { |v| v.is_a? ::ActiveRecord::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
-              return false
+          def property_nullable?(name) # rubocop:todo Metrics/CyclomaticComplexity,Metrics/AbcSize
+            # Check for any presence validator
+            return false if validators_on(name).any? { |v| v.is_a? ::ActiveRecord::Validations::PresenceValidator }
+
+            # https://guides.rubyonrails.org/active_record_validations.html#numericality
+            # By default, numericality doesn't allow nil values. You can use allow_nil: true option to permit it.
+            validators_on(name).select { |v| v.is_a? ::ActiveRecord::Validations::NumericalityValidator }.each do |v|
+              return false unless v.options[:allow_nil]
             end
 
             name = reflections[name].foreign_key if reflections.key?(name)
