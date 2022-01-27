@@ -1,0 +1,4 @@
+describe('networking', () => {
+  test('withRouterHOC', () => {
+  })
+})
