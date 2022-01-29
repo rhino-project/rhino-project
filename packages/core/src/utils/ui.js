@@ -142,19 +142,19 @@ export const getStringForDisplay = (
     : displayString;
 };
 
-export const BreadcrumbItemWrapper = ({ key, tag, to, children, ...props }) => {
+export const BreadcrumbItemWrapper = ({ tag, to, children, ...props }) => {
   const baseOwnerPath = useBaseOwnerPath();
   const path = baseOwnerPath.build(to);
+
   return (
-    <BreadcrumbItem key={key} tag={tag} to={path} {...props}>
+    <BreadcrumbItem tag={tag} to={path} {...props}>
       {children}
     </BreadcrumbItem>
   );
 };
 
 BreadcrumbItemWrapper.propTypes = {
-  key: PropTypes.string,
-  tag: PropTypes.string,
+  tag: PropTypes.elementType,
   to: PropTypes.string,
   children: PropTypes.node
 };
