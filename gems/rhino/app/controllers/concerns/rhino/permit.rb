@@ -12,8 +12,9 @@ module Rhino
       #
       # FIXME: Couldn't find a way to call wrap_parameters appropriately
       # FIXME: Will some sort of namespacing break this?
+      # _wrapper_options is semi-private but we can get at it
       def pundit_params_for(_record)
-        params.require(controller_name)
+        params.require(_wrapper_options.name)
       end
 
     private
