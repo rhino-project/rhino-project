@@ -120,7 +120,7 @@ module Rhino
         if order_clauses.empty?
           @scope
         else
-          select_clauses << "#{@scope.klass.to_s.tableize}.*"
+          select_clauses << "#{@scope.klass.table_name}.*"
           @scope = @scope.reorder(nil).select(select_clauses.uniq).joins(join_clauses)
           order_clauses.inject(@scope) { |acc, el| acc.order(el) }
         end
