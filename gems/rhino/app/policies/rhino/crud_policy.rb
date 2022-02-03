@@ -70,7 +70,8 @@ module Rhino
     end
 
     class Scope < ::Rhino::BasePolicy::Scope
-      def resolve # rubocop:disable Metrics/AbcSize
+      # rubocop:todo Metrics/MethodLength
+      def resolve # rubocop:disable Metrics/AbcSize,
         role_scopes = []
 
         # Get every role for the auth owner
@@ -90,12 +91,14 @@ module Rhino
         end
 
         # Select with present? because scope.none with produce empty sql string
-        role_scopes = role_scopes.map(&:to_sql).select(&:present?)
+        role_scopes = role_scopes.map(&:to_sql).compact_blank
+        return scope.none unless role_scopes.present?
 
         # UNION all the role based scopes
         # The front end needs to filter per base owner as appropriate
         scope.where("#{tnpk(scope)} in (#{role_scopes.join(' UNION ')})")
       end
+      # rubocop:enable Metrics/MethodLength
 
       private
         def tnpk(scope)
