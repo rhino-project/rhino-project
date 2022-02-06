@@ -29,6 +29,22 @@ class Rhino::CrudPolicyTest < Rhino::TestCase::Policy
     end
   end
 
+  # NUB-939
+  %i[index show].each do |action_type|
+    test "#{testing_policy} none scope does not crash #{action_type}?" do
+      @policy_class = Minitest::Mock.new
+      @policy = Minitest::Mock.new
+      @policy.expect :resolve, Blog.none
+      @policy_class.expect :new, @policy, [Object, Object]
+
+      Rhino::PolicyHelper.stub :find_policy, @policy_class do
+        assert_scope_empty @current_user, Blog
+      end
+
+      @policy.verify
+    end
+  end
+
   %i[show update create].each do |action_type|
     test "#{testing_policy} looks up role based policy and calls permitted_attributes_for_#{action_type}" do
       @policy_class = Minitest::Mock.new
