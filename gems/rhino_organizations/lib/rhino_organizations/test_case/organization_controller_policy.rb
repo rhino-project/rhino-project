@@ -10,7 +10,7 @@ module Rhino
           @resource_class = resource.to_s.classify.safe_constantize
           @resource_collection_route = "#{@resource_class.model_name.route_key}_path"
           @resource_singular_route = "#{@resource_class.model_name.singular_route_key}_path"
-          @resource = create resource, author: @current_user, organization: @current_organization
+          @resource = create resource, organization: @current_organization
           @another_resource = create resource
         end
 
