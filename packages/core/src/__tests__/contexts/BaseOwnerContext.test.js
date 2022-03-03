@@ -45,15 +45,17 @@ describe('BaseOwnerContext', () => {
   const firstUsersRole = { organization: firstBaseOwner, role: {} };
   const secondUsersRole = { organization: secondBaseOwner, role: {} };
   const usersRoles = [firstUsersRole, secondUsersRole];
+  const account = {
+    ...user,
+    users_roles: usersRoles
+  }
   const successShowQueryResult = {
     isLoading: false,
     isSuccess: true,
     data: {
-      data: {
-        ...user, 
-        users_roles: usersRoles
-      }
-    }
+      data: account
+    },
+    resource: account
   };
   const failureShowQueryResult = {
     isFailure: true

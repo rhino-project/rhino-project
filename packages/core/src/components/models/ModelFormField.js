@@ -38,8 +38,8 @@ const ModelFormFieldJoinSimple = ({
     [model]
   );
 
-  const { data: { data: resources } = {} } = useModelIndex(joinModel);
-  const options = useMemo(() => resources?.results || [], [resources]);
+  const { results } = useModelIndex(joinModel);
+  const options = useMemo(() => results || [], [results]);
 
   const currentOptions = useMemo(
     () =>
@@ -126,22 +126,20 @@ const ModelFormFieldReference = ({
   const model = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(() => getIdentifierAttribute(model), [model]);
 
-  const { data: { data: belongsResource } = {} } = useModelIndex(model);
+  const { results } = useModelIndex(model);
+  const options = useMemo(() => results || [], [results]);
 
   const selectedOption = useMemo(() => {
     if (!value) return [];
 
-    // String compare becuase numbers can be come strings in and out of edits
-    // identifier in case the reference is the full object
+    // String compare because numbers can be come strings in and out of edits
+    // Identifier in case the reference is the full object
     const valString = value?.[identifier.name]
       ? `${value?.[identifier.name]}`
       : `${value}`;
 
-    const selectedOption =
-      belongsResource?.results?.filter((e) => `${e.id}` === valString) || [];
-
-    return selectedOption;
-  }, [belongsResource, identifier, value]);
+    return options.filter((e) => `${e.id}` === valString);
+  }, [options, identifier, value]);
 
   return (
     <Typeahead
@@ -149,7 +147,7 @@ const ModelFormFieldReference = ({
       className={error ? 'is-invalid' : ''}
       clearButton={attribute.nullable}
       labelKey="display_name"
-      options={belongsResource?.results || []}
+      options={options}
       selected={selectedOption}
       highlightOnlyResult
       isInvalid={!!error}

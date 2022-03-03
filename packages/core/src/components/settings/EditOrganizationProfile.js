@@ -71,7 +71,7 @@ const EditOrganizationProfile = () => {
     isSuccess,
     error
   } = useModelUpdate(model);
-  const { data: { data: resource } = {} } = useModelShow(model, baseOwnerId);
+  const { resource } = useModelShow(model, baseOwnerId);
 
   const handleSubmit = (formValues) =>
     resourceUpdate({ id: baseOwnerId, ...formValues });

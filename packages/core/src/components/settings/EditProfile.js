@@ -62,7 +62,7 @@ const EditProfile = () => {
     isSuccess,
     error
   } = useModelUpdate(model);
-  const { data: { data: resource } = {} } = useModelShow(model, null);
+  const { resource } = useModelShow(model, null);
 
   const handleSubmit = (formValues) => resourceUpdate({ ...formValues });
 

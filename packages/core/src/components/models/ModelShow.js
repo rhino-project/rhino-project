@@ -125,10 +125,7 @@ const ModelShow = ({ overrides, ...props }) => {
     ModelShowRelated
   } = useOverridesWithGlobal(model, 'show', defaultComponents, overrides);
 
-  const { isLoading, data: { data: resource } = {} } = useModelShow(
-    model,
-    modelId
-  );
+  const { isLoading, resource } = useModelShow(model, modelId);
 
   if (isLoading) {
     return <Spinner className="mx-auto d-block" />;

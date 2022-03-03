@@ -26,7 +26,7 @@ export const ModelCreateHeader = (props) => {
   const parentModel = useMemo(() => getParentModel(model), [model]);
   const { [parentModel.model]: parentId } = resource;
 
-  const { data: { data: parent } = {} } = useModelShow(parentModel, parentId);
+  const { resource: parent } = useModelShow(parentModel, parentId);
 
   const breadcrumbs = () => {
     if (!parent || isBaseOwned(model)) return [];

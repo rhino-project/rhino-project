@@ -202,7 +202,7 @@ const ModelTable = (props) => {
     prepareRow
   } = useTable({
     columns: columns,
-    data: resources.results,
+    data: resources?.results || [],
     memberActions
   });
 
@@ -232,14 +232,13 @@ ModelTable.propTypes = {
   model: PropTypes.object.isRequired,
   overrides: PropTypes.object,
   paths: PropTypes.oneOfType([PropTypes.array, PropTypes.func]),
-  resources: PropTypes.object.isRequired,
+  resources: PropTypes.object,
   onRowClick: PropTypes.func
 };
 
 ModelTable.defaultProps = {
   baseRoute: '',
-  loading: false,
-  resources: { results: [] }
+  loading: false
 };
 
 export default ModelTable;
