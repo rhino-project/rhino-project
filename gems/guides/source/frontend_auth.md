@@ -59,7 +59,7 @@ In case of a **failure**, it analyzes if the error is a `NetworkUnauthorizedErro
 
 ## Overall flow for bootstrapping the app
 
-![](./assets/auth-overall-process.drawio.svg)
+![](images/auth-overall-process.drawio.svg)
 
 ## Use cases
 
@@ -74,7 +74,7 @@ In case of a **failure**, it analyzes if the error is a `NetworkUnauthorizedErro
 7. `AuthProvider` sets `initializing: false` and `user: null`
 8. `NonAuthenticatedRoute` checks that `AuthProvider` has `initializing === false` and `user: null`, so it renders `<SignInPage />`
 
-![](./assets/auth-start-signin-unauthenticated.drawio.svg)
+![](images/auth-start-signin-unauthenticated.drawio.svg)
 
 ### User already has a cookie set and navigates to the `/sign_in` page
 
@@ -87,7 +87,7 @@ In case of a **failure**, it analyzes if the error is a `NetworkUnauthorizedErro
 7. `AuthProvider` sets `initializing: false` and `user: {...}`
 8. `NonAuthenticatedRoute` checks that `AuthProvider` has `initializing === false` and `user: {...}`, so it redirects to `routePaths.rootpath()`
 
-![](./assets/auth-start-signin-authenticated.drawio.svg)
+![](images/auth-start-signin-authenticated.drawio.svg)
 
 ### User does not have a cookie set and navigates to the `/` root page
 
@@ -100,7 +100,7 @@ In case of a **failure**, it analyzes if the error is a `NetworkUnauthorizedErro
 7. `AuthProvider` sets `initializing: false` and `user: null`
 8. `AuthenticatedRoute` checks that `AuthProvider` has `initializing === false` and `user: null`, so it redirects to `/sign_in`
 
-![](./assets/auth-start-root-unauthenticated.drawio.svg)
+![](images/auth-start-root-unauthenticated.drawio.svg)
 
 ### User has a cookie set and navigates to the `/` root page
 
@@ -113,7 +113,7 @@ In case of a **failure**, it analyzes if the error is a `NetworkUnauthorizedErro
 7. `AuthProvider` sets `initializing: false` and `user: {...}`
 8. `AuthenticatedRoute` checks that `AuthProvider` has `initializing === false` and `user: {...}`, so it renders the page
 
-![](./assets/auth-start-root-authenticated.drawio.svg)
+![](images/auth-start-root-authenticated.drawio.svg)
 
 ### User is not logged in yet and issues a successful sign in request from the sign in page
 
@@ -129,7 +129,7 @@ In case of a **failure**, it analyzes if the error is a `NetworkUnauthorizedErro
 1. `NonAuthenticatedRoute` checks that `AuthProvider` has `initializing === false` and `user: {...}`, so it redirects to `routePaths.rootpath()`
 1. User has logged in
 
-![](./assets/auth-signin-process.drawio.svg)
+![](images/auth-signin-process.drawio.svg)
 
 ### User is logged in with a valid cookie and issues a sign out request through the AccountMenu component
 
@@ -168,4 +168,4 @@ In case of a **failure**, it analyzes if the error is a `NetworkUnauthorizedErro
    1. `onFailure` callback from `react-query` is run, checks that the error is **not** a `NetworkUnauthorizedError`, and **does not call** `logOut()` from the `useAuth` hook
    1. Use **has not** logged out
 
-![](./assets/auth-signout-process.drawio.svg)
+![](images/auth-signout-process.drawio.svg)

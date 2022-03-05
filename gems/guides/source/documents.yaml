@@ -1,0 +1,81 @@
+- name: Start Here
+  documents:
+    - name: Rhino Tutorial
+      url: tutorial.html
+      description: Getting started building a Rhino application
+- name: Resources
+  documents:
+    - name: Resources
+      url: resources.html
+      description: This guide documents core concepts for resources Rhino
+    - name: Resource attributes
+      url: resources_attributes.html
+      description: This guide documents core concepts for resource attributes Rhino
+- name: Authentication & Authorization
+  documents:
+    - name: Authentication
+      url: auth.html
+      description: This guide documents how authentication works in Rhino
+    - name: Frontend Authentication
+      url: frontend_auth.html
+      description: This guide documents using authentication and authorization in the Rhino frontend
+    - name: Policies
+      url: policies.html
+      description: This guide documents how to write authorization policies in Rhino
+- name: REST API
+  documents:
+    - name: REST API
+      url: rest_api.html
+      description: This guide documents how the REST API is generated in Rhino
+    - name: Filtering
+      url: rest_api_filtering.html
+      description: This guide documents how filtering on the index API works in Rhino
+    - name: Ordering
+      url: rest_api_ordering.html
+      description: This guide documents how ordering (sorting) on the index API works in Rhino
+- name: UI
+  documents:
+    - name: Frontend Overrides
+      url: frontend_overrides.html
+      description: This guide documents how to override core UI functionality
+- name: Modules
+  documents:
+    - name: Modules
+      url: modules.html
+      description: This guide documents what a module is and how to extend Rhino with new modules
+    - name: Jobs
+      url: jobs.html
+      description: This guide documents the async jobs modules
+    - name: Notifications
+      url: notifications.html
+      description: This guide documents the notifications module
+    - name: Subscription
+      url: subscription.html
+      description: This guide documents the subscriptions module
+- name: Useful Patterns
+  documents:
+    - name: Server Overrides
+      url: overrides.html
+      description: This guide documents how to override core server functionality
+    - name: Scraping
+      url: scraping.html
+      description: This guide documents how to override core server functionality
+- name: Updating
+  documents:
+    - name: Updating Rhino
+      url: update-from-rhino.html
+      description: This guide documents how to keep Rhino updated
+- name: DevOps
+  documents:
+    - name: Deployment
+      url: deployment.html
+      description: How to deploy Rhino apps
+    - name: Error Reporting
+      url: error_reporting.html
+      description: How to deploy Rhino apps
+    - name: Client Error Reporting
+      url: error_reporting_client.html
+      description: How to deploy Rhino apps
+    - name: Server Error Reporting
+      url: error_reporting_server.html
+      description: How to deploy Rhino apps
