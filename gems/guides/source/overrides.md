@@ -4,7 +4,7 @@ This guide is an introduction to how overriding Rhino behaviour works.
 
 ## Overrides
 
-Rhino implements the pattern defined in https://guides.rubyonrails.org/engines.html#improving-engine-functionality both in its engines and in `config/application.rb` for the Boilerplate.
+Rhino implements the pattern defined in https://nubinary.github.io/rhino-guides/engines.html#improving-engine-functionality both in its engines and in `config/application.rb` for the Boilerplate.
 
 You may override classes in Rhino this way or may override classes that Rhino itself overrides.
 
