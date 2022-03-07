@@ -6,7 +6,7 @@ This guide is an introduction to Rhino Jobs
 
 ActiveJob on top of resque is the basis for async and scheduled jobs in Rhino Jobs.
 
-More details at https://guides.rubyonrails.org/active_job_basics.html
+More details at https://nubinary.github.io/rhino-guides/active_job_basics.html
 
 ### Installation
 

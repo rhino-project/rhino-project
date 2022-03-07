@@ -6,59 +6,96 @@ This guide is a step-by-step tutorial to launch and customize the application
 
 Make sure you have below installed:
 
-    - Ruby version: 3.0.2
-    - Bundler  2.2.20
-    - Rails: 6.1.4
-    - PostgreSQL: 9.4 or newer
-    - node 14.16.1
+- Ruby version: 3.0.2
+- Bundler 2.2.20
+- Rails: 6.1.4
+- PostgreSQL: 9.4 or newer
+- node 14.16.1
+
+See the README for more details on how to set these prerequistes up.
 
 ## Launch the application
 
 ### Client side
 
-1. Clone the repo
-   `git clone git@github.com:nubinary/boilerplate_client.git`
+- Clone the repo
 
-2. `cd boilerplate_client`
+```bash
+$ git clone git@github.com:nubinary/boilerplate_client.git
+$ cd boilerplate_client
+```
 
-3. Install dependencies: `npm install`
+- Install dependencies:
 
-4. Copy `env.sample` to `.env` and modify env vars
+```bash
+$ npm install
+```
 
-   API_ROOT_PATH: url of the api to which this client will send requests.
+- Copy `env.sample` to `.env`
 
-   By default with the boilerplate_server this would be `API_ROOT_PATH=http://localhost:3000`
+```bash
+$ cp env.sample .env
+```
 
-5. Run the application client: `npm run dev`
+and modify env vars:
+
+API_ROOT_PATH: url of the api to which this client will send requests.
+
+By default with the boilerplate_server this would be `API_ROOT_PATH=http://localhost:3000`
+
+- Run the application client:
+
+```bash
+$ npm run dev
+```
 
 ### Server side
 
-1. Clone the repo
-   `git clone git@github.com:nubinary/boilerplate_server.git`
+- Clone the repo
 
-2. `cd boilerplate_server`
+```bash
+$ git clone git@github.com:nubinary/boilerplate_server.git
+$ cd boilerplate_server
+```
 
-3. Copy `env.sample` to `.env` and modify env vars. Pay attention to `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`. They should be good defaults for MacOS with postgress installed via homebrew, but may need altering for other platforms
+- Copy `env.sample` to `.env` and modify env vars. Pay attention to `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`. They should be good defaults for MacOS with postgress installed via homebrew, but may need altering for other platforms
 
-4. Install gem dependencies `bundle install`
+- Install gem dependencies
 
-5. Create and load the database `rails db:setup`
+```bash
+$ bundle install
+```
 
-6. Run the server to check the results `rails s`
+- Create and load the database
+
+```bash
+$ rails db:setup
+```
+
+- Run the server to check the results
+
+```bash
+$ rails s
+```
 
 ## Add blogs and blog posts
 
-1. Create blogs and blog posts migrations
+- Create blogs and blog posts migrations
 
-   `rails g model blog user:references title:string published_at:datetime`
+```bash
+$ rails g model blog user:references title:string published_at:datetime
+$ rails g model blog_post blog:references title:string body:text published:boolean
+```
 
-   `rails g model blog_post blog:references title:string body:text published:boolean`
+- Add created models to db
 
-2. Add created models to db `rails db:migrate`
+```bash
+$ rails db:migrate
+```
 
-3. Add rails associations, rails validations and rhino configurations to related model file `app/models/blog.rb`
+- Add rails associations, rails validations and rhino configurations to related model file `app/models/blog.rb`
 
-```Ruby
+```ruby
   has_many :blog_posts, dependent: :destroy
 
   has_one_attached :banner
@@ -70,9 +107,9 @@ Make sure you have below installed:
   validates :title, presence: true
 ```
 
-4. Add rails associations, rails validations and rhino configurations to related model file `app/models/blog_post.rb`
+- Add rails associations, rails validations and rhino configurations to related model file `app/models/blog_post.rb`
 
-```Ruby
+```ruby
   rhino_owner :blog
   rhino_references %i[blog]
 
@@ -81,29 +118,34 @@ Make sure you have below installed:
 
 ```
 
-5. Update rhino config `config/initializers/rhino.rb` adding Blog and BlogPost as resources
+- Update rhino config `config/initializers/rhino.rb` adding Blog and BlogPost as resources
 
-```Ruby
+```ruby
 config.resources += ['User', 'Blog', 'BlogPost']
 ```
 
-6. Run the server to check the results `rails s`
+- Run the server to check the results `rails s`
 
 ## Add categories:
 
-1. Create categories migration and add them to blogs
+- Create categories migration and add them to blogs
 
-   `rails g model category name:string`
+```bash
+$ rails g model category name:string
+$ rails g migration add_category_to_blogs category:references
+```
 
-   `rails g migration add_category_to_blogs category:references`
+- Update migration file `add_category_to_blogs` set `null: true`
 
-2. Update migration file `add_category_to_blogs` set `null: true`
+- Add created models to db
 
-3. Add created models to db `rails db:migrate`
+```bash
+$ rails db:migrate
+```
 
-4. Add rails associations, rails validations and rhino configurations to model file `app/models/category.rb`
+- Add rails associations, rails validations and rhino configurations to model file `app/models/category.rb`
 
-```Ruby
+```ruby
   has_many :blogs, dependent: :nullify
 
   rhino_owner_global
@@ -112,37 +154,44 @@ config.resources += ['User', 'Blog', 'BlogPost']
   rhino_search [:name]
 ```
 
-5. Update category owner model blog `app/models/blog.rb`. Add/edit these lines:
+- Update category owner model blog `app/models/blog.rb`. Add/edit these lines:
 
-```Ruby
+```ruby
 belongs_to :category, optional: true
-
 
 rhino_references [:user, :category, :banner_attachment]
 ```
 
-6. Update rhino config `config/initializers/rhino.rb` adding Category as resource
+- Update rhino config `config/initializers/rhino.rb` adding Category as resource
 
-```Ruby
+```ruby
 config.resources += ['User', 'Blog', 'BlogPost', 'Category']
 ```
 
-7. Use seed data to add categories
-   Add below to `db/seeds.rb`
+- Use seed data to add categories
+  Add below to `db/seeds.rb`
 
-```Ruby
+```ruby
 3.times do
   Category.create!(name: FFaker::Book.unique.genre)
 end
 ```
 
-Then `rails db:seed`
+Then
 
-8. Run the server to check the results `rails s`
+```bash
+$ rails db:seed
+```
+
+- Run the server to check the results
+
+```bash
+$ rails s
+```
 
 ## Add tags
 
-1. add acts-as-taggable-on to Gemfile
+- add acts-as-taggable-on to Gemfile
 
 - Add dependency to gemfile `gem 'acts-as-taggable-on', '~> 7.0'`
 
@@ -150,27 +199,37 @@ Then `rails db:seed`
 
 - Install migrations
 
-  `rails acts_as_taggable_on_engine:install:migrations`
+```bash
+$ rails acts_as_taggable_on_engine:install:migrations`
+```
 
 - Review the generated migrations then migrate :
 
-  `rails db:migrate`
+```bash
+$ rails db:migrate
+```
 
-2. Add `acts_as_taggable_on :tags` to related model `blog_post.rb`
+- Add `acts_as_taggable_on :tags` to related model `blog_post.rb`
 
-3. Run the server to check the results `rails s`
+- Run the server to check the results
+
+```bash
+$ rails s
+```
 
 ## Add OG meta tags
 
-1. Create OG meta tags migration and add them to blogs
+- Create OG meta tags migration and add them to blogs
 
-   `rails g model og_meta_tag blog_post:references tag_name:string value:string`
+```bash
+$ rails g model og_meta_tag blog_post:references tag_name:string value:string
+```
 
-2. Add created models to db `rails db:migrate`
+- Add created models to db `rails db:migrate`
 
-3. Add rails associations, rails validations and rhino configurations to model file `app/models/og_meta_tag.rb`
+- Add rails associations, rails validations and rhino configurations to model file `app/models/og_meta_tag.rb`
 
-```Ruby
+```ruby
   rhino_owner :blog_post
   rhino_references [{ blog_post: [:blog] }]
 
@@ -182,9 +241,9 @@ Then `rails db:seed`
   end
 ```
 
-5. Update ogMetaTag owner model blog `app/models/blog_post.rb`. Add/edit these lines:
+- Update ogMetaTag owner model blog `app/models/blog_post.rb`. Add/edit these lines:
 
-```Ruby
+```ruby
 has_many :og_meta_tags, dependent: :destroy
 
 accepts_nested_attributes_for :og_meta_tags, allow_destroy: true
@@ -192,21 +251,21 @@ accepts_nested_attributes_for :og_meta_tags, allow_destroy: true
 rhino_references %i[blog og_meta_tags]
 ```
 
-6. Update rhino config `config/initializers/rhino.rb` adding OgMetaTag as resource
+- Update rhino config `config/initializers/rhino.rb` adding OgMetaTag as resource
 
-```Ruby
+```ruby
 config.resources += ['User', 'Blog', 'BlogPost', 'Category', 'OgMetaTag']
 ```
 
-7. Run the server to check the results `rails s`
+- Run the server to check the results `rails s`
 
 ## Convert to organization
 
-1. Creating roles and organizations and update user `rails rhino_organizations:install`
+- Creating roles and organizations and update user `rails rhino_organizations:install`
 
-2. Update `app/models/blog.rb` as follows
+- Update `app/models/blog.rb` as follows
 
-```Ruby
+```ruby
 
 class Blog < ApplicationRecord
   belongs_to :organization
@@ -228,12 +287,16 @@ end
 
 ```
 
-3. `rails g migration add_organization_to_blog organization:references`
+- Have blogs owned by the organization
 
-4. Use seed data to add organizations
-   Add below to `db/seeds.rb`
+```bash
+$ rails g migration add_organization_to_blog organization:references
+```
 
-```Ruby
+- Use seed data to add organizations
+  Add below to `db/seeds.rb`
+
+```ruby
 def generate_blogs(user, org)
   5.times do
     blog = Blog.create!(user_id: user.id, organization: org, title: FFaker::Book.unique.author, category_id: Category.ids.sample)
@@ -297,8 +360,20 @@ if Rails.env.development?
 end
 ```
 
-5. Then `rails db:drop` and `rails db:setup`
+- Then reset the database and seed data:
 
-6. Add created models to db `rails db:migrate`
+```bash
+$ rails db:reset
+```
 
-7. Run the server to check the results `rails s`
+- Add created models to db
+
+```bash
+$ rails db:migrate
+```
+
+- Run the server to check the results
+
+```bash
+$ rails s
+```
