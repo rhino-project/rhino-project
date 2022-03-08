@@ -67,6 +67,9 @@
       description: This guide documents how to keep Rhino updated
 - name: DevOps
   documents:
+    - name: Accounts
+      url: accounts.html
+      description: Accounts for running Rhino apps
     - name: Deployment
       url: deployment.html
       description: How to deploy Rhino apps
