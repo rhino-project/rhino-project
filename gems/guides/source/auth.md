@@ -17,7 +17,7 @@ OmniAuth providers can be add with the following steps
 
 The oauth modules will then be advertised as part of the rhino open api response.
 
-```
+```json
 "info": {
   "title": "BoilerPlate API",
   "version": "0.0.0",

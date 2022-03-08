@@ -165,8 +165,8 @@ const globalOverrides = {
 
 It is possible to override components of a significant model and its actions. To do so, add `component: componentName` to the desired model action like the example below:
 
-```
-import ModelIndexCard from 'components/models/ModelIndexCard';
+```javascript
+import ModelIndexCard from "components/models/ModelIndexCard";
 
 const globalOverrides = {
   blog: {
@@ -174,13 +174,12 @@ const globalOverrides = {
       ModelIndexTable: {
         component: ModelIndexCard,
         props: {
-          paths: ['title', 'category', 'published_at']
-        }
-      }
-    }
-  }
+          paths: ["title", "category", "published_at"],
+        },
+      },
+    },
+  },
 };
-
 ```
 
 In the above example the predefined component `ModelIndexCard` is imported to override blogs indexing view instead of `ModelIndexTable`. By applying this component override, blogs indexing would show card-based view instead of table-based one.

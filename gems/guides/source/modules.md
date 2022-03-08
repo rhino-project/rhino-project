@@ -18,7 +18,7 @@ Each module provides an installation command for instance `rails rhino_jobs:inst
 
 Modules should register themselves as appropriate in `engine.rb`, for instance if a model is present or an environment variable is set.
 
-```
+```ruby
 initializer 'rhino_organizations.register_module' do
   config.after_initialize do
     if Rhino.resources.include?('Organization')
