@@ -19,7 +19,11 @@ module Rhino
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
       def handle_uncaught_error(exception)
-        logger.info("Internal server error#{exception.class} #{exception.message} #{exception.backtrace.join("\n")}")
+        # Send to rollbar if available
+        Rollbar.error(exception) if defined? Rollbar
+
+        logger.error("Internal server error#{exception.class} #{exception.message} #{exception.backtrace.join("\n")}")
+
         render json: { errors: ['Internal server error.'] },
                status: :internal_server_error
       end
