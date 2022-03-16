@@ -20,6 +20,9 @@ jest.mock('rhino/models', () => {
   };
 });
 
+// Mock the uuid function used to generate a predictable id
+jest.mock("uuid/dist/v4", () => () => "123");
+
 const ATTRIBUTES = [
   {},
   {
