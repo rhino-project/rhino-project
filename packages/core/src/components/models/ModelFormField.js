@@ -2,6 +2,7 @@ import { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { get, set } from 'lodash';
 import classnames from 'classnames';
+import { v4 as uuidv4 } from 'uuid';
 
 import { CustomInput, Input } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
@@ -384,10 +385,14 @@ const ModelFormField = ({
     onChange(set(resource, path, value));
   };
 
+  // Create a unique id so that there is never a conflict for things like CustomInput
+  // if you have the same formfield on a path
+  const id = useMemo(() => uuidv4(), []);
+
   const commonProps = {
     key: path,
     autoFocus,
-    id: path,
+    id,
     attribute,
     resource,
     path,
