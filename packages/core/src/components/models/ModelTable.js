@@ -21,9 +21,9 @@ import { usePaths } from 'rhino/hooks/paths';
 export const ModelTableCellRenderer = ({ column: { attribute }, value }) =>
   getStringForDisplay(attribute, value);
 
-export const ModelTableMemberActions = ({ memberActions, row }) => {
+export const ModelTableMemberActions = ({ memberActions, key, row }) => {
   return (
-    <UncontrolledDropdown>
+    <UncontrolledDropdown key={key}>
       <DropdownToggle tag={'div'}>
         <Icon icon="three-dots-vertical" height={24} width={24} />
       </DropdownToggle>
