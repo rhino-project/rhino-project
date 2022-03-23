@@ -4,8 +4,9 @@ module Rhino
   class Engine < ::Rails::Engine
     config.before_configuration do
       # When running the dummy apps through rails commands the .env file won't exist in the root
-      # but the DB_NAME variable will have been set by rhino_comman
-      if Rails.env.development? && (!File.exist?(Rails.root.join(".env")) && ENV["DB_NAME"].blank?)
+      # but the DB_NAME variable will have been set by rhino_command; the rake task name will be
+      # set for rhino:dev:setup
+      if Rails.env.development? && (!File.exist?(Rails.root.join(".env")) && (!run_from_dummy? && !run_from_dev_setup?))
         raise ".env file must exist in development - see README.md"
       end
     end
@@ -119,6 +120,14 @@ module Rhino
         check_references(resource)
         check_owner_reference(resource) if resource.ancestors.include?(Rhino::Resource::ActiveRecordExtension)
       end
+    end
+
+    def self.run_from_dummy?
+      ENV["DB_NAME"].present?
+    end
+
+    def self.run_from_dev_setup?
+      Rake.application.top_level_tasks == ["rhino:dev:setup"]
     end
   end
 end
