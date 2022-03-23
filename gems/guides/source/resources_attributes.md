@@ -81,6 +81,15 @@ Use the ipv4 validator for backend validation. Your model might look something l
   validates :ipv4, ipv4: { allow_blank: true }
 ```
 
+#### Mac Address
+
+Use the mac address validator for backend validation. Your model might look something like this:
+
+```ruby
+  # Validate the optional country
+  validates :mac_address, mac_address: { allow_blank: true }
+```
+
 ### Array attributes
 
 Arrays for nested attributes can be limited by
