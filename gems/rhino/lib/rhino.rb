@@ -4,6 +4,7 @@ require 'rhino/engine'
 require 'validators/country_validator'
 require 'validators/email_validator'
 require 'validators/ipv4_validator'
+require 'validators/mac_address_validator'
 require 'active_support'
 
 module Rhino
