@@ -19,8 +19,9 @@ module Rhino
 
         def install_hooks
           say "Installing git hooks"
-          copy_file "prepare-commit-msg", ".git/hooks/prepare-commit-msg"
-          copy_file "prepare-commit-msg", client_file(".git/hooks/prepare-commit-msg")
+          # Hooks need to be executable
+          copy_file "prepare-commit-msg", ".git/hooks/prepare-commit-msg", mode: :preserve
+          copy_file "prepare-commit-msg", client_file(".git/hooks/prepare-commit-msg"), mode: :preserve
         end
 
         private
