@@ -23,12 +23,12 @@ class Ipv4ValidatorTest < ActiveSupport::TestCase
   end
 
   test "validates ipv4 with allow_blank" do
-    class Ipv4Test < Ipv4
+    class Ipv4TestBlank < Ipv4
       validates :ipv4, ipv4: { allow_blank: true }
     end
 
-    assert_predicate Ipv4Test.new, :valid?
-    assert_predicate Ipv4Test.new(ipv4: "12."), :invalid?
-    assert_predicate Ipv4Test.new(ipv4: "192.168.1.1"), :valid?
+    assert_predicate Ipv4TestBlank.new, :valid?
+    assert_predicate Ipv4TestBlank.new(ipv4: "12."), :invalid?
+    assert_predicate Ipv4TestBlank.new(ipv4: "192.168.1.1"), :valid?
   end
 end
