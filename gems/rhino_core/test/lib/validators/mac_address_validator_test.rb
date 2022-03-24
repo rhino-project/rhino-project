@@ -23,12 +23,12 @@ class MacAddressValidatorTest < ActiveSupport::TestCase
   end
 
   test "validates mac address with allow_blank" do
-    class MacAddressTest < MacAddress
+    class MacAddressTestBlank < MacAddress
       validates :mac_address, mac_address: { allow_blank: true }
     end
 
-    assert_predicate MacAddressTest.new, :valid?
-    assert_predicate MacAddressTest.new(mac_address: "7Z:00:18:ce:16:30"), :invalid?
-    assert_predicate MacAddressTest.new(mac_address: "7b:00:18:ce:16:30"), :valid?
+    assert_predicate MacAddressTestBlank.new, :valid?
+    assert_predicate MacAddressTestBlank.new(mac_address: "7Z:00:18:ce:16:30"), :invalid?
+    assert_predicate MacAddressTestBlank.new(mac_address: "7b:00:18:ce:16:30"), :valid?
   end
 end
