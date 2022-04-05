@@ -26,7 +26,7 @@ Edit resque_schedule.yml. See https://github.com/JustinAiken/active_scheduler fo
 
 ### Processing the queue
 
-The queued jobs `QUEUE=* bundle exec rails resque:work`.
+The queued jobs `COUNT=1 QUEUE=* bundle exec rails resque:workers`.
 
 The scheduled jobs `bundle exec rails resque:scheduler`
 

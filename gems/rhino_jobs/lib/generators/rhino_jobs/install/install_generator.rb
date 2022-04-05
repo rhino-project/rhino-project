@@ -13,7 +13,7 @@ module RhinoJobs
 
       def update_procfile
         inject_into_file 'Procfile' do
-          "worker: QUEUE=* bundle exec rails resque:work\n"
+          "worker: COUNT=1 QUEUE=* bundle exec rails resque:workers\n"
         end
         inject_into_file 'Procfile' do
           "scheduler: bundle exec rails resque:scheduler\n"
@@ -26,7 +26,7 @@ module RhinoJobs
           worker:
             image: web
             command:
-              - QUEUE=* bundle exec rails resque:work
+              - COUNT=1 QUEUE=* bundle exec rails resque:workers
           scheduler:
             image: web
             command:
