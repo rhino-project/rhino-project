@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { usePaginationParams } from 'rhino/hooks/history';
 import { Pager } from 'rhino/components/pagination';
 
-const ModelPager = ({ resources }) => {
+const ModelPager = ({ resources, baseFilter }) => {
   const [
     hasPrev,
     hasNext,
@@ -13,7 +13,7 @@ const ModelPager = ({ resources }) => {
     totalPages,
     onSetPage,
     page
-  ] = usePaginationParams(resources?.total);
+  ] = usePaginationParams(resources?.total, baseFilter);
 
   return (
     <Pager

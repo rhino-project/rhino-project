@@ -129,10 +129,9 @@ export const usePills = () => {
   return { state, add, reset };
 };
 
-export const usePaginationParams = (total, limitDefault = PAGE_SIZE) => {
-  const [{ offset }, setSearchParams] = useSearchParams({
-    limit: limitDefault
-  });
+export const usePaginationParams = (total, baseFilter = {}) => {
+  const [{ offset }, setSearchParams] = useSearchParams(baseFilter);
+  const { limit: limitDefault = PAGE_SIZE } = baseFilter;
 
   const totalPages = Math.ceil(total / limitDefault);
   const currentPage = Math.round(offset / limitDefault + 0.5);
