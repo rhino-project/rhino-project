@@ -38,10 +38,9 @@
     - name: Frontend Overrides
       url: frontend_overrides.html
       description: This guide documents how to override core UI functionality
-  documents:
     - name: Frontend API Hooks
       url: frontend_api_hooks.html
-      description: This guide documents how to call the API     
+      description: This guide documents how to call the API
 - name: Modules
   documents:
     - name: Modules
