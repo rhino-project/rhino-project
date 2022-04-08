@@ -139,10 +139,7 @@ const ModelEdit = ({ overrides, ...props }) => {
     ModelEditActions
   } = useOverridesWithGlobal(model, 'edit', defaultComponents, overrides);
 
-  const { isLoading, data: { data: resource = {} } = {} } = useModelShow(
-    model,
-    modelId
-  );
+  const { isLoading, resource } = useModelShow(model, modelId);
 
   const [values, , errors, setErrors, handleChange] = useControlledForm(
     resource

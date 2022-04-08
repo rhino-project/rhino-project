@@ -1,6 +1,12 @@
 import { filter, find, toPath, set } from 'lodash';
 import modelLoader from 'rhino/models';
 
+/**
+ * @typedef {object} Model
+ * @property {string} model
+ * @property {string} name
+ */
+
 export const getModel = (model) => modelLoader.api.components.schemas[model];
 export const getParentModel = (model) => getModel(model.ownedBy);
 export const getModelAncestors = (model) => {

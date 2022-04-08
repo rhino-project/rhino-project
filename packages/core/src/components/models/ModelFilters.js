@@ -75,8 +75,10 @@ export const ModelAttributeReferenceFilter = ({
   const model = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(() => getIdentifierAttribute(model), [model]);
 
-  const { data: { data: resources } = {} } = useModelIndex(model, {
-    params: { limit: 100 }
+  const { isSuccess, results } = useModelIndex(model, {
+    networkOptions: {
+      params: { limit: 100 }
+    }
   });
 
   // We inject the ID because if we have both 'engagement.project.client'
@@ -115,24 +117,19 @@ export const ModelAttributeReferenceFilter = ({
       value != null &&
       pills != null &&
       pills[fullPath] == null &&
-      resources?.results
+      isSuccess
     ) {
       hasSetPillsFirstTime.current = true;
-      const resource = resources.results.find(
-        (r) => `${r[identifier.name]}` === value
-      );
+      const resource = results.find((r) => `${r[identifier.name]}` === value);
 
       addPills({ [fullPath]: resource.display_name });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, resources, pills]);
+  }, [value, results, pills]);
 
   return (
     <Input type="select" value={value || -1} onChange={handleChange}>
-      {optionsFromIndexWithTitle(
-        resources?.results,
-        `${attribute.readableName}...`
-      )}
+      {optionsFromIndexWithTitle(results, `${attribute.readableName}...`)}
     </Input>
   );
 };

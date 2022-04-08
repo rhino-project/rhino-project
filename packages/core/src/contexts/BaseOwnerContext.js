@@ -22,17 +22,16 @@ const BaseOwnerProvider = ({ children }) => {
   const [resolving, setResolving] = useState(true);
   const [usersRoles, setUsersRoles] = useState([]);
 
-  const { isSuccess, isLoading, data: { data: response } = {} } = useModelShow(
+  const { isSuccess, isLoading, resource: account } = useModelShow(
     'account',
     null,
-    {},
-    { enabled: !!user }
+    { queryOptions: { enabled: !!user } }
   );
 
   useEffect(() => {
     if (isSuccess && user) {
       if (hasOrganizationsModule()) {
-        const usersRoles = response?.users_roles ?? [];
+        const usersRoles = account?.users_roles ?? [];
         setUsersRoles(usersRoles);
         const usersRoleFromUrl = usersRoles.find(
           (el) => el.organization.id === baseOwnerId

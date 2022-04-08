@@ -126,7 +126,7 @@ describe('ModelFormField', () => {
     .mockImplementation(() => () => ({ name: 'id' }));
   jest
     .spyOn(queries, 'useModelIndex')
-    .mockImplementation(() => () => ({ data: {} }));
+    .mockImplementation(() => ({ data: {}, results: [] }));
 
   ATTRIBUTES.forEach((attribute) => {
     const readableName = attribute.readableName;

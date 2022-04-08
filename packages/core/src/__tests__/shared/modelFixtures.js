@@ -5,6 +5,13 @@ const api = {
       user: {
         model: 'user',
         modelPlural: 'users',
+        name: 'user',
+        pluralName: 'users',
+        readableName: 'User',
+        pluralReadableName: 'Users',
+        ownedBy: null,
+        path: '/api/users',
+        searchable: false,
         type: 'object',
         properties: {
           id: {

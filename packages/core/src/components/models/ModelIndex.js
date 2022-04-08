@@ -160,13 +160,10 @@ const ModelIndex = ({ overrides, ...props }) => {
   const pills = usePills();
   const [searchParams, setSearchParams] = useSearchParams(baseFilter);
 
-  const { data: { data: resources } = {}, isLoading } = useModelIndex(
-    model,
-    {
-      params: searchParams
-    },
-    { keepPreviousData: true }
-  );
+  const { resources, isLoading } = useModelIndex(model, {
+    networkOptions: { params: searchParams },
+    queryOptions: { keepPreviousData: true }
+  });
 
   return (
     <ModelWrapper {...props} baseClassName="index">
