@@ -385,7 +385,7 @@ const ModelFormField = ({
 
   // Create a unique id so that there is never a conflict for things like CustomInput
   // if you have the same formfield on a path
-  const id = useMemo(() => uuidv4(), []);
+  const id = useMemo(() => `${path}-${uuidv4()}`, [path]);
 
   const commonProps = {
     key: path,
