@@ -53,3 +53,33 @@ Rhino uses the heroku.yml method of building and deploying docker images. https:
 The buildpack for docker should be set to the container type `heroku stack:set container -a <app-name>`
 
 Heroku docker deploys still require
+
+## Docker
+
+### Server
+
+```bash
+$ docker build -t server .
+$ docker run -it --rm -p 3002:3002 -e FRONT_END_URL="http://localhost:3003" -e PORT=3002 -e DISABLE_SSL=1 -e ROOT_URL=http://localhost:3002 server
+```
+
+FRONT_END_URL will default to `http://localhost:3001` if not specified.
+
+PORT will default to `3000` if not specified
+
+DISABLE_SSL=1 is necessary for SSL termination earlier in the process
+
+ROOT_URL defaults to `http://localhost:3000` if not specified
+
+DB_NAME, DB_HOST, DB_USERNAME, DB_PASSWORD are also required for a postgres db
+
+### Client
+
+```bash
+$ docker build --build-arg REACT_APP_API_ROOT_PATH=http://localhost:3002 -t frontend .
+$ docker run --rm -p 3003:3003 -e PORT=3003 frontend
+```
+
+REACT*APP_API_ROOT_PATH is \_required* at build time.
+
+PORT will default to `3001` if not overridden.
