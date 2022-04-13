@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
 import { compact, get, omit, set } from 'lodash';
@@ -88,13 +88,7 @@ export const ModelAttributeReferenceFilter = ({
   const fullPath = compact([idPath, operator]).join('.');
   const value = useMemo(() => get(filter, fullPath), [filter, fullPath]);
 
-  const hasSetPillsFirstTime = useRef(false);
-
   const handleChange = (e) => {
-    // FIXME Is there a better way to fetch this?
-    const index = e.target.selectedIndex;
-    const name = e.nativeEvent.target[index].text;
-
     const newFilter = set(
       {
         filter: { ...filter }
@@ -103,29 +97,16 @@ export const ModelAttributeReferenceFilter = ({
       e.target.value
     );
     setSearchParams(newFilter);
-    addPills({ [fullPath]: name });
   };
 
   useEffect(() => {
-    /*
-    setting pill first time the filter is rendered,
-    when the filter value has never changed and the 
-    setSearchParams has never been called
-    */
-    if (
-      !hasSetPillsFirstTime.current &&
-      value != null &&
-      pills != null &&
-      pills[fullPath] == null &&
-      isSuccess
-    ) {
-      hasSetPillsFirstTime.current = true;
+    if (isSuccess) {
       const resource = results.find((r) => `${r[identifier.name]}` === value);
 
-      addPills({ [fullPath]: resource.display_name });
+      addPills({ [fullPath]: resource?.display_name });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value, results, pills]);
+  }, [value, isSuccess]);
 
   return (
     <Input type="select" value={value || -1} onChange={handleChange}>
@@ -150,11 +131,15 @@ export const ModelAttributeIntegerFilter = ({
   path,
   searchParams: { filter } = {},
   setSearchParams,
-  addPills,
-  pills
+  addPills
 }) => {
   const fullPath = compact([path, operator]).join('.');
-  const value = useMemo(() => get(filter, fullPath), [filter, fullPath]);
+  const value = useMemo(() => {
+    const raw = get(filter, fullPath);
+    if (typeof raw === 'number') return raw;
+    if (typeof raw === 'string') return parseInt(raw) || null;
+    return null;
+  }, [filter, fullPath]);
 
   const handleChange = (e) => {
     // FIXME Is there a better way to fetch this?
@@ -166,20 +151,12 @@ export const ModelAttributeIntegerFilter = ({
       newValue
     );
     setSearchParams(newFilter);
-    addPills({ [fullPath]: newValue });
   };
 
   useEffect(() => {
-    /*
-    setting pill first time the filter is rendered,
-    when the filter value has never changed and the 
-    setSearchParams has never been called
-    */
-    if (value != null && pills[fullPath] == null) {
-      addPills({ [fullPath]: value.toString() });
-    }
+    addPills({ [fullPath]: value?.toString() });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value]);
 
   return (
     <Input
@@ -221,32 +198,20 @@ export const ModelAttributeIntegerSelectFilter = ({
   const value = useMemo(() => get(filter, fullPath), [filter, fullPath]);
 
   const handleChange = (e) => {
-    // FIXME Is there a better way to fetch this?
-    const index = e.target.selectedIndex;
-    const name = e.nativeEvent.target[index].text;
-
     const newFilter = set(
       { filter: { ...filter } },
       `filter.${fullPath}`,
       e.target.value
     );
     setSearchParams(newFilter);
-    addPills({ [fullPath]: name });
   };
 
   useEffect(() => {
-    /*
-    setting pill first time the filter is rendered,
-    when the filter value has never changed and the 
-    setSearchParams has never been called
-    */
-    if (value != null && pills[fullPath] == null) {
-      const int = integers.find((i) => `${i.id}` === value);
+    const int = integers.find((i) => `${i.id}` === value);
 
-      addPills({ [fullPath]: int.display_name });
-    }
+    addPills({ [fullPath]: int?.display_name });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value]);
 
   return (
     <Input
@@ -271,6 +236,7 @@ ModelAttributeIntegerSelectFilter.propTypes = {
 };
 
 const buildDateTimePill = (attribute, operator, newValue) => {
+  if (!newValue) return null;
   const date = typeof newValue === 'string' ? parseISO(newValue) : newValue;
   return `${attribute.readableName} ${operatorToLabel(
     attribute.format,
@@ -289,10 +255,11 @@ export const ModelAttributeDateFilter = ({
 }) => {
   const fullPath = compact([path, operator]).join('.');
   const valueRaw = get(filter, fullPath);
-  const value = useMemo(
-    () => (typeof valueRaw === 'string' ? parseISO(valueRaw) : null),
-    [valueRaw]
-  );
+  const value = useMemo(() => {
+    if (typeof valueRaw === 'string') return parseISO(valueRaw);
+    if (valueRaw instanceof Date) return valueRaw;
+    return null;
+  }, [valueRaw]);
 
   const handleChange = (newValue) => {
     const newFilter = set(
@@ -303,24 +270,14 @@ export const ModelAttributeDateFilter = ({
       newValue
     );
     setSearchParams(newFilter);
-    addPills({
-      [fullPath]: buildDateTimePill(attribute, operator, newValue)
-    });
   };
 
   useEffect(() => {
-    /*
-    setting pill first time the filter is rendered,
-    when the filter value has never changed and the 
-    setSearchParams has never been called
-    */
-    if (value != null && pills[fullPath] == null) {
-      addPills({
-        [fullPath]: buildDateTimePill(attribute, operator, value)
-      });
-    }
+    addPills({
+      [fullPath]: buildDateTimePill(attribute, operator, value)
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value]);
 
   return (
     <DatePicker
@@ -386,23 +343,13 @@ export const ModelAttributeBooleanFilter = ({
         value
       );
       setSearchParams(newFilter);
-      addPills({
-        [fullPath]: buildBooleanPill(attribute, value)
-      });
     };
   };
 
   useEffect(() => {
-    /*
-    setting pill first time the filter is rendered,
-    when the filter value has never changed and the 
-    setSearchParams has never been called
-    */
-    if (value != null && pills[fullPath] == null) {
-      addPills({ [fullPath]: buildBooleanPill(attribute, value) });
-    }
+    addPills({ [fullPath]: buildBooleanPill(attribute, value) });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value]);
 
   return (
     <IndeterminateCheckbox
@@ -429,8 +376,8 @@ const ModelFilters = ({
   paths,
   searchParams,
   setSearchParams,
+  resetSearchParams,
   addPills,
-  resetPills,
   pills
 }) => {
   // Use passed in paths or compute a sensible set
@@ -456,15 +403,7 @@ const ModelFilters = ({
 
   const handleClearAll = (e) => {
     e.preventDefault();
-    setSearchParams({
-      search: undefined,
-      filter: undefined,
-      order: undefined,
-      offset: undefined,
-      limit: undefined
-    });
-    // Every pill needs to be 'nulled' out
-    resetPills();
+    resetSearchParams();
   };
 
   return (
