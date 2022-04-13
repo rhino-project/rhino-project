@@ -1,0 +1,12 @@
+@import 'styles/styles.scss';
+
+.typeahead:global(.has-aux) {
+  :global(.rbt-input) {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  :global(.rbt-aux) {
+    background-color: rgba(white, 0.7);
+  }
+}

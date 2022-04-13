@@ -651,7 +651,7 @@ exports[`ModelFormField renders errors for Reference > Attachment Attribute 1`] 
     Reference &gt; Attachment Attribute
   </label>
   <div
-    className="rbt is-invalid"
+    className="rbt typeahead is-invalid"
     style={
       Object {
         "outline": "none",
@@ -727,7 +727,7 @@ exports[`ModelFormField renders errors for Reference Attribute 1`] = `
     Reference Attribute
   </label>
   <div
-    className="rbt is-invalid"
+    className="rbt typeahead is-invalid"
     style={
       Object {
         "outline": "none",
@@ -1630,7 +1630,7 @@ exports[`ModelFormField renders input for Reference > Attachment Attribute 1`] =
     Reference &gt; Attachment Attribute
   </label>
   <div
-    className="rbt"
+    className="rbt typeahead"
     style={
       Object {
         "outline": "none",
@@ -1701,7 +1701,7 @@ exports[`ModelFormField renders input for Reference Attribute 1`] = `
     Reference Attribute
   </label>
   <div
-    className="rbt"
+    className="rbt typeahead"
     style={
       Object {
         "outline": "none",
@@ -2566,7 +2566,7 @@ exports[`ModelFormField renders required for Reference > Attachment Attribute 1`
     Reference &gt; Attachment Attribute
   </label>
   <div
-    className="rbt"
+    className="rbt typeahead"
     style={
       Object {
         "outline": "none",
@@ -2637,7 +2637,7 @@ exports[`ModelFormField renders required for Reference Attribute 1`] = `
     Reference Attribute
   </label>
   <div
-    className="rbt"
+    className="rbt typeahead"
     style={
       Object {
         "outline": "none",

@@ -19,6 +19,8 @@ import PhoneInput from 'react-phone-input-2';
 import ModelFieldFile from 'rhino/components/models/fields/ModelFieldFile';
 import ModelFieldCountry from 'rhino/components/models/fields/ModelFieldCountry';
 import { useModelIndex } from 'rhino/hooks/queries';
+import { useDebouncedState } from 'rhino/hooks/util';
+import styles from './ModelFormField.module.scss';
 
 const extractError = (errors, path) => get(errors, `${path}[0]`);
 
@@ -125,8 +127,11 @@ const ModelFormFieldReference = ({
 }) => {
   const model = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(() => getIdentifierAttribute(model), [model]);
+  const [input, setInput] = useDebouncedState('', 500);
 
-  const { results } = useModelIndex(model);
+  const { results, isLoading } = useModelIndex(model, {
+    params: { limit: 100, search: input }
+  });
   const options = useMemo(() => results || [], [results]);
 
   const selectedOption = useMemo(() => {
@@ -144,7 +149,7 @@ const ModelFormFieldReference = ({
   return (
     <Typeahead
       id={path}
-      className={error ? 'is-invalid' : ''}
+      className={classnames(styles.typeahead, error ? 'is-invalid' : '')}
       clearButton={attribute.nullable}
       labelKey="display_name"
       options={options}
@@ -154,6 +159,8 @@ const ModelFormFieldReference = ({
       onChange={(selected) =>
         onChange(set({}, path, selected[0]?.id || null), selected[0])
       }
+      onInputChange={setInput}
+      isLoading={isLoading}
     ></Typeahead>
   );
 };
