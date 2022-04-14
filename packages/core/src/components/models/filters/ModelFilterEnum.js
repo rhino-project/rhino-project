@@ -27,31 +27,19 @@ const ModelFilterEnum = ({
   const value = useMemo(() => get(filter, fullPath), [filter, fullPath]);
 
   const handleChange = (e) => {
-    // FIXME Is there a better way to fetch this?
-    const index = e.target.selectedIndex;
-    const name = e.nativeEvent.target[index].text;
-
     const newFilter = set(
       { filter: { ...filter } },
       `filter.${fullPath}`,
       e.target.value
     );
     setSearchParams(newFilter);
-    addPills({ [fullPath]: name });
   };
 
   useEffect(() => {
-    /*
-    setting pill first time the filter is rendered,
-    when the filter value has never changed and the 
-    setSearchParams has never been called
-    */
-    if (value != null && pills[fullPath] == null) {
-      const int = enums.find((i) => `${i.id}` === value);
-      addPills({ [fullPath]: int.display_name });
-    }
+    const int = enums.find((i) => `${i.id}` === value);
+    addPills({ [fullPath]: int?.display_name });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [value]);
 
   return (
     <Input

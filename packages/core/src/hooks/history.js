@@ -1,6 +1,6 @@
 import { DEFAULT_SORT, MAX_PAGES, PAGE_SIZE } from 'config';
 import qs from 'qs';
-import { useReducer, useRef } from 'react';
+import { useCallback, useMemo, useReducer, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import routePaths from 'rhino/routes';
 import withParams from 'rhino/routes/withParams';
@@ -59,40 +59,55 @@ export const useBaseOwnerNavigation = () => {
 // It has special handling for 'pills' which describe complementary UI elements
 // Those are stored in state but not in the URL, it is up to the corresponding
 // filter component to restore the state
-export const useSearchParams = ({
-  search: searchDefault = '',
-  filter: filterDefault = {},
-  order: orderDefault = DEFAULT_SORT,
-  offset: offsetDefault = 0,
-  limit: limitDefault = PAGE_SIZE
-} = {}) => {
+export const useSearchParams = (baseFilters) => {
   const history = useHistory();
   const location = useLocation();
-  const urlHasBeenWrittenBefore = useRef(false);
+  const initialBaseFilters = useRef(baseFilters);
+  const initialState = useMemo(() => {
+    // When computing the initial state of filters, the URL has precedence over the baseFilters for everything except filters.
+    // That means that if baseFilter has { sort: 'a' } and the URL has ?sort=b, the initial state of searchParams will have
+    // { sort: 'b' }, as it is the sort value in the URL.
 
-  const {
-    search = searchDefault,
-    filter = urlHasBeenWrittenBefore.current ? {} : filterDefault,
-    order = orderDefault,
-    offset = offsetDefault,
-    limit = limitDefault
-  } = qs.parse(location.search, { ignoreQueryPrefix: true });
+    // The filters key in the baseFilters object, however, represent implicit, fixed filters, meaning they have precedence
+    // over anything else. They cannot be changed by setting URL, nor by the UI, nor they render pills of their own.
+    // The initial value of searchParams will be a merge of filters from the URL and the baseFiltes, the latter being able to
+    // override anything in the URL.
 
-  const searchParams = {
-    search,
-    filter,
-    order,
-    offset: parseInt(offset),
-    limit: parseInt(limit)
-  };
+    const queryFromUrl = qs.parse(location.search, { ignoreQueryPrefix: true });
+    return {
+      search: queryFromUrl.search ?? baseFilters?.search ?? '',
+      sort: queryFromUrl.sort ?? baseFilters?.sort ?? DEFAULT_SORT,
+      limit: (parseInt(queryFromUrl.limit) || baseFilters?.limit) ?? PAGE_SIZE,
+      offset: (parseInt(queryFromUrl.offset) || baseFilters?.offset) ?? 0,
+      filter: { ...(queryFromUrl.filter ?? {}), ...(baseFilters?.filter ?? {}) }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const setSearchParams = ({ ...newSearchParams }) => {
-    urlHasBeenWrittenBefore.current = true;
-    const finalParams = { ...searchParams, ...newSearchParams };
-    history.push(withParams(location.pathname, finalParams));
-  };
+  const [state, setState] = useState(initialState);
 
-  return [{ ...searchParams }, setSearchParams];
+  const setSearchParams = useCallback(
+    ({ ...newSearchParams }) => {
+      const finalParams = { ...state, ...newSearchParams };
+      // if any filter changes, we need to go back to the first page, as the current
+      // page might not even exist and harm the UX
+      if (newSearchParams.hasOwnProperty('filter')) {
+        finalParams.offset = 0;
+      }
+      setState(finalParams);
+      history.push(withParams(location.pathname, finalParams));
+    },
+    [history, location?.pathname, state]
+  );
+
+  const resetFilters = useCallback(() => {
+    setSearchParams({
+      filter: initialBaseFilters.current?.filter ?? {},
+      offset: 0
+    });
+  }, [setSearchParams]);
+
+  return [state, setSearchParams, resetFilters];
 };
 
 const pillsReducer = (state, action) => {
@@ -129,12 +144,10 @@ export const usePills = () => {
   return { state, add, reset };
 };
 
-export const usePaginationParams = (total, baseFilter = {}) => {
-  const [{ offset }, setSearchParams] = useSearchParams(baseFilter);
-  const { limit: limitDefault = PAGE_SIZE } = baseFilter;
-
-  const totalPages = Math.ceil(total / limitDefault);
-  const currentPage = Math.round(offset / limitDefault + 0.5);
+export const usePaginationParams = (total, searchParams, setSearchParams) => {
+  const limit = searchParams.limit;
+  const totalPages = Math.ceil(total / limit);
+  const currentPage = Math.round(searchParams.offset / limit + 0.5);
 
   const firstPage = Math.max(
     1,
@@ -148,12 +161,11 @@ export const usePaginationParams = (total, baseFilter = {}) => {
     totalPages
   );
 
-  const onSetPage = (page) =>
-    setSearchParams({ offset: (page - 1) * PAGE_SIZE });
+  const onSetPage = (page) => setSearchParams({ offset: (page - 1) * limit });
 
   return [
-    offset > 0,
-    offset + limitDefault < totalPages * limitDefault,
+    searchParams.offset > 0,
+    searchParams.offset + limit < totalPages * limit,
     firstPage,
     lastPage,
     totalPages,

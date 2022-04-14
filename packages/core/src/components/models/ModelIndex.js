@@ -158,7 +158,9 @@ const ModelIndex = ({ overrides, ...props }) => {
   } = useOverridesWithGlobal(model, 'index', defaultComponents, overrides);
 
   const pills = usePills();
-  const [searchParams, setSearchParams] = useSearchParams(baseFilter);
+  const [searchParams, setSearchParams, resetSearchParams] = useSearchParams(
+    baseFilter
+  );
 
   const { resources, isLoading } = useModelIndex(model, {
     networkOptions: { params: searchParams },
@@ -172,6 +174,7 @@ const ModelIndex = ({ overrides, ...props }) => {
         resources={resources}
         searchParams={searchParams}
         setSearchParams={setSearchParams}
+        resetSearchParams={resetSearchParams}
         pills={pills.state}
         addPills={pills.add}
         resetPills={pills.reset}
