@@ -13,6 +13,7 @@ class ActiveStorage::Blobs::RedirectController
   include Pundit
 
   include Rhino::ErrorHandling
+  include Rhino::Authenticated
 
   after_action :verify_authorized
 
