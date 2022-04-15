@@ -141,6 +141,7 @@ module Rhino
               { type: property_type_raw(property) }
             end
 
+            # rubocop:todo Metrics/PerceivedComplexity
             def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
               constraint_hash = {}
 
@@ -148,11 +149,26 @@ module Rhino
 
               validators_on(property).each do |v|
                 if v.is_a? ActiveModel::Validations::NumericalityValidator
-                  constraint_hash[:minimum] = v.options[:greater_than] + 1
-                  constraint_hash[:maximum] = v.options[:less_than] - 1
+                  if v.options.key?(:greater_than)
+                    constraint_hash[:minimum] = v.options[:greater_than]
+                    constraint_hash[:exclusiveMinimum] = true
+                  end
+
+                  if v.options.key?(:less_than)
+                    constraint_hash[:maximum] = v.options[:less_than]
+                    constraint_hash[:exclusiveMaximum] = true
+                  end
+
+                  constraint_hash[:minimum] = v.options[:greater_than_or_equal_to] if v.options.key?(:greater_than_or_equal_to)
+                  constraint_hash[:maximum] = v.options[:less_than_or_equal_to] if v.options.key?(:less_than_or_equal_to)
+
+                  if v.options.key?(:in)
+                    constraint_hash[:minimum] = v.options[:in].min
+                    constraint_hash[:maximum] = v.options[:in].max
+                  end
                 end
 
-                if v.is_a? ::ActiveRecord::Validations::LengthValidator
+                if v.is_a? ::ActiveModel::Validations::LengthValidator
                   constraint_hash[:minLength] = v.options[:minimum] || v.options[:is]
                   constraint_hash[:maxLength] = v.options[:maximum] || v.options[:is]
                 end
@@ -164,6 +180,7 @@ module Rhino
 
               constraint_hash.compact
             end
+            # rubocop:enable Metrics/PerceivedComplexity
 
             # If there is a presence validator in the model it is not nullable.
             # if there is no optional: true on an association, rails will add a
@@ -172,14 +189,14 @@ module Rhino
             # Return nil instead of false for compaction
             def property_nullable?(name)
               # Check for presence validator
-              if validators.select { |v| v.is_a? ::ActiveRecord::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
+              if validators.select { |v| v.is_a? ::ActiveModel::Validations::PresenceValidator }.flat_map(&:attributes).include?(name.to_sym)
                 return false
               end
 
-              # name = reflections[name].foreign_key if reflections.key?(name)
-
-              # Check the column null setting
-              # return columns_hash[name].null if columns_hash.key?(name)
+              # By default, numericality doesn't allow nil values. You can use allow_nil: true option to permit it.
+              validators_on(name).select { |v| v.is_a? ::ActiveModel::Validations::NumericalityValidator }.each do |v|
+                return false unless v.options[:allow_nil]
+              end
 
               true
             end
