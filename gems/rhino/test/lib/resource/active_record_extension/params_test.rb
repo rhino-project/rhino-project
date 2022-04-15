@@ -15,7 +15,7 @@ class ParamsTest < ActiveSupport::TestCase
                  ], Blog.show_params)
   end
 
-  NESTED_INCLUDES = { "og_meta_tags" => ["id", "value", { "blog_post" => ["id"] }, "blog_post", "tag_name", "_destroy"] }.freeze
+  NESTED_INCLUDES = { "og_meta_tags" => ["id", "tag_name", "value", { "blog_post" => ["id"] }, "blog_post", "_destroy"] }.freeze
   %i[create update].each do |action_type|
     # FIXME: The update call should fail because tag_name should not be included NUB-844
     test "BlogPost #{action_type} params include nested og_meta_tags" do
