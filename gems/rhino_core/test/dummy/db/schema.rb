@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_14_204921) do
+ActiveRecord::Schema.define(version: 2022_01_24_192212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,39 @@ ActiveRecord::Schema.define(version: 2021_11_14_204921) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "every_fields", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "string"
+    t.string "string_length_min"
+    t.string "string_length_max"
+    t.string "string_length_range"
+    t.string "string_length_exact"
+    t.string "string_inclusion"
+    t.string "string_pattern"
+    t.float "float_gt"
+    t.float "float_gte"
+    t.float "float_lt"
+    t.float "float_lte"
+    t.float "float_in"
+    t.float "float_no_nil"
+    t.integer "integer_gt"
+    t.integer "integer_gte"
+    t.integer "integer_lt"
+    t.integer "integer_lte"
+    t.integer "integer_in"
+    t.integer "integer_no_nil"
+    t.date "date"
+    t.date "date_required"
+    t.datetime "date_time"
+    t.datetime "date_time_required"
+    t.time "time"
+    t.time "time_required"
+    t.integer "year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_every_fields_on_user_id"
+  end
+
   create_table "og_meta_tags", force: :cascade do |t|
     t.bigint "blog_post_id", null: false
     t.string "tag_name"
@@ -173,6 +206,7 @@ ActiveRecord::Schema.define(version: 2021_11_14_204921) do
   add_foreign_key "blogs", "users"
   add_foreign_key "blogs_categories", "blogs"
   add_foreign_key "blogs_categories", "categories"
+  add_foreign_key "every_fields", "users"
   add_foreign_key "og_meta_tags", "blog_posts"
   add_foreign_key "taggings", "tags"
 end
