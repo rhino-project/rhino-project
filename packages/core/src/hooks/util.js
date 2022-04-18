@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 // https://reactjs.org/docs/hooks-faq.html#is-there-something-like-forceupdate
 export const useForceUpdate = () => {
@@ -35,4 +35,24 @@ export const usePrevious = (value) => {
     ref.current = value;
   });
   return ref.current;
+};
+
+export const useDebouncedState = (initialValue, delay = 1000) => {
+  const [state, setState] = useState(initialValue);
+  const [nextState, setNextState] = useState(initialValue);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (nextState !== state) {
+        setState(nextState);
+      }
+    }, delay);
+    return () => clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [nextState]);
+
+  const setter = (newValue) => {
+    setNextState(newValue);
+  };
+  return [state, setter, nextState];
 };
