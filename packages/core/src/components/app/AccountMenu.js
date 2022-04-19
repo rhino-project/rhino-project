@@ -44,7 +44,12 @@ const AccountMenu = ({ sidebarMode = false }) => {
 
   return (
     <UncontrolledDropdown nav inNavbar direction={sidebarMode ? 'up' : 'down'}>
-      <DropdownToggle nav caret className="d-flex align-items-center">
+      <DropdownToggle
+        id="account-menu"
+        className="d-flex align-items-center"
+        nav
+        caret
+      >
         <NavIcon icon="person-circle" extraClass="flex-shrink-0" />
         <span
           className={classnames('d-block', 'overflow-hidden', 'flex-grow-1', {
@@ -56,6 +61,7 @@ const AccountMenu = ({ sidebarMode = false }) => {
       </DropdownToggle>
       <DropdownMenu right>
         <DropdownItem
+          id="account-settings"
           tag={NavLink}
           to={baseOwnerPath.build(`${routePaths.accountSettings()}/profile`)}
         >
