@@ -65,8 +65,8 @@ export const useSearchParams = (baseFilters) => {
   const initialBaseFilters = useRef(baseFilters);
   const initialState = useMemo(() => {
     // When computing the initial state of filters, the URL has precedence over the baseFilters for everything except filters.
-    // That means that if baseFilter has { sort: 'a' } and the URL has ?sort=b, the initial state of searchParams will have
-    // { sort: 'b' }, as it is the sort value in the URL.
+    // That means that if baseFilter has { order: 'a' } and the URL has ?order=b, the initial state of searchParams will have
+    // { order: 'b' }, as it is the order value in the URL.
 
     // The filters key in the baseFilters object, however, represent implicit, fixed filters, meaning they have precedence
     // over anything else. They cannot be changed by setting URL, nor by the UI, nor they render pills of their own.
@@ -76,7 +76,7 @@ export const useSearchParams = (baseFilters) => {
     const queryFromUrl = qs.parse(location.search, { ignoreQueryPrefix: true });
     return {
       search: queryFromUrl.search ?? baseFilters?.search ?? '',
-      sort: queryFromUrl.sort ?? baseFilters?.sort ?? DEFAULT_SORT,
+      order: queryFromUrl.order ?? baseFilters?.order ?? DEFAULT_SORT,
       limit: (parseInt(queryFromUrl.limit) || baseFilters?.limit) ?? PAGE_SIZE,
       offset: (parseInt(queryFromUrl.offset) || baseFilters?.offset) ?? 0,
       filter: { ...(queryFromUrl.filter ?? {}), ...(baseFilters?.filter ?? {}) }
