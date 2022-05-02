@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FormFeedback } from 'reactstrap';
 
@@ -56,12 +56,21 @@ const ModelNestedCellRenderer = (props) => {
     onChange(newValues);
   };
 
+  useEffect(() => {
+    // in case the attribute has a default value, we need to trigger the on change effect in the first render, otherwise
+    // the table row won't show the default  value
+    if (attribute.default !== undefined) {
+      handleChange({ [name]: attribute.default });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // If its a new row, check creatable
   // If its an existing row, check updatable
   if (
     row.index === editIndex &&
     ((!row.original.id && creatable) || (row.original.id && updatable))
-  )
+  ) {
     return (
       <>
         <ModelFormField
@@ -74,6 +83,7 @@ const ModelNestedCellRenderer = (props) => {
         {error && <FormFeedback>{errors?.[errorKey]}</FormFeedback>}
       </>
     );
+  }
 
   return (
     <ModelTableCellRendererWithError {...props} error={errors?.[errorKey]} />
@@ -108,9 +118,7 @@ const ModelNestedManyForm = ({ overrides, ...props }) => {
   );
   const [editIndex, setEditIndex] = useState(false);
   const handleAdd = () => {
-    const newValues = [...resources];
-    newValues.unshift({});
-
+    const newValues = [{}, ...resources];
     setEditIndex(0);
 
     onChange(newValues);
