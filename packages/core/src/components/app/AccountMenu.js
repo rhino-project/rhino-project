@@ -69,7 +69,9 @@ const AccountMenu = ({ sidebarMode = false }) => {
         </DropdownItem>
         {showOrgSettings && <OrganizationSettings />}
         <DropdownItem divider />
-        <DropdownItem onClick={signOutAction}>Sign Out</DropdownItem>
+        <DropdownItem id="account-signout" onClick={signOutAction}>
+          Sign Out
+        </DropdownItem>
       </DropdownMenu>
     </UncontrolledDropdown>
   );
