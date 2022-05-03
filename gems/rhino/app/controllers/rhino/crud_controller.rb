@@ -9,6 +9,8 @@ module Rhino
     after_action :verify_authorized
     after_action :verify_policy_scoped, only: %i[index show]
 
+    wrap_parameters :crud, format: [:json]
+
     def create
       @model = authorize klass.new(permit_and_transform(klass))
       @model.save!
