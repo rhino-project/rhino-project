@@ -15,13 +15,13 @@ class DirectUploadsControllerTest < Rhino::TestCase::ControllerTest
   test "active storage direct uploads allows authenticated uploads" do
     sign_in
 
-    post "/rails/active_storage/direct_uploads", params: BLOB_INFO, xhr: true
+    post "/rails/active_storage/direct_uploads", params: BLOB_INFO, xhr: true, as: :json
 
     assert_response_ok
   end
 
   test "active storage direct uploads does not allow anonymous uploads" do
-    post "/rails/active_storage/direct_uploads", params: BLOB_INFO, xhr: true
+    post "/rails/active_storage/direct_uploads", params: BLOB_INFO, xhr: true, as: :json
 
     assert_response_unauthorized
   end

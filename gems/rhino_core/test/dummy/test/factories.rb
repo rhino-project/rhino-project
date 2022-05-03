@@ -44,5 +44,10 @@ FactoryBot.define do
     tag_name { FFaker::Lorem.word }
     value { FFaker::Lorem.paragraph }
   end
+
+  factory :blog_dummy do
+    name { FFaker::Name.name }
+    blog
+  end
 end
 # rubocop:enable Metrics/BlockLength
