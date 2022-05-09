@@ -499,6 +499,170 @@ exports[`ModelFormField renders errors for DateTime Attribute 1`] = `
 </div>
 `;
 
+exports[`ModelFormField renders errors for Decimal Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Decimal Attribute
+  </label>
+  <input
+    aria-invalid={true}
+    autoComplete="off"
+    className="is-invalid form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+  <div
+    className="invalid-feedback"
+  >
+    display-error
+  </div>
+</div>
+`;
+
+exports[`ModelFormField renders errors for Decimal Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Decimal Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={true}
+      autoComplete="off"
+      className="is-invalid form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
+  <div
+    className="invalid-feedback"
+  >
+    display-error
+  </div>
+</div>
+`;
+
+exports[`ModelFormField renders errors for Float Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Float Attribute
+  </label>
+  <input
+    aria-invalid={true}
+    autoComplete="off"
+    className="is-invalid form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+  <div
+    className="invalid-feedback"
+  >
+    display-error
+  </div>
+</div>
+`;
+
+exports[`ModelFormField renders errors for Float Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Float Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={true}
+      autoComplete="off"
+      className="is-invalid form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
+  <div
+    className="invalid-feedback"
+  >
+    display-error
+  </div>
+</div>
+`;
+
 exports[`ModelFormField renders errors for Integer Attribute 1`] = `
 <div
   className="form-group"
@@ -565,6 +729,88 @@ exports[`ModelFormField renders errors for Integer Attribute Select 1`] = `
       Integer Attribute Select...
     </option>
   </select>
+  <div
+    className="invalid-feedback"
+  >
+    display-error
+  </div>
+</div>
+`;
+
+exports[`ModelFormField renders errors for Number Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Number Attribute
+  </label>
+  <input
+    aria-invalid={true}
+    autoComplete="off"
+    className="is-invalid form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+  <div
+    className="invalid-feedback"
+  >
+    display-error
+  </div>
+</div>
+`;
+
+exports[`ModelFormField renders errors for Number Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Number Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={true}
+      autoComplete="off"
+      className="is-invalid form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
   <div
     className="invalid-feedback"
   >
@@ -1494,6 +1740,150 @@ exports[`ModelFormField renders input for DateTime Attribute 1`] = `
 </div>
 `;
 
+exports[`ModelFormField renders input for Decimal Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Decimal Attribute
+  </label>
+  <input
+    aria-invalid={false}
+    autoComplete="off"
+    className="form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+</div>
+`;
+
+exports[`ModelFormField renders input for Decimal Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Decimal Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={false}
+      autoComplete="off"
+      className="form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`ModelFormField renders input for Float Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Float Attribute
+  </label>
+  <input
+    aria-invalid={false}
+    autoComplete="off"
+    className="form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+</div>
+`;
+
+exports[`ModelFormField renders input for Float Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Float Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={false}
+      autoComplete="off"
+      className="form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
+</div>
+`;
+
 exports[`ModelFormField renders input for Integer Attribute 1`] = `
 <div
   className="form-group"
@@ -1554,6 +1944,78 @@ exports[`ModelFormField renders input for Integer Attribute Select 1`] = `
       Integer Attribute Select...
     </option>
   </select>
+</div>
+`;
+
+exports[`ModelFormField renders input for Number Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Number Attribute
+  </label>
+  <input
+    aria-invalid={false}
+    autoComplete="off"
+    className="form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+</div>
+`;
+
+exports[`ModelFormField renders input for Number Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className=""
+    htmlFor="test"
+  >
+    Number Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={false}
+      autoComplete="off"
+      className="form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
 </div>
 `;
 
@@ -2430,6 +2892,150 @@ exports[`ModelFormField renders required for DateTime Attribute 1`] = `
 </div>
 `;
 
+exports[`ModelFormField renders required for Decimal Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className="required"
+    htmlFor="test"
+  >
+    Decimal Attribute
+  </label>
+  <input
+    aria-invalid={false}
+    autoComplete="off"
+    className="form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+</div>
+`;
+
+exports[`ModelFormField renders required for Decimal Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className="required"
+    htmlFor="test"
+  >
+    Decimal Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={false}
+      autoComplete="off"
+      className="form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
+</div>
+`;
+
+exports[`ModelFormField renders required for Float Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className="required"
+    htmlFor="test"
+  >
+    Float Attribute
+  </label>
+  <input
+    aria-invalid={false}
+    autoComplete="off"
+    className="form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+</div>
+`;
+
+exports[`ModelFormField renders required for Float Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className="required"
+    htmlFor="test"
+  >
+    Float Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={false}
+      autoComplete="off"
+      className="form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
+</div>
+`;
+
 exports[`ModelFormField renders required for Integer Attribute 1`] = `
 <div
   className="form-group"
@@ -2490,6 +3096,78 @@ exports[`ModelFormField renders required for Integer Attribute Select 1`] = `
       Integer Attribute Select...
     </option>
   </select>
+</div>
+`;
+
+exports[`ModelFormField renders required for Number Attribute 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className="required"
+    htmlFor="test"
+  >
+    Number Attribute
+  </label>
+  <input
+    aria-invalid={false}
+    autoComplete="off"
+    className="form-control"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
+      }
+    }
+    type="number"
+    value=""
+  />
+</div>
+`;
+
+exports[`ModelFormField renders required for Number Attribute Currency 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    checked={true}
+    className="required"
+    htmlFor="test"
+  >
+    Number Attribute Currency
+  </label>
+  <div
+    className="input-group"
+  >
+    <div
+      className="input-group-prepend"
+    >
+      <span
+        className="input-group-text"
+      >
+        $
+      </span>
+    </div>
+    <input
+      aria-invalid={false}
+      autoComplete="off"
+      className="form-control"
+      id="test-123"
+      onChange={[Function]}
+      path="test"
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      step={0.01}
+      type="number"
+      value=""
+    />
+  </div>
 </div>
 `;
 

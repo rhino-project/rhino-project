@@ -128,6 +128,22 @@ export const getStringForDisplay = (
           displayString = value;
       }
       break;
+    case 'decimal':
+    case 'float':
+    case 'number':
+      if (attribute.format === 'currency') {
+        const number = parseFloat(value);
+        if (isNaN(number)) {
+          displayString = null;
+        } else if (number < 0) {
+          displayString = `-$${-1 * number.toFixed(2)}`;
+        } else {
+          displayString = `$${number.toFixed(2)}`;
+        }
+      } else {
+        displayString = value;
+      }
+      break;
     default:
       displayString = value;
   }

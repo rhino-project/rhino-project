@@ -4,7 +4,7 @@ import { get, set } from 'lodash';
 import classnames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
-import { CustomInput, Input } from 'reactstrap';
+import { CustomInput, Input, InputGroup, InputGroupAddon } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import DatePicker from 'react-datepicker';
 
@@ -232,6 +232,34 @@ export const ModelFormFieldInteger = ({
 };
 
 ModelFormFieldInteger.propTypes = {
+  attribute: PropTypes.object.isRequired,
+  value: PropTypes.string.isRequired
+};
+
+export const ModelFormFieldCurrency = ({
+  attribute,
+  value,
+  error,
+  ...props
+}) => {
+  return (
+    <InputGroup>
+      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+      <Input
+        {...props}
+        type="number"
+        value={value}
+        autoComplete="off"
+        invalid={!!error}
+        min={attribute.minimum}
+        max={attribute.maximum}
+        step={0.01}
+      />
+    </InputGroup>
+  );
+};
+
+ModelFormFieldCurrency.propTypes = {
   attribute: PropTypes.object.isRequired,
   value: PropTypes.string.isRequired
 };
@@ -479,8 +507,12 @@ const ModelFormField = ({
         default:
           return <ModelFormFieldInteger {...commonProps} value={value} />;
       }
+    case 'decimal':
     case 'float':
     case 'number':
+      if (attribute.format === 'currency') {
+        return <ModelFormFieldCurrency {...commonProps} value={value} />;
+      }
       return <ModelFormFieldFloat {...commonProps} value={value} />;
     case 'text':
       return <Input {...commonProps} type="textarea" invalid={!!error} />;
