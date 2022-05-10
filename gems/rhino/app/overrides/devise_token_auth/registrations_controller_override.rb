@@ -6,9 +6,11 @@ module DeviseTokenAuth::RegistrationsController::Extensions
   include RhinoOrganizations::Concerns::CreateOrganization
 
   def create
+    return render_error(401, "signup is not allowed") unless Rhino.allow_signup
+
     super do |resource|
       # Create if this is the first time we've seen the user
-      create_organization(resource)
+      create_organization(resource) if Rhino.resources.include?("Organization")
     end
   end
 end
