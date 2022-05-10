@@ -10,6 +10,8 @@ import {
   NetworkUnauthorizedError
 } from 'rhino/lib/networking';
 import { useAuth } from 'rhino/hooks/auth';
+import { useMemo } from 'react';
+import { getModuleInfo } from 'rhino/utils/models';
 
 export const useSignInAction = () => {
   const { logIn } = useAuth();
@@ -35,6 +37,10 @@ export const useSignUpAction = () => {
       }
     }
   );
+};
+
+export const useSignupAllowed = () => {
+  return useMemo(() => getModuleInfo('rhino')?.allow_signup, []);
 };
 
 export const useAcceptInvitationAction = () => {
