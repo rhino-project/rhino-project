@@ -5,12 +5,27 @@ import { FormFeedback } from 'reactstrap';
 import { useOverridesWithGlobal } from 'rhino/hooks/overrides';
 import { getModelFromRef, getUpdatableAttributes } from 'rhino/utils/models';
 import { useComputedPaths } from 'rhino/hooks/form';
-import ModelTable, {
-  ModelTableCellRenderer
-} from 'rhino/components/models/ModelTable';
+import ModelTable from 'rhino/components/models/ModelTable';
 import ModelFormField from 'rhino/components/models/ModelFormField';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { IconButton } from 'rhino/components/buttons';
+import { getStringForDisplay } from 'rhino/utils/ui';
+
+const ModelTableCellRendererWithError = ({
+  column: { attribute },
+  value,
+  error
+}) => {
+  if (error) {
+    return (
+      <div>
+        {getStringForDisplay(attribute, value)}
+        <FormFeedback className="d-block">{error}</FormFeedback>
+      </div>
+    );
+  }
+  return getStringForDisplay(attribute, value);
+};
 
 // Can't handle arrays when nested
 const getNestedUpdatableAttributes = (model) =>
@@ -60,7 +75,9 @@ const ModelNestedCellRenderer = (props) => {
       </>
     );
 
-  return <ModelTableCellRenderer {...props} />;
+  return (
+    <ModelTableCellRendererWithError {...props} error={errors?.[errorKey]} />
+  );
 };
 
 ModelNestedCellRenderer.propTypes = {
