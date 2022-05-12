@@ -18,25 +18,27 @@ Formats may be overridden for instance a year of birth recorded as an integer `r
 
 In the front end the type/format is mapped as follows:
 
-| Type              |      Format       |                               Component |
-| ----------------- | :---------------: | --------------------------------------: |
-| identifier        |       none        |                                    none |
-| string            |       none        |                                   Input |
-| string            |    enum (prop)    |                      ModelFormFieldEnum |
-| string            |       date        |                  ModelFormFieldDatetime |
-| string            |     datetime      |                  ModelFormFieldDatetime |
-| string            |       phone       |                     ModelFormFieldPhone |
-| string            |      country      |                   ModelFormFieldCountry |
-| string            |       time        |                  ModelFormFieldDatetime |
-| integer           |       none        |                   ModelFormFieldInteger |
-| integer           |       year        |                      ModelFormFieldYear |
-| text              |       none        |                        Input (textarea) |
-| boolean           |       none        |                  CustomInput (checkbox) |
-| array (string)    |       none        |                               Typeahead |
-| array (reference) |       none        | ModelFormFieldArray/ModelNestedManyForm |
-| array (reference) | join_table_simple |                ModelFormFieldJoinSimple |
-| reference         |       none        |                 ModelFormFieldReference |
-| reference         |       file        |                      ModelFormFieldFile |
+| Type                         |      Format       |                               Component |
+| ---------------------------- | :---------------: | --------------------------------------: |
+| identifier                   |       none        |                                    none |
+| string                       |       none        |                                   Input |
+| string                       |    enum (prop)    |                      ModelFormFieldEnum |
+| string                       |       date        |                  ModelFormFieldDatetime |
+| string                       |     datetime      |                  ModelFormFieldDatetime |
+| string                       |       phone       |                     ModelFormFieldPhone |
+| string                       |      country      |                   ModelFormFieldCountry |
+| string                       |       time        |                  ModelFormFieldDatetime |
+| integer                      |       none        |                   ModelFormFieldInteger |
+| integer                      |       year        |                      ModelFormFieldYear |
+| decimal (or float or number) |       none        |                     ModelFormFieldFloat |
+| decimal (or float or number) |     currency      |                  ModelFormFieldCurrency |
+| text                         |       none        |                        Input (textarea) |
+| boolean                      |       none        |                  CustomInput (checkbox) |
+| array (string)               |       none        |                               Typeahead |
+| array (reference)            |       none        | ModelFormFieldArray/ModelNestedManyForm |
+| array (reference)            | join_table_simple |                ModelFormFieldJoinSimple |
+| reference                    |       none        |                 ModelFormFieldReference |
+| reference                    |       file        |                      ModelFormFieldFile |
 
 #### Phone
 
