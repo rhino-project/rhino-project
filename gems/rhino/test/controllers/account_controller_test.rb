@@ -5,7 +5,7 @@ require "test_helper"
 class AccountControllerTest < Rhino::TestCase::ControllerTest
   test "returns current user on get" do
     sign_in
-    get account_path, xhr: true
+    get account_path, xhr: true, as: :json
 
     assert_response_ok
     assert_equal expected_response, parsed_response
@@ -14,7 +14,7 @@ class AccountControllerTest < Rhino::TestCase::ControllerTest
   CHANGED_NAME = "Test Name"
   test "returns current user on patch" do
     sign_in
-    patch account_path, params: { account: { name: CHANGED_NAME } }, xhr: true
+    patch account_path, params: { name: CHANGED_NAME }, xhr: true, as: :json
 
     assert_response_ok
     assert_equal expected_response.merge!("name" => CHANGED_NAME, "display_name" => CHANGED_NAME), parsed_response
