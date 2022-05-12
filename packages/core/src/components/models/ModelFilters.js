@@ -161,7 +161,8 @@ export const ModelAttributeIntegerFilter = ({
   return (
     <Input
       type="number"
-      value={value}
+      // If the value goes to undefined/null an existing number won't be cleared
+      value={value || ''}
       onChange={handleChange}
       min={attribute.minimum}
       max={attribute.maximum}
