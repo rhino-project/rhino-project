@@ -100,14 +100,15 @@ export const useSearchParams = (baseFilters) => {
     [history, location?.pathname, state]
   );
 
-  const resetFilters = useCallback(() => {
+  const resetSearchParams = useCallback(() => {
     setSearchParams({
+      search: '',
       filter: initialBaseFilters.current?.filter ?? {},
       offset: 0
     });
   }, [setSearchParams]);
 
-  return [state, setSearchParams, resetFilters];
+  return [state, setSearchParams, resetSearchParams];
 };
 
 const pillsReducer = (state, action) => {
