@@ -130,8 +130,9 @@ const ModelFormFieldReference = ({
   const [input, setInput] = useDebouncedState('', 500);
 
   const { results, isLoading } = useModelIndex(model, {
-    params: { limit: 100, search: input }
+    networkOptions: { params: { limit: 100, search: input } }
   });
+
   const options = useMemo(() => results || [], [results]);
 
   const selectedOption = useMemo(() => {
