@@ -5,7 +5,7 @@ import routePaths from 'rhino/routes';
 import { APP_NAME } from 'config';
 import { useParsedSearch } from 'rhino/hooks/history';
 import { oauthProviders } from 'rhino/utils/models';
-import { useSignInAction } from 'rhino/queries/auth';
+import { useSignInAction, useSignupAllowed } from 'rhino/queries/auth';
 import AuthPage from './AuthPage';
 import AuthForm from 'rhino/components/auth/AuthForm';
 import { SuccessAlert } from 'rhino/components/alerts';
@@ -13,6 +13,7 @@ import OmniAuthButton from 'rhino/components/buttons/omniauth';
 
 const SignInPage = () => {
   const queryParams = useParsedSearch();
+  const allowSignup = useSignupAllowed();
 
   const { mutate: loginMutation, isLoading, error } = useSignInAction();
 
@@ -25,10 +26,12 @@ const SignInPage = () => {
   const authDesc = (
     <>
       <p>Enter your email address and password to sign in.</p>
-      <p>
-        New to {APP_NAME}?{' '}
-        <NavLink to={routePaths.userCreate()}>Sign Up</NavLink>
-      </p>
+      {allowSignup && (
+        <p>
+          New to {APP_NAME}?{' '}
+          <NavLink to={routePaths.userCreate()}>Sign Up</NavLink>
+        </p>
+      )}
     </>
   );
 
