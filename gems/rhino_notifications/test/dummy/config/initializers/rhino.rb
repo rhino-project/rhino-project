@@ -16,6 +16,9 @@ Rhino.setup do |config|
   # The root path for the api ie '/api'
   # config.namespace = :api
 
+  # Authentication
+  # config.allow_signup = true
+
   # The list of resources exposed in the API
   config.resources += ['User', 'Account']
   config.resources += ['Article', 'Comment']
