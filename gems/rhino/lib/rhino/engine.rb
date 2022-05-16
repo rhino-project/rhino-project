@@ -62,7 +62,8 @@ module Rhino
           version: Rhino::VERSION,
           authOwner: Rhino.auth_owner.model_name.singular,
           baseOwner: Rhino.base_owner.model_name.singular,
-          oauth: Rhino::OmniauthHelper.strategies
+          oauth: Rhino::OmniauthHelper.strategies,
+          allow_signup: Rhino.allow_signup
         }
       end
     end

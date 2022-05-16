@@ -29,6 +29,9 @@ module Rhino
 
   mattr_accessor :registered_modules, default: {}
 
+  # Whether to allow signup or not
+  mattr_accessor :allow_signup, default: true
+
   # sieves
   mattr_accessor :sieves
 
