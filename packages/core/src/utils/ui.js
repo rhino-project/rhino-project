@@ -136,7 +136,7 @@ export const getStringForDisplay = (
         if (isNaN(number)) {
           displayString = null;
         } else if (number < 0) {
-          displayString = `-$${-1 * number.toFixed(2)}`;
+          displayString = `-$${(-1 * number).toFixed(2)}`;
         } else {
           displayString = `$${number.toFixed(2)}`;
         }
