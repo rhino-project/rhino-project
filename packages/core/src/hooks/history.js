@@ -89,9 +89,13 @@ export const useSearchParams = (baseFilters) => {
   const setSearchParams = useCallback(
     ({ ...newSearchParams }) => {
       const finalParams = { ...state, ...newSearchParams };
-      // if any filter changes, we need to go back to the first page, as the current
+      // if any filter, search field or page size changes, we need to go back to the first page, as the current
       // page might not even exist and harm the UX
-      if (newSearchParams.hasOwnProperty('filter')) {
+      if (
+        newSearchParams.hasOwnProperty('filter') ||
+        newSearchParams.hasOwnProperty('search') ||
+        newSearchParams.hasOwnProperty('limit')
+      ) {
         finalParams.offset = 0;
       }
       setState(finalParams);
