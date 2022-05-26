@@ -37,7 +37,19 @@ const ModelSort = ({
     [model, paths]
   );
 
-  const dropdownlist = computedPaths.map((p) => getAttributeFromPath(model, p));
+  const dropdownlist = useMemo(() => {
+    return computedPaths.map((computedPath) => {
+      // Split multiple attributes
+      const attributes = computedPath
+        .split(',')
+        .map((p) => getAttributeFromPath(model, p));
+
+      return {
+        name: computedPath,
+        readableName: attributes.map((a) => a.readableName).join(', ')
+      };
+    });
+  }, [computedPaths, model]);
 
   const currentSort = useMemo(
     () =>
@@ -56,7 +68,13 @@ const ModelSort = ({
 
   const handleDirectionChange = () => {
     // '-' before order makes the sort order DESC
-    const newOrder = isDesc(order) ? order.replace('-', '') : '-' + order;
+    // FIXME: Mixed order ie '-name,description' are not supported
+    const desc = isDesc(order);
+    const attributes = order.split(',');
+
+    const newOrder = desc
+      ? attributes.map((a) => a.replace('-', '')).join(',')
+      : '-' + attributes.join(',-');
     setSearchParams({ order: newOrder });
   };
 
