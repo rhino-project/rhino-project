@@ -331,13 +331,11 @@ export const useModelCreate = (model, mutationOptions = {}) => {
   const { invalidate } = useModelInvalidateIndex(model);
   const endpoint = useModelPathCollection(model);
 
-  const mutation = useMutation(
-    (data) => networkApiCall(endpoint, { method: 'post', data }),
-    {
-      onSuccess: invalidate,
-      ...mutationOptions
-    }
-  );
+  const mutation = useMutation({
+    mutationFn: (data) => networkApiCall(endpoint, { method: 'post', data }),
+    onSuccess: invalidate,
+    ...mutationOptions
+  });
 
   const extraNames = useModelShowExtraNames(mutation);
 
@@ -370,13 +368,12 @@ export const useModelUpdate = (model, mutationOptions = {}) => {
   const { invalidate } = useModelInvalidate(model);
   const build = useModelPathMemberBuild(model);
 
-  const mutation = useMutation(
-    (data) => networkApiCall(build(data), { method: 'patch', data }),
-    {
-      onSuccess: (data) => invalidate(data?.data?.id),
-      ...mutationOptions
-    }
-  );
+  const mutation = useMutation({
+    mutationFn: (data) =>
+      networkApiCall(build(data), { method: 'patch', data }),
+    onSuccess: (data) => invalidate(data?.data?.id),
+    ...mutationOptions
+  });
 
   const extraNames = useModelShowExtraNames(mutation);
 
@@ -453,13 +450,11 @@ export const useModelDelete = (model, mutationOptions = {}) => {
   const { invalidate } = useModelInvalidateIndex(model);
   const build = useModelPathMemberBuild(model);
 
-  const mutation = useMutation(
-    (id) => networkApiCall(build({ id }), { method: 'delete' }),
-    {
-      onSuccess: invalidate,
-      ...mutationOptions
-    }
-  );
+  const mutation = useMutation({
+    mutationFn: (id) => networkApiCall(build({ id }), { method: 'delete' }),
+    onSuccess: invalidate,
+    ...mutationOptions
+  });
 
   const extraNames = useModelShowExtraNames(mutation);
 
@@ -494,7 +489,7 @@ export const useModelDelete = (model, mutationOptions = {}) => {
  */
 export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
   const memoModel = useModel(model);
-  const modelKey = useModelKeyShow(memoModel, id, [options]);
+  const queryKey = useModelKeyShow(memoModel, id, [options]);
   const endpoint = useModelPathMember(model, { id });
 
   // If it has either of these and not a fourth param, its the newer options setup
@@ -518,13 +513,11 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
   );
   // End of legacy handling
 
-  const query = useQuery(
-    modelKey,
-    () => networkApiCall(endpoint, networkOptions),
-    {
-      ...queryOptions
-    }
-  );
+  const query = useQuery({
+    queryKey,
+    queryFn: () => networkApiCall(endpoint, networkOptions),
+    ...queryOptions
+  });
 
   const extraNames = useModelShowExtraNames(query);
 
@@ -563,7 +556,7 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
  */
 export const useModelIndex = (model, options = {}, ...legacyOptions) => {
   const memoModel = useModel(model);
-  const modelKey = useModelKeyIndex(model, [options]);
+  const queryKey = useModelKeyIndex(model, [options]);
   const endpoint = useModelPathCollection(model);
 
   // If it has either of these and not a fourth param, its the newer options setup
@@ -587,13 +580,11 @@ export const useModelIndex = (model, options = {}, ...legacyOptions) => {
   );
   // End of legacy handling
 
-  const query = useQuery(
-    modelKey,
-    () => networkApiCall(endpoint, networkOptions),
-    {
-      ...queryOptions
-    }
-  );
+  const query = useQuery({
+    queryKey,
+    queryFn: () => networkApiCall(endpoint, networkOptions),
+    ...queryOptions
+  });
 
   const extraNames = useModelIndexExtraNames(query);
 
