@@ -14,6 +14,8 @@ OmniAuth providers can be add with the following steps
 - `bundle install`
 - Add environment variables for the strategy, `AUTH_<UPPER CASE STRATEGY>_CLIENT_ID`, `AUTH_<UPPER CASE STRATEGY>_SECRET_KEY`, for example
   `AUTH_FACEBOOK_CLIENT_ID`, `AUTH_FACEBOOK_SECRET_KEY`
+- For Microsoft Azure, you still need a third env variable: AUTH_AZURE_OAUTH2_TENANT_ID
+
 
 The oauth modules will then be advertised as part of the rhino open api response.
 
@@ -41,7 +43,25 @@ https://console.developers.google.com/apis/credentials and set up "OAuth 2.0 Cli
 
 #### Github
 
-https://github.com/settings/developers and do "New OAuth App" callback will be `http://localhost:3002/api/auth/omniauth/github/callback`
+https://github.com/settings/developers and do "New OAuth App" callback will be `http://localhost:3000/api/auth/omniauth/github/callback`
+
+#### Microsoft Azure
+
+First add gem 'omniauth-azure-oauth2' to Gemfile
+
+You need to register a new app in your tenant Azure Active Directory. For this go to your [Azure portal](https://portal.azure.com/?quickstart=True#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps) and click on “App registration” and on “New registration”.
+
+Then you may fill 4 things and click to Register:
+
+- your Rails app name
+- the Supported account types option to “Single tenant”
+- Redirect URI to “Web” and callback to `http://localhost:3000/api/auth/omniauth/azure_oauth2/callback`
+- Frontend-channel logout URL to  `https://localhost:3002/api/auth/sign_out`
+
+ From this setup you can retrieve the .env variable values for: 
+- AUTH_AZURE_OAUTH2_CLIENT_ID
+- AUTH_AZURE_OAUTH2_TENANT_ID
+- AUTH_AZURE_OAUTH2_SECRET_KEY (to this one, grab the 'value' field instead of SECRET_ID in 'Credentials & secrets.')
 
 ## Cookies
 
