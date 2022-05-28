@@ -5,6 +5,21 @@
 module DeviseTokenAuth::OmniauthCallbacksController::Extensions
   include RhinoOrganizations::Concerns::CreateOrganization
 
+  def redirect_callbacks
+    # derive target redirect route from 'resource_class' param, which was set
+    # before authentication.
+    devise_mapping = get_devise_mapping
+    redirect_route = get_redirect_route(devise_mapping)
+
+    # preserve omniauth info for success route. ignore 'extra' in twitter
+    # and 'credentials' in others auth response, like azure_oauth2, to avoid CookieOverflow.
+
+    session["dta.omniauth.auth"] = request.env["omniauth.auth"].except("extra").except("credentials")
+    session["dta.omniauth.params"] = request.env["omniauth.params"]
+
+    redirect_to redirect_route
+  end
+
   def omniauth_success
     super do |resource|
       if Rhino.resources.include?("Organization") && @oauth_registration

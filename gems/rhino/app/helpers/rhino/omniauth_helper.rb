@@ -2,7 +2,9 @@
 
 module Rhino
   module OmniauthHelper
-    def self.strategies
+    module_function
+
+    def strategies
       strategies = ENV.keys.map do |env|
         match = /AUTH_(.*)_CLIENT_ID/.match(env)
         next unless match
@@ -15,11 +17,22 @@ module Rhino
       strategies
     end
 
-    def self.app_info(strategy)
-      return [] if strategy == :developer
+    def app_info(strategy)
+      case strategy
+      when :developer
+        []
+      when :azure_oauth2
+        [client_id: ENV["AUTH_AZURE_OAUTH2_CLIENT_ID"],
+         client_secret: ENV["AUTH_AZURE_OAUTH2_SECRET_KEY"],
+         tenant_id: ENV["AUTH_AZURE_OAUTH2_TENANT_ID"]]
+      else
+        env_keys(strategy)
+      end
+    end
 
+    def env_keys(strategy)
       ups = strategy.to_s.upcase
-      [ENV["AUTH_#{ups}_CLIENT_ID"], ENV["AUTH_#{ups}_SECRET_KEY"]] unless strategy == :developer
+      [ENV["AUTH_#{ups}_CLIENT_ID"], ENV["AUTH_#{ups}_SECRET_KEY"]]
     end
   end
 end
