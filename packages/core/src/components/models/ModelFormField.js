@@ -249,7 +249,7 @@ export const ModelFormFieldCurrency = ({
       <Input
         {...props}
         type="number"
-        value={value}
+        value={value ? parseFloat(value).toFixed(2) : value}
         autoComplete="off"
         invalid={!!error}
         min={attribute.minimum}
