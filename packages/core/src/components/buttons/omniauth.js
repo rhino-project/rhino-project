@@ -9,6 +9,10 @@ const providerOverrides = {
   google_oauth2: {
     name: 'Google',
     icon: 'google'
+  },
+  azure_oauth2: {
+    name: 'Microsoft',
+    icon: 'microsoft'
   }
 };
 
