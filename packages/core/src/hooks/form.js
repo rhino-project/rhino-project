@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { cloneDeep, merge } from 'lodash';
+import { assign, cloneDeep } from 'lodash';
 
 export const useControlledForm = (resource) => {
   const [values, setValues] = useState(resource);
   const [errors, setErrors] = useState(null);
 
   const handleChange = useCallback(
-    (formValues) => setValues((values) => merge(cloneDeep(values), formValues)),
+    (formValues) =>
+      setValues((values) => assign(cloneDeep(values), formValues)),
     []
   );
 
