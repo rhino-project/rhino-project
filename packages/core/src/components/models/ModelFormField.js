@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { get, set } from 'lodash';
 import classnames from 'classnames';
@@ -241,16 +241,33 @@ export const ModelFormFieldCurrency = ({
   attribute,
   value,
   error,
+  onChange,
+  resource,
+  path,
   ...props
 }) => {
+  const [currencyValue, setCurrencyValue] = useState(
+    parseFloat(value).toFixed(2)
+  );
+
+  const handleOnBlur = () => {
+    setCurrencyValue(parseFloat(currencyValue).toFixed(2));
+  };
+
+  const handleOnChange = ({ target: { value } }) => {
+    setCurrencyValue(value);
+    onChange(set(resource, path, value));
+  };
   return (
     <InputGroup>
       <InputGroupAddon addonType="prepend">$</InputGroupAddon>
       <Input
         {...props}
         type="number"
-        value={value ? parseFloat(value).toFixed(2) : value}
+        value={currencyValue}
         autoComplete="off"
+        onBlur={handleOnBlur}
+        onChange={handleOnChange}
         invalid={!!error}
         min={attribute.minimum}
         max={attribute.maximum}
@@ -404,7 +421,8 @@ const ModelFormField = ({
   errors,
   path,
   resource,
-  onChange
+  onChange,
+  onBlur
 }) => {
   const error = extractError(errors, path);
   const value = get(resource, path, attribute.default || '');
@@ -512,7 +530,14 @@ const ModelFormField = ({
     case 'float':
     case 'number':
       if (attribute.format === 'currency') {
-        return <ModelFormFieldCurrency {...commonProps} value={value} />;
+        return (
+          <ModelFormFieldCurrency
+            {...commonProps}
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}
+          />
+        );
       }
       return <ModelFormFieldFloat {...commonProps} value={value} />;
     case 'text':

@@ -561,16 +561,11 @@ exports[`ModelFormField renders errors for Decimal Attribute Currency 1`] = `
       autoComplete="off"
       className="is-invalid form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
   <div
@@ -643,16 +638,11 @@ exports[`ModelFormField renders errors for Float Attribute Currency 1`] = `
       autoComplete="off"
       className="is-invalid form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
   <div
@@ -799,16 +789,11 @@ exports[`ModelFormField renders errors for Number Attribute Currency 1`] = `
       autoComplete="off"
       className="is-invalid form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
   <div
@@ -1797,16 +1782,11 @@ exports[`ModelFormField renders input for Decimal Attribute Currency 1`] = `
       autoComplete="off"
       className="form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
 </div>
@@ -1869,16 +1849,11 @@ exports[`ModelFormField renders input for Float Attribute Currency 1`] = `
       autoComplete="off"
       className="form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
 </div>
@@ -2004,16 +1979,11 @@ exports[`ModelFormField renders input for Number Attribute Currency 1`] = `
       autoComplete="off"
       className="form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
 </div>
@@ -2949,16 +2919,11 @@ exports[`ModelFormField renders required for Decimal Attribute Currency 1`] = `
       autoComplete="off"
       className="form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
 </div>
@@ -3021,16 +2986,11 @@ exports[`ModelFormField renders required for Float Attribute Currency 1`] = `
       autoComplete="off"
       className="form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
 </div>
@@ -3156,16 +3116,11 @@ exports[`ModelFormField renders required for Number Attribute Currency 1`] = `
       autoComplete="off"
       className="form-control"
       id="test-123"
+      onBlur={[Function]}
       onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
-      }
       step={0.01}
       type="number"
-      value=""
+      value="NaN"
     />
   </div>
 </div>
