@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { get, set } from 'lodash';
 import classnames from 'classnames';
@@ -9,17 +9,18 @@ import { Typeahead } from 'react-bootstrap-typeahead';
 import DatePicker from 'react-datepicker';
 
 import {
-  getModelFromRef,
   getIdentifierAttribute,
+  getModelFromRef,
   getReferenceAttributes
 } from 'rhino/utils/models';
-import { optionsFromIndexWithTitle, getDateTimeFormat } from 'rhino/utils/ui';
+import { getDateTimeFormat, optionsFromIndexWithTitle } from 'rhino/utils/ui';
 import ModelNestedManyForm from 'rhino/components/models/ModelNestedManyForm';
 import PhoneInput from 'react-phone-input-2';
 import ModelFieldFile from 'rhino/components/models/fields/ModelFieldFile';
 import ModelFieldCountry from 'rhino/components/models/fields/ModelFieldCountry';
 import { useModelIndex } from 'rhino/hooks/queries';
 import { useDebouncedState } from 'rhino/hooks/util';
+import CurrencyFormat from 'react-currency-format';
 import styles from './ModelFormField.module.scss';
 
 const extractError = (errors, path) => get(errors, `${path}[0]`);
@@ -241,37 +242,20 @@ export const ModelFormFieldCurrency = ({
   attribute,
   value,
   error,
-  onChange,
-  resource,
   path,
   ...props
 }) => {
-  const [currencyValue, setCurrencyValue] = useState(
-    parseFloat(value).toFixed(2)
-  );
-
-  const handleOnBlur = () => {
-    setCurrencyValue(parseFloat(currencyValue).toFixed(2));
-  };
-
-  const handleOnChange = ({ target: { value } }) => {
-    setCurrencyValue(value);
-    onChange(set(resource, path, value));
-  };
   return (
     <InputGroup>
       <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-      <Input
+      <CurrencyFormat
         {...props}
-        type="number"
-        value={currencyValue}
-        autoComplete="off"
-        onBlur={handleOnBlur}
-        onChange={handleOnChange}
-        invalid={!!error}
-        min={attribute.minimum}
-        max={attribute.maximum}
-        step={0.01}
+        value={!value ? '' : value}
+        decimalSeparator={'.'}
+        decimalScale={2}
+        fixedDecimalScale={true}
+        className={`form-control ${!!error ? 'border-danger' : ''}`}
+        inputmode="numeric"
       />
     </InputGroup>
   );
@@ -530,14 +514,7 @@ const ModelFormField = ({
     case 'float':
     case 'number':
       if (attribute.format === 'currency') {
-        return (
-          <ModelFormFieldCurrency
-            {...commonProps}
-            value={value}
-            onBlur={onBlur}
-            onChange={onChange}
-          />
-        );
+        return <ModelFormFieldCurrency {...commonProps} value={value} />;
       }
       return <ModelFormFieldFloat {...commonProps} value={value} />;
     case 'text':
