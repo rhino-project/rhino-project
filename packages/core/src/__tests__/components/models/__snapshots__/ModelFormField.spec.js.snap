@@ -557,15 +557,21 @@ exports[`ModelFormField renders errors for Decimal Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={true}
-      autoComplete="off"
-      className="is-invalid form-control"
+      className="form-control border-danger"
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
   <div
@@ -634,15 +640,21 @@ exports[`ModelFormField renders errors for Float Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={true}
-      autoComplete="off"
-      className="is-invalid form-control"
+      className="form-control border-danger"
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
   <div
@@ -785,15 +797,21 @@ exports[`ModelFormField renders errors for Number Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={true}
-      autoComplete="off"
-      className="is-invalid form-control"
+      className="form-control border-danger"
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
   <div
@@ -1778,15 +1796,21 @@ exports[`ModelFormField renders input for Decimal Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={false}
-      autoComplete="off"
-      className="form-control"
+      className="form-control "
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
 </div>
@@ -1845,15 +1869,21 @@ exports[`ModelFormField renders input for Float Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={false}
-      autoComplete="off"
-      className="form-control"
+      className="form-control "
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
 </div>
@@ -1975,15 +2005,21 @@ exports[`ModelFormField renders input for Number Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={false}
-      autoComplete="off"
-      className="form-control"
+      className="form-control "
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
 </div>
@@ -2915,15 +2951,21 @@ exports[`ModelFormField renders required for Decimal Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={false}
-      autoComplete="off"
-      className="form-control"
+      className="form-control "
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
 </div>
@@ -2982,15 +3024,21 @@ exports[`ModelFormField renders required for Float Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={false}
-      autoComplete="off"
-      className="form-control"
+      className="form-control "
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
 </div>
@@ -3112,15 +3160,21 @@ exports[`ModelFormField renders required for Number Attribute Currency 1`] = `
       </span>
     </div>
     <input
-      aria-invalid={false}
-      autoComplete="off"
-      className="form-control"
+      className="form-control "
       id="test-123"
+      inputmode="numeric"
       onBlur={[Function]}
       onChange={[Function]}
-      step={0.01}
-      type="number"
-      value="NaN"
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseUp={[Function]}
+      resource={
+        Object {
+          "test": "",
+        }
+      }
+      type="text"
+      value=""
     />
   </div>
 </div>
