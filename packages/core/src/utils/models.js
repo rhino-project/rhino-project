@@ -122,6 +122,10 @@ export const getModelAndAttributeFromPath = (model, path) => {
     }
 
     last_model = model;
+    if (!attribute)
+      console.error(
+        `Attribute name ${attributeName} is ${attribute} for model ${model.name} on path ${path}`
+      );
     model = getModelFromRef(attribute);
   }
 
