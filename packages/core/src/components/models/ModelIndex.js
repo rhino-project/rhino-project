@@ -163,7 +163,7 @@ const ModelIndex = ({ overrides, ...props }) => {
   );
 
   const { resources, isLoading } = useModelIndex(model, {
-    networkOptions: { params: searchParams },
+    ...searchParams,
     queryOptions: { keepPreviousData: true }
   });
 

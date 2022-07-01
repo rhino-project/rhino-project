@@ -75,11 +75,7 @@ export const ModelAttributeReferenceFilter = ({
   const model = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(() => getIdentifierAttribute(model), [model]);
 
-  const { isSuccess, results } = useModelIndex(model, {
-    networkOptions: {
-      params: { limit: 100 }
-    }
-  });
+  const { isSuccess, results } = useModelIndex(model, { limit: 100 });
 
   // We inject the ID because if we have both 'engagement.project.client'
   // and 'engagement.project' as filters, setting engagement.project.client will
