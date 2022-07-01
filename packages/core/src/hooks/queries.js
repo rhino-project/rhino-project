@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import { cloneDeep, has, merge } from 'lodash';
 
-import { networkApiCall } from 'rhino/lib/networking';
+import { networkApiCallOnlyData } from 'rhino/lib/networking';
 import { useModel } from 'rhino/hooks/models';
 import { getModel } from 'rhino/utils/models';
 import { useCallback, useMemo } from 'react';
@@ -34,7 +34,7 @@ export const modelKeyFromName = (name, action) =>
  * @returns {UseModelIndexExtraNamesResult}
  * */
 export const useModelIndexExtraNames = (query) => {
-  const resources = useMemo(() => query?.data?.data ?? null, [query.data]);
+  const resources = useMemo(() => query?.data ?? null, [query.data]);
   const results = useMemo(() => resources?.results ?? null, [resources]);
   const total = useMemo(() => resources?.total ?? null, [resources]);
 
@@ -62,7 +62,7 @@ export const useModelIndexExtraNames = (query) => {
  * @returns {UseModelShowExtraNamesResult}
  * */
 export const useModelShowExtraNames = (query) => {
-  const resource = useMemo(() => query?.data?.data ?? null, [query.data]);
+  const resource = useMemo(() => query?.data ?? null, [query.data]);
 
   const extraNames = useMemo(
     () => ({
@@ -332,7 +332,8 @@ export const useModelCreate = (model, mutationOptions = {}) => {
   const endpoint = useModelPathCollection(model);
 
   const mutation = useMutation({
-    mutationFn: (data) => networkApiCall(endpoint, { method: 'post', data }),
+    mutationFn: (data) =>
+      networkApiCallOnlyData(endpoint, { method: 'post', data }),
     onSuccess: invalidate,
     ...mutationOptions
   });
@@ -370,8 +371,8 @@ export const useModelUpdate = (model, mutationOptions = {}) => {
 
   const mutation = useMutation({
     mutationFn: (data) =>
-      networkApiCall(build(data), { method: 'patch', data }),
-    onSuccess: (data) => invalidate(data?.data?.id),
+      networkApiCallOnlyData(build(data), { method: 'patch', data }),
+    onSuccess: (data) => invalidate(data?.id),
     ...mutationOptions
   });
 
@@ -451,7 +452,8 @@ export const useModelDelete = (model, mutationOptions = {}) => {
   const build = useModelPathMemberBuild(model);
 
   const mutation = useMutation({
-    mutationFn: (id) => networkApiCall(build({ id }), { method: 'delete' }),
+    mutationFn: (id) =>
+      networkApiCallOnlyData(build({ id }), { method: 'delete' }),
     onSuccess: invalidate,
     ...mutationOptions
   });
@@ -515,7 +517,7 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
 
   const query = useQuery({
     queryKey,
-    queryFn: () => networkApiCall(endpoint, networkOptions),
+    queryFn: () => networkApiCallOnlyData(endpoint, networkOptions),
     ...queryOptions
   });
 
@@ -582,7 +584,7 @@ export const useModelIndex = (model, options = {}, ...legacyOptions) => {
 
   const query = useQuery({
     queryKey,
-    queryFn: () => networkApiCall(endpoint, networkOptions),
+    queryFn: () => networkApiCallOnlyData(endpoint, networkOptions),
     ...queryOptions
   });
 
