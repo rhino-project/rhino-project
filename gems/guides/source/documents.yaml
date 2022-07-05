@@ -76,6 +76,9 @@
     - name: Deployment
       url: deployment.html
       description: How to deploy Rhino apps
+    - name: Analytics
+      url: analytics.html
+      description: How to add analytics to Rhino apps
     - name: Error Reporting
       url: error_reporting.html
       description: How to deploy Rhino apps

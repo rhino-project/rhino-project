@@ -1,6 +1,6 @@
 # Error Reporting
 
-Error reporting is an essencial component of a healthy software. It is possible to be notified whenever an unexpected and unhandled error occurs. If configured properly, it is also possible to retrieve information about the UI, user's previous action, user's information, etc.
+Error reporting is an essential component of a healthy software. It is possible to be notified whenever an unexpected and unhandled error occurs. If configured properly, it is also possible to retrieve information about the UI, user's previous action, user's information, etc.
 
 ## Rollbar
 
