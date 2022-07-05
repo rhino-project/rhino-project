@@ -109,6 +109,34 @@ class BlogPost < ApplicationRecord
 end
 ```
 
+##### File references
+
+Files can be attached to ActiveRecord models with [Active Storage](https://guides.rubyonrails.org/active_storage_overview.html) and referenced by referring to the attachment relationship.
+
+```ruby
+class BlogPost < ApplicationRecord
+  belongs_to :blog
+
+  has_one_attachment :header_image
+
+  rhino_owner :blog
+  rhino_references [:blog, :header_image_attachment]
+end
+```
+
+or for many attachments:
+
+```ruby
+class BlogPost < ApplicationRecord
+  belongs_to :blog
+
+  has_many_attachments :post_image
+
+  rhino_owner :blog
+  rhino_references [:blog, :post_image_attachments]
+end
+```
+
 #### References to owner
 
 A reference to the owner of a resource should always be included so that resources can be created.
