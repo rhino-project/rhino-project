@@ -37,6 +37,14 @@ class ActiveRecordExtensionPropertyTest < ActiveSupport::TestCase
     }, BlogPost.describe_property("tag_list"))
   end
 
+  test "format can be overridden with rhino_properties_format" do
+    assert(Blog.describe_property("country") >= { format: :country })
+  end
+
+  test "readable name can be overridden with rhino_properties_readable_name" do
+    assert(Blog.describe_property("title")[:"x-rhino-attribute"] >= { readableName: "Blog Title" })
+  end
+
   # NUB-347
   test "foreign key symbols should be removed from readable properties" do
     assert_equal(%w[id title published_at created_at updated_at country user blogs_categories banner_attachment blog_posts], Blog.read_properties)
