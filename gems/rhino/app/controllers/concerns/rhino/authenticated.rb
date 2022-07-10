@@ -5,7 +5,7 @@ module Rhino
     extend ActiveSupport::Concern
 
     included do
-      before_action :authenticate_user!
+      prepend_before_action :authenticate_user!
     end
 
     # Overrides the default devise_token_auth handler
