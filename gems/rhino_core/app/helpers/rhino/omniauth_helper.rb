@@ -5,12 +5,12 @@ module Rhino
     module_function
 
     def strategies
-      strategies = ENV.keys.map do |env|
+      strategies = ENV.keys.filter_map do |env|
         match = /AUTH_(.*)_CLIENT_ID/.match(env)
         next unless match
 
         match[1].downcase.to_sym
-      end.compact.uniq
+      end.uniq
 
       strategies += [:developer] if Rails.env.development? && !Rake.try(:application)
 

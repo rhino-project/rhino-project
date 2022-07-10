@@ -25,6 +25,6 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md"]
 
-  spec.add_dependency "rails", "~> 6.1.0", ">= 6.1.0"
+  spec.add_dependency "rails", "~> 7.0.0", ">= 7.0.0"
   spec.add_dependency 'stripe', '~> 5.28.0'
 end

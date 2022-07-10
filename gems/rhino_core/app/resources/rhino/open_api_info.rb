@@ -42,7 +42,7 @@ module Rhino
     SUCCESS_CODES = [200].freeze
     def self.describe_path_content(klass, code)
       {
-        'application/json':
+        "application/json":
           ({ schema: { "$ref": "#/components/schemas/#{klass.model_name.singular}" } } if SUCCESS_CODES.include?(code)) || {}
       }
     end
@@ -99,7 +99,7 @@ module Rhino
       {
         title: "#{Rails.application.class.module_parent_name} API",
         version: '0.0.0',
-        'x-rhino': {
+        "x-rhino": {
           modules: Rhino.registered_modules
         }
       }

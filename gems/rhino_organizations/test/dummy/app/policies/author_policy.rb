@@ -4,7 +4,7 @@ class AuthorPolicy < ::Rhino::ViewerPolicy
   def check_author
     return false unless auth_owner
 
-    record.class.where(id: record.id).joins(record.joins_for(:blog)).exists?('blogs.user_id': auth_owner.id)
+    record.class.where(id: record.id).joins(record.joins_for(:blog)).exists?("blogs.user_id": auth_owner.id)
   end
 
   # Can always create (for themselves)

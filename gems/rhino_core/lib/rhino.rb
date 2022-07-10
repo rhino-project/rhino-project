@@ -38,19 +38,18 @@ module Rhino
   ##
   # Stolen from devise
   #
-  # https://github.com/jinzhu/devise/blob/b94ee9da98b16e4c8fbdc91af8605669d01b17e6/lib/devise.rb#L239
+  # https://github.com/heartcombo/devise/blob/main/lib/devise.rb#L310
   class Getter
     def initialize(name)
       @name = name
     end
 
     def get
-      ActiveSupport::Dependencies.constantize(@name)
+      @name.constantize
     end
   end
 
   def self.ref(arg)
-    ActiveSupport::Dependencies.reference(arg)
     Getter.new(arg)
   end
   #
