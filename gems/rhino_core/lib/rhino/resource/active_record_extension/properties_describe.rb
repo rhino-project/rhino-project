@@ -24,8 +24,9 @@ module Rhino
               nullable: property_nullable?(name),
               default: property_default(name)
             }
-              .merge(property_type_and_format_with_override(property))
+              .merge(property_type_and_format(property))
               .merge(property_validations(property))
+              .deep_merge(property_overrides(property))
               .compact
           end
 
@@ -105,14 +106,10 @@ module Rhino
             { type: :unknown }
           end
 
-          def property_type_and_format_with_override(property)
-            name = property_name(property)
+          def property_overrides(property)
+            return {} unless _properties_overrides.key?(property)
 
-            tf = property_type_and_format(name)
-
-            tf[:format] = _properties_format[property.to_sym] if _properties_format.key?(property.to_sym)
-
-            tf
+            _properties_overrides[property].deep_symbolize_keys
           end
 
           def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity

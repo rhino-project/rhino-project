@@ -44,7 +44,7 @@ module Rhino
 
         class_attribute :_all_properties, default: nil
 
-        class_attribute :_properties_format, default: {}
+        class_attribute :_properties_overrides, default: ActiveSupport::HashWithIndifferentAccess.new
         class_attribute :_properties_array, default: {}
 
         delegate :identifier_property, to: :class
@@ -79,8 +79,16 @@ module Rhino
           rhino_properties_update(...)
         end
 
-        def rhino_properties_format(format)
-          self._properties_format = format
+        def rhino_properties_format(formats)
+          formats.each do |property, format|
+            self._properties_overrides.deep_merge!(property => { format: })
+          end
+        end
+
+        def rhino_properties_readable_name(readable_names)
+          readable_names.each do |property, readable_name|
+            self._properties_overrides.deep_merge!(property => { "x-rhino-attribute": { readableName: readable_name } })
+          end
         end
 
         def rhino_properties_array(options)
