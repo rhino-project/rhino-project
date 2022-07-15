@@ -10,7 +10,7 @@ This field is called attributes for historical reasons, but is the list of prope
 
 Readable/creatable/nullable
 
-### Types
+### Types and formats
 
 Types are based on the OpenAPI data types https://swagger.io/docs/specification/data-models/data-types/ and may include format modifiers. These are mapped automatically by the `describe_property` method.
 
@@ -39,6 +39,12 @@ In the front end the type/format is mapped as follows:
 | array (reference)            | join_table_simple |                ModelFormFieldJoinSimple |
 | reference                    |       none        |                 ModelFormFieldReference |
 | reference                    |       file        |                      ModelFormFieldFile |
+
+The format for one or more attributes can be overridden:
+
+```ruby
+rhino_properties_formats phone: :phone, blog_categories: :join_table_simple
+```
 
 #### Phone
 
@@ -90,6 +96,14 @@ Use the mac address validator for backend validation. Your model might look some
 ```ruby
   # Validate the optional country
   validates :mac_address, mac_address: { allow_blank: true }
+```
+
+### Readable name
+
+The readable name is used to label the attribute in forms, display, filters and more. By default it is based on the name in the database. The readable name for one or more attributes can be overridden:
+
+```ruby
+rhino_properties_readable_names title: "Name", description: "Body"
 ```
 
 ### Array attributes
