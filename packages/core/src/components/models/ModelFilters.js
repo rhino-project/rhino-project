@@ -137,8 +137,10 @@ export const ModelAttributeIntegerFilter = ({
   const value = useMemo(() => {
     const raw = get(filter, fullPath);
     if (typeof raw === 'number') return raw;
-    if (typeof raw === 'string') return parseInt(raw) || null;
-    return null;
+    if (typeof raw === 'string') {
+      const parsed = parseInt(raw);
+      return isNaN(parsed) ? null : parsed;
+    }
   }, [filter, fullPath]);
 
   const handleChange = (e) => {
@@ -162,7 +164,7 @@ export const ModelAttributeIntegerFilter = ({
     <Input
       type="number"
       // If the value goes to undefined/null an existing number won't be cleared
-      value={value || ''}
+      value={value == null ? '' : value}
       onChange={handleChange}
       min={attribute.minimum}
       max={attribute.maximum}
