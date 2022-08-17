@@ -7,6 +7,9 @@ module Rhino
     rhino_policy :organization
     rhino_properties_write only: :name
 
+    after_create_commit :track_account_created
+    after_destroy_commit :track_account_deleted
+
     def self.roles_for_auth(auth_owner, record = nil)
       return {} unless auth_owner
 
@@ -17,5 +20,14 @@ module Rhino
       # A list of roles as hash keys with an array of base_owners for each
       users_roles.group_by { |ur| ur.role.name }.transform_values { |ur_array| ur_array.map(&:organization) }
     end
+
+    private
+      def track_account_created
+        Rhino::SegmentHelper.track_account("Account Created", self)
+      end
+
+      def track_account_deleted
+        Rhino::SegmentHelper.track_account("Account Deleted", self)
+      end
   end
 end

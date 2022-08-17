@@ -9,6 +9,16 @@ module DeviseTokenAuth::SessionsController::Extensions
     end
     super
   end
+
+  def create
+    super
+    Rhino::SegmentHelper.track("Signed In", @resource) unless @resource.nil?
+  end
+
+  def destroy
+    Rhino::SegmentHelper.track("Signed Out", @resource) unless @resource.nil?
+    super
+  end
 end
 
 class DeviseTokenAuth::SessionsController
