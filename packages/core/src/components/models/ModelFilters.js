@@ -307,6 +307,7 @@ ModelAttributeDateFilter.propTypes = {
 };
 
 const buildBooleanPill = (attribute, newValue) => {
+  if (newValue == null) return null;
   const state = newValue === false ? 'Not ' : '';
   return `${state}${attribute.readableName}`;
 };
