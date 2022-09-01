@@ -19,6 +19,7 @@ module Rhino
     devise(*devise_modules_to_load)
 
     validates :email, uniqueness: { case_sensitive: false }
+    after_create_commit :track_sign_up
 
     def confirmation_required?
       false
@@ -38,5 +39,10 @@ module Rhino
 
       {}
     end
+
+    private
+      def track_sign_up
+        Rhino::SegmentHelper.track("Signed Up", self)
+      end
   end
 end
