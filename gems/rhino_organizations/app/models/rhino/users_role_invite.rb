@@ -14,5 +14,12 @@ module Rhino
     after_create do
       ::UsersRole.create!(user: ::User.find_by(email: email), organization: organization, role: role)
     end
+
+    after_create_commit :track_invite
+
+    private
+      def track_invite
+        Rhino::SegmentHelper.track_invite(self)
+      end
   end
 end

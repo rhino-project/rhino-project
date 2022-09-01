@@ -71,3 +71,34 @@ class Rhino::UsersRoleTest < ActiveSupport::TestCase
     assert_equal "Must have at least one user as admin", only_admin.errors.first.type
   end
 end
+
+class SegmentTest < ActiveSupport::TestCase
+  def setup
+    @organization = create :organization
+    @regular_role = create :role, name: "regular"
+  end
+
+  test "should track 'Account Added User' when adding a new role to user" do
+    mock = MiniTest::Mock.new
+    mock.expect :call, nil
+    users_role = UsersRole.new(user: (create :user), organization: @organization, role: @regular_role)
+
+    users_role.stub :track_account_added_user, mock do
+      users_role.save!
+    end
+
+    mock.verify
+  end
+
+  test "should track 'Account Removed User' when deleting a user role" do
+    mock = MiniTest::Mock.new
+    mock.expect :call, nil
+    users_role = create :users_role, user: (create :user), organization: @organization, role: @regular_role
+
+    users_role.stub :track_account_removed_user, mock do
+      users_role.destroy!
+    end
+
+    mock.verify
+  end
+end

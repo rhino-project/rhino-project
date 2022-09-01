@@ -18,7 +18,14 @@ class BlogPost < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
 
+  after_create_commit :track_creation
+
   default_scope { order(created_at: :desc) }
 
   alias_attribute :aliased_creation_date, :created_at
+
+  private
+    def track_creation
+      SegmentHelper.track_new_blog_post(self)
+    end
 end
