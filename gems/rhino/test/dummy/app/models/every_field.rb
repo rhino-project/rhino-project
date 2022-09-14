@@ -5,7 +5,7 @@ class EveryField < ApplicationRecord
 
   rhino_owner_base
   rhino_references [:user]
-  rhino_properties_format year: :year, currency: :currency
+  rhino_properties_format year: :year
 
   with_options allow_blank: true do
     validates :string_inclusion, inclusion: { in: %w[test example] }
@@ -38,8 +38,6 @@ class EveryField < ApplicationRecord
   validates :date_time_required, presence: true
 
   validates :time_required, presence: true
-
-  validates :currency, presence: true
 
   validates :year, numericality: { only_integer: true, allow_nil: true, greater_than: 5.years.ago.year, less_than: 0.years.ago.year }
 end
