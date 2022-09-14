@@ -246,7 +246,11 @@ export const ModelFormFieldCurrency = ({
   ...props
 }) => {
   return (
-    <InputGroup>
+    <InputGroup
+      className={classnames({
+        'is-invalid': error
+      })}
+    >
       <InputGroupAddon addonType="prepend">$</InputGroupAddon>
       <CurrencyFormat
         {...props}
