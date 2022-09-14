@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_02_230139) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_14_015915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,8 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_02_230139) do
   create_table "blog_dummies", force: :cascade do |t|
     t.string "name"
     t.bigint "blog_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["blog_id"], name: "index_blog_dummies_on_blog_id"
   end
 
@@ -130,6 +130,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_02_230139) do
     t.integer "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "currency", precision: 10, scale: 4
     t.index ["user_id"], name: "index_every_fields_on_user_id"
   end
 
