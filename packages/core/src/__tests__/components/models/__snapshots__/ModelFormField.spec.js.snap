@@ -545,7 +545,7 @@ exports[`ModelFormField renders errors for Decimal Attribute Currency 1`] = `
     Decimal Attribute Currency
   </label>
   <div
-    className="input-group"
+    className="is-invalid input-group"
   >
     <div
       className="input-group-prepend"
@@ -628,7 +628,7 @@ exports[`ModelFormField renders errors for Float Attribute Currency 1`] = `
     Float Attribute Currency
   </label>
   <div
-    className="input-group"
+    className="is-invalid input-group"
   >
     <div
       className="input-group-prepend"
@@ -785,7 +785,7 @@ exports[`ModelFormField renders errors for Number Attribute Currency 1`] = `
     Number Attribute Currency
   </label>
   <div
-    className="input-group"
+    className="is-invalid input-group"
   >
     <div
       className="input-group-prepend"
