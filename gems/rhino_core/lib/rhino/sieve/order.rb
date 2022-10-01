@@ -34,9 +34,9 @@ module Rhino
       def parse_column_name(param, direction)
         param = if direction == :asc
                   param
-                else
+        else
                   param[1..]
-                end
+        end
         Sieve::Helpers.real_column_name(@scope, param)
       end
 
@@ -73,9 +73,9 @@ module Rhino
 
         last_base = if path.last.blank?
             @scope
-          else
+        else
             path.last.classify.safe_constantize
-          end
+        end
         return nil unless last_base&.attribute_names&.include? field
 
         join_clauses = get_joins(@scope.klass, path, last_base)

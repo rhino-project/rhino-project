@@ -12,7 +12,7 @@ module Rhino
     rhino_controller :users_role_invite
 
     after_create do
-      ::UsersRole.create!(user: ::User.find_by(email: email), organization: organization, role: role)
+      ::UsersRole.create!(user: ::User.find_by(email:), organization:, role:)
     end
 
     after_create_commit :track_invite

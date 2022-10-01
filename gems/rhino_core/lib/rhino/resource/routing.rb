@@ -83,7 +83,7 @@ module Rhino
         # if this is Model is the base owner, we don't to include it in frontend url
         nil
       else
-        base_owner_ids = self.class.joins(joins).where(id: id).pluck(base_owner_pk)
+        base_owner_ids = self.class.joins(joins).where(id:).pluck(base_owner_pk)
         if base_owner_ids.length == 1
           base_owner_ids.first
         else
