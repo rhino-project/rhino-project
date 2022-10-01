@@ -44,7 +44,7 @@ module Rhino
       Analytics.track(
         user_id: users_role.nil? ? organization.id : users_role.user&.id,
         event: type,
-        properties: properties
+        properties:
       )
     end
 

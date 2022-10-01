@@ -21,7 +21,7 @@ module Rhino
         end
 
         def index(params: {}, headers: {})
-          get "/api/organizations", params: params, headers: headers
+          get "/api/organizations", params:, headers:
         end
 
         def prepare

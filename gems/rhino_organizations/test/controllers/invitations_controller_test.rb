@@ -10,7 +10,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
 
     put user_invitation_path, params: {
       invitation_token: token,
-      password: password,
+      password:,
       password_confirmation: password
     }
 
@@ -25,7 +25,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
 
     put user_invitation_path, params: {
       invitation_token: token,
-      password: password,
+      password:,
       password_confirmation: password
     }
 
@@ -44,7 +44,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
 
     put user_invitation_path, params: {
       invitation_token: token,
-      password: password,
+      password:,
       password_confirmation: "pass"
     }
 
@@ -63,7 +63,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
 
     put user_invitation_path, params: {
       invitation_token: "invalid",
-      password: password,
+      password:,
       password_confirmation: password
     }
 

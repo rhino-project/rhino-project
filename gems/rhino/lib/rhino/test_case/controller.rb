@@ -10,21 +10,21 @@ module Rhino
 
       protected
         def users_index(params: {}, headers: {})
-          get "/api/users", params: params, headers: headers
+          get "/api/users", params:, headers:
         end
 
         def validate_session(params: {}, headers: {})
-          get "/api/auth/validate_token", params: params, headers: headers
+          get "/api/auth/validate_token", params:, headers:
         end
 
         def sign_out_with_empty_auth_cookie
           params = {}
           headers = { "Cookie" => "auth_cookie=;" }
-          delete "/api/auth/sign_out", params: params, headers: headers
+          delete "/api/auth/sign_out", params:, headers:
         end
 
         def sign_out(params: {}, headers: {})
-          delete "/api/auth/sign_out", params: params, headers: headers
+          delete "/api/auth/sign_out", params:, headers:
         end
 
         def assert_response_ok

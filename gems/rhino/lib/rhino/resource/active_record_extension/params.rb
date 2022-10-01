@@ -55,7 +55,7 @@ module Rhino
                   next_refs = refs_index[prop_sym].is_a?(Hash) ? refs_index[prop_sym][prop_sym] : []
                   assoc = assoc_from_sym(prop_sym)
 
-                  next params << { prop.to_s => assoc.send("readable_params", type, next_refs) }
+                  next params << { prop.to_s => assoc.send(:readable_params, type, next_refs) }
                 end
 
                 # JSON columns need special handling - allow all the nested params
@@ -103,11 +103,11 @@ module Rhino
                     assoc_params << assoc.identifier_property
 
                     # If the attribute is updatable, we need to accept its updatable params
-                    assoc_params << assoc.send("writeable_params", "update")
+                    assoc_params << assoc.send(:writeable_params, "update")
                   end
 
                   # If the attribute is creatable, we need to accept its creatable params
-                  assoc_params << assoc.send("writeable_params", "create") if array_attributes[:creatable]
+                  assoc_params << assoc.send(:writeable_params, "create") if array_attributes[:creatable]
 
                   # If its destroyable, accept the _destroy param
                   assoc_params << "_destroy" if nested_attributes_options[prop_sym][:allow_destroy]

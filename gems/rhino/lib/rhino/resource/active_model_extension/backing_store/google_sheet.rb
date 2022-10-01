@@ -79,7 +79,7 @@ module Rhino
             def row_to_instance(row, id)
               attrs = row.to_hash
               attrs = attrs.transform_keys(&:downcase).transform_keys(&:to_sym)
-              new(attrs.merge(id: id))
+              new(attrs.merge(id:))
             end
           end
         end
