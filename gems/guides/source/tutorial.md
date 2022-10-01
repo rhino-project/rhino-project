@@ -8,7 +8,7 @@ Make sure you have below installed:
 
     - Ruby version: 3.1.2
     - Bundler  2.3.11
-    - Rails: 7.0.2.3
+    - Rails: 7.0.4
     - PostgreSQL: 12 or newer
     - node 14.16.1
 
