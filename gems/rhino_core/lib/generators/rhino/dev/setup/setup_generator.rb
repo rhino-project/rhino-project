@@ -25,6 +25,14 @@ module Rhino
         end
 
         private
+          def server_extension
+            Rails.root.basename.to_s.match(/[-_]server/)[0]
+          end
+
+          def client_extension
+            server_extension.sub("server", "client")
+          end
+
           def server_port_default
             ENV["PORT"] || 3000
           end
@@ -34,11 +42,11 @@ module Rhino
           end
 
           def client_source_default
-            ENV["CLIENT_SOURCE"] || Rails.root.sub("_server", "_client")
+            ENV["CLIENT_SOURCE"] || Rails.root.sub(server_extension, client_extension)
           end
 
           def db_name_default
-            ENV["DB_NAME"] || File.basename(Rails.root).sub("_server", "")
+            ENV["DB_NAME"] || File.basename(Rails.root).sub(server_extension, "")
           end
 
           def db_user_default
