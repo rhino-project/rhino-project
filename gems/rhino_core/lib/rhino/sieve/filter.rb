@@ -98,7 +98,7 @@ module Rhino
                          else
                            arel_node.eq(value)
                          end
-                       end
+        end
         scope.where(where_clause)
       end
 

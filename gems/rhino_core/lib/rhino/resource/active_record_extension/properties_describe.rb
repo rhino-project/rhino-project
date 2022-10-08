@@ -13,7 +13,7 @@ module Rhino
 
             {
               "x-rhino-attribute": {
-                name: name,
+                name:,
                 readableName: name.titleize,
                 readable: read_properties.include?(property),
                 creatable: create_properties.include?(property),

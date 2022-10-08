@@ -27,8 +27,8 @@ module Rhino
                 path: "#{Rhino.namespace}/#{route_path}"
               },
               type: :object,
-              properties: properties,
-              required: required
+              properties:,
+              required:
             }.compact
           end
         end

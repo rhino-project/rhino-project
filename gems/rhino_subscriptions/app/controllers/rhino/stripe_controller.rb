@@ -14,7 +14,7 @@ module Rhino
       end
       render json: {
         publishableKey: ENV['STRIPE_PUBLISHABLE_KEY'],
-        prices: prices
+        prices:
       }
     end
 
