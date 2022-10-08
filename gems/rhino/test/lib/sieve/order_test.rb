@@ -23,9 +23,9 @@ class RhinoSieveOrderTestHelper < ActionDispatch::IntegrationTest
     @current_user = create :user
     @blog = create :blog, user: @current_user, published_at: Time.zone.now
     @middle_instance = create :blog_post, blog: @blog, created_at: Time.zone.now
-    @oldest_instance = create :blog_post, blog: @blog, created_at: Time.zone.now - 1.day
-    @newest_instance = create :blog_post, blog: @blog, created_at: Time.zone.now + 1.day
-    @oldest_blog = create :blog, user: @current_user, published_at: Time.zone.now - 1.day
+    @oldest_instance = create :blog_post, blog: @blog, created_at: 1.day.ago
+    @newest_instance = create :blog_post, blog: @blog, created_at: 1.day.from_now
+    @oldest_blog = create :blog, user: @current_user, published_at: 1.day.ago
     @null_blog = create :blog, user: @current_user, published_at: nil
   end
 
@@ -77,8 +77,8 @@ class RhinoSieveOrderMultipleClausesTest < RhinoSieveOrderTestHelper
 
     now = Time.zone.now
     @instance1 = create :blog_post, blog: @blog, created_at: Time.zone.now, updated_at: now
-    @instance2 = create :blog_post, blog: @blog, created_at: Time.zone.now - 1.day, updated_at: now
-    @instance3 = create :blog_post, blog: @blog, created_at: Time.zone.now + 1.day, updated_at: now - 1.day
+    @instance2 = create :blog_post, blog: @blog, created_at: 1.day.ago, updated_at: now
+    @instance3 = create :blog_post, blog: @blog, created_at: 1.day.from_now, updated_at: now - 1.day
   end
 
   test "ordering sieve works with two clauses" do
@@ -166,8 +166,8 @@ class RhinoSieveOrderRelatedModelsTest < RhinoSieveOrderTestHelper
     @oldest_blog = create :blog, user: @current_user, published_at: now - 1.day
 
     @middle_blog_post = create :blog_post, blog: @oldest_blog, created_at: Time.zone.now
-    @oldest_blog_post = create :blog_post, blog: @newest_blog2, created_at: Time.zone.now - 1.day
-    @newest_blog_post = create :blog_post, blog: @newest_blog1, created_at: Time.zone.now + 1.day
+    @oldest_blog_post = create :blog_post, blog: @newest_blog2, created_at: 1.day.ago
+    @newest_blog_post = create :blog_post, blog: @newest_blog1, created_at: 1.day.from_now
 
     @middle_instance = create :og_meta_tag, blog_post: @middle_blog_post
     @oldest_instance = create :og_meta_tag, blog_post: @oldest_blog_post

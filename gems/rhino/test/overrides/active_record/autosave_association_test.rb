@@ -24,7 +24,7 @@ module ActiveRecord
       og_meta_tags = [og_meta_tag0, og_meta_tag1]
 
       exp = assert_raises ActiveRecord::RecordInvalid do
-        create :blog_post, title: "blog_post_title", body: "blog_post_body", blog: @blog, og_meta_tags: og_meta_tags
+        create :blog_post, title: "blog_post_title", body: "blog_post_body", blog: @blog, og_meta_tags:
       end
 
       assert_equal "Validation failed: Og meta tags[1] value can't be blank", exp.message
@@ -33,8 +33,7 @@ module ActiveRecord
     test "should show error in tags[1]" do
       og_meta_tag0 = OgMetaTag.new(tag_name: "tag0", value: "val0")
       og_meta_tag1 = OgMetaTag.new(tag_name: "tag1", value: "val1")
-      og_meta_tags = [og_meta_tag0, og_meta_tag1]
-      blog_post = create :blog_post, title: "blog_post_title", body: "blog_post_body", blog: @blog, og_meta_tags: og_meta_tags
+      blog_post = create :blog_post, title: "blog_post_title", body: "blog_post_body", blog: @blog, og_meta_tags: [og_meta_tag0, og_meta_tag1]
       blog_post.og_meta_tags[1].value = nil
 
       exp = assert_raises ActiveRecord::RecordInvalid do

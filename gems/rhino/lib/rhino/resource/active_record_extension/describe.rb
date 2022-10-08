@@ -28,8 +28,8 @@ module Rhino
                 searchable: searchable?
               },
               type: :object,
-              properties: properties,
-              required: required
+              properties:,
+              required:
             }.compact
           end
 
