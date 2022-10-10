@@ -31,6 +31,9 @@ module Rhino
           end
 
           private
+          # FIXME: It can be a hash if passed in from a reference which might have something like
+          # rhino_references %i[{blog_posts: [:comments]}]
+          # but I cannot find current spot where it is used like that currently
           def property_name(property)
             property.is_a?(Hash) ? property.keys.first : property
           end
@@ -112,6 +115,7 @@ module Rhino
 
             return property_type_and_format_ref(name) if reflections.key?(name)
 
+            # FIXME: There may be no way to reach this
             # raise UnknownpropertyType
             { type: :unknown }
           end
