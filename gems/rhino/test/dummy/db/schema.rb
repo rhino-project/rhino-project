@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_08_131615) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_10_143850) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -132,7 +132,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_131615) do
     t.datetime "updated_at", null: false
     t.decimal "currency", precision: 10, scale: 4
     t.integer "array_int", array: true
+    t.integer "enum"
+    t.string "string_write_only"
+    t.string "string_overrideable"
     t.index ["user_id"], name: "index_every_fields_on_user_id"
+  end
+
+  create_table "every_manies", force: :cascade do |t|
+    t.bigint "every_field_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["every_field_id"], name: "index_every_manies_on_every_field_id"
   end
 
   create_table "og_meta_tags", force: :cascade do |t|
@@ -217,6 +227,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_131615) do
   add_foreign_key "blogs_categories", "blogs"
   add_foreign_key "blogs_categories", "categories"
   add_foreign_key "every_fields", "users"
+  add_foreign_key "every_manies", "every_fields"
   add_foreign_key "og_meta_tags", "blog_posts"
   add_foreign_key "taggings", "tags"
 end

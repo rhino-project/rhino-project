@@ -1,11 +1,22 @@
 # frozen_string_literal: true
 
 class EveryField < ApplicationRecord
+  enum enum: { test: 0, example: 1 }
+
   belongs_to :user
+  belongs_to :another_user, class_name: "User", foreign_key: :user_id
+  has_many :every_manies, dependent: :destroy
+  has_many :every_manies_not_nested, class_name: "EveryMany", inverse_of: :every_field_not_nested
+
+  acts_as_taggable_on :tags
 
   rhino_owner_base
-  rhino_references [:user]
+  rhino_references %i[user another_user every_manies every_manies_not_nested]
+  rhino_properties_read except: %i[string_write_only]
   rhino_properties_format year: :year, currency: :currency
+  rhino_properties_readable_name string_overrideable: "Overriden name"
+
+  accepts_nested_attributes_for :every_manies, allow_destroy: true
 
   with_options allow_blank: true do
     validates :string_inclusion, inclusion: { in: %w[test example] }
