@@ -44,8 +44,18 @@ module Rhino
             }
           end
 
-          def property_type_and_format_attr(name)
+          def property_type_and_format_attr(name) # rubocop:todo Metrics/MethodLength
             atype = attribute_types[name.to_s].type
+
+            # The PG array delegates type to "subtype" which is the actual type of the array elements
+            if attribute_types[name.to_s].is_a? ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array
+              return {
+                type: :array,
+                items: {
+                  type: atype
+                }
+              }
+            end
 
             if %i[datetime date time].include?(atype)
               return {

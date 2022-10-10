@@ -145,5 +145,12 @@ module ActiveRecordExtension
       assert_equal("string", description[:type])
       assert_not description[:nullable]
     end
+
+    test "array of integers" do
+      description = EveryField.describe_property("array_int")
+      assert_equal(:array, description[:type])
+      assert_equal(:integer, description[:items][:type])
+      assert description[:nullable]
+    end
   end
 end
