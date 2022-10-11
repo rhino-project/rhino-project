@@ -30,6 +30,9 @@ module RhinoOrganizations
 
       def install_devise_invitable
         generate "devise_invitable:install"
+
+        # Set a sane default
+        gsub_file "config/initializers/devise.rb", /^  \# config.invitation_limit = 5/, "  config.invitation_limit = 5"
       end
 
       def install_initializer
