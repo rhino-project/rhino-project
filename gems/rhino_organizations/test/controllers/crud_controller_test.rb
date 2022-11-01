@@ -11,7 +11,7 @@ class OrganizationsCrudControllerTest < Rhino::TestCase::OrganizationControllerT
   end
 
   test "index returns results" do
-    get blogs_path, xhr: true, as: :json
+    get_api blogs_path
 
     assert_response_ok
     assert_equal 1, parsed_response["total"]
@@ -19,7 +19,7 @@ class OrganizationsCrudControllerTest < Rhino::TestCase::OrganizationControllerT
   end
 
   test "show returns resource" do
-    get blog_path(@blog), xhr: true, as: :json
+    get_api blog_path(@blog)
 
     assert_response_ok
     assert_equal @blog.id, parsed_response["id"]
@@ -30,7 +30,7 @@ class OrganizationsCrudControllerTest < Rhino::TestCase::OrganizationControllerT
     blog_attr = attributes_for(:blog).merge(organization: @current_organization.id)
 
     assert_difference "Blog.count", 1 do
-      post blogs_path, params: blog_attr, xhr: true, as: :json
+      post_api blogs_path, params: blog_attr
     end
 
     assert_response_ok
@@ -40,7 +40,7 @@ class OrganizationsCrudControllerTest < Rhino::TestCase::OrganizationControllerT
   test "updates and returns resource" do
     updated_title = attributes_for(:blog)[:title]
 
-    patch blog_path(@blog), params: { title: updated_title }, xhr: true, as: :json
+    patch_api blog_path(@blog), params: { title: updated_title }
 
     assert_response_ok
     assert_equal @blog.id, parsed_response["id"]
@@ -49,7 +49,7 @@ class OrganizationsCrudControllerTest < Rhino::TestCase::OrganizationControllerT
 
   test "destroys and returns resource" do
     assert_difference "Blog.count", -1 do
-      delete blog_path(@blog), xhr: true, as: :json
+      delete_api blog_path(@blog)
     end
 
     assert_response_ok
@@ -70,14 +70,14 @@ class CrudControllerUnauthorizedTest < Rhino::TestCase::OrganizationControllerTe
   end
 
   test "index does not contain resource for another user" do
-    get blogs_path, xhr: true, as: :json
+    get_api blogs_path
 
     assert_response_ok
     assert_equal 0, parsed_response["total"]
   end
 
   test "show does not find resource for another user" do
-    get blog_path(@blog), xhr: true, as: :json
+    get_api blog_path(@blog)
 
     assert_response_not_found
   end
@@ -86,7 +86,7 @@ class CrudControllerUnauthorizedTest < Rhino::TestCase::OrganizationControllerTe
     blog_attr = attributes_for(:blog).merge(author: @another_user.id)
 
     assert_no_difference "Blog.count" do
-      post blogs_path, params: blog_attr, xhr: true, as: :json
+      post_api blogs_path, params: blog_attr
     end
 
     assert_response_forbidden
@@ -95,14 +95,14 @@ class CrudControllerUnauthorizedTest < Rhino::TestCase::OrganizationControllerTe
   test "cannot update blog for another user" do
     updated_title = attributes_for(:blog)[:title]
 
-    patch blog_path(@blog), params: { title: updated_title }, xhr: true, as: :json
+    patch_api blog_path(@blog), params: { title: updated_title }
 
     assert_response_forbidden
   end
 
   test "cannot destroy blog for another user" do
     assert_no_difference "Blog.count" do
-      delete blog_path(@blog), xhr: true, as: :json
+      delete_api blog_path(@blog)
     end
 
     assert_response_forbidden
@@ -120,13 +120,13 @@ class OrganizationsCrudControllerTestUnauthenticatedTest < Rhino::TestCase::Orga
   end
 
   test "index unauthorized for unauthenticated user" do
-    get blogs_path, xhr: true, as: :json
+    get_api blogs_path
 
     assert_response_unauthorized
   end
 
   test "show unauthorized for unauthenticated user" do
-    get blog_path(@blog), xhr: true, as: :json
+    get_api blog_path(@blog)
 
     assert_response_unauthorized
   end
@@ -135,7 +135,7 @@ class OrganizationsCrudControllerTestUnauthenticatedTest < Rhino::TestCase::Orga
     blog_attr = attributes_for(:blog).merge(author: @current_user.id)
 
     assert_no_difference "Blog.count" do
-      post blogs_path, params: blog_attr, xhr: true, as: :json
+      post_api blogs_path, params: blog_attr
     end
 
     assert_response_unauthorized
@@ -144,14 +144,14 @@ class OrganizationsCrudControllerTestUnauthenticatedTest < Rhino::TestCase::Orga
   test "uppdate unauthorized for unauthenticated user" do
     updated_title = attributes_for(:blog)[:title]
 
-    patch blog_path(@blog), params: { title: updated_title }, xhr: true, as: :json
+    patch_api blog_path(@blog), params: { title: updated_title }
 
     assert_response_unauthorized
   end
 
   test "destroy unauthorized for unauthenticated user" do
     assert_no_difference "Blog.count" do
-      delete blog_path(@blog), xhr: true, as: :json
+      delete_api blog_path(@blog)
     end
 
     assert_response_unauthorized

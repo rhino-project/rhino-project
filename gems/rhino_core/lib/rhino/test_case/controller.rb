@@ -27,6 +27,30 @@ module Rhino
           delete "/api/auth/sign_out", params:, headers:
         end
 
+        def get_api(path, params: {}, headers: {})
+          get path, params:, headers:, xhr: true, as: :json
+        end
+
+        def post_api(path, params: {})
+          post path, params:, xhr: true, as: :json
+        end
+
+        def patch_api(path, params: {})
+          patch path, params:, xhr: true, as: :json
+        end
+
+        def put_api(path, params: {})
+          put path, params:, xhr: true, as: :json
+        end
+
+        def delete_api(path)
+          delete path, xhr: true, as: :json
+        end
+
+        def head_api(path)
+          head path, xhr: true, as: :json
+        end
+
         def assert_response_ok
           assert_equal 200, response.status
         end

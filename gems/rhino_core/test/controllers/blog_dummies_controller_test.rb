@@ -15,7 +15,7 @@ class BlogDummiesControllerTest < Rhino::TestCase::ControllerTest
     blog_dummy_attr = { name: "Test__!", blog_id: @blog.id }
 
     assert_difference "BlogDummy.count", 1, "BlogDummy was not created, maybe parameters are not being correctly wrapped under :crud" do
-      post blog_dummies_path, params: blog_dummy_attr, xhr: true, as: :json
+      post_api blog_dummies_path, params: blog_dummy_attr
     end
 
     assert_response_ok

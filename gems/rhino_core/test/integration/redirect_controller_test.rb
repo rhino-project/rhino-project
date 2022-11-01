@@ -12,13 +12,13 @@ class RedirectControllerTest < Rhino::TestCase::ControllerTest
   test "active storage allows authenticated redirects" do
     sign_in(@blog.user)
 
-    get banner_path, xhr: true, as: :json
+    get_api banner_path
 
     assert_response :redirect
   end
 
   test "active storage does not allow anonymous redirects" do
-    get banner_path, xhr: true, as: :json
+    get_api banner_path
 
     assert_response_unauthorized
   end
