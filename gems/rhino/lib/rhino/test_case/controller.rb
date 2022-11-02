@@ -47,6 +47,10 @@ module Rhino
           assert_equal 404, response.status
         end
 
+        def assert_response_unprocessable
+          assert_equal 422, response.status
+        end
+
         def assert_deleted_cookie(cookie_name)
           assert response.cookies.key?(cookie_name)
           assert_nil response.cookies[cookie_name]
