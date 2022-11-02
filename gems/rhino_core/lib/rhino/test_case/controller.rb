@@ -31,6 +31,10 @@ module Rhino
           assert_equal 200, response.status
         end
 
+        def assert_response_bad_request
+          assert_equal 400, response.status
+        end
+
         def assert_response_unauthorized
           assert_equal 401, response.status
         end
