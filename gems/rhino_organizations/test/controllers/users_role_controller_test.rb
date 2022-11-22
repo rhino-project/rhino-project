@@ -9,7 +9,7 @@ class UsersRoleControllerTest < Rhino::TestCase::OrganizationControllerTest
     any_role = create :role, name: "any"
     another_role = create :role, name: "another"
     user_role = create :users_role, role: any_role, organization: @current_organization
-    patch users_role_path(user_role), params: { role: another_role.id }, xhr: true, as: :json
+    patch_api users_role_path(user_role), params: { role: another_role.id }
 
     assert_response_ok
   end
@@ -20,7 +20,7 @@ class UsersRoleControllerTest < Rhino::TestCase::OrganizationControllerTest
     any_role = create :role, name: "any"
     another_role = create :role, name: "another"
     user_role = create :users_role, role: any_role, organization: @current_organization
-    patch users_role_path(user_role), params: { role: another_role.id }, xhr: true, as: :json
+    patch_api users_role_path(user_role), params: { role: another_role.id }
 
     assert_response_forbidden
   end
@@ -29,7 +29,7 @@ class UsersRoleControllerTest < Rhino::TestCase::OrganizationControllerTest
     sign_in_with_organization_and_admin_user
 
     any_role = create :role, name: "any"
-    patch users_role_path(@current_user_role), params: { role: any_role.id }, xhr: true, as: :json
+    patch_api users_role_path(@current_user_role), params: { role: any_role.id }
 
     assert_response 422
   end
@@ -39,7 +39,7 @@ class UsersRoleControllerTest < Rhino::TestCase::OrganizationControllerTest
 
     any_role = create :role, name: "any"
     user_role = create :users_role, role: any_role, organization: @current_organization
-    delete users_role_path(user_role), xhr: true, as: :json
+    delete_api users_role_path(user_role)
 
     assert_response_ok
   end
@@ -49,7 +49,7 @@ class UsersRoleControllerTest < Rhino::TestCase::OrganizationControllerTest
 
     any_role = create :role, name: "any"
     user_role = create :users_role, role: any_role, organization: @current_organization
-    delete users_role_path(user_role), xhr: true, as: :json
+    delete_api users_role_path(user_role)
 
     assert_response_forbidden
   end
@@ -57,7 +57,7 @@ class UsersRoleControllerTest < Rhino::TestCase::OrganizationControllerTest
   test "should return status 422 when single admin deletes their user_role" do
     sign_in_with_organization_and_admin_user
 
-    delete users_role_path(@current_user_role), xhr: true, as: :json
+    delete_api users_role_path(@current_user_role)
 
     assert_response 422
   end
