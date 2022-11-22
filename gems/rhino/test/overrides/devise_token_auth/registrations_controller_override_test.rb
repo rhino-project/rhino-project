@@ -27,7 +27,11 @@ class DeviseTokenAuthRegistrationsControllerOverrideTest < Rhino::TestCase::Cont
 
   private
     def register_user
-      post user_registration_path,
-           params: { email: "test@example.com", password: "password", password_confirmation: "password" }, xhr: true, as: :json
+      post_api user_registration_path,
+               params: {
+                 email: "test@example.com",
+                 password: "password",
+                 password_confirmation: "password"
+               }
     end
 end

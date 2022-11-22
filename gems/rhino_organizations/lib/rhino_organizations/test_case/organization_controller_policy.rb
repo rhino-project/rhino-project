@@ -15,7 +15,7 @@ module Rhino
         end
 
         def policy_index_success(expected_results = [@resource])
-          get send(@resource_collection_route), xhr: true, as: :json
+          get_api send(@resource_collection_route)
 
           assert_response_ok
           assert_equal expected_results.count, parsed_response["total"]
@@ -23,7 +23,7 @@ module Rhino
         end
 
         def policy_show_success(resource = @resource)
-          get send(@resource_singular_route, resource), xhr: true, as: :json
+          get_api send(@resource_singular_route, resource)
 
           assert_response_ok
           assert_equal resource.id, parsed_response["id"]
@@ -31,14 +31,14 @@ module Rhino
         end
 
         def policy_show_fail(resource = @resource)
-          get send(@resource_singular_route, resource), xhr: true, as: :json
+          get_api send(@resource_singular_route, resource)
 
           assert_response_not_found
         end
 
         def policy_create_success(create_attributes)
           assert_difference "#{@resource_class}.count" do
-            post send(@resource_collection_route), params: create_attributes, xhr: true, as: :json
+            post_api send(@resource_collection_route), params: create_attributes
           end
 
           assert_response_ok
@@ -46,27 +46,27 @@ module Rhino
 
         def policy_create_fail(create_attributes)
           assert_no_difference "#{@resource_class}.count" do
-            post send(@resource_collection_route), params: create_attributes, xhr: true, as: :json
+            post_api send(@resource_collection_route), params: create_attributes
           end
 
           assert_response_forbidden
         end
 
         def policy_update_success(update_attributes, resource = @resource)
-          patch send(@resource_singular_route, resource), params: update_attributes, xhr: true, as: :json
+          patch_api send(@resource_singular_route, resource), params: update_attributes
 
           assert_response_ok
         end
 
         def policy_update_fail(update_attributes, resource = @resource)
-          patch send(@resource_singular_route, resource), params: update_attributes, xhr: true, as: :json
+          patch_api send(@resource_singular_route, resource), params: update_attributes
 
           assert_response_forbidden
         end
 
         def policy_destroy_success(resource = @resource)
           assert_difference "#{@resource_class}.count", -1 do
-            delete send(@resource_singular_route, resource), xhr: true, as: :json
+            delete_api send(@resource_singular_route, resource)
           end
 
           assert_response_ok
@@ -74,7 +74,7 @@ module Rhino
 
         def policy_destroy_fail(resource = @resource)
           assert_no_difference "Blog.count" do
-            delete send(@resource_singular_route, resource), xhr: true, as: :json
+            delete_api send(@resource_singular_route, resource)
           end
 
           assert_response_forbidden
