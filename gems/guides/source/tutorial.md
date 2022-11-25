@@ -4,77 +4,7 @@ This guide is a step-by-step tutorial to launch and customize the application
 
 ## Prerequisites
 
-Make sure you have below installed:
-
-    - Ruby version: 3.1.2
-    - Bundler  2.3.11
-    - Rails: 7.0.4
-    - PostgreSQL: 12 or newer
-    - node 14.16.1
-
-## Launch the application
-
-### Client side
-
-- Clone the repo
-
-```bash
-$ git clone git@github.com:nubinary/boilerplate_client.git
-$ cd boilerplate_client
-```
-
-- Install dependencies:
-
-```bash
-$ npm install
-```
-
-- Copy `env.sample` to `.env`
-
-```bash
-$ cp env.sample .env
-```
-
-and modify env vars:
-
-API_ROOT_PATH: url of the api to which this client will send requests.
-
-By default with the boilerplate_server this would be `API_ROOT_PATH=http://localhost:3000`
-
-- Run the application client:
-
-```bash
-$ npm run dev
-```
-
-### Server side
-
-- Clone the repo
-
-```bash
-$ git clone git@github.com:nubinary/boilerplate_server.git
-$ cd boilerplate_server
-```
-
-- Copy `env.sample` to `.env` and modify env vars. Pay attention to `DB_NAME`, `DB_USERNAME`, `DB_PASSWORD`. They should be good defaults for MacOS with postgress installed via homebrew, but may need altering for other platforms
-
-- Install gem dependencies
-
-```bash
-$ bundle install
-```
-
-- Create and load the database
-
-```bash
-$ rails db:setup
-```
-
-- Run the server to check the results
-
-```bash
-$ rails s
-```
+Ensure you have checked out and set up the [boilerplate_server](https://github.com/nubinary/boilerplate_server) and [boilerplate_client](https://github.com/nubinary/boilerplate_client) repos as per the server [README](https://github.com/nubinary/boilerplate_server/blob/master/README.md) and client [README](https://github.com/nubinary/boilerplate_client/blob/master/README.md)
 
 ## Add blogs and blog posts
 
