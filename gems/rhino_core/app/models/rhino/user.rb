@@ -21,10 +21,6 @@ module Rhino
     validates :email, uniqueness: { case_sensitive: false }
     after_create_commit :track_sign_up
 
-    def confirmation_required?
-      false
-    end
-
     def display_name
       name || email
     end
