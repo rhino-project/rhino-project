@@ -9,7 +9,7 @@ import CreateModel from 'rhino/pages/model/Create';
 import EditModel from 'rhino/pages/model/Edit';
 
 const generateModelRoutePaths = () => {
-  let routes = {};
+  const routes = {};
 
   each(modelLoader.api.components.schemas, (m) => {
     routes[m.name] = {

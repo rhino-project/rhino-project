@@ -16,7 +16,7 @@ export default class Uploader {
   }
 
   begin() {
-    let directUploader = new DirectUpload(this.file, END_POINT, this);
+    const directUploader = new DirectUpload(this.file, END_POINT, this);
     return new Promise((resolve, reject) => {
       directUploader.create((error, blob) => {
         if (error) {
@@ -62,9 +62,9 @@ export default class Uploader {
   }
 
   timeLeftInMinutes(event) {
-    let timeRunningInSeconds = event.timeStamp / 1000;
-    let kbps = event.loaded / timeRunningInSeconds / 1024;
-    let kbpsLeft = (event.total - event.loaded) / 1024;
+    const timeRunningInSeconds = event.timeStamp / 1000;
+    const kbps = event.loaded / timeRunningInSeconds / 1024;
+    const kbpsLeft = (event.total - event.loaded) / 1024;
 
     return (kbpsLeft / kbps / 60).toFixed(0);
   }
