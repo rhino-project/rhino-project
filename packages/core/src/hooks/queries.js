@@ -414,7 +414,7 @@ export const useModelOptimisticUpdate = (model, mutationOptions = {}) => {
       // Return a context object with the snapshotted value
       return { previousResources };
     },
-    onError: () => console.log('Errors!'),
+    onError: () => console.warn('Errors!'),
     onSettled: () => queryClient.invalidateQueries(modelKey),
     ...mutationOptions
   });
