@@ -103,7 +103,7 @@ Use the mac address validator for backend validation. Your model might look some
 The readable name is used to label the attribute in forms, display, filters and more. By default it is based on the name in the database. The readable name for one or more attributes can be overridden:
 
 ```ruby
-rhino_properties_readable_names title: "Name", description: "Body"
+rhino_properties_readable_name title: "Name", description: "Body"
 ```
 
 ### Array attributes
