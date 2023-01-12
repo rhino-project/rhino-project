@@ -63,7 +63,7 @@ describe('useBaseOwner', () => {
 });
 
 let mockParams;
-let mockUseParamsFn = jest.fn(() => mockParams);
+const mockUseParamsFn = jest.fn(() => mockParams);
 jest.mock('react-router', () => ({
   useParams: () => mockUseParamsFn()
 }));

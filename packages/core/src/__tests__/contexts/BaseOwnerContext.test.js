@@ -12,7 +12,7 @@ jest.mock('rhino/hooks/auth', () => ({
 }));
 
 let mockBaseOwnerId;
-let mockUseBaseOwnerId = jest.fn(() => mockBaseOwnerId);
+const mockUseBaseOwnerId = jest.fn(() => mockBaseOwnerId);
 jest.mock('rhino/hooks/owner', () => ({
   useBaseOwnerId: jest.fn(() => mockUseBaseOwnerId())
 }));
@@ -24,8 +24,8 @@ jest.mock('rhino/hooks/history', () => ({
   })
 }));
 
-let mockUseModelShowResult = jest.fn();
-let mockUseModelShowFn = jest.fn(() =>
+const mockUseModelShowResult = jest.fn();
+const mockUseModelShowFn = jest.fn(() =>
   mockUseModelShowResult()
 );
 jest.mock('rhino/hooks/queries', () => ({

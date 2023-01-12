@@ -93,7 +93,7 @@ export const getModelAndAttributeFromPath = (model, path) => {
   let index = 0;
   let attribute = null;
   let operator = null;
-  let plainPath = [];
+  const plainPath = [];
 
   while (model && index < length) {
     const [attributeName, operatorName] = split[index++].split('::');
