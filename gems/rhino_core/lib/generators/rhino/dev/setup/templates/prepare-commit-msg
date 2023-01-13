@@ -3,7 +3,7 @@
 # This way you can customize which branches should be skipped when
 # prepending commit message.
 if [ -z "$BRANCHES_TO_SKIP" ]; then
-  BRANCHES_TO_SKIP=(master develop test)
+  BRANCHES_TO_SKIP=(main master develop test)
 fi
 
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
