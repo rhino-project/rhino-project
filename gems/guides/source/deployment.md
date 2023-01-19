@@ -14,8 +14,8 @@ For both client and server the default Heroku stack `heroku-20` is sufficient.
 
 The server needs the `heroku/ruby` buildpack. Along with the following add-ons:
 
-    heroku-postgresql:hobby-dev
-    heroku-redis:hobby-dev
+    heroku-postgresql:mini
+    heroku-redis:mini
     papertrail:choklad
     rollbar:free
 
