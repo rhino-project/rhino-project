@@ -1,5 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`useGlobalOverrides should render with global override 1`] = `
+<div>
+  Baz
+</div>
+`;
+
+exports[`useGlobalOverrides should render with global override shorthand 1`] = `
+<div>
+  Baz
+</div>
+`;
+
+exports[`useGlobalOverrides should render with local overrides instead of global overrides 1`] = `
+<div>
+  Local
+</div>
+`;
+
+exports[`useGlobalOverrides should render with local props merged with global overrides component 1`] = `
+<div
+  className="test"
+>
+  Baz
+</div>
+`;
+
+exports[`useGlobalOverrides should render without overrides 1`] = `
+<div>
+  Bar
+</div>
+`;
+
 exports[`useOverrides should render with automatically nested overrides 1`] = `
 <div>
   <div>

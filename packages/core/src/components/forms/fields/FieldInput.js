@@ -7,8 +7,12 @@ import {
   useFieldRegister,
   useFieldInheritedProps
 } from 'rhino/hooks/form';
+import { useGlobalOverrides } from 'rhino/hooks/overrides';
 
-const FieldInput = (props) => {
+const defaultComponents = { FieldInput: Input };
+
+const FieldInput = ({ overrides, ...props }) => {
+  const { FieldInput } = useGlobalOverrides(defaultComponents, overrides);
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const { path } = inheritedProps;
 
@@ -19,7 +23,7 @@ const FieldInput = (props) => {
   const placeholder = useFieldPlaceholder(props);
 
   return (
-    <Input
+    <FieldInput
       {...extractedProps}
       {...fieldProps}
       innerRef={ref}
