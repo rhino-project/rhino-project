@@ -10,9 +10,11 @@ Rhino Policies are based on the Pundit gem. Policies can:
 - constrain resources returned ("scopes")
 - enforce strong parameters
 
+Policies should be stored under `app/policies` and tests go under `test/policies`
+
 ## What is a Role?
 
-Every Auth Owner (user) must have at least one role for every base owner they are attached to. In the single user case a user is generally an "admin" which would map to the AdminPolicy.
+Every [auth owner (user)](resources#auth-owner) must have at least one role for every [base owner](resources#base-owner) they are attached to. In the single user case a user is generally an "admin" which would map to the AdminPolicy.
 
 Every base owner class must provide a roles_for_auth class method that returns a hash of roles and base owners. For instance the default rhino user class implements the following:
 
@@ -60,11 +62,23 @@ Which looks up the user role for each organization from the UsersRole table and 
 
 By default every resource that is not globally owned, User or Organization, uses CrudPolicy which handles aggregating policies across roles. Globally owned resources use GlobalPolicy by default. User and Organization have their own special policies.
 
-Based on the role of the user and the resource, CrudPolicy will also apply additional policies. For instance if the role is admin and the resource is Blog, CrudPolicy will first look for admin_blog_policy.rb and then admin_policy.rb if that is not found
+Based on the role of the user and the resource, CrudPolicy will also apply additional policies. For instance if the role is author and the resource is Blog, CrudPolicy will first look for author_blog_policy.rb and then author_policy.rb if that is not found.
 
 ```ruby
-Rhino::PolicyHelper.find_policy(:admin, Blog)
+Rhino::PolicyHelper.find_policy(:author, Blog)
 Rhino::PolicyHelper.find_policy_scope(:author, BlogPost)
+```
+
+A new policy can be generated from the command line:
+
+```bash
+$ rails g rhino:policy AuthorBlog
+```
+
+By default this will inherit from the [Rhino::ViewerPolicy](#rhinoviewerpolicy) policy. Specify alternate base policies with the `--parent` option
+
+```bash
+$ rails g rhino:policy AuthorBlog --parent=Rhino::AdminPolicy
 ```
 
 ### When CrudPolicy is not enough
@@ -88,6 +102,10 @@ def permitted_attributes_for_show
   ['only_this_param']
 end
 ```
+
+## Testing
+
+Rhino provides a number of helpers and assertions when inheriting from [Rhino::TestCase::Policy](https://api.rhino-project.org/classes/Rhino/TestHelperPolicy.html). When generating a policy, a sample set of test cases will be provided.
 
 ## Built In Policies
 
@@ -116,7 +134,3 @@ Rhino provides a number of builtin policies that can be used directly or inherit
 #### Rhino::GlobalPolicy
 
 > Inherits from ViewerPolicy and allows an authenticated users to view all resources (index? and show?).
-
-## Testing Policies
-
-Rhino provides Rhino::TestCase::Policy for testing policies.
