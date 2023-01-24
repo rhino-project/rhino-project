@@ -45,7 +45,9 @@ module Rhino
       end
 
       def rhino_policy(policy)
-        self._policy_class = "rhino/#{policy}_policy".classify.constantize
+        self._policy_class = "rhino/#{policy}_policy".classify.safe_constantize || "#{policy}_policy".classify.safe_constantize
+
+        raise "Policy #{policy} not found for #{name}" unless _policy_class
       end
     end
   end
