@@ -1,0 +1,46 @@
+# frozen_string_literal: true
+
+<% module_namespacing do -%>
+class <%= class_name %>Policy < <%= parent_class_name %>
+  # NOTE: Be explicit about which action you allow!
+  # def index?
+  #   authorize_action(false)
+  # end
+
+  # def show?
+  #   authorize_action(false)
+  # end
+
+  # def create?
+  #   authorize_action(false)
+  # end
+
+  # def update?
+  #   authorize_action(false)
+  # end
+
+  # def destroy?
+  #   authorize_action(false)
+  # end
+
+  # def permitted_attributes_for_create
+  #   super
+  #   super - [:name] # Remove the name attribute from the permitted attributes for create
+  # end
+
+  # def permitted_attributes_for_show
+  #   super
+  # end
+
+  # def permitted_attributes_for_update
+  #   super
+  # end
+
+  class Scope < <%= parent_scope_class_name %>
+    # NOTE: Be explicit about which records you allow access to!
+    # def resolve
+    #   scope.all
+    # end
+  end
+end
+<% end -%>
