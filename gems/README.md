@@ -1,6 +1,6 @@
 # README
 
-Welcome to Rhino
+Welcome to Rhino. Documentation at http://rhino-project.org/
 
 ## Running the rhino test blog server:
 
