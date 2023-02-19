@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { CREATE_MODAL } from 'config';
 import routePaths from 'rhino/routes';
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
-import { usePills, useSearchParams } from 'rhino/hooks/history';
+import { useSearchParams } from 'rhino/hooks/history';
 import { useBaseOwnerId } from 'rhino/hooks/owner';
 import { useOverrides, useOverridesWithGlobal } from 'rhino/hooks/overrides';
 
@@ -157,7 +157,6 @@ const ModelIndex = ({ overrides, ...props }) => {
     ModelIndexTable
   } = useOverridesWithGlobal(model, 'index', defaultComponents, overrides);
 
-  const pills = usePills();
   const [searchParams, setSearchParams, resetSearchParams] = useSearchParams(
     baseFilter
   );
@@ -175,9 +174,6 @@ const ModelIndex = ({ overrides, ...props }) => {
         searchParams={searchParams}
         setSearchParams={setSearchParams}
         resetSearchParams={resetSearchParams}
-        pills={pills.state}
-        addPills={pills.add}
-        resetPills={pills.reset}
       />
       <hr />
       <ModelIndexActions {...props} resources={resources} />

@@ -1,66 +1,44 @@
 import PropTypes from 'prop-types';
-import { Input } from 'reactstrap';
-import { capitalize, compact, get, set } from 'lodash';
+import { capitalize } from 'lodash';
+import { useWatch } from 'react-hook-form';
 
-import { optionsFromIndexWithTitle } from 'rhino/utils/ui';
-import { useEffect, useMemo } from 'react';
+import { enumFromIndexWithTitle } from 'rhino/utils/ui';
+import { useCallback, useEffect, useMemo } from 'react';
+import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectControlled';
+import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 
-const ModelFilterEnum = ({
-  attribute,
-  operator,
-  path,
-  searchParams: { filter } = {},
-  setSearchParams,
-  addPills,
-  pills
-}) => {
-  const enums = useMemo(
+const ModelFilterEnum = (props) => {
+  const { model, path } = props;
+  const { attribute, operatorPath } = useModelFilterField(model, path);
+
+  const options = useMemo(
     () =>
-      attribute?.enum?.map((id) => ({
-        display_name: capitalize(id),
-        id
-      })),
+      enumFromIndexWithTitle(attribute?.enum, `${attribute.readableName}...`),
     [attribute]
   );
 
-  const fullPath = compact([path, operator]).join('.');
-  const value = useMemo(() => get(filter, fullPath), [filter, fullPath]);
+  // When the value is nullish, we want to set the value to -1 which is the title
+  const accessor = useCallback((value) => value || -1, []);
 
-  const handleChange = (e) => {
-    const newFilter = set(
-      { filter: { ...filter } },
-      `filter.${fullPath}`,
-      e.target.value
-    );
-    setSearchParams(newFilter);
-  };
+  const watch = useWatch({ name: operatorPath });
+
+  const { setPill } = useFilterPill(operatorPath);
 
   useEffect(() => {
-    const int = enums.find((i) => `${i.id}` === value);
-    addPills({ [fullPath]: int?.display_name });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
+    // Capitalize returns '' for undefined
+    if (watch) setPill(capitalize(watch));
+  }, [setPill, watch]);
 
   return (
-    <Input
-      type="select"
-      name={name}
-      value={value || -1}
-      onChange={handleChange}
-    >
-      {optionsFromIndexWithTitle(enums, `${attribute.readableName}...`)}
-    </Input>
+    <FilterSelectControlled path={operatorPath} accessor={accessor}>
+      {options}
+    </FilterSelectControlled>
   );
 };
 
 ModelFilterEnum.propTypes = {
-  attribute: PropTypes.object.isRequired,
   operator: PropTypes.string,
-  path: PropTypes.string.isRequired,
-  searchParams: PropTypes.object.isRequired,
-  setSearchParams: PropTypes.func.isRequired,
-  addPills: PropTypes.func.isRequired,
-  pills: PropTypes.object.isRequired
+  path: PropTypes.string.isRequired
 };
 
 export default ModelFilterEnum;

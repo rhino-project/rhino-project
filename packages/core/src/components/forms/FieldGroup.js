@@ -6,7 +6,6 @@ const defaultComponents = {
 };
 
 export const FieldGroup = ({ overrides, ...props }) => {
-  // FIXME: Is re-using the name for overrides and creating nested overrides a good idea?
   const { FieldLayout } = useGlobalOverrides(defaultComponents, overrides);
 
   return <FieldLayout {...props} />;
