@@ -73,7 +73,8 @@ export const getStringForDisplay = (
     case 'array':
       switch (attribute.items?.type) {
         case 'string':
-          displayString = value.join(', ');
+        case 'integer':
+          displayString = value?.join(', ');
           break;
         default:
           if (
