@@ -10,14 +10,16 @@ const AuthPage = ({ description, children }) => {
     <Container>
       <Target>
         <Row>
-          <Col md="6">
+          <Col className="my-auto" md="6">
             <DarkLogo
               className="block mb-3"
               style={{ height: '70px', width: '220px' }}
             />
             {description}
           </Col>
-          <Col md="6">{children}</Col>
+          <Col className="my-auto" md="6">
+            {children}
+          </Col>
         </Row>
       </Target>
     </Container>
