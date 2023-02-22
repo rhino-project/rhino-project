@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient, useMutation } from 'react-query';
-import { cloneDeep, has, merge } from 'lodash';
+import { cloneDeep, has, merge, set } from 'lodash';
 
 import { networkApiCallOnlyData } from 'rhino/lib/networking';
 import { useModel } from 'rhino/hooks/models';
@@ -537,7 +537,12 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
 
 /**
  * @typedef {object} UseModelIndexResultOptions
- * @property {object} [networkOptions={}] - Axios option
+ * @property {string} [search] - Full text search to apply to the index query
+ * @property {object} [filter] - Filters to apply to the index query
+ * @property {string} [order] - Sort order to apply to the index query
+ * @property {number} [limit] - Results limit to apply to the index query
+ * @property {number} [offset] - Results offset to apply to the index query
+ * @property {object} [networkOptions={}] - Axios options
  * @property {UseQueryOptions} [queryOptions={}] - The action (index or show)
  */
 
@@ -553,29 +558,48 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
  * @returns {UseModelIndexResult}
  * @example
  *    const { isLoading, resources} = useModelIndex('blog')
- *    const { isLoading, resource} = useModelIndex('blog', { queryOptions: { onSuccess: () => console.log('do something') } })
- *    const { isLoading, resource} = useModelIndex('blog', { networkOptions: { params: {filters: { published: true } } } })
+ *    const { isLoading, resources} = useModelIndex('blog', { queryOptions: { onSuccess: () => console.log('do something') } })
+ *    const { isLoading, resources} = useModelIndex('blog', { filters: { published: true } })
+ *    const { isLoading, resources} = useModelIndex('blog', { order: 'created_at', limit: 10, offset: 10 })
  */
+
+const ALLOWED_INDEX_QUERY_OPTIONS = [
+  'search',
+  'filter',
+  'order',
+  'limit',
+  'offset'
+];
+
 export const useModelIndex = (model, options = {}, ...legacyOptions) => {
   const memoModel = useModel(model);
   const queryKey = useModelKeyIndex(model, [options]);
   const endpoint = useModelPathCollection(model);
 
-  // If it has either of these and not a fourth param, its the newer options setup
+  // If it has any of these and not a fourth param, its the newer options setup
   const isLegacy = useMemo(
     () =>
-      (Object.keys(options).length > 0 &&
+      (options?.length > 0 &&
         !has(options, 'queryOptions') &&
-        !has(options, 'networkOptions')) ||
+        !has(options, 'networkOptions') &&
+        !ALLOWED_INDEX_QUERY_OPTIONS.some((opt) => has(options, opt))) ||
       legacyOptions.length > 0,
     [options, legacyOptions]
   );
   if (isLegacy) console.warn('useModelIndex passed legacy options');
 
-  const networkOptions = useMemo(
-    () => (isLegacy ? options : options.networkOptions || {}),
-    [isLegacy, options]
-  );
+  const networkOptions = useMemo(() => {
+    const baseOptions = isLegacy ? options : options.networkOptions || {};
+
+    // Support direct search param injection
+    // We don't unroll because we don't want to set undefined
+    ALLOWED_INDEX_QUERY_OPTIONS.forEach((opt) => {
+      if (has(options, opt)) set(baseOptions, `params.${opt}`, options[opt]);
+    });
+
+    return baseOptions;
+  }, [isLegacy, options]);
+
   const queryOptions = useMemo(
     () => (isLegacy ? legacyOptions[0] : options.queryOptions) || {},
     [isLegacy, legacyOptions, options.queryOptions]
