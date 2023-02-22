@@ -48,7 +48,7 @@ const ModelIndexActions = (props) => {
   const handleActionSuccess = useCallback(
     (action, props, data) => {
       // FIXME Need foreignKey type identifier
-      const resourceId = data?.data?.id;
+      const resourceId = data?.id;
 
       if (!resourceId) return;
 

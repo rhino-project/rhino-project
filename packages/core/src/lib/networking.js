@@ -1,5 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
+import * as networking from './networking.js';
 
 import env from 'config';
 import { toastStore } from 'rhino/queries/toast';
@@ -84,4 +85,25 @@ export const networkApiCall = (
   promise.cancel = () => source.cancel('Query was cancelled by React Query');
 
   return promise;
+};
+
+const handler = {
+  get(target, prop, receiver) {
+    // If the data is being access data.data, its the older form, return it
+    if (prop === 'data') {
+      console.warn('Legacy data access used in query hooks');
+
+      return target;
+    }
+    return Reflect.get(...arguments);
+  }
+};
+
+export const networkApiCallOnlyData = async (
+  path,
+  options = { method: 'get', headers: {}, data: null }
+) => {
+  const response = await networking.networkApiCall(path, options);
+
+  return new Proxy(response.data, handler);
 };
