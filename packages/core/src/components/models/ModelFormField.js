@@ -464,6 +464,32 @@ const ModelFormField = ({
             // {...props}
           />
         );
+      } else if (attribute?.items?.type === 'integer') {
+        // Value might be '' to start
+        const stringValues =
+          (Array.isArray(value) ? value?.map((v) => v.toString()) : value) ||
+          [];
+
+        // FIXME: [NUB-1227] This is a hack to get around the fact that the Typeahead component doesn't support numbers
+        return (
+          <Typeahead
+            {...commonProps}
+            className={error ? 'is-invalid' : ''}
+            clearButton={attribute.nullable}
+            allowNew
+            multiple
+            options={stringValues}
+            selected={stringValues}
+            isInvalid={!!error}
+            onChange={(selected) => {
+              const normalized_selected = selected.map((s) =>
+                typeof s === 'string' ? s : s?.label
+              );
+              onChange(set({}, path, normalized_selected));
+            }}
+            // {...props}
+          />
+        );
       } else if (
         attribute?.items?.anyOf?.[0]?.['$ref']?.endsWith('_attachment')
       ) {
