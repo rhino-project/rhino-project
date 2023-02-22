@@ -1,6 +1,6 @@
 import { FormGroup } from 'reactstrap';
 
-import { useOverrides } from 'rhino/hooks/overrides';
+import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import FieldLabel from './FieldLabel';
 import Field from './fields/FieldInput';
 import FieldFeedback from './FieldFeedback';
@@ -15,7 +15,7 @@ const defaultComponents = {
 };
 
 export const FieldLayoutVertical = ({ overrides, ...props }) => {
-  const { FieldLabel, Field, FieldFeedback } = useOverrides(
+  const { FieldLabel, Field, FieldFeedback } = useGlobalOverrides(
     defaultComponents,
     overrides
   );
