@@ -1,4 +1,5 @@
 import { DEFAULT_SORT, MAX_PAGES, PAGE_SIZE } from 'config';
+import { merge } from 'lodash';
 import qs from 'qs';
 import { useCallback, useMemo, useReducer, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -79,7 +80,10 @@ export const useSearchParams = (baseFilters) => {
       order: queryFromUrl.order ?? baseFilters?.order ?? DEFAULT_SORT,
       limit: (parseInt(queryFromUrl.limit) || baseFilters?.limit) ?? PAGE_SIZE,
       offset: (parseInt(queryFromUrl.offset) || baseFilters?.offset) ?? 0,
-      filter: { ...(queryFromUrl.filter ?? {}), ...(baseFilters?.filter ?? {}) }
+      // Merge the filters from the URL with the filters from the baseFilters, the latter having precedence
+      // This handles cases such as project.client.id in the filters and project.id in the baseFilters
+      // If we did not merge, the project.client.id would be lost
+      filter: merge({}, queryFromUrl.filter ?? {}, baseFilters?.filter ?? {})
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
