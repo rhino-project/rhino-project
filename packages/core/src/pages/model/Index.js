@@ -9,14 +9,14 @@ import { getBaseOwnerFilters } from 'rhino/utils/models';
 const Index = (props) => {
   const { model, title } = props;
   const baseOwnerId = useBaseOwnerId();
-  const baseFilter = useMemo(
-    () => ({ ...getBaseOwnerFilters(model, baseOwnerId) }),
-    [model, baseOwnerId]
-  );
+  const filter = useMemo(() => getBaseOwnerFilters(model, baseOwnerId), [
+    model,
+    baseOwnerId
+  ]);
 
   return (
     <ModelPage title={title || model.pluralReadableName} {...props}>
-      <ModelIndex {...props} baseFilter={baseFilter} />
+      <ModelIndex {...props} filter={filter} />
     </ModelPage>
   );
 };
