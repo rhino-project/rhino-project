@@ -583,6 +583,7 @@ export const useModelIndex = (model, options = {}, ...legacyOptions) => {
         !has(options, 'queryOptions') &&
         !has(options, 'networkOptions') &&
         !ALLOWED_INDEX_QUERY_OPTIONS.some((opt) => has(options, opt))) ||
+      has(options, 'params') ||
       legacyOptions.length > 0,
     [options, legacyOptions]
   );
