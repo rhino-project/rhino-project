@@ -399,7 +399,7 @@ export const useModelOptimisticUpdate = (model, mutationOptions = {}) => {
             if (!old) return;
 
             const newData = cloneDeep(old);
-            newData.data.results = newData.data.results.map((result) => {
+            newData.results = newData.results.map((result) => {
               // We merge in case of a partial update
               if (result.id === newResource.id)
                 return merge(result, newResource);
