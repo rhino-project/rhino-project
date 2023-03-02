@@ -458,6 +458,27 @@ describe('useModelIndex', () => {
     });
   });
 
+  test('supports legacy params option', () => {
+    const options = {
+      params: {
+        search: 'test',
+        filter: { test: 'test' },
+        order: 'updated_at',
+        limit: 10,
+        offset: 10
+      }
+    };
+    renderHook(() => useModelIndex('user', options), {
+      wrapper: wrapper(queryClient)
+    });
+
+    expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
+      params: {
+        ...options.params
+      }
+    });
+  });
+
   test('selects axios data correctly and provides legacy support', async () => {
     const options = {
       search: 'test',
