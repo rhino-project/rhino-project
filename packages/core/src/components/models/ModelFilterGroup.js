@@ -1,23 +1,24 @@
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalOverrides, useMergedOverrides } from 'rhino/hooks/overrides';
 import FilterGroup from '../forms/FilterGroup';
 import ModelFilter from './ModelFilter';
 import ModelFilterLabel from './ModelFilterLabel';
 
 const defaultComponents = {
-  FilterGroup
+  ModelFilterGroup: FilterGroup
 };
 
-export const ModelFilterGroup = ({ overrides, ...props }) => {
-  const { FilterGroup } = useGlobalOverrides(defaultComponents, overrides);
-
-  return (
-    <FilterGroup
-      overrides={{
-        FilterLayout: { FilterLabel: ModelFilterLabel, Filter: ModelFilter }
-      }}
-      {...props}
-    />
-  );
+const BASE_OVERRIDES = {
+  FilterLayout: { FilterLabel: ModelFilterLabel, Filter: ModelFilter }
 };
 
-export default FilterGroup;
+const ModelFilterGroup = ({ ...props }) => {
+  const overrides = useMergedOverrides(BASE_OVERRIDES, props.overrides);
+
+  const { ModelFilterGroup } = useGlobalOverrides(defaultComponents, {
+    ModelFilterGroup: { ...overrides }
+  });
+
+  return <ModelFilterGroup overrides={overrides} {...props} />;
+};
+
+export default ModelFilterGroup;

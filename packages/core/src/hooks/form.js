@@ -3,6 +3,7 @@ import { assign, cloneDeep, compact, get, omit } from 'lodash';
 import { useController, useFormContext } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getModelAndAttributeFromPath } from 'rhino/utils/models';
+import { useModel } from './models';
 
 export const useControlledForm = (resource) => {
   const [values, setValues] = useState(resource);
@@ -165,9 +166,11 @@ export const useFilterField = (path, operator, options = {}) => {
 };
 
 export const useModelFilterField = (model, path, options = {}) => {
+  const memoModel = useModel(model);
+
   const [attributeModel, attribute, operator, plainPath] = useMemo(
-    () => getModelAndAttributeFromPath(model, path),
-    [model, path]
+    () => getModelAndAttributeFromPath(memoModel, path),
+    [memoModel, path]
   );
 
   const filterField = useFilterField(plainPath, operator, options);

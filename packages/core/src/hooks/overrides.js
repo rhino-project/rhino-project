@@ -114,7 +114,11 @@ export const useOverridesWithGlobal = (
 
 export const useMergedOverrides = (baseOverrides, overrides) => {
   const mergedOverrides = useMemo(() => {
-    return merge(expandOverrides(baseOverrides), expandOverrides(overrides));
+    return merge(
+      {},
+      expandOverrides(baseOverrides),
+      expandOverrides(overrides)
+    );
   }, [baseOverrides, overrides]);
 
   return mergedOverrides;
