@@ -10,7 +10,7 @@ import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectC
 import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 
 const ModelFilterReference = (props) => {
-  const { model, path } = props;
+  const { model, path, filter, limit = 100, offset, order, search } = props;
   const { attribute, operator, plainPath } = useModelFilterField(model, path);
 
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
@@ -24,7 +24,13 @@ const ModelFilterReference = (props) => {
     [identifier.name]
   );
 
-  const { isSuccess, results } = useModelIndex(refModel, { limit: 100 });
+  const { isSuccess, results } = useModelIndex(refModel, {
+    filter,
+    limit,
+    offset,
+    order,
+    search
+  });
 
   // We inject the ID because if we have both 'engagement.project.client'
   // and 'engagement.project' as filters, setting engagement.project.client will

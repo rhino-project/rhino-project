@@ -1,10 +1,15 @@
-import { getModelAndAttributeFromPath } from 'rhino/utils/models';
+import {
+  getModelAndAttributeFromPath,
+  getModelFromRef,
+  isOwnerGlobal
+} from 'rhino/utils/models';
 import ModelFilterBoolean from './filters/ModelFilterBoolean';
 import ModelFilterDate from './filters/ModelFilterDate';
 import ModelFilterDateTime from './filters/ModelFilterDateTime';
 import ModelFilterEnum from './filters/ModelFilterEnum';
 import ModelFilterInteger from './filters/ModelFilterInteger';
 import ModelFilterIntegerSelect from './filters/ModelFilterIntegerSelect';
+import ModelFilterOwnerReference from './filters/ModelFilterOwnerReference';
 import ModelFilterReference from './filters/ModelFilterReference';
 import ModelFilterTime from './filters/ModelFilterTime';
 import ModelFilterYear from './filters/ModelFilterYear';
@@ -13,6 +18,7 @@ export const ModelFilter = ({ overrides, ...props }) => {
   const { model, path } = props;
 
   const [, attribute] = getModelAndAttributeFromPath(model, path);
+  const refModel = getModelFromRef(attribute);
 
   // FIXME: Make this a separate function so that its easier to override
   switch (attribute?.type) {
@@ -29,7 +35,9 @@ export const ModelFilter = ({ overrides, ...props }) => {
       }
 
     case 'reference':
-      return <ModelFilterReference {...props} />;
+      if (isOwnerGlobal(refModel)) return <ModelFilterReference {...props} />;
+
+      return <ModelFilterOwnerReference {...props} />;
     case 'string':
       if (attribute?.enum) return <ModelFilterEnum {...props} />;
 

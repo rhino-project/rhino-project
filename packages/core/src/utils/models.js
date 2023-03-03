@@ -18,6 +18,15 @@ export const getModelAncestors = (model) => {
   }
   return result;
 };
+
+export const isOwnerGlobal = (model) => {
+  while (model.ownedBy !== null && model.ownedBy !== 'global') {
+    model = getParentModel(model);
+  }
+
+  return model.ownedBy === 'global';
+};
+
 export const getBaseOwnerFilters = (model, baseOwnerId) => {
   const filters = {};
   const pathToRoot = getModelAncestors(model);
