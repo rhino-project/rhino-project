@@ -7,6 +7,7 @@ import ModelFilterBoolean from './filters/ModelFilterBoolean';
 import ModelFilterDate from './filters/ModelFilterDate';
 import ModelFilterDateTime from './filters/ModelFilterDateTime';
 import ModelFilterEnum from './filters/ModelFilterEnum';
+import ModelFilterFloat from './filters/ModelFilterFloat';
 import ModelFilterInteger from './filters/ModelFilterInteger';
 import ModelFilterIntegerSelect from './filters/ModelFilterIntegerSelect';
 import ModelFilterOwnerReference from './filters/ModelFilterOwnerReference';
@@ -33,6 +34,8 @@ export const ModelFilter = ({ overrides, ...props }) => {
         default:
           return <ModelFilterInteger {...props} />;
       }
+    case 'float':
+      return <ModelFilterFloat {...props} />;
 
     case 'reference':
       if (isOwnerGlobal(refModel)) return <ModelFilterReference {...props} />;
