@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { compact } from 'lodash';
+import { compact, sortBy } from 'lodash';
 import { useWatch } from 'react-hook-form';
 
 import { optionsFromIndexWithTitle } from 'rhino/utils/ui';
@@ -52,9 +52,17 @@ const ModelFilterReference = (props) => {
     }
   }, [identifier.name, results, resetPill, setPill, watch, isSuccess]);
 
+  // If there is no order, we sort by display_name
+  // This has to be client side because display_name is not a sortable field in the database
+  const sortedResults = useMemo(() => {
+    if (order) return results;
+
+    return sortBy(results, 'display_name');
+  }, [results, order]);
+
   return (
     <FilterSelectControlled path={fullPath} accessor={referenceAccessor}>
-      {optionsFromIndexWithTitle(results, `${attribute.readableName}...`)}
+      {optionsFromIndexWithTitle(sortedResults, `${attribute.readableName}...`)}
     </FilterSelectControlled>
   );
 };
