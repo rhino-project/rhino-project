@@ -8,6 +8,7 @@ import { getParentModel, isBaseOwned } from 'rhino/utils/models';
 import { NavLink } from 'react-router-dom';
 import { useBaseOwnerPath } from 'rhino/hooks/history';
 import { Flag } from 'rhino/components/models/fields/ModelFieldCountry';
+import { capitalize } from 'lodash';
 
 export const buildCancelAction = (extra) => ({
   name: 'cancel',
@@ -238,6 +239,22 @@ export const optionsFromIndexWithTitle = (
 
   options.push(
     <option key="-1" disabled selected value={-1}>
+      {title}
+    </option>
+  );
+
+  return options;
+};
+
+export const enumFromIndexWithTitle = (enums = [], title) => {
+  const options = enums.map((e) => (
+    <option key={e} value={e}>
+      {capitalize(e)}
+    </option>
+  ));
+
+  options.push(
+    <option key="-1" disabled value={-1}>
       {title}
     </option>
   );

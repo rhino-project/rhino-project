@@ -1,7 +1,7 @@
 import { DEFAULT_SORT, MAX_PAGES, PAGE_SIZE } from 'config';
 import { merge } from 'lodash';
 import qs from 'qs';
-import { useCallback, useMemo, useReducer, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import routePaths from 'rhino/routes';
 import withParams from 'rhino/routes/withParams';
@@ -109,48 +109,18 @@ export const useSearchParams = (baseFilters) => {
   );
 
   const resetSearchParams = useCallback(() => {
-    setSearchParams({
+    const newParams = {
       search: '',
       filter: initialBaseFilters.current?.filter ?? {},
       offset: 0
-    });
+    };
+
+    setSearchParams(newParams);
+
+    return newParams;
   }, [setSearchParams]);
 
   return [state, setSearchParams, resetSearchParams];
-};
-
-const pillsReducer = (state, action) => {
-  switch (action.type) {
-    case 'add':
-      return { ...state, ...action.newPills };
-    case 'reset':
-      return {};
-    default:
-      throw new Error('Unexpected pillsReducer action');
-  }
-};
-
-const pillsAddAction = (newPills) => ({
-  type: 'add',
-  newPills
-});
-
-const pillsResetAction = () => ({
-  type: 'reset'
-});
-
-export const usePills = () => {
-  const [state, dispatch] = useReducer(pillsReducer, {});
-
-  const add = (newPills) => {
-    dispatch(pillsAddAction(newPills));
-  };
-
-  const reset = () => {
-    dispatch(pillsResetAction());
-  };
-
-  return { state, add, reset };
 };
 
 export const usePaginationParams = (total, searchParams, setSearchParams) => {

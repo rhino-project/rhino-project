@@ -11,13 +11,15 @@ import { useGlobalOverrides } from 'rhino/hooks/overrides';
 
 const defaultComponents = { FieldInput: Input };
 
-const FieldInput = ({ overrides, ...props }) => {
+// FIXME: Is there a better way to handle setValueAs?
+const FieldInput = ({ overrides, setValueAs, ...props }) => {
   const { FieldInput } = useGlobalOverrides(defaultComponents, overrides);
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
-  const { path } = inheritedProps;
+  const { path } = props;
 
   // https://github.com/react-hook-form/react-hook-form/issues/4414
-  const { ref, ...fieldProps } = useFieldRegister(path);
+  // FIXME: All registration props could be extracted in useFieldInheritedProps
+  const { ref, ...fieldProps } = useFieldRegister(path, { setValueAs });
   const error = useFieldError(path);
 
   const placeholder = useFieldPlaceholder(props);
