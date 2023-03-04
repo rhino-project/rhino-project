@@ -5,8 +5,7 @@ import { useEffect, useMemo } from 'react';
 import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 import FilterInteger from '../../forms/filters/FilterInteger';
 
-const ModelFilterInteger = (props) => {
-  const { model, path } = props;
+const ModelFilterInteger = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   const { resetField } = useFormContext();
 
@@ -29,8 +28,7 @@ const ModelFilterInteger = (props) => {
     }
   }, [operatorPath, resetField, resetPill, setPill, watch]);
 
-  // FIXME: Add support for inheriting props - currently can't do this because of path vs operatorPath
-  return <FilterInteger path={operatorPath} min={min} max={max} />;
+  return <FilterInteger path={operatorPath} min={min} max={max} {...props} />;
 };
 
 ModelFilterInteger.propTypes = {

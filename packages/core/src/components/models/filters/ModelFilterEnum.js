@@ -7,8 +7,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectControlled';
 import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 
-const ModelFilterEnum = (props) => {
-  const { model, path } = props;
+const ModelFilterEnum = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
 
   const options = useMemo(
@@ -30,7 +29,7 @@ const ModelFilterEnum = (props) => {
   }, [setPill, watch]);
 
   return (
-    <FilterSelectControlled path={operatorPath} accessor={accessor}>
+    <FilterSelectControlled path={operatorPath} accessor={accessor} {...props}>
       {options}
     </FilterSelectControlled>
   );

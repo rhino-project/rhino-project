@@ -9,8 +9,8 @@ import { useModelIndex } from 'rhino/hooks/queries';
 import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectControlled';
 import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 
-const ModelFilterReference = (props) => {
-  const { model, path, filter, limit = 100, offset, order, search } = props;
+const ModelFilterReference = ({ model, path, ...props }) => {
+  const { filter, limit = 100, offset, order, search } = props;
   const { attribute, operator, plainPath } = useModelFilterField(model, path);
 
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);

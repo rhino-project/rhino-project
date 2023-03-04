@@ -6,8 +6,7 @@ import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectC
 import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 
 // FIXME: Nothing tests this yet
-const ModelFilterIntegerSelect = (props) => {
-  const { model, path } = props;
+const ModelFilterIntegerSelect = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   // FIXME: Exclusive min/max support
   const integers = Array.from(
@@ -25,7 +24,7 @@ const ModelFilterIntegerSelect = (props) => {
   useEffect(() => setPill(watch), [watch]);
 
   return (
-    <FilterSelectControlled path={operatorPath}>
+    <FilterSelectControlled path={operatorPath} {...props}>
       {integers.map((integer) => (
         <option key={integer} value={integer}>
           {integer}

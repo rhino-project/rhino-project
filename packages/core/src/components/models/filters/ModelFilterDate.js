@@ -36,8 +36,7 @@ const buildDateTimePill = (attribute, operator, newValue) => {
   )} ${format(date, getDateTimeFormat(attribute))}`;
 };
 
-const ModelFilterDate = (props) => {
-  const { model, path } = props;
+const ModelFilterDate = ({ model, path, ...props }) => {
   const { attribute, operator, operatorPath } = useModelFilterField(
     model,
     path
@@ -65,8 +64,14 @@ const ModelFilterDate = (props) => {
     }
   }, [attribute, operator, resetPill, setPill, watch]);
 
-  // FIXME: Add support for inheriting props - currently can't do this because of path vs operatorPath
-  return <FilterDate path={operatorPath} minDate={minDate} maxDate={maxYear} />;
+  return (
+    <FilterDate
+      path={operatorPath}
+      minDate={minDate}
+      maxDate={maxYear}
+      {...props}
+    />
+  );
 };
 
 ModelFilterDate.propTypes = {
