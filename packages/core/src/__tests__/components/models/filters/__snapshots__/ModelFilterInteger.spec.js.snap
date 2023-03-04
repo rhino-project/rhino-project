@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelFilterInteger adds max as a prop 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    max="5"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelFilterInteger adds max as a prop with exclusiveMaximum 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    max="4"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelFilterInteger adds min as a prop 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    min="5"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelFilterInteger adds min as a prop with exclusiveMinimum 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    min="6"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;

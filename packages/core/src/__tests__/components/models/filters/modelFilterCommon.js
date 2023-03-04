@@ -1,7 +1,5 @@
 import { render } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
 import { useForm } from 'react-hook-form';
-import * as rhinoConfig from 'rhino.config';
 import FormProvider from 'rhino/components/forms/FormProvider';
 
 const components = [
