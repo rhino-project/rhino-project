@@ -5,8 +5,7 @@ import { useEffect, useMemo } from 'react';
 import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 import FilterYear from '../../forms/filters/FilterYear';
 
-const ModelFilterYear = (props) => {
-  const { model, path } = props;
+const ModelFilterYear = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
 
   // FIXME: Exclusive min/max support
@@ -31,7 +30,14 @@ const ModelFilterYear = (props) => {
     }
   }, [attribute, resetPill, setPill, watch]);
 
-  return <FilterYear path={operatorPath} minDate={minYear} maxDate={maxYear} />;
+  return (
+    <FilterYear
+      path={operatorPath}
+      minDate={minYear}
+      maxDate={maxYear}
+      {...props}
+    />
+  );
 };
 
 ModelFilterYear.propTypes = {

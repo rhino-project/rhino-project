@@ -23,8 +23,7 @@ const buildBooleanPill = (attribute, newValue) => {
 //   return null;
 // };
 
-const ModelFilterBoolean = (props) => {
-  const { model, path } = props;
+const ModelFilterBoolean = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
 
   const watch = useWatch({ name: operatorPath });
@@ -40,7 +39,7 @@ const ModelFilterBoolean = (props) => {
     }
   }, [attribute, resetPill, setPill, watch]);
 
-  return <FilterBoolean path={operatorPath} />;
+  return <FilterBoolean path={operatorPath} {...props} />;
 };
 
 ModelFilterBoolean.propTypes = {

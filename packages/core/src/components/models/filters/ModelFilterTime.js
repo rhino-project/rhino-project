@@ -36,8 +36,7 @@ const buildDateTimePill = (attribute, operator, newValue) => {
   )} ${format(date, getDateTimeFormat(attribute))}`;
 };
 
-const ModelFilterTime = (props) => {
-  const { model, path } = props;
+const ModelFilterTime = ({ model, path, ...props }) => {
   const { attribute, operator, operatorPath } = useModelFilterField(
     model,
     path
@@ -65,7 +64,14 @@ const ModelFilterTime = (props) => {
     }
   }, [attribute, operator, resetPill, setPill, watch]);
 
-  return <FilterTime path={operatorPath} minDate={minDate} maxDate={maxYear} />;
+  return (
+    <FilterTime
+      path={operatorPath}
+      minDate={minDate}
+      maxDate={maxYear}
+      {...props}
+    />
+  );
 };
 
 ModelFilterTime.propTypes = {
