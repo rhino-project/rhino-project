@@ -5,13 +5,22 @@ import { useEffect, useMemo } from 'react';
 import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 import FilterFloat from 'rhino/components/forms/filters/FilterFloat';
 
+const FLOAT_INCREMENT = 0.000000000000001;
+
 const ModelFilterFloat = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   const { resetField } = useFormContext();
 
-  // FIXME: Exclusive min/max support
-  const min = useMemo(() => attribute.minimum, [attribute]);
-  const max = useMemo(() => attribute.maximum, [attribute]);
+  const min = useMemo(() => {
+    if (attribute.exclusiveMinimum) return attribute.minimum + FLOAT_INCREMENT;
+
+    return attribute.minimum;
+  }, [attribute]);
+  const max = useMemo(() => {
+    if (attribute.exclusiveMaximum) return attribute.maximum - FLOAT_INCREMENT;
+
+    return attribute.maximum;
+  }, [attribute]);
 
   const watch = useWatch({ name: operatorPath, defaultValue: '' });
 

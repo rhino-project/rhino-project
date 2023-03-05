@@ -9,9 +9,16 @@ const ModelFilterInteger = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   const { resetField } = useFormContext();
 
-  // FIXME: Exclusive min/max support
-  const min = useMemo(() => attribute.minimum, [attribute]);
-  const max = useMemo(() => attribute.maximum, [attribute]);
+  const min = useMemo(() => {
+    if (attribute.exclusiveMinimum) return attribute.minimum + 1;
+
+    return attribute.minimum;
+  }, [attribute]);
+  const max = useMemo(() => {
+    if (attribute.exclusiveMaximum) return attribute.maximum - 1;
+
+    return attribute.maximum;
+  }, [attribute]);
 
   const watch = useWatch({ name: operatorPath, defaultValue: '' });
 
