@@ -8,15 +8,25 @@ import FilterYear from '../../forms/filters/FilterYear';
 const ModelFilterYear = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
 
-  // FIXME: Exclusive min/max support
-  const minYear = useMemo(
-    () => (attribute.minimum ? new Date(attribute.minimum, 1, 1) : undefined),
-    [attribute]
-  );
-  const maxYear = useMemo(
-    () => (attribute.maximum ? new Date(attribute.maximum, 1, 1) : undefined),
-    [attribute]
-  );
+  const min = useMemo(() => {
+    if (!attribute.minimum) return undefined;
+
+    return new Date(
+      attribute.exclusiveMinimum ? attribute.minimum + 1 : attribute.minimum,
+      0,
+      1
+    );
+  }, [attribute]);
+
+  const max = useMemo(() => {
+    if (!attribute.maximum) return undefined;
+
+    return new Date(
+      attribute.exclusiveMaximum ? attribute.maximum - 1 : attribute.maximum,
+      0,
+      1
+    );
+  }, [attribute]);
 
   const watch = useWatch({ name: operatorPath });
 
@@ -30,14 +40,7 @@ const ModelFilterYear = ({ model, path, ...props }) => {
     }
   }, [attribute, resetPill, setPill, watch]);
 
-  return (
-    <FilterYear
-      path={operatorPath}
-      minDate={minYear}
-      maxDate={maxYear}
-      {...props}
-    />
-  );
+  return <FilterYear path={operatorPath} min={min} max={max} {...props} />;
 };
 
 ModelFilterYear.propTypes = {
