@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { compact, sortBy } from 'lodash';
+import { compact } from 'lodash';
 import { useWatch } from 'react-hook-form';
 
 import { optionsFromIndexWithTitle } from 'rhino/utils/ui';
@@ -57,7 +57,11 @@ const ModelFilterReference = ({ model, path, ...props }) => {
   const sortedResults = useMemo(() => {
     if (order) return results;
 
-    return sortBy(results, 'display_name');
+    return results.sort((a, b) =>
+      a?.display_name.localeCompare(b?.display_name, undefined, {
+        sensitivity: 'base'
+      })
+    );
   }, [results, order]);
 
   return (
