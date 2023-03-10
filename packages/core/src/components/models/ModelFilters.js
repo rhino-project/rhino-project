@@ -1,4 +1,10 @@
-import { useEffect, useMemo } from 'react';
+import {
+  Children,
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useMemo
+} from 'react';
 import PropTypes from 'prop-types';
 import { omit } from 'lodash';
 import { useForm } from 'react-hook-form';
@@ -7,7 +13,7 @@ import { getReferenceAttributes } from 'rhino/utils/models';
 import { IconButton } from 'rhino/components/buttons';
 import { usePaths } from 'rhino/hooks/paths';
 import FormProvider from '../forms/FormProvider';
-import { ModelFilterGroup } from './ModelFilterGroup';
+import ModelFilterGroup from './ModelFilterGroup';
 import { useFilterPills } from 'rhino/hooks/form';
 
 const ModelFilters = ({
@@ -58,14 +64,22 @@ const ModelFilters = ({
     reset({ ...resetSearchParams()?.filter, pills: {} });
   };
 
+  const renderPaths = useMemo(
+    () =>
+      Children.map(computedPaths, (path) =>
+        isValidElement(path) ? (
+          cloneElement(path, { model })
+        ) : (
+          <ModelFilterGroup model={model} path={path} />
+        )
+      ),
+    [model, computedPaths]
+  );
+
   return (
     <div className="d-flex flex-column my-2">
       <div className="row">
-        <FormProvider {...methods}>
-          {computedPaths.map((p) => {
-            return <ModelFilterGroup key={p} model={model} path={p} />;
-          })}
-        </FormProvider>
+        <FormProvider {...methods}>{renderPaths}</FormProvider>
       </div>
       {computedPaths?.length > 0 && (
         <div className="row align-items-center m-2">

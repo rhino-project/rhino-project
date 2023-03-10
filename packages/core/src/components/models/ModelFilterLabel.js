@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useModelFilterField } from 'rhino/hooks/form';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import FilterLabel from '../forms/FilterLabel';
@@ -41,19 +42,23 @@ const defaultComponents = {
   ModelFilterLabel: FilterLabel
 };
 
-export const ModelFilterLabel = ({ overrides, ...props }) => {
-  // FIXME: Is re-using the name for overrides good idea?
+export const ModelFilterLabel = ({ overrides, label, model, ...props }) => {
   const { ModelFilterLabel } = useGlobalOverrides(defaultComponents, overrides);
 
-  const { model, path } = props;
+  const { path } = props;
   const { attribute, operator } = useModelFilterField(model, path);
 
-  const label = `${attribute.readableName} ${operatorToLabel(
-    attribute.format,
-    operator
-  )}`;
+  const modelLabel = useMemo(
+    () =>
+      label ||
+      `${attribute.readableName} ${operatorToLabel(
+        attribute.format,
+        operator
+      )}`,
+    [attribute, operator, label]
+  );
 
-  return <ModelFilterLabel label={label} />;
+  return <ModelFilterLabel label={modelLabel} {...props} />;
 };
 
 export default ModelFilterLabel;

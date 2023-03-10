@@ -1,3 +1,4 @@
+import { useModel } from 'rhino/hooks/models';
 import {
   getModelAndAttributeFromPath,
   getModelFromRef,
@@ -16,10 +17,10 @@ import ModelFilterTime from './filters/ModelFilterTime';
 import ModelFilterYear from './filters/ModelFilterYear';
 
 export const ModelFilter = ({ overrides, ...props }) => {
-  const { model, path } = props;
+  const model = useModel(props.model);
+  const { path } = props;
 
   const [, attribute] = getModelAndAttributeFromPath(model, path);
-  const refModel = getModelFromRef(attribute);
 
   // FIXME: Make this a separate function so that its easier to override
   switch (attribute?.type) {
@@ -38,6 +39,8 @@ export const ModelFilter = ({ overrides, ...props }) => {
       return <ModelFilterFloat {...props} />;
 
     case 'reference':
+      const refModel = getModelFromRef(attribute);
+
       if (isOwnerGlobal(refModel)) return <ModelFilterReference {...props} />;
 
       return <ModelFilterOwnerReference {...props} />;
