@@ -57,7 +57,7 @@ const ModelFilterReference = ({ model, path, ...props }) => {
   const sortedResults = useMemo(() => {
     if (order) return results;
 
-    return results.sort((a, b) =>
+    return results?.sort((a, b) =>
       a?.display_name.localeCompare(b?.display_name, undefined, {
         sensitivity: 'base'
       })
