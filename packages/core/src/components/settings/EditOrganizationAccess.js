@@ -130,10 +130,8 @@ const EditOrganizationAccess = () => {
   return (
     <>
       <ModelIndex
-        baseFilter={{
-          filter: { organization: baseOwnerId },
-          order: 'user.email'
-        }}
+        filter={{ organization: baseOwnerId }}
+        order="user.email"
         model={model}
         overrides={{
           ModelIndexHeader: {

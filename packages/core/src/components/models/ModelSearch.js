@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
 import { InputGroup, Input } from 'reactstrap';
 import { useDebouncedCallback } from 'use-debounce';
+import { useModelIndexContext } from 'rhino/hooks/controllers';
 
-const ModelSearch = ({ searchParams: { search } = {}, setSearchParams }) => {
+const ModelSearch = (props) => {
+  const { search, setSearch } = useModelIndexContext();
   const [searchTerm, setSearchTerm] = useState(search);
-  const debounced = useDebouncedCallback((search) => {
-    setSearchParams({ search });
+  const debounced = useDebouncedCallback((newSearch) => {
+    setSearch(newSearch);
     return search;
   }, 200);
 
@@ -18,7 +19,7 @@ const ModelSearch = ({ searchParams: { search } = {}, setSearchParams }) => {
     if (value) {
       debounced.callback(value);
     } else {
-      setSearchParams({ search: value });
+      setSearch(value);
     }
   };
 
@@ -37,9 +38,6 @@ const ModelSearch = ({ searchParams: { search } = {}, setSearchParams }) => {
   );
 };
 
-ModelSearch.propTypes = {
-  searchParams: PropTypes.object.isRequired,
-  setSearchParams: PropTypes.func.isRequired
-};
+ModelSearch.propTypes = {};
 
 export default ModelSearch;

@@ -38,7 +38,8 @@ const ModelShowRelated = ({ overrides, ...props }) => {
           <ModelIndex
             model={relatedModel}
             parent={resource}
-            baseFilter={{ filter: { [model.model + '_id']: resource?.id } }}
+            filter={{ [model.model + '_id']: resource?.id }}
+            syncUrl={false}
           />
         </div>
       ))}

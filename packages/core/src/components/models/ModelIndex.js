@@ -1,11 +1,10 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
 import { CREATE_MODAL } from 'config';
 import routePaths from 'rhino/routes';
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
-import { useSearchParams } from 'rhino/hooks/history';
 import { useBaseOwnerId } from 'rhino/hooks/owner';
 import { useOverrides, useOverridesWithGlobal } from 'rhino/hooks/overrides';
 
@@ -16,10 +15,12 @@ import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import ModelCreateModal from 'rhino/components/models/ModelCreateModal';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import withParams from 'rhino/routes/withParams';
-import { useModelIndex } from 'rhino/hooks/queries';
+import { useModelIndexContext } from 'rhino/hooks/controllers';
+import ModelIndexBase from './ModelIndexBase';
 
 const ModelIndexActions = (props) => {
-  const { actions, model, parent } = props;
+  const { model } = useModelIndexContext();
+  const { actions, parent } = props;
   const [modalOpen, setModalOpen] = useState(false);
   const baseOwnerId = useBaseOwnerId();
   const location = useLocation();
@@ -104,7 +105,6 @@ const ModelIndexActions = (props) => {
 
 ModelIndexActions.propTypes = {
   actions: PropTypes.array,
-  model: PropTypes.object.isRequired,
   parent: PropTypes.object
 };
 
@@ -113,7 +113,8 @@ const defaultTableComponents = {
 };
 
 const ModelIndexTable = ({ overrides, ...props }) => {
-  const { baseRoute, model } = props;
+  const { model, resources } = useModelIndexContext();
+  const { baseRoute } = props;
   const { ModelTable } = useOverrides(defaultTableComponents, overrides);
   const baseOwnerNavigation = useBaseOwnerNavigation();
 
@@ -127,7 +128,12 @@ const ModelIndexTable = ({ overrides, ...props }) => {
 
   return (
     <ModelWrapper {...props} baseClassName="index-table">
-      <ModelTable onRowClick={handleRowClick} {...props} />
+      <ModelTable
+        onRowClick={handleRowClick}
+        model={model}
+        resources={resources}
+        {...props}
+      />
     </ModelWrapper>
   );
 };
@@ -148,8 +154,13 @@ const defaultComponents = {
   ModelIndexTable
 };
 
-const ModelIndex = ({ overrides, ...props }) => {
-  const { baseFilter, model } = props;
+const ModelIndex = ({ overrides, baseFilter, ...props }) => {
+  const { model } = props;
+
+  if (baseFilter)
+    console.warn(
+      'baseFilter is deprecated. Use filter/limit/offset/order/search instead'
+    );
 
   const {
     ModelIndexHeader,
@@ -157,27 +168,16 @@ const ModelIndex = ({ overrides, ...props }) => {
     ModelIndexTable
   } = useOverridesWithGlobal(model, 'index', defaultComponents, overrides);
 
-  const [searchParams, setSearchParams, resetSearchParams] = useSearchParams(
-    baseFilter
-  );
-
-  const { resources, isLoading } = useModelIndex(model, {
-    ...searchParams,
-    queryOptions: { keepPreviousData: true }
-  });
-
   return (
     <ModelWrapper {...props} baseClassName="index">
-      <ModelIndexHeader
-        {...props}
-        resources={resources}
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-        resetSearchParams={resetSearchParams}
-      />
-      <hr />
-      <ModelIndexActions {...props} resources={resources} />
-      <ModelIndexTable {...props} loading={isLoading} resources={resources} />
+      {/* Legacy support - must be after the new props to avoid being overwritten by
+      undefined */}
+      <ModelIndexBase {...props} {...baseFilter}>
+        <ModelIndexHeader {...props} />
+        <hr />
+        <ModelIndexActions {...props} />
+        <ModelIndexTable {...props} />
+      </ModelIndexBase>
     </ModelWrapper>
   );
 };
@@ -186,8 +186,7 @@ ModelIndex.propTypes = {
   baseFilter: PropTypes.object,
   model: PropTypes.object.isRequired,
   overrides: PropTypes.object,
-  parent: PropTypes.object,
-  title: PropTypes.string
+  parent: PropTypes.object
 };
 
 export default ModelIndex;

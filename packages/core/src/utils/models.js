@@ -35,7 +35,7 @@ export const getBaseOwnerFilters = (model, baseOwnerId) => {
   // only the base owner will have null as parent.
   if (baseOwnerId && rootModel && rootModel.ownedBy == null) {
     const modelNames = pathToRoot.map((el) => el.model);
-    set(filters, ['filter', ...modelNames], baseOwnerId);
+    set(filters, modelNames, baseOwnerId);
   }
   return filters;
 };

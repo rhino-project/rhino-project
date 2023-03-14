@@ -15,14 +15,39 @@ import { usePaths } from 'rhino/hooks/paths';
 import FormProvider from '../forms/FormProvider';
 import ModelFilterGroup from './ModelFilterGroup';
 import { useFilterPills } from 'rhino/hooks/form';
+import { useModelIndexContext } from 'rhino/hooks/controllers';
 
-const ModelFilters = ({
-  model,
-  paths,
-  searchParams,
-  setSearchParams,
-  resetSearchParams
-}) => {
+const createFilteredObject = (obj) => {
+  const result = {};
+  // iterate through all keys in the object
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      // if the value is not undefined, add it to the new object
+      if (obj[key] !== undefined) {
+        // if the value is an object, recursively call the function
+        if (typeof obj[key] === 'object') {
+          result[key] = createFilteredObject(obj[key]);
+          // if the object is now empty, don't add it to the new object
+          if (Object.keys(result[key]).length === 0) {
+            delete result[key];
+          }
+        } else {
+          result[key] = obj[key];
+        }
+      }
+    }
+  }
+  return result;
+};
+
+const ModelFilters = ({ paths }) => {
+  const {
+    model,
+    defaultState,
+    filter,
+    setFilter,
+    setSearch
+  } = useModelIndexContext();
   // Use passed in paths or compute a sensible set
   const pathsOrDefault = useMemo(
     () =>
@@ -40,14 +65,16 @@ const ModelFilters = ({
   const { control, reset, resetField, watch } = methods;
   const { pills, resetPill } = useFilterPills({ control });
 
-  useEffect(() => {
-    reset({ ...searchParams.filter, pills: {} });
+  useEffect(
+    () => reset({ ...filter, pills: {} }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
 
   useEffect(() => {
     const subscription = watch((value) => {
-      setSearchParams({ ...searchParams, filter: omit(value, 'pills') });
+      // Only pass the defined values to the filter
+      setFilter(createFilteredObject(omit(value, 'pills')));
     });
     return () => subscription.unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -60,8 +87,11 @@ const ModelFilters = ({
 
   const handleClearAll = (e) => {
     e.preventDefault();
+
     // This will trip the watchs for pill resets as well
-    reset({ ...resetSearchParams()?.filter, pills: {} });
+    reset({ ...defaultState?.filter, pills: {} });
+    setFilter({ ...defaultState?.filter });
+    setSearch(defaultState?.search);
   };
 
   const renderPaths = useMemo(
@@ -114,10 +144,7 @@ const ModelFilters = ({
 };
 
 ModelFilters.propTypes = {
-  model: PropTypes.object.isRequired,
-  paths: PropTypes.array,
-  searchParams: PropTypes.object.isRequired,
-  setSearchParams: PropTypes.func.isRequired
+  paths: PropTypes.array
 };
 
 export default ModelFilters;
