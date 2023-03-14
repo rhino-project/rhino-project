@@ -13,6 +13,7 @@ import ModelFilterInteger from './filters/ModelFilterInteger';
 import ModelFilterIntegerSelect from './filters/ModelFilterIntegerSelect';
 import ModelFilterOwnerReference from './filters/ModelFilterOwnerReference';
 import ModelFilterReference from './filters/ModelFilterReference';
+import ModelFilterString from './filters/ModelFilterString';
 import ModelFilterTime from './filters/ModelFilterTime';
 import ModelFilterYear from './filters/ModelFilterYear';
 
@@ -55,7 +56,7 @@ export const ModelFilter = ({ overrides, ...props }) => {
         case 'datetime':
           return <ModelFilterDateTime {...props} />;
         default:
-          console.assert(false, 'No available filter for ', attribute);
+          return <ModelFilterString {...props} />;
       }
     // eslint-disable-next-line no-fallthrough
     default:
