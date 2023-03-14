@@ -1,5 +1,5 @@
 import FieldInteger from '../fields/FieldInteger';
 
-export const FilterInteger = (props) => <FieldInteger {...props} />;
+const FilterInteger = (props) => <FieldInteger {...props} />;
 
 export default FilterInteger;
