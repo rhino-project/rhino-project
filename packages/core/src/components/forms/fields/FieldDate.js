@@ -6,7 +6,7 @@ import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 
-const FieldDate = ({ ...props }) => {
+const FieldDate = ({ min, max, ...props }) => {
   const { path } = props;
   const {
     field: { value, onChange, onBlur },
@@ -44,6 +44,8 @@ const FieldDate = ({ ...props }) => {
       onBlur={onBlur}
       dateFormat="MMMM d, yyyy"
       autoComplete="off"
+      minDate={min}
+      maxDate={max}
       {...inheritedProps}
     />
   );

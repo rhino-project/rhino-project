@@ -6,7 +6,7 @@ import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 
-const FieldYear = ({ ...props }) => {
+const FieldYear = ({ min, max, ...props }) => {
   const { path } = props;
   const {
     field: { value, onChange, onBlur },
@@ -15,7 +15,7 @@ const FieldYear = ({ ...props }) => {
     name: path
   });
 
-  const year = useMemo(() => (value ? new Date(value, 1, 1) : undefined), [
+  const year = useMemo(() => (value ? new Date(value, 0, 1) : undefined), [
     value
   ]);
 
@@ -47,6 +47,8 @@ const FieldYear = ({ ...props }) => {
       showYearPicker
       dateFormat="yyyy"
       autoComplete="off"
+      minDate={min}
+      maxDate={max}
       {...inheritedProps}
     />
   );

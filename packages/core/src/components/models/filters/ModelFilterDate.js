@@ -42,15 +42,29 @@ const ModelFilterDate = ({ model, path, ...props }) => {
     path
   );
 
-  // FIXME: Exclusive min/max support
-  const minDate = useMemo(
-    () => (attribute.minimum ? new Date(attribute.minimum) : undefined),
-    [attribute]
-  );
-  const maxYear = useMemo(
-    () => (attribute.maximum ? new Date(attribute.maximum) : undefined),
-    [attribute]
-  );
+  const min = useMemo(() => {
+    if (!attribute.minimum) return undefined;
+
+    const date = new Date(attribute.minimum);
+
+    if (attribute.exclusiveMinimum) {
+      date.setMilliseconds(date.getMilliseconds() + 1);
+    }
+
+    return date;
+  }, [attribute]);
+
+  const max = useMemo(() => {
+    if (!attribute.maximum) return undefined;
+
+    const date = new Date(attribute.maximum);
+
+    if (attribute.exclusiveMaximum) {
+      date.setMilliseconds(date.getMilliseconds() - 1);
+    }
+
+    return date;
+  }, [attribute]);
 
   const watch = useWatch({ name: operatorPath });
 
@@ -64,14 +78,7 @@ const ModelFilterDate = ({ model, path, ...props }) => {
     }
   }, [attribute, operator, resetPill, setPill, watch]);
 
-  return (
-    <FilterDate
-      path={operatorPath}
-      minDate={minDate}
-      maxDate={maxYear}
-      {...props}
-    />
-  );
+  return <FilterDate path={operatorPath} min={min} max={max} {...props} />;
 };
 
 ModelFilterDate.propTypes = {
