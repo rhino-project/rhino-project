@@ -102,7 +102,11 @@ export const getStringForDisplay = (
               />
             );
           } else {
-            displayString = <a href={value.url}>{value.display_name}</a>;
+            displayString = (
+              <a href={value.url} onClick={(e) => e.stopPropagation()}>
+                {value.display_name}
+              </a>
+            );
           }
         }
       } else {
