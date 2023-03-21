@@ -81,13 +81,13 @@ module Rhino
 
         def rhino_properties_format(formats)
           formats.each do |property, format|
-            self._properties_overrides.deep_merge!(property => { format: })
+            self._properties_overrides = self._properties_overrides.deep_merge(property => { format: })
           end
         end
 
         def rhino_properties_readable_name(readable_names)
           readable_names.each do |property, readable_name|
-            self._properties_overrides.deep_merge!(property => { "x-rhino-attribute": { readableName: readable_name } })
+            self._properties_overrides = self._properties_overrides.deep_merge(property => { "x-rhino-attribute": { readableName: readable_name } })
           end
         end
 
