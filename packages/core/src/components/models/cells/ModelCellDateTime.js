@@ -1,17 +1,18 @@
-import CellDateTime from 'rhino/components/table/cells/CellDateTime';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellDateTime from 'rhino/components/table/cells/CellDateTime';
 
-const defaultComponents = {
-  ModelCellDateTime: CellDateTime
-};
+export const ModelCellDateTimeBase = (props) => <CellDateTime {...props} />;
+
+const defaultComponents = { ModelCellDateTime: ModelCellDateTimeBase };
 
 const ModelCellDateTime = ({ overrides, ...props }) => {
   const { ModelCellDateTime } = useGlobalOverrides(
     defaultComponents,
-    overrides
+    overrides,
+    props
   );
 
-  return <ModelCellDateTime {...props}></ModelCellDateTime>;
+  return <ModelCellDateTime {...props} />;
 };
 
 export default ModelCellDateTime;

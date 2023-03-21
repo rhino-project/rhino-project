@@ -1,5 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ModelCellCurrency formats a negative number 1`] = `
+<DocumentFragment>
+  -$15.00
+</DocumentFragment>
+`;
+
+exports[`ModelCellCurrency formats a positive number 1`] = `
+<DocumentFragment>
+  $20.00
+</DocumentFragment>
+`;
+
 exports[`ModelCellCurrency should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   -
@@ -13,6 +25,22 @@ exports[`ModelCellCurrency should render the overridden empty text when value is
 `;
 
 exports[`ModelCellCurrency should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellCurrency should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellCurrency should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

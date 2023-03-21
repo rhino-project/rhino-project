@@ -1,24 +1,8 @@
 import { useCallback, useMemo } from 'react';
-import CellLink from 'rhino/components/table/cells/CellLink';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellLink from 'rhino/components/table/cells/CellLink';
 
-const defaultComponents = {
-  ModelCellAttachment: CellLink
-};
-
-const ModelCellAttachment = ({
-  overrides,
-  children,
-  model,
-  path,
-  getValue,
-  ...props
-}) => {
-  const { ModelCellAttachment } = useGlobalOverrides(
-    defaultComponents,
-    overrides
-  );
-
+export const ModelCellAttachmentBase = ({ children, getValue, ...props }) => {
   const syntheticGetValue = useCallback(() => getValue()?.url, [getValue]);
   const linkText = useMemo(() => children || getValue()?.display_name, [
     children,
@@ -26,10 +10,22 @@ const ModelCellAttachment = ({
   ]);
 
   return (
-    <ModelCellAttachment getValue={syntheticGetValue} {...props}>
+    <CellLink getValue={syntheticGetValue} {...props}>
       {linkText}
-    </ModelCellAttachment>
+    </CellLink>
   );
+};
+
+const defaultComponents = { ModelCellAttachment: ModelCellAttachmentBase };
+
+const ModelCellAttachment = ({ overrides, ...props }) => {
+  const { ModelCellAttachment } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
+
+  return <ModelCellAttachment {...props} />;
 };
 
 export default ModelCellAttachment;

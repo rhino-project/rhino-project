@@ -1,14 +1,18 @@
-import CellString from 'rhino/components/table/cells/CellString';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellString from 'rhino/components/table/cells/CellString';
 
-const defaultComponents = {
-  ModelCellString: CellString
-};
+export const ModelCellStringBase = (props) => <CellString {...props} />;
+
+const defaultComponents = { ModelCellString: ModelCellStringBase };
 
 const ModelCellString = ({ overrides, ...props }) => {
-  const { ModelCellString } = useGlobalOverrides(defaultComponents, overrides);
+  const { ModelCellString } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
 
-  return <ModelCellString {...props}></ModelCellString>;
+  return <ModelCellString {...props} />;
 };
 
 export default ModelCellString;

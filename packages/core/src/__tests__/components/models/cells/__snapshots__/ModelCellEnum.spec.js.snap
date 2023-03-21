@@ -31,6 +31,22 @@ exports[`ModelCellEnum should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ModelCellEnum should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelCellEnum uses default style value if match is not found 1`] = `
 <DocumentFragment>
   <span

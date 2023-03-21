@@ -1,30 +1,29 @@
 import { useCallback, useMemo } from 'react';
-import CellImage from 'rhino/components/table/cells/CellImage';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellImage from 'rhino/components/table/cells/CellImage';
 
-const defaultComponents = {
-  ModelCellAttachmentImage: CellImage
-};
-
-const ModelCellAttachmentImage = ({ overrides, model, getValue, ...props }) => {
-  const { ModelCellAttachmentImage } = useGlobalOverrides(
-    defaultComponents,
-    overrides
-  );
-
+export const ModelCellAttachmentImageBase = ({ getValue, ...props }) => {
   const syntheticGetValue = useCallback(() => getValue()?.url, [getValue]);
 
   const altText = useMemo(() => getValue()?.display_name || getValue()?.url, [
     getValue
   ]);
 
-  return (
-    <ModelCellAttachmentImage
-      alt={altText}
-      getValue={syntheticGetValue}
-      {...props}
-    ></ModelCellAttachmentImage>
+  return <CellImage alt={altText} getValue={syntheticGetValue} {...props} />;
+};
+
+const defaultComponents = {
+  ModelCellAttachmentImage: ModelCellAttachmentImageBase
+};
+
+const ModelCellAttachmentImage = ({ overrides, ...props }) => {
+  const { ModelCellAttachmentImage } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
   );
+
+  return <ModelCellAttachmentImage {...props} />;
 };
 
 export default ModelCellAttachmentImage;

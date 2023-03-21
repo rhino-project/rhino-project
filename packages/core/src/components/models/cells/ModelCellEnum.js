@@ -1,18 +1,13 @@
 import { useMemo } from 'react';
-import CellBadge from 'rhino/components/table/cells/CellBadge';
-import { useModelFilterField } from 'rhino/hooks/form';
+import { useModelAndAttributeFromPath } from 'rhino/hooks/paths';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellBadge from 'rhino/components/table/cells/CellBadge';
 
 const COLOR_PALETTE = ['#0369a1', '#047857', '#6d28d9', '#a21caf', '#be123c'];
 
-const defaultComponents = {
-  ModelCellEnum: CellBadge
-};
-
-const ModelCellEnum = ({ overrides, model, path, ...props }) => {
-  const { ModelCellEnum } = useGlobalOverrides(defaultComponents, overrides);
-  const { attribute } = useModelFilterField(model, path);
-  const { getValue } = props;
+export const ModelCellEnumBase = (props) => {
+  const { getValue, model, path } = props;
+  const { attribute } = useModelAndAttributeFromPath(model, path);
 
   const style = useMemo(() => {
     const idx = attribute?.enum?.findIndex((e) => e === getValue());
@@ -22,7 +17,19 @@ const ModelCellEnum = ({ overrides, model, path, ...props }) => {
     return { backgroundColor };
   }, [attribute, getValue]);
 
-  return <ModelCellEnum style={style} {...props}></ModelCellEnum>;
+  return <CellBadge style={style} {...props} />;
+};
+
+const defaultComponents = { ModelCellEnum: ModelCellEnumBase };
+
+const ModelCellEnum = ({ overrides, ...props }) => {
+  const { ModelCellEnum } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
+
+  return <ModelCellEnum {...props} />;
 };
 
 export default ModelCellEnum;

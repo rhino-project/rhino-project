@@ -20,6 +20,22 @@ exports[`ModelCellAttachment should render with global override shorthand 1`] = 
 </DocumentFragment>
 `;
 
+exports[`ModelCellAttachment should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellAttachment should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelCellAttachment uses display_name for link text 1`] = `
 <DocumentFragment>
   <a

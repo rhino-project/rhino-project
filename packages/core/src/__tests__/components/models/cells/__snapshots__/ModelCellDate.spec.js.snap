@@ -2,17 +2,37 @@
 
 exports[`ModelCellDate should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
-  -
+  <div>
+    -
+  </div>
 </DocumentFragment>
 `;
 
 exports[`ModelCellDate should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
-  baz
+  <div>
+    baz
+  </div>
 </DocumentFragment>
 `;
 
 exports[`ModelCellDate should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDate should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDate should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

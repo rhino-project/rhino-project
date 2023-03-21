@@ -1,24 +1,12 @@
 import { useCallback, useMemo } from 'react';
-import CellLink from 'rhino/components/table/cells/CellLink';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellLink from 'rhino/components/table/cells/CellLink';
 
-const defaultComponents = {
-  ModelCellAttachmentDownload: CellLink
-};
-
-const ModelCellAttachmentDownload = ({
-  overrides,
+export const ModelCellAttachmentDownloadBase = ({
   children,
-  model,
-  path,
   getValue,
   ...props
 }) => {
-  const { ModelCellAttachmentDownload } = useGlobalOverrides(
-    defaultComponents,
-    overrides
-  );
-
   const syntheticGetValue = useCallback(() => getValue()?.url_attachment, [
     getValue
   ]);
@@ -28,10 +16,24 @@ const ModelCellAttachmentDownload = ({
   ]);
 
   return (
-    <ModelCellAttachmentDownload getValue={syntheticGetValue} {...props}>
+    <CellLink getValue={syntheticGetValue} {...props}>
       {linkText}
-    </ModelCellAttachmentDownload>
+    </CellLink>
   );
+};
+
+const defaultComponents = {
+  ModelCellAttachmentDownload: ModelCellAttachmentDownloadBase
+};
+
+const ModelCellAttachmentDownload = ({ overrides, ...props }) => {
+  const { ModelCellAttachmentDownload } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
+
+  return <ModelCellAttachmentDownload {...props} />;
 };
 
 export default ModelCellAttachmentDownload;
