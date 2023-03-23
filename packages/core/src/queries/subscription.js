@@ -12,18 +12,18 @@ const CANCEL_URL = '/settings?status=canceled';
 const SUCCESS_URL = '/settings?status=success&session_id={CHECKOUT_SESSION_ID}';
 
 // Create a Checkout Session with the selected plan ID
-export async function CreateCheckoutSession(price, baseOwnerId) {
+export async function CreateCheckoutSession(price, base_owner_id) {
   const stripe = await Stripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
   const {
     data: { sessionId }
   } = await networkApiCall(CHECKOUT_API_PATH, {
     method: 'POST',
-    data: JSON.stringify({
-      base_owner_id: baseOwnerId,
-      price: price,
+    data: {
+      base_owner_id,
+      price,
       success_url: SUCCESS_URL,
       cancel_url: CANCEL_URL
-    })
+    }
   });
   stripe.redirectToCheckout({ sessionId: sessionId });
 }
