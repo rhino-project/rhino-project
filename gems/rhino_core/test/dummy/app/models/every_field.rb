@@ -8,12 +8,14 @@ class EveryField < ApplicationRecord
   has_many :every_manies, dependent: :destroy
   has_many :every_manies_not_nested, class_name: "EveryMany", inverse_of: :every_field_not_nested
 
+  before_validation :normalize_phone
+
   acts_as_taggable_on :tags
 
   rhino_owner_base
   rhino_references %i[user another_user every_manies every_manies_not_nested]
   rhino_properties_read except: %i[string_write_only]
-  rhino_properties_format year: :year, currency: :currency
+  rhino_properties_format year: :year, currency: :currency, phone: :phone
   rhino_properties_readable_name string_overrideable: "Overriden name"
 
   accepts_nested_attributes_for :every_manies, allow_destroy: true
@@ -53,4 +55,11 @@ class EveryField < ApplicationRecord
   validates :currency, presence: true
 
   validates :year, numericality: { only_integer: true, allow_nil: true, greater_than: 5.years.ago.year, less_than: 0.years.ago.year }
+
+  validates :phone, phone: { message: "not a valid phone number", possible: true }
+
+  private
+    def normalize_phone
+      self.phone = Phonelib.parse(phone).full_e164.presence
+    end
 end
