@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_10_143850) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_23_210533) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -135,6 +135,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_10_143850) do
     t.integer "enum"
     t.string "string_write_only"
     t.string "string_overrideable"
+    t.string "phone"
     t.index ["user_id"], name: "index_every_fields_on_user_id"
   end
 
