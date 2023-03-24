@@ -5,7 +5,7 @@ import qs from 'qs';
 import { DEFAULT_SORT, MAX_PAGES, PAGE_SIZE } from 'config';
 
 import withParams from 'rhino/routes/withParams';
-import { useModelIndex } from 'rhino/hooks/queries';
+import { useModelIndex, useModelUpdate } from 'rhino/hooks/queries';
 import { useModel } from 'rhino/hooks/models';
 import { isEqual, merge } from 'lodash';
 import { ModelIndexContext } from 'rhino/components/models/ModelIndexProvider';
@@ -83,6 +83,8 @@ export const useModelIndexController = (options) => {
     networkOptions: options?.networkOptions
   });
 
+  const { mutate: update } = useModelUpdate(model);
+
   // Pagination
   const totalPages = useMemo(() => Math.ceil(query.total / limit), [
     query.total,
@@ -159,6 +161,7 @@ export const useModelIndexController = (options) => {
     firstPage,
     lastPage,
     setPage,
-    ...query
+    ...query,
+    update
   };
 };

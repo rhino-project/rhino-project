@@ -1,15 +1,25 @@
-import { useCallback, useMemo, useState } from 'react';
+import {
+  cloneElement,
+  isValidElement,
+  useCallback,
+  useMemo,
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
+import {
+  createColumnHelper,
+  getCoreRowModel,
+  useReactTable
+} from '@tanstack/react-table';
 
 import { CREATE_MODAL } from 'config';
 import routePaths from 'rhino/routes';
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
 import { useBaseOwnerId } from 'rhino/hooks/owner';
-import { useOverrides, useOverridesWithGlobal } from 'rhino/hooks/overrides';
+import { useOverridesWithGlobal } from 'rhino/hooks/overrides';
 
 import ModelActions from 'rhino/components/models/ModelActions';
-import ModelTable from 'rhino/components/models/ModelTable';
 import ModelIndexHeader from 'rhino/components/models/ModelIndexHeader';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import ModelCreateModal from 'rhino/components/models/ModelCreateModal';
@@ -17,6 +27,12 @@ import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import withParams from 'rhino/routes/withParams';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 import ModelIndexBase from './ModelIndexBase';
+import { filter, isString } from 'lodash';
+import { usePaths } from 'rhino/hooks/paths';
+import Table from '../table/Table';
+import ModelCell from './ModelCell';
+import { ModelHeader } from './ModelHeader';
+import ModelFooter from './ModelFooter';
 
 const ModelIndexActions = (props) => {
   const { model } = useModelIndexContext();
@@ -108,15 +124,38 @@ ModelIndexActions.propTypes = {
   parent: PropTypes.object
 };
 
-const defaultTableComponents = {
-  ModelTable
-};
+const getViewablePaths = (model) =>
+  filter(model.properties, (a) => {
+    return (
+      a.type !== 'identifier' &&
+      a.name !== model.ownedBy &&
+      a.type !== 'array' &&
+      a.type !== 'jsonb' &&
+      a.type !== 'text' &&
+      // a.type !== 'reference' &&
+      !a.name.endsWith('_attachment')
+    );
+  }).map((a) => a.name);
 
-const ModelIndexTable = ({ overrides, ...props }) => {
-  const { model, resources } = useModelIndexContext();
-  const { baseRoute } = props;
-  const { ModelTable } = useOverrides(defaultTableComponents, overrides);
+const columnHelper = createColumnHelper();
+
+export const ModelIndexTable = ({ overrides, ...props }) => {
+  const { model, resources, results } = useModelIndexContext();
+  const { baseRoute, paths } = props;
   const baseOwnerNavigation = useBaseOwnerNavigation();
+
+  const pathsOrDefault = useMemo(() => {
+    if (overrides?.ModelTable?.props?.paths) {
+      console.warn(
+        'ModelTable paths override is deprecated. Use paths prop directly on ModelIndexTable'
+      );
+
+      return overrides.ModelTable.props.paths;
+    }
+
+    return paths || getViewablePaths(model);
+  }, [paths, model, overrides?.ModelTable?.props?.paths]);
+  const computedPaths = usePaths(pathsOrDefault, resources);
 
   const handleRowClick = useCallback(
     (row) =>
@@ -126,14 +165,65 @@ const ModelIndexTable = ({ overrides, ...props }) => {
     [baseRoute, baseOwnerNavigation, model]
   );
 
+  const columns = useMemo(
+    () =>
+      computedPaths.map((path, idx) => {
+        if (isValidElement(path)) {
+          const accessor =
+            path.props?.accessor ||
+            (isString(path.props?.path) ? path.props?.path : null);
+          // FIXME: Any issue using idx as id?
+          const id = path.props?.id || idx.toString();
+          const header =
+            path.props?.header ||
+            ((info) => (
+              <ModelHeader model={model} path={path?.props?.path || null} />
+            ));
+          const cell = (props) => cloneElement(path, { model, ...props });
+          const footer =
+            path.props?.footer ||
+            ((info) => (
+              <ModelFooter model={model} path={path?.props?.path || null} />
+            ));
+
+          if (accessor) {
+            return columnHelper.accessor(accessor, {
+              id,
+              header,
+              cell,
+              footer
+            });
+          }
+
+          return columnHelper.display({ id, header, cell, footer });
+        }
+
+        // Path is a string
+        const cell = (info) => (
+          <ModelCell model={model} path={path} {...info} />
+        );
+
+        const header = (info) => (
+          <ModelHeader model={model} path={path} {...info} />
+        );
+        const footer = (info) => (
+          <ModelFooter model={model} path={path} {...info} />
+        );
+
+        return columnHelper.accessor(path, { id: path, header, cell, footer });
+      }),
+    [computedPaths, model]
+  );
+
+  const table = useReactTable({
+    data: results || [],
+    columns,
+    getCoreRowModel: getCoreRowModel()
+  });
+
   return (
     <ModelWrapper {...props} baseClassName="index-table">
-      <ModelTable
-        onRowClick={handleRowClick}
-        model={model}
-        resources={resources}
-        {...props}
-      />
+      <Table table={table} onRowClick={handleRowClick} {...props} />
     </ModelWrapper>
   );
 };

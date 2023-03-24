@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelCellCountry should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  -
+</DocumentFragment>
+`;
+
+exports[`ModelCellCountry should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  baz
+</DocumentFragment>
+`;
+
+exports[`ModelCellCountry should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

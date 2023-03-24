@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelCellTime should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  -
+</DocumentFragment>
+`;
+
+exports[`ModelCellTime should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  baz
+</DocumentFragment>
+`;
+
+exports[`ModelCellTime should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
