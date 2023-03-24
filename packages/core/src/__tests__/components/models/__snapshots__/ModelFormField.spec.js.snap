@@ -834,7 +834,7 @@ exports[`ModelFormField renders errors for Phone Attribute 1`] = `
     Phone Attribute
   </label>
   <div
-    className="is-invalid react-tel-input"
+    className="is-invalid react-tel-input "
     onKeyDown={[Function]}
     style={Object {}}
   >
@@ -844,7 +844,7 @@ exports[`ModelFormField renders errors for Phone Attribute 1`] = `
       Phone
     </div>
     <input
-      className=" form-control"
+      className="form-control "
       disabled={false}
       onBlur={[Function]}
       onChange={[Function]}
@@ -859,7 +859,7 @@ exports[`ModelFormField renders errors for Phone Attribute 1`] = `
       value="+1"
     />
     <div
-      className=" flag-dropdown"
+      className="flag-dropdown "
       style={Object {}}
     >
       <div
@@ -2037,7 +2037,7 @@ exports[`ModelFormField renders input for Phone Attribute 1`] = `
     Phone Attribute
   </label>
   <div
-    className=" react-tel-input"
+    className=" react-tel-input "
     onKeyDown={[Function]}
     style={Object {}}
   >
@@ -2047,7 +2047,7 @@ exports[`ModelFormField renders input for Phone Attribute 1`] = `
       Phone
     </div>
     <input
-      className=" form-control"
+      className="form-control "
       disabled={false}
       onBlur={[Function]}
       onChange={[Function]}
@@ -2062,7 +2062,7 @@ exports[`ModelFormField renders input for Phone Attribute 1`] = `
       value="+1"
     />
     <div
-      className=" flag-dropdown"
+      className="flag-dropdown "
       style={Object {}}
     >
       <div
@@ -3192,7 +3192,7 @@ exports[`ModelFormField renders required for Phone Attribute 1`] = `
     Phone Attribute
   </label>
   <div
-    className=" react-tel-input"
+    className=" react-tel-input "
     onKeyDown={[Function]}
     style={Object {}}
   >
@@ -3202,7 +3202,7 @@ exports[`ModelFormField renders required for Phone Attribute 1`] = `
       Phone
     </div>
     <input
-      className=" form-control"
+      className="form-control "
       disabled={false}
       onBlur={[Function]}
       onChange={[Function]}
@@ -3217,7 +3217,7 @@ exports[`ModelFormField renders required for Phone Attribute 1`] = `
       value="+1"
     />
     <div
-      className=" flag-dropdown"
+      className="flag-dropdown "
       style={Object {}}
     >
       <div
