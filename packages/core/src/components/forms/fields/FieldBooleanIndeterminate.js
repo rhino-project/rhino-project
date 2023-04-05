@@ -19,7 +19,7 @@ const parseBooleanFilterValue = (value) => {
 
 const FieldBooleanIndeterminate = (props) => {
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
-  const { path } = props;
+  const { readOnly, path } = props;
   const {
     field: { ref, value, ...fieldProps },
     fieldState: { error }
@@ -57,6 +57,7 @@ const FieldBooleanIndeterminate = (props) => {
       innerRef={innerRef}
       invalid={!!error}
       checked={parsedValue === true}
+      disabled={readOnly}
       {...inheritedProps}
     />
   );

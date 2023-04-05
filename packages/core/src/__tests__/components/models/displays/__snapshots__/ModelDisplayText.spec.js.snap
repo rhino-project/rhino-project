@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelDisplayText should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <textarea
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+  >
+    -
+  </textarea>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayText should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <textarea
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+  >
+    baz
+  </textarea>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayText should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayText should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayText should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
