@@ -170,7 +170,8 @@ export const useGlobalOverrides = (
         // Global overrides
         rhinoConfig.components[key],
         // Legacy overrides
-        globalOverrides?.[model?.model]?.index?.[key]
+        globalOverrides?.[model?.model]?.index?.[key],
+        globalOverrides?.[model?.model]?.show?.[key]
       ].find((override) => override !== undefined);
 
       if (overrideComponent !== undefined) {

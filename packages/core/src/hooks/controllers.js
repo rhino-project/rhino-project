@@ -5,10 +5,15 @@ import qs from 'qs';
 import { DEFAULT_SORT, MAX_PAGES, PAGE_SIZE } from 'config';
 
 import withParams from 'rhino/routes/withParams';
-import { useModelIndex, useModelUpdate } from 'rhino/hooks/queries';
+import {
+  useModelIndex,
+  useModelShow,
+  useModelUpdate
+} from 'rhino/hooks/queries';
 import { useModel } from 'rhino/hooks/models';
 import { isEqual, merge } from 'lodash';
 import { ModelIndexContext } from 'rhino/components/models/ModelIndexProvider';
+import { ModelShowContext } from 'rhino/components/models/ModelShowProvider';
 
 export const useModelIndexContext = () => {
   const context = useContext(ModelIndexContext);
@@ -72,7 +77,6 @@ export const useModelIndexController = (options) => {
   const [order, setOrder] = useState(initialState.current.order);
   const [search, setSearch] = useState(initialState.current.search);
 
-  // const query = {};
   const query = useModelIndex(model, {
     filter,
     limit,
@@ -161,6 +165,35 @@ export const useModelIndexController = (options) => {
     firstPage,
     lastPage,
     setPage,
+    ...query,
+    update
+  };
+};
+
+export const useModelShowContext = () => {
+  const context = useContext(ModelShowContext);
+
+  if (context === undefined) {
+    throw new Error(
+      'useModelShowContext must be used within a ModelShowProvider'
+    );
+  }
+  return context;
+};
+
+export const useModelShowController = (options) => {
+  const model = useModel(options.model);
+
+  const query = useModelShow(model, options.modelId, {
+    queryOptions: options?.queryOptions,
+    networkOptions: options?.networkOptions
+  });
+
+  const { mutate: update } = useModelUpdate(model);
+
+  return {
+    model,
+    modelId: options.modelId,
     ...query,
     update
   };

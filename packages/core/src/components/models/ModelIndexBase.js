@@ -22,7 +22,6 @@ const ModelIndexBase = ({ children, ...props }) => {
 
 ModelIndexBase.propTypes = {
   model: PropTypes.object.isRequired,
-  overrides: PropTypes.object,
   parent: PropTypes.object,
   title: PropTypes.string
 };

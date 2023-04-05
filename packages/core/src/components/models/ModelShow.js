@@ -1,18 +1,21 @@
 import PropTypes from 'prop-types';
-import { Spinner } from 'reactstrap';
-import { useOverridesWithGlobal } from 'rhino/hooks/overrides';
+import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import { breadcrumbFor } from 'rhino/utils/ui';
 import ModelShowDescription from 'rhino/components/models/ModelShowDescription';
 import ModelShowRelated from 'rhino/components/models/ModelShowRelated';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
-import { useModelShow } from 'rhino/hooks/queries';
 import ModelShowActions from 'rhino/components/models/ModelShowActions';
+import ModelShowBase from './ModelShowBase';
+import { useModelShowContext } from 'rhino/hooks/controllers';
 
-const ModelShowHeader = ({ model, resource }) => {
+export const ModelShowHeader = () => {
+  const { model, resource } = useModelShowContext();
+
   return breadcrumbFor(model, resource, true);
 };
 
 const defaultComponents = {
+  ModelShow: ModelShowBase,
   ModelShowHeader,
   ModelShowActions,
   ModelShowDescription,
@@ -20,26 +23,22 @@ const defaultComponents = {
 };
 
 const ModelShow = ({ overrides, ...props }) => {
-  const { model, modelId } = props;
   const {
+    ModelShow,
     ModelShowHeader,
     ModelShowActions,
     ModelShowDescription,
     ModelShowRelated
-  } = useOverridesWithGlobal(model, 'show', defaultComponents, overrides);
-
-  const { isLoading, resource } = useModelShow(model, modelId);
-
-  if (isLoading) {
-    return <Spinner className="mx-auto d-block" />;
-  }
+  } = useGlobalOverrides(defaultComponents, overrides, props);
 
   return (
     <ModelWrapper {...props} baseClassName="show">
-      <ModelShowHeader {...props} resource={resource} />
-      <ModelShowActions {...props} resource={resource} />
-      <ModelShowDescription {...props} resource={resource} />
-      <ModelShowRelated {...props} resource={resource} />
+      <ModelShow {...props}>
+        <ModelShowHeader />
+        <ModelShowActions />
+        <ModelShowDescription />
+        <ModelShowRelated />
+      </ModelShow>
     </ModelWrapper>
   );
 };

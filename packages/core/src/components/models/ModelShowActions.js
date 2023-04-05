@@ -9,9 +9,11 @@ import routePaths from 'rhino/routes';
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
 import { useModelDelete } from 'rhino/hooks/queries';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
+import { useModelShowContext } from 'rhino/hooks/controllers';
 
 const ModelShowActions = (props) => {
-  const { actions, resource, model } = props;
+  const { model, resource } = useModelShowContext();
+  const { actions } = props;
   const [modalOpen, setModalOpen] = useState(false);
   const baseOwnerNavigation = useBaseOwnerNavigation();
 
@@ -35,7 +37,7 @@ const ModelShowActions = (props) => {
     }
   }, [baseOwnerNavigation, model, mutate, resource]);
 
-  const editPath = withParams(routePaths[model.name].edit(resource.id), {
+  const editPath = withParams(routePaths[model.name].edit(resource?.id), {
     back: location.pathname
   });
 
@@ -79,8 +81,8 @@ const ModelShowActions = (props) => {
   }, [actions, handleAction, handleDestroy, isLoading, resource]);
 
   return (
-    <ModelWrapper {...props} baseClassName="show-actions">
-      <ModelActions {...props} actions={computedActions} />
+    <ModelWrapper model={model} {...props} baseClassName="show-actions">
+      <ModelActions model={model} {...props} actions={computedActions} />
       {EDIT_MODAL && (
         <ModelEditModal
           {...props}
@@ -94,9 +96,7 @@ const ModelShowActions = (props) => {
 };
 
 ModelShowActions.propTypes = {
-  actions: PropTypes.array,
-  model: PropTypes.object.isRequired,
-  resource: PropTypes.object
+  actions: PropTypes.array
 };
 
 export default ModelShowActions;

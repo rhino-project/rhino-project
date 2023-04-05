@@ -7,6 +7,7 @@ import { useOverrides } from 'rhino/hooks/overrides';
 import { getAttributeFromPath } from 'rhino/utils/models';
 import { getStringForDisplay, useModelClassNames } from 'rhino/utils/ui';
 import { usePaths } from 'rhino/hooks/paths';
+import { useModelShowContext } from 'rhino/hooks/controllers';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -58,7 +59,8 @@ const defaultComponents = {
 };
 
 const ModelShowDescription = ({ overrides, ...props }) => {
-  const { model, paths, resource } = props;
+  const { model, resource } = useModelShowContext();
+  const { paths } = props;
   const { ModelShowAttribute } = useOverrides(defaultComponents, overrides);
   const modelClassNames = useModelClassNames('show-description', model);
 
@@ -96,10 +98,8 @@ const ModelShowDescription = ({ overrides, ...props }) => {
 };
 
 ModelShowDescription.propTypes = {
-  model: PropTypes.object.isRequired,
   paths: PropTypes.array,
-  overrides: PropTypes.object,
-  resource: PropTypes.object
+  overrides: PropTypes.object
 };
 
 export default ModelShowDescription;

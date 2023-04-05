@@ -133,6 +133,7 @@ const ModelIndex = ({ overrides, baseFilter, ...props }) => {
       {/* Legacy support - must be after the new props to avoid being overwritten by
       undefined */}
       <ModelIndex {...props} {...baseFilter}>
+        {/* FIXME: Stop passing down props */}
         <ModelIndexHeader {...props} />
         <hr />
         <ModelIndexActions {...props} />
