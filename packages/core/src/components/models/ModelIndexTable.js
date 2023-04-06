@@ -16,7 +16,7 @@ import { filter, isString } from 'lodash';
 import { usePaths } from 'rhino/hooks/paths';
 import Table from '../table/Table';
 import ModelCell from './ModelCell';
-import { ModelHeader } from './ModelHeader';
+import ModelHeader from './ModelHeader';
 import ModelFooter from './ModelFooter';
 
 const getViewablePaths = (model) =>

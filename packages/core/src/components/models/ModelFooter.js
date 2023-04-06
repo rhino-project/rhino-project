@@ -10,9 +10,11 @@ export const ModelFooterBase = ({ overrides, model, path, ...props }) => {
 const defaultComponents = { ModelFooter: ModelFooterBase };
 
 const ModelFooter = ({ overrides, ...props }) => {
-  const { ModelFooter } = useGlobalOverrides(defaultComponents, overrides, {
-    ...props
-  });
+  const { ModelFooter } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
 
   return <ModelFooter {...props} />;
 };
