@@ -1,17 +1,22 @@
-import { Fragment } from 'react';
-import { useModel } from 'rhino/hooks/models';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
-import { getModelAndAttributeFromPath } from 'rhino/utils/models';
+import { useModelAndAttributeFromPath } from 'rhino/hooks/paths';
 
-const defaultComponents = { ModelHeader: Fragment };
+export const ModelHeaderBase = ({ overrides, model, path, ...props }) => {
+  const { attribute } = useModelAndAttributeFromPath(model, path);
 
-export const ModelHeader = ({ overrides, label, path, ...props }) => {
-  const { ModelHeader } = useGlobalOverrides(defaultComponents, overrides);
-  const model = useModel(props.model);
+  return <div {...props}>{attribute?.readableName || null}</div>;
+};
 
-  const [, attribute] = getModelAndAttributeFromPath(model, path);
+const defaultComponents = { ModelHeader: ModelHeaderBase };
 
-  return <ModelHeader>{attribute?.readableName || null}</ModelHeader>;
+const ModelHeader = ({ overrides, label, ...props }) => {
+  const { ModelHeader } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
+
+  return <ModelHeader {...props} />;
 };
 
 export default ModelHeader;
