@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelFieldTime should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFieldTime should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFieldTime should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

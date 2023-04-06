@@ -17,7 +17,7 @@ const Table = ({ table, onRowClick }) => {
   );
 
   return (
-    <BTable striped hover>
+    <BTable striped hover={!!onRowClick}>
       <thead>
         {table.getHeaderGroups().map((headerGroup) => (
           <tr key={headerGroup.id}>

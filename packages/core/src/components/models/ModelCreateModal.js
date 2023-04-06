@@ -1,117 +1,78 @@
-import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import { useOverrides, useOverridesWithGlobal } from 'rhino/hooks/overrides';
-import ModelCreate, {
-  ModelCreateActions,
-  ModelCreateForm
-} from 'rhino/components/models/ModelCreate';
+import { useModelCreateContext } from '../../hooks/controllers';
+import ModelCreateBase from './ModelCreateBase';
+import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import ModelWrapper from './ModelWrapper';
+import ModelCreateModalActions from './ModelCreateModalActions';
 
 export const ModelCreateModalHeader = (props) => {
-  const { model, title = `Add ${model.readableName}` } = props;
+  const { model } = useModelCreateContext();
+  const { title = `Add ${model.readableName}` } = props;
 
   return <ModalHeader>{title}</ModalHeader>;
 };
 
 ModelCreateModalHeader.propTypes = {
-  model: PropTypes.object.isRequired,
   title: PropTypes.string
 };
 
-const defaultBodyComponents = {
-  ModelCreateForm
-};
-
-export const ModelCreateModalBody = ({ overrides, ...props }) => {
-  const { ModelCreateForm } = useOverrides(defaultBodyComponents, overrides);
+export const ModelCreateModalForm = ({ overrides, onModalClose }) => {
+  const { model, renderPaths } = useModelCreateContext();
 
   return (
-    <ModalBody>
-      <ModelCreateForm {...props} />
-    </ModalBody>
+    <ModelWrapper model={model} baseClassName="edit-form">
+      <ModalBody>{renderPaths}</ModalBody>
+    </ModelWrapper>
   );
 };
 
-ModelCreateModalBody.propTypes = {
-  overrides: PropTypes.object
-};
-
-const defaultFooterComponents = {
-  ModelCreateActions
-};
-
-export const ModelCreateModalFooter = ({ overrides, ...props }) => {
-  const { ModelCreateActions } = useOverrides(
-    defaultFooterComponents,
-    overrides
-  );
-
-  return (
-    <ModalFooter>
-      <ModelCreateActions {...props} />
-    </ModalFooter>
-  );
-};
-
-ModelCreateModalFooter.propTypes = {
+ModelCreateModalForm.propTypes = {
   overrides: PropTypes.object
 };
 
 const defaultComponents = {
-  ModelCreateHeader: ModelCreateModalHeader,
-  ModelCreateForm: ModelCreateModalBody,
-  ModelCreateActions: ModelCreateModalFooter
+  ModelCreateModalHeader,
+  ModelCreateModalForm,
+  ModelCreateModalActions
 };
 
-const ModelCreateModal = ({
+export const ModelCreateModalBase = ({
   overrides,
-  onActionSuccess,
   isOpen,
   onModalClose,
+  title,
   ...props
 }) => {
-  const { model } = props;
   const {
-    ModelCreateHeader,
-    ModelCreateForm,
-    ModelCreateActions
-  } = useOverridesWithGlobal(model, 'create', defaultComponents, overrides);
-
-  // We remove the normal model class div so it won't affect the modal layout
-  const wrapper = useCallback(({ children }) => children, []);
-
-  const handleActionSuccess = (action, props, data) => {
-    if (onActionSuccess) onActionSuccess(action, props, data);
-    onModalClose();
-  };
+    ModelCreateModalHeader,
+    ModelCreateModalForm,
+    ModelCreateModalActions
+  } = useOverrides(defaultComponents, overrides);
 
   return (
-    <Modal isOpen={isOpen} autoFocus={false} toggle={onModalClose}>
-      <ModelCreate
-        overrides={{
-          ModelCreateHeader,
-          ModelCreateForm,
-          ModelCreateActions
-        }}
-        {...props}
-        onActionSuccess={handleActionSuccess}
-        wrapper={wrapper}
-      />
-    </Modal>
+    <ModelCreateBase spinner={isOpen} {...props}>
+      <Modal isOpen={isOpen} autoFocus={false} toggle={onModalClose}>
+        <ModelCreateModalHeader title={title} />
+        <ModelCreateModalForm />
+        <ModelCreateModalActions onModalClose={onModalClose} />
+      </Modal>
+    </ModelCreateBase>
   );
 };
 
-ModelCreateModal.propTypes = {
+ModelCreateModalBase.propTypes = {
   overrides: PropTypes.object,
-  model: PropTypes.object.isRequired,
+  model: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   isOpen: PropTypes.bool.isRequired,
-  onModalClose: PropTypes.func.isRequired,
-  onActionSuccess: PropTypes.func
+  onModalClose: PropTypes.func.isRequired
 };
 
-ModelCreateModal.defaultProps = {
+ModelCreateModalBase.defaultProps = {
   isOpen: false
 };
+
+const ModelCreateModal = withGlobalOverrides(ModelCreateModalBase);
 
 export default ModelCreateModal;

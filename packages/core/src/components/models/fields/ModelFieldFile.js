@@ -6,6 +6,9 @@ import { Alert, CustomInput, Progress } from 'reactstrap';
 import Uploader from 'rhino/utils/uploader';
 import { CloseButton } from 'rhino/components/buttons';
 import { useForceUpdate } from 'rhino/hooks/util';
+import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import { useController } from 'react-hook-form';
 
 const fileInputText = (value, multiple, uploadedFileNames) => {
   if (!multiple && typeof value === 'string') return uploadedFileNames[value];
@@ -17,21 +20,20 @@ const fileInputText = (value, multiple, uploadedFileNames) => {
   return `${value?.length} files`;
 };
 
-const ModelFieldFile = ({
-  attribute,
-  error,
-  multiple,
-  path,
-  value,
-  onChange
-}) => {
+export const ModelFieldFileBase = ({ model, multiple, path }) => {
+  const {
+    field: { ref, value, onChange, ...fieldProps },
+    fieldState: { error }
+  } = useController({
+    name: path
+  });
+  const { attribute } = useModelAndAttributeFromPath(model, path);
   const [uploadingCount, setUploadingCount] = useState(0);
   const [failed, setFailed] = useState(false);
   const [errors, setErrors] = useState(null);
   const [clearCounter, setClearCounter] = useState(0);
   const forceUpdate = useForceUpdate();
   const uploadedFileIds = useRef([]);
-  // { [file id]: 'filename.jpeg'}
   const uploadedFileNames = useRef({});
 
   const handleClear = () => {
@@ -42,7 +44,7 @@ const ModelFieldFile = ({
     setUploadingCount(0);
     setFailed(false);
     uploadedFileIds.current = [];
-    onChange({ [path]: multiple ? [] : null });
+    onChange(multiple ? [] : null);
   };
 
   const handleFileChange = (e) => {
@@ -68,11 +70,11 @@ const ModelFieldFile = ({
           ? (value || []).map((a) => a.signed_id)
           : null;
 
-        onChange({
-          [path]: multiple
+        onChange(
+          multiple
             ? [...existing, ...uploadedFileIds.current]
             : uploadedFileIds.current[0]
-        });
+        );
 
         setClearCounter(clearCounter + 1);
         setUploadingCount(0);
@@ -94,12 +96,14 @@ const ModelFieldFile = ({
         <CustomInput
           key={`${path}-${clearCounter}`}
           id={path}
+          innerRef={ref}
           label={fileText}
           type="file"
           name={path}
           disabled={uploadingCount > 0}
           multiple={multiple}
           onChange={handleFileChange}
+          {...fieldProps}
         />
         {!attribute.required && value && (
           <CloseButton className="ml-2" onClick={handleClear} />
@@ -125,7 +129,7 @@ const ModelFieldFile = ({
   );
 };
 
-ModelFieldFile.propTypes = {
+ModelFieldFileBase.propTypes = {
   path: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -137,8 +141,25 @@ ModelFieldFile.propTypes = {
   error: PropTypes.string
 };
 
-ModelFieldFile.defaultProps = {
+ModelFieldFileBase.defaultProps = {
   multiple: false
 };
 
-export default ModelFieldFile;
+const defaultComponents = { ModelFieldField: ModelFieldFileBase };
+
+const ModelFieldField = ({ overrides, ...props }) => {
+  const { ModelFieldField } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
+
+  return <ModelFieldField {...props} />;
+};
+
+ModelFieldField.propTypes = {
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  path: PropTypes.string.isRequired
+};
+
+export default ModelFieldField;

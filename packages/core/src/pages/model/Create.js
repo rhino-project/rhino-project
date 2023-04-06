@@ -1,29 +1,16 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-import { getParentModel } from 'rhino/utils/models';
-import { useBackHistory, useParsedSearch } from 'rhino/hooks/history';
+import { useParsedSearch } from 'rhino/hooks/history';
 import ModelCreate from 'rhino/components/models/ModelCreate';
 import ModelPage from './ModelPage';
 
 const Create = ({ model }) => {
-  const parentModel = useMemo(() => getParentModel(model), [model]);
-  const { [parentModel.model]: parentId } = useParsedSearch();
-  const resource = useMemo(() => ({ [parentModel.model]: parentId }), [
-    parentModel,
-    parentId
-  ]);
-
-  const backHistory = useBackHistory();
-  const handleActionSuccess = () => backHistory();
+  const { parentId } = useParsedSearch();
 
   return (
     <ModelPage title={`Create ${model.readableName}`}>
-      <ModelCreate
-        model={model}
-        resource={resource}
-        onActionSuccess={handleActionSuccess}
-      />
+      <ModelCreate model={model} parentId={parentId} />
     </ModelPage>
   );
 };
