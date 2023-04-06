@@ -1,17 +1,20 @@
-import { Fragment } from 'react';
-import { useModel } from 'rhino/hooks/models';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
-import { getModelAndAttributeFromPath } from 'rhino/utils/models';
+import { useModelAndAttributeFromPath } from 'rhino/hooks/paths';
 
-const defaultComponents = { ModelFooter: Fragment };
+export const ModelFooterBase = ({ overrides, model, path, ...props }) => {
+  const { attribute } = useModelAndAttributeFromPath(model, path);
 
-export const ModelFooter = ({ overrides, path, ...props }) => {
-  const { ModelFooter } = useGlobalOverrides(defaultComponents, overrides);
-  const model = useModel(props.model);
+  return <div {...props}>{attribute?.readableName || null}</div>;
+};
 
-  const [, attribute] = getModelAndAttributeFromPath(model, path);
+const defaultComponents = { ModelFooter: ModelFooterBase };
 
-  return <ModelFooter>{attribute?.readableName || null}</ModelFooter>;
+const ModelFooter = ({ overrides, ...props }) => {
+  const { ModelFooter } = useGlobalOverrides(defaultComponents, overrides, {
+    ...props
+  });
+
+  return <ModelFooter {...props} />;
 };
 
 export default ModelFooter;

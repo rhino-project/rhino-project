@@ -1,14 +1,18 @@
-import CellFloat from 'rhino/components/table/cells/CellFloat';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellFloat from 'rhino/components/table/cells/CellFloat';
 
-const defaultComponents = {
-  ModelCellFloat: CellFloat
-};
+export const ModelCellFloatBase = (props) => <CellFloat {...props} />;
+
+const defaultComponents = { ModelCellFloat: ModelCellFloatBase };
 
 const ModelCellFloat = ({ overrides, ...props }) => {
-  const { ModelCellFloat } = useGlobalOverrides(defaultComponents, overrides);
+  const { ModelCellFloat } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
 
-  return <ModelCellFloat {...props}></ModelCellFloat>;
+  return <ModelCellFloat {...props} />;
 };
 
 export default ModelCellFloat;

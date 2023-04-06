@@ -1,11 +1,28 @@
 import React, { useMemo } from 'react';
 import globalOverrides from 'models/overrides';
 import rhinoConfig from 'rhino.config';
-import { clone, cloneDeep, isFunction, isString, keys, merge } from 'lodash';
+import {
+  clone,
+  cloneDeep,
+  isArray,
+  isFunction,
+  isString,
+  keys,
+  merge,
+  mergeWith
+} from 'lodash';
+import { useModelAndAttributeFromPath } from './paths';
+import { useModel } from './models';
 
 // Based on:
 // https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646
 // https://github.com/tlrobinson/overrides
+
+const arrayOverride = (objValue, srcValue) => {
+  if (isArray(objValue)) {
+    return [...srcValue];
+  }
+};
 
 const maybeMerge = (a, b) => {
   return a && b ? { ...a, ...b } : a || b;
@@ -124,22 +141,51 @@ export const useMergedOverrides = (baseOverrides, overrides) => {
   return mergedOverrides;
 };
 
-export const useGlobalOverrides = (defaultComponents, overrides) => {
+export const useGlobalOverrides = (
+  defaultComponents,
+  overrides,
+  options = {}
+) => {
+  const model = useModel(options?.model);
+  const { model: attributeModel, attribute } = useModelAndAttributeFromPath(
+    options?.model,
+    options?.path
+  );
+
   const computedOverrides = useMemo(() => {
     const scopedOverrides = {};
 
     Object.keys(defaultComponents).forEach((key) => {
       // We can't directly use the globalOverrides object because it will mutate
       // So we shallow clone the globals and merge the overrides on top
-      const globalComponent = cloneDeep(
-        expandOverride(rhinoConfig.components[key])
-      );
 
-      scopedOverrides[key] = expandOverride(globalComponent);
+      const overrideComponent = [
+        // Attribute and attribute model overrides
+        rhinoConfig.components?.[attributeModel?.model]?.[attribute?.name]?.[
+          key
+        ],
+        rhinoConfig.components?.[attributeModel?.model]?.[key],
+        // Model overrides
+        rhinoConfig.components?.[model?.model]?.[key],
+        // Global overrides
+        rhinoConfig.components[key],
+        // Legacy overrides
+        globalOverrides?.[model?.model]?.index?.[key]
+      ].find((override) => override !== undefined);
+
+      if (overrideComponent !== undefined) {
+        scopedOverrides[key] = cloneDeep(expandOverride(overrideComponent));
+      }
     });
 
-    return merge(scopedOverrides, expandOverrides(overrides));
-  }, [defaultComponents, overrides]);
+    return mergeWith(
+      scopedOverrides,
+      expandOverrides(overrides),
+      // We need to replace arrays instead of merging them, for instance for
+      // paths we want to replace
+      arrayOverride
+    );
+  }, [defaultComponents, overrides, model, attributeModel, attribute]);
 
   return useOverrides(defaultComponents, computedOverrides);
 };

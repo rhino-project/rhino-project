@@ -1,17 +1,18 @@
-import CellCurrency from 'rhino/components/table/cells/CellString';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellCurrency from 'rhino/components/table/cells/CellCurrency';
 
-const defaultComponents = {
-  ModelCellCurrency: CellCurrency
-};
+export const ModelCellCurrencyBase = (props) => <CellCurrency {...props} />;
+
+const defaultComponents = { ModelCellCurrency: ModelCellCurrencyBase };
 
 const ModelCellCurrency = ({ overrides, ...props }) => {
   const { ModelCellCurrency } = useGlobalOverrides(
     defaultComponents,
-    overrides
+    overrides,
+    props
   );
 
-  return <ModelCellCurrency {...props}></ModelCellCurrency>;
+  return <ModelCellCurrency {...props} />;
 };
 
 export default ModelCellCurrency;

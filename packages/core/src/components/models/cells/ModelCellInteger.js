@@ -1,14 +1,18 @@
-import CellInteger from 'rhino/components/table/cells/CellInteger';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import CellInteger from 'rhino/components/table/cells/CellInteger';
 
-const defaultComponents = {
-  ModelCellInteger: CellInteger
-};
+export const ModelCellIntegerBase = (props) => <CellInteger {...props} />;
+
+const defaultComponents = { ModelCellInteger: ModelCellIntegerBase };
 
 const ModelCellInteger = ({ overrides, ...props }) => {
-  const { ModelCellInteger } = useGlobalOverrides(defaultComponents, overrides);
+  const { ModelCellInteger } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
 
-  return <ModelCellInteger {...props}></ModelCellInteger>;
+  return <ModelCellInteger {...props} />;
 };
 
 export default ModelCellInteger;
