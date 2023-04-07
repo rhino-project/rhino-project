@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 
-const CellImage = ({ getValue, empty = '-', ...props }) => {
-  const { inheritedProps } = useTableInheritedProps(props);
+const CellImage = ({ empty = '-', ...props }) => {
+  const { getValue, inheritedProps } = useTableInheritedProps(props);
   const src = useMemo(() => getValue(), [getValue]);
 
-  if (!src) return empty;
+  if (!src) return <div {...inheritedProps}>{empty}</div>;
 
   return (
     <img

@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
+import { useTableInheritedProps } from 'rhino/hooks/table';
 
-const CellFloat = ({ getValue, empty = '-' }) => {
+const CellFloat = ({ empty = '-', ...props }) => {
+  const { getValue, inheritedProps } = useTableInheritedProps(props);
   const value = useMemo(() => getValue() || empty, [empty, getValue]);
 
-  return value;
+  return <div {...inheritedProps}>{value}</div>;
 };
 
 export default CellFloat;

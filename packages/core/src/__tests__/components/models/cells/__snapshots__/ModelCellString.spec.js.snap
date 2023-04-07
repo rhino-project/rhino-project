@@ -1,14 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ModelCellString should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelCellString should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
-  -
+  <div>
+    -
+  </div>
 </DocumentFragment>
 `;
 
 exports[`ModelCellString should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
-  baz
+  <div>
+    baz
+  </div>
 </DocumentFragment>
 `;
 

@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Icon } from 'rhino/components/icons';
-import { useTableInheritedProps } from '../../../hooks/table';
+import { useTableInheritedProps } from 'rhino/hooks/table';
 
 const CellBooleanIcon = ({
   trueIcon = 'check',

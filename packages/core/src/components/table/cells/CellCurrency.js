@@ -1,6 +1,8 @@
 import { useMemo } from 'react';
+import { useTableInheritedProps } from 'rhino/hooks/table';
 
-const CellCurrency = ({ getValue, empty = '-' }) => {
+const CellCurrency = ({ empty = '-', ...props }) => {
+  const { getValue, inheritedProps } = useTableInheritedProps(props);
   const value = useMemo(() => {
     const number = parseFloat(getValue());
     if (isNaN(number)) {
@@ -11,7 +13,7 @@ const CellCurrency = ({ getValue, empty = '-' }) => {
     return `$${number.toFixed(2)}`;
   }, [empty, getValue]);
 
-  return value;
+  return <div {...inheritedProps}>{value}</div>;
 };
 
 export default CellCurrency;
