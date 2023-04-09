@@ -74,4 +74,18 @@ export const sharedCellTests = (Component) => {
     );
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it(`should render the component with className from inherited props`, async () => {
+    rhinoConfig.default = { version: 1, components: {} };
+
+    const { asFragment } = render(
+      <Component
+        empty="baz"
+        getValue={nullGetValue}
+        path="dummy"
+        className="dummy-class"
+      />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
 };

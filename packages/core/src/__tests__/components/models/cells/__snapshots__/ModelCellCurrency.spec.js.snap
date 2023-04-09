@@ -2,25 +2,43 @@
 
 exports[`ModelCellCurrency formats a negative number 1`] = `
 <DocumentFragment>
-  -$15.00
+  <div>
+    -$15.00
+  </div>
 </DocumentFragment>
 `;
 
 exports[`ModelCellCurrency formats a positive number 1`] = `
 <DocumentFragment>
-  $20.00
+  <div>
+    $20.00
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellCurrency should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+  >
+    baz
+  </div>
 </DocumentFragment>
 `;
 
 exports[`ModelCellCurrency should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
-  -
+  <div>
+    -
+  </div>
 </DocumentFragment>
 `;
 
 exports[`ModelCellCurrency should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
-  baz
+  <div>
+    baz
+  </div>
 </DocumentFragment>
 `;
 

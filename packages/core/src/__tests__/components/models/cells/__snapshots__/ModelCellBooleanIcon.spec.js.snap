@@ -57,6 +57,21 @@ exports[`ModelCellBooleanIcon renders true icon 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ModelCellBooleanIcon should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <svg
+    class="dummy-class"
+    fill="currentColor"
+    height="32"
+    width="32"
+  >
+    <use
+      xlink:href="bootstrap-icons.svg#baz"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
 exports[`ModelCellBooleanIcon should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <svg

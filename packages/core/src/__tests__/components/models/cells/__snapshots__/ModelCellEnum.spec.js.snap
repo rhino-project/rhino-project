@@ -11,15 +11,34 @@ exports[`ModelCellEnum adds style as a prop based on matched enum value 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ModelCellEnum should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+    style="background-color: rgb(3, 105, 161);"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelCellEnum should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
-  -
+  <div
+    style="background-color: rgb(3, 105, 161);"
+  >
+    -
+  </div>
 </DocumentFragment>
 `;
 
 exports[`ModelCellEnum should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
-  baz
+  <div
+    style="background-color: rgb(3, 105, 161);"
+  >
+    baz
+  </div>
 </DocumentFragment>
 `;
 
