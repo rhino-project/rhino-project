@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useTableInheritedProps passes non react-table based props 1`] = `
+<DocumentFragment>
+  <table
+    class="table table-striped table-hover"
+  >
+    <thead>
+      <tr>
+        <th />
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class=""
+      >
+        <td>
+          <div
+            class="dummy"
+          />
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th />
+      </tr>
+    </tfoot>
+  </table>
+</DocumentFragment>
+`;
+
+exports[`useTableInheritedProps removes all react-table based props 1`] = `
+<DocumentFragment>
+  <table
+    class="table table-striped table-hover"
+  >
+    <thead>
+      <tr>
+        <th />
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        class=""
+      >
+        <td>
+          <div />
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th />
+      </tr>
+    </tfoot>
+  </table>
+</DocumentFragment>
+`;
