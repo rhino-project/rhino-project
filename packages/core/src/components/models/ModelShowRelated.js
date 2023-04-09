@@ -5,6 +5,7 @@ import { useOverrides } from 'rhino/hooks/overrides';
 import { getOwnedModels } from 'rhino/utils/models';
 import { useModelClassNames } from 'rhino/utils/ui';
 import ModelIndex from 'rhino/components/models/ModelIndex';
+import { useModelShowContext } from 'rhino/hooks/controllers';
 
 // Get models owned by this, but filter out models that match properties on the
 // models, those are directly displayable (1:many would be nested)
@@ -21,7 +22,8 @@ const defaultComponents = {
 };
 
 const ModelShowRelated = ({ overrides, ...props }) => {
-  const { getRelatedModels, model, resource } = props;
+  const { model, resource } = useModelShowContext();
+  const { getRelatedModels } = props;
   const { ModelIndex } = useOverrides(defaultComponents, overrides);
   const modelClassNames = useModelClassNames('show-related', model);
 
@@ -49,9 +51,7 @@ const ModelShowRelated = ({ overrides, ...props }) => {
 
 ModelShowRelated.propTypes = {
   getRelatedModels: PropTypes.func.isRequired,
-  model: PropTypes.object.isRequired,
-  overrides: PropTypes.object,
-  resource: PropTypes.object
+  overrides: PropTypes.object
 };
 
 ModelShowRelated.defaultProps = {

@@ -6,7 +6,8 @@ import { MemoryRouter } from 'react-router-dom';
 import { DEFAULT_SORT, PAGE_SIZE } from 'config';
 import {
   useModelIndexContext,
-  useModelIndexController
+  useModelIndexController,
+  useModelShowContext
 } from 'rhino/hooks/controllers';
 import { act } from 'react-test-renderer';
 
@@ -206,5 +207,14 @@ describe('useModelIndexController', () => {
       limit: PAGE_SIZE,
       offset: PAGE_SIZE
     });
+  });
+});
+
+describe('useModelShowController', () => {
+  it('throws and error with no context', () => {
+    const { result } = renderHook(() => useModelShowContext());
+    expect(() => result.current).toThrow(
+      'useModelShowContext must be used within a ModelShowProvider'
+    );
   });
 });
