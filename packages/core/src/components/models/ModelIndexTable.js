@@ -113,7 +113,7 @@ export const ModelIndexTableBase = (props) => {
   });
 
   return (
-    <ModelWrapper {...props} baseClassName="index-table">
+    <ModelWrapper model={model} {...props} baseClassName="index-table">
       <Table table={table} onRowClick={handleRowClick} {...props} />
     </ModelWrapper>
   );
@@ -121,7 +121,6 @@ export const ModelIndexTableBase = (props) => {
 
 ModelIndexTableBase.propTypes = {
   baseRoute: PropTypes.string.isRequired,
-  model: PropTypes.object.isRequired,
   overrides: PropTypes.object
 };
 
@@ -136,15 +135,15 @@ const defaultComponents = {
 };
 
 export const ModelIndexTable = ({ overrides, ...props }) => {
+  const { model } = useModelIndexContext();
   const { ModelIndexTable } = useGlobalOverrides(defaultComponents, overrides, {
-    ...props
+    model
   });
 
   return <ModelIndexTable {...props} />;
 };
 
 ModelIndexTable.propTypes = {
-  model: PropTypes.object.isRequired,
   overrides: PropTypes.object
 };
 
