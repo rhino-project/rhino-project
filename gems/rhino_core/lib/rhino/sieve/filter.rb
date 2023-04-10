@@ -2,7 +2,7 @@
 
 module Rhino
   module Sieve
-    class Filter
+    class Filter # rubocop:disable Metrics/ClassLength
       def initialize(app)
         @app = app
       end
@@ -36,7 +36,14 @@ module Rhino
 
       def get_joins(base, filter)
         joins_hash = get_joins_hash(base, filter)
-        ArelHelpers.join_association(base, joins_hash, Arel::Nodes::InnerJoin, {})
+        result = []
+        joins_hash.each do |entry|
+          entry.each do |key, value|
+            inferred_join_type = join_type(filter, key)
+            result << ArelHelpers.join_association(base, { key => value }, inferred_join_type, {})
+          end
+        end
+        result
       end
 
       def apply_filters(scope, base, filter)
@@ -44,9 +51,12 @@ module Rhino
           key = Sieve::Helpers.real_column_name(scope, key)
           key_is_reflection = base.reflections.key? key
           key_is_attribute = base.attribute_names.include? key
-          next unless key_is_reflection || key_is_attribute
-
-          scope = apply_filter(scope, base, key, val)
+          key_is_association_operator = ASSOCIATION_OPS.include? key
+          if key_is_association_operator
+            scope = apply_association_operator(base, scope, key, val)
+          elsif key_is_reflection || key_is_attribute
+            scope = apply_filter(scope, base, key, val)
+          end
         end
         scope
       end
@@ -69,6 +79,18 @@ module Rhino
 
       def apply_association_filter(base, scope, key, value)
         scope.where(base.arel_table[base.reflections[key].foreign_key].eq(value))
+      end
+
+      ASSOCIATION_OPS = %w[_is_empty].freeze
+      def apply_association_operator(base, scope, key, value)
+        if key == '_is_empty' && truthy?(value)
+          arel_node = base.arel_table['id']
+
+          where_clause = arel_node.eq(nil)
+          scope.where(where_clause)
+        else
+          scope
+        end
       end
 
       def apply_column_filter(base, scope, column_name, column_value)
@@ -114,6 +136,14 @@ module Rhino
         subquery = base.where(column_name => value).map(&operation.to_sym).flatten.map(&column_name.to_sym)
 
         arel_node.in(subquery)
+      end
+
+      def truthy?(value)
+        value.present? && ActiveModel::Type::Boolean::FALSE_VALUES.exclude?(value)
+      end
+
+      def join_type(filter, key)
+        truthy?(filter[key]["_is_empty"]) ? Arel::Nodes::OuterJoin : Arel::Nodes::InnerJoin
       end
     end
   end
