@@ -22,7 +22,7 @@ module Rhino
 
         say "Creating #{module_name}"
 
-        plugin_command = "plugin new #{module_path}"
+        plugin_command = "plugin new #{module_path} --skip-git"
         plugin_command = "#{plugin_command} --full" if options[:full]
         rails_command(plugin_command)
       end
