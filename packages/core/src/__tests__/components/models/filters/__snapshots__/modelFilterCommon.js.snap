@@ -13,7 +13,6 @@ exports[`Common model filter behaviour should pass down arbitrary props ModelFil
       name="dummy"
       path="dummy"
       type="checkbox"
-      value=""
     />
     <label
       class="custom-control-label"
@@ -194,7 +193,6 @@ exports[`Common model filter behaviour should render ModelFilterBoolean 1`] = `
       name="dummy"
       path="dummy"
       type="checkbox"
-      value=""
     />
     <label
       class="custom-control-label"

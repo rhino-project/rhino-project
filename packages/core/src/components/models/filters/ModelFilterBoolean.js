@@ -5,23 +5,27 @@ import { useEffect } from 'react';
 import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
 import FilterBoolean from '../../forms/filters/FilterBoolean';
 
-const buildBooleanPill = (attribute, newValue) => {
-  if (newValue == null) return null;
-  const state = newValue === false ? 'Not ' : '';
-  return `${state}${attribute.readableName}`;
+// FIXME: This is duplicated from FieldBooleanIndeterminate
+// Ensure that if the value is a string coming from the url, it is either 'true' or 'false'
+const parseBooleanFilterValue = (value) => {
+  if (typeof value === 'boolean') return value;
+  if (typeof value !== 'string') return null;
+
+  const normalized = value.trim().replace(/ /g, '').toLowerCase();
+  if (normalized === 'true') return true;
+  if (normalized === 'false') return false;
+  return null;
 };
 
-// FIXME: What was the original intent here?
-// Use setValuesAs to parse the value?
-// const parseBooleanFilterValue = (value) => {
-//   if (typeof value === 'boolean') return value;
-//   if (typeof value !== 'string') return null;
+const buildBooleanPill = (attribute, value) => {
+  const parsedValue = parseBooleanFilterValue(value);
 
-//   const normalized = value.trim().replace(/ /g, '').toLowerCase();
-//   if (normalized === 'true') return true;
-//   if (normalized === 'false') return false;
-//   return null;
-// };
+  if (parsedValue == null) return null;
+
+  const state = parsedValue === false ? 'Not ' : '';
+
+  return `${state}${attribute.readableName}`;
+};
 
 const ModelFilterBoolean = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
