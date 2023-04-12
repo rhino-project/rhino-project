@@ -36,7 +36,7 @@ class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
   def fetch(search: nil)
     params = { "filter" => @params }
     params["search"] = search if search
-    get url, params: params, headers: @headers
+    get url, params:, headers: @headers
     assert_response :ok
     @json = JSON.parse(@response.body)
   end
@@ -372,5 +372,113 @@ class RhinoSieveFilterLongChainTest < RhinoSieveTestHelper
     assert_equal 1, @json["results"].length
 
     assert_equal [@tag1.id], response_ids
+  end
+end
+
+class RhinoSieveFilterIsEmptyTest < RhinoSieveTestHelper
+  def url
+    "/api/blog_posts"
+  end
+
+  def seed
+    @blog1 = create :blog, user: @current_user
+    @blog_post1 = create :blog_post, blog: @blog1
+    @blog_post2 = create :blog_post, blog: @blog1
+    @blog_post_no_tags = create :blog_post, blog: @blog1
+
+    @blog2 = create :blog, user: @current_user
+    @blog_post_no_tags2 = create :blog_post, blog: @blog2
+
+    @tag1 = create :og_meta_tag, blog_post: @blog_post1
+    @tag2 = create :og_meta_tag, blog_post: @blog_post2
+  end
+
+  def expect_results_to_be_instance(instance)
+    fetch
+    assert_equal 1, @json["total"]
+    assert_equal 1, @json["results"].length
+
+    assert_equal instance.id, @json["results"][0]["id"]
+  end
+
+  def expect_results_to_be_instances(ids)
+    fetch
+    assert_equal ids.length, @json["total"]
+    assert_equal ids.length, @json["results"].length
+
+    assert_equal ids, response_ids
+  end
+
+  def expect_results_to_be_empty
+    fetch
+    assert_equal 0, @json["total"]
+    assert_equal 0, @json["results"].length
+  end
+
+  test "filters by one tag" do
+    @params = {
+      og_meta_tags: {
+        tag_name: @tag1.tag_name
+      }
+    }
+    expect_results_to_be_instance @blog_post1
+  end
+
+  test "filters by two tags" do
+    @params = {
+      og_meta_tags: {
+        tag_name: {
+          in: [@tag1.tag_name, @tag2.tag_name]
+        }
+      }
+    }
+    expect_results_to_be_instances [@blog_post1.id, @blog_post2.id]
+  end
+
+  test "filters by no tags" do
+    @params = {
+      og_meta_tags: {
+        _is_empty: true
+      }
+    }
+    expect_results_to_be_instances [@blog_post_no_tags.id, @blog_post_no_tags2.id]
+  end
+
+  test "composes with other filters in the joined table" do
+    @params = {
+      og_meta_tags: {
+        _is_empty: true,
+        tag_name: {
+          in: [@tag1.tag_name, @tag2.tag_name]
+        }
+      }
+    }
+    expect_results_to_be_empty
+  end
+
+  test "composes with other columns from the base table" do
+    @params = {
+      og_meta_tags: {
+        _is_empty: true
+      },
+      title: @blog_post_no_tags.title
+    }
+    expect_results_to_be_instance @blog_post_no_tags
+
+    @params[:title] = @blog_post_no_tags2.title
+    expect_results_to_be_instance @blog_post_no_tags2
+  end
+
+  test "composes with other table filters" do
+    @params = {
+      og_meta_tags: {
+        _is_empty: true
+      },
+      blog: @blog1.id
+    }
+    expect_results_to_be_instance @blog_post_no_tags
+
+    @params[:blog] = @blog2.id
+    expect_results_to_be_instance @blog_post_no_tags2
   end
 end
