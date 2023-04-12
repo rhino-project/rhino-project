@@ -1,6 +1,7 @@
 import { isObject } from 'lodash';
 import { useMemo } from 'react';
 import { getModel, hasModule } from 'rhino/utils/models';
+import { getModelAndAttributeFromPath } from '../utils/models.js';
 
 /**
  * @typedef {import('../utils/models.js').Model} Model
@@ -63,3 +64,13 @@ export const useHasNotificationsModule = () =>
  */
 export const useHasSubscriptionsModule = () =>
   useHasModule('rhino_subscriptions');
+
+export const useModelAndAttributeFromPath = (model, path) => {
+  const memoModel = useModel(model);
+
+  return useMemo(() => {
+    const [model, attribute] = getModelAndAttributeFromPath(memoModel, path);
+
+    return { model, attribute };
+  }, [memoModel, path]);
+};
