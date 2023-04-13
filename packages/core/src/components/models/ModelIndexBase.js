@@ -21,7 +21,7 @@ const ModelIndexBase = ({ children, ...props }) => {
 };
 
 ModelIndexBase.propTypes = {
-  model: PropTypes.object.isRequired,
+  model: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   parent: PropTypes.object,
   title: PropTypes.string
 };
