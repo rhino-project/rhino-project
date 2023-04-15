@@ -10,6 +10,8 @@ export const ModelCellEnumBase = (props) => {
   const { attribute } = useModelAndAttributeFromPath(model, path);
 
   const style = useMemo(() => {
+    if (!getValue()) return {};
+
     const idx = attribute?.enum?.findIndex((e) => e === getValue());
     const backgroundColor =
       idx >= 0 ? COLOR_PALETTE[idx % COLOR_PALETTE.length] : COLOR_PALETTE[0];

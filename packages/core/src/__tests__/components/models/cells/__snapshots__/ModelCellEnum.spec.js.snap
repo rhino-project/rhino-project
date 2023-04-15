@@ -15,7 +15,6 @@ exports[`ModelCellEnum should render the component with className from inherited
 <DocumentFragment>
   <div
     class="dummy-class"
-    style="background-color: rgb(3, 105, 161);"
   >
     baz
   </div>
@@ -24,9 +23,7 @@ exports[`ModelCellEnum should render the component with className from inherited
 
 exports[`ModelCellEnum should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
-  <div
-    style="background-color: rgb(3, 105, 161);"
-  >
+  <div>
     -
   </div>
 </DocumentFragment>
@@ -34,9 +31,7 @@ exports[`ModelCellEnum should render the empty text when value is nullish 1`] = 
 
 exports[`ModelCellEnum should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
-  <div
-    style="background-color: rgb(3, 105, 161);"
-  >
+  <div>
     baz
   </div>
 </DocumentFragment>
