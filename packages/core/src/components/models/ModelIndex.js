@@ -19,7 +19,7 @@ import ModelIndexBase from './ModelIndexBase';
 import { ModelIndexTableBase } from './ModelIndexTable';
 import { ModelCreateModalActionSaveShow } from './ModelCreateModalActions';
 
-const ModelIndexActions = (props) => {
+export const ModelIndexActions = (props) => {
   const { model } = useModelIndexContext();
   const { actions, parent } = props;
   const [modalOpen, setModalOpen] = useState(false);
