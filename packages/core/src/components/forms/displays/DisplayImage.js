@@ -15,11 +15,13 @@ const DisplayImage = ({ accessor, altText, empty = '-', ...props }) => {
   if (!value) return <div>{empty}</div>;
 
   return (
-    <img
-      src={value}
-      alt={altText || value}
-      style={{ maxWidth: '100%', maxHeight: '100%' }}
-    />
+    <div>
+      <img
+        src={value}
+        alt={altText || value}
+        style={{ maxWidth: '100%', maxHeight: '100%' }}
+      />
+    </div>
   );
 };
 
