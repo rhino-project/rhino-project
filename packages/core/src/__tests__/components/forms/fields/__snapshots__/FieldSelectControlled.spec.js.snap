@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FieldSelectControlled renders with title 1`] = `
+exports[`FieldSelectControlled > renders with title 1`] = `
 <DocumentFragment>
   <select
     aria-invalid="false"
@@ -30,7 +30,7 @@ exports[`FieldSelectControlled renders with title 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FieldSelectControlled renders with title and no options 1`] = `
+exports[`FieldSelectControlled > renders with title and no options 1`] = `
 <DocumentFragment>
   <select
     aria-invalid="false"

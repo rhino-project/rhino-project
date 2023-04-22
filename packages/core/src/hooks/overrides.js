@@ -16,6 +16,7 @@ import {
   useModelContext,
   useModelAndAttributeFromPath
 } from './models';
+import { NullComponent } from '../components/null';
 
 // Based on:
 // https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646
@@ -30,8 +31,6 @@ const arrayOverride = (objValue, srcValue) => {
 const maybeMerge = (a, b) => {
   return a && b ? { ...a, ...b } : a || b;
 };
-
-const NullComponent = () => null;
 
 const isShortCut = (override) =>
   override === null ||

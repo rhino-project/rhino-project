@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useGlobalOverrides for attribute should render with global override 1`] = `
+exports[`useGlobalOverrides > for attribute > should render with global override 1`] = `
 <DocumentFragment>
   <div>
     Baz
@@ -8,7 +8,7 @@ exports[`useGlobalOverrides for attribute should render with global override 1`]
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides for attribute should render with global override shorthand 1`] = `
+exports[`useGlobalOverrides > for attribute > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Baz
@@ -16,7 +16,7 @@ exports[`useGlobalOverrides for attribute should render with global override sho
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides for attribute should render with local overrides instead of global overrides 1`] = `
+exports[`useGlobalOverrides > for attribute > should render with local overrides instead of global overrides 1`] = `
 <DocumentFragment>
   <div>
     Local
@@ -24,7 +24,7 @@ exports[`useGlobalOverrides for attribute should render with local overrides ins
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides for attribute should render with local props merged with global overrides component 1`] = `
+exports[`useGlobalOverrides > for attribute > should render with local props merged with global overrides component 1`] = `
 <DocumentFragment>
   <div
     class="test"
@@ -34,7 +34,7 @@ exports[`useGlobalOverrides for attribute should render with local props merged 
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides for model should render with global override 1`] = `
+exports[`useGlobalOverrides > for model > should render with global override 1`] = `
 <DocumentFragment>
   <div>
     Baz
@@ -42,7 +42,7 @@ exports[`useGlobalOverrides for model should render with global override 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides for model should render with global override shorthand 1`] = `
+exports[`useGlobalOverrides > for model > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Baz
@@ -50,7 +50,7 @@ exports[`useGlobalOverrides for model should render with global override shortha
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides for model should render with local overrides instead of global overrides 1`] = `
+exports[`useGlobalOverrides > for model > should render with local overrides instead of global overrides 1`] = `
 <DocumentFragment>
   <div>
     Local
@@ -58,7 +58,7 @@ exports[`useGlobalOverrides for model should render with local overrides instead
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides for model should render with local props merged with global overrides component 1`] = `
+exports[`useGlobalOverrides > for model > should render with local props merged with global overrides component 1`] = `
 <DocumentFragment>
   <div
     class="test"
@@ -68,9 +68,9 @@ exports[`useGlobalOverrides for model should render with local props merged with
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides should be empty with null 1`] = `<DocumentFragment />`;
+exports[`useGlobalOverrides > should be empty with null 1`] = `<DocumentFragment />`;
 
-exports[`useGlobalOverrides should render with global override 1`] = `
+exports[`useGlobalOverrides > should render with global override 1`] = `
 <DocumentFragment>
   <div>
     Baz
@@ -78,7 +78,7 @@ exports[`useGlobalOverrides should render with global override 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides should render with global override shorthand 1`] = `
+exports[`useGlobalOverrides > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Baz
@@ -86,7 +86,7 @@ exports[`useGlobalOverrides should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides should render with global prop override 1`] = `
+exports[`useGlobalOverrides > should render with global prop override 1`] = `
 <DocumentFragment>
   <div
     data="bar"
@@ -96,7 +96,7 @@ exports[`useGlobalOverrides should render with global prop override 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides should render with local overrides instead of global overrides 1`] = `
+exports[`useGlobalOverrides > should render with local overrides instead of global overrides 1`] = `
 <DocumentFragment>
   <div>
     Local
@@ -104,7 +104,7 @@ exports[`useGlobalOverrides should render with local overrides instead of global
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides should render with local props merged with global overrides component 1`] = `
+exports[`useGlobalOverrides > should render with local props merged with global overrides component 1`] = `
 <DocumentFragment>
   <div
     class="test"
@@ -114,7 +114,7 @@ exports[`useGlobalOverrides should render with local props merged with global ov
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides should render without overrides 1`] = `
+exports[`useGlobalOverrides > should render without overrides 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -122,7 +122,7 @@ exports[`useGlobalOverrides should render without overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useGlobalOverrides should replace array prop 1`] = `
+exports[`useGlobalOverrides > should replace array prop 1`] = `
 <DocumentFragment>
   <div
     data="baz"
@@ -132,7 +132,7 @@ exports[`useGlobalOverrides should replace array prop 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useOverrides should render with automatically nested overrides 1`] = `
+exports[`useOverrides > should render with automatically nested overrides 1`] = `
 <DocumentFragment>
   <div>
     <div>
@@ -142,7 +142,7 @@ exports[`useOverrides should render with automatically nested overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useOverrides should render with explicit component overrides 1`] = `
+exports[`useOverrides > should render with explicit component overrides 1`] = `
 <DocumentFragment>
   <div>
     Baz
@@ -150,7 +150,7 @@ exports[`useOverrides should render with explicit component overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useOverrides should render with manually nested overrides 1`] = `
+exports[`useOverrides > should render with manually nested overrides 1`] = `
 <DocumentFragment>
   <div>
     <div>
@@ -160,9 +160,9 @@ exports[`useOverrides should render with manually nested overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useOverrides should render with null component 1`] = `<DocumentFragment />`;
+exports[`useOverrides > should render with null component 1`] = `<DocumentFragment />`;
 
-exports[`useOverrides should render with props overrides 1`] = `
+exports[`useOverrides > should render with props overrides 1`] = `
 <DocumentFragment>
   <div
     class="Bar"
@@ -172,7 +172,7 @@ exports[`useOverrides should render with props overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useOverrides should render with shorthand component overrides 1`] = `
+exports[`useOverrides > should render with shorthand component overrides 1`] = `
 <DocumentFragment>
   <div>
     Baz
@@ -180,7 +180,7 @@ exports[`useOverrides should render with shorthand component overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useOverrides should render with style overrides 1`] = `
+exports[`useOverrides > should render with style overrides 1`] = `
 <DocumentFragment>
   <div
     style="color: red;"
@@ -190,7 +190,7 @@ exports[`useOverrides should render with style overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useOverrides should render without overrides 1`] = `
+exports[`useOverrides > should render without overrides 1`] = `
 <DocumentFragment>
   <div>
     Bar

@@ -3,25 +3,14 @@ import renderer from 'react-test-renderer';
 import * as utils from 'rhino/utils/models';
 import * as queries from 'rhino/hooks/queries';
 import { ModelFormGroupVertical } from 'rhino/components/models/ModelFormGroup';
+import modelLoader from 'rhino/models';
+import * as uuid from 'uuid';
+import api from '../../../shared/modelFixtures';
 
-jest.mock('rhino/models', () => {
-  const api = require('../../../shared/modelFixtures');
-  // Require the original module to not be mocked...
-  const originalModule = jest.requireActual('rhino/models');
-
-  return {
-    __esModule: true, // Use it when dealing with esModules
-    ...originalModule,
-    default: {
-      api: {
-        ...api.default
-      }
-    }
-  };
-});
+vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 // Mock the uuid function used to generate a predictable id
-jest.mock("uuid/dist/v4", () => () => "123");
+vi.spyOn(uuid, 'v4').mockReturnValue('123');
 
 const ATTRIBUTES = [
   {},
@@ -127,10 +116,10 @@ const ATTRIBUTES = [
 ];
 
 describe('ModelFormField', () => {
-  jest
+  vi
     .spyOn(utils, 'getIdentifierAttribute')
     .mockImplementation(() => () => ({ name: 'id' }));
-  jest
+  vi
     .spyOn(queries, 'useModelIndex')
     .mockImplementation(() => ({ data: {}, results: [] }));
   ATTRIBUTES.forEach((attribute) => {

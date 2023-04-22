@@ -1,3 +1,4 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import ModelShowDescription from 'rhino/components/models/ModelShowDescription';

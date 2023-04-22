@@ -4,9 +4,9 @@ import FilterYear from 'rhino/components/forms/filters/FilterYear';
 import FormProvider from 'rhino/components/forms/FormProvider';
 import ModelFilterYear from 'rhino/components/models/filters/ModelFilterYear';
 
-jest.mock('rhino/components/forms/filters/FilterYear', () => {
-  return jest.fn(() => null);
-});
+vi.mock('rhino/components/forms/filters/FilterYear', () => ({
+  default: vi.fn(() => null)
+}));
 
 describe('ModelFilterYear', () => {
   const wrapper = ({ children }) => {
@@ -15,7 +15,7 @@ describe('ModelFilterYear', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it(`adds min as a prop`, () => {

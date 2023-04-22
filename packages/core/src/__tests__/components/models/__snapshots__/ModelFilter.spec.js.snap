@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelFilter should render with global override shorthand 1`] = `
+exports[`ModelFilter > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -8,7 +8,7 @@ exports[`ModelFilter should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFilter should render with global override shorthand for model 1`] = `
+exports[`ModelFilter > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar

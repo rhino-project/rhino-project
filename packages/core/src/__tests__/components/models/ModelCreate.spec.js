@@ -5,7 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as modelUtils from 'rhino/utils/models';
 
 // Create controller looks for a valid parent model
-jest.spyOn(modelUtils, 'getParentModel').mockReturnValue({ model: 'another' });
+vi.spyOn(modelUtils, 'getParentModel').mockReturnValue({ model: 'another' });
 
 /* eslint react/display-name: 0, react/prop-types: 0 */
 describe('ModelCreate', () => {

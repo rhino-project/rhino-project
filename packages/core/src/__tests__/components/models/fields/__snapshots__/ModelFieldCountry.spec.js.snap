@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelFieldCountry should render with global override shorthand 1`] = `
+exports[`ModelFieldCountry > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div
     class="country-field"
@@ -46,7 +46,7 @@ exports[`ModelFieldCountry should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFieldCountry should render with global override shorthand for model 1`] = `
+exports[`ModelFieldCountry > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div
     class="country-field"
@@ -92,7 +92,7 @@ exports[`ModelFieldCountry should render with global override shorthand for mode
 </DocumentFragment>
 `;
 
-exports[`ModelFieldCountry should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelFieldCountry > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div
     class="country-field"

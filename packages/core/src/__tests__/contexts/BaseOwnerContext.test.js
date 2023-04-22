@@ -6,36 +6,39 @@ import BaseOwnerProvider from 'rhino/contexts/BaseOwnerContext';
 import { BaseOwnerContext } from 'rhino/hooks/owner';
 
 let mockUser;
-jest.mock('rhino/hooks/auth', () => ({
-  useUser: jest.fn(() => mockUser)
+vi.mock('rhino/hooks/auth', () => ({
+  useUser: vi.fn(() => mockUser)
 }));
 
 let mockBaseOwnerId;
-const mockUseBaseOwnerId = jest.fn(() => mockBaseOwnerId);
-jest.mock('rhino/hooks/owner', () => {
-  const originalModule = jest.requireActual('rhino/hooks/owner');
-  return {
-    ...originalModule,
-    useBaseOwnerId: jest.fn(() => mockUseBaseOwnerId())
-  };
-});
 
-let mockUseBaseOwnerNavigationPushFn = jest.fn(() => {});
-jest.mock('rhino/hooks/history', () => ({
+const mockUseBaseOwnerId = vi.fn(() => mockBaseOwnerId);
+vi.mock("rhino/hooks/owner", async () => {
+  const actual = await vi.importActual("rhino/hooks/owner")
+  return {
+    ...actual,
+    useBaseOwnerId: vi.fn(() => mockUseBaseOwnerId())
+  };
+})
+
+let mockUseBaseOwnerNavigationPushFn = vi.fn(() => {});
+vi.mock('rhino/hooks/history', () => ({
   useBaseOwnerNavigation: () => ({
     push: mockUseBaseOwnerNavigationPushFn
   })
 }));
 
-const mockUseModelShowResult = jest.fn();
-const mockUseModelShowFn = jest.fn(() => mockUseModelShowResult());
-jest.mock('rhino/hooks/queries', () => ({
-  useModelShow: jest.fn(() => mockUseModelShowFn())
+const mockUseModelShowResult = vi.fn();
+const mockUseModelShowFn = vi.fn(() =>
+  mockUseModelShowResult()
+);
+vi.mock('rhino/hooks/queries', () => ({
+  useModelShow: vi.fn(() => mockUseModelShowFn())
 }));
 
 let mockHasOrganizationsModule;
-jest.mock('rhino/utils/models', () => ({
-  hasOrganizationsModule: jest.fn(() => mockHasOrganizationsModule),
+vi.mock('rhino/utils/models', () => ({
+  hasOrganizationsModule: vi.fn(() => mockHasOrganizationsModule),
   getModel: () => ({})
 }));
 
@@ -318,7 +321,7 @@ describe('BaseOwnerContext', () => {
 
     test("Does NOT navigate if the base owner id from URL is the same as the user's", async () => {
       // resetting number of calls to this mock
-      mockUseBaseOwnerNavigationPushFn = jest.fn(() => {});
+      mockUseBaseOwnerNavigationPushFn = vi.fn(() => {});
 
       emitSuccessResult({
         mockBaseOwnerId: 898989,

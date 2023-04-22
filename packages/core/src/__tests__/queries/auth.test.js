@@ -9,7 +9,7 @@ import {
 } from 'rhino/queries/auth';
 import { NetworkingMock } from '../../shared';
 
-jest.mock('axios');
+vi.mock('axios');
 const networkingMock = new NetworkingMock();
 axios.mockImplementation(networkingMock.axiosMockImplementation());
 axios.CancelToken = {source: () => "adfasdf"}

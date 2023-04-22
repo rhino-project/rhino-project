@@ -4,13 +4,13 @@ import FormProvider from 'rhino/components/forms/FormProvider';
 import ModelFilterDateTime from 'rhino/components/models/filters/ModelFilterDateTime';
 import FilterDateTime from 'rhino/components/forms/filters/FilterDateTime';
 
-jest.mock('rhino/components/forms/filters/FilterDateTime', () => {
-  return jest.fn(() => null);
-});
+vi.mock('rhino/components/forms/filters/FilterDateTime', () => ({
+  default: vi.fn(() => null)
+}));
 
 describe('ModelFilterDateTime', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   const wrapper = ({ children }) => {

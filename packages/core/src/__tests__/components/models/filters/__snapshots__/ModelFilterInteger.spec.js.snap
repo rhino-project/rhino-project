@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelFilterInteger adds max as a prop 1`] = `
+exports[`ModelFilterInteger > adds max as a prop 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -15,7 +15,7 @@ exports[`ModelFilterInteger adds max as a prop 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFilterInteger adds max as a prop with exclusiveMaximum 1`] = `
+exports[`ModelFilterInteger > adds max as a prop with exclusiveMaximum 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -30,7 +30,7 @@ exports[`ModelFilterInteger adds max as a prop with exclusiveMaximum 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFilterInteger adds min as a prop 1`] = `
+exports[`ModelFilterInteger > adds min as a prop 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -45,7 +45,7 @@ exports[`ModelFilterInteger adds min as a prop 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFilterInteger adds min as a prop with exclusiveMinimum 1`] = `
+exports[`ModelFilterInteger > adds min as a prop with exclusiveMinimum 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"

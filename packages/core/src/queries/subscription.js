@@ -13,7 +13,7 @@ const SUCCESS_URL = '/settings?status=success&session_id={CHECKOUT_SESSION_ID}';
 
 // Create a Checkout Session with the selected plan ID
 export async function CreateCheckoutSession(price, base_owner_id) {
-  const stripe = await Stripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+  const stripe = await Stripe(import.meta.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
   const {
     data: { sessionId }
   } = await networkApiCall(CHECKOUT_API_PATH, {

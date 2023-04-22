@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelDisplayTime should render the empty text when value is nullish 1`] = `
+exports[`ModelDisplayTime > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -16,7 +16,7 @@ exports[`ModelDisplayTime should render the empty text when value is nullish 1`]
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayTime should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelDisplayTime > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -32,7 +32,7 @@ exports[`ModelDisplayTime should render the overridden empty text when value is 
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayTime should render with global override shorthand 1`] = `
+exports[`ModelDisplayTime > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -40,7 +40,7 @@ exports[`ModelDisplayTime should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayTime should render with global override shorthand for model 1`] = `
+exports[`ModelDisplayTime > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -48,7 +48,7 @@ exports[`ModelDisplayTime should render with global override shorthand for model
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayTime should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelDisplayTime > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

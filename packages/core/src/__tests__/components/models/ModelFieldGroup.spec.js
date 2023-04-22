@@ -3,22 +3,10 @@ import ModelFieldGroup from 'rhino/components/models/ModelFieldGroup';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ModelEditSimple from 'rhino/components/models/ModelEditSimple';
+import modelLoader from 'rhino/models';
+import api from '../../../shared/modelFixtures';
 
-jest.mock('rhino/models', () => {
-  const api = require('../../../shared/modelFixtures');
-  // Require the original module to not be mocked...
-  const originalModule = jest.requireActual('rhino/models');
-
-  return {
-    __esModule: true, // Use it when dealing with esModules
-    ...originalModule,
-    default: {
-      api: {
-        ...api.default
-      }
-    }
-  };
-});
+vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 describe('ModelFieldGroup', () => {
   const wrapper = ({ children }) => {

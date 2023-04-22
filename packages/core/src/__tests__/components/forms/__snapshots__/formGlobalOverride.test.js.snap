@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useGlobalOverrides for form components should render FieldLabel with global override shorthand 1`] = `
+exports[`useGlobalOverrides for form components > should render FieldLabel with global override shorthand 1`] = `
 <div
   path="dummy"
 >
@@ -8,7 +8,7 @@ exports[`useGlobalOverrides for form components should render FieldLabel with gl
 </div>
 `;
 
-exports[`useGlobalOverrides for form components should render FilterLabel with global override shorthand 1`] = `
+exports[`useGlobalOverrides for form components > should render FilterLabel with global override shorthand 1`] = `
 <div
   path="dummy"
 >

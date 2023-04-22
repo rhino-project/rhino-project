@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelFieldLabel should override label with prop 1`] = `
+exports[`ModelFieldLabel > should override label with prop 1`] = `
 <DocumentFragment>
   <label
     class="form-label"
@@ -14,7 +14,7 @@ exports[`ModelFieldLabel should override label with prop 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFieldLabel should render label with readable name 1`] = `
+exports[`ModelFieldLabel > should render label with readable name 1`] = `
 <DocumentFragment>
   <label
     class="form-label"
@@ -28,7 +28,7 @@ exports[`ModelFieldLabel should render label with readable name 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFieldLabel should render with global override shorthand 1`] = `
+exports[`ModelFieldLabel > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -36,7 +36,7 @@ exports[`ModelFieldLabel should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFieldLabel should render with global override shorthand for model 1`] = `
+exports[`ModelFieldLabel > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar

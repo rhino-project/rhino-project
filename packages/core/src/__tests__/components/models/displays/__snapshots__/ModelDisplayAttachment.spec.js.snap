@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelDisplayAttachment should render the empty text when value is nullish 1`] = `
+exports[`ModelDisplayAttachment > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     -
@@ -8,7 +8,7 @@ exports[`ModelDisplayAttachment should render the empty text when value is nulli
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayAttachment should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelDisplayAttachment > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     baz
@@ -16,7 +16,7 @@ exports[`ModelDisplayAttachment should render the overridden empty text when val
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayAttachment should render with global override shorthand 1`] = `
+exports[`ModelDisplayAttachment > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     -
@@ -24,7 +24,7 @@ exports[`ModelDisplayAttachment should render with global override shorthand 1`]
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayAttachment should render with global override shorthand for model 1`] = `
+exports[`ModelDisplayAttachment > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     -
@@ -32,7 +32,7 @@ exports[`ModelDisplayAttachment should render with global override shorthand for
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayAttachment should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelDisplayAttachment > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     -
