@@ -18,16 +18,23 @@ import SettingsPage from 'rhino/pages/settings/SettingsPage';
 import OrganizationSettingsPage from 'rhino/pages/settings/OrganizationSettingsPage';
 import NonAuthenticatedRoute from './NonAuthenticatedRoute';
 import { hasOrganizationsModule } from 'rhino/utils/models';
+import {
+  getAccountSettingsPath,
+  getForgotPasswordPath,
+  getSessionCreatePath,
+  getSettingsPath,
+  getUserCreatePath
+} from 'rhino/utils/routes';
 
 const routePaths = {
   ...modelRoutePaths,
   ...customRoutePaths,
-  sessionCreate: () => '/signin',
-  userCreate: () => '/signup',
+  sessionCreate: getSessionCreatePath,
+  userCreate: getUserCreatePath,
   userAccept: () => '/accept-invitation',
-  settings: () => '/settings',
-  accountSettings: () => '/account/settings',
-  forgotPassword: () => '/forgot-password',
+  settings: getSettingsPath,
+  accountSettings: getAccountSettingsPath,
+  forgotPassword: getForgotPasswordPath,
   resetPassword: () => '/reset-password',
   tokenExpired: () => '/reset-password/expired'
 };

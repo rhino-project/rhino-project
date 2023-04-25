@@ -1,23 +1,18 @@
 import { useUser } from 'rhino/hooks/auth';
 import { useModelShow } from 'rhino/hooks/queries';
 import PropTypes from 'prop-types';
-import { createContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { hasOrganizationsModule } from 'rhino/utils/models';
 import { SplashScreen } from 'rhino/components/logos';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
-import { useBaseOwnerId } from 'rhino/hooks/owner';
-import routePaths from 'rhino/routes';
-
-export const BaseOwnerContext = createContext({
-  baseOwner: null,
-  resolving: true,
-  usersRoles: []
-});
+import { useRootPath } from 'rhino/hooks/routes';
+import { BaseOwnerContext, useBaseOwnerId } from '../hooks/owner';
 
 const BaseOwnerProvider = ({ children }) => {
   const user = useUser();
   const baseOwnerId = useBaseOwnerId();
   const baseOwnerNavigation = useBaseOwnerNavigation();
+  const rootPath = useRootPath();
   const [baseOwner, setBaseOwner] = useState(null);
   const [resolving, setResolving] = useState(true);
   const [usersRoles, setUsersRoles] = useState([]);
@@ -42,10 +37,7 @@ const BaseOwnerProvider = ({ children }) => {
           // and navigate to its root url
           const anyBaseOwner = usersRoles[0];
           setBaseOwner(anyBaseOwner.organization);
-          baseOwnerNavigation.push(
-            routePaths.rootpath(),
-            usersRoles[0].organization.id
-          );
+          baseOwnerNavigation.push(rootPath, usersRoles[0].organization.id);
         } else {
           setBaseOwner(usersRoleFromUrl.organization);
         }
@@ -54,7 +46,7 @@ const BaseOwnerProvider = ({ children }) => {
         setUsersRoles([]);
         setBaseOwner(user);
         if (baseOwnerId !== user.id) {
-          baseOwnerNavigation.push(routePaths.rootpath(), user.id);
+          baseOwnerNavigation.push(rootPath, user.id);
         }
       }
       setResolving(false);

@@ -2,6 +2,8 @@ import { render } from "@testing-library/react";
 import { createMemoryHistory } from 'history';
 import { Route, Router } from "react-router-dom";
 import NonAuthenticatedRoute from "rhino/routes/NonAuthenticatedRoute";
+import * as routes from "rhino/utils/routes";
+
 
 const authenticatedState = {
   initializing: false,
@@ -28,9 +30,8 @@ jest.mock('rhino/components/logos', () => ({
   )
 }))
 
-jest.mock('rhino/routes', () => ({
-  rootpath: () => "/__mockRootPath__"
-}))
+jest.spyOn(routes, 'getRootPath').mockImplementation(() => "/__mockRootPath__");
+
 
 describe.only('routes/NonAuthenticatedRoute', () => {
   let Wrapper;

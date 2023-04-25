@@ -2,6 +2,7 @@ import { render } from "@testing-library/react";
 import { createMemoryHistory } from 'history';
 import { Route, Router } from "react-router-dom";
 import AuthenticatedRoute from "rhino/routes/AuthenticatedRoute";
+import * as routes from "rhino/utils/routes";
 
 const authenticatedState = {
   initializing: false,
@@ -37,9 +38,7 @@ jest.mock('rhino/utils/storage', () => ({
   setPrevPathSession: () => mockSetPrevPathFn()
 }))
 
-jest.mock('rhino/routes', () => ({
-  sessionCreate: () => "/__mockSessionCreate__"
-}))
+jest.spyOn(routes, 'getSessionCreatePath').mockImplementation(() => "/__mockSessionCreate__");
 
 describe.only('routes/AuthenticatedRoute', () => {
   let Wrapper;

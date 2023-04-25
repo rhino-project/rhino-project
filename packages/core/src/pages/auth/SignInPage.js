@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import routePaths from 'rhino/routes';
 import { APP_NAME } from 'config';
 import { useParsedSearch } from 'rhino/hooks/history';
 import { oauthProviders } from 'rhino/utils/models';
@@ -10,8 +9,11 @@ import AuthPage from './AuthPage';
 import AuthForm from 'rhino/components/auth/AuthForm';
 import { SuccessAlert } from 'rhino/components/alerts';
 import OmniAuthButton from 'rhino/components/buttons/omniauth';
+import { useForgotPasswordPath, useUserCreatePath } from 'rhino/hooks/routes';
 
 const SignInPage = () => {
+  const userCreatePath = useUserCreatePath();
+  const forgotPasswordPath = useForgotPasswordPath();
   const queryParams = useParsedSearch();
   const allowSignup = useSignupAllowed();
 
@@ -28,8 +30,7 @@ const SignInPage = () => {
       <p>Enter your email address and password to sign in.</p>
       {allowSignup && (
         <p>
-          New to {APP_NAME}?{' '}
-          <NavLink to={routePaths.userCreate()}>Sign Up</NavLink>
+          New to {APP_NAME}? <NavLink to={userCreatePath}>Sign Up</NavLink>
         </p>
       )}
     </>
@@ -43,7 +44,7 @@ const SignInPage = () => {
         primaryAction="Sign In"
         secondaryAction={{
           content: 'Forgot Password?',
-          url: routePaths.forgotPassword()
+          url: forgotPasswordPath
         }}
         loading={isLoading}
         errors={error?.errors}

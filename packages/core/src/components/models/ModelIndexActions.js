@@ -4,7 +4,6 @@ import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 import { IconButton } from '../buttons';
 import { useBaseOwnerNavigation } from '../../hooks/history';
-import routePaths from 'rhino/routes';
 import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
 import withParams from '../../routes/withParams';
 import { isBaseOwned } from '../../utils/models';
@@ -12,6 +11,7 @@ import ModelCreateModal from './ModelCreateModal';
 import { useBaseOwnerId } from '../../hooks/owner';
 import { useLocation } from 'react-router';
 import { ModelCreateModalActionSaveShow } from './ModelCreateModalActions';
+import { getModelCreatePath } from '../../utils/routes';
 
 export const ModelIndexActionCreate = ({ children, ...props }) => {
   const { model, parentId: contextParentId } = useModelIndexContext();
@@ -29,7 +29,7 @@ export const ModelIndexActionCreate = ({ children, ...props }) => {
 
   const createPath = useMemo(
     () =>
-      withParams(routePaths[model.name].create(), {
+      withParams(getModelCreatePath(model), {
         back: location.pathname,
         parentId
       }),

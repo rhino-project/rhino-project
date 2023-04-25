@@ -6,7 +6,6 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 
-import routePaths from 'rhino/routes';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
@@ -18,6 +17,7 @@ import Table from '../table/Table';
 import ModelCell from './ModelCell';
 import ModelHeader from './ModelHeader';
 import ModelFooter from './ModelFooter';
+import { getModelShowPath } from '../../utils/routes';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -54,7 +54,7 @@ export const ModelIndexTableBase = (props) => {
   const handleRowClick = useCallback(
     (row) =>
       baseOwnerNavigation.push(
-        `${baseRoute}${routePaths[model.name].show(row.original.id)}`
+        `${baseRoute}${getModelShowPath(model, row.original.id)}`
       ),
     [baseRoute, baseOwnerNavigation, model]
   );
