@@ -2,7 +2,7 @@
 
 require "test_helper"
 
-class RhinoSieveOrderTestHelper < ActionDispatch::IntegrationTest
+class RhinoSieveOrderTestHelper < Rhino::TestCase::ControllerTest
   protected
   def setup
     seed
@@ -233,5 +233,30 @@ class RhinoSieveOrderRelatedModelsTest < RhinoSieveOrderTestHelper
     fetch search: @oldest_instance.blog_post.title
 
     assert_order @json["results"], @oldest_instance
+  end
+end
+
+class RhinoSieveOrderRelatedModelsOuterJoinTest < RhinoSieveOrderTestHelper
+  def url
+    "/api/blog_dummies"
+  end
+
+  def seed
+    @current_user = create :user
+
+    @blog1 = create :blog, user: @current_user
+    @blog_dummy = create :blog_dummy, blog: @blog1
+    @blog_dummy_no_blog = create :blog_dummy, blog: nil
+  end
+
+  test "ordering through related model attribute does not exclude records with no assocations" do
+    @params = "blog.title"
+    fetch
+
+    assert_includes parsed_response_names, @blog_dummy_no_blog.name, "Should not have excluded the blog_dummy record with no blog_id"
+  end
+
+  def parsed_response_names
+    parsed_response["results"].map { |el| el["name"] }
   end
 end
