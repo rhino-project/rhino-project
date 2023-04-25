@@ -12,7 +12,8 @@ module Rhino
         @scope = scope
         @param = params[:order]
 
-        result = apply_order
+        # Always append id to the end of the order clause to ensure a stable sort for pagination
+        result = apply_order.order(:id)
         @app.resolve(result, params)
       end
 
