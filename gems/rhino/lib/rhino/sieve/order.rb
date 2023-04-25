@@ -50,7 +50,12 @@ module Rhino
         # Convert to nested hash
         join_tables = path.reverse.inject({}) { |assigned_value, key| { key => assigned_value } }
 
-        ArelHelpers.join_association(base, join_tables, Arel::Nodes::InnerJoin, {})
+        # If InnerJoin was used instead of OuterJoin, a simple ORDER clause targeting an association's column
+        # would incur in a join being made, which in turn would exclude records with no association. This would
+        # be conceptually wrong, as an ORDER clause would be excluding records from the final result. In order to
+        # restore the previous behavior and exclude these records without parent, one could simply add a WHERE
+        # clause with something like `WHERE association.id IS NOT NULL`.
+        ArelHelpers.join_association(base, join_tables, Arel::Nodes::OuterJoin, {})
       rescue StandardError
         nil
       end
