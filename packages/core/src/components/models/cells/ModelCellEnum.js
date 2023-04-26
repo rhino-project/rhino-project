@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/paths';
+import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import CellBadge from 'rhino/components/table/cells/CellBadge';
 

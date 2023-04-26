@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import DisplayLabel from '../forms/DisplayLabel';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/paths';
+import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 const defaultComponents = {
   ModelDisplayLabel: DisplayLabel

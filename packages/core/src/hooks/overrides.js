@@ -11,8 +11,7 @@ import {
   merge,
   mergeWith
 } from 'lodash';
-import { useModelAndAttributeFromPath } from './paths';
-import { useModel } from './models';
+import { useModel, useModelAndAttributeFromPath } from './models';
 
 // Based on:
 // https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646
@@ -190,3 +189,27 @@ export const useGlobalOverrides = (
 
   return useOverrides(defaultComponents, computedOverrides);
 };
+
+const withGlobalOverrides = (BaseComponent) => {
+  const overrideName = `${
+    BaseComponent.displayName || BaseComponent.name
+  }`.replace(/Base$/, '');
+
+  const GlobalComponent = ({ overrides, ...props }) => {
+    const globalOverride = useGlobalOverrides(
+      { [overrideName]: BaseComponent },
+      overrides,
+      props
+    );
+
+    const GlobalOverrideComponent = globalOverride[overrideName];
+
+    return <GlobalOverrideComponent {...props} />;
+  };
+
+  GlobalComponent.displayName = overrideName;
+
+  return GlobalComponent;
+};
+
+export default withGlobalOverrides;

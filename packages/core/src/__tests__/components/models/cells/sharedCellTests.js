@@ -4,6 +4,7 @@ import * as rhinoConfig from 'rhino.config';
 const getBarValue = () => 'bar';
 
 export const sharedCellTests = (Component) => {
+  const overrideName = Component.displayName || Component.name;
   const nullGetValue = () => null;
   const Bar = (props) => <div>Bar</div>;
 
@@ -19,7 +20,10 @@ export const sharedCellTests = (Component) => {
   });
 
   it(`should render with global override shorthand`, async () => {
-    rhinoConfig.default = { version: 1, components: { [Component.name]: Bar } };
+    rhinoConfig.default = {
+      version: 1,
+      components: { [overrideName]: Bar }
+    };
 
     const { asFragment } = render(
       <Component getValue={getBarValue} path="dummy" />
@@ -30,7 +34,7 @@ export const sharedCellTests = (Component) => {
   it(`should render with global override shorthand for model`, async () => {
     rhinoConfig.default = {
       version: 1,
-      components: { user: { [Component.name]: Bar } }
+      components: { user: { [overrideName]: Bar } }
     };
 
     const { asFragment } = render(
@@ -42,7 +46,7 @@ export const sharedCellTests = (Component) => {
   it(`should render with global override shorthand for model and attribute`, async () => {
     rhinoConfig.default = {
       version: 1,
-      components: { user: { name: { [Component.name]: Bar } } }
+      components: { user: { name: { [overrideName]: Bar } } }
     };
 
     const { asFragment } = render(

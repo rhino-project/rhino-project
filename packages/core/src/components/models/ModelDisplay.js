@@ -1,4 +1,4 @@
-import { useModel } from 'rhino/hooks/models';
+import { useModel, useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import ModelDisplayString from './displays/ModelDisplayString';
 import ModelDisplayDateTime from './displays/ModelDisplayDateTime';
 import ModelDisplayText from './displays/ModelDisplayText';
@@ -11,7 +11,6 @@ import ModelDisplayDate from './displays/ModelDisplayDate';
 import ModelDisplayArray from './displays/ModelDisplayArray';
 import ModelDisplayAttachments from './displays/ModelDisplayAttachments';
 import ModelDisplayArrayReference from './displays/ModelDisplayArrayReference';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/paths';
 import ModelDisplayReference from './displays/ModelDisplayReference';
 import ModelDisplayAttachment from './displays/ModelDisplayAttachment';
 import ModelDisplayAttachmentImage from './displays/ModelDisplayAttachmentImage';

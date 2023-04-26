@@ -1,5 +1,5 @@
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/paths';
+import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 export const ModelFooterBase = ({ overrides, model, path, ...props }) => {
   const { attribute } = useModelAndAttributeFromPath(model, path);
