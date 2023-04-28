@@ -196,8 +196,14 @@ const withGlobalOverrides = (BaseComponent) => {
   }`.replace(/Base$/, '');
 
   const GlobalComponent = ({ overrides, ...props }) => {
+    const defaultComponents = useMemo(
+      () => ({ [overrideName]: BaseComponent }),
+      []
+    );
+
+    // FIXME should we pass the overrides or not?
     const globalOverride = useGlobalOverrides(
-      { [overrideName]: BaseComponent },
+      defaultComponents,
       overrides,
       props
     );
