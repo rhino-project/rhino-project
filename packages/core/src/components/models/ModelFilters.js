@@ -16,6 +16,7 @@ import FormProvider from '../forms/FormProvider';
 import ModelFilterGroup from './ModelFilterGroup';
 import { useFilterPills } from 'rhino/hooks/form';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
+import withGlobalOverrides from '../../hooks/overrides';
 
 const createFilteredObject = (obj) => {
   const result = {};
@@ -40,7 +41,7 @@ const createFilteredObject = (obj) => {
   return result;
 };
 
-const ModelFilters = ({ paths }) => {
+export const ModelFiltersBase = ({ paths }) => {
   const {
     model,
     defaultState,
@@ -143,8 +144,10 @@ const ModelFilters = ({ paths }) => {
   );
 };
 
-ModelFilters.propTypes = {
+ModelFiltersBase.propTypes = {
   paths: PropTypes.array
 };
+
+const ModelFilters = withGlobalOverrides(ModelFiltersBase);
 
 export default ModelFilters;
