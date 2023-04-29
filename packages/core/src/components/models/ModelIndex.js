@@ -1,101 +1,12 @@
-import { useCallback, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
 
-import { CREATE_MODAL } from 'config';
-import routePaths from 'rhino/routes';
-import { isBaseOwned } from 'rhino/utils/models';
-import { useBaseOwnerId } from 'rhino/hooks/owner';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 
-import ModelActions from 'rhino/components/models/ModelActions';
 import ModelIndexHeader from 'rhino/components/models/ModelIndexHeader';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
-import ModelCreateModal from 'rhino/components/models/ModelCreateModal';
-import { useBaseOwnerNavigation } from 'rhino/hooks/history';
-import withParams from 'rhino/routes/withParams';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
 import ModelIndexBase from './ModelIndexBase';
 import { ModelIndexTableBase } from './ModelIndexTable';
-import { ModelCreateModalActionSaveShow } from './ModelCreateModalActions';
-
-export const ModelIndexActions = (props) => {
-  const { model } = useModelIndexContext();
-  const { actions, parent } = props;
-  const [modalOpen, setModalOpen] = useState(false);
-  const baseOwnerId = useBaseOwnerId();
-  const location = useLocation();
-  const baseOwnerNavigation = useBaseOwnerNavigation();
-
-  const parentId = useMemo(() => {
-    if (parent) return parent.id;
-
-    if (isBaseOwned(model) && baseOwnerId) return baseOwnerId;
-
-    return null;
-  }, [model, parent, baseOwnerId]);
-
-  const createPath = useMemo(
-    () =>
-      withParams(routePaths[model.name].create(), {
-        back: location.pathname,
-        parentId
-      }),
-    [location, model, parentId]
-  );
-
-  const handleModalClose = () => setModalOpen(false);
-
-  const handleAction = useCallback(() => {
-    if (CREATE_MODAL) {
-      setModalOpen(true);
-    } else {
-      baseOwnerNavigation.push(createPath);
-    }
-  }, [baseOwnerNavigation, createPath]);
-
-  const computedActions = useMemo(() => {
-    if (actions) return actions;
-
-    if (isBaseOwned(model) || parent?.can_current_user_edit) {
-      return [
-        {
-          name: 'create',
-          label: `Add ${model.readableName}`,
-          color: 'primary',
-          icon: 'plus',
-          onAction: handleAction
-        }
-      ];
-    }
-
-    return [];
-  }, [actions, model, parent, handleAction]);
-
-  return (
-    <ModelWrapper {...props} baseClassName="index-actions">
-      <ModelActions {...props} actions={computedActions} />
-      {CREATE_MODAL && (
-        <ModelCreateModal
-          overrides={{
-            ModelCreateModalActions: {
-              ModelCreateModalActionSave: ModelCreateModalActionSaveShow
-            }
-          }}
-          model={model}
-          parentId={parentId}
-          isOpen={modalOpen}
-          onModalClose={handleModalClose}
-        />
-      )}
-    </ModelWrapper>
-  );
-};
-
-ModelIndexActions.propTypes = {
-  actions: PropTypes.array,
-  parent: PropTypes.object
-};
+import ModelIndexActions from './ModelIndexActions';
 
 const defaultComponents = {
   ModelIndex: ModelIndexBase,

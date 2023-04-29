@@ -169,6 +169,7 @@ export const useModelIndexController = (options) => {
 
   return {
     model,
+    parentId: options?.parentId,
     defaultState: defaultState.current,
     initialState: initialState.current,
     order,

@@ -39,7 +39,7 @@ const ModelShowRelated = ({ overrides, ...props }) => {
           <h4>{relatedModel.pluralReadableName}</h4>
           <ModelIndex
             model={relatedModel}
-            parent={resource}
+            parentId={resource?.id}
             filter={{ [model.model + '_id']: resource?.id }}
             syncUrl={false}
           />
