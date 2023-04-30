@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import { useModelCreateContext } from '../../hooks/controllers';
 import ModelCreateBase from './ModelCreateBase';
-import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import ModelWrapper from './ModelWrapper';
 import ModelCreateModalActions from './ModelCreateModalActions';
 
@@ -73,6 +73,7 @@ ModelCreateModalBase.defaultProps = {
   isOpen: false
 };
 
-const ModelCreateModal = withGlobalOverrides(ModelCreateModalBase);
+const ModelCreateModal = (props) =>
+  useGlobalComponent(ModelCreateModalBase, props);
 
 export default ModelCreateModal;

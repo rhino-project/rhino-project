@@ -8,7 +8,7 @@ import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useFormContext } from 'react-hook-form';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
 import { IconButton } from '../buttons';
-import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import { getModelShowPath } from 'rhino/utils/routes';
 
 export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
@@ -178,6 +178,7 @@ ModelCreateActionsBase.defaultProps = {
   hasCancel: CREATE_CANCEL
 };
 
-const ModelCreateActions = withGlobalOverrides(ModelCreateActionsBase);
+const ModelCreateActions = (props) =>
+  useGlobalComponent(ModelCreateActionsBase, props);
 
 export default ModelCreateActions;

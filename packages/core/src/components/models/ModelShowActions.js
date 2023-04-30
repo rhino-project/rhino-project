@@ -4,7 +4,7 @@ import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelShowContext } from 'rhino/hooks/controllers';
 import { IconButton } from '../buttons';
 import { useBaseOwnerNavigation } from '../../hooks/history';
-import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import withParams from '../../routes/withParams';
 import { getParentModel, isBaseOwned } from '../../utils/models';
 import ModelEditModal from './ModelEditModal';
@@ -148,10 +148,12 @@ export const ModelShowActionsBase = ({
 
 ModelShowActionsBase.propTypes = {};
 
-const ModelShowActions = withGlobalOverrides(ModelShowActionsBase);
-export default ModelShowActions;
-
 const MODAL_EDIT_OVERRIDES = { ModelShowActionEdit: ModelShowActionEditModal };
 export const ModelShowActionsModalEdit = (props) => (
-  <ModelShowActions overrides={MODAL_EDIT_OVERRIDES} {...props} />
+  <ModelShowActionsBase overrides={MODAL_EDIT_OVERRIDES} {...props} />
 );
+
+const ModelShowActions = (props) =>
+  useGlobalComponent(ModelShowActionsBase, props);
+
+export default ModelShowActions;

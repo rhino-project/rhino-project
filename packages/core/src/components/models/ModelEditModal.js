@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import ModelEditBase from './ModelEditBase';
 import { useModelEditContext } from '../../hooks/controllers';
-import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import ModelWrapper from './ModelWrapper';
 import ModelEditModalActions from './ModelEditModalActions';
 
@@ -73,6 +73,6 @@ ModelEditModalBase.defaultProps = {
   isOpen: false
 };
 
-const ModelEditModal = withGlobalOverrides(ModelEditModalBase);
+const ModelEditModal = (props) => useGlobalComponent(ModelEditModalBase, props);
 
 export default ModelEditModal;

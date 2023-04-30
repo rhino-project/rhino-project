@@ -4,7 +4,7 @@ import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 import { IconButton } from '../buttons';
 import { useBaseOwnerNavigation } from '../../hooks/history';
-import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import withParams from '../../routes/withParams';
 import { isBaseOwned } from '../../utils/models';
 import ModelCreateModal from './ModelCreateModal';
@@ -135,6 +135,7 @@ export const ModelIndexActionsModalCreate = (props) => (
   <ModelIndexActionsBase overrides={MODAL_CREATE_OVERRIDES} {...props} />
 );
 
-const ModelIndexActions = withGlobalOverrides(ModelIndexActionsBase);
+const ModelIndexActions = (props) =>
+  useGlobalComponent(ModelIndexActionsBase, props);
 
 export default ModelIndexActions;

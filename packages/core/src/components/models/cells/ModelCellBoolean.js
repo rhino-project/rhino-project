@@ -1,8 +1,9 @@
 import CellBoolean from 'rhino/components/table/cells/CellBoolean';
-import withGlobalOverrides from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const ModelCellBooleanBase = (props) => <CellBoolean {...props} />;
 
-const ModelCellBoolean = withGlobalOverrides(ModelCellBooleanBase);
+const ModelCellBoolean = (props) =>
+  useGlobalComponent(ModelCellBooleanBase, props);
 
 export default ModelCellBoolean;
