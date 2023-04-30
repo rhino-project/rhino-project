@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { ModalFooter } from 'reactstrap';
 
 import { useModelCreateContext } from '../../hooks/controllers';
-import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import ModelCreateActions, {
   ModelCreateActionCancel,
   ModelCreateActionSave,
@@ -102,8 +102,7 @@ export const ModelCreateModalActionsSaveShow = (props) => (
   />
 );
 
-const ModelCreateModalActions = withGlobalOverrides(
-  ModelCreateModalActionsBase
-);
+const ModelCreateModalActions = (props) =>
+  useGlobalComponent(ModelCreateModalActionsBase, props);
 
 export default ModelCreateModalActions;

@@ -192,28 +192,21 @@ export const useGlobalOverrides = (
   return useOverrides(defaultComponents, computedOverrides);
 };
 
-const withGlobalOverrides = (BaseComponent) => {
-  const overrideName = `${
-    BaseComponent.displayName || BaseComponent.name
-  }`.replace(/Base$/, '');
-
-  const GlobalComponent = ({ ...props }) => {
-    const defaultComponents = useMemo(
-      () => ({ [overrideName]: BaseComponent }),
-      []
+export const useGlobalComponent = (BaseComponent, props) => {
+  const overrideName = useMemo(() => {
+    return `${BaseComponent.displayName || BaseComponent.name}`.replace(
+      /Base$/,
+      ''
     );
+  }, [BaseComponent]);
 
-    // FIXME should we pass the overrides or not?
-    const globalOverride = useGlobalOverrides(defaultComponents, {}, props);
+  const defaultComponents = useMemo(() => {
+    return { [overrideName]: BaseComponent };
+  }, [overrideName, BaseComponent]);
 
-    const GlobalOverrideComponent = globalOverride[overrideName];
+  const globalOverride = useGlobalOverrides(defaultComponents, {}, props);
+  const GlobalOverrideComponent = globalOverride[overrideName];
+  GlobalOverrideComponent.displayName = overrideName;
 
-    return <GlobalOverrideComponent {...props} />;
-  };
-
-  GlobalComponent.displayName = overrideName;
-
-  return GlobalComponent;
+  return <GlobalOverrideComponent {...props} />;
 };
-
-export default withGlobalOverrides;

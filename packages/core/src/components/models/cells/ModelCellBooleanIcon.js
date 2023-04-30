@@ -1,10 +1,11 @@
 import CellBooleanIcon from 'rhino/components/table/cells/CellBooleanIcon';
-import withGlobalOverrides from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const ModelCellBooleanIconBase = (props) => (
   <CellBooleanIcon {...props} />
 );
 
-const ModelCellBooleanIcon = withGlobalOverrides(ModelCellBooleanIconBase);
+const ModelCellBooleanIcon = (props) =>
+  useGlobalComponent(ModelCellBooleanIconBase, props);
 
 export default ModelCellBooleanIcon;
