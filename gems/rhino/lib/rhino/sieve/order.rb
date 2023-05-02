@@ -89,12 +89,19 @@ module Rhino
         [join_clauses, last_base.arel_table[field], select_clause]
       end
 
+      NULL_ORDERING = {
+        asc: :nulls_last,
+        desc: :nulls_first
+      }.freeze
       def order(direction, column_name)
         # nulls_last should generally be the desired user experience
         join_clauses, order_clause, select_clause = analyze(column_name)
         return nil unless join_clauses && order_clause
 
-        [join_clauses, order_clause.send(direction).nulls_last, select_clause]
+        final_clause = order_clause
+                       .send(direction)
+                       .send(NULL_ORDERING[direction])
+        [join_clauses, final_clause, select_clause]
       end
 
       def build_clause(param)
