@@ -48,14 +48,14 @@ const SidebarShell = ({ children }) => {
       <Container fluid>
         <div className="row">
           <Sidebar extraClass="pt-0">
-            <NavbarBrand className="ml-2 mb-4">
+            <NavbarBrand className="ms-2 mb-4">
               <DarkLogo style={{ height: '38px', width: '108px' }} />
             </NavbarBrand>
             <PrimaryNavigation />
             <SecondaryNavigation className="mt-auto" sidebarMode={true} />
           </Sidebar>
 
-          <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+          <main role="main" className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
             {children}
           </main>
         </div>

@@ -33,7 +33,7 @@ const BaseOwnerSwitcher = ({ sidebarMode = false }) => {
           {baseOwner?.name}
         </span>
       </DropdownToggle>
-      <DropdownMenu right={sidebarMode ? false : true}>
+      <DropdownMenu end={sidebarMode ? false : true}>
         {usersRoles.map((ur) => (
           <DropdownItem
             key={ur.organization.id}

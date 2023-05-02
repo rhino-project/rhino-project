@@ -20,7 +20,7 @@ Icon.propTypes = {
 export const NavIcon = ({ icon, extraClass, ...props }) => {
   return (
     <svg
-      className={classnames('nav-icon', 'mr-1', extraClass)}
+      className={classnames('nav-icon', 'me-1', extraClass)}
       fill="currentColor"
       {...props}
     >

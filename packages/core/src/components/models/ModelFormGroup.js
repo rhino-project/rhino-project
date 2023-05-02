@@ -10,7 +10,7 @@ const extractError = (errors, path) => get(errors, `${path}[0]`);
 
 const ModelFormLabel = ({ attribute, path, ...props }) => (
   <Label
-    className={classnames({
+    className={classnames('form-label', {
       required: attribute['x-rhino-required']
     })}
     for={path}

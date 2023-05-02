@@ -3,7 +3,7 @@
 exports[`ModelCellEnum adds style as a prop based on matched enum value 1`] = `
 <DocumentFragment>
   <span
-    class="badge badge-secondary"
+    class="badge bg-secondary"
     style="background-color: rgb(4, 120, 87);"
   >
     bar
@@ -64,7 +64,7 @@ exports[`ModelCellEnum should render with global override shorthand for model an
 exports[`ModelCellEnum uses default style value if match is not found 1`] = `
 <DocumentFragment>
   <span
-    class="badge badge-secondary"
+    class="badge bg-secondary"
     style="background-color: rgb(3, 105, 161);"
   >
     baz

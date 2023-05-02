@@ -46,7 +46,11 @@ const AccountMenu = ({ sidebarMode = false }) => {
   ]);
 
   return (
-    <UncontrolledDropdown nav inNavbar direction={sidebarMode ? 'up' : 'down'}>
+    <UncontrolledDropdown
+      nav={sidebarMode}
+      inNavbar={sidebarMode}
+      direction={sidebarMode ? 'up' : 'down'}
+    >
       <DropdownToggle
         id="account-menu"
         className="d-flex align-items-center"
@@ -62,7 +66,7 @@ const AccountMenu = ({ sidebarMode = false }) => {
           {user?.nickname || user?.name?.split(' ')[0]}
         </span>
       </DropdownToggle>
-      <DropdownMenu right>
+      <DropdownMenu end>
         <DropdownItem
           id="account-settings"
           tag={NavLink}

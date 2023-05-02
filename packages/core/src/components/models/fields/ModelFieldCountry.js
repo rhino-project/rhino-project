@@ -13,7 +13,7 @@ export const Flag = ({ country }) => {
   if (!lowerValue) return null;
 
   return (
-    <div className="country-flag-display react-tel-input d-inline-block ml-2">
+    <div className="country-flag-display react-tel-input d-inline-block ms-2">
       <div className={classnames('flag', lowerValue)} />
     </div>
   );
@@ -41,6 +41,12 @@ const ModelFieldCountry = ({ model, ...props }) => {
 
   return (
     <div className={classnames('country-field', { 'is-invalid': error })}>
+      <div className="country-label">
+        {upperValue}
+        {!attribute.required && upperValue && (
+          <CloseButton onClick={handleClear} />
+        )}
+      </div>
       <PhoneInput
         {...fieldProps}
         containerClass={classnames('country-input', 'form-control', {
@@ -53,10 +59,6 @@ const ModelFieldCountry = ({ model, ...props }) => {
         enableSearch
         isValid
       />
-      <div className="country-label">
-        {upperValue}
-        {!attribute.required && <CloseButton onClick={handleClear} />}
-      </div>
     </div>
   );
 };

@@ -2,128 +2,80 @@
 
 exports[`FieldBooleanIndeterminate renders false as Boolean 1`] = `
 <DocumentFragment>
-  <div
-    class="custom-checkbox custom-control"
-  >
-    <input
-      aria-invalid="false"
-      class="custom-control-input"
-      id="dummy"
-      name="dummy"
-      path="dummy"
-      type="checkbox"
-    />
-    <label
-      class="custom-control-label"
-      for="dummy"
-    />
-  </div>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
 </DocumentFragment>
 `;
 
 exports[`FieldBooleanIndeterminate renders false as String 1`] = `
 <DocumentFragment>
-  <div
-    class="custom-checkbox custom-control"
-  >
-    <input
-      aria-invalid="false"
-      class="custom-control-input"
-      id="dummy"
-      name="dummy"
-      path="dummy"
-      type="checkbox"
-    />
-    <label
-      class="custom-control-label"
-      for="dummy"
-    />
-  </div>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
 </DocumentFragment>
 `;
 
 exports[`FieldBooleanIndeterminate renders indeterminate with null 1`] = `
 <DocumentFragment>
-  <div
-    class="custom-checkbox custom-control"
-  >
-    <input
-      aria-invalid="false"
-      class="custom-control-input"
-      id="dummy"
-      name="dummy"
-      path="dummy"
-      type="checkbox"
-    />
-    <label
-      class="custom-control-label"
-      for="dummy"
-    />
-  </div>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
 </DocumentFragment>
 `;
 
 exports[`FieldBooleanIndeterminate renders indeterminate with undefined 1`] = `
 <DocumentFragment>
-  <div
-    class="custom-checkbox custom-control"
-  >
-    <input
-      aria-invalid="false"
-      class="custom-control-input"
-      id="dummy"
-      name="dummy"
-      path="dummy"
-      type="checkbox"
-    />
-    <label
-      class="custom-control-label"
-      for="dummy"
-    />
-  </div>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
 </DocumentFragment>
 `;
 
 exports[`FieldBooleanIndeterminate renders true as Boolean 1`] = `
 <DocumentFragment>
-  <div
-    class="custom-checkbox custom-control"
-  >
-    <input
-      aria-invalid="false"
-      checked=""
-      class="custom-control-input"
-      id="dummy"
-      name="dummy"
-      path="dummy"
-      type="checkbox"
-    />
-    <label
-      class="custom-control-label"
-      for="dummy"
-    />
-  </div>
+  <input
+    aria-invalid="false"
+    checked=""
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
 </DocumentFragment>
 `;
 
 exports[`FieldBooleanIndeterminate renders true as String 1`] = `
 <DocumentFragment>
-  <div
-    class="custom-checkbox custom-control"
-  >
-    <input
-      aria-invalid="false"
-      checked=""
-      class="custom-control-input"
-      id="dummy"
-      name="dummy"
-      path="dummy"
-      type="checkbox"
-    />
-    <label
-      class="custom-control-label"
-      for="dummy"
-    />
-  </div>
+  <input
+    aria-invalid="false"
+    checked=""
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
 </DocumentFragment>
 `;

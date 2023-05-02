@@ -4,7 +4,7 @@ import { get, set } from 'lodash';
 import classnames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
-import { CustomInput, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Input, InputGroup } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import DatePicker from 'react-datepicker';
 
@@ -204,9 +204,9 @@ export const ModelFormFieldIntegerSelect = ({ attribute, value, ...props }) => {
   );
 
   return (
-    <CustomInput {...props} type="select" value={value || -1}>
+    <Input {...props} type="select" value={value || -1}>
       {optionsFromIndexWithTitle(integers, `${attribute.readableName}...`)}
-    </CustomInput>
+    </Input>
   );
 };
 
@@ -252,7 +252,7 @@ export const ModelFormFieldCurrency = ({
         'is-invalid': error
       })}
     >
-      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+      <span className="input-group-text">$</span>
       <CurrencyFormat
         {...props}
         value={!value ? '' : value}
@@ -283,9 +283,9 @@ export const ModelFormFieldEnum = ({ attribute, error, value, ...props }) => {
   }));
 
   return (
-    <CustomInput {...props} type="select" invalid={!!error} value={value || -1}>
+    <Input {...props} type="select" invalid={!!error} value={value || -1}>
       {optionsFromIndexWithTitle(integers, `${attribute.readableName}...`)}
-    </CustomInput>
+    </Input>
   );
 };
 
@@ -426,7 +426,7 @@ const ModelFormField = ({
     onChange(set(resource, path, value));
   };
 
-  // Create a unique id so that there is never a conflict for things like CustomInput
+  // Create a unique id so that there is never a conflict for things like Input
   // if you have the same formfield on a path
   const id = useMemo(() => `${path}-${uuidv4()}`, [path]);
 
@@ -524,7 +524,7 @@ const ModelFormField = ({
       }
     case 'boolean':
       return (
-        <CustomInput
+        <Input
           {...commonProps}
           className={classnames({ 'is-invalid': !!error })}
           type="checkbox"

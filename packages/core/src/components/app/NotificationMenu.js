@@ -43,7 +43,7 @@ const NotificationMenu = ({ sidebarMode = false }) => {
 
         {hasNotifications && <Badge>{notifications?.count}</Badge>}
       </DropdownToggle>
-      <DropdownMenu right={sidebarMode ? false : true}>
+      <DropdownMenu end={sidebarMode ? false : true}>
         {notifications?.notifications?.map((n) => {
           return (
             <DropdownItem

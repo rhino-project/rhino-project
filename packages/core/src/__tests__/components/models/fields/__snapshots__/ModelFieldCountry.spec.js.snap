@@ -6,6 +6,9 @@ exports[`ModelFieldCountry should render with global override shorthand 1`] = `
     class="country-field"
   >
     <div
+      class="country-label"
+    />
+    <div
       class="country-input form-control react-tel-input "
     >
       <div
@@ -38,21 +41,6 @@ exports[`ModelFieldCountry should render with global override shorthand 1`] = `
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="country-label"
-    >
-      <button
-        aria-label="Close"
-        class="close"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-        >
-          ×
-        </span>
-      </button>
     </div>
   </div>
 </DocumentFragment>
@@ -64,6 +52,9 @@ exports[`ModelFieldCountry should render with global override shorthand for mode
     class="country-field"
   >
     <div
+      class="country-label"
+    />
+    <div
       class="country-input form-control react-tel-input "
     >
       <div
@@ -96,21 +87,6 @@ exports[`ModelFieldCountry should render with global override shorthand for mode
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="country-label"
-    >
-      <button
-        aria-label="Close"
-        class="close"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-        >
-          ×
-        </span>
-      </button>
     </div>
   </div>
 </DocumentFragment>
@@ -122,6 +98,9 @@ exports[`ModelFieldCountry should render with global override shorthand for mode
     class="country-field"
   >
     <div
+      class="country-label"
+    />
+    <div
       class="country-input form-control react-tel-input "
     >
       <div
@@ -154,21 +133,6 @@ exports[`ModelFieldCountry should render with global override shorthand for mode
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="country-label"
-    >
-      <button
-        aria-label="Close"
-        class="close"
-        type="button"
-      >
-        <span
-          aria-hidden="true"
-        >
-          ×
-        </span>
-      </button>
     </div>
   </div>
 </DocumentFragment>
