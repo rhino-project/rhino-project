@@ -143,11 +143,11 @@ class RhinoSieveOrderTest < RhinoSieveOrderTestHelper
     assert_order @json["results"], @oldest_blog, @blog, @null_blog
   end
 
-  test "ordering puts nulls last for desc" do
+  test "ordering puts nulls first for desc" do
     @params = "-published_at"
     fetch("/api/blogs")
 
-    assert_order @json["results"], @blog, @oldest_blog, @null_blog
+    assert_order @json["results"], @null_blog, @blog, @oldest_blog
   end
 end
 
@@ -244,8 +244,10 @@ class RhinoSieveOrderRelatedModelsOuterJoinTest < RhinoSieveOrderTestHelper
   def seed
     @current_user = create :user
 
-    @blog1 = create :blog, user: @current_user
-    @blog_dummy = create :blog_dummy, blog: @blog1
+    @blog1 = create :blog, user: @current_user, title: "Aaa"
+    @blog2 = create :blog, user: @current_user, title: "Bbb"
+    @blog_dummy1 = create :blog_dummy, blog: @blog1
+    @blog_dummy2 = create :blog_dummy, blog: @blog2
     @blog_dummy_no_blog = create :blog_dummy, blog: nil
   end
 
@@ -254,6 +256,20 @@ class RhinoSieveOrderRelatedModelsOuterJoinTest < RhinoSieveOrderTestHelper
     fetch
 
     assert_includes parsed_response_names, @blog_dummy_no_blog.name, "Should not have excluded the blog_dummy record with no blog_id"
+  end
+
+  test "uses :nulls_last when asc" do
+    @params = "blog.title"
+    fetch
+
+    assert_equal [@blog_dummy1.name, @blog_dummy2.name, @blog_dummy_no_blog.name], parsed_response_names
+  end
+
+  test "uses :nulls_first when desc" do
+    @params = "-blog.title"
+    fetch
+
+    assert_equal [@blog_dummy_no_blog.name, @blog_dummy2.name, @blog_dummy1.name], parsed_response_names
   end
 
   def parsed_response_names
