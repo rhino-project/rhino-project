@@ -39,8 +39,7 @@ module Rhino
         result = []
         joins_hash.each do |entry|
           entry.each do |key, value|
-            inferred_join_type = join_type(filter, key)
-            result << ArelHelpers.join_association(base, { key => value }, inferred_join_type, {})
+            result << ArelHelpers.join_association(base, { key => value }, Arel::Nodes::OuterJoin, {})
           end
         end
         result
@@ -140,10 +139,6 @@ module Rhino
 
       def truthy?(value)
         value.present? && ActiveModel::Type::Boolean::FALSE_VALUES.exclude?(value)
-      end
-
-      def join_type(filter, key)
-        truthy?(filter[key]["_is_empty"]) ? Arel::Nodes::OuterJoin : Arel::Nodes::InnerJoin
       end
     end
   end
