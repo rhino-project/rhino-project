@@ -1,7 +1,6 @@
 import { Children, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { EDIT_CANCEL } from 'config';
 import { useModelEditContext } from 'rhino/hooks/controllers';
 import { useFormContext } from 'react-hook-form';
 import { useFieldSetErrors } from 'rhino/hooks/form';
@@ -143,7 +142,7 @@ ModelEditActionsBase.propTypes = {
 };
 
 ModelEditActionsBase.defaultProps = {
-  hasCancel: EDIT_CANCEL
+  hasCancel: false
 };
 
 const ModelEditActions = (props) =>

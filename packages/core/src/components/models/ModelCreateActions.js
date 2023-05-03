@@ -1,7 +1,6 @@
 import { Children, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { CREATE_CANCEL } from 'config';
 import { useFieldSetErrors } from 'rhino/hooks/form';
 import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useFormContext } from 'react-hook-form';
@@ -174,7 +173,7 @@ ModelCreateActionsBase.propTypes = {
 };
 
 ModelCreateActionsBase.defaultProps = {
-  hasCancel: CREATE_CANCEL
+  hasCancel: false
 };
 
 const ModelCreateActions = (props) =>
