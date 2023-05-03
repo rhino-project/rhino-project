@@ -2,11 +2,12 @@ import PropTypes from 'prop-types';
 import { ModalFooter } from 'reactstrap';
 
 import { useModelEditContext } from '../../hooks/controllers';
-import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import ModelEditActions, {
   ModelEditActionCancel,
   ModelEditActionSave,
-  ModelEditActionSaveShow
+  ModelEditActionSaveShow,
+  ModelEditActionsBase
 } from './ModelEditActions';
 import ModelWrapper from './ModelWrapper';
 import { useCallback, useMemo } from 'react';
@@ -81,13 +82,14 @@ ModelEditModalActionsBase.propTypes = {
   onModalClose: PropTypes.func.isRequired
 };
 
+const MODAL_EDIT_SAVESHOW_OVERRIDES = {
+  ModelEditActionSave: ModelEditModalActionSaveShow
+};
 export const ModelEditModalActionsSaveShow = (props) => (
-  <ModelEditActions
-    overrides={{ ModelEditActionSave: ModelEditModalActionSaveShow }}
-    {...props}
-  />
+  <ModelEditActionsBase overrides={MODAL_EDIT_SAVESHOW_OVERRIDES} {...props} />
 );
 
-const ModelEditModalActions = withGlobalOverrides(ModelEditModalActionsBase);
+const ModelEditModalActions = (props) =>
+  useGlobalComponent(ModelEditActionsBase, props);
 
 export default ModelEditModalActions;

@@ -8,7 +8,7 @@ import { useFormContext } from 'react-hook-form';
 import { useFieldSetErrors } from 'rhino/hooks/form';
 import { IconButton } from '../buttons';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
-import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import { getModelShowPath } from '../../utils/routes';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
@@ -147,6 +147,7 @@ ModelEditActionsBase.defaultProps = {
   hasCancel: EDIT_CANCEL
 };
 
-const ModelEditActions = withGlobalOverrides(ModelEditActionsBase);
+const ModelEditActions = (props) =>
+  useGlobalComponent(ModelEditActionsBase, props);
 
 export default ModelEditActions;
