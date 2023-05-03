@@ -12,10 +12,10 @@ import {
 } from 'rhino/utils/models';
 import { NavItem } from 'rhino/components/nav';
 import { useParams } from 'react-router-dom';
-import routePaths from 'rhino/routes';
+import { getAccountSettingsPath } from 'rhino/utils/routes';
 
 const tabTo = (baseOwnerPath, tabId) =>
-  baseOwnerPath.build(`${routePaths.accountSettings()}/${tabId}`);
+  baseOwnerPath.build(`${getAccountSettingsPath()}/${tabId}`);
 
 const SettingsPage = () => {
   //Checking subscription payment related status

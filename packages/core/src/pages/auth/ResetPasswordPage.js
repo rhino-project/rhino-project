@@ -1,14 +1,15 @@
 import React from 'react';
 
-import routePaths from 'rhino/routes';
 import { useResetPasswordAction } from 'rhino/queries/auth';
 import { useParsedSearch } from 'rhino/hooks/history';
 import AuthPage from './AuthPage';
 import AuthForm from 'rhino/components/auth/AuthForm';
 import { LinkButton } from 'rhino/components/buttons';
 import { SuccessAlert } from 'rhino/components/alerts';
+import { useSessionCreatePath } from 'rhino/hooks/routes';
 
 const ResetPasswordPage = () => {
+  const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: resetPasswordAction,
     isLoading,
@@ -39,7 +40,7 @@ const ResetPasswordPage = () => {
       />
       {isSuccess && (
         <SuccessAlert title={message}>
-          <LinkButton to={routePaths.sessionCreate()}>Sign In</LinkButton>
+          <LinkButton to={sessionCreatePath}>Sign In</LinkButton>
         </SuccessAlert>
       )}
     </AuthPage>

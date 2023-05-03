@@ -8,8 +8,8 @@ import { useFormContext } from 'react-hook-form';
 import { useFieldSetErrors } from 'rhino/hooks/form';
 import { IconButton } from '../buttons';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
-import routePaths from 'rhino/routes';
 import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
+import { getModelShowPath } from '../../utils/routes';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
   const { mutate, isLoading } = useModelEditContext();
@@ -47,7 +47,7 @@ export const ModelEditActionSaveShow = ({ onSave, ...props }) => {
   const { push } = useBaseOwnerNavigation();
   const handleSave = useCallback(
     (data) => {
-      const showPath = routePaths[model.name].show(data.id);
+      const showPath = getModelShowPath(model, data.id);
 
       if (onSave) onSave(data);
 

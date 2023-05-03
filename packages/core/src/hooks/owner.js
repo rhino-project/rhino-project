@@ -1,6 +1,11 @@
-import { useContext, useMemo } from 'react';
+import { createContext, useContext, useMemo } from 'react';
 import { useParams } from 'react-router';
-import { BaseOwnerContext } from 'rhino/contexts/BaseOwnerContext';
+
+export const BaseOwnerContext = createContext({
+  baseOwner: null,
+  resolving: true,
+  usersRoles: []
+});
 
 export const useBaseOwnerContext = () => {
   return useContext(BaseOwnerContext);

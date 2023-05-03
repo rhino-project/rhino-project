@@ -3,12 +3,12 @@ import { ENABLE_MODEL_ROUTES } from 'config';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
-import routePaths from 'rhino/routes';
 import { getBaseOwnedModels } from 'rhino/utils/models';
 import { useBaseOwnerPath } from 'rhino/hooks/history';
 import CustomPrimaryNavigation from 'components/app/CustomPrimaryNavigation';
+import { getModelIndexPath } from 'rhino/utils/routes';
 
-const modelsRoute = (model) => routePaths[model.name].index();
+const modelsRoute = (model) => getModelIndexPath(model);
 
 const useNavModels = () => {
   const models = getBaseOwnedModels();

@@ -4,11 +4,15 @@ import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelShowContext } from 'rhino/hooks/controllers';
 import { IconButton } from '../buttons';
 import { useBaseOwnerNavigation } from '../../hooks/history';
-import routePaths from 'rhino/routes';
 import withGlobalOverrides, { useOverrides } from '../../hooks/overrides';
 import withParams from '../../routes/withParams';
 import { getParentModel, isBaseOwned } from '../../utils/models';
 import ModelEditModal from './ModelEditModal';
+import {
+  getModelEditPath,
+  getModelIndexPath,
+  getModelShowPath
+} from 'rhino/utils/routes';
 
 export const ModelShowActionEdit = ({ children, ...props }) => {
   const { model, resource } = useModelShowContext();
@@ -16,7 +20,7 @@ export const ModelShowActionEdit = ({ children, ...props }) => {
 
   const editPath = useMemo(
     () =>
-      withParams(routePaths[model.name].edit(resource?.id), {
+      withParams(getModelEditPath(model, resource?.id), {
         back: location.pathname
       }),
     [model, resource]
@@ -72,13 +76,11 @@ export const ModelShowActionDelete = ({ children, ...props }) => {
       mutate(resource.id, {
         onSuccess: () => {
           if (isBaseOwned(model)) {
-            baseOwnerNavigation.push(routePaths[model.name].index());
+            baseOwnerNavigation.push(getModelIndexPath(model));
           } else {
             const parentModel = getParentModel(model);
             const parent = resource[parentModel.model];
-            baseOwnerNavigation.push(
-              routePaths[parentModel.name].show(parent.id)
-            );
+            baseOwnerNavigation.push(getModelShowPath(parentModel, parent.id));
           }
         }
       });

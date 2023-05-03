@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { format, formatDistance } from 'date-fns';
 
-import routePaths from 'rhino/routes';
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
 import { NavLink } from 'react-router-dom';
 import { useBaseOwnerPath } from 'rhino/hooks/history';
 import { Flag } from 'rhino/components/models/fields/ModelFieldCountry';
 import { capitalize } from 'lodash';
+import { getModelIndexPath, getModelShowPath } from './routes';
 
 export const buildCancelAction = (extra) => ({
   name: 'cancel',
@@ -187,7 +187,7 @@ export const breadcrumbChildrenFor = (model, resource, individual = false) => {
   if (!resource) return result;
 
   if (isBaseOwned(model)) {
-    const path = routePaths[model.name].index();
+    const path = getModelIndexPath(model);
     result = [
       <BreadcrumbItemWrapper key={path} tag={NavLink} to={path} exact>
         {model.pluralReadableName}
@@ -200,7 +200,7 @@ export const breadcrumbChildrenFor = (model, resource, individual = false) => {
   }
 
   if (individual) {
-    const path = routePaths[model.name].show(resource.id);
+    const path = getModelShowPath(model, resource.id);
     result.push(
       <BreadcrumbItemWrapper key={path} tag={NavLink} to={path} exact>
         {resource['display_name']}
