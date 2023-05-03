@@ -215,11 +215,13 @@ export const useModelShowController = (options) => {
   });
 
   const { mutate: update } = useModelUpdate(model);
+  const destroy = useModelDelete(model);
 
   return {
     model,
     modelId,
     ...query,
+    delete: destroy,
     update
   };
 };
