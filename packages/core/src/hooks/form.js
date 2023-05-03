@@ -1,9 +1,53 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { assign, cloneDeep, compact, get, omit } from 'lodash';
+import {
+  assign,
+  cloneDeep,
+  compact,
+  get,
+  isString,
+  omit,
+  toPath
+} from 'lodash';
 import { useController, useFormContext } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getModelAndAttributeFromPath } from 'rhino/utils/models';
 import { useModel } from './models';
+import { object } from 'yup';
+import { yupValidatorsFromAttribute } from '../utils/yup';
+
+export const useSchema = (model, paths) => {
+  const schema = useMemo(() => {
+    let schema = object();
+
+    paths?.forEach((path) => {
+      if (!isString(path)) return;
+
+      const [, attribute, , plainPath] = getModelAndAttributeFromPath(
+        model,
+        path
+      );
+
+      // Have to handle nested such as blog.user
+      let subSchema = yupValidatorsFromAttribute(attribute);
+
+      const pathParts = toPath(plainPath);
+      pathParts
+        .slice(1)
+        .reverse()
+        .forEach((part) => {
+          subSchema = object().shape({ [part]: subSchema });
+        });
+
+      schema = schema.shape({
+        [pathParts[0]]: subSchema
+      });
+    });
+
+    return schema;
+  }, [model, paths]);
+
+  return schema;
+};
 
 export const useControlledForm = (resource) => {
   const [values, setValues] = useState(resource);
@@ -101,9 +145,19 @@ export const useFieldError = (path) => {
     formState: { errors }
   } = useFormContext();
 
-  const error = useMemo(() => get(errors, path), [errors, path]);
+  // Cannot memoize this because the errors object is a stable object
+  return get(errors, path);
+};
 
-  return error;
+export const useDefaultValues = (model, paths, options = {}) => {
+  const schema = useSchema(model, paths);
+
+  const defaultValues = useMemo(
+    () => ({ ...schema.default(), ...options.extraDefaultValues }),
+    [schema, options.extraDefaultValues]
+  );
+
+  return defaultValues;
 };
 
 export const useResolver = (schema) => {

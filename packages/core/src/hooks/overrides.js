@@ -170,7 +170,9 @@ export const useGlobalOverrides = (
         rhinoConfig.components[key],
         // Legacy overrides
         globalOverrides?.[model?.model]?.index?.[key],
-        globalOverrides?.[model?.model]?.show?.[key]
+        globalOverrides?.[model?.model]?.show?.[key],
+        globalOverrides?.[model?.model]?.create?.[key],
+        globalOverrides?.[model?.model]?.edit?.[key]
       ].find((override) => override !== undefined);
 
       if (overrideComponent !== undefined) {
@@ -195,18 +197,14 @@ const withGlobalOverrides = (BaseComponent) => {
     BaseComponent.displayName || BaseComponent.name
   }`.replace(/Base$/, '');
 
-  const GlobalComponent = ({ overrides, ...props }) => {
+  const GlobalComponent = ({ ...props }) => {
     const defaultComponents = useMemo(
       () => ({ [overrideName]: BaseComponent }),
       []
     );
 
     // FIXME should we pass the overrides or not?
-    const globalOverride = useGlobalOverrides(
-      defaultComponents,
-      overrides,
-      props
-    );
+    const globalOverride = useGlobalOverrides(defaultComponents, {}, props);
 
     const GlobalOverrideComponent = globalOverride[overrideName];
 

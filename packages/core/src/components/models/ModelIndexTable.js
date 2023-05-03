@@ -37,14 +37,17 @@ export const ModelIndexTableBase = (props) => {
   const { baseRoute, paths } = props;
   const baseOwnerNavigation = useBaseOwnerNavigation();
 
-  const pathsOrDefault = useMemo(
-    () =>
+  const pathsOrDefault = useMemo(() => {
+    if (props.overrides?.ModelTable?.props?.paths)
+      console.warn('ModelTable pass legacy paths prop');
+
+    return (
       paths ||
       // Legacy
       props.overrides?.ModelTable?.props?.paths ||
-      getViewablePaths(model),
-    [paths, props.overrides?.ModelTable?.props?.paths, model]
-  );
+      getViewablePaths(model)
+    );
+  }, [paths, props.overrides?.ModelTable?.props?.paths, model]);
 
   const computedPaths = usePaths(pathsOrDefault, resources);
 

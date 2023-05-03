@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import { CREATE_MODAL } from 'config';
 import routePaths from 'rhino/routes';
-import { getParentModel, isBaseOwned } from 'rhino/utils/models';
+import { isBaseOwned } from 'rhino/utils/models';
 import { useBaseOwnerId } from 'rhino/hooks/owner';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 
@@ -17,6 +17,7 @@ import withParams from 'rhino/routes/withParams';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 import ModelIndexBase from './ModelIndexBase';
 import { ModelIndexTableBase } from './ModelIndexTable';
+import { ModelCreateModalActionSaveShow } from './ModelCreateModalActions';
 
 const ModelIndexActions = (props) => {
   const { model } = useModelIndexContext();
@@ -34,29 +35,13 @@ const ModelIndexActions = (props) => {
     return null;
   }, [model, parent, baseOwnerId]);
 
-  const parentModel = useMemo(() => getParentModel(model), [model]);
-
   const createPath = useMemo(
     () =>
       withParams(routePaths[model.name].create(), {
         back: location.pathname,
-        // FIXME Need foreignKey type identifier
-        [parentModel?.model]: parentId
+        parentId
       }),
-    [location, model, parentModel, parentId]
-  );
-
-  const handleActionSuccess = useCallback(
-    (action, props, data) => {
-      // FIXME Need foreignKey type identifier
-      const resourceId = data?.id;
-
-      if (!resourceId) return;
-
-      const showPath = routePaths[model.name].show(resourceId);
-      baseOwnerNavigation.push(showPath);
-    },
-    [baseOwnerNavigation, model]
+    [location, model, parentId]
   );
 
   const handleModalClose = () => setModalOpen(false);
@@ -92,11 +77,15 @@ const ModelIndexActions = (props) => {
       <ModelActions {...props} actions={computedActions} />
       {CREATE_MODAL && (
         <ModelCreateModal
-          {...props}
-          resource={{ [parentModel.model]: parentId }}
+          overrides={{
+            ModelCreateModalActions: {
+              ModelCreateModalActionSave: ModelCreateModalActionSaveShow
+            }
+          }}
+          model={model}
+          parentId={parentId}
           isOpen={modalOpen}
           onModalClose={handleModalClose}
-          onActionSuccess={handleActionSuccess}
         />
       )}
     </ModelWrapper>

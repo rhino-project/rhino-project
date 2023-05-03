@@ -85,7 +85,7 @@ const ModelShowActions = (props) => {
       <ModelActions model={model} {...props} actions={computedActions} />
       {EDIT_MODAL && (
         <ModelEditModal
-          {...props}
+          model={model}
           modelId={resource.id}
           isOpen={modalOpen}
           onModalClose={handleModalClose}

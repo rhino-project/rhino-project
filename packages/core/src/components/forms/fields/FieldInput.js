@@ -20,6 +20,7 @@ const FieldInput = ({ overrides, setValueAs, ...props }) => {
   // https://github.com/react-hook-form/react-hook-form/issues/4414
   // FIXME: All registration props could be extracted in useFieldInheritedProps
   const { ref, ...fieldProps } = useFieldRegister(path, { setValueAs });
+  // FIXME: I should be able to get the error from the fieldProps/form context
   const error = useFieldError(path);
 
   const placeholder = useFieldPlaceholder(props);

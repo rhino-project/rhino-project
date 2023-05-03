@@ -1,7 +1,7 @@
 import qs from 'qs';
 import { useHistory, useLocation } from 'react-router-dom';
-import routePaths from 'rhino/routes';
 import { useBaseOwnerId } from './owner';
+import { useMemo } from 'react';
 
 export const useParsedSearch = () => {
   const { search } = useLocation();
@@ -9,19 +9,25 @@ export const useParsedSearch = () => {
   return qs.parse(search, { ignoreQueryPrefix: true });
 };
 
-export const useBackHistory = () => {
-  const baseOwnerNavigation = useBaseOwnerNavigation();
+export const useBackHistoryLink = () => {
   const { search } = useLocation();
-  const history = useHistory();
 
-  const queryParams = qs.parse(search, { ignoreQueryPrefix: true });
+  const queryParams = useMemo(
+    () => qs.parse(search, { ignoreQueryPrefix: true }),
+    [search]
+  );
+
+  return queryParams.back;
+};
+
+export const useBackHistory = () => {
+  const history = useHistory();
+  const backLink = useBackHistoryLink();
 
   // FIXME Should this be a push or a replace?
   return () => {
-    if (queryParams.back) {
-      history.push(queryParams.back);
-    } else {
-      baseOwnerNavigation.push(routePaths.rootpath());
+    if (backLink) {
+      history.push(backLink);
     }
   };
 };
