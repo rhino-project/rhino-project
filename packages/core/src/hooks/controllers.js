@@ -16,6 +16,7 @@ import { DEFAULT_SORT, MAX_PAGES, PAGE_SIZE } from 'config';
 import withParams from 'rhino/routes/withParams';
 import {
   useModelCreate,
+  useModelDelete,
   useModelIndex,
   useModelShow,
   useModelUpdate
@@ -108,7 +109,8 @@ export const useModelIndexController = (options) => {
     networkOptions: options?.networkOptions
   });
 
-  const { mutate: update } = useModelUpdate(model);
+  const update = useModelUpdate(model);
+  const destroy = useModelDelete(model);
 
   // Pagination
   const totalPages = useMemo(() => Math.ceil(query.total / limit), [
@@ -187,7 +189,8 @@ export const useModelIndexController = (options) => {
     lastPage,
     setPage,
     ...query,
-    update
+    update,
+    delete: destroy
   };
 };
 
