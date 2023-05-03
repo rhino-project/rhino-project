@@ -4,16 +4,8 @@ import ModelIndexProvider from './ModelIndexProvider';
 import { useModelIndexController } from 'rhino/hooks/controllers';
 
 const ModelIndexBase = ({ children, ...props }) => {
-  const { filter, limit, offset, order, search, syncUrl, model } = props;
-
   const controller = useModelIndexController({
-    model,
-    filter,
-    limit,
-    offset,
-    order,
-    search,
-    syncUrl,
+    ...props,
     queryOptions: { keepPreviousData: true }
   });
 

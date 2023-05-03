@@ -1,7 +1,6 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import { useBaseOwnerId } from 'rhino/hooks/owner';
-import { ModelIndexActions } from 'rhino/components/models/ModelIndex';
 import { useModel } from 'rhino/hooks/models';
 import ModelEditableCellReference from '../models/cells/ModelEditableCellReference';
 import ModelIndexBase from '../models/ModelIndexBase';
@@ -10,6 +9,9 @@ import ModelIndexTable from '../models/ModelIndexTable';
 import { IconButton } from '../buttons';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 import ModelCreateModal from '../models/ModelCreateModal';
+import ModelIndexActions, {
+  ModelIndexActionCreate
+} from '../models/ModelIndexActions';
 
 const RemoveButton = (props) => {
   const {
@@ -43,14 +45,32 @@ const cellPaths = [
   <RemoveButton />
 ];
 
+const overrides = {
+  ModelFilters: {
+    props: {
+      paths: ['role']
+    }
+  },
+  ModelSort: {
+    props: { paths: ['user.email', 'user.name'] }
+  }
+};
+
 const EditOrganizationAccess = () => {
   const model = useModel('users_role');
   const baseOwnerId = useBaseOwnerId();
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleAction = useCallback(() => setModalOpen(true), [setModalOpen]);
-
   const handleModalClose = () => setModalOpen(false);
+
+  const actions = useMemo(() => {
+    return [
+      <ModelIndexActionCreate onClick={handleAction}>
+        Invite User
+      </ModelIndexActionCreate>
+    ];
+  }, [handleAction]);
 
   return (
     <>
@@ -59,31 +79,9 @@ const EditOrganizationAccess = () => {
         filter={{ organization: baseOwnerId }}
         order="user.email"
       >
-        <ModelIndexHeader
-          overrides={{
-            ModelFilters: {
-              props: {
-                paths: ['role']
-              }
-            },
-            ModelSort: {
-              props: { paths: ['user.email', 'user.name'] }
-            }
-          }}
-        />
+        <ModelIndexHeader overrides={overrides} />
         <hr />
-        <ModelIndexActions
-          model={model}
-          actions={[
-            {
-              name: 'create',
-              label: 'Invite User',
-              color: 'primary',
-              icon: 'plus',
-              onAction: handleAction
-            }
-          ]}
-        />
+        <ModelIndexActions actions={actions} />
         <ModelIndexTable paths={cellPaths} onRowClick={null} />
       </ModelIndexBase>
       <ModelCreateModal
