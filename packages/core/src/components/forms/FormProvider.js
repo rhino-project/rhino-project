@@ -7,15 +7,17 @@ const FormProvider = ({ children, ...props }) => {
 
   return (
     <>
-      <DevTool
-        control={control}
-        placement={'top-left'}
-        styles={{
-          button: {
-            width: '20px'
-          }
-        }}
-      />
+      {import.meta.env.DEV && (
+        <DevTool
+          control={control}
+          placement={'top-left'}
+          styles={{
+            button: {
+              width: '20px'
+            }
+          }}
+        />
+      )}
       <RHFFormProvider {...props}>{children}</RHFFormProvider>
     </>
   );
