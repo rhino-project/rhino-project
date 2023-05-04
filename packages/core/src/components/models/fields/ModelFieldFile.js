@@ -93,11 +93,11 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
   return (
     <>
       <div className="input-group">
+        {fileText && <div className="input-file-label">{fileText}</div>}
         <Input
           key={`${path}-${clearCounter}`}
           id={path}
           innerRef={ref}
-          label={fileText}
           type="file"
           name={path}
           disabled={uploadingCount > 0}
@@ -112,7 +112,6 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
           <Progress
             className="mt-3"
             value={(uploadedFileIds.current.length / uploadingCount) * 100}
-            indicating
           />
         </div>
       )}
