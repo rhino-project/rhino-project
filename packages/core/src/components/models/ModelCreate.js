@@ -1,23 +1,21 @@
 import PropTypes from 'prop-types';
 
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useGlobalOverrides } from 'rhino/hooks/overrides';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
-import ModelCreateBase from './ModelCreateBase';
 import ModelCreateHeader from './ModelCreateHeader';
 import ModelCreateForm from './ModelCreateForm';
 import ModelCreateActions from './ModelCreateActions';
+import ModelCreateSimple from './ModelCreateSimple';
 
 const defaultComponents = {
-  ModelCreate: ModelCreateBase,
   ModelCreateHeader,
   ModelCreateForm,
   ModelCreateActions
 };
 
-const ModelCreate = ({ overrides, ...props }) => {
+export const ModelCreateBase = ({ overrides, ...props }) => {
   // FIXME: Global overrides shouldn't be done this way
   const {
-    ModelCreate,
     ModelCreateHeader,
     ModelCreateForm,
     ModelCreateActions
@@ -27,19 +25,21 @@ const ModelCreate = ({ overrides, ...props }) => {
     console.warn('ModelCreateForm pass legacy paths prop');
 
   return (
-    <ModelWrapper {...props} baseClassName="create">
-      <ModelCreate paths={ModelCreateForm().props?.paths} {...props}>
+    <ModelCreateSimple paths={ModelCreateForm().props?.paths} {...props}>
+      <ModelWrapper {...props} baseClassName="create">
         <ModelCreateHeader />
         <ModelCreateForm />
         <ModelCreateActions />
-      </ModelCreate>
-    </ModelWrapper>
+      </ModelWrapper>
+    </ModelCreateSimple>
   );
 };
 
-ModelCreate.propTypes = {
+ModelCreateBase.propTypes = {
   model: PropTypes.object.isRequired,
   overrides: PropTypes.object
 };
+
+const ModelCreate = (props) => useGlobalComponent(ModelCreateBase, props);
 
 export default ModelCreate;

@@ -1,53 +1,58 @@
 import PropTypes from 'prop-types';
 
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useGlobalOverrides } from 'rhino/hooks/overrides';
 
 import ModelIndexHeader from 'rhino/components/models/ModelIndexHeader';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
-import ModelIndexBase from './ModelIndexBase';
 import { ModelIndexTableBase } from './ModelIndexTable';
 import ModelIndexActions from './ModelIndexActions';
+import ModelIndexSimple from './ModelIndexSimple';
 
 const defaultComponents = {
-  ModelIndex: ModelIndexBase,
   ModelIndexHeader,
   ModelIndexActions,
   ModelIndexTable: ModelIndexTableBase
 };
 
-const ModelIndex = ({ overrides, baseFilter, ...props }) => {
+export const ModelIndexBase = ({
+  overrides,
+  baseFilter,
+  wrapper,
+  ...props
+}) => {
+  const {
+    ModelIndexHeader,
+    ModelIndexActions,
+    ModelIndexTable
+  } = useGlobalOverrides(defaultComponents, overrides, props);
+  const { model } = props;
+
   if (baseFilter)
     console.warn(
       'baseFilter is deprecated. Use filter/limit/offset/order/search instead'
     );
 
-  const {
-    ModelIndex,
-    ModelIndexHeader,
-    ModelIndexActions,
-    ModelIndexTable
-  } = useGlobalOverrides(defaultComponents, overrides, props);
-
+  // Legacy baseFilter support - must be after the new props to avoid being overwritten by undefined
   return (
-    <ModelWrapper {...props} baseClassName="index">
-      {/* Legacy support - must be after the new props to avoid being overwritten by
-      undefined */}
-      <ModelIndex {...props} {...baseFilter}>
+    <ModelIndexSimple {...props} {...baseFilter}>
+      <ModelWrapper model={model} wrapper={wrapper} baseClassName="index">
         {/* FIXME: Stop passing down props */}
         <ModelIndexHeader {...props} />
         <hr />
         <ModelIndexActions {...props} />
         <ModelIndexTable {...props} />
-      </ModelIndex>
-    </ModelWrapper>
+      </ModelWrapper>
+    </ModelIndexSimple>
   );
 };
 
-ModelIndex.propTypes = {
+ModelIndexBase.propTypes = {
   baseFilter: PropTypes.object,
   model: PropTypes.object.isRequired,
   overrides: PropTypes.object,
   parent: PropTypes.object
 };
+
+const ModelIndex = (props) => useGlobalComponent(ModelIndexBase, props);
 
 export default ModelIndex;

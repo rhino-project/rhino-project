@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import ModelEditBase from './ModelEditBase';
 import { useModelEditContext } from '../../hooks/controllers';
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import ModelWrapper from './ModelWrapper';
 import ModelEditModalActions from './ModelEditModalActions';
+import ModelEditSimple from './ModelEditSimple';
 
 export const ModelEditModalHeader = (props) => {
   const { model } = useModelEditContext();
@@ -51,13 +51,13 @@ const ModelEditModalBase = ({
   );
 
   return (
-    <ModelEditBase spinner={isOpen} {...props}>
-      <Modal isOpen={isOpen} autoFocus={false} toggle={onModalClose}>
+    <Modal isOpen={isOpen} autoFocus={false} toggle={onModalClose}>
+      <ModelEditSimple fallback={isOpen} {...props}>
         <ModelEditModalHeader title={title} />
         <ModelEditModalForm />
         <ModelEditModalActions onModalClose={onModalClose} />
-      </Modal>
-    </ModelEditBase>
+      </ModelEditSimple>
+    </Modal>
   );
 };
 

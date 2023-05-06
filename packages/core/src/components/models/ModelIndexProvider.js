@@ -4,7 +4,7 @@ export const ModelIndexContext = createContext();
 
 const ModelIndexProvider = ({ children, ...props }) => {
   return (
-    <ModelIndexContext.Provider value={props}>
+    <ModelIndexContext.Provider value={{ ...props }}>
       {children}
     </ModelIndexContext.Provider>
   );
