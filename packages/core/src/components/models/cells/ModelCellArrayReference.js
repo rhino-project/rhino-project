@@ -1,14 +1,21 @@
 import { useCallback } from 'react';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import CellString from 'rhino/components/table/cells/CellString';
+import { isFunction } from 'lodash';
 
-export const ModelCellArrayReferenceBase = ({ getValue, ...props }) => {
+export const ModelCellArrayReferenceBase = ({
+  getValue,
+  accessor = 'display_name',
+  ...props
+}) => {
   const syntheticGetValue = useCallback(
     () =>
       getValue()
-        ?.map((v) => v.display_name)
+        ?.map((v) =>
+          isFunction(accessor) ? accessor(getValue()) : v[accessor]
+        )
         ?.join(', '),
-    [getValue]
+    [accessor, getValue]
   );
 
   return <CellString getValue={syntheticGetValue} {...props} />;
