@@ -1,5 +1,9 @@
 import { useModel } from 'rhino/hooks/models';
-import { getModelAndAttributeFromPath } from 'rhino/utils/models';
+import {
+  getModelAndAttributeFromPath,
+  getModelFromRef,
+  isOwnerGlobal
+} from 'rhino/utils/models';
 import ModelFieldString from './fields/ModelFieldString';
 import ModelFieldDateTime from './fields/ModelFieldDateTime';
 import ModelFieldDate from './fields/ModelFieldDate';
@@ -20,6 +24,7 @@ import ModelFieldCountry from './fields/ModelFieldCountry';
 import ModelFieldCurrency from './fields/ModelFieldCurrency';
 import ModelFieldIntegerSelect from './fields/ModelFieldIntegerSelect';
 import ModelFieldNested from './fields/ModelFieldNested';
+import ModelFieldOwnerReference from './fields/ModelFieldOwnerReference';
 
 export const ModelField = ({ overrides, ...props }) => {
   const model = useModel(props.model);
@@ -45,11 +50,13 @@ export const ModelField = ({ overrides, ...props }) => {
         return <ModelFieldNested {...props} />;
       }
     case 'reference':
-      if (path.endsWith('_attachment')) {
-        return <ModelFieldFile {...props} />;
-      } else {
-        return <ModelFieldReference {...props} />;
-      }
+      const refModel = getModelFromRef(attribute);
+
+      if (path.endsWith('_attachment')) return <ModelFieldFile {...props} />;
+
+      if (isOwnerGlobal(refModel)) return <ModelFieldReference {...props} />;
+
+      return <ModelFieldOwnerReference {...props} />;
     case 'boolean':
       return <ModelFieldBoolean {...props} />;
     case 'integer':
