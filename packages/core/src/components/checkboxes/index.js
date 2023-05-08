@@ -1,5 +1,5 @@
 import { forwardRef, useRef, useEffect } from 'react';
-import { CustomInput } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 export const IndeterminateCheckbox = forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -10,6 +10,6 @@ export const IndeterminateCheckbox = forwardRef(
       if (resolvedRef) resolvedRef.current.indeterminate = indeterminate;
     }, [resolvedRef, indeterminate]);
 
-    return <CustomInput type="checkbox" innerRef={resolvedRef} {...rest} />;
+    return <Input type="checkbox" innerRef={resolvedRef} {...rest} />;
   }
 );

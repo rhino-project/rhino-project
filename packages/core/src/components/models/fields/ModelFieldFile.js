@@ -1,7 +1,7 @@
 import { useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Alert, CustomInput, Progress } from 'reactstrap';
+import { Alert, Input, Progress } from 'reactstrap';
 
 import Uploader from 'rhino/utils/uploader';
 import { CloseButton } from 'rhino/components/buttons';
@@ -37,7 +37,7 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
   const uploadedFileNames = useRef({});
 
   const handleClear = () => {
-    // Hack to reset the file input because CustomInput doesn't get an
+    // Hack to reset the file input because Input doesn't get an
     // onChange notification if we do input.value = ''
     setClearCounter(clearCounter + 1);
 
@@ -92,12 +92,12 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
 
   return (
     <>
-      <div className="d-flex flex-row">
-        <CustomInput
+      <div className="input-group">
+        {fileText && <div className="input-file-label">{fileText}</div>}
+        <Input
           key={`${path}-${clearCounter}`}
           id={path}
           innerRef={ref}
-          label={fileText}
           type="file"
           name={path}
           disabled={uploadingCount > 0}
@@ -105,16 +105,13 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
           onChange={handleFileChange}
           {...fieldProps}
         />
-        {!attribute.required && value && (
-          <CloseButton className="ml-2" onClick={handleClear} />
-        )}
+        {!attribute.required && value && <CloseButton onClick={handleClear} />}
       </div>
       {!!uploadingCount && (
         <div>
           <Progress
             className="mt-3"
             value={(uploadedFileIds.current.length / uploadingCount) * 100}
-            indicating
           />
         </div>
       )}

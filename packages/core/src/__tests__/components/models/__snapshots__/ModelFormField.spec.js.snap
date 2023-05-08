@@ -2,11 +2,11 @@
 
 exports[`ModelFormField renders errors for Array > Reference Attribute > Not creatable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not creatable
@@ -53,11 +53,11 @@ exports[`ModelFormField renders errors for Array > Reference Attribute > Not cre
 
 exports[`ModelFormField renders errors for Array > Reference Attribute > Not destroyable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not destroyable
@@ -66,13 +66,12 @@ exports[`ModelFormField renders errors for Array > Reference Attribute > Not des
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -127,11 +126,11 @@ exports[`ModelFormField renders errors for Array > Reference Attribute > Not des
 
 exports[`ModelFormField renders errors for Array > Reference Attribute > Not updatable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not updatable
@@ -140,13 +139,12 @@ exports[`ModelFormField renders errors for Array > Reference Attribute > Not upd
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -201,11 +199,11 @@ exports[`ModelFormField renders errors for Array > Reference Attribute > Not upd
 
 exports[`ModelFormField renders errors for Array > Reference Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute
@@ -214,13 +212,12 @@ exports[`ModelFormField renders errors for Array > Reference Attribute 1`] = `
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -275,17 +272,17 @@ exports[`ModelFormField renders errors for Array > Reference Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Array > String Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; String Attribute
   </label>
   <div
-    className="rbt is-invalid"
+    className="rbt is-invalid is-invalid"
     style={
       Object {
         "outline": "none",
@@ -314,8 +311,10 @@ exports[`ModelFormField renders errors for Array > String Attribute 1`] = `
           }
         >
           <input
-            aria-autocomplete="list"
+            aria-autocomplete="both"
+            aria-expanded={false}
             aria-haspopup="listbox"
+            aria-multiselectable={true}
             autoComplete="off"
             className="rbt-input-main"
             onBlur={[Function]}
@@ -323,6 +322,7 @@ exports[`ModelFormField renders errors for Array > String Attribute 1`] = `
             onClick={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
+            role="combobox"
             style={
               Object {
                 "backgroundColor": "transparent",
@@ -347,7 +347,7 @@ exports[`ModelFormField renders errors for Array > String Attribute 1`] = `
                 "backgroundColor": "transparent",
                 "borderColor": "transparent",
                 "boxShadow": "none",
-                "color": "rgba(0, 0, 0, 0.35)",
+                "color": "rgba(0, 0, 0, 0.54)",
                 "left": 0,
                 "pointerEvents": "none",
                 "position": "absolute",
@@ -372,45 +372,36 @@ exports[`ModelFormField renders errors for Array > String Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Boolean Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Boolean Attribute
   </label>
-  <div
-    className="is-invalid custom-checkbox custom-control"
-    hidden={false}
-  >
-    <input
-      attribute={
-        Object {
-          "readableName": "Boolean Attribute",
-          "type": "boolean",
-        }
+  <input
+    attribute={
+      Object {
+        "readableName": "Boolean Attribute",
+        "type": "boolean",
       }
-      checked=""
-      className="custom-control-input"
-      error="display-error"
-      id="test-123"
-      onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
+    }
+    checked=""
+    className="is-invalid form-check-input"
+    error="display-error"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
       }
-      type="checkbox"
-      value=""
-    />
-    <label
-      className="custom-control-label"
-      htmlFor="test-123"
-    />
-  </div>
+    }
+    type="checkbox"
+    value=""
+  />
   <div
     className="invalid-feedback"
   >
@@ -421,11 +412,11 @@ exports[`ModelFormField renders errors for Boolean Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Date Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Date Attribute
@@ -461,11 +452,11 @@ exports[`ModelFormField renders errors for Date Attribute 1`] = `
 
 exports[`ModelFormField renders errors for DateTime Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     DateTime Attribute
@@ -501,11 +492,11 @@ exports[`ModelFormField renders errors for DateTime Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Decimal Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Decimal Attribute
@@ -535,11 +526,11 @@ exports[`ModelFormField renders errors for Decimal Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Decimal Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Decimal Attribute Currency
@@ -547,15 +538,11 @@ exports[`ModelFormField renders errors for Decimal Attribute Currency 1`] = `
   <div
     className="is-invalid input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control border-danger"
       id="test-123"
@@ -584,11 +571,11 @@ exports[`ModelFormField renders errors for Decimal Attribute Currency 1`] = `
 
 exports[`ModelFormField renders errors for Float Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Float Attribute
@@ -618,11 +605,11 @@ exports[`ModelFormField renders errors for Float Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Float Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Float Attribute Currency
@@ -630,15 +617,11 @@ exports[`ModelFormField renders errors for Float Attribute Currency 1`] = `
   <div
     className="is-invalid input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control border-danger"
       id="test-123"
@@ -667,11 +650,11 @@ exports[`ModelFormField renders errors for Float Attribute Currency 1`] = `
 
 exports[`ModelFormField renders errors for Integer Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Integer Attribute
@@ -701,17 +684,17 @@ exports[`ModelFormField renders errors for Integer Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Integer Attribute Select 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Integer Attribute Select
   </label>
   <select
-    className="custom-select"
+    className="form-select"
     error="display-error"
     id="test-123"
     onChange={[Function]}
@@ -741,11 +724,11 @@ exports[`ModelFormField renders errors for Integer Attribute Select 1`] = `
 
 exports[`ModelFormField renders errors for Number Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Number Attribute
@@ -775,11 +758,11 @@ exports[`ModelFormField renders errors for Number Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Number Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Number Attribute Currency
@@ -787,15 +770,11 @@ exports[`ModelFormField renders errors for Number Attribute Currency 1`] = `
   <div
     className="is-invalid input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control border-danger"
       id="test-123"
@@ -824,11 +803,11 @@ exports[`ModelFormField renders errors for Number Attribute Currency 1`] = `
 
 exports[`ModelFormField renders errors for Phone Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Phone Attribute
@@ -890,17 +869,17 @@ exports[`ModelFormField renders errors for Phone Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Reference > Attachment Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Reference &gt; Attachment Attribute
   </label>
   <div
-    className="rbt typeahead is-invalid"
+    className="rbt is-invalid typeahead is-invalid"
     style={
       Object {
         "outline": "none",
@@ -943,7 +922,7 @@ exports[`ModelFormField renders errors for Reference > Attachment Attribute 1`] 
             "backgroundColor": "transparent",
             "borderColor": "transparent",
             "boxShadow": "none",
-            "color": "rgba(0, 0, 0, 0.35)",
+            "color": "rgba(0, 0, 0, 0.54)",
             "left": 0,
             "pointerEvents": "none",
             "position": "absolute",
@@ -966,17 +945,17 @@ exports[`ModelFormField renders errors for Reference > Attachment Attribute 1`] 
 
 exports[`ModelFormField renders errors for Reference Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Reference Attribute
   </label>
   <div
-    className="rbt typeahead is-invalid"
+    className="rbt is-invalid typeahead is-invalid"
     style={
       Object {
         "outline": "none",
@@ -1019,7 +998,7 @@ exports[`ModelFormField renders errors for Reference Attribute 1`] = `
             "backgroundColor": "transparent",
             "borderColor": "transparent",
             "boxShadow": "none",
-            "color": "rgba(0, 0, 0, 0.35)",
+            "color": "rgba(0, 0, 0, 0.54)",
             "left": 0,
             "pointerEvents": "none",
             "position": "absolute",
@@ -1042,18 +1021,18 @@ exports[`ModelFormField renders errors for Reference Attribute 1`] = `
 
 exports[`ModelFormField renders errors for String > Enum Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     String &gt; Enum Attribute
   </label>
   <select
     aria-invalid={true}
-    className="is-invalid custom-select"
+    className="is-invalid form-select"
     id="test-123"
     onChange={[Function]}
     path="test"
@@ -1092,11 +1071,11 @@ exports[`ModelFormField renders errors for String > Enum Attribute 1`] = `
 
 exports[`ModelFormField renders errors for String Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     String Attribute
@@ -1133,11 +1112,11 @@ exports[`ModelFormField renders errors for String Attribute 1`] = `
 
 exports[`ModelFormField renders errors for String Attribute 2`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     String Attribute
@@ -1174,11 +1153,11 @@ exports[`ModelFormField renders errors for String Attribute 2`] = `
 
 exports[`ModelFormField renders errors for Text Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Text Attribute
@@ -1213,11 +1192,11 @@ exports[`ModelFormField renders errors for Text Attribute 1`] = `
 
 exports[`ModelFormField renders errors for Time Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Time Attribute
@@ -1253,11 +1232,11 @@ exports[`ModelFormField renders errors for Time Attribute 1`] = `
 
 exports[`ModelFormField renders errors for undefined 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   />
   <input
@@ -1287,11 +1266,11 @@ exports[`ModelFormField renders errors for undefined 1`] = `
 
 exports[`ModelFormField renders input for Array > Reference Attribute > Not creatable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not creatable
@@ -1333,11 +1312,11 @@ exports[`ModelFormField renders input for Array > Reference Attribute > Not crea
 
 exports[`ModelFormField renders input for Array > Reference Attribute > Not destroyable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not destroyable
@@ -1346,13 +1325,12 @@ exports[`ModelFormField renders input for Array > Reference Attribute > Not dest
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -1402,11 +1380,11 @@ exports[`ModelFormField renders input for Array > Reference Attribute > Not dest
 
 exports[`ModelFormField renders input for Array > Reference Attribute > Not updatable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not updatable
@@ -1415,13 +1393,12 @@ exports[`ModelFormField renders input for Array > Reference Attribute > Not upda
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -1471,11 +1448,11 @@ exports[`ModelFormField renders input for Array > Reference Attribute > Not upda
 
 exports[`ModelFormField renders input for Array > Reference Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute
@@ -1484,13 +1461,12 @@ exports[`ModelFormField renders input for Array > Reference Attribute 1`] = `
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -1540,11 +1516,11 @@ exports[`ModelFormField renders input for Array > Reference Attribute 1`] = `
 
 exports[`ModelFormField renders input for Array > String Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Array &gt; String Attribute
@@ -1579,8 +1555,10 @@ exports[`ModelFormField renders input for Array > String Attribute 1`] = `
           }
         >
           <input
-            aria-autocomplete="list"
+            aria-autocomplete="both"
+            aria-expanded={false}
             aria-haspopup="listbox"
+            aria-multiselectable={true}
             autoComplete="off"
             className="rbt-input-main"
             onBlur={[Function]}
@@ -1588,6 +1566,7 @@ exports[`ModelFormField renders input for Array > String Attribute 1`] = `
             onClick={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
+            role="combobox"
             style={
               Object {
                 "backgroundColor": "transparent",
@@ -1612,7 +1591,7 @@ exports[`ModelFormField renders input for Array > String Attribute 1`] = `
                 "backgroundColor": "transparent",
                 "borderColor": "transparent",
                 "boxShadow": "none",
-                "color": "rgba(0, 0, 0, 0.35)",
+                "color": "rgba(0, 0, 0, 0.54)",
                 "left": 0,
                 "pointerEvents": "none",
                 "position": "absolute",
@@ -1632,54 +1611,45 @@ exports[`ModelFormField renders input for Array > String Attribute 1`] = `
 
 exports[`ModelFormField renders input for Boolean Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Boolean Attribute
   </label>
-  <div
-    className="custom-checkbox custom-control"
-    hidden={false}
-  >
-    <input
-      attribute={
-        Object {
-          "readableName": "Boolean Attribute",
-          "type": "boolean",
-        }
+  <input
+    attribute={
+      Object {
+        "readableName": "Boolean Attribute",
+        "type": "boolean",
       }
-      checked=""
-      className="custom-control-input"
-      id="test-123"
-      onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
+    }
+    checked=""
+    className="form-check-input"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
       }
-      type="checkbox"
-      value=""
-    />
-    <label
-      className="custom-control-label"
-      htmlFor="test-123"
-    />
-  </div>
+    }
+    type="checkbox"
+    value=""
+  />
 </div>
 `;
 
 exports[`ModelFormField renders input for Date Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Date Attribute
@@ -1710,11 +1680,11 @@ exports[`ModelFormField renders input for Date Attribute 1`] = `
 
 exports[`ModelFormField renders input for DateTime Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     DateTime Attribute
@@ -1745,11 +1715,11 @@ exports[`ModelFormField renders input for DateTime Attribute 1`] = `
 
 exports[`ModelFormField renders input for Decimal Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Decimal Attribute
@@ -1774,11 +1744,11 @@ exports[`ModelFormField renders input for Decimal Attribute 1`] = `
 
 exports[`ModelFormField renders input for Decimal Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Decimal Attribute Currency
@@ -1786,15 +1756,11 @@ exports[`ModelFormField renders input for Decimal Attribute Currency 1`] = `
   <div
     className="input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control "
       id="test-123"
@@ -1818,11 +1784,11 @@ exports[`ModelFormField renders input for Decimal Attribute Currency 1`] = `
 
 exports[`ModelFormField renders input for Float Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Float Attribute
@@ -1847,11 +1813,11 @@ exports[`ModelFormField renders input for Float Attribute 1`] = `
 
 exports[`ModelFormField renders input for Float Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Float Attribute Currency
@@ -1859,15 +1825,11 @@ exports[`ModelFormField renders input for Float Attribute Currency 1`] = `
   <div
     className="input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control "
       id="test-123"
@@ -1891,11 +1853,11 @@ exports[`ModelFormField renders input for Float Attribute Currency 1`] = `
 
 exports[`ModelFormField renders input for Integer Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Integer Attribute
@@ -1920,17 +1882,17 @@ exports[`ModelFormField renders input for Integer Attribute 1`] = `
 
 exports[`ModelFormField renders input for Integer Attribute Select 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Integer Attribute Select
   </label>
   <select
-    className="custom-select"
+    className="form-select"
     id="test-123"
     onChange={[Function]}
     path="test"
@@ -1954,11 +1916,11 @@ exports[`ModelFormField renders input for Integer Attribute Select 1`] = `
 
 exports[`ModelFormField renders input for Number Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Number Attribute
@@ -1983,11 +1945,11 @@ exports[`ModelFormField renders input for Number Attribute 1`] = `
 
 exports[`ModelFormField renders input for Number Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Number Attribute Currency
@@ -1995,15 +1957,11 @@ exports[`ModelFormField renders input for Number Attribute Currency 1`] = `
   <div
     className="input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control "
       id="test-123"
@@ -2027,11 +1985,11 @@ exports[`ModelFormField renders input for Number Attribute Currency 1`] = `
 
 exports[`ModelFormField renders input for Phone Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Phone Attribute
@@ -2088,11 +2046,11 @@ exports[`ModelFormField renders input for Phone Attribute 1`] = `
 
 exports[`ModelFormField renders input for Reference > Attachment Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Reference &gt; Attachment Attribute
@@ -2141,7 +2099,7 @@ exports[`ModelFormField renders input for Reference > Attachment Attribute 1`] =
             "backgroundColor": "transparent",
             "borderColor": "transparent",
             "boxShadow": "none",
-            "color": "rgba(0, 0, 0, 0.35)",
+            "color": "rgba(0, 0, 0, 0.54)",
             "left": 0,
             "pointerEvents": "none",
             "position": "absolute",
@@ -2159,11 +2117,11 @@ exports[`ModelFormField renders input for Reference > Attachment Attribute 1`] =
 
 exports[`ModelFormField renders input for Reference Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Reference Attribute
@@ -2212,7 +2170,7 @@ exports[`ModelFormField renders input for Reference Attribute 1`] = `
             "backgroundColor": "transparent",
             "borderColor": "transparent",
             "boxShadow": "none",
-            "color": "rgba(0, 0, 0, 0.35)",
+            "color": "rgba(0, 0, 0, 0.54)",
             "left": 0,
             "pointerEvents": "none",
             "position": "absolute",
@@ -2230,18 +2188,18 @@ exports[`ModelFormField renders input for Reference Attribute 1`] = `
 
 exports[`ModelFormField renders input for String > Enum Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     String &gt; Enum Attribute
   </label>
   <select
     aria-invalid={false}
-    className="custom-select"
+    className="form-select"
     id="test-123"
     onChange={[Function]}
     path="test"
@@ -2275,11 +2233,11 @@ exports[`ModelFormField renders input for String > Enum Attribute 1`] = `
 
 exports[`ModelFormField renders input for String Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     String Attribute
@@ -2310,11 +2268,11 @@ exports[`ModelFormField renders input for String Attribute 1`] = `
 
 exports[`ModelFormField renders input for String Attribute 2`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     String Attribute
@@ -2345,11 +2303,11 @@ exports[`ModelFormField renders input for String Attribute 2`] = `
 
 exports[`ModelFormField renders input for Text Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Text Attribute
@@ -2378,11 +2336,11 @@ exports[`ModelFormField renders input for Text Attribute 1`] = `
 
 exports[`ModelFormField renders input for Time Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   >
     Time Attribute
@@ -2413,11 +2371,11 @@ exports[`ModelFormField renders input for Time Attribute 1`] = `
 
 exports[`ModelFormField renders input for undefined 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className=""
+    className="form-label form-label"
     htmlFor="test"
   />
   <input
@@ -2441,11 +2399,11 @@ exports[`ModelFormField renders input for undefined 1`] = `
 
 exports[`ModelFormField renders required for Array > Reference Attribute > Not creatable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not creatable
@@ -2487,11 +2445,11 @@ exports[`ModelFormField renders required for Array > Reference Attribute > Not c
 
 exports[`ModelFormField renders required for Array > Reference Attribute > Not destroyable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not destroyable
@@ -2500,13 +2458,12 @@ exports[`ModelFormField renders required for Array > Reference Attribute > Not d
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -2556,11 +2513,11 @@ exports[`ModelFormField renders required for Array > Reference Attribute > Not d
 
 exports[`ModelFormField renders required for Array > Reference Attribute > Not updatable 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute &gt; Not updatable
@@ -2569,13 +2526,12 @@ exports[`ModelFormField renders required for Array > Reference Attribute > Not u
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -2625,11 +2581,11 @@ exports[`ModelFormField renders required for Array > Reference Attribute > Not u
 
 exports[`ModelFormField renders required for Array > Reference Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Array &gt; Reference Attribute
@@ -2638,13 +2594,12 @@ exports[`ModelFormField renders required for Array > Reference Attribute 1`] = `
     className="model-nested model-nested-organization"
   >
     <button
-      aria-label={null}
       className="btn btn-outline-secondary"
       onClick={[Function]}
       type="button"
     >
       <svg
-        className="mr-1"
+        className="me-1"
         fill="currentColor"
         height={32}
         style={
@@ -2694,11 +2649,11 @@ exports[`ModelFormField renders required for Array > Reference Attribute 1`] = `
 
 exports[`ModelFormField renders required for Array > String Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Array &gt; String Attribute
@@ -2733,8 +2688,10 @@ exports[`ModelFormField renders required for Array > String Attribute 1`] = `
           }
         >
           <input
-            aria-autocomplete="list"
+            aria-autocomplete="both"
+            aria-expanded={false}
             aria-haspopup="listbox"
+            aria-multiselectable={true}
             autoComplete="off"
             className="rbt-input-main"
             onBlur={[Function]}
@@ -2742,6 +2699,7 @@ exports[`ModelFormField renders required for Array > String Attribute 1`] = `
             onClick={[Function]}
             onFocus={[Function]}
             onKeyDown={[Function]}
+            role="combobox"
             style={
               Object {
                 "backgroundColor": "transparent",
@@ -2766,7 +2724,7 @@ exports[`ModelFormField renders required for Array > String Attribute 1`] = `
                 "backgroundColor": "transparent",
                 "borderColor": "transparent",
                 "boxShadow": "none",
-                "color": "rgba(0, 0, 0, 0.35)",
+                "color": "rgba(0, 0, 0, 0.54)",
                 "left": 0,
                 "pointerEvents": "none",
                 "position": "absolute",
@@ -2786,55 +2744,46 @@ exports[`ModelFormField renders required for Array > String Attribute 1`] = `
 
 exports[`ModelFormField renders required for Boolean Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Boolean Attribute
   </label>
-  <div
-    className="custom-checkbox custom-control"
-    hidden={false}
-  >
-    <input
-      attribute={
-        Object {
-          "readableName": "Boolean Attribute",
-          "type": "boolean",
-          "x-rhino-required": true,
-        }
+  <input
+    attribute={
+      Object {
+        "readableName": "Boolean Attribute",
+        "type": "boolean",
+        "x-rhino-required": true,
       }
-      checked=""
-      className="custom-control-input"
-      id="test-123"
-      onChange={[Function]}
-      path="test"
-      resource={
-        Object {
-          "test": "",
-        }
+    }
+    checked=""
+    className="form-check-input"
+    id="test-123"
+    onChange={[Function]}
+    path="test"
+    resource={
+      Object {
+        "test": "",
       }
-      type="checkbox"
-      value=""
-    />
-    <label
-      className="custom-control-label"
-      htmlFor="test-123"
-    />
-  </div>
+    }
+    type="checkbox"
+    value=""
+  />
 </div>
 `;
 
 exports[`ModelFormField renders required for Date Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Date Attribute
@@ -2865,11 +2814,11 @@ exports[`ModelFormField renders required for Date Attribute 1`] = `
 
 exports[`ModelFormField renders required for DateTime Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     DateTime Attribute
@@ -2900,11 +2849,11 @@ exports[`ModelFormField renders required for DateTime Attribute 1`] = `
 
 exports[`ModelFormField renders required for Decimal Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Decimal Attribute
@@ -2929,11 +2878,11 @@ exports[`ModelFormField renders required for Decimal Attribute 1`] = `
 
 exports[`ModelFormField renders required for Decimal Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Decimal Attribute Currency
@@ -2941,15 +2890,11 @@ exports[`ModelFormField renders required for Decimal Attribute Currency 1`] = `
   <div
     className="input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control "
       id="test-123"
@@ -2973,11 +2918,11 @@ exports[`ModelFormField renders required for Decimal Attribute Currency 1`] = `
 
 exports[`ModelFormField renders required for Float Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Float Attribute
@@ -3002,11 +2947,11 @@ exports[`ModelFormField renders required for Float Attribute 1`] = `
 
 exports[`ModelFormField renders required for Float Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Float Attribute Currency
@@ -3014,15 +2959,11 @@ exports[`ModelFormField renders required for Float Attribute Currency 1`] = `
   <div
     className="input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control "
       id="test-123"
@@ -3046,11 +2987,11 @@ exports[`ModelFormField renders required for Float Attribute Currency 1`] = `
 
 exports[`ModelFormField renders required for Integer Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Integer Attribute
@@ -3075,17 +3016,17 @@ exports[`ModelFormField renders required for Integer Attribute 1`] = `
 
 exports[`ModelFormField renders required for Integer Attribute Select 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Integer Attribute Select
   </label>
   <select
-    className="custom-select"
+    className="form-select"
     id="test-123"
     onChange={[Function]}
     path="test"
@@ -3109,11 +3050,11 @@ exports[`ModelFormField renders required for Integer Attribute Select 1`] = `
 
 exports[`ModelFormField renders required for Number Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Number Attribute
@@ -3138,11 +3079,11 @@ exports[`ModelFormField renders required for Number Attribute 1`] = `
 
 exports[`ModelFormField renders required for Number Attribute Currency 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Number Attribute Currency
@@ -3150,15 +3091,11 @@ exports[`ModelFormField renders required for Number Attribute Currency 1`] = `
   <div
     className="input-group"
   >
-    <div
-      className="input-group-prepend"
+    <span
+      className="input-group-text"
     >
-      <span
-        className="input-group-text"
-      >
-        $
-      </span>
-    </div>
+      $
+    </span>
     <input
       className="form-control "
       id="test-123"
@@ -3182,11 +3119,11 @@ exports[`ModelFormField renders required for Number Attribute Currency 1`] = `
 
 exports[`ModelFormField renders required for Phone Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Phone Attribute
@@ -3243,11 +3180,11 @@ exports[`ModelFormField renders required for Phone Attribute 1`] = `
 
 exports[`ModelFormField renders required for Reference > Attachment Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Reference &gt; Attachment Attribute
@@ -3296,7 +3233,7 @@ exports[`ModelFormField renders required for Reference > Attachment Attribute 1`
             "backgroundColor": "transparent",
             "borderColor": "transparent",
             "boxShadow": "none",
-            "color": "rgba(0, 0, 0, 0.35)",
+            "color": "rgba(0, 0, 0, 0.54)",
             "left": 0,
             "pointerEvents": "none",
             "position": "absolute",
@@ -3314,11 +3251,11 @@ exports[`ModelFormField renders required for Reference > Attachment Attribute 1`
 
 exports[`ModelFormField renders required for Reference Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Reference Attribute
@@ -3367,7 +3304,7 @@ exports[`ModelFormField renders required for Reference Attribute 1`] = `
             "backgroundColor": "transparent",
             "borderColor": "transparent",
             "boxShadow": "none",
-            "color": "rgba(0, 0, 0, 0.35)",
+            "color": "rgba(0, 0, 0, 0.54)",
             "left": 0,
             "pointerEvents": "none",
             "position": "absolute",
@@ -3385,18 +3322,18 @@ exports[`ModelFormField renders required for Reference Attribute 1`] = `
 
 exports[`ModelFormField renders required for String > Enum Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     String &gt; Enum Attribute
   </label>
   <select
     aria-invalid={false}
-    className="custom-select"
+    className="form-select"
     id="test-123"
     onChange={[Function]}
     path="test"
@@ -3430,11 +3367,11 @@ exports[`ModelFormField renders required for String > Enum Attribute 1`] = `
 
 exports[`ModelFormField renders required for String Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     String Attribute
@@ -3466,11 +3403,11 @@ exports[`ModelFormField renders required for String Attribute 1`] = `
 
 exports[`ModelFormField renders required for String Attribute 2`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     String Attribute
@@ -3502,11 +3439,11 @@ exports[`ModelFormField renders required for String Attribute 2`] = `
 
 exports[`ModelFormField renders required for Text Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Text Attribute
@@ -3536,11 +3473,11 @@ exports[`ModelFormField renders required for Text Attribute 1`] = `
 
 exports[`ModelFormField renders required for Time Attribute 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   >
     Time Attribute
@@ -3571,11 +3508,11 @@ exports[`ModelFormField renders required for Time Attribute 1`] = `
 
 exports[`ModelFormField renders required for undefined 1`] = `
 <div
-  className="form-group"
+  className="mb-3"
 >
   <label
     checked={true}
-    className="required"
+    className="form-label required form-label"
     htmlFor="test"
   />
   <input

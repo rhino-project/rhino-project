@@ -25,6 +25,7 @@ const OmniAuthButton = ({ provider, loading, handleAuth, ...props }) => (
     onClick={() => handleAuth(provider)}
     icon={!loading && provider}
     loading={loading === provider}
+    className="mt-2"
     {...providerOverrides?.[provider]}
     block
     {...props}

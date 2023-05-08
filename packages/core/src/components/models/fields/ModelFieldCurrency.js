@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useController } from 'react-hook-form';
-import { InputGroup, InputGroupAddon } from 'reactstrap';
+import { InputGroup } from 'reactstrap';
 import CurrencyFormat from 'react-currency-format';
 import classnames from 'classnames';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
@@ -20,7 +20,7 @@ export const ModelFieldCurrencyBase = ({ model, ...props }) => {
         'is-invalid': error
       })}
     >
-      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
+      <span className="input-group-text">$</span>
       <CurrencyFormat
         {...fieldProps}
         value={value || ''}

@@ -113,7 +113,7 @@ export const ModelFiltersBase = ({ paths }) => {
         <FormProvider {...methods}>{renderPaths}</FormProvider>
       </div>
       {computedPaths?.length > 0 && (
-        <div className="row align-items-center m-2">
+        <div className="d-flex flex-wrap align-items-center m-2">
           {pills &&
             Object.keys(pills).map(
               (p) =>
@@ -123,7 +123,7 @@ export const ModelFiltersBase = ({ paths }) => {
                     icon="x"
                     color="light"
                     size="sm"
-                    className="mr-2 mb-2"
+                    className="me-2 mb-2"
                     onClick={() => handleClear(p)}
                   >
                     {pills[p]}
@@ -133,7 +133,7 @@ export const ModelFiltersBase = ({ paths }) => {
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a
             href="#"
-            className="mb-2 col-12 col-lg-auto"
+            className="mb-2 col-12 col-lg-auto text-decoration-none"
             onClick={handleClearAll}
           >
             Clear all filters

@@ -33,7 +33,7 @@ Button.defaultProps = {
 export const IconButton = ({ children, icon, ...props }) => (
   <Button {...props}>
     <Icon
-      className="mr-1"
+      className="me-1"
       style={{ height: '1rem', width: '1rem' }}
       icon={icon}
     />

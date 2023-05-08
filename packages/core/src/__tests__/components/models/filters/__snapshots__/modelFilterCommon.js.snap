@@ -2,23 +2,15 @@
 
 exports[`Common model filter behaviour should pass down arbitrary props ModelFilterBoolean 1`] = `
 <DocumentFragment>
-  <div
-    class="custom-checkbox custom-control"
-  >
-    <input
-      aria-invalid="false"
-      class="custom-control-input"
-      data-foo="bar"
-      id="dummy"
-      name="dummy"
-      path="dummy"
-      type="checkbox"
-    />
-    <label
-      class="custom-control-label"
-      for="dummy"
-    />
-  </div>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
 </DocumentFragment>
 `;
 
@@ -67,7 +59,7 @@ exports[`Common model filter behaviour should pass down arbitrary props ModelFil
   <select
     aria-invalid="false"
     autocomplete="off"
-    class="form-control"
+    class="form-select"
     data-foo="bar"
     id="dummy"
     name="dummy"
@@ -133,7 +125,7 @@ exports[`Common model filter behaviour should pass down arbitrary props ModelFil
   <select
     aria-invalid="false"
     autocomplete="off"
-    class="form-control"
+    class="form-select"
     data-foo="bar"
     id="dummy"
     name="dummy"
@@ -183,22 +175,14 @@ exports[`Common model filter behaviour should pass down arbitrary props ModelFil
 
 exports[`Common model filter behaviour should render ModelFilterBoolean 1`] = `
 <DocumentFragment>
-  <div
-    class="custom-checkbox custom-control"
-  >
-    <input
-      aria-invalid="false"
-      class="custom-control-input"
-      id="dummy"
-      name="dummy"
-      path="dummy"
-      type="checkbox"
-    />
-    <label
-      class="custom-control-label"
-      for="dummy"
-    />
-  </div>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
 </DocumentFragment>
 `;
 
@@ -247,7 +231,7 @@ exports[`Common model filter behaviour should render ModelFilterEnum 1`] = `
   <select
     aria-invalid="false"
     autocomplete="off"
-    class="form-control"
+    class="form-select"
     id="dummy"
     name="dummy"
     path="dummy"
@@ -309,7 +293,7 @@ exports[`Common model filter behaviour should render ModelFilterIntegerSelect 1`
   <select
     aria-invalid="false"
     autocomplete="off"
-    class="form-control"
+    class="form-select"
     id="dummy"
     name="dummy"
     path="dummy"

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { CustomInput } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 import { useController } from 'react-hook-form';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
@@ -50,7 +50,7 @@ const FieldBooleanIndeterminate = (props) => {
 
   // FIXME: Cannot guarantee that id will be unique
   return (
-    <CustomInput
+    <Input
       {...extractedProps}
       {...fieldProps}
       type="checkbox"

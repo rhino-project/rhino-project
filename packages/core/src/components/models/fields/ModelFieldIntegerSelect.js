@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { useController } from 'react-hook-form';
-import { CustomInput } from 'reactstrap';
+import { Input } from 'reactstrap';
 import classnames from 'classnames';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
@@ -27,7 +27,7 @@ export const ModelFieldIntegerSelectBase = ({ model, ...props }) => {
   );
 
   return (
-    <CustomInput
+    <Input
       type="select"
       value={value || -1}
       {...fieldProps}
@@ -36,7 +36,7 @@ export const ModelFieldIntegerSelectBase = ({ model, ...props }) => {
       {...props}
     >
       {optionsFromIndexWithTitle(integers, `${attribute.readableName}...`)}
-    </CustomInput>
+    </Input>
   );
 };
 
