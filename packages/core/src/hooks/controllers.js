@@ -137,7 +137,6 @@ export const useModelIndexController = (options) => {
   const hasNextPage = offset + limit < totalPages * limit;
   const setPage = (page) => setOffset((page - 1) * limit);
 
-  // FIXME: Why will this render twice when filters are changed? the other params are fine
   useEffect(() => {
     if (!syncUrl) return;
 
