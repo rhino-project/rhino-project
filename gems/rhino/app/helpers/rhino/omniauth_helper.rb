@@ -22,9 +22,9 @@ module Rhino
       when :developer
         []
       when :azure_oauth2
-        [client_id: ENV["AUTH_AZURE_OAUTH2_CLIENT_ID"],
-         client_secret: ENV["AUTH_AZURE_OAUTH2_SECRET_KEY"],
-         tenant_id: ENV["AUTH_AZURE_OAUTH2_TENANT_ID"]]
+        azure_info
+      when :auth0
+        auth0_info
       else
         env_keys(strategy)
       end
@@ -33,6 +33,22 @@ module Rhino
     def env_keys(strategy)
       ups = strategy.to_s.upcase
       [ENV["AUTH_#{ups}_CLIENT_ID"], ENV["AUTH_#{ups}_SECRET_KEY"]]
+    end
+
+    def azure_info
+      [client_id: ENV["AUTH_AZURE_OAUTH2_CLIENT_ID"],
+       client_secret: ENV["AUTH_AZURE_OAUTH2_SECRET_KEY"],
+       tenant_id: ENV["AUTH_AZURE_OAUTH2_TENANT_ID"]]
+    end
+
+    def auth0_info
+      [client_id: ENV["AUTH_AUTH0_CLIENT_ID"],
+       client_secret: ENV["AUTH_AUTH0_SECRET_KEY"],
+       domain: ENV["AUTH_AUTH0_DOMAIN"],
+       callback_path: "/api/auth/omniauth/auth0/callback",
+       authorize_params: {
+         scope: "openid profile"
+       }]
     end
   end
 end
