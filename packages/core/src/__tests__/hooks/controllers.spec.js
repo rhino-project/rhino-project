@@ -5,13 +5,15 @@ import { MemoryRouter } from 'react-router-dom';
 
 import { DEFAULT_SORT, PAGE_SIZE } from 'config';
 import {
+  useModelCreateContext,
+  useModelEditContext,
   useModelIndexContext,
   useModelIndexController,
   useModelShowContext
 } from 'rhino/hooks/controllers';
 import { act } from 'react-test-renderer';
 
-describe('useModelIndexController', () => {
+describe('useModelIndexContext', () => {
   it('throws and error with no context', () => {
     const { result } = renderHook(() => useModelIndexContext());
     expect(() => result.current).toThrow(
@@ -210,11 +212,29 @@ describe('useModelIndexController', () => {
   });
 });
 
-describe('useModelShowController', () => {
+describe('useModelShowContext', () => {
   it('throws and error with no context', () => {
     const { result } = renderHook(() => useModelShowContext());
     expect(() => result.current).toThrow(
       'useModelShowContext must be used within a ModelShowProvider'
+    );
+  });
+});
+
+describe('useModelCreateContext', () => {
+  it('throws and error with no context', () => {
+    const { result } = renderHook(() => useModelCreateContext());
+    expect(() => result.current).toThrow(
+      'useModelCreateContext must be used within a ModelCreateProvider'
+    );
+  });
+});
+
+describe('useModelEditContext', () => {
+  it('throws and error with no context', () => {
+    const { result } = renderHook(() => useModelEditContext());
+    expect(() => result.current).toThrow(
+      'useModelEditContext must be used within a ModelEditProvider'
     );
   });
 });
