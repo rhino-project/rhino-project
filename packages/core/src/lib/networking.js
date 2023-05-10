@@ -44,19 +44,21 @@ export class NetworkParamError extends Error {
   }
 }
 
-export const networkApiCall = (
-  path,
-  options = { method: 'get', headers: {}, data: null }
-) => {
-  const CancelToken = axios.CancelToken;
-  const source = CancelToken.source();
+export const networkApiCall = (path, options) => {
+  const defaultOptions = {
+    method: 'get',
+    headers: {},
+    data: null,
+    signal: null,
+    ...options
+  };
 
-  const promise = axios(constructPath(path), {
-    ...options,
-    headers: _buildHeaders(options.headers),
-    paramsSerializer: (params) =>
-      qs.stringify(params, { arrayFormat: 'brackets' }),
-    cancelToken: source.token,
+  return axios(constructPath(path), {
+    ...defaultOptions,
+    headers: _buildHeaders(defaultOptions.headers),
+    paramsSerializer: {
+      serialize: (params) => qs.stringify(params, { arrayFormat: 'brackets' })
+    },
     withCredentials: true
   }).catch((error) => {
     if (
@@ -80,11 +82,6 @@ export const networkApiCall = (
       throw new NetworkParamError(error.response.data?.errors);
     }
   });
-
-  // https://react-query.tanstack.com/guides/query-cancellation#using-axios
-  promise.cancel = () => source.cancel('Query was cancelled by React Query');
-
-  return promise;
 };
 
 const handler = {
@@ -101,7 +98,7 @@ const handler = {
 
 export const networkApiCallOnlyData = async (
   path,
-  options = { method: 'get', headers: {}, data: null }
+  options = { method: 'get', headers: {}, data: null, signal: null }
 ) => {
   const response = await networking.networkApiCall(path, options);
 

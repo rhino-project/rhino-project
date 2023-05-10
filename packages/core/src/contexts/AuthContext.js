@@ -17,7 +17,7 @@ import { useRollbarPerson } from '@rollbar/react';
 const useSession = () => {
   return useQuery(
     AUTH_SESSION_KEY,
-    () => networkApiCall(AUTH_VALIDATE_TOKEN_END_POINT),
+    ({ signal }) => networkApiCall(AUTH_VALIDATE_TOKEN_END_POINT, { signal }),
     {
       retry: false
     }

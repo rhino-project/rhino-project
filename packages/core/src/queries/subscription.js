@@ -51,7 +51,9 @@ export const useCheckSession = (baseOwnerId, session_id) => {
 };
 
 const useSubscriptionQuery = (queryKey, queryPath, params) => {
-  return useQuery(queryKey, () => networkApiCall(queryPath, params));
+  return useQuery(queryKey, ({ signal }) =>
+    networkApiCall(queryPath, { ...params, signal })
+  );
 };
 
 export const displayAmount = (amount) => {
