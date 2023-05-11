@@ -19,7 +19,7 @@ export const ModelCellEnumBase = (props) => {
     return { backgroundColor };
   }, [attribute, getValue]);
 
-  return <CellBadge style={style} {...props} />;
+  return <CellBadge style={style} color="none" {...props} />;
 };
 
 const defaultComponents = { ModelCellEnum: ModelCellEnumBase };
