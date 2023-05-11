@@ -3,7 +3,7 @@
 exports[`ModelCellEnum adds style as a prop based on matched enum value 1`] = `
 <DocumentFragment>
   <span
-    class="badge bg-secondary"
+    class="badge bg-none"
     style="background-color: rgb(4, 120, 87);"
   >
     bar
@@ -15,6 +15,7 @@ exports[`ModelCellEnum should render the component with className from inherited
 <DocumentFragment>
   <div
     class="dummy-class"
+    color="none"
   >
     baz
   </div>
@@ -23,7 +24,9 @@ exports[`ModelCellEnum should render the component with className from inherited
 
 exports[`ModelCellEnum should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    color="none"
+  >
     -
   </div>
 </DocumentFragment>
@@ -31,7 +34,9 @@ exports[`ModelCellEnum should render the empty text when value is nullish 1`] = 
 
 exports[`ModelCellEnum should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    color="none"
+  >
     baz
   </div>
 </DocumentFragment>
@@ -64,7 +69,7 @@ exports[`ModelCellEnum should render with global override shorthand for model an
 exports[`ModelCellEnum uses default style value if match is not found 1`] = `
 <DocumentFragment>
   <span
-    class="badge bg-secondary"
+    class="badge bg-none"
     style="background-color: rgb(3, 105, 161);"
   >
     baz
