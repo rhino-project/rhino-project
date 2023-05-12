@@ -42,6 +42,45 @@ export const yupTypeFromAttribute = (attribute) => {
   }
 };
 
+const transformEmptyString = (value, originalValue) => {
+  if (originalValue === '') return null;
+
+  return value;
+};
+
+export const yupDefaultFromAttributeType = (attribute) => {
+  switch (attribute.type) {
+    case 'array':
+      return [];
+    case 'boolean':
+      return false;
+    case 'reference':
+      return null;
+    case 'float':
+    case 'integer':
+    case 'number':
+      return '';
+    case 'string':
+      // The default value for an enum is null not the empty string
+      // because this is how the select component works
+      if (attribute.enum) return null;
+
+      switch (attribute.format) {
+        case 'datetime':
+        case 'date':
+        case 'time':
+          return null;
+        default:
+          return '';
+      }
+    case 'text':
+    default:
+      return '';
+  }
+};
+
+const TRANSFORMABLE_TYPES = ['string', 'text', 'float', 'integer', 'number'];
+
 export const yupValidatorsFromAttribute = (attribute) => {
   let ytype = yupTypeFromAttribute(attribute);
 
@@ -52,46 +91,13 @@ export const yupValidatorsFromAttribute = (attribute) => {
   if (attribute.default) {
     ytype = ytype.default(attribute.default);
   } else {
-    switch (attribute.type) {
-      case 'array':
-        ytype = ytype.default([]);
-        break;
-      case 'boolean':
-        ytype = ytype.default(false);
-        break;
-      case 'reference':
-        ytype = ytype.default(null);
-        break;
-      case 'float':
-      case 'integer':
-      case 'number':
-        // If its an empty string, set it to null so that we can require it
-        // Otherwise, it will be a NaN and will fail validation earlier
-        ytype = ytype.nullable().transform((value, originalValue) => {
-          if (originalValue === '') return null;
-
-          return value;
-        });
-        break;
-      case 'string':
-        switch (attribute.format) {
-          case 'datetime':
-          case 'date':
-          case 'time':
-            ytype = ytype.default(null);
-            break;
-          default:
-            ytype = ytype.default('');
-        }
-
-        // The default value for an enum is null not the empty string
-        // because this is how the select component works
-        if (attribute.enum) ytype = ytype.default(null);
-        break;
-      default:
-        ytype = ytype.default('');
-    }
+    ytype = ytype.default(yupDefaultFromAttributeType(attribute));
   }
+
+  // The defaults are an empty string, but we want to set them to null
+  // for API and validation purposes
+  if (TRANSFORMABLE_TYPES.includes(attribute.type))
+    ytype = ytype.transform(transformEmptyString);
 
   if (attribute['x-rhino-required']) ytype = ytype.required();
 
