@@ -242,7 +242,7 @@ export const optionsFromIndexWithTitle = (
   const options = optionsFromIndex(results, labelField, valueField);
 
   options.push(
-    <option key="-1" disabled selected value={-1}>
+    <option key="-1" disabled value={-1}>
       {title}
     </option>
   );
