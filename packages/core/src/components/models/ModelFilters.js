@@ -62,18 +62,14 @@ export const ModelFiltersBase = ({ paths }) => {
   );
   const computedPaths = usePaths(pathsOrDefault);
 
-  const methods = useForm({});
+  const methods = useForm({ defaultValues: { ...filter, pills: {} } });
   const { control, reset, resetField, watch } = methods;
   const { pills, resetPill } = useFilterPills({ control });
 
-  useEffect(
-    () => reset({ ...filter, pills: {} }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
   useEffect(() => {
-    const subscription = watch((value) => {
+    const subscription = watch((value, { name }) => {
+      if (name === 'pills') return;
+
       // Only pass the defined values to the filter
       setFilter(createFilteredObject(omit(value, 'pills')));
     });
