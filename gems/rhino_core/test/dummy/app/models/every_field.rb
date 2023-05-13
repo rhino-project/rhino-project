@@ -56,7 +56,7 @@ class EveryField < ApplicationRecord
 
   validates :year, numericality: { only_integer: true, allow_nil: true, greater_than: 5.years.ago.year, less_than: 0.years.ago.year }
 
-  validates :phone, phone: { message: "not a valid phone number", possible: true }
+  validates :phone, phone: { allow_nil: true, message: "not a valid phone number", possible: true }
 
   private
     def normalize_phone
