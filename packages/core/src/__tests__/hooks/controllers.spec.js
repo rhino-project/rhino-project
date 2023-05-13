@@ -1,7 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter, Route, Router } from 'react-router-dom';
 
 import { DEFAULT_SORT, PAGE_SIZE } from 'config';
 import {
@@ -23,13 +23,22 @@ describe('useModelIndexContext', () => {
 });
 
 describe('useModelIndexController', () => {
-  const history = createMemoryHistory();
+  let testHistory, testLocation;
+
   const wrapper = ({ children, ...props }) => {
     const queryClient = new QueryClient();
 
     return (
       <MemoryRouter {...props}>
         <QueryClientProvider client={queryClient}>
+          <Route
+            path="*"
+            render={({ history, location }) => {
+              testHistory = history;
+              testLocation = location;
+              return null;
+            }}
+          />
           {children}
         </QueryClientProvider>
       </MemoryRouter>
@@ -74,6 +83,16 @@ describe('useModelIndexController', () => {
       order: '-foo',
       search: 'baz'
     });
+  });
+
+  it('does not push empty search when search is already empty', () => {
+    renderHook(() => useModelIndexController({ model: 'user' }), {
+      wrapper,
+      initialProps: {
+        initialEntries: ['/users']
+      }
+    });
+    expect(testHistory.length).toBe(1);
   });
 
   it('takes limit, offset, order and search params from url over passed in base parameters', () => {

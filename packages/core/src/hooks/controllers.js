@@ -144,7 +144,8 @@ export const useModelIndexController = (options) => {
     if (
       isEqual({ filter, limit, offset, order, search }, defaultState.current)
     ) {
-      history.push(withParams(location.pathname, {}));
+      // If the current state is the same as the default state, remove the query params from the URL but only if they are not already empty
+      if (location.search) history.push(withParams(location.pathname, {}));
     } else {
       history.push(
         withParams(location.pathname, {
