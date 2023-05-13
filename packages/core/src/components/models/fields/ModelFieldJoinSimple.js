@@ -102,6 +102,7 @@ export const ModelFieldJoinSimpleBase = ({ model, ...props }) => {
       isInvalid={!!error}
       onChange={handleChange}
       isLoading={isLoading}
+      {...props}
     />
   );
 };

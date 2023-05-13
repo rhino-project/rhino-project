@@ -39,6 +39,7 @@ export const ModelFieldArrayStringBase = ({ model, ...props }) => {
       selected={value || []}
       isInvalid={!!error}
       onChange={handleChange}
+      {...props}
     />
   );
 };
