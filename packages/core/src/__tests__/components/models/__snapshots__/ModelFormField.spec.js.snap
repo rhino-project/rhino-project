@@ -708,7 +708,6 @@ exports[`ModelFormField renders errors for Integer Attribute Select 1`] = `
   >
     <option
       disabled={true}
-      selected={true}
       value={-1}
     >
       Integer Attribute Select...
@@ -1055,7 +1054,6 @@ exports[`ModelFormField renders errors for String > Enum Attribute 1`] = `
     </option>
     <option
       disabled={true}
-      selected={true}
       value={-1}
     >
       String &gt; Enum Attribute...
@@ -1905,7 +1903,6 @@ exports[`ModelFormField renders input for Integer Attribute Select 1`] = `
   >
     <option
       disabled={true}
-      selected={true}
       value={-1}
     >
       Integer Attribute Select...
@@ -2222,7 +2219,6 @@ exports[`ModelFormField renders input for String > Enum Attribute 1`] = `
     </option>
     <option
       disabled={true}
-      selected={true}
       value={-1}
     >
       String &gt; Enum Attribute...
@@ -3039,7 +3035,6 @@ exports[`ModelFormField renders required for Integer Attribute Select 1`] = `
   >
     <option
       disabled={true}
-      selected={true}
       value={-1}
     >
       Integer Attribute Select...
@@ -3356,7 +3351,6 @@ exports[`ModelFormField renders required for String > Enum Attribute 1`] = `
     </option>
     <option
       disabled={true}
-      selected={true}
       value={-1}
     >
       String &gt; Enum Attribute...
