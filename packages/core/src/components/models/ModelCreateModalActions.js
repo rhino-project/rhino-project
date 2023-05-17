@@ -13,21 +13,27 @@ import ModelWrapper from './ModelWrapper';
 import { useCallback, useMemo } from 'react';
 
 export const ModelCreateModalActionSave = ({ onModalClose, onSave }) => {
-  const handleSave = useCallback(() => {
-    if (onSave) onSave();
+  const handleSave = useCallback(
+    (data) => {
+      if (onSave) onSave(data);
 
-    onModalClose();
-  }, [onModalClose, onSave]);
+      onModalClose();
+    },
+    [onModalClose, onSave]
+  );
 
   return <ModelCreateActionSave onSave={handleSave} />;
 };
 
 export const ModelCreateModalActionSaveShow = ({ onModalClose, onSave }) => {
-  const handleSave = useCallback(() => {
-    if (onSave) onSave();
+  const handleSave = useCallback(
+    (data) => {
+      if (onSave) onSave(data);
 
-    onModalClose();
-  }, [onModalClose, onSave]);
+      onModalClose();
+    },
+    [onModalClose, onSave]
+  );
 
   return <ModelCreateActionSaveShow onSave={handleSave} />;
 };
