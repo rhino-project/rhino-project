@@ -47,7 +47,11 @@ const defaultComponents = {
   ModelEditModalActionCancel
 };
 
-export const ModelEditModalActionsBase = ({ overrides, onModalClose }) => {
+export const ModelEditModalActionsBase = ({
+  overrides,
+  onModalClose,
+  ...props
+}) => {
   const { ModelEditModalActionSave, ModelEditModalActionCancel } = useOverrides(
     defaultComponents,
     overrides
@@ -71,7 +75,11 @@ export const ModelEditModalActionsBase = ({ overrides, onModalClose }) => {
   return (
     <ModalFooter>
       <ModelWrapper model={model} baseClassName="edit-footer">
-        <ModelEditActions style={{ gap: 5 }} overrides={computedOverrides} />
+        <ModelEditActions
+          style={{ gap: 5 }}
+          overrides={computedOverrides}
+          {...props}
+        />
       </ModelWrapper>
     </ModalFooter>
   );
@@ -90,6 +98,6 @@ export const ModelEditModalActionsSaveShow = (props) => (
 );
 
 const ModelEditModalActions = (props) =>
-  useGlobalComponent(ModelEditActionsBase, props);
+  useGlobalComponent(ModelEditModalActionsBase, props);
 
 export default ModelEditModalActions;

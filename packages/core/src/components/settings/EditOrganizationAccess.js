@@ -3,15 +3,18 @@ import { useCallback, useMemo, useState } from 'react';
 import { useBaseOwnerId } from 'rhino/hooks/owner';
 import { useModel } from 'rhino/hooks/models';
 import ModelEditableCellReference from '../models/cells/ModelEditableCellReference';
-import ModelIndexBase from '../models/ModelIndexBase';
 import ModelIndexHeader from '../models/ModelIndexHeader';
 import ModelIndexTable from '../models/ModelIndexTable';
 import { IconButton } from '../buttons';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
+import {
+  useModelIndexContext,
+  useModelIndexController
+} from 'rhino/hooks/controllers';
 import ModelCreateModal from '../models/ModelCreateModal';
 import ModelIndexActions, {
   ModelIndexActionCreate
 } from '../models/ModelIndexActions';
+import ModelIndexProvider from '../models/ModelIndexProvider';
 
 const RemoveButton = (props) => {
   const {
@@ -72,18 +75,20 @@ const EditOrganizationAccess = () => {
     ];
   }, [handleAction]);
 
+  const controller = useModelIndexController({
+    model,
+    filter: { organization: baseOwnerId },
+    order: 'user.email'
+  });
+
   return (
     <>
-      <ModelIndexBase
-        model={model}
-        filter={{ organization: baseOwnerId }}
-        order="user.email"
-      >
+      <ModelIndexProvider {...controller}>
         <ModelIndexHeader overrides={overrides} />
         <hr />
         <ModelIndexActions actions={actions} />
         <ModelIndexTable paths={cellPaths} onRowClick={null} />
-      </ModelIndexBase>
+      </ModelIndexProvider>
       <ModelCreateModal
         model="users_role_invite"
         parentId={baseOwnerId}

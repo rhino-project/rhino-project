@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useOverrides } from 'rhino/hooks/overrides';
 import { getOwnedModels } from 'rhino/utils/models';
 import { useModelClassNames } from 'rhino/utils/ui';
-import ModelIndex from 'rhino/components/models/ModelIndex';
+import { ModelIndexBase } from 'rhino/components/models/ModelIndex';
 import { useModelShowContext } from 'rhino/hooks/controllers';
 
 // Get models owned by this, but filter out models that match properties on the
@@ -18,13 +18,13 @@ const getRelatedModels = (model) =>
   });
 
 const defaultComponents = {
-  ModelIndex
+  ModelIndex: ModelIndexBase
 };
 
 const ModelShowRelated = ({ overrides, ...props }) => {
+  const { ModelIndex } = useOverrides(defaultComponents, overrides);
   const { model, resource } = useModelShowContext();
   const { getRelatedModels } = props;
-  const { ModelIndex } = useOverrides(defaultComponents, overrides);
   const modelClassNames = useModelClassNames('show-related', model);
 
   const indexableModels = useMemo(() => getRelatedModels(model), [
