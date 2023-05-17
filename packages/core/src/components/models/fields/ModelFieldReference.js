@@ -64,6 +64,7 @@ export const ModelFieldReferenceBase = ({ model, ...props }) => {
       onChange={handleChange}
       onInputChange={setInput}
       isLoading={isLoading}
+      {...props}
     />
   );
 };
