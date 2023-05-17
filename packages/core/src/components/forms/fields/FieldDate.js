@@ -15,7 +15,18 @@ const FieldDate = ({ min, max, ...props }) => {
     name: path
   });
 
-  const date = useMemo(() => (value ? new Date(value) : undefined), [value]);
+  // The date will be interpreted as UTC unless we break it apart
+  const date = useMemo(() => {
+    if (!value) return undefined;
+
+    const parts = value.split('-');
+    const year = parseInt(parts[0], 10);
+    // JavaScript counts months from 0 to 11
+    const month = parseInt(parts[1], 10) - 1;
+    const day = parseInt(parts[2], 10);
+
+    return new Date(year, month, day);
+  }, [value]);
 
   const inheritedPropsOptions = useMemo(
     () => ({
