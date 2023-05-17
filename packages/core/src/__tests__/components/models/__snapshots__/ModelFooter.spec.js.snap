@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ModelFooter should render the component with children 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      Foo
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFooter should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+  >
+    Name
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelFooter should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>

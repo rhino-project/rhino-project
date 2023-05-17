@@ -10,6 +10,7 @@ export const useTableInheritedProps = (props, options = {}) => {
     renderValue,
     row,
     table,
+    header,
     ...inheritedProps
   } = props;
 

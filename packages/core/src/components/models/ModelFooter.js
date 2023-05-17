@@ -1,10 +1,16 @@
+import { useMemo } from 'react';
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import Footer from 'rhino/components/table/Footer';
 
-export const ModelFooterBase = ({ overrides, model, path, ...props }) => {
+export const ModelFooterBase = ({ model, path, children, ...props }) => {
   const { attribute } = useModelAndAttributeFromPath(model, path);
+  const footerText = useMemo(() => children || attribute?.readableName, [
+    children,
+    attribute
+  ]);
 
-  return <div {...props}>{attribute?.readableName || null}</div>;
+  return <Footer {...props}>{footerText}</Footer>;
 };
 
 const defaultComponents = { ModelFooter: ModelFooterBase };

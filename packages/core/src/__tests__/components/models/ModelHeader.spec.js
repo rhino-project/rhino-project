@@ -42,4 +42,24 @@ describe('ModelHeader', () => {
     const { asFragment } = render(<ModelHeader model="user" path="name" />);
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it(`should render the component with className from inherited props`, async () => {
+    rhinoConfig.default = { version: 1, components: {} };
+
+    const { asFragment } = render(
+      <ModelHeader model="user" path="name" className="dummy-class" />
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it(`should render the component with children`, async () => {
+    rhinoConfig.default = { version: 1, components: {} };
+
+    const { asFragment } = render(
+      <ModelHeader model="user" path="name">
+        <div>Foo</div>
+      </ModelHeader>
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
 });
