@@ -48,11 +48,19 @@ export const ModelIndexActionCreate = ({ children, ...props }) => {
   );
 };
 
-export const ModelIndexActionCreateModal = ({ ...props }) => {
+const defaultModelComponents = {
+  ModelCreateModalActionSave: ModelCreateModalActionSaveShow
+};
+
+export const ModelIndexActionCreateModal = ({ overrides, ...props }) => {
   const { parent } = props;
   const { model } = useModelIndexContext();
   const [modalOpen, setModalOpen] = useState(false);
   const baseOwnerId = useBaseOwnerId();
+  const { ModelCreateModalActionSave } = useOverrides(
+    defaultModelComponents,
+    overrides
+  );
 
   const parentId = useMemo(() => {
     if (parent) return parent.id;
@@ -71,7 +79,7 @@ export const ModelIndexActionCreateModal = ({ ...props }) => {
       <ModelCreateModal
         overrides={{
           ModelCreateModalActions: {
-            ModelCreateModalActionSave: ModelCreateModalActionSaveShow
+            ModelCreateModalActionSave
           }
         }}
         model={model}
