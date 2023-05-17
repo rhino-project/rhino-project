@@ -1,18 +1,11 @@
 import PropTypes from 'prop-types';
 
-import { useMemo } from 'react';
-import { useBaseOwnerId } from 'rhino/hooks/owner';
-import { getBaseOwnerFilters } from 'rhino/utils/models';
+import { useBaseOwnerFilters } from 'rhino/hooks/owner';
 import ModelFilterReference from './ModelFilterReference';
 
 const ModelFilterOwnerReference = (props) => {
   const { model } = props;
-
-  const baseOwnerId = useBaseOwnerId();
-  const filter = useMemo(() => getBaseOwnerFilters(model, baseOwnerId), [
-    model,
-    baseOwnerId
-  ]);
+  const filter = useBaseOwnerFilters(model);
 
   return <ModelFilterReference filter={filter} {...props} />;
 };
