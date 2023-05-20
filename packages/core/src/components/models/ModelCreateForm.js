@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types';
-
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelCreateContext } from 'rhino/hooks/controllers';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-export const ModelCreateFormBase = ({ overrides, ...props }) => {
+export const ModelCreateFormBase = (props) => {
   const { model, renderPaths } = useModelCreateContext();
 
   return (
@@ -14,18 +12,9 @@ export const ModelCreateFormBase = ({ overrides, ...props }) => {
   );
 };
 
-const defaultComponents = {
-  ModelCreateForm: ModelCreateFormBase
-};
+ModelCreateFormBase.propTypes = {};
 
-const ModelCreateForm = ({ overrides, ...props }) => {
-  const { ModelCreateForm } = useGlobalOverrides(defaultComponents, overrides);
-
-  return <ModelCreateForm {...props} />;
-};
-
-ModelCreateForm.propTypes = {
-  overrides: PropTypes.object
-};
+const ModelCreateForm = (props) =>
+  useGlobalComponent(ModelCreateFormBase, props);
 
 export default ModelCreateForm;

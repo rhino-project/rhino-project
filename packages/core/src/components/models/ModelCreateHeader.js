@@ -2,8 +2,9 @@ import { isBaseOwned } from 'rhino/utils/models';
 import { breadcrumbFor } from 'rhino/utils/ui';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelCreateContext } from 'rhino/hooks/controllers';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-export const ModelCreateHeader = (props) => {
+export const ModelCreateHeaderBase = (props) => {
   const {
     model,
     showParent: { model: parentModel, resource: parent }
@@ -24,6 +25,9 @@ export const ModelCreateHeader = (props) => {
   );
 };
 
-ModelCreateHeader.propTypes = {};
+ModelCreateHeaderBase.propTypes = {};
+
+const ModelCreateHeader = (props) =>
+  useGlobalComponent(ModelCreateHeaderBase, props);
 
 export default ModelCreateHeader;

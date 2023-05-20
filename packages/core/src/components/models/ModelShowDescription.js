@@ -8,6 +8,7 @@ import { useModelShowContext } from 'rhino/hooks/controllers';
 import ModelDisplayGroup from './ModelDisplayGroup';
 import { useForm } from 'react-hook-form';
 import FormProvider from '../forms/FormProvider';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -19,7 +20,7 @@ const getViewablePaths = (model) =>
     );
   }).map((a) => a.name);
 
-const ModelShowDescription = ({ overrides, ...props }) => {
+export const ModelShowDescriptionBase = ({ overrides, ...props }) => {
   const { model, resource } = useModelShowContext();
   const { paths } = props;
   const modelClassNames = useModelClassNames('show-description', model);
@@ -51,9 +52,12 @@ const ModelShowDescription = ({ overrides, ...props }) => {
   );
 };
 
-ModelShowDescription.propTypes = {
+ModelShowDescriptionBase.propTypes = {
   paths: PropTypes.array,
   overrides: PropTypes.object
 };
+
+const ModelShowDescription = (props) =>
+  useGlobalComponent(ModelShowDescriptionBase, props);
 
 export default ModelShowDescription;

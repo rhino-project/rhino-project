@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useGlobalComponent, useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import ModelCreateHeader from './ModelCreateHeader';
 import ModelCreateForm from './ModelCreateForm';
@@ -14,12 +14,11 @@ const defaultComponents = {
 };
 
 export const ModelCreateBase = ({ overrides, ...props }) => {
-  // FIXME: Global overrides shouldn't be done this way
   const {
     ModelCreateHeader,
     ModelCreateForm,
     ModelCreateActions
-  } = useGlobalOverrides(defaultComponents, overrides, props);
+  } = useOverrides(defaultComponents, overrides);
 
   if (ModelCreateForm().props?.paths)
     console.warn('ModelCreateForm pass legacy paths prop');
@@ -36,7 +35,7 @@ export const ModelCreateBase = ({ overrides, ...props }) => {
 };
 
 ModelCreateBase.propTypes = {
-  model: PropTypes.object.isRequired,
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   overrides: PropTypes.object
 };
 

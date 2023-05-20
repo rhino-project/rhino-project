@@ -1,6 +1,4 @@
-import PropTypes from 'prop-types';
-
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelEditContext } from 'rhino/hooks/controllers';
 
@@ -14,18 +12,8 @@ export const ModelEditFormBase = (props) => {
   );
 };
 
-const defaultComponents = {
-  ModelEditForm: ModelEditFormBase
-};
+ModelEditFormBase.propTypes = {};
 
-const ModelEditForm = ({ overrides, ...props }) => {
-  const { ModelEditForm } = useGlobalOverrides(defaultComponents, overrides);
-
-  return <ModelEditForm {...props} />;
-};
-
-ModelEditForm.propTypes = {
-  overrides: PropTypes.object
-};
+const ModelEditForm = (props) => useGlobalComponent(ModelEditFormBase, props);
 
 export default ModelEditForm;

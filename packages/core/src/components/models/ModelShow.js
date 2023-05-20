@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponent, useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import ModelShowDescription from 'rhino/components/models/ModelShowDescription';
 import ModelShowRelated from 'rhino/components/models/ModelShowRelated';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
@@ -20,7 +20,7 @@ export const ModelShowBase = ({ overrides, wrapper, ...props }) => {
     ModelShowActions,
     ModelShowDescription,
     ModelShowRelated
-  } = useGlobalOverrides(defaultComponents, overrides, props);
+  } = useOverrides(defaultComponents, overrides);
   const { model } = props;
 
   return (
@@ -36,7 +36,7 @@ export const ModelShowBase = ({ overrides, wrapper, ...props }) => {
 };
 
 ModelShowBase.propTypes = {
-  model: PropTypes.object.isRequired,
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   modelId: PropTypes.string.isRequired,
   overrides: PropTypes.object
 };

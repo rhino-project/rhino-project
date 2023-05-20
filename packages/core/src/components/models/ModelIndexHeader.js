@@ -5,7 +5,7 @@ import ModelFilters from 'rhino/components/models/ModelFilters';
 import ModelPager from 'rhino/components/models/ModelPager';
 import ModelSearch from 'rhino/components/models/ModelSearch';
 import ModelSort from 'rhino/components/models/ModelSort';
-import { useOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 
 const defaultComponents = {
@@ -15,7 +15,7 @@ const defaultComponents = {
   ModelSort
 };
 
-const ModelIndexHeader = ({ overrides, ...props }) => {
+export const ModelIndexHeaderBase = ({ overrides, ...props }) => {
   const { ModelSearch, ModelFilters, ModelPager, ModelSort } = useOverrides(
     defaultComponents,
     overrides
@@ -39,8 +39,11 @@ const ModelIndexHeader = ({ overrides, ...props }) => {
   );
 };
 
-ModelIndexHeader.propTypes = {
+ModelIndexHeaderBase.propTypes = {
   overrides: PropTypes.object
 };
+
+const ModelIndexHeader = (props) =>
+  useGlobalComponent(ModelIndexHeaderBase, props);
 
 export default ModelIndexHeader;

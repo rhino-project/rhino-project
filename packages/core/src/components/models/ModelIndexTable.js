@@ -6,7 +6,7 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
@@ -133,21 +133,7 @@ ModelIndexTableBase.defaultProps = {
 
 const columnHelper = createColumnHelper();
 
-const defaultComponents = {
-  ModelIndexTable: ModelIndexTableBase
-};
-
-export const ModelIndexTable = ({ overrides, ...props }) => {
-  const { model } = useModelIndexContext();
-  const { ModelIndexTable } = useGlobalOverrides(defaultComponents, overrides, {
-    model
-  });
-
-  return <ModelIndexTable {...props} />;
-};
-
-ModelIndexTable.propTypes = {
-  overrides: PropTypes.object
-};
+export const ModelIndexTable = (props) =>
+  useGlobalComponent(ModelIndexTableBase, props);
 
 export default ModelIndexTable;
