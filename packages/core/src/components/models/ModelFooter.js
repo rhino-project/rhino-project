@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import Footer from 'rhino/components/table/Footer';
 
@@ -13,16 +13,6 @@ export const ModelFooterBase = ({ model, path, children, ...props }) => {
   return <Footer {...props}>{footerText}</Footer>;
 };
 
-const defaultComponents = { ModelFooter: ModelFooterBase };
-
-const ModelFooter = ({ overrides, ...props }) => {
-  const { ModelFooter } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelFooter {...props} />;
-};
+const ModelFooter = (props) => useGlobalComponent(ModelFooterBase, props);
 
 export default ModelFooter;

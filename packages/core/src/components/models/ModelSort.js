@@ -12,6 +12,7 @@ import { filter } from 'lodash';
 import { getAttributeFromPath } from 'rhino/utils/models';
 import { IconButton } from 'rhino/components/buttons';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 const isDesc = (order) => order?.charAt(0) === '-';
 
@@ -25,7 +26,7 @@ const getSortableAttributes = (model) =>
       a.type === 'integer'
   );
 
-const ModelSort = ({ paths }) => {
+export const ModelSortBase = ({ paths }) => {
   const { model, order, setOrder } = useModelIndexContext();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -96,8 +97,10 @@ const ModelSort = ({ paths }) => {
   );
 };
 
-ModelSort.propTypes = {
+ModelSortBase.propTypes = {
   paths: PropTypes.array
 };
+
+const ModelSort = (props) => useGlobalComponent(ModelSortBase, props);
 
 export default ModelSort;

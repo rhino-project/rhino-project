@@ -1,17 +1,17 @@
 import PropTypes from 'prop-types';
 
-import { useGlobalComponent, useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 
 import ModelIndexHeader from 'rhino/components/models/ModelIndexHeader';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
-import { ModelIndexTableBase } from './ModelIndexTable';
+import ModelIndexTable from './ModelIndexTable';
 import ModelIndexActions from './ModelIndexActions';
 import ModelIndexSimple from './ModelIndexSimple';
 
 const defaultComponents = {
   ModelIndexHeader,
   ModelIndexActions,
-  ModelIndexTable: ModelIndexTableBase
+  ModelIndexTable
 };
 
 export const ModelIndexBase = ({
@@ -20,11 +20,11 @@ export const ModelIndexBase = ({
   wrapper,
   ...props
 }) => {
-  const {
-    ModelIndexHeader,
-    ModelIndexActions,
-    ModelIndexTable
-  } = useGlobalOverrides(defaultComponents, overrides, props);
+  const { ModelIndexHeader, ModelIndexActions, ModelIndexTable } = useOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
   const { model } = props;
 
   if (baseFilter)
@@ -47,8 +47,8 @@ export const ModelIndexBase = ({
 };
 
 ModelIndexBase.propTypes = {
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   baseFilter: PropTypes.object,
-  model: PropTypes.object.isRequired,
   overrides: PropTypes.object,
   parent: PropTypes.object
 };

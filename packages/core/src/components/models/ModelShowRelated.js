@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { useOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import { getOwnedModels } from 'rhino/utils/models';
 import { useModelClassNames } from 'rhino/utils/ui';
 import { ModelIndexBase } from 'rhino/components/models/ModelIndex';
@@ -21,7 +21,7 @@ const defaultComponents = {
   ModelIndex: ModelIndexBase
 };
 
-const ModelShowRelated = ({ overrides, ...props }) => {
+export const ModelShowRelatedBase = ({ overrides, ...props }) => {
   const { ModelIndex } = useOverrides(defaultComponents, overrides);
   const { model, resource } = useModelShowContext();
   const { getRelatedModels } = props;
@@ -49,13 +49,16 @@ const ModelShowRelated = ({ overrides, ...props }) => {
   );
 };
 
-ModelShowRelated.propTypes = {
+ModelShowRelatedBase.propTypes = {
   getRelatedModels: PropTypes.func.isRequired,
   overrides: PropTypes.object
 };
 
-ModelShowRelated.defaultProps = {
+ModelShowRelatedBase.defaultProps = {
   getRelatedModels
 };
+
+const ModelShowRelated = (props) =>
+  useGlobalComponent(ModelShowRelatedBase, props);
 
 export default ModelShowRelated;

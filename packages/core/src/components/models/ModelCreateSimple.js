@@ -20,7 +20,9 @@ export const ModelCreateSimple = ({ children, fallback = true, ...props }) => {
     return fallback;
   }, [children, fallback, isLoading]);
 
-  return <ModelCreateProvider {...props}>{renderFallback}</ModelCreateProvider>;
+  return (
+    <ModelCreateProvider {...controller}>{renderFallback}</ModelCreateProvider>
+  );
 };
 
 ModelCreateSimple.propTypes = {

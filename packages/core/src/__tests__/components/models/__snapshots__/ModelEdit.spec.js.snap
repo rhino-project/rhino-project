@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ModelEdit should allow local overrides 1`] = `
+<DocumentFragment>
+  <div
+    class="model-edit model-edit-user"
+  >
+    <div>
+      Foo
+    </div>
+    <div>
+      Bar
+    </div>
+    <div>
+      Baz
+    </div>
+     
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelEdit should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>

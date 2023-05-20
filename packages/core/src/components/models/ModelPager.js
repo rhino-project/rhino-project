@@ -1,7 +1,8 @@
 import { Pager } from 'rhino/components/pagination';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const ModelPager = (props) => {
+export const ModelPagerBase = (props) => {
   const {
     hasPrevPage,
     hasNextPage,
@@ -25,5 +26,7 @@ const ModelPager = (props) => {
     />
   );
 };
+
+const ModelPager = (props) => useGlobalComponent(ModelPagerBase, props);
 
 export default ModelPager;

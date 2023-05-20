@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useGlobalComponent, useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import ModelEditHeader from './ModelEditHeader';
 import ModelEditForm from './ModelEditForm';
@@ -13,19 +13,12 @@ const defaultComponents = {
   ModelEditActions
 };
 
-export const ModelEditBase = ({
-  overrides,
-  fallback = true,
-  wrapper,
-  ...props
-}) => {
+export const ModelEditBase = ({ overrides, wrapper, ...props }) => {
   const { model } = props;
-  // FIXME: Global overrides shouldn't be done this way
-  const {
-    ModelEditHeader,
-    ModelEditForm,
-    ModelEditActions
-  } = useGlobalOverrides(defaultComponents, overrides, props);
+  const { ModelEditHeader, ModelEditForm, ModelEditActions } = useOverrides(
+    defaultComponents,
+    overrides
+  );
 
   if (ModelEditForm().props?.paths)
     console.warn('ModelEditForm pass legacy paths prop');
@@ -33,7 +26,7 @@ export const ModelEditBase = ({
   return (
     <ModelWrapper model={model} wrapper={wrapper} baseClassName="edit">
       {/* Legacy path support */}
-      <ModelEditSimple {...props} paths={ModelEditForm().props?.paths}>
+      <ModelEditSimple paths={ModelEditForm().props?.paths} {...props}>
         <ModelEditHeader />
         <ModelEditForm />
         <ModelEditActions />{' '}
@@ -43,7 +36,7 @@ export const ModelEditBase = ({
 };
 
 ModelEditBase.propTypes = {
-  model: PropTypes.object.isRequired,
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   overrides: PropTypes.object,
   paths: PropTypes.array,
   onActionError: PropTypes.func
