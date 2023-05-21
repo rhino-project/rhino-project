@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import ModelShowDescription from 'rhino/components/models/ModelShowDescription';
 import ModelShowRelated from 'rhino/components/models/ModelShowRelated';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import ModelShowActions from 'rhino/components/models/ModelShowActions';
 import ModelShowSimple from './ModelShowSimple';
 import ModelShowHeader from './ModelShowHeader';
+import ModelSection from './ModelSection';
 
 const defaultComponents = {
   ModelShowHeader,
@@ -14,23 +14,22 @@ const defaultComponents = {
   ModelShowRelated
 };
 
-export const ModelShowBase = ({ overrides, wrapper, ...props }) => {
+export const ModelShowBase = ({ overrides, ...props }) => {
   const {
     ModelShowHeader,
     ModelShowActions,
     ModelShowDescription,
     ModelShowRelated
   } = useOverrides(defaultComponents, overrides);
-  const { model } = props;
 
   return (
     <ModelShowSimple {...props}>
-      <ModelWrapper model={model} wrapper={wrapper} baseClassName="show">
+      <ModelSection baseClassName="show">
         <ModelShowHeader />
         <ModelShowActions />
         <ModelShowDescription />
         <ModelShowRelated />
-      </ModelWrapper>
+      </ModelSection>
     </ModelShowSimple>
   );
 };

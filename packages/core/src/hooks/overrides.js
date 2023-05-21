@@ -12,6 +12,7 @@ import {
   mergeWith
 } from 'lodash';
 import { useModel, useModelAndAttributeFromPath } from './models';
+import { useModelContext } from './controllers';
 
 // Based on:
 // https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646
@@ -146,6 +147,7 @@ export const useGlobalOverrides = (
   options = {}
 ) => {
   const model = useModel(options?.model);
+
   const { model: attributeModel, attribute } = useModelAndAttributeFromPath(
     options?.model,
     options?.path
@@ -193,6 +195,7 @@ export const useGlobalOverrides = (
 };
 
 export const useGlobalComponent = (BaseComponent, props) => {
+  const { model } = useModelContext();
   const overrideName = useMemo(() => {
     return `${BaseComponent.displayName || BaseComponent.name}`.replace(
       /Base$/,
@@ -204,7 +207,13 @@ export const useGlobalComponent = (BaseComponent, props) => {
     return { [overrideName]: BaseComponent };
   }, [overrideName, BaseComponent]);
 
-  const globalOverride = useGlobalOverrides(defaultComponents, {}, props);
+  // FIXME: The top level model is not always available right now
+  // ModelIndex, ModelShow, ModelCreate, ModelEdit have model as a prop still
+  const options = useMemo(() => (model ? { ...props, model } : props), [
+    model,
+    props
+  ]);
+  const globalOverride = useGlobalOverrides(defaultComponents, {}, options);
   const GlobalOverrideComponent = globalOverride[overrideName];
   GlobalOverrideComponent.displayName = overrideName;
 

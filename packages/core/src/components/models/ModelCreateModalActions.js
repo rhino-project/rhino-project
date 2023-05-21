@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { ModalFooter } from 'reactstrap';
 
-import { useModelCreateContext } from '../../hooks/controllers';
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import ModelCreateActions, {
   ModelCreateActionCancel,
@@ -9,8 +8,8 @@ import ModelCreateActions, {
   ModelCreateActionSaveAnother,
   ModelCreateActionSaveShow
 } from './ModelCreateActions';
-import ModelWrapper from './ModelWrapper';
 import { useCallback, useMemo } from 'react';
+import ModelSection from './ModelSection';
 
 export const ModelCreateModalActionSave = ({ onModalClose, onSave }) => {
   const handleSave = useCallback(
@@ -67,7 +66,6 @@ export const ModelCreateModalActionsBase = ({
     ModelCreateModalActionSave,
     ModelCreateModalActionCancel
   } = useOverrides(defaultComponents, overrides);
-  const { model } = useModelCreateContext();
 
   const computedOverrides = useMemo(
     () => ({
@@ -85,13 +83,13 @@ export const ModelCreateModalActionsBase = ({
 
   return (
     <ModalFooter>
-      <ModelWrapper model={model} baseClassName="Create-footer">
+      <ModelSection baseClassName="create-footer">
         <ModelCreateActions
           style={{ gap: 5 }}
           overrides={computedOverrides}
           {...props}
         />
-      </ModelWrapper>
+      </ModelSection>
     </ModalFooter>
   );
 };

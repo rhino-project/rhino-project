@@ -16,7 +16,6 @@ import {
 import { useGlobalOverrides } from 'rhino/hooks/overrides';
 import { getModelFromRef, getUpdatableAttributes } from 'rhino/utils/models';
 import { useComputedPaths, useDefaultValues } from 'rhino/hooks/form';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { IconButton } from 'rhino/components/buttons';
 import {
   createColumnHelper,
@@ -36,6 +35,7 @@ import FieldHidden from 'rhino/components/forms/fields/FieldHidden';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 import ModelField from '../ModelField';
 import FieldFeedback from 'rhino/components/forms/FieldFeedback';
+import ModelSection from '../ModelSection';
 
 const columnHelper = createColumnHelper();
 const destroyFilter = (row) => row.original._destroy !== '1';
@@ -257,12 +257,12 @@ const ModelFieldNestedBase = ({ overrides, model, ...props }) => {
   });
 
   return (
-    <ModelWrapper model={model} {...props} baseClassName="nested">
+    <ModelSection baseClassName="nested">
       {arrayOptions?.creatable && (
         <IconButton icon="plus" outline onClick={handleAdd} />
       )}
       <Table table={table} />
-    </ModelWrapper>
+    </ModelSection>
   );
 };
 

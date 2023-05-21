@@ -1,14 +1,12 @@
 import { useModelShowContext } from 'rhino/hooks/controllers';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
-import ModelWrapper from './ModelWrapper';
+import ModelSection from './ModelSection';
 
 export const ModelShowDescriptionBase = (props) => {
-  const { model, renderPaths } = useModelShowContext();
+  const { renderPaths } = useModelShowContext();
 
   return (
-    <ModelWrapper model={model} {...props} baseClassName="show-description">
-      {renderPaths}
-    </ModelWrapper>
+    <ModelSection baseClassName="show-description">{renderPaths}</ModelSection>
   );
 };
 

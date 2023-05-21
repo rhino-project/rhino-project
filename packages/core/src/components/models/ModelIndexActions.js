@@ -1,6 +1,5 @@
 import { Children, useCallback, useMemo, useState } from 'react';
 
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 import { IconButton } from '../buttons';
 import { useBaseOwnerNavigation } from '../../hooks/history';
@@ -12,6 +11,7 @@ import { useBaseOwnerId } from '../../hooks/owner';
 import { useLocation } from 'react-router';
 import { ModelCreateModalActionSaveShow } from './ModelCreateModalActions';
 import { getModelCreatePath } from '../../utils/routes';
+import ModelSection from './ModelSection';
 
 export const ModelIndexActionCreate = ({ children, ...props }) => {
   const { model, parentId: contextParentId } = useModelIndexContext();
@@ -103,7 +103,6 @@ export const ModelIndexActionsBase = ({
   ...props
 }) => {
   const { ModelIndexActionCreate } = useOverrides(defaultComponents, overrides);
-  const { model } = useModelIndexContext();
 
   const computedDefaultActions = useMemo(
     () => [<ModelIndexActionCreate />],
@@ -123,14 +122,14 @@ export const ModelIndexActionsBase = ({
   }, [actions, append, prepend, computedDefaultActions]);
 
   return (
-    <ModelWrapper model={model} baseClassName="Index-actions">
+    <ModelSection baseClassName="index-actions">
       <div
         className="d-flex flex-row flex-wrap justify-content-between mb-3"
         {...props}
       >
         {Children.map(computedActions, (action) => action)}
       </div>
-    </ModelWrapper>
+    </ModelSection>
   );
 };
 

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import { CREATE_CANCEL } from 'config';
 import { useFieldSetErrors } from 'rhino/hooks/form';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useFormContext } from 'react-hook-form';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
 import { IconButton } from '../buttons';
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import { getModelShowPath } from 'rhino/utils/routes';
+import ModelSection from './ModelSection';
 
 export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
   const { isLoading, mutate, parentId, parentModel } = useModelCreateContext();
@@ -135,7 +135,6 @@ export const ModelCreateActionsBase = ({
     defaultComponents,
     overrides
   );
-  const { model } = useModelCreateContext();
 
   const computedDefaultActions = useMemo(
     () =>
@@ -159,14 +158,14 @@ export const ModelCreateActionsBase = ({
   }, [actions, append, prepend, computedDefaultActions]);
 
   return (
-    <ModelWrapper model={model} baseClassName="create-actions">
+    <ModelSection baseClassName="create-actions">
       <div
         className="d-flex flex-row flex-wrap justify-content-between mb-3"
         {...props}
       >
         {Children.map(computedActions, (action) => action)}
       </div>
-    </ModelWrapper>
+    </ModelSection>
   );
 };
 

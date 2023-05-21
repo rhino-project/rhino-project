@@ -1,8 +1,8 @@
 import { isBaseOwned } from 'rhino/utils/models';
 import { breadcrumbFor } from 'rhino/utils/ui';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
+import ModelSection from './ModelSection';
 
 export const ModelCreateHeaderBase = (props) => {
   const {
@@ -19,9 +19,7 @@ export const ModelCreateHeaderBase = (props) => {
   };
 
   return (
-    <ModelWrapper model={model} {...props} baseClassName="create-header">
-      {breadcrumbs()}
-    </ModelWrapper>
+    <ModelSection baseClassName="create-header">{breadcrumbs()}</ModelSection>
   );
 };
 

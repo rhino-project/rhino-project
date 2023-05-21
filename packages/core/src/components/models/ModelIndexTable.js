@@ -8,7 +8,6 @@ import {
 
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 import { filter, isString } from 'lodash';
@@ -18,6 +17,7 @@ import ModelCell from './ModelCell';
 import ModelHeader from './ModelHeader';
 import ModelFooter from './ModelFooter';
 import { getModelShowPath } from '../../utils/routes';
+import ModelSection from './ModelSection';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -116,9 +116,9 @@ export const ModelIndexTableBase = (props) => {
   });
 
   return (
-    <ModelWrapper model={model} {...props} baseClassName="index-table">
+    <ModelSection baseClassName="index-table">
       <Table table={table} onRowClick={handleRowClick} {...props} />
-    </ModelWrapper>
+    </ModelSection>
   );
 };
 

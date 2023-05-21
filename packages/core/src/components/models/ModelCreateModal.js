@@ -3,9 +3,9 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import { useModelCreateContext } from '../../hooks/controllers';
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
-import ModelWrapper from './ModelWrapper';
 import ModelCreateModalActions from './ModelCreateModalActions';
 import ModelCreateProvider from './ModelCreateProvider';
+import ModelSection from './ModelSection';
 
 export const ModelCreateModalHeader = (props) => {
   const { model } = useModelCreateContext();
@@ -19,12 +19,12 @@ ModelCreateModalHeader.propTypes = {
 };
 
 export const ModelCreateModalForm = ({ overrides, onModalClose }) => {
-  const { model, renderPaths } = useModelCreateContext();
+  const { renderPaths } = useModelCreateContext();
 
   return (
-    <ModelWrapper model={model} baseClassName="edit-form">
+    <ModelSection baseClassName="edit-form">
       <ModalBody>{renderPaths}</ModalBody>
-    </ModelWrapper>
+    </ModelSection>
   );
 };
 
