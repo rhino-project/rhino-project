@@ -4,8 +4,8 @@ import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import { useModelCreateContext } from '../../hooks/controllers';
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import ModelCreateModalActions from './ModelCreateModalActions';
-import ModelCreateProvider from './ModelCreateProvider';
 import ModelSection from './ModelSection';
+import ModelCreateSimple from './ModelCreateSimple';
 
 export const ModelCreateModalHeader = (props) => {
   const { model } = useModelCreateContext();
@@ -52,13 +52,13 @@ export const ModelCreateModalBase = ({
   } = useOverrides(defaultComponents, overrides);
 
   return (
-    <ModelCreateProvider spinner={isOpen} {...props}>
+    <ModelCreateSimple fallback={isOpen} {...props}>
       <Modal isOpen={isOpen} autoFocus={false} toggle={onModalClose}>
         <ModelCreateModalHeader title={title} />
         <ModelCreateModalForm />
         <ModelCreateModalActions onModalClose={onModalClose} />
       </Modal>
-    </ModelCreateProvider>
+    </ModelCreateSimple>
   );
 };
 

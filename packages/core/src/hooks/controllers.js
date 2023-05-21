@@ -328,10 +328,9 @@ export const useModelCreateController = (options) => {
 
   // Fetch the parent model for the owner value and the breadcrumb
   const parentModel = useMemo(() => getParentModel(model), [model]);
-  const showParent = useModelShowController({
-    ...options,
-    model: parentModel,
-    modelId: parentId
+  // A modal may not have a parent model yet
+  const showParent = useModelShow(parentModel, parentId, {
+    queryOptions: { enabled: !!parentId }
   });
 
   const pathsOrDefault = useMemo(() => paths || getCreatablePaths(model), [
@@ -412,7 +411,11 @@ export const useModelEditController = (options) => {
   } = options;
 
   const mutation = useModelUpdate(model);
-  const show = useModelShowController(options);
+  // A modal for instance may not have a modelId yet
+  const show = useModelShow(model, modelId, {
+    queryOptions: { enabled: !!modelId }
+  });
+
   const { resource } = show;
 
   const pathsOrDefault = useMemo(() => paths || getEditablePaths(model), [
