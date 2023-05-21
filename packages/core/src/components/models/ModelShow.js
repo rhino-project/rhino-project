@@ -22,8 +22,11 @@ export const ModelShowBase = ({ overrides, ...props }) => {
     ModelShowRelated
   } = useOverrides(defaultComponents, overrides);
 
+  if (ModelShowDescription().props?.paths)
+    console.warn('ModelShowDescription pass legacy paths prop');
+
   return (
-    <ModelShowSimple {...props}>
+    <ModelShowSimple paths={ModelShowDescription().props?.paths} {...props}>
       <ModelSection baseClassName="show">
         <ModelShowHeader />
         <ModelShowActions />
