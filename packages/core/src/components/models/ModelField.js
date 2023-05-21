@@ -25,8 +25,9 @@ import ModelFieldCurrency from './fields/ModelFieldCurrency';
 import ModelFieldIntegerSelect from './fields/ModelFieldIntegerSelect';
 import ModelFieldNested from './fields/ModelFieldNested';
 import ModelFieldOwnerReference from './fields/ModelFieldOwnerReference';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-export const ModelField = ({ overrides, ...props }) => {
+export const ModelFieldBase = ({ overrides, ...props }) => {
   const model = useModel(props.model);
   const { path } = props;
 
@@ -104,5 +105,7 @@ export const ModelField = ({ overrides, ...props }) => {
 
   return 'No field for this attribute type';
 };
+
+const ModelField = (props) => useGlobalComponent(ModelFieldBase, props);
 
 export default ModelField;

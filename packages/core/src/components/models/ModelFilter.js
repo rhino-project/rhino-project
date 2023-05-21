@@ -16,8 +16,9 @@ import ModelFilterReference from './filters/ModelFilterReference';
 import ModelFilterString from './filters/ModelFilterString';
 import ModelFilterTime from './filters/ModelFilterTime';
 import ModelFilterYear from './filters/ModelFilterYear';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-export const ModelFilter = ({ overrides, ...props }) => {
+export const ModelFilterBase = ({ overrides, ...props }) => {
   const model = useModel(props.model);
   const { path } = props;
 
@@ -65,5 +66,7 @@ export const ModelFilter = ({ overrides, ...props }) => {
 
   return 'No filter for this attribute type';
 };
+
+const ModelFilter = (props) => useGlobalComponent(ModelFilterBase, props);
 
 export default ModelFilter;
