@@ -1,11 +1,14 @@
 import { createContext } from 'react';
+import FormProvider from '../forms/FormProvider';
 
 export const ModelShowContext = createContext();
 
-const ModelShowProvider = ({ children, fallback = true, ...props }) => {
+const ModelShowProvider = ({ children, ...props }) => {
+  const { methods } = props;
+
   return (
     <ModelShowContext.Provider value={{ ...props }}>
-      {children}
+      <FormProvider {...methods}>{children}</FormProvider>
     </ModelShowContext.Provider>
   );
 };

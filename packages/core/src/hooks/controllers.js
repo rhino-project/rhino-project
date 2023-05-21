@@ -22,7 +22,7 @@ import {
   useModelUpdate
 } from 'rhino/hooks/queries';
 import { useModel } from 'rhino/hooks/models';
-import { isEqual, isString, merge } from 'lodash';
+import { filter, isEqual, isString, merge } from 'lodash';
 import { ModelIndexContext } from 'rhino/components/models/ModelIndexProvider';
 import { ModelShowContext } from 'rhino/components/models/ModelShowProvider';
 import { ModelCreateContext } from 'rhino/components/models/ModelCreateProvider';
@@ -36,6 +36,7 @@ import ModelFieldGroup from '../components/models/ModelFieldGroup';
 import { useDefaultValues, useResolver, useSchema } from './form';
 import { useForm } from 'react-hook-form';
 import { usePaths } from './paths';
+import ModelDisplayGroup from 'rhino/components/models/ModelDisplayGroup';
 
 export const useModelIndexContext = () => {
   const context = useContext(ModelIndexContext);
@@ -206,24 +207,79 @@ export const useModelShowContext = () => {
   return context;
 };
 
+const getViewablePaths = (model) =>
+  filter(model.properties, (a) => {
+    return (
+      a.type !== 'identifier' &&
+      a.name !== model.ownedBy &&
+      !(a.type === 'array' && a.readOnly) &&
+      a.writeOnly !== true
+    );
+  }).map((a) => a.name);
+
 export const useModelShowController = (options) => {
   const model = useModel(options.model);
-  const { modelId } = options;
+  const {
+    Component = ModelDisplayGroup,
+    extraDefaultValues,
+    modelId,
+    paths
+  } = options;
 
   const query = useModelShow(model, modelId, {
     queryOptions: options?.queryOptions,
     networkOptions: options?.networkOptions
   });
+  const { resource } = query;
 
   const { mutate: update } = useModelUpdate(model);
   const destroy = useModelDelete(model);
+
+  const pathsOrDefault = useMemo(() => paths || getViewablePaths(model), [
+    paths,
+    model
+  ]);
+  const computedPaths = usePaths(pathsOrDefault, resource);
+
+  const renderPaths = useMemo(
+    () =>
+      Children.map(computedPaths, (path) =>
+        isValidElement(path) ? (
+          cloneElement(path, { model })
+        ) : (
+          <Component model={model} path={path} />
+        )
+      ),
+    [model, computedPaths]
+  );
+
+  const schema = useSchema(model, computedPaths);
+  const defaultValues = useDefaultValues(model, computedPaths, {
+    extraDefaultValues
+  });
+  const resolver = useResolver(schema);
+
+  const methods = useForm({
+    defaultValues,
+    resolver,
+    values: resource,
+    resetOptions: {
+      // user-interacted input will be retained
+      keepDirtyValues: true
+    },
+    ...options
+  });
 
   return {
     model,
     modelId,
     ...query,
     delete: destroy,
-    update
+    update,
+    methods,
+    renderPaths,
+    resolver,
+    schema
   };
 };
 
