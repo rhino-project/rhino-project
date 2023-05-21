@@ -1,15 +1,11 @@
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
+import ModelSection from './ModelSection';
 
 export const ModelCreateFormBase = (props) => {
-  const { model, renderPaths } = useModelCreateContext();
+  const { renderPaths } = useModelCreateContext();
 
-  return (
-    <ModelWrapper model={model} {...props} baseClassName="create-form">
-      {renderPaths}
-    </ModelWrapper>
-  );
+  return <ModelSection baseClassName="create-form">{renderPaths}</ModelSection>;
 };
 
 ModelCreateFormBase.propTypes = {};

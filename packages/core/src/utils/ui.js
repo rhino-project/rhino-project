@@ -9,6 +9,7 @@ import { useBaseOwnerPath } from 'rhino/hooks/history';
 import { Flag } from 'rhino/components/models/fields/ModelFieldCountry';
 import { capitalize } from 'lodash';
 import { getModelIndexPath, getModelShowPath } from './routes';
+import { useModel } from 'rhino/hooks/models';
 
 export const buildCancelAction = (extra) => ({
   name: 'cancel',
@@ -26,14 +27,18 @@ export const buildSaveAction = (extra) => ({
   ...extra
 });
 
-export const useModelClassNames = (baseName, model, attribute = null) =>
-  useMemo(() => {
-    const cn = `model-${baseName} model-${baseName}-${model.model}`;
+export const useModelClassNames = (baseName, model, attribute = null) => {
+  // FIXME: This is a hack for 2.0 legacy support - should be sourced from the model context
+  const memoModel = useModel(model);
+
+  return useMemo(() => {
+    const cn = `model-${baseName} model-${baseName}-${memoModel.model}`;
 
     if (!attribute) return cn;
 
-    return cn.concat(` model-${baseName}-${model.model}-${attribute.name}`);
-  }, [baseName, model, attribute]);
+    return cn.concat(` model-${baseName}-${memoModel.model}-${attribute.name}`);
+  }, [baseName, memoModel, attribute]);
+};
 
 export const getDateTimeFormat = (attribute) => {
   const dateTimeFormat = {

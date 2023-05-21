@@ -1,6 +1,5 @@
 import { Children, useCallback, useMemo, useState } from 'react';
 
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelShowContext } from 'rhino/hooks/controllers';
 import { IconButton } from '../buttons';
 import { useBaseOwnerNavigation } from '../../hooks/history';
@@ -13,6 +12,7 @@ import {
   getModelIndexPath,
   getModelShowPath
 } from 'rhino/utils/routes';
+import ModelSection from './ModelSection';
 
 export const ModelShowActionEdit = ({ children, ...props }) => {
   const { model, resource } = useModelShowContext();
@@ -111,7 +111,7 @@ export const ModelShowActionsBase = ({
     defaultComponents,
     overrides
   );
-  const { model, resource } = useModelShowContext();
+  const { resource } = useModelShowContext();
 
   const computedDefaultActions = useMemo(
     () =>
@@ -135,14 +135,14 @@ export const ModelShowActionsBase = ({
   }, [actions, append, prepend, computedDefaultActions]);
 
   return (
-    <ModelWrapper model={model} baseClassName="Show-actions">
+    <ModelSection baseClassName="show-actions">
       <div
         className="d-flex flex-row flex-wrap justify-content-between mb-3"
         {...props}
       >
         {Children.map(computedActions, (action) => action)}
       </div>
-    </ModelWrapper>
+    </ModelSection>
   );
 };
 

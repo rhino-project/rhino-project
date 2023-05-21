@@ -2,7 +2,6 @@ import { Children, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { EDIT_CANCEL } from 'config';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelEditContext } from 'rhino/hooks/controllers';
 import { useFormContext } from 'react-hook-form';
 import { useFieldSetErrors } from 'rhino/hooks/form';
@@ -10,6 +9,7 @@ import { IconButton } from '../buttons';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import { getModelShowPath } from '../../utils/routes';
+import ModelSection from './ModelSection';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
   const { mutate, isLoading } = useModelEditContext();
@@ -105,7 +105,6 @@ export const ModelEditActionsBase = ({
     defaultComponents,
     overrides
   );
-  const { model } = useModelEditContext();
 
   const computedDefaultActions = useMemo(
     () =>
@@ -128,14 +127,14 @@ export const ModelEditActionsBase = ({
   }, [actions, append, prepend, computedDefaultActions]);
 
   return (
-    <ModelWrapper model={model} baseClassName="Edit-actions">
+    <ModelSection baseClassName="edit-actions">
       <div
         className="d-flex flex-row flex-wrap justify-content-between mb-3"
         {...props}
       >
         {Children.map(computedActions, (action) => action)}
       </div>
-    </ModelWrapper>
+    </ModelSection>
   );
 };
 

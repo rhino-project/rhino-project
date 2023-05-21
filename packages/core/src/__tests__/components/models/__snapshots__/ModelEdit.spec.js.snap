@@ -14,7 +14,6 @@ exports[`ModelEdit should allow local overrides 1`] = `
     <div>
       Baz
     </div>
-     
   </div>
 </DocumentFragment>
 `;

@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
 import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import ModelCreateHeader from './ModelCreateHeader';
 import ModelCreateForm from './ModelCreateForm';
 import ModelCreateActions from './ModelCreateActions';
 import ModelCreateSimple from './ModelCreateSimple';
+import ModelSection from './ModelSection';
 
 const defaultComponents = {
   ModelCreateHeader,
@@ -25,11 +25,11 @@ export const ModelCreateBase = ({ overrides, ...props }) => {
 
   return (
     <ModelCreateSimple paths={ModelCreateForm().props?.paths} {...props}>
-      <ModelWrapper {...props} baseClassName="create">
+      <ModelSection baseClassName="create">
         <ModelCreateHeader />
         <ModelCreateForm />
         <ModelCreateActions />
-      </ModelWrapper>
+      </ModelSection>
     </ModelCreateSimple>
   );
 };

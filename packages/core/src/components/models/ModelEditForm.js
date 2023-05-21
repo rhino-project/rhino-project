@@ -1,15 +1,11 @@
 import { useGlobalComponent } from 'rhino/hooks/overrides';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
 import { useModelEditContext } from 'rhino/hooks/controllers';
+import ModelSection from './ModelSection';
 
 export const ModelEditFormBase = (props) => {
-  const { model, renderPaths } = useModelEditContext();
+  const { renderPaths } = useModelEditContext();
 
-  return (
-    <ModelWrapper model={model} {...props} baseClassName="edit-form">
-      {renderPaths}
-    </ModelWrapper>
-  );
+  return <ModelSection baseClassName="edit-form">{renderPaths}</ModelSection>;
 };
 
 ModelEditFormBase.propTypes = {};
