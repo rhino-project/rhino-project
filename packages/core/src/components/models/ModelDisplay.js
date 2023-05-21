@@ -14,8 +14,9 @@ import ModelDisplayArrayReference from './displays/ModelDisplayArrayReference';
 import ModelDisplayReference from './displays/ModelDisplayReference';
 import ModelDisplayAttachment from './displays/ModelDisplayAttachment';
 import ModelDisplayAttachmentImage from './displays/ModelDisplayAttachmentImage';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-export const ModelDisplay = ({ overrides, ...props }) => {
+export const ModelDisplayBase = ({ overrides, ...props }) => {
   const model = useModel(props.model);
   const { path } = props;
 
@@ -78,5 +79,7 @@ export const ModelDisplay = ({ overrides, ...props }) => {
 
   return 'No display for this attribute type';
 };
+
+const ModelDisplay = (props) => useGlobalComponent(ModelDisplayBase, props);
 
 export default ModelDisplay;
