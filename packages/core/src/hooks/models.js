@@ -1,7 +1,8 @@
 import { isObject } from 'lodash';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import { getModel, hasModule } from 'rhino/utils/models';
 import { getModelAndAttributeFromPath } from '../utils/models.js';
+import { ModelContext } from 'rhino/components/models/ModelProvider.js';
 
 /**
  * @typedef {import('../utils/models.js').Model} Model
@@ -19,6 +20,20 @@ import { getModelAndAttributeFromPath } from '../utils/models.js';
  */
 export const useModel = (model) =>
   useMemo(() => (isObject(model) ? model : getModel(model)), [model]);
+
+// Its currently ok to use this hook outside of a ModelProvider
+// FIXME: Require a ModelProvider context
+export const useModelContext = () => {
+  const context = useContext(ModelContext) ?? {};
+
+  return context;
+};
+
+export const useModelController = (options) => {
+  const model = useModel(options.model);
+
+  return { model };
+};
 
 /**
  * Return whether a module is enabled
