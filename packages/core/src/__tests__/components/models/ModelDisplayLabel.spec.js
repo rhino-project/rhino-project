@@ -1,20 +1,20 @@
 import { render } from '@testing-library/react';
 import { useForm } from 'react-hook-form';
 import FormProvider from 'rhino/components/forms/FormProvider';
-import ModelFilterLabel from 'rhino/components/models/ModelFilterLabel';
+import ModelDisplayLabel from 'rhino/components/models/ModelDisplayLabel';
 import { sharedModelTests } from './sharedModelTests';
 
-describe('ModelFilterLabel', () => {
+describe('ModelDisplayLabel', () => {
   const wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
 
-  sharedModelTests(ModelFilterLabel);
+  sharedModelTests(ModelDisplayLabel);
 
   it(`should render label with readable name`, () => {
     const { asFragment } = render(
-      <ModelFilterLabel
+      <ModelDisplayLabel
         model={{
           properties: { dummy: { type: 'string', readableName: 'Dummy' } }
         }}
@@ -30,7 +30,7 @@ describe('ModelFilterLabel', () => {
 
   it(`should override label with prop`, () => {
     const { asFragment } = render(
-      <ModelFilterLabel
+      <ModelDisplayLabel
         model={{
           properties: { dummy: { type: 'string', readableName: 'Dummy' } }
         }}

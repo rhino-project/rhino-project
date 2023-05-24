@@ -1,20 +1,14 @@
 import { useMemo } from 'react';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import DisplayLabel from '../forms/DisplayLabel';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
-const defaultComponents = {
-  ModelDisplayLabel: DisplayLabel
-};
-
-export const ModelDisplayLabel = ({ overrides, label, model, ...props }) => {
-  const { ModelDisplayLabel } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    // FIXME model should not have to be extract here - inheritedProps should be passed to the component
-    { model, ...props }
-  );
-
+export const ModelDisplayLabelBase = ({
+  overrides,
+  label,
+  model,
+  ...props
+}) => {
   const { attribute } = useModelAndAttributeFromPath(model, props.path);
 
   const modelLabel = useMemo(() => label || attribute.readableName, [
@@ -22,7 +16,10 @@ export const ModelDisplayLabel = ({ overrides, label, model, ...props }) => {
     label
   ]);
 
-  return <ModelDisplayLabel label={modelLabel} {...props} />;
+  return <DisplayLabel label={modelLabel} {...props} />;
 };
+
+const ModelDisplayLabel = (props) =>
+  useGlobalComponent('ModelDisplayLabel', ModelDisplayLabelBase, props);
 
 export default ModelDisplayLabel;
