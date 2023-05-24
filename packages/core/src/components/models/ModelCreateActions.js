@@ -178,6 +178,6 @@ ModelCreateActionsBase.defaultProps = {
 };
 
 const ModelCreateActions = (props) =>
-  useGlobalComponent(ModelCreateActionsBase, props);
+  useGlobalComponent('ModelCreateActions', ModelCreateActionsBase, props);
 
 export default ModelCreateActions;

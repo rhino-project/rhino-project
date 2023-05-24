@@ -74,6 +74,6 @@ ModelCreateModalBase.defaultProps = {
 };
 
 const ModelCreateModal = (props) =>
-  useGlobalComponent(ModelCreateModalBase, props);
+  useGlobalComponent('ModelCreateModal', ModelCreateModalBase, props);
 
 export default ModelCreateModal;

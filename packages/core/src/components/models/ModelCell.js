@@ -86,6 +86,7 @@ export const ModelCellBase = ({ overrides, ...props }) => {
   return 'No cell for this attribute type';
 };
 
-const ModelCell = (props) => useGlobalComponent(ModelCellBase, props);
+const ModelCell = (props) =>
+  useGlobalComponent('ModelCell', ModelCellBase, props);
 
 export default ModelCell;

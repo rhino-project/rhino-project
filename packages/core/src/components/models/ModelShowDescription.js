@@ -13,6 +13,6 @@ export const ModelShowDescriptionBase = (props) => {
 ModelShowDescriptionBase.propTypes = {};
 
 const ModelShowDescription = (props) =>
-  useGlobalComponent(ModelShowDescriptionBase, props);
+  useGlobalComponent('ModelShowDescription', ModelShowDescriptionBase, props);
 
 export default ModelShowDescription;

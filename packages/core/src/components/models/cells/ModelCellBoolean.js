@@ -4,6 +4,6 @@ import { useGlobalComponent } from 'rhino/hooks/overrides';
 export const ModelCellBooleanBase = (props) => <CellBoolean {...props} />;
 
 const ModelCellBoolean = (props) =>
-  useGlobalComponent(ModelCellBooleanBase, props);
+  useGlobalComponent('ModelCellBoolean', ModelCellBooleanBase, props);
 
 export default ModelCellBoolean;

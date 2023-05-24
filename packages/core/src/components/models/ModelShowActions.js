@@ -154,6 +154,6 @@ export const ModelShowActionsModalEdit = (props) => (
 );
 
 const ModelShowActions = (props) =>
-  useGlobalComponent(ModelShowActionsBase, props);
+  useGlobalComponent('ModelShowActions', ModelShowActionsBase, props);
 
 export default ModelShowActions;

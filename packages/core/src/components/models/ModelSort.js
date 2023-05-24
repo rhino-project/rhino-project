@@ -101,6 +101,7 @@ ModelSortBase.propTypes = {
   paths: PropTypes.array
 };
 
-const ModelSort = (props) => useGlobalComponent(ModelSortBase, props);
+const ModelSort = (props) =>
+  useGlobalComponent('ModelSort', ModelSortBase, props);
 
 export default ModelSort;

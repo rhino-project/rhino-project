@@ -134,6 +134,6 @@ ModelIndexTableBase.defaultProps = {
 const columnHelper = createColumnHelper();
 
 export const ModelIndexTable = (props) =>
-  useGlobalComponent(ModelIndexTableBase, props);
+  useGlobalComponent('ModelIndexTable', ModelIndexTableBase, props);
 
 export default ModelIndexTable;

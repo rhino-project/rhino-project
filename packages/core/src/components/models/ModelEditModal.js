@@ -73,6 +73,7 @@ ModelEditModalBase.defaultProps = {
   isOpen: false
 };
 
-const ModelEditModal = (props) => useGlobalComponent(ModelEditModalBase, props);
+const ModelEditModal = (props) =>
+  useGlobalComponent('ModelEditModal', ModelEditModalBase, props);
 
 export default ModelEditModal;

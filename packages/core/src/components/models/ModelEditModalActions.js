@@ -102,6 +102,6 @@ export const ModelEditModalActionsSaveShow = (props) => (
 );
 
 const ModelEditModalActions = (props) =>
-  useGlobalComponent(ModelEditModalActionsBase, props);
+  useGlobalComponent('ModelEditModalActions', ModelEditModalActionsBase, props);
 
 export default ModelEditModalActions;

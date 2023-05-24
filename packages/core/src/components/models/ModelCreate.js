@@ -39,6 +39,7 @@ ModelCreateBase.propTypes = {
   overrides: PropTypes.object
 };
 
-const ModelCreate = (props) => useGlobalComponent(ModelCreateBase, props);
+const ModelCreate = (props) =>
+  useGlobalComponent('ModelCreate', ModelCreateBase, props);
 
 export default ModelCreate;

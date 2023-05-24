@@ -11,6 +11,6 @@ export const ModelShowHeaderBase = () => {
 ModelShowHeaderBase.propTypes = {};
 
 const ModelShowHeader = (props) =>
-  useGlobalComponent(ModelShowHeaderBase, props);
+  useGlobalComponent('ModelShowHeader', ModelShowHeaderBase, props);
 
 export default ModelShowHeader;

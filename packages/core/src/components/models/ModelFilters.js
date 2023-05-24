@@ -144,6 +144,7 @@ ModelFiltersBase.propTypes = {
   paths: PropTypes.array
 };
 
-const ModelFilters = (props) => useGlobalComponent(ModelFiltersBase, props);
+const ModelFilters = (props) =>
+  useGlobalComponent('ModelFilters', ModelFiltersBase, props);
 
 export default ModelFilters;

@@ -18,6 +18,10 @@ export const ModelFieldOwnerReferenceBase = ({
 };
 
 const ModelFieldOwnerReference = (props) =>
-  useGlobalComponent(ModelFieldOwnerReferenceBase, props);
+  useGlobalComponent(
+    'ModelFieldOwnerReference',
+    ModelFieldOwnerReferenceBase,
+    props
+  );
 
 export default ModelFieldOwnerReference;
