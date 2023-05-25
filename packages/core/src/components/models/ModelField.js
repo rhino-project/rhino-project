@@ -106,6 +106,7 @@ export const ModelFieldBase = ({ overrides, ...props }) => {
   return 'No field for this attribute type';
 };
 
-const ModelField = (props) => useGlobalComponent(ModelFieldBase, props);
+const ModelField = (props) =>
+  useGlobalComponent('ModelField', ModelFieldBase, props);
 
 export default ModelField;

@@ -147,6 +147,6 @@ ModelEditActionsBase.defaultProps = {
 };
 
 const ModelEditActions = (props) =>
-  useGlobalComponent(ModelEditActionsBase, props);
+  useGlobalComponent('ModelEditActions', ModelEditActionsBase, props);
 
 export default ModelEditActions;

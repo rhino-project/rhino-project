@@ -44,6 +44,6 @@ ModelIndexHeaderBase.propTypes = {
 };
 
 const ModelIndexHeader = (props) =>
-  useGlobalComponent(ModelIndexHeaderBase, props);
+  useGlobalComponent('ModelIndexHeader', ModelIndexHeaderBase, props);
 
 export default ModelIndexHeader;

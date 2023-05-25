@@ -43,6 +43,7 @@ ModelShowBase.propTypes = {
   overrides: PropTypes.object
 };
 
-const ModelShow = (props) => useGlobalComponent(ModelShowBase, props);
+const ModelShow = (props) =>
+  useGlobalComponent('ModelShow', ModelShowBase, props);
 
 export default ModelShow;

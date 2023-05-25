@@ -80,6 +80,7 @@ export const ModelDisplayBase = ({ overrides, ...props }) => {
   return 'No display for this attribute type';
 };
 
-const ModelDisplay = (props) => useGlobalComponent(ModelDisplayBase, props);
+const ModelDisplay = (props) =>
+  useGlobalComponent('ModelDisplay', ModelDisplayBase, props);
 
 export default ModelDisplay;

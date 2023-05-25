@@ -103,7 +103,7 @@ export const ModelIndexActionsBase = ({
   ...props
 }) => {
   const { ModelIndexActionCreate } = useOverrides(defaultComponents, overrides);
-
+  console.warn('ModelIndexActionsBase', props);
   const computedDefaultActions = useMemo(
     () => [<ModelIndexActionCreate />],
     []
@@ -143,6 +143,6 @@ export const ModelIndexActionsModalCreate = (props) => (
 );
 
 const ModelIndexActions = (props) =>
-  useGlobalComponent(ModelIndexActionsBase, props);
+  useGlobalComponent('ModelIndexActions', ModelIndexActionsBase, props);
 
 export default ModelIndexActions;

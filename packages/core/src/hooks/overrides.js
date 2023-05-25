@@ -203,14 +203,8 @@ export const useGlobalOverrides = (
   return useOverrides(defaultComponents, computedOverrides);
 };
 
-export const useGlobalComponent = (BaseComponent, props) => {
+export const useGlobalComponent = (overrideName, BaseComponent, props) => {
   const { model } = useModelContext();
-  const overrideName = useMemo(() => {
-    return `${BaseComponent.displayName || BaseComponent.name}`.replace(
-      /Base$/,
-      ''
-    );
-  }, [BaseComponent]);
 
   const defaultComponents = useMemo(() => {
     return { [overrideName]: BaseComponent };

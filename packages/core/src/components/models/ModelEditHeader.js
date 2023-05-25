@@ -19,6 +19,6 @@ export const ModelEditHeaderBase = (props) => {
 ModelEditHeaderBase.propTypes = {};
 
 const ModelEditHeader = (props) =>
-  useGlobalComponent(ModelEditHeaderBase, props);
+  useGlobalComponent('ModelEditHeader', ModelEditHeaderBase, props);
 
 export default ModelEditHeader;

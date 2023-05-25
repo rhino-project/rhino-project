@@ -13,6 +13,7 @@ export const ModelFooterBase = ({ model, path, children, ...props }) => {
   return <Footer {...props}>{footerText}</Footer>;
 };
 
-const ModelFooter = (props) => useGlobalComponent(ModelFooterBase, props);
+const ModelFooter = (props) =>
+  useGlobalComponent('ModelFooter', ModelFooterBase, props);
 
 export default ModelFooter;

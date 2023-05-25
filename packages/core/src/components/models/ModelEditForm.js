@@ -10,6 +10,7 @@ export const ModelEditFormBase = (props) => {
 
 ModelEditFormBase.propTypes = {};
 
-const ModelEditForm = (props) => useGlobalComponent(ModelEditFormBase, props);
+const ModelEditForm = (props) =>
+  useGlobalComponent('ModelEditForm', ModelEditFormBase, props);
 
 export default ModelEditForm;
