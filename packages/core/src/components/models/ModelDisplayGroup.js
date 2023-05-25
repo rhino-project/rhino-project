@@ -1,11 +1,7 @@
-import { useGlobalOverrides, useMergedOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
 import DisplayGroup from '../forms/DisplayGroup';
 import ModelDisplayLabel from './ModelDisplayLabel';
 import ModelDisplay from './ModelDisplay';
-
-const defaultComponents = {
-  ModelDisplayGroup: DisplayGroup
-};
 
 const BASE_OVERRIDES = {
   DisplayLayout: {
@@ -14,18 +10,13 @@ const BASE_OVERRIDES = {
   }
 };
 
-const ModelDisplayGroup = ({ ...props }) => {
+export const ModelDisplayGroupBase = ({ ...props }) => {
   const overrides = useMergedOverrides(BASE_OVERRIDES, props.overrides);
 
-  const { ModelDisplayGroup } = useGlobalOverrides(
-    defaultComponents,
-    {
-      ModelFilterGroup: { ...overrides }
-    },
-    props
-  );
-
-  return <ModelDisplayGroup overrides={overrides} {...props} />;
+  return <DisplayGroup overrides={overrides} {...props} />;
 };
+
+const ModelDisplayGroup = (props) =>
+  useGlobalComponent('ModelDisplayGroup', ModelDisplayGroupBase, props);
 
 export default ModelDisplayGroup;

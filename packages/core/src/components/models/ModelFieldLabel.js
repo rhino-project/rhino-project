@@ -1,18 +1,9 @@
 import { useMemo } from 'react';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import FieldLabel from '../forms/FieldLabel';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
-const defaultComponents = {
-  ModelFieldLabel: FieldLabel
-};
-
-export const ModelFieldLabel = ({ overrides, label, model, ...props }) => {
-  const { ModelFieldLabel } = useGlobalOverrides(defaultComponents, overrides, {
-    model,
-    ...props
-  });
-
+export const ModelFieldLabelBase = ({ overrides, label, model, ...props }) => {
   const { path } = props;
   const { attribute } = useModelAndAttributeFromPath(model, path);
 
@@ -22,12 +13,15 @@ export const ModelFieldLabel = ({ overrides, label, model, ...props }) => {
   ]);
 
   return (
-    <ModelFieldLabel
+    <FieldLabel
       label={modelLabel}
       required={!!attribute['x-rhino-required']}
       {...props}
     />
   );
 };
+
+const ModelFieldLabel = (props) =>
+  useGlobalComponent('ModelFieldLabel', ModelFieldLabelBase, props);
 
 export default ModelFieldLabel;

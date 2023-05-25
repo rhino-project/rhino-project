@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 import { useForm } from 'react-hook-form';
 import FormProvider from 'rhino/components/forms/FormProvider';
-import ModelFilterGroup from 'rhino/components/models/ModelFilterGroup';
+import ModelDisplayGroup from 'rhino/components/models/ModelDisplayGroup';
 import { sharedModelTests } from './sharedModelTests';
 
-describe('ModelFilterGroup', () => {
+describe('ModelDisplayGroup', () => {
   const wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
@@ -12,11 +12,11 @@ describe('ModelFilterGroup', () => {
 
   const Bar = (props) => <div {...props}>Bar</div>;
 
-  sharedModelTests(ModelFilterGroup);
+  sharedModelTests(ModelDisplayGroup);
 
   it(`should merge overrides`, () => {
     const { asFragment } = render(
-      <ModelFilterGroup
+      <ModelDisplayGroup
         model={{ properties: { dummy: { type: 'integer', minimum: 5 } } }}
         overrides={{
           FilterLayout: {
