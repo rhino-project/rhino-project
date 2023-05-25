@@ -11,8 +11,11 @@ import {
   merge,
   mergeWith
 } from 'lodash';
-import { useModel, useModelAndAttributeFromPath } from './models';
-import { useModelContext } from './controllers';
+import {
+  useModel,
+  useModelContext,
+  useModelAndAttributeFromPath
+} from './models';
 
 // Based on:
 // https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646

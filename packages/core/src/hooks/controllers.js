@@ -37,21 +37,6 @@ import { useDefaultValues, useResolver, useSchema } from './form';
 import { useForm } from 'react-hook-form';
 import { usePaths } from './paths';
 import ModelDisplayGroup from 'rhino/components/models/ModelDisplayGroup';
-import { ModelContext } from 'rhino/components/models/ModelProvider';
-
-// Its currently ok to use this hook outside of a ModelProvider
-// FIXME: Require a ModelProvider context
-export const useModelContext = () => {
-  const context = useContext(ModelContext) ?? {};
-
-  return context;
-};
-
-export const useModelController = (options) => {
-  const model = useModel(options.model);
-
-  return { model };
-};
 
 export const useModelIndexContext = () => {
   const context = useContext(ModelIndexContext);
