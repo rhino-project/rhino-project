@@ -110,6 +110,7 @@ export const useModelIndexController = (options) => {
     networkOptions: options?.networkOptions
   });
 
+  const create = useModelCreate(model);
   const update = useModelUpdate(model);
   const destroy = useModelDelete(model);
 
@@ -191,8 +192,10 @@ export const useModelIndexController = (options) => {
     lastPage,
     setPage,
     ...query,
+    create,
     update,
-    delete: destroy
+    delete: destroy,
+    destroy
   };
 };
 
@@ -232,7 +235,8 @@ export const useModelShowController = (options) => {
   });
   const { resource } = query;
 
-  const { mutate: update } = useModelUpdate(model);
+  const create = useModelCreate(model);
+  const update = useModelUpdate(model);
   const destroy = useModelDelete(model);
 
   const pathsOrDefault = useMemo(() => paths || getViewablePaths(model), [
@@ -273,13 +277,15 @@ export const useModelShowController = (options) => {
   return {
     model,
     modelId,
-    ...query,
-    delete: destroy,
-    update,
     methods,
     renderPaths,
     resolver,
-    schema
+    schema,
+    ...query,
+    create,
+    update,
+    delete: destroy,
+    destroy
   };
 };
 

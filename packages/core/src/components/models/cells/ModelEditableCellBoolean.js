@@ -12,7 +12,9 @@ const ModelEditableCellBoolean = ({ overrides, getValue, row, ...props }) => {
     defaultComponents,
     overrides
   );
-  const { update } = useModelIndexContext();
+  const {
+    update: { mutate }
+  } = useModelIndexContext();
   const { inheritedProps } = useTableInheritedProps(props);
 
   return (
@@ -21,7 +23,7 @@ const ModelEditableCellBoolean = ({ overrides, getValue, row, ...props }) => {
       checked={getValue()}
       onClick={(e) => e.stopPropagation()}
       onChange={() =>
-        update({ id: row.original.id, [props.path]: !getValue() })
+        mutate({ id: row.original.id, [props.path]: !getValue() })
       }
       {...inheritedProps}
     />
