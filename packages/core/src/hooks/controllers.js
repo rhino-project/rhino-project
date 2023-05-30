@@ -344,13 +344,11 @@ export const useModelCreateController = (options) => {
   const resolver = useResolver(schema);
 
   const methods = useForm({
+    defaultValues,
     resolver,
     ...options
   });
-  const { reset, setFocus } = methods;
-
-  // Reset the form when the default values change
-  useEffect(() => reset(defaultValues), [defaultValues, reset]);
+  const { setFocus } = methods;
 
   useEffect(() => {
     if (isString(computedPaths?.[0])) setFocus(computedPaths?.[0]);
