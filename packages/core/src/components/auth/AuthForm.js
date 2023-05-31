@@ -7,7 +7,7 @@ import { useParsedSearch } from 'rhino/hooks/history';
 import { LinkButton, SubmitButton } from 'rhino/components/buttons';
 import FormProvider from '../forms/FormProvider';
 import { useForm } from 'react-hook-form';
-import { FieldGroup } from '../forms/FieldGroup';
+import FieldGroup from '../forms/FieldGroup';
 import FieldGroupPassword from '../forms/fieldGroups/FieldGroupPassword';
 import { useResolver } from 'rhino/hooks/form';
 

@@ -1,19 +1,32 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import DisplayGroup from '../forms/DisplayGroup';
 import ModelDisplayLabel from './ModelDisplayLabel';
 import ModelDisplay from './ModelDisplay';
+import ModelDisplayLayout from './ModelDisplayLayout';
+import { useMemo } from 'react';
 
-const BASE_OVERRIDES = {
-  DisplayLayout: {
-    DisplayLabel: ModelDisplayLabel,
-    Display: ModelDisplay
-  }
+const defaultComponents = {
+  ModelDisplayLayout,
+  ModelDisplayLabel,
+  ModelDisplay
 };
 
-export const ModelDisplayGroupBase = ({ ...props }) => {
-  const overrides = useMergedOverrides(BASE_OVERRIDES, props.overrides);
+export const ModelDisplayGroupBase = ({ overrides, ...props }) => {
+  const { ModelDisplayLayout, ModelDisplayLabel, ModelDisplay } = useOverrides(
+    defaultComponents,
+    overrides
+  );
+  const combinedOverrides = useMemo(() => {
+    return {
+      DisplayLayout: {
+        component: ModelDisplayLayout,
+        DisplayLabel: ModelDisplayLabel,
+        Display: ModelDisplay
+      }
+    };
+  }, [ModelDisplay, ModelDisplayLabel, ModelDisplayLayout]);
 
-  return <DisplayGroup overrides={overrides} {...props} />;
+  return <DisplayGroup overrides={combinedOverrides} {...props} />;
 };
 
 const ModelDisplayGroup = (props) =>

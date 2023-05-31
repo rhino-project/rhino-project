@@ -1,18 +1,17 @@
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import DisplayLayoutVertical from './DisplayLayoutVertical';
 
 const defaultComponents = {
   DisplayLayout: DisplayLayoutVertical
 };
 
-export const DisplayGroup = ({ overrides, ...props }) => {
-  const { DisplayLayout } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
+export const DisplayGroupBase = ({ overrides, ...props }) => {
+  const { DisplayLayout } = useOverrides(defaultComponents, overrides);
 
   return <DisplayLayout {...props} />;
 };
+
+const DisplayGroup = (props) =>
+  useGlobalComponent('DisplayGroup', DisplayGroupBase, props);
 
 export default DisplayGroup;

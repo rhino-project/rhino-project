@@ -1,6 +1,6 @@
 import { FormGroup } from 'reactstrap';
 
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import FieldLabel from './FieldLabel';
 import Field from './fields/FieldInput';
 import FieldFeedback from './FieldFeedback';
@@ -9,13 +9,14 @@ import { useFieldInheritedProps } from 'rhino/hooks/form';
 const INHERITED_PROP_OPTIONS = { prefix: 'FieldLayoutVertical' };
 
 const defaultComponents = {
+  FormGroup,
   FieldLabel,
   Field,
   FieldFeedback
 };
 
-export const FieldLayoutVertical = ({ overrides, ...props }) => {
-  const { FieldLabel, Field, FieldFeedback } = useGlobalOverrides(
+export const FieldLayoutVerticalBase = ({ overrides, ...props }) => {
+  const { FormGroup, FieldLabel, Field, FieldFeedback } = useOverrides(
     defaultComponents,
     overrides
   );
@@ -33,5 +34,8 @@ export const FieldLayoutVertical = ({ overrides, ...props }) => {
     </FormGroup>
   );
 };
+
+const FieldLayoutVertical = (props) =>
+  useGlobalComponent('FieldLayoutVertical', FieldLayoutVerticalBase, props);
 
 export default FieldLayoutVertical;
