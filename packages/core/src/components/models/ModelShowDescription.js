@@ -1,9 +1,15 @@
 import { useModelShowContext } from 'rhino/hooks/controllers';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
+import { useRenderPaths } from 'rhino/hooks/paths';
+import ModelDisplayGroup from './ModelDisplayGroup';
 
 export const ModelShowDescriptionBase = (props) => {
-  const { renderPaths } = useModelShowContext();
+  const { model, paths } = useModelShowContext();
+  const renderPaths = useRenderPaths(paths, {
+    Component: ModelDisplayGroup,
+    props: { model }
+  });
 
   return (
     <ModelSection baseClassName="show-description">{renderPaths}</ModelSection>

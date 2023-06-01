@@ -1,17 +1,11 @@
-import {
-  Children,
-  cloneElement,
-  isValidElement,
-  useEffect,
-  useMemo
-} from 'react';
+import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { omit } from 'lodash';
 import { useForm } from 'react-hook-form';
 
 import { getReferenceAttributes } from 'rhino/utils/models';
 import { IconButton } from 'rhino/components/buttons';
-import { usePaths } from 'rhino/hooks/paths';
+import { usePaths, useRenderPaths } from 'rhino/hooks/paths';
 import FormProvider from '../forms/FormProvider';
 import ModelFilterGroup from './ModelFilterGroup';
 import { useFilterPills } from 'rhino/hooks/form';
@@ -91,17 +85,10 @@ export const ModelFiltersBase = ({ paths }) => {
     setSearch(defaultState?.search);
   };
 
-  const renderPaths = useMemo(
-    () =>
-      Children.map(computedPaths, (path) =>
-        isValidElement(path) ? (
-          cloneElement(path, { model })
-        ) : (
-          <ModelFilterGroup model={model} path={path} />
-        )
-      ),
-    [model, computedPaths]
-  );
+  const renderPaths = useRenderPaths(computedPaths, {
+    Component: ModelFilterGroup,
+    props: { model }
+  });
 
   return (
     <div className="d-flex flex-column my-2">
