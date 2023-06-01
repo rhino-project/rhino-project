@@ -3,7 +3,7 @@ import { useController } from 'react-hook-form';
 import { InputGroup } from 'reactstrap';
 import CurrencyFormat from 'react-currency-format';
 import classnames from 'classnames';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const ModelFieldCurrencyBase = ({ model, ...props }) => {
   const { path } = props;
@@ -34,21 +34,12 @@ export const ModelFieldCurrencyBase = ({ model, ...props }) => {
   );
 };
 
-const defaultComponents = { ModelFieldCurrency: ModelFieldCurrencyBase };
-
-const ModelFieldCurrency = ({ overrides, ...props }) => {
-  const { ModelFieldCurrency } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelFieldCurrency {...props} />;
-};
-
-ModelFieldCurrency.propTypes = {
+ModelFieldCurrencyBase.propTypes = {
   model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   path: PropTypes.string.isRequired
 };
+
+const ModelFieldCurrency = (props) =>
+  useGlobalComponent('ModelFieldCurrency', ModelFieldCurrencyBase, props);
 
 export default ModelFieldCurrency;

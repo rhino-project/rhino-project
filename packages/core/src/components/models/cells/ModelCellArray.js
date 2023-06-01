@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import CellString from 'rhino/components/table/cells/CellString';
 
 export const ModelCellArrayBase = ({ getValue, ...props }) => {
@@ -10,15 +10,7 @@ export const ModelCellArrayBase = ({ getValue, ...props }) => {
   return <CellString getValue={syntheticGetValue} {...props} />;
 };
 
-const defaultComponents = { ModelCellArray: ModelCellArrayBase };
-
-const ModelCellArray = ({ overrides, ...props }) => {
-  const { ModelCellArray } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-  return <ModelCellArray {...props}></ModelCellArray>;
-};
+const ModelCellArray = (props) =>
+  useGlobalComponent('ModelCellArray', ModelCellArrayBase, props);
 
 export default ModelCellArray;

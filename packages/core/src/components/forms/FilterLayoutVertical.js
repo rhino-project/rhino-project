@@ -1,6 +1,6 @@
 import { FormGroup } from 'reactstrap';
 
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import Field from './fields/FieldInput';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 import FilterLabel from './FilterLabel';
@@ -16,11 +16,8 @@ const defaultComponents = {
   Filter: Field
 };
 
-export const FilterLayoutVertical = ({ overrides, ...props }) => {
-  const { FilterLabel, Filter } = useGlobalOverrides(
-    defaultComponents,
-    overrides
-  );
+export const FilterLayoutVerticalBase = ({ overrides, ...props }) => {
+  const { FilterLabel, Filter } = useOverrides(defaultComponents, overrides);
   const { extractedProps, inheritedProps } = useFieldInheritedProps(
     props,
     INHERITED_PROP_OPTIONS
@@ -33,5 +30,8 @@ export const FilterLayoutVertical = ({ overrides, ...props }) => {
     </FormGroup>
   );
 };
+
+const FilterLayoutVertical = (props) =>
+  useGlobalComponent('FilterLayoutVertical', FilterLayoutVerticalBase, props);
 
 export default FilterLayoutVertical;

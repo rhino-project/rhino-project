@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { useController } from 'react-hook-form';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 export const ModelFieldArrayStringBase = ({ model, ...props }) => {
@@ -44,21 +44,12 @@ export const ModelFieldArrayStringBase = ({ model, ...props }) => {
   );
 };
 
-const defaultComponents = { ModelFieldArrayString: ModelFieldArrayStringBase };
-
-const ModelFieldArrayString = ({ overrides, ...props }) => {
-  const { ModelFieldArrayString } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelFieldArrayString {...props} />;
-};
-
-ModelFieldArrayString.propTypes = {
+ModelFieldArrayStringBase.propTypes = {
   model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   path: PropTypes.string.isRequired
 };
+
+const ModelFieldArrayString = (props) =>
+  useGlobalComponent('ModelFieldArrayString', ModelFieldArrayStringBase, props);
 
 export default ModelFieldArrayString;

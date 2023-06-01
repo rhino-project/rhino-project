@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import CellImage from 'rhino/components/table/cells/CellImage';
 
 export const ModelCellAttachmentImageBase = ({ getValue, ...props }) => {
@@ -12,18 +12,11 @@ export const ModelCellAttachmentImageBase = ({ getValue, ...props }) => {
   return <CellImage alt={altText} getValue={syntheticGetValue} {...props} />;
 };
 
-const defaultComponents = {
-  ModelCellAttachmentImage: ModelCellAttachmentImageBase
-};
-
-const ModelCellAttachmentImage = ({ overrides, ...props }) => {
-  const { ModelCellAttachmentImage } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
+const ModelCellAttachmentImage = (props) =>
+  useGlobalComponent(
+    'ModelCellAttachmentImage',
+    ModelCellAttachmentImageBase,
     props
   );
-
-  return <ModelCellAttachmentImage {...props} />;
-};
 
 export default ModelCellAttachmentImage;

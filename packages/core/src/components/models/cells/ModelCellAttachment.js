@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import CellLink from 'rhino/components/table/cells/CellLink';
 
 export const ModelCellAttachmentBase = ({ children, getValue, ...props }) => {
@@ -16,16 +16,7 @@ export const ModelCellAttachmentBase = ({ children, getValue, ...props }) => {
   );
 };
 
-const defaultComponents = { ModelCellAttachment: ModelCellAttachmentBase };
-
-const ModelCellAttachment = ({ overrides, ...props }) => {
-  const { ModelCellAttachment } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelCellAttachment {...props} />;
-};
+const ModelCellAttachment = (props) =>
+  useGlobalComponent('ModelCellAttachment', ModelCellAttachmentBase, props);
 
 export default ModelCellAttachment;

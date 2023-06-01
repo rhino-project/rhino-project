@@ -2,10 +2,6 @@
 
 exports[`useGlobalOverrides for form components should render FieldLabel with global override shorthand 1`] = `
 <div
-  checked={true}
-  className=""
-  for="dummy"
-  id="fieldLabel-dummy"
   path="dummy"
 >
   Bar
@@ -14,10 +10,6 @@ exports[`useGlobalOverrides for form components should render FieldLabel with gl
 
 exports[`useGlobalOverrides for form components should render FilterLabel with global override shorthand 1`] = `
 <div
-  checked={true}
-  className=""
-  for="dummy"
-  id="filterLabel-dummy"
   path="dummy"
 >
   Bar

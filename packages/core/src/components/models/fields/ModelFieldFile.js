@@ -6,7 +6,7 @@ import { Alert, Input, Progress } from 'reactstrap';
 import Uploader from 'rhino/utils/uploader';
 import { CloseButton } from 'rhino/components/buttons';
 import { useForceUpdate } from 'rhino/hooks/util';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useController } from 'react-hook-form';
 
@@ -127,6 +127,7 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
 };
 
 ModelFieldFileBase.propTypes = {
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   path: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -142,21 +143,7 @@ ModelFieldFileBase.defaultProps = {
   multiple: false
 };
 
-const defaultComponents = { ModelFieldField: ModelFieldFileBase };
+const ModelFieldFile = (props) =>
+  useGlobalComponent('ModelFieldFile', ModelFieldFileBase, props);
 
-const ModelFieldField = ({ overrides, ...props }) => {
-  const { ModelFieldField } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelFieldField {...props} />;
-};
-
-ModelFieldField.propTypes = {
-  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
-  path: PropTypes.string.isRequired
-};
-
-export default ModelFieldField;
+export default ModelFieldFile;

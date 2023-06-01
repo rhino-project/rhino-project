@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import CellBadge from 'rhino/components/table/cells/CellBadge';
 
 const COLOR_PALETTE = ['#0369a1', '#047857', '#6d28d9', '#a21caf', '#be123c'];
@@ -22,16 +22,7 @@ export const ModelCellEnumBase = (props) => {
   return <CellBadge style={style} color="none" {...props} />;
 };
 
-const defaultComponents = { ModelCellEnum: ModelCellEnumBase };
-
-const ModelCellEnum = ({ overrides, ...props }) => {
-  const { ModelCellEnum } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelCellEnum {...props} />;
-};
+const ModelCellEnum = (props) =>
+  useGlobalComponent('ModelCellEnum', ModelCellEnumBase, props);
 
 export default ModelCellEnum;

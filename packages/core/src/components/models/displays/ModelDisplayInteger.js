@@ -1,20 +1,11 @@
 import DisplayInteger from 'rhino/components/forms/displays/DisplayInteger';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const ModelDisplayIntegerBase = ({ model, ...props }) => (
   <DisplayInteger {...props} />
 );
 
-const defaultComponents = { ModelDisplayInteger: ModelDisplayIntegerBase };
-
-const ModelDisplayInteger = ({ overrides, ...props }) => {
-  const { ModelDisplayInteger } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelDisplayInteger {...props} />;
-};
+const ModelDisplayInteger = (props) =>
+  useGlobalComponent('ModelDisplayInteger', ModelDisplayIntegerBase, props);
 
 export default ModelDisplayInteger;

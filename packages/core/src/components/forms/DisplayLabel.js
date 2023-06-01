@@ -2,14 +2,14 @@ import classnames from 'classnames';
 import { useMemo } from 'react';
 import { Label } from 'reactstrap';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 
 const INHERITED_PROP_PREFIX = 'displayLabel';
 
 const defaultComponents = { DisplayLabel: Label };
 
-export const DisplayLabel = ({ overrides, ...props }) => {
-  const { DisplayLabel } = useGlobalOverrides(defaultComponents, overrides);
+export const DisplayLabelBase = ({ overrides, ...props }) => {
+  const { DisplayLabel } = useOverrides(defaultComponents, overrides);
   const { required } = props;
   const inheritedPropsOptions = useMemo(
     () => ({
@@ -30,5 +30,8 @@ export const DisplayLabel = ({ overrides, ...props }) => {
     </DisplayLabel>
   );
 };
+
+const DisplayLabel = (props) =>
+  useGlobalComponent('DisplayLabel', DisplayLabelBase, props);
 
 export default DisplayLabel;
