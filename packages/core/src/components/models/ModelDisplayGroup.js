@@ -4,6 +4,7 @@ import ModelDisplayLabel from './ModelDisplayLabel';
 import ModelDisplay from './ModelDisplay';
 import ModelDisplayLayout from './ModelDisplayLayout';
 import { useMemo } from 'react';
+import { useModelContext } from 'rhino/hooks/models';
 
 const defaultComponents = {
   ModelDisplayLayout,
@@ -12,6 +13,7 @@ const defaultComponents = {
 };
 
 export const ModelDisplayGroupBase = ({ overrides, ...props }) => {
+  const { model } = useModelContext();
   const { ModelDisplayLayout, ModelDisplayLabel, ModelDisplay } = useOverrides(
     defaultComponents,
     overrides
@@ -26,7 +28,9 @@ export const ModelDisplayGroupBase = ({ overrides, ...props }) => {
     };
   }, [ModelDisplay, ModelDisplayLabel, ModelDisplayLayout]);
 
-  return <DisplayGroup overrides={combinedOverrides} {...props} />;
+  return (
+    <DisplayGroup overrides={combinedOverrides} model={model} {...props} />
+  );
 };
 
 const ModelDisplayGroup = (props) =>
