@@ -103,7 +103,7 @@ export const ModelIndexActionsBase = ({
   ...props
 }) => {
   const { ModelIndexActionCreate } = useOverrides(defaultComponents, overrides);
-  console.warn('ModelIndexActionsBase', props);
+
   const computedDefaultActions = useMemo(
     () => [<ModelIndexActionCreate />],
     []
