@@ -2,6 +2,8 @@ import { useMemo } from 'react';
 import {
   getAccountSettingsPath,
   getForgotPasswordPath,
+  getModelEditPath,
+  getModelIndexPath,
   getRootPath,
   getSessionCreatePath,
   getSettingsPath,
@@ -25,6 +27,12 @@ export const useSettingsPath = () => useMemo(() => getSettingsPath(), []);
 export const useAccountSettingsPath = () =>
   useMemo(() => getAccountSettingsPath(), []);
 
+export const useModelIndexPath = (model, id) => {
+  const memoModel = useModel(model);
+
+  return useMemo(() => getModelIndexPath(memoModel), [memoModel]);
+};
+
 export const useModelShowPath = (model, id) => {
   const memoModel = useModel(model);
 
@@ -35,4 +43,10 @@ export const useModelCreatePath = (model) => {
   const memoModel = useModel(model);
 
   return useMemo(() => getModelCreatePath(memoModel), [memoModel]);
+};
+
+export const useModelEditPath = (model, id) => {
+  const memoModel = useModel(model);
+
+  return useMemo(() => getModelEditPath(memoModel, id), [memoModel, id]);
 };
