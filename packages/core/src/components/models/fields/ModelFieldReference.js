@@ -1,16 +1,15 @@
 import PropTypes from 'prop-types';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import classnames from 'classnames';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { useController } from 'react-hook-form';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useModelIndex } from 'rhino/hooks/queries';
-import { useDebouncedState } from 'rhino/hooks/util';
 import { getIdentifierAttribute, getModelFromRef } from 'rhino/utils/models';
 
 export const ModelFieldReferenceBase = ({ model, ...props }) => {
-  const { path, filter, limit = 100, offset, order } = props;
+  const { path, limit = 10, offset, order } = props;
   const { attribute } = useModelAndAttributeFromPath(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(() => getIdentifierAttribute(refModel), [
@@ -23,47 +22,53 @@ export const ModelFieldReferenceBase = ({ model, ...props }) => {
     name: path
   });
 
-  const [input, setInput] = useDebouncedState('', 500);
+  const valString = useMemo(
+    () =>
+      value?.[identifier.name] ? `${value?.[identifier.name]}` : `${value}`,
+    [value, identifier]
+  );
+
+  const [search, setSearch] = useState('');
+
+  const filter = useMemo(() => {
+    if (!value) return props.filter;
+
+    return { ...props.filter, [identifier.name]: valString };
+  }, [identifier.name, props.filter, valString, value]);
 
   const { results, isLoading } = useModelIndex(refModel, {
-    search: input,
+    search,
     filter,
     limit,
     offset,
     order
   });
 
-  const options = useMemo(() => results || [], [results]);
-
   const selectedOption = useMemo(() => {
     if (!value) return [];
 
     // String compare because numbers can be come strings in and out of edits
     // Identifier in case the reference is the full object
-    const valString = value?.[identifier.name]
-      ? `${value?.[identifier.name]}`
-      : `${value}`;
-
-    return options.filter((e) => `${e.id}` === valString);
-  }, [options, identifier, value]);
+    return results?.filter((e) => `${e.id}` === valString);
+  }, [results, value, valString]);
 
   const handleChange = (selected) => onChange(selected[0] || null);
 
   return (
-    <Typeahead
+    <AsyncTypeahead
       id={path}
       {...fieldProps}
-      // className={classnames(styles.typeahead, error ? 'is-invalid' : '')}
       className={classnames({ 'is-invalid': error })}
       clearButton={attribute.nullable}
       labelKey="display_name"
-      options={options}
+      options={results || []}
       selected={selectedOption}
       highlightOnlyResult
       isInvalid={!!error}
       onChange={handleChange}
-      onInputChange={setInput}
+      onSearch={(query) => setSearch(query)}
       isLoading={isLoading}
+      minLength={0}
       {...props}
     />
   );
