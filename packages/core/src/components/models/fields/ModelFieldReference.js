@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import classnames from 'classnames';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { useController } from 'react-hook-form';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useModelIndex } from 'rhino/hooks/queries';
 import { useDebouncedState } from 'rhino/hooks/util';
@@ -69,21 +69,12 @@ export const ModelFieldReferenceBase = ({ model, ...props }) => {
   );
 };
 
-const defaultComponents = { ModelFieldReference: ModelFieldReferenceBase };
-
-const ModelFieldReference = ({ overrides, ...props }) => {
-  const { ModelFieldReference } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelFieldReference {...props} />;
-};
-
-ModelFieldReference.propTypes = {
+ModelFieldReferenceBase.propTypes = {
   model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   path: PropTypes.string.isRequired
 };
+
+const ModelFieldReference = (props) =>
+  useGlobalComponent('ModelFieldReference', ModelFieldReferenceBase, props);
 
 export default ModelFieldReference;

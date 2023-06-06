@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import FieldDate from 'rhino/components/forms/fields/FieldDate';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 const ModelFieldDateBase = ({ model, ...props }) => {
@@ -10,21 +10,12 @@ const ModelFieldDateBase = ({ model, ...props }) => {
   return <FieldDate isClearable={attribute.nullable} {...props} />;
 };
 
-const defaultComponents = { ModelFieldDate: ModelFieldDateBase };
-
-const ModelFieldDate = ({ overrides, ...props }) => {
-  const { ModelFieldDate } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelFieldDate {...props} />;
-};
-
-ModelFieldDate.propTypes = {
+ModelFieldDateBase.propTypes = {
   model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   path: PropTypes.string.isRequired
 };
+
+const ModelFieldDate = (props) =>
+  useGlobalComponent('ModelFieldDate', ModelFieldDateBase, props);
 
 export default ModelFieldDate;

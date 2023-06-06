@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import { useController } from 'react-hook-form';
 import { Input } from 'reactstrap';
 import classnames from 'classnames';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { optionsFromIndexWithTitle } from 'rhino/utils/ui';
 
@@ -40,23 +40,16 @@ export const ModelFieldIntegerSelectBase = ({ model, ...props }) => {
   );
 };
 
-const defaultComponents = {
-  ModelFieldIntegerSelect: ModelFieldIntegerSelectBase
-};
-
-const ModelFieldIntegerSelect = ({ overrides, ...props }) => {
-  const { ModelFieldIntegerSelect } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelFieldIntegerSelect {...props} />;
-};
-
-ModelFieldIntegerSelect.propTypes = {
+ModelFieldIntegerSelectBase.propTypes = {
   model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   path: PropTypes.string.isRequired
 };
+
+const ModelFieldIntegerSelect = (props) =>
+  useGlobalComponent(
+    'ModelFieldIntegerSelect',
+    ModelFieldIntegerSelectBase,
+    props
+  );
 
 export default ModelFieldIntegerSelect;

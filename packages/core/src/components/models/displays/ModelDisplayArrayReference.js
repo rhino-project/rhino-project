@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import DisplayArray from 'rhino/components/forms/displays/DisplayArray';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const ModelDisplayArrayReferenceBase = ({ model, ...props }) => {
   const accessor = useCallback(
@@ -11,18 +11,11 @@ export const ModelDisplayArrayReferenceBase = ({ model, ...props }) => {
   return <DisplayArray accessor={accessor} {...props} />;
 };
 
-const defaultComponents = {
-  ModelDisplayArrayReference: ModelDisplayArrayReferenceBase
-};
-
-const ModelDisplayArrayReference = ({ overrides, ...props }) => {
-  const { ModelDisplayArrayReference } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
+const ModelDisplayArrayReference = (props) =>
+  useGlobalComponent(
+    'ModelDisplayArrayReference',
+    ModelDisplayArrayReferenceBase,
     props
   );
-
-  return <ModelDisplayArrayReference {...props} />;
-};
 
 export default ModelDisplayArrayReference;

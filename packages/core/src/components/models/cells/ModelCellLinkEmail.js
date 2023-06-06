@@ -1,20 +1,9 @@
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import CellLinkEmail from 'rhino/components/table/cells/CellLinkEmail';
 
 export const ModelCellLinkEmailBase = (props) => <CellLinkEmail {...props} />;
 
-const defaultComponents = {
-  ModelCellLinkEmail: ModelCellLinkEmailBase
-};
-
-const ModelCellLinkEmail = ({ overrides, ...props }) => {
-  const { ModelCellLinkEmail } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelCellLinkEmail {...props} />;
-};
+const ModelCellLinkEmail = (props) =>
+  useGlobalComponent('ModelCellLinkEmail', ModelCellLinkEmailBase, props);
 
 export default ModelCellLinkEmail;

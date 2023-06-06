@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useCallback, useMemo } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { useController } from 'react-hook-form';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useModelIndex } from 'rhino/hooks/queries';
 import { getModelFromRef, getReferenceAttributes } from 'rhino/utils/models';
@@ -107,21 +107,12 @@ export const ModelFieldJoinSimpleBase = ({ model, ...props }) => {
   );
 };
 
-const defaultComponents = { ModelFieldJoinSimple: ModelFieldJoinSimpleBase };
-
-const ModelFieldJoinSimple = ({ overrides, ...props }) => {
-  const { ModelFieldJoinSimple } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelFieldJoinSimple {...props} />;
-};
-
-ModelFieldJoinSimple.propTypes = {
+ModelFieldJoinSimpleBase.propTypes = {
   model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   path: PropTypes.string.isRequired
 };
+
+const ModelFieldJoinSimple = (props) =>
+  useGlobalComponent('ModelFieldJoinSimple', ModelFieldJoinSimpleBase, props);
 
 export default ModelFieldJoinSimple;

@@ -2,15 +2,14 @@ import classnames from 'classnames';
 import { useMemo } from 'react';
 import { Label } from 'reactstrap';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 
 const INHERITED_PROP_PREFIX = 'fieldLabel';
 
 const defaultComponents = { FieldLabel: Label };
 
-// FIXME: Is mark as checked required? This is legacy
-export const FieldLabel = ({ overrides, ...props }) => {
-  const { FieldLabel } = useGlobalOverrides(defaultComponents, overrides);
+export const FieldLabelBase = ({ overrides, ...props }) => {
+  const { FieldLabel } = useOverrides(defaultComponents, overrides);
   const { required } = props;
   const inheritedPropsOptions = useMemo(
     () => ({
@@ -25,11 +24,15 @@ export const FieldLabel = ({ overrides, ...props }) => {
   );
   const { label, path } = inheritedProps;
 
+  // FIXME: Is mark as checked required? This is legacy
   return (
     <FieldLabel {...extractedProps} for={path} checked {...inheritedProps}>
       {label}
     </FieldLabel>
   );
 };
+
+const FieldLabel = (props) =>
+  useGlobalComponent('FieldLabel', FieldLabelBase, props);
 
 export default FieldLabel;

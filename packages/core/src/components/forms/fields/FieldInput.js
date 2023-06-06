@@ -7,13 +7,13 @@ import {
   useFieldRegister,
   useFieldInheritedProps
 } from 'rhino/hooks/form';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 
 const defaultComponents = { FieldInput: Input };
 
 // FIXME: Is there a better way to handle setValueAs?
-const FieldInput = ({ overrides, setValueAs, ...props }) => {
-  const { FieldInput } = useGlobalOverrides(defaultComponents, overrides);
+const FieldInputBase = ({ overrides, setValueAs, ...props }) => {
+  const { FieldInput } = useOverrides(defaultComponents, overrides);
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const { path } = props;
 
@@ -38,8 +38,11 @@ const FieldInput = ({ overrides, setValueAs, ...props }) => {
   );
 };
 
-FieldInput.propTypes = {
+FieldInputBase.propTypes = {
   path: PropTypes.string.isRequired
 };
+
+const FieldInput = (props) =>
+  useGlobalComponent('FieldInput', FieldInputBase, props);
 
 export default FieldInput;

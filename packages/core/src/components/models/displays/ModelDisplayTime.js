@@ -1,20 +1,11 @@
 import DisplayTime from 'rhino/components/forms/displays/DisplayTime';
-import { useGlobalOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const ModelDisplayTimeBase = ({ model, ...props }) => (
   <DisplayTime {...props} />
 );
 
-const defaultComponents = { ModelDisplayTime: ModelDisplayTimeBase };
-
-const ModelDisplayTime = ({ overrides, ...props }) => {
-  const { ModelDisplayTime } = useGlobalOverrides(
-    defaultComponents,
-    overrides,
-    props
-  );
-
-  return <ModelDisplayTime {...props} />;
-};
+const ModelDisplayTime = (props) =>
+  useGlobalComponent('ModelDisplayTime', ModelDisplayTimeBase, props);
 
 export default ModelDisplayTime;
