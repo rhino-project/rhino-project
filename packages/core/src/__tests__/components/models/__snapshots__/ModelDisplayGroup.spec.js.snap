@@ -12,7 +12,6 @@ exports[`ModelDisplayGroup should merge overrides 1`] = `
       class="form-label"
       for="dummy"
       id="displayLabel-dummy"
-      model="[object Object]"
       path="dummy"
     />
     <input
@@ -20,10 +19,11 @@ exports[`ModelDisplayGroup should merge overrides 1`] = `
       autocomplete="off"
       class="form-control"
       id="dummy"
-      model="[object Object]"
       name="dummy"
       path="dummy"
+      readonly=""
       type="text"
+      value="-"
     />
   </div>
 </DocumentFragment>

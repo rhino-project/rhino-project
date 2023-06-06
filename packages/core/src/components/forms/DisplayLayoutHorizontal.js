@@ -1,4 +1,4 @@
-import { FormGroup } from 'reactstrap';
+import { Col, FormGroup } from 'reactstrap';
 
 import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import Field from './fields/FieldInput';
@@ -14,7 +14,7 @@ const defaultComponents = {
   Display: Field
 };
 
-export const DisplayLayoutVerticalBase = ({ overrides, ...props }) => {
+export const DisplayLayoutHorizontalBase = ({ overrides, ...props }) => {
   const { FormGroup, DisplayLabel, Display } = useOverrides(
     defaultComponents,
     overrides
@@ -26,14 +26,20 @@ export const DisplayLayoutVerticalBase = ({ overrides, ...props }) => {
   );
 
   return (
-    <FormGroup {...extractedProps} {...inheritedProps}>
-      <DisplayLabel {...inheritedProps} />
-      <Display {...inheritedProps} />
+    <FormGroup {...extractedProps} row {...inheritedProps}>
+      <DisplayLabel sm={2} {...inheritedProps} />
+      <Col>
+        <Display {...inheritedProps} />
+      </Col>
     </FormGroup>
   );
 };
 
-const DisplayLayoutVertical = (props) =>
-  useGlobalComponent('DisplayLayoutVertical', DisplayLayoutVerticalBase, props);
+const DisplayLayoutHorizontal = (props) =>
+  useGlobalComponent(
+    'DisplayLayoutHorizontal',
+    DisplayLayoutHorizontalBase,
+    props
+  );
 
-export default DisplayLayoutVertical;
+export default DisplayLayoutHorizontal;

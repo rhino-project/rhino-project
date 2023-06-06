@@ -1,4 +1,4 @@
-import { useModel } from 'rhino/hooks/models';
+import { useModelContext } from 'rhino/hooks/models';
 import {
   getModelAndAttributeFromPath,
   getModelFromRef,
@@ -28,7 +28,7 @@ import ModelFieldOwnerReference from './fields/ModelFieldOwnerReference';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const ModelFieldBase = ({ overrides, ...props }) => {
-  const model = useModel(props.model);
+  const { model } = useModelContext();
   const { path } = props;
 
   const [, attribute] = getModelAndAttributeFromPath(model, path);
