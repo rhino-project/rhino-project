@@ -46,6 +46,18 @@ IconButton.propTypes = {
   icon: PropTypes.string.isRequired
 };
 
+export const OmniIconButton = ({ icon, ...props }) => (
+  <div className="omni-icon-btn">
+    <Button className="omni-icon-btn__icon" {...props}>
+      <Icon style={{ height: '1rem', width: '1rem' }} icon={icon} />
+    </Button>
+  </div>
+);
+
+OmniIconButton.propTypes = {
+  icon: PropTypes.string.isRequired
+};
+
 export const SubmitButton = (props) => (
   <Button {...props} color="primary" type="submit" />
 );

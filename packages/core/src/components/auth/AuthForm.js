@@ -152,12 +152,18 @@ const AuthForm = ({
           <Alert color="danger">{omniError || errors[0]}</Alert>
         )}
 
-        {secondaryAction && (
-          <LinkButton color="link" to={secondaryAction.url}>
-            {secondaryAction.content}
-          </LinkButton>
-        )}
-        <SubmitButton loading={loading}>{primaryAction}</SubmitButton>
+        <div className="d-flex flex-column">
+          {secondaryAction && (
+            <LinkButton
+              className="mb-2 text-right"
+              color="link"
+              to={secondaryAction.url}
+            >
+              {secondaryAction.content}
+            </LinkButton>
+          )}
+          <SubmitButton loading={loading}>{primaryAction}</SubmitButton>
+        </div>
       </Form>
     </FormProvider>
   );
