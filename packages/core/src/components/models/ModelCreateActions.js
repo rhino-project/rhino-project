@@ -28,7 +28,7 @@ export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
     () =>
       handleSubmit((values) =>
         mutate(
-          { ...values, [parentModel.model]: parentId },
+          { [parentModel.model]: parentId, ...values },
           { onSuccess, onError }
         )
       )(),
