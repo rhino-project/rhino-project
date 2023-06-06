@@ -1,9 +1,15 @@
 import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
+import ModelFieldGroup from './ModelFieldGroup';
+import { useRenderPaths } from 'rhino/hooks/paths';
 
 export const ModelCreateFormBase = (props) => {
-  const { renderPaths } = useModelCreateContext();
+  const { model, paths } = useModelCreateContext();
+  const renderPaths = useRenderPaths(paths, {
+    Component: ModelFieldGroup,
+    props: { model }
+  });
 
   return <ModelSection baseClassName="create-form">{renderPaths}</ModelSection>;
 };

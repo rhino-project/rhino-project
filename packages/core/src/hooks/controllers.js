@@ -1,13 +1,4 @@
-import {
-  Children,
-  cloneElement,
-  isValidElement,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import qs from 'qs';
 
@@ -32,11 +23,9 @@ import {
   getCreatableAttributes,
   getUpdatableAttributes
 } from '../utils/models';
-import ModelFieldGroup from '../components/models/ModelFieldGroup';
 import { useDefaultValues, useResolver, useSchema } from './form';
 import { useForm } from 'react-hook-form';
 import { usePaths } from './paths';
-import ModelDisplayGroup from 'rhino/components/models/ModelDisplayGroup';
 
 export const useModelIndexContext = () => {
   const context = useContext(ModelIndexContext);
@@ -222,12 +211,7 @@ const getViewablePaths = (model) =>
 
 export const useModelShowController = (options) => {
   const model = useModel(options.model);
-  const {
-    Component = ModelDisplayGroup,
-    extraDefaultValues,
-    modelId,
-    paths
-  } = options;
+  const { extraDefaultValues, modelId, paths } = options;
 
   const query = useModelShow(model, modelId, {
     queryOptions: options?.queryOptions,
@@ -244,18 +228,6 @@ export const useModelShowController = (options) => {
     model
   ]);
   const computedPaths = usePaths(pathsOrDefault, resource);
-
-  const renderPaths = useMemo(
-    () =>
-      Children.map(computedPaths, (path) =>
-        isValidElement(path) ? (
-          cloneElement(path, { model })
-        ) : (
-          <Component model={model} path={path} />
-        )
-      ),
-    [model, computedPaths]
-  );
 
   const schema = useSchema(model, computedPaths);
   const defaultValues = useDefaultValues(model, computedPaths, {
@@ -278,7 +250,7 @@ export const useModelShowController = (options) => {
     model,
     modelId,
     methods,
-    renderPaths,
+    paths: computedPaths,
     resolver,
     schema,
     ...query,
@@ -308,12 +280,7 @@ const getCreatablePaths = (model) =>
 
 export const useModelCreateController = (options) => {
   const model = useModel(options.model);
-  const {
-    Component = ModelFieldGroup,
-    extraDefaultValues,
-    parentId,
-    paths
-  } = options;
+  const { extraDefaultValues, parentId, paths } = options;
 
   const mutation = useModelCreate(model);
 
@@ -330,18 +297,6 @@ export const useModelCreateController = (options) => {
   ]);
   // FIXME: Do I need to pass the fake resource with the parent id?
   const computedPaths = usePaths(pathsOrDefault, {});
-
-  const renderPaths = useMemo(
-    () =>
-      Children.map(computedPaths, (path) =>
-        isValidElement(path) ? (
-          cloneElement(path, { model })
-        ) : (
-          <Component model={model} path={path} />
-        )
-      ),
-    [model, computedPaths]
-  );
 
   const schema = useSchema(model, computedPaths);
   const defaultValues = useDefaultValues(model, computedPaths, {
@@ -367,7 +322,7 @@ export const useModelCreateController = (options) => {
     ...mutation,
     showParent,
     methods,
-    renderPaths,
+    paths: computedPaths,
     resolver,
     schema
   };
@@ -392,12 +347,7 @@ const getEditablePaths = (model) =>
 
 export const useModelEditController = (options) => {
   const model = useModel(options.model);
-  const {
-    modelId,
-    Component = ModelFieldGroup,
-    extraDefaultValues,
-    paths
-  } = options;
+  const { modelId, extraDefaultValues, paths } = options;
 
   const mutation = useModelUpdate(model);
   // A modal for instance may not have a modelId yet
@@ -412,18 +362,6 @@ export const useModelEditController = (options) => {
     model
   ]);
   const computedPaths = usePaths(pathsOrDefault, resource);
-
-  const renderPaths = useMemo(
-    () =>
-      Children.map(computedPaths, (path) =>
-        isValidElement(path) ? (
-          cloneElement(path, { model })
-        ) : (
-          <Component model={model} path={path} />
-        )
-      ),
-    [model, computedPaths]
-  );
 
   const schema = useSchema(model, computedPaths);
   const defaultValues = useDefaultValues(model, computedPaths, {
@@ -453,7 +391,7 @@ export const useModelEditController = (options) => {
     ...mutation,
     show,
     methods,
-    renderPaths,
+    paths: computedPaths,
     resolver,
     schema
   };
