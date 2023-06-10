@@ -4,26 +4,26 @@ exports[`ModelDisplayGroup should merge overrides 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
-    id="DisplayLayoutVertical-dummy"
+    id="DisplayLayoutVertical-name"
     model="[object Object]"
-    path="dummy"
+    path="name"
   >
     <label
       class="form-label"
-      for="dummy"
-      id="displayLabel-dummy"
-      path="dummy"
+      for="name"
+      id="displayLabel-name"
+      path="name"
     />
     <input
       aria-invalid="false"
       autocomplete="off"
       class="form-control"
-      id="dummy"
-      name="dummy"
-      path="dummy"
+      id="name"
+      name="name"
+      path="name"
       readonly=""
       type="text"
-      value="-"
+      value=""
     />
   </div>
 </DocumentFragment>
@@ -41,6 +41,35 @@ exports[`ModelDisplayGroup should render with global override shorthand for mode
 <DocumentFragment>
   <div>
     Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayGroup should render without prop 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
+    id="DisplayLayoutVertical-name"
+    model="[object Object]"
+    path="name"
+  >
+    <label
+      class="form-label"
+      for="name"
+      id="displayLabel-name"
+      path="name"
+    />
+    <input
+      aria-invalid="false"
+      autocomplete="off"
+      class="form-control"
+      id="name"
+      name="name"
+      path="name"
+      readonly=""
+      type="text"
+      value=""
+    />
   </div>
 </DocumentFragment>
 `;

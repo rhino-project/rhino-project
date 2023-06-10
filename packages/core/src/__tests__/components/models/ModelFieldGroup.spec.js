@@ -1,10 +1,8 @@
 import { render } from '@testing-library/react';
-import { useForm } from 'react-hook-form';
-import FormProvider from 'rhino/components/forms/FormProvider';
 import ModelFieldGroup from 'rhino/components/models/ModelFieldGroup';
 import { sharedModelTests } from './sharedModelTests';
-import { ModelContext } from 'rhino/components/models/ModelProvider';
-import { useModel } from 'rhino/hooks/models';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import ModelEditSimple from 'rhino/components/models/ModelEditSimple';
 
 jest.mock('rhino/models', () => {
   const api = require('../../../shared/modelFixtures');
@@ -24,23 +22,36 @@ jest.mock('rhino/models', () => {
 
 describe('ModelFieldGroup', () => {
   const wrapper = ({ children }) => {
-    const methods = useForm();
-    const model = useModel('user');
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false
+        }
+      }
+    });
+
     return (
-      <ModelContext.Provider value={{ model }}>
-        <FormProvider {...methods}>{children}</FormProvider>
-      </ModelContext.Provider>
+      <QueryClientProvider client={queryClient}>
+        <ModelEditSimple model="user">{children}</ModelEditSimple>
+      </QueryClientProvider>
     );
   };
 
-  const Bar = (props) => <div {...props}>Bar</div>;
+  const Bar = (props) => <div>Bar</div>;
 
   sharedModelTests(ModelFieldGroup);
+
+  it(`should render without prop`, () => {
+    const { asFragment } = render(<ModelFieldGroup path="name" />, {
+      wrapper
+    });
+
+    expect(asFragment()).toMatchSnapshot();
+  });
 
   it(`should merge overrides`, () => {
     const { asFragment } = render(
       <ModelFieldGroup
-        model="user"
         path="name"
         overrides={{
           ModelFieldLayout: {

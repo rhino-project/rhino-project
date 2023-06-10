@@ -6,7 +6,7 @@ import { useRenderPaths } from 'rhino/hooks/paths';
 
 export const ModelCreateFormBase = (props) => {
   const { model, paths } = useModelCreateContext();
-  const renderPaths = useRenderPaths(paths, {
+  const renderPaths = useRenderPaths(props.paths || paths, {
     Component: ModelFieldGroup,
     props: { model }
   });

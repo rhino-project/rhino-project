@@ -1,4 +1,7 @@
-import { useModel, useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import {
+  useModelAndAttributeFromPath,
+  useModelContext
+} from 'rhino/hooks/models';
 import ModelDisplayString from './displays/ModelDisplayString';
 import ModelDisplayDateTime from './displays/ModelDisplayDateTime';
 import ModelDisplayText from './displays/ModelDisplayText';
@@ -17,9 +20,9 @@ import ModelDisplayAttachmentImage from './displays/ModelDisplayAttachmentImage'
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const ModelDisplayBase = ({ overrides, ...props }) => {
-  const model = useModel(props.model);
-  const { path } = props;
+  const { model } = useModelContext();
 
+  const { path } = props;
   const { attribute } = useModelAndAttributeFromPath(model, path);
 
   // FIXME: Make this a separate function so that its easier to override

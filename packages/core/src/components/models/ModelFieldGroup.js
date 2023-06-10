@@ -4,6 +4,7 @@ import ModelFieldLabel from './ModelFieldLabel';
 import ModelField from './ModelField';
 import { useMemo } from 'react';
 import ModelFieldLayout from './ModelFieldLayout';
+import { useModelContext } from 'rhino/hooks/models';
 
 const defaultComponents = {
   ModelFieldLayout,
@@ -12,6 +13,7 @@ const defaultComponents = {
 };
 
 export const ModelFieldGroupBase = ({ overrides, ...props }) => {
+  const { model } = useModelContext();
   const { ModelFieldLayout, ModelFieldLabel, ModelField } = useOverrides(
     defaultComponents,
     overrides
@@ -26,7 +28,7 @@ export const ModelFieldGroupBase = ({ overrides, ...props }) => {
     };
   }, [ModelField, ModelFieldLabel, ModelFieldLayout]);
 
-  return <FieldGroup overrides={combinedOverrides} {...props} />;
+  return <FieldGroup overrides={combinedOverrides} model={model} {...props} />;
 };
 
 const ModelFieldGroup = (props) =>
