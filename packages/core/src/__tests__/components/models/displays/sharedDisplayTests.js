@@ -1,10 +1,15 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as rhinoConfig from 'rhino.config';
+import { MemoryRouter } from 'react-router-dom';
 
 const wrapper = ({ children }) => {
   const methods = useForm();
-  return <FormProvider {...methods}>{children}</FormProvider>;
+  return (
+    <MemoryRouter>
+      <FormProvider {...methods}>{children}</FormProvider>
+    </MemoryRouter>
+  );
 };
 
 export const sharedDisplayTests = (Component) => {
