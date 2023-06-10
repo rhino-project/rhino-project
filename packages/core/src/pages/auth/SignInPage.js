@@ -51,14 +51,16 @@ const SignInPage = () => {
         onSubmit={handleSubmit}
       />
       {oauthProviders().length > 0 && <hr />}
-      {oauthProviders().map((p) => (
-        <OmniAuthButton
-          key={p}
-          provider={p}
-          loading={isAuthenticating}
-          handleAuth={handleAuth}
-        />
-      ))}
+      <div className="d-flex justify-content-center">
+        {oauthProviders().map((p) => (
+          <OmniAuthButton
+            key={p}
+            provider={p}
+            loading={isAuthenticating}
+            handleAuth={handleAuth}
+          />
+        ))}
+      </div>
       {confirmed && (
         <SuccessAlert
           title="Account Confirmed"

@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Col, Row, Container } from 'reactstrap';
-
+// Internal Dependencies
 import { DarkLogo } from 'rhino/components/logos';
 import { Target } from 'rhino/components/layouts';
 
-const AuthPage = ({ description, children }) => {
+// External Dependencies
+import { Col, Row, Container } from 'reactstrap';
+import PropTypes from 'prop-types';
+
+const AuthPage = ({ children, description }) => {
   return (
     <Container>
       <Target>
-        <Row>
+        <Row className="p-3 bg-white shadow rounded">
           <Col className="my-auto" md="6">
-            <DarkLogo
-              className="block mb-3"
-              style={{ height: '70px', width: '220px' }}
-            />
+            <div className="auth-logo">
+              <DarkLogo />
+            </div>
             {description}
           </Col>
           <Col className="my-auto" md="6">
