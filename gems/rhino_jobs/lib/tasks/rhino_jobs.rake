@@ -8,12 +8,7 @@ namespace :resque do
   task setup: :environment
 
   task setup_schedule: :setup do
-    require 'resque-scheduler'
-
-    # https://github.com/rails/rails/issues/16933
-    yaml_schedule = YAML.load_file(Rails.root.join('config/resque_schedule.yml')) || {}
-    wrapped_schedule = ActiveScheduler::ResqueWrapper.wrap yaml_schedule
-    Resque.schedule  = wrapped_schedule
+    RhinoJobs::Schedule.load
   end
 
   task scheduler: :setup_schedule
