@@ -6,6 +6,8 @@ import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import ModelCreateModalActions from './ModelCreateModalActions';
 import ModelSection from './ModelSection';
 import ModelCreateSimple from './ModelCreateSimple';
+import { useRenderPaths } from 'rhino/hooks/paths';
+import ModelFieldGroup from './ModelFieldGroup';
 
 export const ModelCreateModalHeader = (props) => {
   const { model } = useModelCreateContext();
@@ -18,18 +20,18 @@ ModelCreateModalHeader.propTypes = {
   title: PropTypes.string
 };
 
-export const ModelCreateModalForm = ({ overrides, onModalClose }) => {
-  const { renderPaths } = useModelCreateContext();
+export const ModelCreateModalForm = ({ ...props }) => {
+  const { model, paths } = useModelCreateContext();
+  const renderPaths = useRenderPaths(props.paths || paths, {
+    Component: ModelFieldGroup,
+    props: { model }
+  });
 
   return (
     <ModelSection baseClassName="edit-form">
       <ModalBody>{renderPaths}</ModalBody>
     </ModelSection>
   );
-};
-
-ModelCreateModalForm.propTypes = {
-  overrides: PropTypes.object
 };
 
 const defaultComponents = {
