@@ -1,18 +1,17 @@
 import PropTypes from 'prop-types';
-import { useController } from 'react-hook-form';
+import { FieldCurrency } from '../../forms/fields/FieldCurrency';
 import { InputGroup } from 'reactstrap';
-import CurrencyFormat from 'react-currency-format';
 import classnames from 'classnames';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useGlobalOverrides } from 'rhino/hooks/overrides';
 
-export const ModelFieldCurrencyBase = ({ model, ...props }) => {
-  const { path } = props;
-  const {
-    field: { value, ...fieldProps },
-    fieldState: { error }
-  } = useController({
-    name: path
-  });
+const defaultComponents = { ModelFieldCurrency: FieldCurrency };
+
+const ModelFieldCurrencyBase = ({ overrides, error, ...props }) => {
+  const { ModelFieldCurrency } = useGlobalOverrides(
+    defaultComponents,
+    overrides,
+    props
+  );
 
   return (
     <InputGroup
@@ -21,15 +20,7 @@ export const ModelFieldCurrencyBase = ({ model, ...props }) => {
       })}
     >
       <span className="input-group-text">$</span>
-      <CurrencyFormat
-        {...fieldProps}
-        value={value || ''}
-        decimalSeparator={'.'}
-        decimalScale={2}
-        fixedDecimalScale={true}
-        className={`form-control ${!!error ? 'border-danger' : ''}`}
-        inputmode="numeric"
-      />
+      <ModelFieldCurrency error={error} {...props} />
     </InputGroup>
   );
 };

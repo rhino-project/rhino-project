@@ -97,7 +97,7 @@ const ATTRIBUTES = [
         destroyable: false
       }
     }
-  },  
+  },
   {
     name: 'test_attachment',
     readableName: 'Reference > Attachment Attribute',
@@ -133,7 +133,6 @@ describe('ModelFormField', () => {
   jest
     .spyOn(queries, 'useModelIndex')
     .mockImplementation(() => ({ data: {}, results: [] }));
-
   ATTRIBUTES.forEach((attribute) => {
     const readableName = attribute.readableName;
     const renderFunc = (attribute, extraProps = {}) =>

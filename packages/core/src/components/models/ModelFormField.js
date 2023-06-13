@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { get, set } from 'lodash';
 import classnames from 'classnames';
@@ -13,14 +13,17 @@ import {
   getModelFromRef,
   getReferenceAttributes
 } from 'rhino/utils/models';
-import { getDateTimeFormat, optionsFromIndexWithTitle } from 'rhino/utils/ui';
+import {
+  applyCurrencyMaskFromInput,
+  getDateTimeFormat,
+  optionsFromIndexWithTitle
+} from 'rhino/utils/ui';
 import ModelNestedManyForm from 'rhino/components/models/ModelNestedManyForm';
 import PhoneInput from 'react-phone-input-2';
 import ModelFieldFile from 'rhino/components/models/fields/ModelFieldFile';
 import ModelFieldCountry from 'rhino/components/models/fields/ModelFieldCountry';
 import { useModelIndex } from 'rhino/hooks/queries';
 import { useDebouncedState } from 'rhino/hooks/util';
-import CurrencyFormat from 'react-currency-format';
 import styles from './ModelFormField.module.scss';
 
 const extractError = (errors, path) => get(errors, `${path}[0]`);
@@ -239,13 +242,23 @@ ModelFormFieldInteger.propTypes = {
   value: PropTypes.string.isRequired
 };
 
-export const ModelFormFieldCurrency = ({
-  attribute,
-  value,
-  error,
-  path,
-  ...props
-}) => {
+export const ModelFormFieldCurrency = ({ error, onChange, ...commonProps }) => {
+  const inputRef = useRef(null);
+  const handleOnChange = useCallback(
+    (event) => {
+      const formattedValue = applyCurrencyMaskFromInput(event);
+      onChange(formattedValue.value);
+      if (inputRef.current) {
+        inputRef.current.value = formattedValue.value;
+        inputRef.current.setSelectionRange(
+          formattedValue.selectionStart,
+          formattedValue.selectionEnd
+        );
+      }
+    },
+    [onChange]
+  );
+
   return (
     <InputGroup
       className={classnames({
@@ -253,22 +266,18 @@ export const ModelFormFieldCurrency = ({
       })}
     >
       <span className="input-group-text">$</span>
-      <CurrencyFormat
-        {...props}
-        value={!value ? '' : value}
-        decimalSeparator={'.'}
-        decimalScale={2}
-        fixedDecimalScale={true}
-        className={`form-control ${!!error ? 'border-danger' : ''}`}
-        inputmode="numeric"
+      <Input
+        {...commonProps}
+        onChange={handleOnChange}
+        className={classnames({ 'is-invalid': !!error })}
       />
     </InputGroup>
   );
 };
 
 ModelFormFieldCurrency.propTypes = {
-  attribute: PropTypes.object.isRequired,
-  value: PropTypes.string.isRequired
+  path: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 // FIXME: Hack because its the same number value
