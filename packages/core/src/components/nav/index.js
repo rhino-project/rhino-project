@@ -16,7 +16,7 @@ export const NavSection = ({
   return (
     <div className={className}>
       {title && (
-        <h6 className="nav-sidebar-section d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-uppercase text-muted">
+        <h6 className="nav-sidebar-section d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-uppercase text-secondary">
           <span>{title}</span>
           {icon && <NavIcon role="button" icon={icon} onClick={onIconClick} />}
         </h6>

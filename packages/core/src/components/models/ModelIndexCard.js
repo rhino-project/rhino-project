@@ -97,7 +97,7 @@ export const ModelCard = ({
             resource={resource}
           />
         </CardTitle>
-        <CardSubtitle tag="h6" className="mb-2 text-muted">
+        <CardSubtitle tag="h6" className="mb-2 text-secondary">
           <ShowCardText
             key={cardSubtitle.path}
             model={model}
