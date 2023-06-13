@@ -15,6 +15,11 @@ const Sidebar = ({ children, extraClass }) => {
         'bg-light',
         'sidebar',
         'collapse',
+        'position-fixed',
+        'top-1',
+        'bottom-0',
+        'left-0',
+        'pe-0',
         extraClass
       )}
     >
