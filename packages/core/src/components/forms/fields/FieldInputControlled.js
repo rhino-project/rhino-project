@@ -2,14 +2,14 @@ import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
 
 import { useController } from 'react-hook-form';
-import { useMemo } from 'react';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { useCallback, useMemo } from 'react';
 
-const FieldInputControlled = ({ accessor, ...props }) => {
+const FieldInputControlled = ({ accessor, onChangeAccessor, ...props }) => {
   const { path } = props;
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const {
-    field: { ref, value: fieldValue, ...fieldProps },
+    field: { ref, onChange, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -20,6 +20,16 @@ const FieldInputControlled = ({ accessor, ...props }) => {
     fieldValue
   ]);
 
+  const handleOnChange = useCallback(
+    ({ target }) => {
+      const valueChanged = onChangeAccessor
+        ? onChangeAccessor(target.value)
+        : target.value;
+      onChange(valueChanged);
+    },
+    [onChange, onChangeAccessor]
+  );
+
   return (
     <Input
       {...extractedProps}
@@ -27,6 +37,7 @@ const FieldInputControlled = ({ accessor, ...props }) => {
       autoComplete="off"
       innerRef={ref}
       invalid={!!error}
+      onChange={handleOnChange}
       value={value}
       {...inheritedProps}
     />

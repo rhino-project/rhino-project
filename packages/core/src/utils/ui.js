@@ -300,3 +300,72 @@ export const getOptionsList = (index) => {
     value: result.id
   }));
 };
+
+export const applyCurrencyMaskFromInput = ({
+  target: { value, selectionEnd, selectionStart }
+}) => {
+  if (value === '' || value === '.00') {
+    return { value: '', selectionStart: 0, selectionEnd: 0 };
+  }
+
+  let newNumber;
+  let selectionStartIndex = selectionEnd;
+  let selectionEndIndex = selectionStart;
+
+  const hasDot = value.includes('.');
+  const negativeChar = value.startsWith('-') ? '-' : '';
+  const digits = value.replace(/\D/g, '');
+
+  if (Number(digits) === 0 && digits.length <= 2 && hasDot) {
+    const zero = digits === '00' ? '0' : digits;
+    return {
+      value: `${negativeChar}${zero}`,
+      selectionStart: zero.length,
+      selectionEnd: zero.length
+    };
+  }
+
+  if (hasDot) {
+    const [int, decimal] = value.split('.');
+    const firstPart = int.replace(/[^0-9]/g, '');
+    const secondPart = decimal
+      .replace(/[^0-9]/g, '')
+      .substring(0, 2)
+      .padEnd(2, '0');
+    newNumber = `${negativeChar}${firstPart}.${secondPart}`;
+
+    if (int === '') {
+      selectionStartIndex = newNumber.length - 3;
+      selectionEndIndex = selectionStartIndex;
+    }
+  } else {
+    if (selectionEndIndex === value.length - 2) {
+      const decimals = value.substring(value.length - 2, value.length);
+      const int = value.substring(0, value.length - 2);
+      newNumber = `${int}.${decimals}`;
+    } else {
+      newNumber = `${negativeChar}${value
+        .replace(/[^0-9]/g, '')
+        .padStart(1, '0')}.00`;
+    }
+  }
+
+  return {
+    value: newNumber,
+    selectionStart: selectionStartIndex,
+    selectionEnd: selectionEndIndex
+  };
+};
+
+export const applyCurrencyMask = (value) => {
+  if (!value && value !== 0) return value;
+
+  const [int, decimal] = String(value).split('.');
+  const firstPart = int.replace(/[^0-9]/g, '').padEnd(1, '0');
+  const negativeChar = value.startsWith('-') ? '-' : '';
+  const secondPart = (decimal || '')
+    .replace(/[^0-9]/g, '')
+    .substring(0, 2)
+    .padEnd(2, '0');
+  return `${negativeChar}${firstPart}.${secondPart}`;
+};

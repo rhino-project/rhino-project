@@ -544,14 +544,17 @@ exports[`ModelFormField renders errors for Decimal Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control border-danger"
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Decimal Attribute Currency",
+          "type": "decimal",
+        }
+      }
+      className="is-invalid form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
@@ -623,14 +626,17 @@ exports[`ModelFormField renders errors for Float Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control border-danger"
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Float Attribute Currency",
+          "type": "float",
+        }
+      }
+      className="is-invalid form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
@@ -775,14 +781,17 @@ exports[`ModelFormField renders errors for Number Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control border-danger"
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Number Attribute Currency",
+          "type": "number",
+        }
+      }
+      className="is-invalid form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
@@ -1760,14 +1769,17 @@ exports[`ModelFormField renders input for Decimal Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control "
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Decimal Attribute Currency",
+          "type": "decimal",
+        }
+      }
+      className="form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
@@ -1829,14 +1841,17 @@ exports[`ModelFormField renders input for Float Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control "
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Float Attribute Currency",
+          "type": "float",
+        }
+      }
+      className="form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
@@ -1960,14 +1975,17 @@ exports[`ModelFormField renders input for Number Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control "
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Number Attribute Currency",
+          "type": "number",
+        }
+      }
+      className="form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
@@ -2892,14 +2910,18 @@ exports[`ModelFormField renders required for Decimal Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control "
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Decimal Attribute Currency",
+          "type": "decimal",
+          "x-rhino-required": true,
+        }
+      }
+      className="form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
@@ -2961,14 +2983,18 @@ exports[`ModelFormField renders required for Float Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control "
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Float Attribute Currency",
+          "type": "float",
+          "x-rhino-required": true,
+        }
+      }
+      className="form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
@@ -3092,14 +3118,18 @@ exports[`ModelFormField renders required for Number Attribute Currency 1`] = `
       $
     </span>
     <input
-      className="form-control "
+      attribute={
+        Object {
+          "format": "currency",
+          "readableName": "Number Attribute Currency",
+          "type": "number",
+          "x-rhino-required": true,
+        }
+      }
+      className="form-control"
       id="test-123"
-      inputmode="numeric"
-      onBlur={[Function]}
       onChange={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onMouseUp={[Function]}
+      path="test"
       resource={
         Object {
           "test": "",
