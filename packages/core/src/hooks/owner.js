@@ -2,6 +2,7 @@ import { merge } from 'lodash';
 import { createContext, useContext, useMemo } from 'react';
 import { useParams } from 'react-router';
 import { getBaseOwnerFilters } from 'rhino/utils/models';
+import { useModel } from './models';
 
 export const BaseOwnerContext = createContext({
   baseOwner: null,
@@ -28,13 +29,12 @@ export const useBaseOwnerId = () => {
 export const useBaseOwnerFilters = (model, options = {}) => {
   const baseOwnerId = useBaseOwnerId();
   const { extraFilters } = options;
+  const modelObject = useModel(model);
 
-  const filter = useMemo(
-    () => merge(getBaseOwnerFilters(model, baseOwnerId), extraFilters),
-    [model, baseOwnerId, extraFilters]
+  return useMemo(
+    () => merge(getBaseOwnerFilters(modelObject, baseOwnerId), extraFilters),
+    [baseOwnerId, extraFilters, modelObject]
   );
-
-  return filter;
 };
 
 export const useRoles = () => {
