@@ -18,6 +18,7 @@ import ModelDisplayReference from './displays/ModelDisplayReference';
 import ModelDisplayAttachment from './displays/ModelDisplayAttachment';
 import ModelDisplayAttachmentImage from './displays/ModelDisplayAttachmentImage';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
+import ModelDisplayCurrency from './displays/ModelDisplayCurrency';
 
 export const ModelDisplayBase = ({ overrides, ...props }) => {
   const { model } = useModelContext();
@@ -49,6 +50,8 @@ export const ModelDisplayBase = ({ overrides, ...props }) => {
     case 'decimal':
     case 'number':
     case 'float':
+      if (attribute.format === 'currency')
+        return <ModelDisplayCurrency {...props} />;
       return <ModelDisplayFloat {...props} />;
 
     case 'reference':

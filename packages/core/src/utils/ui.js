@@ -362,7 +362,7 @@ export const applyCurrencyMask = (value) => {
 
   const [int, decimal] = String(value).split('.');
   const firstPart = int.replace(/[^0-9]/g, '').padEnd(1, '0');
-  const negativeChar = value.startsWith('-') ? '-' : '';
+  const negativeChar = String(value).startsWith('-') ? '-' : '';
   const secondPart = (decimal || '')
     .replace(/[^0-9]/g, '')
     .substring(0, 2)
