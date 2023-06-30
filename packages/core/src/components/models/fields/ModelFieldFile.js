@@ -91,7 +91,7 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
   );
 
   return (
-    <>
+    <div>
       <div className="input-group">
         {fileText && <div className="input-file-label">{fileText}</div>}
         <Input
@@ -103,6 +103,7 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
           disabled={uploadingCount > 0}
           multiple={multiple}
           onChange={handleFileChange}
+          invalid={!!error}
           {...fieldProps}
         />
         {!attribute.required && value && <CloseButton onClick={handleClear} />}
@@ -121,8 +122,8 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
           <p>{errors?.toString()}</p>
         </Alert>
       )}
-      {error && <Alert color="danger">{error}</Alert>}
-    </>
+      {error && <p className="text-danger mt-1 small">{error?.message}</p>}
+    </div>
   );
 };
 
