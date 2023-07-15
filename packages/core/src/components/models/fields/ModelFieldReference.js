@@ -41,7 +41,12 @@ export const ModelFieldReferenceBase = ({ model, ...props }) => {
     filter,
     limit,
     offset,
-    order
+    order,
+    queryOptions: {
+      // Keep previous data so that the selected option doesn't disappear when selected
+      // as the results are refetched with the new filter based on valString
+      keepPreviousData: true
+    }
   });
 
   const selectedOption = useMemo(() => {
