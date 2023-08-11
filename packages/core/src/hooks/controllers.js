@@ -281,7 +281,7 @@ const getCreatablePaths = (model) =>
 
 export const useModelCreateController = (options) => {
   const model = useModel(options.model);
-  const { extraDefaultValues, parentId, paths } = options;
+  const { extraDefaultValues, parentId, paths, queryOptions } = options;
 
   const mutation = useModelCreate(model);
 
@@ -289,7 +289,7 @@ export const useModelCreateController = (options) => {
   const parentModel = useMemo(() => getParentModel(model), [model]);
   // A modal may not have a parent model yet
   const showParent = useModelShow(parentModel, parentId, {
-    queryOptions: { enabled: !!parentId }
+    queryOptions: { enabled: !!parentId, ...queryOptions }
   });
 
   const pathsOrDefault = useMemo(() => paths || getCreatablePaths(model), [
@@ -348,7 +348,13 @@ const getEditablePaths = (model) =>
 
 export const useModelEditController = (options) => {
   const model = useModel(options.model);
-  const { modelId, extraDefaultValues, paths, debounceDelay = 2000 } = options;
+  const {
+    modelId,
+    extraDefaultValues,
+    paths,
+    debounceDelay = 2000,
+    queryOptions
+  } = options;
 
   const mutation = useModelUpdate(model);
   const debouncedMutate = useDebouncedCallback(
@@ -358,7 +364,7 @@ export const useModelEditController = (options) => {
 
   // A modal for instance may not have a modelId yet
   const show = useModelShow(model, modelId, {
-    queryOptions: { enabled: !!modelId }
+    queryOptions: { enabled: !!modelId, ...queryOptions }
   });
 
   const { resource } = show;
