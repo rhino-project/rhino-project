@@ -7,7 +7,7 @@ import React, {
   useMemo,
   useState
 } from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import {
   AUTH_SESSION_KEY,
   AUTH_VALIDATE_TOKEN_END_POINT
@@ -15,13 +15,12 @@ import {
 import { useRollbarPerson } from '@rollbar/react';
 
 const useSession = () => {
-  return useQuery(
-    AUTH_SESSION_KEY,
-    ({ signal }) => networkApiCall(AUTH_VALIDATE_TOKEN_END_POINT, { signal }),
-    {
-      retry: false
-    }
-  );
+  return useQuery({
+    queryKey: AUTH_SESSION_KEY,
+    queryFn: ({ signal }) =>
+      networkApiCall(AUTH_VALIDATE_TOKEN_END_POINT, { signal }),
+    retry: false
+  });
 };
 
 export const AuthContext = createContext({
@@ -34,7 +33,7 @@ const AuthProvider = ({ children }) => {
   const sessionQuery = useSession();
   const {
     isError,
-    isLoading,
+    isInitialLoading,
     isFetching,
     isSuccess,
     data,
@@ -56,7 +55,7 @@ const AuthProvider = ({ children }) => {
     } else if (isError) {
       setUser(null);
     }
-  }, [isError, isLoading, isSuccess, data]);
+  }, [isError, isInitialLoading, isSuccess, data]);
 
   const logOut = useCallback(() => {
     setUser(null);

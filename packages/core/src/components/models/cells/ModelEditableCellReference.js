@@ -21,7 +21,7 @@ export const ModelEditableCellReferenceBase = ({ model, ...props }) => {
   const { attribute } = useModelAndAttributeFromPath(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
 
-  const { results, isLoading } = useModelIndex(refModel, {
+  const { results, isInitialLoading } = useModelIndex(refModel, {
     search,
     filter,
     limit,
@@ -49,7 +49,7 @@ export const ModelEditableCellReferenceBase = ({ model, ...props }) => {
       onChange={({ target: { value } }) =>
         mutate({ id: row.original.id, [path]: value })
       }
-      disabled={isLoading}
+      disabled={isInitialLoading}
       {...inheritedProps}
     >
       {options}

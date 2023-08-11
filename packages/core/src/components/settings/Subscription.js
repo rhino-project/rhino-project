@@ -39,7 +39,7 @@ SubscriptionTab.propTypes = {
 const Subscription = ({ status, session_id }) => {
   const baseOwnerId = useBaseOwnerId();
 
-  const { isLoading, data: { data: prices } = {} } = usePrices();
+  const { isInitialLoading, data: { data: prices } = {} } = usePrices();
   const { isSuccess, data: { data: subscriptions } = {} } = useSubscription(
     baseOwnerId
   );
@@ -68,7 +68,7 @@ const Subscription = ({ status, session_id }) => {
     [baseOwnerId]
   );
 
-  if (isLoading || !isSuccess) return null;
+  if (isInitialLoading || !isSuccess) return null;
 
   const plans = prices?.prices?.map((a) => {
     return (

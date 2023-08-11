@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { createMemoryHistory } from 'history';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Route, Router } from 'react-router-dom';
 
 import { DEFAULT_SORT, PAGE_SIZE } from 'config';

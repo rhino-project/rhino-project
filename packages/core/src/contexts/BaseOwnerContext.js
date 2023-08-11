@@ -17,11 +17,11 @@ const BaseOwnerProvider = ({ children }) => {
   const [resolving, setResolving] = useState(true);
   const [usersRoles, setUsersRoles] = useState([]);
 
-  const { isSuccess, isLoading, resource: account } = useModelShow(
-    'account',
-    null,
-    { queryOptions: { enabled: !!user } }
-  );
+  const {
+    isSuccess,
+    isInitialLoading,
+    resource: account
+  } = useModelShow('account', null, { queryOptions: { enabled: !!user } });
 
   useEffect(() => {
     if (isSuccess && user) {
@@ -50,7 +50,7 @@ const BaseOwnerProvider = ({ children }) => {
         }
       }
       setResolving(false);
-    } else if (isLoading) {
+    } else if (isInitialLoading) {
       setResolving(true);
     } else {
       setResolving(false);

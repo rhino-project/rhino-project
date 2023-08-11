@@ -1,7 +1,7 @@
 import ModelShow from 'rhino/components/models/ModelShow';
 import { sharedModelTests } from './sharedModelTests';
 import { render } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as network from 'rhino/lib/networking';
 
 network.networkApiCall = jest.fn(() => ({

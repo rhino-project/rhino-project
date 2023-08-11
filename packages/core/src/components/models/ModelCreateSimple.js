@@ -8,17 +8,17 @@ import { useModelCreateController } from 'rhino/hooks/controllers';
 export const ModelCreateSimple = ({ children, fallback = true, ...props }) => {
   const controller = useModelCreateController(props);
   const {
-    showParent: { isLoading }
+    showParent: { isInitialLoading }
   } = controller;
 
   // Fallback mirrors React 18 Suspense
   const renderFallback = useMemo(() => {
-    if (!isLoading || !fallback) return children;
+    if (!isInitialLoading || !fallback) return children;
 
     if (fallback === true) return <Spinner />;
 
     return fallback;
-  }, [children, fallback, isLoading]);
+  }, [children, fallback, isInitialLoading]);
 
   return (
     <ModelCreateProvider {...controller}>{renderFallback}</ModelCreateProvider>

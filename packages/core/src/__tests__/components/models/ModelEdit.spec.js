@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { sharedModelTests } from './sharedModelTests';
 import ModelEdit from 'rhino/components/models/ModelEdit';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 /* eslint react/display-name: 0, react/prop-types: 0 */
 describe('ModelEdit', () => {

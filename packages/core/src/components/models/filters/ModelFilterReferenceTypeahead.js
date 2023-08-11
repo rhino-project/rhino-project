@@ -32,7 +32,7 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
     referenceAccessor
   ]);
 
-  const { isSuccess, results, isLoading } = useModelIndex(refModel, {
+  const { isSuccess, results, isInitialLoading } = useModelIndex(refModel, {
     filter,
     limit,
     offset,
@@ -80,7 +80,7 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
       clearButton
       options={results ?? []}
       selected={selectedOption}
-      isLoading={isLoading}
+      isLoading={isInitialLoading}
       onSearch={setInput}
       isInvalid={!!error}
       placeholder={`${attribute.readableName}...`}

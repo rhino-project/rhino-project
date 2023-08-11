@@ -12,7 +12,7 @@ export const AUTH_CREATE_END_POINT = AUTH_BASE_PATH + '/sign_in';
 export const AUTH_DESTROY_END_POINT = AUTH_BASE_PATH + '/sign_out';
 export const AUTH_PASSWORD_END_POINT = AUTH_BASE_PATH + '/password';
 export const AUTH_VALIDATE_TOKEN_END_POINT = AUTH_BASE_PATH + '/validate_token';
-export const AUTH_SESSION_KEY = 'session';
+export const AUTH_SESSION_KEY = ['session'];
 
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',

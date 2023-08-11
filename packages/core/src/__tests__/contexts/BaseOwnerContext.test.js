@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks/dom';
 import { useContext } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import routePaths from 'rhino/routes';
 import BaseOwnerProvider from 'rhino/contexts/BaseOwnerContext';
 import { BaseOwnerContext } from 'rhino/hooks/owner';
@@ -51,7 +51,7 @@ describe('BaseOwnerContext', () => {
     users_roles: usersRoles
   };
   const successShowQueryResult = {
-    isLoading: false,
+    isInitialLoading: false,
     isSuccess: true,
     data: {
       data: account
@@ -94,7 +94,7 @@ describe('BaseOwnerContext', () => {
     expect(result.current).toBe(undefined);
 
     mockUseModelShowResult.mockImplementation(() => ({
-      isLoading: true
+      isInitialLoading: true
     }));
     rerender();
     expect(result.current).toBe(undefined);
@@ -154,7 +154,7 @@ describe('BaseOwnerContext', () => {
 
       // reload starts
       mockUseModelShowResult.mockImplementation(() => ({
-        isLoading: true
+        isInitialLoading: true
       }));
       rerender();
 
@@ -269,7 +269,7 @@ describe('BaseOwnerContext', () => {
 
       // reload starts
       mockUseModelShowResult.mockImplementation(() => ({
-        isLoading: true
+        isInitialLoading: true
       }));
       rerender();
 

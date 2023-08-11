@@ -1,5 +1,5 @@
 import qs from 'qs';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { loadStripe as Stripe } from '@stripe/stripe-js';
 import { networkApiCall } from 'rhino/lib/networking';
@@ -29,12 +29,12 @@ export async function CreateCheckoutSession(price, base_owner_id) {
 }
 
 export const usePrices = () => {
-  return useSubscriptionQuery('usePrices', GET_PRICES_API_PATH);
+  return useSubscriptionQuery(['usePrices'], GET_PRICES_API_PATH);
 };
 
 export const useSubscription = (baseOwnerId) => {
   return useSubscriptionQuery(
-    'getSubscription',
+    ['getSubscription'],
     SUBSCRIPTION_API_PATH + '?base_owner_id=' + baseOwnerId
   );
 };
@@ -45,15 +45,17 @@ export const useCheckSession = (baseOwnerId, session_id) => {
     session_id: session_id
   });
   return useSubscriptionQuery(
-    'checkSession',
+    ['checkSession'],
     CHECK_SESSION_API_PATH + queryParam
   );
 };
 
 const useSubscriptionQuery = (queryKey, queryPath, params) => {
-  return useQuery(queryKey, ({ signal }) =>
-    networkApiCall(queryPath, { ...params, signal })
-  );
+  return useQuery({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
+    queryKey,
+    queryFn: ({ signal }) => networkApiCall(queryPath, { ...params, signal })
+  });
 };
 
 export const displayAmount = (amount) => {

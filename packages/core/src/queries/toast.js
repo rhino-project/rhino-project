@@ -1,7 +1,7 @@
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 
-const TOAST_KEY = 'toast';
+const TOAST_KEY = ['toast'];
 
 export class toastStore {
   static toasts = {};
@@ -31,5 +31,9 @@ export const useToast = () => {
     toastStore.remove(id);
   };
 
-  return [useQuery(TOAST_KEY, () => toastStore.toasts), addToast, removeToast];
+  return [
+    useQuery({ queryKey: TOAST_KEY, queryFn: () => toastStore.toasts }),
+    addToast,
+    removeToast
+  ];
 };
