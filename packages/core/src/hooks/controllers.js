@@ -26,6 +26,7 @@ import {
 import { useDefaultValues, useResolver, useSchema } from './form';
 import { useForm } from 'react-hook-form';
 import { usePaths } from './paths';
+import { useDebouncedCallback } from 'use-debounce';
 
 export const useModelIndexContext = () => {
   const context = useContext(ModelIndexContext);
@@ -347,9 +348,14 @@ const getEditablePaths = (model) =>
 
 export const useModelEditController = (options) => {
   const model = useModel(options.model);
-  const { modelId, extraDefaultValues, paths } = options;
+  const { modelId, extraDefaultValues, paths, debounceDelay = 2000 } = options;
 
   const mutation = useModelUpdate(model);
+  const debouncedMutate = useDebouncedCallback(
+    (observation) => mutation.mutate(observation),
+    debounceDelay
+  );
+
   // A modal for instance may not have a modelId yet
   const show = useModelShow(model, modelId, {
     queryOptions: { enabled: !!modelId }
@@ -389,6 +395,7 @@ export const useModelEditController = (options) => {
     model,
     modelId,
     ...mutation,
+    debouncedMutate,
     show,
     methods,
     paths: computedPaths,
