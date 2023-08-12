@@ -28,7 +28,7 @@ export const ModelFieldJoinSimpleBase = ({ model, ...props }) => {
     name: path
   });
 
-  const { results, isLoading } = useModelIndex(joinModel, {
+  const { results, isInitialLoading } = useModelIndex(joinModel, {
     filter,
     limit,
     offset,
@@ -101,7 +101,7 @@ export const ModelFieldJoinSimpleBase = ({ model, ...props }) => {
       highlightOnlyResult
       isInvalid={!!error}
       onChange={handleChange}
-      isLoading={isLoading}
+      isLoading={isInitialLoading}
       {...props}
     />
   );

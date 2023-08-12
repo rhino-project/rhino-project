@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import ModelDisplayGroup from 'rhino/components/models/ModelDisplayGroup';
 import { sharedModelTests } from './sharedModelTests';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ModelShowSimple from 'rhino/components/models/ModelShowSimple';
 import * as network from 'rhino/lib/networking';
 

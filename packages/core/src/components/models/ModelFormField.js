@@ -133,7 +133,7 @@ const ModelFormFieldReference = ({
   const identifier = useMemo(() => getIdentifierAttribute(model), [model]);
   const [input, setInput] = useDebouncedState('', 500);
 
-  const { results, isLoading } = useModelIndex(model, {
+  const { results, isInitialLoading } = useModelIndex(model, {
     limit: 100,
     search: input
   });
@@ -166,7 +166,7 @@ const ModelFormFieldReference = ({
         onChange(set({}, path, selected[0]?.id || null), selected[0])
       }
       onInputChange={setInput}
-      isLoading={isLoading}
+      isLoading={isInitialLoading}
     ></Typeahead>
   );
 };

@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks/dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   useModelInvalidateIndex,
   useModelKey,
@@ -13,6 +13,18 @@ import {
   useModelDelete
 } from 'rhino/hooks/queries';
 import * as network from 'rhino/lib/networking';
+
+const testQueryClient = () =>
+  new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false
+      }
+    },
+    logger: {
+      error: () => {}
+    }
+  });
 
 jest.mock('rhino/models', () => {
   const api = require('../../shared/modelFixtures');
@@ -99,14 +111,7 @@ describe('useModelInvalidateIndex', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
-
+    queryClient = testQueryClient();
     queryClient.invalidateQueries = jest.fn();
   });
 
@@ -148,14 +153,7 @@ describe('useModelInvalidateShow', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
-
+    queryClient = testQueryClient();
     queryClient.invalidateQueries = jest.fn();
   });
 
@@ -199,13 +197,7 @@ describe('useModelCreate', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
+    queryClient = testQueryClient();
 
     network.networkApiCall = jest.fn(() => ({
       data: {
@@ -245,13 +237,7 @@ describe('useModelUpdate', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
+    queryClient = testQueryClient();
 
     network.networkApiCall = jest.fn(() => ({
       data: {
@@ -291,13 +277,7 @@ describe('useModelDelete', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
+    queryClient = testQueryClient();
 
     network.networkApiCall = jest.fn(() => ({
       data: {
@@ -332,13 +312,7 @@ describe('useModelShow', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
+    queryClient = testQueryClient();
 
     network.networkApiCall = jest.fn(() => ({
       data: {
@@ -375,13 +349,7 @@ describe('useModelIndex', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
+    queryClient = testQueryClient();
 
     network.networkApiCall = jest.fn(() => ({
       data: {

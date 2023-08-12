@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { sharedModelTests } from './sharedModelTests';
 import ModelIndex from 'rhino/components/models/ModelIndex';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 
 /* eslint react/display-name: 0, react/prop-types: 0 */

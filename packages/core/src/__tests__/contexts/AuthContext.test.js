@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react-hooks/dom';
 import axios from 'axios';
 import AuthProvider, { AuthContext } from 'rhino/contexts/AuthContext';
 import { useContext } from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { NetworkingMock } from '../../shared';
 
 jest.mock('axios');
@@ -41,6 +41,9 @@ describe('AuthContext', () => {
           retry: false,
         },
       },
+      logger: {
+        error:  () => {}
+      }
     });
   });
 

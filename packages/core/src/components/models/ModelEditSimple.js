@@ -8,17 +8,17 @@ import { Spinner } from 'reactstrap';
 export const ModelEditSimple = ({ children, fallback = true, ...props }) => {
   const controller = useModelEditController(props);
   const {
-    show: { isLoading }
+    show: { isInitialLoading }
   } = controller;
 
   // Fallback mirrors React 18 Suspense
   const renderFallback = useMemo(() => {
-    if (!isLoading || !fallback) return children;
+    if (!isInitialLoading || !fallback) return children;
 
     if (fallback === true) return <Spinner />;
 
     return fallback;
-  }, [children, fallback, isLoading]);
+  }, [children, fallback, isInitialLoading]);
 
   return (
     <ModelEditProvider {...controller}>{renderFallback}</ModelEditProvider>

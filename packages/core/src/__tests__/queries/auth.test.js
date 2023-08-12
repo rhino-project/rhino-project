@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react';
 import { act } from '@testing-library/react';
 import axios from 'axios';
-import { QueryClient } from 'react-query';
+import { QueryClient } from '@tanstack/react-query';
 import {
   useSignInAction,
   useSignOutAction,
@@ -60,6 +60,9 @@ describe('auth/queries', () => {
             retry: false,
           },
         },
+        logger: {
+          error:  () => {}
+        }
       });
     });
 

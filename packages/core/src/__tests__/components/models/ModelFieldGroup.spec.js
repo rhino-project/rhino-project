@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import ModelFieldGroup from 'rhino/components/models/ModelFieldGroup';
 import { sharedModelTests } from './sharedModelTests';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ModelEditSimple from 'rhino/components/models/ModelEditSimple';
 
 jest.mock('rhino/models', () => {

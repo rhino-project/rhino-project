@@ -36,7 +36,7 @@ export const ModelFieldReferenceBase = ({ model, ...props }) => {
     return { ...props.filter, [identifier.name]: valString };
   }, [identifier.name, props.filter, valString, value]);
 
-  const { results, isLoading } = useModelIndex(refModel, {
+  const { results, isInitialLoading } = useModelIndex(refModel, {
     search,
     filter,
     limit,
@@ -72,7 +72,7 @@ export const ModelFieldReferenceBase = ({ model, ...props }) => {
       isInvalid={!!error}
       onChange={handleChange}
       onSearch={(query) => setSearch(query)}
-      isLoading={isLoading}
+      isLoading={isInitialLoading}
       minLength={0}
       {...props}
     />

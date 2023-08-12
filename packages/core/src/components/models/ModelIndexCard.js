@@ -135,7 +135,11 @@ const defaultComponents = {
 };
 
 const ModelIndexCard = ({ overrides, paths, baseRoute }) => {
-  const { model, isLoading: loading, resources } = useModelIndexContext();
+  const {
+    model,
+    isInitialLoading: loading,
+    resources
+  } = useModelIndexContext();
 
   const { ModelCard } = useOverrides(defaultComponents, overrides);
   const baseOwnerNavigation = useBaseOwnerNavigation();
