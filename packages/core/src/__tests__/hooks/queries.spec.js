@@ -30,6 +30,13 @@ jest.mock('rhino/models', () => {
   };
 });
 
+const abortFn = jest.fn();
+
+// @ts-ignore
+global.AbortController = jest.fn(() => ({
+  abort: abortFn
+}));
+
 const MODEL_INDEX_KEY = 'models-users-index';
 const MODEL_SHOW_KEY = 'models-users-show';
 const MODEL_TEST_KEYS = ['test-key1', 'test-key2'];

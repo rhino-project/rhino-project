@@ -11,7 +11,8 @@ export const useNotifications = () => {
 
   return useQuery(
     'notifications-index',
-    () => networkApiCall(fullPath(userId, '?filter=unopened')),
+    ({ signal }) =>
+      networkApiCall(fullPath(userId, '?filter=unopened'), { signal }),
     { enabled: !!userId }
   );
 };

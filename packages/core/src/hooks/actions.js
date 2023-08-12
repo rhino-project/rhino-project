@@ -59,7 +59,8 @@ export const useModelQueryAction = (
 
   // The endpoint is of the form /api/<model>/<model-id>/<action>
   const queryFn = useCallback(
-    () => networkApiCallOnlyData(endpoint, networkOptions),
+    ({ signal }) =>
+      networkApiCallOnlyData(endpoint, { ...networkOptions, signal }),
     [endpoint, networkOptions]
   );
 

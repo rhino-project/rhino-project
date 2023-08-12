@@ -160,12 +160,12 @@ export const useModelKeyIndex = (model, extraKeys = []) => {
  * @returns {UseModelKeyShowBuildResult} - function to generate key
  * @example
  ```
-  // Get the builder
-  const { build } = useModelKeyShowBuild('blog');
-  //...hack hack hack...
-  // Later build the query key
-  const queryKey = build(3);
-  ```
+ // Get the builder
+ const { build } = useModelKeyShowBuild('blog');
+ //...hack hack hack...
+ // Later build the query key
+ const queryKey = build(3);
+ ```
  */
 export const useModelKeyShowBuild = (model, extraKeys = []) => {
   const modelKey = useModelKey(model, 'show');
@@ -216,7 +216,7 @@ export const useModelKeyShow = (model, id, extraKeys = []) => {
  const { mutate } = useModelUpdate('blog')
  const { invalidate } = useModelInvalidateIndex('blog_post')
 
-// After updating the blog, invalidate related blog post queries
+ // After updating the blog, invalidate related blog post queries
  mutate({ id: 3, published: false }, { onSuccess: invalidate })
  ```
  */
@@ -517,7 +517,8 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
 
   const query = useQuery({
     queryKey,
-    queryFn: () => networkApiCallOnlyData(endpoint, networkOptions),
+    queryFn: ({ signal }) =>
+      networkApiCallOnlyData(endpoint, { ...networkOptions, signal }),
     ...queryOptions
   });
 
@@ -609,7 +610,8 @@ export const useModelIndex = (model, options = {}, ...legacyOptions) => {
 
   const query = useQuery({
     queryKey,
-    queryFn: () => networkApiCallOnlyData(endpoint, networkOptions),
+    queryFn: ({ signal }) =>
+      networkApiCallOnlyData(endpoint, { ...networkOptions, signal }),
     ...queryOptions
   });
 
