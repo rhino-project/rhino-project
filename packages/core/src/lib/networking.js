@@ -1,5 +1,6 @@
 import axios from 'axios';
 import qs from 'qs';
+import * as networking from './networking.js';
 
 import env from 'config';
 import { toastStore } from 'rhino/queries/toast';
@@ -11,7 +12,7 @@ export const AUTH_CREATE_END_POINT = AUTH_BASE_PATH + '/sign_in';
 export const AUTH_DESTROY_END_POINT = AUTH_BASE_PATH + '/sign_out';
 export const AUTH_PASSWORD_END_POINT = AUTH_BASE_PATH + '/password';
 export const AUTH_VALIDATE_TOKEN_END_POINT = AUTH_BASE_PATH + '/validate_token';
-export const AUTH_SESSION_KEY = 'session';
+export const AUTH_SESSION_KEY = ['session'];
 
 const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
@@ -43,19 +44,21 @@ export class NetworkParamError extends Error {
   }
 }
 
-export const networkApiCall = (
-  path,
-  options = { method: 'get', headers: {}, data: null }
-) => {
-  const CancelToken = axios.CancelToken;
-  const source = CancelToken.source();
+export const networkApiCall = (path, options) => {
+  const defaultOptions = {
+    method: 'get',
+    headers: {},
+    data: null,
+    signal: null,
+    ...options
+  };
 
-  const promise = axios(constructPath(path), {
-    ...options,
-    headers: _buildHeaders(options.headers),
-    paramsSerializer: (params) =>
-      qs.stringify(params, { arrayFormat: 'brackets' }),
-    cancelToken: source.token,
+  return axios(constructPath(path), {
+    ...defaultOptions,
+    headers: _buildHeaders(defaultOptions.headers),
+    paramsSerializer: {
+      serialize: (params) => qs.stringify(params, { arrayFormat: 'brackets' })
+    },
     withCredentials: true
   }).catch((error) => {
     if (
@@ -79,9 +82,25 @@ export const networkApiCall = (
       throw new NetworkParamError(error.response.data?.errors);
     }
   });
+};
 
-  // https://react-query.tanstack.com/guides/query-cancellation#using-axios
-  promise.cancel = () => source.cancel('Query was cancelled by React Query');
+const handler = {
+  get(target, prop, receiver) {
+    // If the data is being access data.data, its the older form, return it
+    if (prop === 'data') {
+      console.warn('Legacy data access used in query hooks');
 
-  return promise;
+      return target;
+    }
+    return Reflect.get(...arguments);
+  }
+};
+
+export const networkApiCallOnlyData = async (
+  path,
+  options = { method: 'get', headers: {}, data: null, signal: null }
+) => {
+  const response = await networking.networkApiCall(path, options);
+
+  return new Proxy(response.data, handler);
 };

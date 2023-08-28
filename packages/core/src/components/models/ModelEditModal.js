@@ -1,114 +1,81 @@
-import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-import { useOverrides, useOverridesWithGlobal } from 'rhino/hooks/overrides';
-import ModelEdit, {
-  ModelEditActions,
-  ModelEditForm
-} from 'rhino/components/models/ModelEdit';
+import { useModelEditContext } from '../../hooks/controllers';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import ModelEditModalActions from './ModelEditModalActions';
+import ModelEditSimple from './ModelEditSimple';
+import ModelSection from './ModelSection';
+import ModelFieldGroup from './ModelFieldGroup';
+import { useRenderPaths } from 'rhino/hooks/paths';
 
 export const ModelEditModalHeader = (props) => {
-  const { model, title = `Edit ${model.readableName}` } = props;
+  const { model } = useModelEditContext();
+  const { title = `Edit ${model.readableName}` } = props;
 
   return <ModalHeader>{title}</ModalHeader>;
 };
 
 ModelEditModalHeader.propTypes = {
-  model: PropTypes.object.isRequired,
   title: PropTypes.string
 };
 
-const defaultBodyComponents = {
-  ModelEditForm
-};
-
-export const ModelEditModalBody = ({ overrides, ...props }) => {
-  const { ModelEditForm } = useOverrides(defaultBodyComponents, overrides);
-
-  return (
-    <ModalBody>
-      <ModelEditForm {...props} />
-    </ModalBody>
-  );
-};
-
-ModelEditModalBody.propTypes = {
-  overrides: PropTypes.object
-};
-
-const defaultFooterComponents = {
-  ModelEditActions
-};
-
-export const ModelEditModalFooter = ({ overrides, ...props }) => {
-  const { ModelEditActions } = useOverrides(defaultFooterComponents, overrides);
+export const ModelEditModalForm = ({ ...props }) => {
+  const { model, paths } = useModelEditContext();
+  const renderPaths = useRenderPaths(props.paths || paths, {
+    Component: ModelFieldGroup,
+    props: { model }
+  });
 
   return (
-    <ModalFooter>
-      <ModelEditActions {...props} />
-    </ModalFooter>
+    <ModelSection baseClassName="edit-form">
+      <ModalBody>{renderPaths}</ModalBody>
+    </ModelSection>
   );
-};
-
-ModelEditModalFooter.propTypes = {
-  overrides: PropTypes.object
 };
 
 const defaultComponents = {
-  ModelEditHeader: ModelEditModalHeader,
-  ModelEditForm: ModelEditModalBody,
-  ModelEditActions: ModelEditModalFooter
+  ModelEditModalHeader,
+  ModelEditModalForm,
+  ModelEditModalActions
 };
 
-const ModelEditModal = ({
+const ModelEditModalBase = ({
   overrides,
-  onActionSuccess,
   isOpen,
   onModalClose,
+  title,
   ...props
 }) => {
-  const { model } = props;
-  const {
-    ModelEditHeader,
-    ModelEditForm,
-    ModelEditActions
-  } = useOverridesWithGlobal(model, 'edit', defaultComponents, overrides);
-
-  // We remove the normal model class div so it won't affect the modal layout
-  const wrapper = useCallback(({ children }) => children, []);
-
-  const handleActionSuccess = (action, props, data) => {
-    if (onActionSuccess) onActionSuccess(action, props, data);
-    onModalClose();
-  };
+  const { ModelEditModalHeader, ModelEditModalForm } = useOverrides(
+    defaultComponents,
+    overrides
+  );
 
   return (
     <Modal isOpen={isOpen} autoFocus={false} toggle={onModalClose}>
-      <ModelEdit
-        overrides={{
-          ModelEditHeader,
-          ModelEditForm,
-          ModelEditActions
-        }}
-        {...props}
-        onActionSuccess={handleActionSuccess}
-        wrapper={wrapper}
-      />
+      <ModelEditSimple fallback={isOpen} {...props}>
+        <ModelEditModalHeader title={title} />
+        <ModelEditModalForm />
+        <ModelEditModalActions onModalClose={onModalClose} />
+      </ModelEditSimple>
     </Modal>
   );
 };
 
-ModelEditModal.propTypes = {
+ModelEditModalBase.propTypes = {
   overrides: PropTypes.object,
-  model: PropTypes.object.isRequired,
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+  modelId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isOpen: PropTypes.bool.isRequired,
-  onModalClose: PropTypes.func.isRequired,
-  onActionSuccess: PropTypes.func
+  onModalClose: PropTypes.func.isRequired
 };
 
-ModelEditModal.defaultProps = {
+ModelEditModalBase.defaultProps = {
   isOpen: false
 };
+
+const ModelEditModal = (props) =>
+  useGlobalComponent('ModelEditModal', ModelEditModalBase, props);
 
 export default ModelEditModal;

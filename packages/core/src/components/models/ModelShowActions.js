@@ -1,102 +1,159 @@
-import { useCallback, useMemo, useState } from 'react';
-import PropTypes from 'prop-types';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
-import ModelActions from 'rhino/components/models/ModelActions';
-import ModelEditModal from 'rhino/components/models/ModelEditModal';
-import { EDIT_MODAL } from 'config';
-import withParams from 'rhino/routes/withParams';
-import routePaths from 'rhino/routes';
-import { getParentModel, isBaseOwned } from 'rhino/utils/models';
-import { useModelDelete } from 'rhino/hooks/queries';
-import { useBaseOwnerNavigation } from 'rhino/hooks/history';
+import { Children, useCallback, useMemo, useState } from 'react';
 
-const ModelShowActions = (props) => {
-  const { actions, resource, model } = props;
-  const [modalOpen, setModalOpen] = useState(false);
+import { useModelShowContext } from 'rhino/hooks/controllers';
+import { IconButton } from '../buttons';
+import { useBaseOwnerNavigation } from '../../hooks/history';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import withParams from '../../routes/withParams';
+import { getParentModel, isBaseOwned } from '../../utils/models';
+import ModelEditModal from './ModelEditModal';
+import {
+  getModelEditPath,
+  getModelIndexPath,
+  getModelShowPath
+} from 'rhino/utils/routes';
+import ModelSection from './ModelSection';
+
+export const ModelShowActionEdit = ({ children, ...props }) => {
+  const { model, resource } = useModelShowContext();
   const baseOwnerNavigation = useBaseOwnerNavigation();
 
-  const { mutate, isLoading } = useModelDelete(model);
+  const editPath = useMemo(
+    () =>
+      withParams(getModelEditPath(model, resource?.id), {
+        back: location.pathname
+      }),
+    [model, resource]
+  );
 
-  const handleDestroy = useCallback(() => {
+  const handleClick = useCallback(() => baseOwnerNavigation.push(editPath), [
+    baseOwnerNavigation,
+    editPath
+  ]);
+
+  return (
+    <IconButton
+      color="primary"
+      icon="pencil-square"
+      onClick={handleClick}
+      {...props}
+    >
+      {children || 'Edit'}
+    </IconButton>
+  );
+};
+
+export const ModelShowActionEditModal = ({ children, ...props }) => {
+  const { model, resource } = useModelShowContext();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModalClose = () => setModalOpen(false);
+  const handleClick = useCallback(() => setModalOpen(true), [setModalOpen]);
+
+  return (
+    <>
+      <ModelShowActionEdit onClick={handleClick} {...props} />
+      <ModelEditModal
+        model={model}
+        modelId={resource.id}
+        isOpen={modalOpen}
+        onModalClose={handleModalClose}
+      />
+    </>
+  );
+};
+
+export const ModelShowActionDelete = ({ children, ...props }) => {
+  const {
+    model,
+    resource,
+    delete: { mutate }
+  } = useModelShowContext();
+  const baseOwnerNavigation = useBaseOwnerNavigation();
+
+  const handleClick = useCallback(() => {
     if (confirm(`Do you want to delete ${resource.display_name}?`)) {
       mutate(resource.id, {
         onSuccess: () => {
           if (isBaseOwned(model)) {
-            baseOwnerNavigation.push(routePaths[model.name].index());
+            baseOwnerNavigation.push(getModelIndexPath(model));
           } else {
             const parentModel = getParentModel(model);
             const parent = resource[parentModel.model];
-            baseOwnerNavigation.push(
-              routePaths[parentModel.name].show(parent.id)
-            );
+            baseOwnerNavigation.push(getModelShowPath(parentModel, parent.id));
           }
         }
       });
     }
-  }, [baseOwnerNavigation, model, mutate, resource]);
-
-  const editPath = withParams(routePaths[model.name].edit(resource.id), {
-    back: location.pathname
-  });
-
-  const handleModalClose = () => setModalOpen(false);
-
-  const handleAction = useCallback(() => {
-    if (EDIT_MODAL) {
-      setModalOpen(true);
-    } else {
-      baseOwnerNavigation.push(editPath);
-    }
-  }, [editPath, baseOwnerNavigation]);
-
-  const computedActions = useMemo(() => {
-    if (actions) return actions;
-
-    const defaultActions = [];
-
-    if (resource?.can_current_user_edit) {
-      defaultActions.push({
-        name: 'edit',
-        label: 'Edit',
-        color: 'primary',
-        icon: 'pencil-square',
-        onAction: handleAction
-      });
-    }
-
-    if (resource?.can_current_user_destroy) {
-      defaultActions.push({
-        name: 'destroy',
-        label: 'Delete',
-        color: 'danger',
-        icon: 'trash',
-        loading: isLoading,
-        onAction: handleDestroy
-      });
-    }
-
-    return defaultActions;
-  }, [actions, handleAction, handleDestroy, isLoading, resource]);
+  }, [model, mutate, resource, baseOwnerNavigation]);
 
   return (
-    <ModelWrapper {...props} baseClassName="show-actions">
-      <ModelActions {...props} actions={computedActions} />
-      {EDIT_MODAL && (
-        <ModelEditModal
-          {...props}
-          modelId={resource.id}
-          isOpen={modalOpen}
-          onModalClose={handleModalClose}
-        />
-      )}
-    </ModelWrapper>
+    <IconButton color="danger" icon="trash" onClick={handleClick} {...props}>
+      {children || 'Delete'}
+    </IconButton>
   );
 };
 
-ModelShowActions.propTypes = {
-  actions: PropTypes.array,
-  model: PropTypes.object.isRequired,
-  resource: PropTypes.object
+const defaultComponents = {
+  ModelShowActionDelete,
+  ModelShowActionEdit
 };
+
+export const ModelShowActionsBase = ({
+  overrides,
+  children,
+  actions,
+  append = false,
+  prepend = false,
+  ...props
+}) => {
+  const { ModelShowActionDelete, ModelShowActionEdit } = useOverrides(
+    defaultComponents,
+    overrides
+  );
+  const { resource } = useModelShowContext();
+
+  const computedDefaultActions = useMemo(
+    () =>
+      [
+        resource?.can_current_user_edit && <ModelShowActionEdit />,
+        resource?.can_current_user_destroy && <ModelShowActionDelete />
+      ].filter(Boolean),
+    [resource?.can_current_user_destroy, resource?.can_current_user_edit]
+  );
+
+  const computedActions = useMemo(() => {
+    if (!actions) return computedDefaultActions;
+
+    if (append)
+      return [...computedDefaultActions, ...Children.toArray(actions)];
+
+    if (prepend)
+      return [...Children.toArray(actions), ...computedDefaultActions];
+
+    return actions;
+  }, [actions, append, prepend, computedDefaultActions]);
+
+  return (
+    <ModelSection baseClassName="show-actions">
+      <div
+        className="d-flex flex-row flex-wrap justify-content-between mb-3"
+        {...props}
+      >
+        {Children.map(computedActions, (action) => action)}
+      </div>
+    </ModelSection>
+  );
+};
+
+ModelShowActionsBase.propTypes = {};
+
+const MODAL_EDIT_OVERRIDES = { ModelShowActionEdit: ModelShowActionEditModal };
+export const ModelShowActionsModalEdit = (props) => (
+  <ModelShowActionsBase overrides={MODAL_EDIT_OVERRIDES} {...props} />
+);
+
+const ModelShowActions = (props) =>
+  useGlobalComponent('ModelShowActions', ModelShowActionsBase, props);
 
 export default ModelShowActions;

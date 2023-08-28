@@ -11,6 +11,8 @@ import { filter } from 'lodash';
 
 import { getAttributeFromPath } from 'rhino/utils/models';
 import { IconButton } from 'rhino/components/buttons';
+import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 const isDesc = (order) => order?.charAt(0) === '-';
 
@@ -24,12 +26,8 @@ const getSortableAttributes = (model) =>
       a.type === 'integer'
   );
 
-const ModelSort = ({
-  model,
-  paths,
-  searchParams: { order } = {},
-  setSearchParams
-}) => {
+export const ModelSortBase = ({ paths }) => {
+  const { model, order, setOrder } = useModelIndexContext();
   const [isOpen, setIsOpen] = useState(false);
 
   const computedPaths = useMemo(
@@ -64,7 +62,7 @@ const ModelSort = ({
 
   const handleToggle = () => setIsOpen((prevState) => !prevState);
 
-  const handleOrderChange = (order) => setSearchParams({ order });
+  const handleOrderChange = (newOrder) => setOrder(newOrder);
 
   const handleDirectionChange = () => {
     // '-' before order makes the sort order DESC
@@ -75,7 +73,7 @@ const ModelSort = ({
     const newOrder = desc
       ? attributes.map((a) => a.replace('-', '')).join(',')
       : '-' + attributes.join(',-');
-    setSearchParams({ order: newOrder });
+    setOrder(newOrder);
   };
 
   return (
@@ -99,11 +97,11 @@ const ModelSort = ({
   );
 };
 
-ModelSort.propTypes = {
-  model: PropTypes.object.isRequired,
-  paths: PropTypes.array,
-  searchParams: PropTypes.object.isRequired,
-  setSearchParams: PropTypes.func.isRequired
+ModelSortBase.propTypes = {
+  paths: PropTypes.array
 };
+
+const ModelSort = (props) =>
+  useGlobalComponent('ModelSort', ModelSortBase, props);
 
 export default ModelSort;

@@ -1,12 +1,30 @@
 import { renderHook } from '@testing-library/react-hooks/dom';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { useModelInvalidateShow } from 'rhino/hooks/queries';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   useModelInvalidateIndex,
   useModelKey,
   useModelKeyIndex,
-  useModelKeyShow
+  useModelKeyShow,
+  useModelIndex,
+  useModelInvalidateShow,
+  useModelShow,
+  useModelCreate,
+  useModelUpdate,
+  useModelDelete
 } from 'rhino/hooks/queries';
+import * as network from 'rhino/lib/networking';
+
+const testQueryClient = () =>
+  new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false
+      }
+    },
+    logger: {
+      error: () => {}
+    }
+  });
 
 jest.mock('rhino/models', () => {
   const api = require('../../shared/modelFixtures');
@@ -23,6 +41,13 @@ jest.mock('rhino/models', () => {
     }
   };
 });
+
+const abortFn = jest.fn();
+
+// @ts-ignore
+global.AbortController = jest.fn(() => ({
+  abort: abortFn
+}));
 
 const MODEL_INDEX_KEY = 'models-users-index';
 const MODEL_SHOW_KEY = 'models-users-show';
@@ -86,14 +111,7 @@ describe('useModelInvalidateIndex', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
-
+    queryClient = testQueryClient();
     queryClient.invalidateQueries = jest.fn();
   });
 
@@ -135,14 +153,7 @@ describe('useModelInvalidateShow', () => {
   let queryClient;
 
   beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
-
+    queryClient = testQueryClient();
     queryClient.invalidateQueries = jest.fn();
   });
 
@@ -179,5 +190,294 @@ describe('useModelInvalidateShow', () => {
       '1',
       ...MODEL_TEST_KEYS
     ]);
+  });
+});
+
+describe('useModelCreate', () => {
+  let queryClient;
+
+  beforeEach(() => {
+    queryClient = testQueryClient();
+
+    network.networkApiCall = jest.fn(() => ({
+      data: {
+        id: 10,
+        test: 'bar'
+      }
+    }));
+  });
+
+  test('selects axios data correctly and provides legacy support', async () => {
+    const onSuccess = jest.fn();
+
+    const { result, waitFor } = renderHook(() => useModelCreate('user'), {
+      wrapper: wrapper(queryClient)
+    });
+
+    result.current.mutate({ test: 'foo' }, { onSuccess });
+    await waitFor(() => result.current.isSuccess);
+
+    // Backwards compat support
+    console.warn = jest.fn();
+    expect(result.current.data.data).toEqual({ id: 10, test: 'bar' });
+    expect(console.warn).toHaveBeenCalledWith(
+      'Legacy data access used in query hooks'
+    );
+
+    // Callback is called with the data from the network call
+    expect(onSuccess).toHaveBeenCalledWith(
+      { id: 10, test: 'bar' },
+      { test: 'foo' },
+      undefined
+    );
+  });
+});
+
+describe('useModelUpdate', () => {
+  let queryClient;
+
+  beforeEach(() => {
+    queryClient = testQueryClient();
+
+    network.networkApiCall = jest.fn(() => ({
+      data: {
+        id: 6,
+        test: 'bar'
+      }
+    }));
+  });
+
+  test('selects axios data correctly and provides legacy support', async () => {
+    const onSuccess = jest.fn();
+
+    const { result, waitFor } = renderHook(() => useModelUpdate('user'), {
+      wrapper: wrapper(queryClient)
+    });
+
+    result.current.mutate({ id: 6, test: 'foo' }, { onSuccess });
+    await waitFor(() => result.current.isSuccess);
+
+    // Backwards compat support
+    console.warn = jest.fn();
+    expect(result.current.data.data).toEqual({ id: 6, test: 'bar' });
+    expect(console.warn).toHaveBeenCalledWith(
+      'Legacy data access used in query hooks'
+    );
+
+    // Callback is called with the data from the network call
+    expect(onSuccess).toHaveBeenCalledWith(
+      { id: 6, test: 'bar' },
+      { id: 6, test: 'foo' },
+      undefined
+    );
+  });
+});
+
+describe('useModelDelete', () => {
+  let queryClient;
+
+  beforeEach(() => {
+    queryClient = testQueryClient();
+
+    network.networkApiCall = jest.fn(() => ({
+      data: {
+        test: 'test'
+      }
+    }));
+  });
+
+  test('selects axios data correctly and provides legacy support', async () => {
+    const onSuccess = jest.fn();
+
+    const { result, waitFor } = renderHook(() => useModelDelete('user'), {
+      wrapper: wrapper(queryClient)
+    });
+
+    result.current.mutate(6, { onSuccess });
+    await waitFor(() => result.current.isSuccess);
+
+    // Backwards compat support
+    console.warn = jest.fn();
+    expect(result.current.data.data).toEqual({ test: 'test' });
+    expect(console.warn).toHaveBeenCalledWith(
+      'Legacy data access used in query hooks'
+    );
+
+    // Callback is called with the data from the network call
+    expect(onSuccess).toHaveBeenCalledWith({ test: 'test' }, 6, undefined);
+  });
+});
+
+describe('useModelShow', () => {
+  let queryClient;
+
+  beforeEach(() => {
+    queryClient = testQueryClient();
+
+    network.networkApiCall = jest.fn(() => ({
+      data: {
+        test: 'test'
+      }
+    }));
+  });
+
+  test('selects axios data correctly and provides legacy support', async () => {
+    const onSuccess = jest.fn();
+
+    const { result, waitFor } = renderHook(
+      () => useModelShow('user', 1, { queryOptions: { onSuccess } }),
+      {
+        wrapper: wrapper(queryClient)
+      }
+    );
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(result.current.data).toEqual({ test: 'test' });
+
+    // Backwards compat support
+    console.warn = jest.fn();
+    expect(result.current.data.data).toEqual({ test: 'test' });
+    expect(console.warn).toHaveBeenCalledWith(
+      'Legacy data access used in query hooks'
+    );
+    expect(onSuccess).toHaveBeenCalledWith({ test: 'test' });
+  });
+});
+
+describe('useModelIndex', () => {
+  let queryClient;
+
+  beforeEach(() => {
+    queryClient = testQueryClient();
+
+    network.networkApiCall = jest.fn(() => ({
+      data: {
+        test: 'test'
+      }
+    }));
+  });
+
+  test('sets default non-legacy params', () => {
+    renderHook(() => useModelIndex('user'), {
+      wrapper: wrapper(queryClient)
+    });
+
+    expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {});
+  });
+
+  test('inserts search, filter, order, limit, offset correctly', () => {
+    const options = {
+      search: 'test',
+      filter: { test: 'test' },
+      order: 'updated_at',
+      limit: 10,
+      offset: 10
+    };
+    renderHook(() => useModelIndex('user', options), {
+      wrapper: wrapper(queryClient)
+    });
+
+    expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
+      params: {
+        ...options
+      }
+    });
+  });
+
+  test('does not insert search, filter, order, limit, offset as undefined when not passed', () => {
+    renderHook(() => useModelIndex('user', {}), {
+      wrapper: wrapper(queryClient)
+    });
+
+    expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {});
+  });
+
+  test('sets search, filter, order, limit, offset to falsey values when passed', () => {
+    const options = {
+      search: null,
+      filter: null,
+      order: null,
+      limit: 0,
+      offset: 0
+    };
+
+    renderHook(() => useModelIndex('user', options), {
+      wrapper: wrapper(queryClient)
+    });
+
+    expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
+      params: {
+        ...options
+      }
+    });
+  });
+
+  test('sets search, filter, order, limit, offset to undefined when passed', () => {
+    const options = {
+      search: undefined,
+      filter: undefined,
+      order: undefined,
+      limit: undefined,
+      offset: undefined
+    };
+
+    renderHook(() => useModelIndex('user', options), {
+      wrapper: wrapper(queryClient)
+    });
+
+    expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
+      params: {
+        ...options
+      }
+    });
+  });
+
+  test('supports legacy params option', () => {
+    const options = {
+      params: {
+        search: 'test',
+        filter: { test: 'test' },
+        order: 'updated_at',
+        limit: 10,
+        offset: 10
+      }
+    };
+    renderHook(() => useModelIndex('user', options), {
+      wrapper: wrapper(queryClient)
+    });
+
+    expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
+      params: {
+        ...options.params
+      }
+    });
+  });
+
+  test('selects axios data correctly and provides legacy support', async () => {
+    const options = {
+      search: 'test',
+      filter: { test: 'test' },
+      order: 'updated_at',
+      limit: 10,
+      offset: 10
+    };
+    const { result, waitFor } = renderHook(
+      () => useModelIndex('user', options),
+      {
+        wrapper: wrapper(queryClient)
+      }
+    );
+
+    await waitFor(() => result.current.isSuccess);
+
+    expect(result.current.data).toEqual({ test: 'test' });
+
+    // Backwards compat support
+    console.warn = jest.fn();
+    expect(result.current.data.data).toEqual({ test: 'test' });
+    expect(console.warn).toHaveBeenCalledWith(
+      'Legacy data access used in query hooks'
+    );
   });
 });

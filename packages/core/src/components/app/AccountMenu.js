@@ -9,41 +9,48 @@ import {
 import { NavLink } from 'react-router-dom';
 import classnames from 'classnames';
 
-import routePaths from 'rhino/routes';
 import { useSignOutAction } from 'rhino/queries/auth';
 import { NavIcon } from 'rhino/components/icons';
 import { useBaseOwnerPath } from 'rhino/hooks/history';
 import { useBaseOwner, useHasRoleOf } from 'rhino/hooks/owner';
 import { useUser } from 'rhino/hooks/auth';
 import { hasOrganizationsModule } from 'rhino/utils/models';
+import { useAccountSettingsPath, useSettingsPath } from 'rhino/hooks/routes';
 
 const OrganizationSettings = () => {
   const baseOwner = useBaseOwner();
   const baseOwnerPath = useBaseOwnerPath();
+  const settingsPath = useSettingsPath();
 
   return (
     <>
       <DropdownItem divider />
       <DropdownItem
         tag={NavLink}
-        to={baseOwnerPath.build(`${routePaths.settings()}/profile`)}
+        to={baseOwnerPath.build(`${settingsPath}/profile`)}
       >
         {baseOwner?.name} Settings
       </DropdownItem>
     </>
   );
 };
+
 const AccountMenu = ({ sidebarMode = false }) => {
   const { mutate: signOutAction } = useSignOutAction();
   const user = useUser();
   const baseOwnerPath = useBaseOwnerPath();
+  const accountSettingsPath = useAccountSettingsPath();
   const isAdmin = useHasRoleOf('admin');
   const showOrgSettings = useMemo(() => hasOrganizationsModule() && isAdmin, [
     isAdmin
   ]);
 
   return (
-    <UncontrolledDropdown nav inNavbar direction={sidebarMode ? 'up' : 'down'}>
+    <UncontrolledDropdown
+      nav={sidebarMode}
+      inNavbar={sidebarMode}
+      direction={sidebarMode ? 'up' : 'down'}
+    >
       <DropdownToggle
         id="account-menu"
         className="d-flex align-items-center"
@@ -59,11 +66,11 @@ const AccountMenu = ({ sidebarMode = false }) => {
           {user?.nickname || user?.name?.split(' ')[0]}
         </span>
       </DropdownToggle>
-      <DropdownMenu right>
+      <DropdownMenu end>
         <DropdownItem
           id="account-settings"
           tag={NavLink}
-          to={baseOwnerPath.build(`${routePaths.accountSettings()}/profile`)}
+          to={baseOwnerPath.build(`${accountSettingsPath}/profile`)}
         >
           Account Settings
         </DropdownItem>

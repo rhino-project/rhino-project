@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelCreate should allow local overrides 1`] = `
+<DocumentFragment>
+  <div
+    class="model-create model-create-user"
+  >
+    <div>
+      Foo
+    </div>
+    <div>
+      Bar
+    </div>
+    <div>
+      Baz
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCreate should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCreate should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

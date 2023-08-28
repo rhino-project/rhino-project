@@ -1,11 +1,14 @@
 import { useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Alert, CustomInput, Progress } from 'reactstrap';
+import { Alert, Input, Progress } from 'reactstrap';
 
 import Uploader from 'rhino/utils/uploader';
 import { CloseButton } from 'rhino/components/buttons';
 import { useForceUpdate } from 'rhino/hooks/util';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import { useController } from 'react-hook-form';
 
 const fileInputText = (value, multiple, uploadedFileNames) => {
   if (!multiple && typeof value === 'string') return uploadedFileNames[value];
@@ -17,32 +20,31 @@ const fileInputText = (value, multiple, uploadedFileNames) => {
   return `${value?.length} files`;
 };
 
-const ModelFieldFile = ({
-  attribute,
-  error,
-  multiple,
-  path,
-  value,
-  onChange
-}) => {
+export const ModelFieldFileBase = ({ model, multiple, path }) => {
+  const {
+    field: { ref, value, onChange, ...fieldProps },
+    fieldState: { error }
+  } = useController({
+    name: path
+  });
+  const { attribute } = useModelAndAttributeFromPath(model, path);
   const [uploadingCount, setUploadingCount] = useState(0);
   const [failed, setFailed] = useState(false);
   const [errors, setErrors] = useState(null);
   const [clearCounter, setClearCounter] = useState(0);
   const forceUpdate = useForceUpdate();
   const uploadedFileIds = useRef([]);
-  // { [file id]: 'filename.jpeg'}
   const uploadedFileNames = useRef({});
 
   const handleClear = () => {
-    // Hack to reset the file input because CustomInput doesn't get an
+    // Hack to reset the file input because Input doesn't get an
     // onChange notification if we do input.value = ''
     setClearCounter(clearCounter + 1);
 
     setUploadingCount(0);
     setFailed(false);
     uploadedFileIds.current = [];
-    onChange({ [path]: multiple ? [] : null });
+    onChange(multiple ? [] : null);
   };
 
   const handleFileChange = (e) => {
@@ -68,11 +70,11 @@ const ModelFieldFile = ({
           ? (value || []).map((a) => a.signed_id)
           : null;
 
-        onChange({
-          [path]: multiple
+        onChange(
+          multiple
             ? [...existing, ...uploadedFileIds.current]
             : uploadedFileIds.current[0]
-        });
+        );
 
         setClearCounter(clearCounter + 1);
         setUploadingCount(0);
@@ -89,28 +91,28 @@ const ModelFieldFile = ({
   );
 
   return (
-    <>
-      <div className="d-flex flex-row">
-        <CustomInput
+    <div>
+      <div className="input-group">
+        {fileText && <div className="input-file-label">{fileText}</div>}
+        <Input
           key={`${path}-${clearCounter}`}
           id={path}
-          label={fileText}
+          innerRef={ref}
           type="file"
           name={path}
           disabled={uploadingCount > 0}
           multiple={multiple}
           onChange={handleFileChange}
+          invalid={!!error}
+          {...fieldProps}
         />
-        {!attribute.required && value && (
-          <CloseButton className="ml-2" onClick={handleClear} />
-        )}
+        {!attribute.required && value && <CloseButton onClick={handleClear} />}
       </div>
       {!!uploadingCount && (
         <div>
           <Progress
             className="mt-3"
             value={(uploadedFileIds.current.length / uploadingCount) * 100}
-            indicating
           />
         </div>
       )}
@@ -120,12 +122,13 @@ const ModelFieldFile = ({
           <p>{errors?.toString()}</p>
         </Alert>
       )}
-      {error && <Alert color="danger">{error}</Alert>}
-    </>
+      {error && <p className="text-danger mt-1 small">{error?.message}</p>}
+    </div>
   );
 };
 
-ModelFieldFile.propTypes = {
+ModelFieldFileBase.propTypes = {
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   path: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -137,8 +140,11 @@ ModelFieldFile.propTypes = {
   error: PropTypes.string
 };
 
-ModelFieldFile.defaultProps = {
+ModelFieldFileBase.defaultProps = {
   multiple: false
 };
+
+const ModelFieldFile = (props) =>
+  useGlobalComponent('ModelFieldFile', ModelFieldFileBase, props);
 
 export default ModelFieldFile;

@@ -1,34 +1,33 @@
-import PropTypes from 'prop-types';
-import React from 'react';
 import { Pager } from 'rhino/components/pagination';
-import { usePaginationParams } from 'rhino/hooks/history';
+import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const ModelPager = ({ resources, searchParams, setSearchParams }) => {
-  const [
-    hasPrev,
-    hasNext,
+export const ModelPagerBase = (props) => {
+  const {
+    hasPrevPage,
+    hasNextPage,
     firstPage,
     lastPage,
     totalPages,
-    onSetPage,
+    setPage,
     page
-  ] = usePaginationParams(resources?.total, searchParams, setSearchParams);
+  } = useModelIndexContext();
 
   return (
     <Pager
-      hasNext={hasNext}
-      hasPrev={hasPrev}
+      hasNext={hasNextPage}
+      hasPrev={hasPrevPage}
       firstPage={firstPage}
       lastPage={lastPage}
       totalPages={totalPages}
-      onSetPage={onSetPage}
+      setPage={setPage}
       page={page}
+      {...props}
     />
   );
 };
 
-ModelPager.propTypes = {
-  resources: PropTypes.object
-};
+const ModelPager = (props) =>
+  useGlobalComponent('ModelPager', ModelPagerBase, props);
 
 export default ModelPager;

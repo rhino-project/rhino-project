@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelDisplayAttachments should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+    type="text"
+    value="-"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayAttachments should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+    type="text"
+    value="baz"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayAttachments should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+    type="text"
+    value="-"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayAttachments should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="name"
+    name="name"
+    path="name"
+    readonly=""
+    type="text"
+    value="-"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayAttachments should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="name"
+    name="name"
+    path="name"
+    readonly=""
+    type="text"
+    value="-"
+  />
+</DocumentFragment>
+`;

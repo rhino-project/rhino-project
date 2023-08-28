@@ -7,9 +7,8 @@ import { CloseButton } from 'rhino/components/buttons';
 
 const Toasted = ({ title, description, icon = 'primary', onClick }) => (
   <Toast className="mx-auto">
-    <ToastHeader icon={icon}>
+    <ToastHeader icon={icon} close={<CloseButton onClick={onClick} />}>
       {title}
-      <CloseButton onClick={onClick} />
     </ToastHeader>
     <ToastBody>{description}</ToastBody>
   </Toast>

@@ -21,8 +21,8 @@ PagerLink.defaultProps = {
   disabled: false
 };
 
-export const CompactPager = ({ hasPrev, hasNext, page, onSetPage }) => {
-  const handleClick = (page) => () => onSetPage(page);
+export const CompactPager = ({ hasPrev, hasNext, page, setPage }) => {
+  const handleClick = (page) => () => setPage(page);
 
   return (
     <Pagination size="sm">
@@ -35,7 +35,7 @@ export const CompactPager = ({ hasPrev, hasNext, page, onSetPage }) => {
 CompactPager.propTypes = {
   hasPrev: PropTypes.bool.isRequired,
   hasNext: PropTypes.bool.isRequired,
-  onSetPage: PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired
 };
 
@@ -46,14 +46,14 @@ export const Pager = ({
   lastPage,
   totalPages,
   page,
-  onSetPage
+  setPage
 }) => {
   const pages = Array.from(
     { length: lastPage - firstPage + 1 },
     (x, i) => firstPage + i
   );
 
-  const handleClick = (page) => () => onSetPage(page);
+  const handleClick = (page) => () => setPage(page);
 
   return (
     <Pagination>
@@ -79,6 +79,6 @@ Pager.propTypes = {
   firstPage: PropTypes.number.isRequired,
   lastPage: PropTypes.number.isRequired,
   totalPages: PropTypes.number.isRequired,
-  onSetPage: PropTypes.func.isRequired,
+  setPage: PropTypes.func.isRequired,
   page: PropTypes.number.isRequired
 };

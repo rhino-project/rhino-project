@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelCellDateTimeDistance renders datetime distance with baseDate older than value 1`] = `
+<DocumentFragment>
+  <div>
+    in 10 minutes
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDateTimeDistance renders datetime distance with default baseDate 1`] = `
+<DocumentFragment>
+  <div>
+    10 minutes ago
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDateTimeDistance should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDateTimeDistance should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div>
+    -
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDateTimeDistance should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div>
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDateTimeDistance should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDateTimeDistance should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellDateTimeDistance should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks/dom';
-import { BaseOwnerContext } from 'rhino/contexts/BaseOwnerContext';
 import {
+  BaseOwnerContext,
   useBaseOwner,
   useBaseOwnerContext,
   useBaseOwnerId,

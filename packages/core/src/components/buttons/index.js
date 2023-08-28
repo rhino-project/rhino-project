@@ -33,7 +33,7 @@ Button.defaultProps = {
 export const IconButton = ({ children, icon, ...props }) => (
   <Button {...props}>
     <Icon
-      className="mr-1"
+      className="me-1"
       style={{ height: '1rem', width: '1rem' }}
       icon={icon}
     />
@@ -43,6 +43,18 @@ export const IconButton = ({ children, icon, ...props }) => (
 
 IconButton.propTypes = {
   children: PropTypes.node,
+  icon: PropTypes.string.isRequired
+};
+
+export const OmniIconButton = ({ icon, ...props }) => (
+  <div className="omni-icon-btn">
+    <Button className="omni-icon-btn__icon" {...props}>
+      <Icon style={{ height: '1rem', width: '1rem' }} icon={icon} />
+    </Button>
+  </div>
+);
+
+OmniIconButton.propTypes = {
   icon: PropTypes.string.isRequired
 };
 

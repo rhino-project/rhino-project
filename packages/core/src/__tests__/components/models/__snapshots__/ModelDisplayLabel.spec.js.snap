@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelDisplayLabel should override label with prop 1`] = `
+<DocumentFragment>
+  <label
+    class="form-label"
+    for="dummy"
+    id="displayLabel-dummy"
+    label="Dummy Override"
+    path="dummy"
+  >
+    Dummy Override
+  </label>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayLabel should render label with readable name 1`] = `
+<DocumentFragment>
+  <label
+    class="form-label"
+    for="dummy"
+    id="displayLabel-dummy"
+    label="Dummy"
+    path="dummy"
+  >
+    Dummy
+  </label>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayLabel should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayLabel should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

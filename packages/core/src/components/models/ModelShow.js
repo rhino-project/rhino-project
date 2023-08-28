@@ -1,16 +1,11 @@
 import PropTypes from 'prop-types';
-import { Spinner } from 'reactstrap';
-import { useOverridesWithGlobal } from 'rhino/hooks/overrides';
-import { breadcrumbFor } from 'rhino/utils/ui';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import ModelShowDescription from 'rhino/components/models/ModelShowDescription';
 import ModelShowRelated from 'rhino/components/models/ModelShowRelated';
-import ModelWrapper from 'rhino/components/models/ModelWrapper';
-import { useModelShow } from 'rhino/hooks/queries';
 import ModelShowActions from 'rhino/components/models/ModelShowActions';
-
-const ModelShowHeader = ({ model, resource }) => {
-  return breadcrumbFor(model, resource, true);
-};
+import ModelShowSimple from './ModelShowSimple';
+import ModelShowHeader from './ModelShowHeader';
+import ModelSection from './ModelSection';
 
 const defaultComponents = {
   ModelShowHeader,
@@ -19,35 +14,36 @@ const defaultComponents = {
   ModelShowRelated
 };
 
-const ModelShow = ({ overrides, ...props }) => {
-  const { model, modelId } = props;
+export const ModelShowBase = ({ overrides, ...props }) => {
   const {
     ModelShowHeader,
     ModelShowActions,
     ModelShowDescription,
     ModelShowRelated
-  } = useOverridesWithGlobal(model, 'show', defaultComponents, overrides);
+  } = useOverrides(defaultComponents, overrides);
 
-  const { isLoading, resource } = useModelShow(model, modelId);
-
-  if (isLoading) {
-    return <Spinner className="mx-auto d-block" />;
-  }
+  if (ModelShowDescription().props?.paths)
+    console.warn('ModelShowDescription pass legacy paths prop');
 
   return (
-    <ModelWrapper {...props} baseClassName="show">
-      <ModelShowHeader {...props} resource={resource} />
-      <ModelShowActions {...props} resource={resource} />
-      <ModelShowDescription {...props} resource={resource} />
-      <ModelShowRelated {...props} resource={resource} />
-    </ModelWrapper>
+    <ModelShowSimple paths={ModelShowDescription().props?.paths} {...props}>
+      <ModelSection baseClassName="show">
+        <ModelShowHeader />
+        <ModelShowActions />
+        <ModelShowDescription />
+        <ModelShowRelated />
+      </ModelSection>
+    </ModelShowSimple>
   );
 };
 
-ModelShow.propTypes = {
-  model: PropTypes.object.isRequired,
+ModelShowBase.propTypes = {
+  model: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   modelId: PropTypes.string.isRequired,
   overrides: PropTypes.object
 };
+
+const ModelShow = (props) =>
+  useGlobalComponent('ModelShow', ModelShowBase, props);
 
 export default ModelShow;

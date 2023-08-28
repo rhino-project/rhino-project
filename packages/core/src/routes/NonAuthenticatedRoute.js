@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
 import { Redirect, Route } from 'react-router';
-import routePaths from '.';
 import { SplashScreen } from 'rhino/components/logos';
 import { useAuth } from 'rhino/hooks/auth';
+import { useRootPath } from 'rhino/hooks/routes';
 
 const NonAuthenticatedRoute = ({ children, ...rest }) => {
+  const rootPath = useRootPath();
   const { initializing, user } = useAuth();
 
   return (
@@ -16,7 +17,7 @@ const NonAuthenticatedRoute = ({ children, ...rest }) => {
         } else if (!user) {
           return children;
         } else {
-          return <Redirect to={routePaths.rootpath()} />;
+          return <Redirect to={rootPath} />;
         }
       }}
     />

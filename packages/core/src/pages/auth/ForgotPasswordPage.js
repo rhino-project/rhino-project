@@ -1,12 +1,13 @@
 import React from 'react';
 
-import routePaths from 'rhino/routes';
 import { useForgotPasswordAction } from 'rhino/queries/auth';
 import AuthPage from './AuthPage';
 import AuthForm from 'rhino/components/auth/AuthForm';
 import { SuccessAlert } from 'rhino/components/alerts';
+import { useSessionCreatePath } from 'rhino/hooks/routes';
 
 const ForgotPasswordPage = () => {
+  const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: forgotPasswordAction,
     isLoading,
@@ -24,7 +25,7 @@ const ForgotPasswordPage = () => {
         primaryAction="Reset Password"
         secondaryAction={{
           content: 'Sign In',
-          url: routePaths.sessionCreate()
+          url: sessionCreatePath
         }}
         loading={isLoading}
         errors={error?.errors}

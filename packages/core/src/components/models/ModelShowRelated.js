@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { useOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import { getOwnedModels } from 'rhino/utils/models';
 import { useModelClassNames } from 'rhino/utils/ui';
-import ModelIndex from 'rhino/components/models/ModelIndex';
+import { ModelIndexBase } from 'rhino/components/models/ModelIndex';
+import { useModelShowContext } from 'rhino/hooks/controllers';
 
 // Get models owned by this, but filter out models that match properties on the
 // models, those are directly displayable (1:many would be nested)
@@ -17,12 +18,13 @@ const getRelatedModels = (model) =>
   });
 
 const defaultComponents = {
-  ModelIndex
+  ModelIndex: ModelIndexBase
 };
 
-const ModelShowRelated = ({ overrides, ...props }) => {
-  const { getRelatedModels, model, resource } = props;
+export const ModelShowRelatedBase = ({ overrides, ...props }) => {
   const { ModelIndex } = useOverrides(defaultComponents, overrides);
+  const { model, resource } = useModelShowContext();
+  const { getRelatedModels } = props;
   const modelClassNames = useModelClassNames('show-related', model);
 
   const indexableModels = useMemo(() => getRelatedModels(model), [
@@ -37,8 +39,9 @@ const ModelShowRelated = ({ overrides, ...props }) => {
           <h4>{relatedModel.pluralReadableName}</h4>
           <ModelIndex
             model={relatedModel}
-            parent={resource}
-            baseFilter={{ filter: { [model.model + '_id']: resource?.id } }}
+            parentId={resource?.id}
+            filter={{ [model.model + '_id']: resource?.id }}
+            syncUrl={false}
           />
         </div>
       ))}
@@ -46,15 +49,16 @@ const ModelShowRelated = ({ overrides, ...props }) => {
   );
 };
 
-ModelShowRelated.propTypes = {
+ModelShowRelatedBase.propTypes = {
   getRelatedModels: PropTypes.func.isRequired,
-  model: PropTypes.object.isRequired,
-  overrides: PropTypes.object,
-  resource: PropTypes.object
+  overrides: PropTypes.object
 };
 
-ModelShowRelated.defaultProps = {
+ModelShowRelatedBase.defaultProps = {
   getRelatedModels
 };
+
+const ModelShowRelated = (props) =>
+  useGlobalComponent('ModelShowRelated', ModelShowRelatedBase, props);
 
 export default ModelShowRelated;

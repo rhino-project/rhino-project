@@ -1,10 +1,10 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { get, set } from 'lodash';
 import classnames from 'classnames';
 import { v4 as uuidv4 } from 'uuid';
 
-import { CustomInput, Input, InputGroup, InputGroupAddon } from 'reactstrap';
+import { Input, InputGroup } from 'reactstrap';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import DatePicker from 'react-datepicker';
 
@@ -13,14 +13,17 @@ import {
   getModelFromRef,
   getReferenceAttributes
 } from 'rhino/utils/models';
-import { getDateTimeFormat, optionsFromIndexWithTitle } from 'rhino/utils/ui';
+import {
+  applyCurrencyMaskFromInput,
+  getDateTimeFormat,
+  optionsFromIndexWithTitle
+} from 'rhino/utils/ui';
 import ModelNestedManyForm from 'rhino/components/models/ModelNestedManyForm';
 import PhoneInput from 'react-phone-input-2';
 import ModelFieldFile from 'rhino/components/models/fields/ModelFieldFile';
 import ModelFieldCountry from 'rhino/components/models/fields/ModelFieldCountry';
 import { useModelIndex } from 'rhino/hooks/queries';
 import { useDebouncedState } from 'rhino/hooks/util';
-import CurrencyFormat from 'react-currency-format';
 import styles from './ModelFormField.module.scss';
 
 const extractError = (errors, path) => get(errors, `${path}[0]`);
@@ -130,8 +133,9 @@ const ModelFormFieldReference = ({
   const identifier = useMemo(() => getIdentifierAttribute(model), [model]);
   const [input, setInput] = useDebouncedState('', 500);
 
-  const { results, isLoading } = useModelIndex(model, {
-    networkOptions: { params: { limit: 100, search: input } }
+  const { results, isInitialLoading } = useModelIndex(model, {
+    limit: 100,
+    search: input
   });
 
   const options = useMemo(() => results || [], [results]);
@@ -162,7 +166,7 @@ const ModelFormFieldReference = ({
         onChange(set({}, path, selected[0]?.id || null), selected[0])
       }
       onInputChange={setInput}
-      isLoading={isLoading}
+      isLoading={isInitialLoading}
     ></Typeahead>
   );
 };
@@ -203,9 +207,9 @@ export const ModelFormFieldIntegerSelect = ({ attribute, value, ...props }) => {
   );
 
   return (
-    <CustomInput {...props} type="select" value={value || -1}>
+    <Input {...props} type="select" value={value || -1}>
       {optionsFromIndexWithTitle(integers, `${attribute.readableName}...`)}
-    </CustomInput>
+    </Input>
   );
 };
 
@@ -238,36 +242,42 @@ ModelFormFieldInteger.propTypes = {
   value: PropTypes.string.isRequired
 };
 
-export const ModelFormFieldCurrency = ({
-  attribute,
-  value,
-  error,
-  path,
-  ...props
-}) => {
+export const ModelFormFieldCurrency = ({ error, onChange, ...commonProps }) => {
+  const inputRef = useRef(null);
+  const handleOnChange = useCallback(
+    (event) => {
+      const formattedValue = applyCurrencyMaskFromInput(event);
+      onChange(formattedValue.value);
+      if (inputRef.current) {
+        inputRef.current.value = formattedValue.value;
+        inputRef.current.setSelectionRange(
+          formattedValue.selectionStart,
+          formattedValue.selectionEnd
+        );
+      }
+    },
+    [onChange]
+  );
+
   return (
     <InputGroup
       className={classnames({
         'is-invalid': error
       })}
     >
-      <InputGroupAddon addonType="prepend">$</InputGroupAddon>
-      <CurrencyFormat
-        {...props}
-        value={!value ? '' : value}
-        decimalSeparator={'.'}
-        decimalScale={2}
-        fixedDecimalScale={true}
-        className={`form-control ${!!error ? 'border-danger' : ''}`}
-        inputmode="numeric"
+      <span className="input-group-text">$</span>
+      <Input
+        {...commonProps}
+        onChange={handleOnChange}
+        className={classnames({ 'is-invalid': !!error })}
       />
     </InputGroup>
   );
 };
 
 ModelFormFieldCurrency.propTypes = {
-  attribute: PropTypes.object.isRequired,
-  value: PropTypes.string.isRequired
+  path: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired
 };
 
 // FIXME: Hack because its the same number value
@@ -282,9 +292,9 @@ export const ModelFormFieldEnum = ({ attribute, error, value, ...props }) => {
   }));
 
   return (
-    <CustomInput {...props} type="select" invalid={!!error} value={value || -1}>
+    <Input {...props} type="select" invalid={!!error} value={value || -1}>
       {optionsFromIndexWithTitle(integers, `${attribute.readableName}...`)}
-    </CustomInput>
+    </Input>
   );
 };
 
@@ -425,7 +435,7 @@ const ModelFormField = ({
     onChange(set(resource, path, value));
   };
 
-  // Create a unique id so that there is never a conflict for things like CustomInput
+  // Create a unique id so that there is never a conflict for things like Input
   // if you have the same formfield on a path
   const id = useMemo(() => `${path}-${uuidv4()}`, [path]);
 
@@ -523,7 +533,7 @@ const ModelFormField = ({
       }
     case 'boolean':
       return (
-        <CustomInput
+        <Input
           {...commonProps}
           className={classnames({ 'is-invalid': !!error })}
           type="checkbox"

@@ -1,80 +1,68 @@
+import { useCallback, useEffect, useMemo } from 'react';
+import { Alert, Form } from 'reactstrap';
+import * as yup from 'yup';
+
 import { SuccessAlert } from 'rhino/components/alerts';
 import { SubmitButton } from 'rhino/components/buttons';
-import { useModel } from 'rhino/hooks/models';
 import { useModelShow, useModelUpdate } from 'rhino/hooks/queries';
-import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
-import { Alert, Form, FormFeedback, FormGroup, Input, Label } from 'reactstrap';
-
-const EditProfileForm = ({ resource, loading, errors, onSubmit }) => {
-  const [formValues, setFormValues] = useState(resource);
-  useEffect(() => {
-    setFormValues(resource);
-  }, [resource]);
-
-  const handleChange = ({ target: { id, value } }) =>
-    setFormValues({ ...formValues, [id]: value });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(formValues);
-  };
-
-  const createField = (id, label, type = 'text', value) => (
-    <FormGroup>
-      <Label for={id}>{label}</Label>
-      <Input
-        type={type}
-        name={id}
-        id={id}
-        value={value}
-        placeholder={label}
-        invalid={errors?.[id]}
-        onChange={handleChange}
-      />
-      <FormFeedback>{errors?.[id]}</FormFeedback>
-    </FormGroup>
-  );
-
-  return (
-    <Form onSubmit={handleSubmit}>
-      {createField('name', 'Name', 'text', formValues?.name)}
-      {createField('nickname', 'Nickname', 'text', formValues?.nickname)}
-      {Array.isArray(errors) && <Alert color="danger">{errors[0]}</Alert>}
-
-      <SubmitButton loading={loading}>Update Profile</SubmitButton>
-    </Form>
-  );
-};
-
-EditProfileForm.propTypes = {
-  errors: PropTypes.array,
-  loading: PropTypes.bool.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  resource: PropTypes.object.isRequired
-};
+import { useFieldSetErrors, useResolver } from 'rhino/hooks/form';
+import { useForm } from 'react-hook-form';
+import FormProvider from '../forms/FormProvider';
+import FieldGroup from '../forms/FieldGroup';
 
 const EditProfile = () => {
-  const model = useModel('account');
-  const {
-    mutate: resourceUpdate,
-    isLoading,
-    isSuccess,
-    error
-  } = useModelUpdate(model);
-  const { resource } = useModelShow(model, null);
+  const { model, resource: account } = useModelShow('account', null);
+  const { mutate, isLoading, isSuccess, error } = useModelUpdate(model);
 
-  const handleSubmit = (formValues) => resourceUpdate({ ...formValues });
+  const schema = useMemo(
+    () =>
+      yup.object().shape({
+        name: yup.string().label('Name').ensure(),
+        nickname: yup.string().label('Nickname').ensure()
+      }),
+    []
+  );
+
+  const defaultValues = useMemo(() => schema.default(), [schema]);
+  const resolver = useResolver(schema);
+
+  const methods = useForm({
+    defaultValues,
+    values: account,
+    mode: 'onBlur',
+    resolver
+  });
+  const {
+    handleSubmit,
+    setError,
+    setFocus,
+    formState: { isDirty }
+  } = methods;
+
+  const onError = useFieldSetErrors(setError);
+  const onSubmit = useCallback((values) => mutate(values, { onError }), [
+    mutate,
+    onError
+  ]);
+
+  useEffect(() => setFocus('name'), [setFocus]);
 
   return (
     <>
-      <EditProfileForm
-        resource={resource}
-        primaryAction="Update Profile"
-        loading={isLoading}
-        errors={error?.errors}
-        onSubmit={handleSubmit}
-      />
+      <FormProvider {...methods}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <FieldGroup path="name" label="Name" />
+          <FieldGroup path="nickname" label="Nick Name" />
+          {Array.isArray(error?.errors) && (
+            <Alert color="danger">{error.errors[0]}</Alert>
+          )}
+
+          <SubmitButton loading={isLoading} disabled={!isDirty}>
+            Update Profile
+          </SubmitButton>
+        </Form>
+      </FormProvider>
+
       {isSuccess && (
         <SuccessAlert title="Your profile has been updated successfully" />
       )}

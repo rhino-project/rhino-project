@@ -17,6 +17,7 @@ import { getStringForDisplay, useModelClassNames } from 'rhino/utils/ui';
 import { useOverrides } from 'rhino/hooks/overrides';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import { usePaths } from 'rhino/hooks/paths';
+import { useModelIndexContext } from 'rhino/hooks/controllers';
 
 const ShowCardText = ({ model, attribute, path, resource }) => {
   const modelClassNames = useModelClassNames(
@@ -96,7 +97,7 @@ export const ModelCard = ({
             resource={resource}
           />
         </CardTitle>
-        <CardSubtitle tag="h6" className="mb-2 text-muted">
+        <CardSubtitle tag="h6" className="mb-2 text-secondary">
           <ShowCardText
             key={cardSubtitle.path}
             model={model}
@@ -133,8 +134,12 @@ const defaultComponents = {
   ModelCard
 };
 
-const ModelIndexCard = (props) => {
-  const { model, paths, loading, overrides, resources, baseRoute } = props;
+const ModelIndexCard = ({ overrides, paths, baseRoute }) => {
+  const {
+    model,
+    isInitialLoading: loading,
+    resources
+  } = useModelIndexContext();
 
   const { ModelCard } = useOverrides(defaultComponents, overrides);
   const baseOwnerNavigation = useBaseOwnerNavigation();
@@ -181,18 +186,14 @@ const ModelIndexCard = (props) => {
 };
 
 ModelIndexCard.propTypes = {
-  loading: PropTypes.bool.isRequired,
-  model: PropTypes.object.isRequired,
   overrides: PropTypes.object,
-  resources: PropTypes.object.isRequired,
   baseRoute: PropTypes.string,
   paths: PropTypes.oneOfType([PropTypes.array, PropTypes.func])
 };
 
 ModelIndexCard.defaultProps = {
   baseRoute: '',
-  loading: false,
-  resources: { results: [] }
+  loading: false
 };
 
 export default ModelIndexCard;

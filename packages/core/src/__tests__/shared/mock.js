@@ -2,7 +2,7 @@ import { waitFor } from '@testing-library/dom';
 import { renderHook } from '@testing-library/react-hooks/dom';
 import env from 'config';
 import React from 'react';
-import { QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import AuthProvider from 'rhino/contexts/AuthContext';
 import { useAuth } from 'rhino/hooks/auth';
 import {

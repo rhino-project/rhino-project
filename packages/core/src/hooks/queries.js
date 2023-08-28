@@ -1,7 +1,7 @@
-import { useQuery, useQueryClient, useMutation } from 'react-query';
-import { cloneDeep, has, merge } from 'lodash';
+import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
+import { cloneDeep, has, merge, set } from 'lodash';
 
-import { networkApiCall } from 'rhino/lib/networking';
+import { networkApiCallOnlyData } from 'rhino/lib/networking';
 import { useModel } from 'rhino/hooks/models';
 import { getModel } from 'rhino/utils/models';
 import { useCallback, useMemo } from 'react';
@@ -34,7 +34,7 @@ export const modelKeyFromName = (name, action) =>
  * @returns {UseModelIndexExtraNamesResult}
  * */
 export const useModelIndexExtraNames = (query) => {
-  const resources = useMemo(() => query?.data?.data ?? null, [query.data]);
+  const resources = useMemo(() => query?.data ?? null, [query.data]);
   const results = useMemo(() => resources?.results ?? null, [resources]);
   const total = useMemo(() => resources?.total ?? null, [resources]);
 
@@ -62,7 +62,7 @@ export const useModelIndexExtraNames = (query) => {
  * @returns {UseModelShowExtraNamesResult}
  * */
 export const useModelShowExtraNames = (query) => {
-  const resource = useMemo(() => query?.data?.data ?? null, [query.data]);
+  const resource = useMemo(() => query?.data ?? null, [query.data]);
 
   const extraNames = useMemo(
     () => ({
@@ -160,12 +160,12 @@ export const useModelKeyIndex = (model, extraKeys = []) => {
  * @returns {UseModelKeyShowBuildResult} - function to generate key
  * @example
  ```
-  // Get the builder
-  const { build } = useModelKeyShowBuild('blog');
-  //...hack hack hack...
-  // Later build the query key
-  const queryKey = build(3);
-  ```
+ // Get the builder
+ const { build } = useModelKeyShowBuild('blog');
+ //...hack hack hack...
+ // Later build the query key
+ const queryKey = build(3);
+ ```
  */
 export const useModelKeyShowBuild = (model, extraKeys = []) => {
   const modelKey = useModelKey(model, 'show');
@@ -216,7 +216,7 @@ export const useModelKeyShow = (model, id, extraKeys = []) => {
  const { mutate } = useModelUpdate('blog')
  const { invalidate } = useModelInvalidateIndex('blog_post')
 
-// After updating the blog, invalidate related blog post queries
+ // After updating the blog, invalidate related blog post queries
  mutate({ id: 3, published: false }, { onSuccess: invalidate })
  ```
  */
@@ -332,7 +332,8 @@ export const useModelCreate = (model, mutationOptions = {}) => {
   const endpoint = useModelPathCollection(model);
 
   const mutation = useMutation({
-    mutationFn: (data) => networkApiCall(endpoint, { method: 'post', data }),
+    mutationFn: (data) =>
+      networkApiCallOnlyData(endpoint, { method: 'post', data }),
     onSuccess: invalidate,
     ...mutationOptions
   });
@@ -370,8 +371,8 @@ export const useModelUpdate = (model, mutationOptions = {}) => {
 
   const mutation = useMutation({
     mutationFn: (data) =>
-      networkApiCall(build(data), { method: 'patch', data }),
-    onSuccess: (data) => invalidate(data?.data?.id),
+      networkApiCallOnlyData(build(data), { method: 'patch', data }),
+    onSuccess: (data) => invalidate(data?.id),
     ...mutationOptions
   });
 
@@ -398,7 +399,7 @@ export const useModelOptimisticUpdate = (model, mutationOptions = {}) => {
             if (!old) return;
 
             const newData = cloneDeep(old);
-            newData.data.results = newData.data.results.map((result) => {
+            newData.results = newData.results.map((result) => {
               // We merge in case of a partial update
               if (result.id === newResource.id)
                 return merge(result, newResource);
@@ -451,7 +452,8 @@ export const useModelDelete = (model, mutationOptions = {}) => {
   const build = useModelPathMemberBuild(model);
 
   const mutation = useMutation({
-    mutationFn: (id) => networkApiCall(build({ id }), { method: 'delete' }),
+    mutationFn: (id) =>
+      networkApiCallOnlyData(build({ id }), { method: 'delete' }),
     onSuccess: invalidate,
     ...mutationOptions
   });
@@ -514,8 +516,10 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
   // End of legacy handling
 
   const query = useQuery({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey,
-    queryFn: () => networkApiCall(endpoint, networkOptions),
+    queryFn: ({ signal }) =>
+      networkApiCallOnlyData(endpoint, { ...networkOptions, signal }),
     ...queryOptions
   });
 
@@ -535,7 +539,12 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
 
 /**
  * @typedef {object} UseModelIndexResultOptions
- * @property {object} [networkOptions={}] - Axios option
+ * @property {string} [search] - Full text search to apply to the index query
+ * @property {object} [filter] - Filters to apply to the index query
+ * @property {string} [order] - Sort order to apply to the index query
+ * @property {number} [limit] - Results limit to apply to the index query
+ * @property {number} [offset] - Results offset to apply to the index query
+ * @property {object} [networkOptions={}] - Axios options
  * @property {UseQueryOptions} [queryOptions={}] - The action (index or show)
  */
 
@@ -551,29 +560,49 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
  * @returns {UseModelIndexResult}
  * @example
  *    const { isLoading, resources} = useModelIndex('blog')
- *    const { isLoading, resource} = useModelIndex('blog', { queryOptions: { onSuccess: () => console.log('do something') } })
- *    const { isLoading, resource} = useModelIndex('blog', { networkOptions: { params: {filters: { published: true } } } })
+ *    const { isLoading, resources} = useModelIndex('blog', { queryOptions: { onSuccess: () => console.log('do something') } })
+ *    const { isLoading, resources} = useModelIndex('blog', { filters: { published: true } })
+ *    const { isLoading, resources} = useModelIndex('blog', { order: 'created_at', limit: 10, offset: 10 })
  */
+
+const ALLOWED_INDEX_QUERY_OPTIONS = [
+  'search',
+  'filter',
+  'order',
+  'limit',
+  'offset'
+];
+
 export const useModelIndex = (model, options = {}, ...legacyOptions) => {
   const memoModel = useModel(model);
   const queryKey = useModelKeyIndex(model, [options]);
   const endpoint = useModelPathCollection(model);
 
-  // If it has either of these and not a fourth param, its the newer options setup
+  // If it has any of these and not a fourth param, its the newer options setup
   const isLegacy = useMemo(
     () =>
-      (Object.keys(options).length > 0 &&
+      (options?.length > 0 &&
         !has(options, 'queryOptions') &&
-        !has(options, 'networkOptions')) ||
+        !has(options, 'networkOptions') &&
+        !ALLOWED_INDEX_QUERY_OPTIONS.some((opt) => has(options, opt))) ||
+      has(options, 'params') ||
       legacyOptions.length > 0,
     [options, legacyOptions]
   );
   if (isLegacy) console.warn('useModelIndex passed legacy options');
 
-  const networkOptions = useMemo(
-    () => (isLegacy ? options : options.networkOptions || {}),
-    [isLegacy, options]
-  );
+  const networkOptions = useMemo(() => {
+    const baseOptions = isLegacy ? options : options.networkOptions || {};
+
+    // Support direct search param injection
+    // We don't unroll because we don't want to set undefined
+    ALLOWED_INDEX_QUERY_OPTIONS.forEach((opt) => {
+      if (has(options, opt)) set(baseOptions, `params.${opt}`, options[opt]);
+    });
+
+    return baseOptions;
+  }, [isLegacy, options]);
+
   const queryOptions = useMemo(
     () => (isLegacy ? legacyOptions[0] : options.queryOptions) || {},
     [isLegacy, legacyOptions, options.queryOptions]
@@ -581,8 +610,10 @@ export const useModelIndex = (model, options = {}, ...legacyOptions) => {
   // End of legacy handling
 
   const query = useQuery({
+    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey,
-    queryFn: () => networkApiCall(endpoint, networkOptions),
+    queryFn: ({ signal }) =>
+      networkApiCallOnlyData(endpoint, { ...networkOptions, signal }),
     ...queryOptions
   });
 

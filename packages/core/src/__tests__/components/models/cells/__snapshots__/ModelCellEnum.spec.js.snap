@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelCellEnum adds style as a prop based on matched enum value 1`] = `
+<DocumentFragment>
+  <span
+    class="badge bg-none"
+    style="background-color: rgb(4, 120, 87);"
+  >
+    bar
+  </span>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+    color="none"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div
+    color="none"
+  >
+    -
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div
+    color="none"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum uses default style value if match is not found 1`] = `
+<DocumentFragment>
+  <span
+    class="badge bg-none"
+    style="background-color: rgb(3, 105, 161);"
+  >
+    baz
+  </span>
+</DocumentFragment>
+`;

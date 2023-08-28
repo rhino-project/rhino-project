@@ -8,13 +8,14 @@ import {
   UncontrolledDropdown
 } from 'reactstrap';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
-import routePaths from 'rhino/routes';
+import { useRootPath } from 'rhino/hooks/routes';
 
 const BaseOwnerSwitcher = ({ sidebarMode = false }) => {
   const baseOwnerId = useBaseOwnerId();
   const baseOwnerNavigation = useBaseOwnerNavigation();
   const usersRoles = useUserRoles();
   const baseOwner = useBaseOwner();
+  const rootPath = useRootPath();
 
   // Only show the dropdown if there is more than one possible base owner
   if (!baseOwnerId || !usersRoles || usersRoles.length <= 1) {
@@ -22,7 +23,7 @@ const BaseOwnerSwitcher = ({ sidebarMode = false }) => {
   }
 
   const handleClick = (baseOwnerClicked) =>
-    baseOwnerNavigation.push(routePaths.rootpath(), baseOwnerClicked.id);
+    baseOwnerNavigation.push(rootPath, baseOwnerClicked.id);
 
   return (
     <UncontrolledDropdown nav inNavbar direction={sidebarMode ? 'up' : 'down'}>
@@ -32,7 +33,7 @@ const BaseOwnerSwitcher = ({ sidebarMode = false }) => {
           {baseOwner?.name}
         </span>
       </DropdownToggle>
-      <DropdownMenu right={sidebarMode ? false : true}>
+      <DropdownMenu end={sidebarMode ? false : true}>
         {usersRoles.map((ur) => (
           <DropdownItem
             key={ur.organization.id}

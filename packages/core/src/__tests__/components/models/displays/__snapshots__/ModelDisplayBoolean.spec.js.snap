@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ModelDisplayBoolean should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    disabled=""
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayBoolean should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    disabled=""
+    empty="baz"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayBoolean should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayBoolean should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelDisplayBoolean should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

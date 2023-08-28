@@ -1,4 +1,4 @@
-import { networkApiCall } from 'rhino/lib/networking';
+import { networkApiCallOnlyData } from 'rhino/lib/networking';
 import { useCallback, useMemo } from 'react';
 import {
   useModelCreate,
@@ -24,7 +24,7 @@ export const useModelMutationAction = (
     (data) => {
       const endpoint = `${build(data)}/${action}`;
 
-      return networkApiCall(endpoint, { method, data });
+      return networkApiCallOnlyData(endpoint, { method, data });
     },
     [action, build, method]
   );
@@ -58,10 +58,11 @@ export const useModelQueryAction = (
   const queryKey = useModelKeyShow(model, id, [action, extraQueryKeys]);
 
   // The endpoint is of the form /api/<model>/<model-id>/<action>
-  const queryFn = useCallback(() => networkApiCall(endpoint, networkOptions), [
-    endpoint,
-    networkOptions
-  ]);
+  const queryFn = useCallback(
+    ({ signal }) =>
+      networkApiCallOnlyData(endpoint, { ...networkOptions, signal }),
+    [endpoint, networkOptions]
+  );
 
   const query = useQueryAction(model, id, {
     queryOptions: {

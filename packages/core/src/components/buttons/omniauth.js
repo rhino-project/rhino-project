@@ -1,18 +1,28 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { capitalize } from 'lodash';
 
 import env from 'config';
-import { LinkIconButton } from 'rhino/components/buttons';
+import { OmniIconButton } from 'rhino/components/buttons';
 
 const providerOverrides = {
-  google_oauth2: {
-    name: 'Google',
-    icon: 'google'
+  auth0: {
+    name: 'Auth0',
+    icon: 'door-open'
   },
   azure_oauth2: {
     name: 'Microsoft',
     icon: 'microsoft'
+  },
+  developer: {
+    name: 'Developer',
+    icon: 'code-square'
+  },
+  google_oauth2: {
+    name: 'Google',
+    icon: 'google'
+  },
+  github_oauth2: {
+    name: 'GitHub',
+    icon: 'github'
   }
 };
 
@@ -20,17 +30,14 @@ const providerPath = (provider) =>
   `${env.AUTH_ROOT_PATH}/${provider}?auth_origin_url=${window.location.href}`;
 
 const OmniAuthButton = ({ provider, loading, handleAuth, ...props }) => (
-  <LinkIconButton
+  <OmniIconButton
     href={providerPath(provider)}
     onClick={() => handleAuth(provider)}
     icon={!loading && provider}
     loading={loading === provider}
     {...providerOverrides?.[provider]}
-    block
     {...props}
-  >
-    {providerOverrides?.[provider]?.name || capitalize(provider)}
-  </LinkIconButton>
+  />
 );
 
 OmniAuthButton.propTypes = {
