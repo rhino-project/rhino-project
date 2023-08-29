@@ -12,7 +12,9 @@ import {
   useModelUpdate,
   useModelDelete
 } from 'rhino/hooks/queries';
-import * as network from 'rhino/lib/networking';
+import modelLoader from 'rhino/models';
+import api from '../../shared/modelFixtures';
+import * as network from '../../../rhino/lib/networking';
 
 const testQueryClient = () =>
   new QueryClient({
@@ -26,26 +28,12 @@ const testQueryClient = () =>
     }
   });
 
-jest.mock('rhino/models', () => {
-  const api = require('../../shared/modelFixtures');
-  // Require the original module to not be mocked...
-  const originalModule = jest.requireActual('rhino/models');
+vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
-  return {
-    __esModule: true, // Use it when dealing with esModules
-    ...originalModule,
-    default: {
-      api: {
-        ...api.default
-      }
-    }
-  };
-});
-
-const abortFn = jest.fn();
+const abortFn = vi.fn();
 
 // @ts-ignore
-global.AbortController = jest.fn(() => ({
+global.AbortController = vi.fn(() => ({
   abort: abortFn
 }));
 
@@ -112,7 +100,7 @@ describe('useModelInvalidateIndex', () => {
 
   beforeEach(() => {
     queryClient = testQueryClient();
-    queryClient.invalidateQueries = jest.fn();
+    queryClient.invalidateQueries = vi.fn();
   });
 
   test('generates invalidation function', () => {
@@ -154,7 +142,7 @@ describe('useModelInvalidateShow', () => {
 
   beforeEach(() => {
     queryClient = testQueryClient();
-    queryClient.invalidateQueries = jest.fn();
+    queryClient.invalidateQueries = vi.fn();
   });
 
   test('generates invalidation function', () => {
@@ -199,16 +187,13 @@ describe('useModelCreate', () => {
   beforeEach(() => {
     queryClient = testQueryClient();
 
-    network.networkApiCall = jest.fn(() => ({
-      data: {
-        id: 10,
-        test: 'bar'
-      }
-    }));
+    vi.spyOn(network, 'networkApiCall').mockReturnValue({
+      data: { id: 10, test: 'bar' }
+    });
   });
 
   test('selects axios data correctly and provides legacy support', async () => {
-    const onSuccess = jest.fn();
+    const onSuccess = vi.fn();
 
     const { result, waitFor } = renderHook(() => useModelCreate('user'), {
       wrapper: wrapper(queryClient)
@@ -218,7 +203,7 @@ describe('useModelCreate', () => {
     await waitFor(() => result.current.isSuccess);
 
     // Backwards compat support
-    console.warn = jest.fn();
+    console.warn = vi.fn();
     expect(result.current.data.data).toEqual({ id: 10, test: 'bar' });
     expect(console.warn).toHaveBeenCalledWith(
       'Legacy data access used in query hooks'
@@ -239,16 +224,13 @@ describe('useModelUpdate', () => {
   beforeEach(() => {
     queryClient = testQueryClient();
 
-    network.networkApiCall = jest.fn(() => ({
-      data: {
-        id: 6,
-        test: 'bar'
-      }
-    }));
+    vi.spyOn(network, 'networkApiCall').mockReturnValue({
+      data: { id: 6, test: 'bar' }
+    });
   });
 
   test('selects axios data correctly and provides legacy support', async () => {
-    const onSuccess = jest.fn();
+    const onSuccess = vi.fn();
 
     const { result, waitFor } = renderHook(() => useModelUpdate('user'), {
       wrapper: wrapper(queryClient)
@@ -258,7 +240,7 @@ describe('useModelUpdate', () => {
     await waitFor(() => result.current.isSuccess);
 
     // Backwards compat support
-    console.warn = jest.fn();
+    console.warn = vi.fn();
     expect(result.current.data.data).toEqual({ id: 6, test: 'bar' });
     expect(console.warn).toHaveBeenCalledWith(
       'Legacy data access used in query hooks'
@@ -279,15 +261,13 @@ describe('useModelDelete', () => {
   beforeEach(() => {
     queryClient = testQueryClient();
 
-    network.networkApiCall = jest.fn(() => ({
-      data: {
-        test: 'test'
-      }
-    }));
+    vi.spyOn(network, 'networkApiCall').mockReturnValue({
+      data: { test: 'test' }
+    });
   });
 
   test('selects axios data correctly and provides legacy support', async () => {
-    const onSuccess = jest.fn();
+    const onSuccess = vi.fn();
 
     const { result, waitFor } = renderHook(() => useModelDelete('user'), {
       wrapper: wrapper(queryClient)
@@ -297,7 +277,7 @@ describe('useModelDelete', () => {
     await waitFor(() => result.current.isSuccess);
 
     // Backwards compat support
-    console.warn = jest.fn();
+    console.warn = vi.fn();
     expect(result.current.data.data).toEqual({ test: 'test' });
     expect(console.warn).toHaveBeenCalledWith(
       'Legacy data access used in query hooks'
@@ -314,15 +294,13 @@ describe('useModelShow', () => {
   beforeEach(() => {
     queryClient = testQueryClient();
 
-    network.networkApiCall = jest.fn(() => ({
-      data: {
-        test: 'test'
-      }
-    }));
+    vi.spyOn(network, 'networkApiCall').mockReturnValue({
+      data: { test: 'test' }
+    });
   });
 
   test('selects axios data correctly and provides legacy support', async () => {
-    const onSuccess = jest.fn();
+    const onSuccess = vi.fn();
 
     const { result, waitFor } = renderHook(
       () => useModelShow('user', 1, { queryOptions: { onSuccess } }),
@@ -336,7 +314,7 @@ describe('useModelShow', () => {
     expect(result.current.data).toEqual({ test: 'test' });
 
     // Backwards compat support
-    console.warn = jest.fn();
+    console.warn = vi.fn();
     expect(result.current.data.data).toEqual({ test: 'test' });
     expect(console.warn).toHaveBeenCalledWith(
       'Legacy data access used in query hooks'
@@ -351,11 +329,9 @@ describe('useModelIndex', () => {
   beforeEach(() => {
     queryClient = testQueryClient();
 
-    network.networkApiCall = jest.fn(() => ({
-      data: {
-        test: 'test'
-      }
-    }));
+    vi.spyOn(network, 'networkApiCall').mockReturnValue({
+      data: { test: 'test' }
+    });
   });
 
   test('sets default non-legacy params', () => {
@@ -474,7 +450,7 @@ describe('useModelIndex', () => {
     expect(result.current.data).toEqual({ test: 'test' });
 
     // Backwards compat support
-    console.warn = jest.fn();
+    console.warn = vi.fn();
     expect(result.current.data.data).toEqual({ test: 'test' });
     expect(console.warn).toHaveBeenCalledWith(
       'Legacy data access used in query hooks'

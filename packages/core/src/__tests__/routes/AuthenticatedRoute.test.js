@@ -19,11 +19,11 @@ const initializingState = {
 }
 
 let mockAuth;
-jest.mock('rhino/hooks/auth', () => ({
-  useAuth: jest.fn(() => mockAuth) //() => authMock
+vi.mock('rhino/hooks/auth', () => ({
+  useAuth: vi.fn(() => mockAuth) //() => authMock
 }));
 
-jest.mock('rhino/components/logos', () => ({
+vi.mock('rhino/components/logos', () => ({
   SplashScreen: () => (
     <div>__mockSplashScreen__</div>
   )
@@ -32,15 +32,15 @@ jest.mock('rhino/components/logos', () => ({
 let mockPrevPath;
 let mockUnsetPrevPathFn;
 let mockSetPrevPathFn;
-jest.mock('rhino/utils/storage', () => ({
+vi.mock('rhino/utils/storage', () => ({
   getPrevPathSession: () => mockPrevPath,
   unsetPrevPathSession: () => mockUnsetPrevPathFn(),
   setPrevPathSession: () => mockSetPrevPathFn()
 }))
 
-jest.spyOn(routes, 'getSessionCreatePath').mockImplementation(() => "/__mockSessionCreate__");
+vi.spyOn(routes, 'getSessionCreatePath').mockImplementation(() => "/__mockSessionCreate__");
 
-describe.only('routes/AuthenticatedRoute', () => {
+describe('routes/AuthenticatedRoute', () => {
   let Wrapper;
 
   beforeEach(() => {
@@ -77,7 +77,7 @@ describe.only('routes/AuthenticatedRoute', () => {
     test('renders children', () => {
       mockAuth = authenticatedState;
       mockPrevPath = '';
-      mockUnsetPrevPathFn = jest.fn();
+      mockUnsetPrevPathFn = vi.fn();
       const { queryByText } = render(
         <Wrapper>
           <div>__should render children__</div>
@@ -91,7 +91,7 @@ describe.only('routes/AuthenticatedRoute', () => {
       beforeEach(() => {
         mockAuth = authenticatedState;
         mockPrevPath = '/__mockPrevPath__';
-        mockUnsetPrevPathFn = jest.fn();
+        mockUnsetPrevPathFn = vi.fn();
         const rendered = render(
           <Wrapper>
             <div>should not render this</div>
@@ -115,8 +115,8 @@ describe.only('routes/AuthenticatedRoute', () => {
       beforeEach(() => {
         mockAuth = authenticatedState;
         mockPrevPath = null;
-        mockSetPrevPathFn = jest.fn();
-        mockUnsetPrevPathFn = jest.fn();
+        mockSetPrevPathFn = vi.fn();
+        mockUnsetPrevPathFn = vi.fn();
         const component = (dummyProp) => (
           <Wrapper dummyProp={dummyProp}>
             <div>any component</div>
@@ -146,7 +146,7 @@ describe.only('routes/AuthenticatedRoute', () => {
     let queryByText;
     beforeEach(() => {
       mockAuth = unauthenticatedState;
-      mockSetPrevPathFn = jest.fn();
+      mockSetPrevPathFn = vi.fn();
       const rendered = render(
         <Wrapper>
           <div>should not render this</div>

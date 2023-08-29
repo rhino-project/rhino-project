@@ -7,7 +7,7 @@ import {
 } from 'rhino/hooks/overrides';
 import * as rhinoConfig from 'rhino.config';
 
-jest.mock('rhino.config', () => ({
+vi.mock('rhino.config', () => ({
   __esModule: true,
   default: null
 }));

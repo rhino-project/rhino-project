@@ -2,8 +2,8 @@ import { renderHook } from '@testing-library/react-hooks';
 import { useRoles } from '../../../rhino/hooks/owner';
 import { usePaths } from '../../../rhino/hooks/paths';
 
-jest.mock('../../../rhino/hooks/owner', () => ({
-  useRoles: jest.fn()
+vi.mock('../../../rhino/hooks/owner', () => ({
+  useRoles: vi.fn()
 }));
 
 describe('usePaths', () => {
@@ -12,7 +12,7 @@ describe('usePaths', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it('returns an empty array when paths is undefined', () => {
@@ -27,7 +27,7 @@ describe('usePaths', () => {
   });
 
   it('returns the computed paths when paths is a function', () => {
-    const pathsFn = jest.fn((roles, resource) => ['path1', 'path2']);
+    const pathsFn = vi.fn((roles, resource) => ['path1', 'path2']);
     const { result } = renderHook(() => usePaths(pathsFn, {}));
     expect(pathsFn).toHaveBeenCalledWith(['role1', 'role2'], {});
     expect(result.current).toEqual(['path1', 'path2']);

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelCellArrayReference should render the component with className from inherited props 1`] = `
+exports[`ModelCellArrayReference > should render the component with className from inherited props 1`] = `
 <DocumentFragment>
   <div
     class="dummy-class"
@@ -10,7 +10,7 @@ exports[`ModelCellArrayReference should render the component with className from
 </DocumentFragment>
 `;
 
-exports[`ModelCellArrayReference should render the empty text when value is nullish 1`] = `
+exports[`ModelCellArrayReference > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     -
@@ -18,7 +18,7 @@ exports[`ModelCellArrayReference should render the empty text when value is null
 </DocumentFragment>
 `;
 
-exports[`ModelCellArrayReference should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelCellArrayReference > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     baz
@@ -26,7 +26,7 @@ exports[`ModelCellArrayReference should render the overridden empty text when va
 </DocumentFragment>
 `;
 
-exports[`ModelCellArrayReference should render with an accessor function 1`] = `
+exports[`ModelCellArrayReference > should render with an accessor function 1`] = `
 <DocumentFragment>
   <div>
     function value, function value
@@ -34,7 +34,7 @@ exports[`ModelCellArrayReference should render with an accessor function 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCellArrayReference should render with an accessor string 1`] = `
+exports[`ModelCellArrayReference > should render with an accessor string 1`] = `
 <DocumentFragment>
   <div>
     foo value, bar value
@@ -42,7 +42,7 @@ exports[`ModelCellArrayReference should render with an accessor string 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCellArrayReference should render with global override shorthand 1`] = `
+exports[`ModelCellArrayReference > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -50,7 +50,7 @@ exports[`ModelCellArrayReference should render with global override shorthand 1`
 </DocumentFragment>
 `;
 
-exports[`ModelCellArrayReference should render with global override shorthand for model 1`] = `
+exports[`ModelCellArrayReference > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -58,7 +58,7 @@ exports[`ModelCellArrayReference should render with global override shorthand fo
 </DocumentFragment>
 `;
 
-exports[`ModelCellArrayReference should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelCellArrayReference > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

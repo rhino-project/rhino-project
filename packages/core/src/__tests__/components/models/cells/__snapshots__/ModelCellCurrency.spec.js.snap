@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelCellCurrency formats a negative number 1`] = `
+exports[`ModelCellCurrency > formats a negative number 1`] = `
 <DocumentFragment>
   <div>
     -$15.00
@@ -8,7 +8,7 @@ exports[`ModelCellCurrency formats a negative number 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCellCurrency formats a positive number 1`] = `
+exports[`ModelCellCurrency > formats a positive number 1`] = `
 <DocumentFragment>
   <div>
     $20.00
@@ -16,7 +16,7 @@ exports[`ModelCellCurrency formats a positive number 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCellCurrency should render the component with className from inherited props 1`] = `
+exports[`ModelCellCurrency > should render the component with className from inherited props 1`] = `
 <DocumentFragment>
   <div
     class="dummy-class"
@@ -26,7 +26,7 @@ exports[`ModelCellCurrency should render the component with className from inher
 </DocumentFragment>
 `;
 
-exports[`ModelCellCurrency should render the empty text when value is nullish 1`] = `
+exports[`ModelCellCurrency > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     -
@@ -34,7 +34,7 @@ exports[`ModelCellCurrency should render the empty text when value is nullish 1`
 </DocumentFragment>
 `;
 
-exports[`ModelCellCurrency should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelCellCurrency > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     baz
@@ -42,7 +42,7 @@ exports[`ModelCellCurrency should render the overridden empty text when value is
 </DocumentFragment>
 `;
 
-exports[`ModelCellCurrency should render with global override shorthand 1`] = `
+exports[`ModelCellCurrency > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -50,7 +50,7 @@ exports[`ModelCellCurrency should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCellCurrency should render with global override shorthand for model 1`] = `
+exports[`ModelCellCurrency > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -58,7 +58,7 @@ exports[`ModelCellCurrency should render with global override shorthand for mode
 </DocumentFragment>
 `;
 
-exports[`ModelCellCurrency should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelCellCurrency > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

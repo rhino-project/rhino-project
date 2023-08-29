@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FieldBooleanIndeterminate renders date string 1`] = `
+exports[`FieldBooleanIndeterminate > renders date string 1`] = `
 <DocumentFragment>
   <div
     class="react-datepicker-wrapper d-block"
@@ -20,7 +20,7 @@ exports[`FieldBooleanIndeterminate renders date string 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FieldBooleanIndeterminate renders empty with empty string date 1`] = `
+exports[`FieldBooleanIndeterminate > renders empty with empty string date 1`] = `
 <DocumentFragment>
   <div
     class="react-datepicker-wrapper d-block"
@@ -40,7 +40,7 @@ exports[`FieldBooleanIndeterminate renders empty with empty string date 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FieldBooleanIndeterminate renders empty with null date 1`] = `
+exports[`FieldBooleanIndeterminate > renders empty with null date 1`] = `
 <DocumentFragment>
   <div
     class="react-datepicker-wrapper d-block"

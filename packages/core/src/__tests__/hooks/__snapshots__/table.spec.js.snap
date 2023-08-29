@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`useTableInheritedProps passes non react-table based props 1`] = `
+exports[`useTableInheritedProps > passes non react-table based props 1`] = `
 <DocumentFragment>
   <table
     class="table table-striped"
@@ -30,7 +30,7 @@ exports[`useTableInheritedProps passes non react-table based props 1`] = `
 </DocumentFragment>
 `;
 
-exports[`useTableInheritedProps removes all react-table based props 1`] = `
+exports[`useTableInheritedProps > removes all react-table based props 1`] = `
 <DocumentFragment>
   <table
     class="table table-striped"

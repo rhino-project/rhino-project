@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelDisplayReferenceLink should render the empty text when value is nullish 1`] = `
+exports[`ModelDisplayReferenceLink > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div
     class="row"
@@ -37,7 +37,7 @@ exports[`ModelDisplayReferenceLink should render the empty text when value is nu
           width="32"
         >
           <use
-            xlink:href="bootstrap-icons.svg#box-arrow-up-right"
+            xlink:href="/src/assets/images/bootstrap-icons.svg#box-arrow-up-right"
           />
         </svg>
       </a>
@@ -46,7 +46,7 @@ exports[`ModelDisplayReferenceLink should render the empty text when value is nu
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayReferenceLink should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelDisplayReferenceLink > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div
     class="row"
@@ -83,7 +83,7 @@ exports[`ModelDisplayReferenceLink should render the overridden empty text when 
           width="32"
         >
           <use
-            xlink:href="bootstrap-icons.svg#box-arrow-up-right"
+            xlink:href="/src/assets/images/bootstrap-icons.svg#box-arrow-up-right"
           />
         </svg>
       </a>
@@ -92,7 +92,7 @@ exports[`ModelDisplayReferenceLink should render the overridden empty text when 
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayReferenceLink should render with global override shorthand 1`] = `
+exports[`ModelDisplayReferenceLink > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div
     class="row"
@@ -129,7 +129,7 @@ exports[`ModelDisplayReferenceLink should render with global override shorthand 
           width="32"
         >
           <use
-            xlink:href="bootstrap-icons.svg#box-arrow-up-right"
+            xlink:href="/src/assets/images/bootstrap-icons.svg#box-arrow-up-right"
           />
         </svg>
       </a>
@@ -138,7 +138,7 @@ exports[`ModelDisplayReferenceLink should render with global override shorthand 
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayReferenceLink should render with global override shorthand for model 1`] = `
+exports[`ModelDisplayReferenceLink > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div
     class="row"
@@ -175,7 +175,7 @@ exports[`ModelDisplayReferenceLink should render with global override shorthand 
           width="32"
         >
           <use
-            xlink:href="bootstrap-icons.svg#box-arrow-up-right"
+            xlink:href="/src/assets/images/bootstrap-icons.svg#box-arrow-up-right"
           />
         </svg>
       </a>
@@ -184,7 +184,7 @@ exports[`ModelDisplayReferenceLink should render with global override shorthand 
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayReferenceLink should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelDisplayReferenceLink > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div
     class="row"
@@ -221,7 +221,7 @@ exports[`ModelDisplayReferenceLink should render with global override shorthand 
           width="32"
         >
           <use
-            xlink:href="bootstrap-icons.svg#box-arrow-up-right"
+            xlink:href="/src/assets/images/bootstrap-icons.svg#box-arrow-up-right"
           />
         </svg>
       </a>

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelCellAttachment should render the component with className from inherited props 1`] = `
+exports[`ModelCellAttachment > should render the component with className from inherited props 1`] = `
 <DocumentFragment>
   <div
     class="dummy-class"
@@ -10,7 +10,7 @@ exports[`ModelCellAttachment should render the component with className from inh
 </DocumentFragment>
 `;
 
-exports[`ModelCellAttachment should render the empty text when value is nullish 1`] = `
+exports[`ModelCellAttachment > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     -
@@ -18,7 +18,7 @@ exports[`ModelCellAttachment should render the empty text when value is nullish 
 </DocumentFragment>
 `;
 
-exports[`ModelCellAttachment should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelCellAttachment > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     baz
@@ -26,7 +26,7 @@ exports[`ModelCellAttachment should render the overridden empty text when value 
 </DocumentFragment>
 `;
 
-exports[`ModelCellAttachment should render with global override shorthand 1`] = `
+exports[`ModelCellAttachment > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -34,7 +34,7 @@ exports[`ModelCellAttachment should render with global override shorthand 1`] = 
 </DocumentFragment>
 `;
 
-exports[`ModelCellAttachment should render with global override shorthand for model 1`] = `
+exports[`ModelCellAttachment > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -42,7 +42,7 @@ exports[`ModelCellAttachment should render with global override shorthand for mo
 </DocumentFragment>
 `;
 
-exports[`ModelCellAttachment should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelCellAttachment > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -50,7 +50,7 @@ exports[`ModelCellAttachment should render with global override shorthand for mo
 </DocumentFragment>
 `;
 
-exports[`ModelCellAttachment uses display_name for link text 1`] = `
+exports[`ModelCellAttachment > uses display_name for link text 1`] = `
 <DocumentFragment>
   <a
     alt="foo"
@@ -61,7 +61,7 @@ exports[`ModelCellAttachment uses display_name for link text 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCellAttachment uses url for link text as fallback 1`] = `
+exports[`ModelCellAttachment > uses url for link text as fallback 1`] = `
 <DocumentFragment>
   <a
     href="https://example.com/image.png"

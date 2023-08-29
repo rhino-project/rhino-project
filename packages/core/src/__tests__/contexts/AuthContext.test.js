@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { NetworkingMock } from '../../shared';
 
-jest.mock('axios');
+vi.mock('axios');
 const networkingMock = new NetworkingMock();
 axios.mockImplementation(networkingMock.axiosMockImplementation());
 axios.CancelToken = {source: () =>  "adfasdf"};

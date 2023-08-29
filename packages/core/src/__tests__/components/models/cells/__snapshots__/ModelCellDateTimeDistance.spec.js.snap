@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelCellDateTimeDistance renders datetime distance with baseDate older than value 1`] = `
+exports[`ModelCellDateTimeDistance > renders datetime distance with baseDate older than value 1`] = `
 <DocumentFragment>
   <div>
     in 10 minutes
@@ -8,7 +8,7 @@ exports[`ModelCellDateTimeDistance renders datetime distance with baseDate older
 </DocumentFragment>
 `;
 
-exports[`ModelCellDateTimeDistance renders datetime distance with default baseDate 1`] = `
+exports[`ModelCellDateTimeDistance > renders datetime distance with default baseDate 1`] = `
 <DocumentFragment>
   <div>
     10 minutes ago
@@ -16,7 +16,7 @@ exports[`ModelCellDateTimeDistance renders datetime distance with default baseDa
 </DocumentFragment>
 `;
 
-exports[`ModelCellDateTimeDistance should render the component with className from inherited props 1`] = `
+exports[`ModelCellDateTimeDistance > should render the component with className from inherited props 1`] = `
 <DocumentFragment>
   <div
     class="dummy-class"
@@ -26,7 +26,7 @@ exports[`ModelCellDateTimeDistance should render the component with className fr
 </DocumentFragment>
 `;
 
-exports[`ModelCellDateTimeDistance should render the empty text when value is nullish 1`] = `
+exports[`ModelCellDateTimeDistance > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     -
@@ -34,7 +34,7 @@ exports[`ModelCellDateTimeDistance should render the empty text when value is nu
 </DocumentFragment>
 `;
 
-exports[`ModelCellDateTimeDistance should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelCellDateTimeDistance > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     baz
@@ -42,7 +42,7 @@ exports[`ModelCellDateTimeDistance should render the overridden empty text when 
 </DocumentFragment>
 `;
 
-exports[`ModelCellDateTimeDistance should render with global override shorthand 1`] = `
+exports[`ModelCellDateTimeDistance > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -50,7 +50,7 @@ exports[`ModelCellDateTimeDistance should render with global override shorthand 
 </DocumentFragment>
 `;
 
-exports[`ModelCellDateTimeDistance should render with global override shorthand for model 1`] = `
+exports[`ModelCellDateTimeDistance > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -58,7 +58,7 @@ exports[`ModelCellDateTimeDistance should render with global override shorthand 
 </DocumentFragment>
 `;
 
-exports[`ModelCellDateTimeDistance should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelCellDateTimeDistance > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

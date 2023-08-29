@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelCellLinkTelephone renders custom link text 1`] = `
+exports[`ModelCellLinkTelephone > renders custom link text 1`] = `
 <DocumentFragment>
   <a
     href="tel:2312322334"
@@ -10,7 +10,7 @@ exports[`ModelCellLinkTelephone renders custom link text 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCellLinkTelephone renders the phone number as link text 1`] = `
+exports[`ModelCellLinkTelephone > renders the phone number as link text 1`] = `
 <DocumentFragment>
   <a
     href="tel:2312322334"
@@ -20,7 +20,7 @@ exports[`ModelCellLinkTelephone renders the phone number as link text 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCellLinkTelephone should render the component with className from inherited props 1`] = `
+exports[`ModelCellLinkTelephone > should render the component with className from inherited props 1`] = `
 <DocumentFragment>
   <div
     class="dummy-class"
@@ -30,7 +30,7 @@ exports[`ModelCellLinkTelephone should render the component with className from 
 </DocumentFragment>
 `;
 
-exports[`ModelCellLinkTelephone should render the empty text when value is nullish 1`] = `
+exports[`ModelCellLinkTelephone > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     -
@@ -38,7 +38,7 @@ exports[`ModelCellLinkTelephone should render the empty text when value is nulli
 </DocumentFragment>
 `;
 
-exports[`ModelCellLinkTelephone should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelCellLinkTelephone > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div>
     baz
@@ -46,7 +46,7 @@ exports[`ModelCellLinkTelephone should render the overridden empty text when val
 </DocumentFragment>
 `;
 
-exports[`ModelCellLinkTelephone should render with global override shorthand 1`] = `
+exports[`ModelCellLinkTelephone > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -54,7 +54,7 @@ exports[`ModelCellLinkTelephone should render with global override shorthand 1`]
 </DocumentFragment>
 `;
 
-exports[`ModelCellLinkTelephone should render with global override shorthand for model 1`] = `
+exports[`ModelCellLinkTelephone > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -62,7 +62,7 @@ exports[`ModelCellLinkTelephone should render with global override shorthand for
 </DocumentFragment>
 `;
 
-exports[`ModelCellLinkTelephone should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelCellLinkTelephone > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

@@ -1,15 +1,14 @@
 import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Breadcrumb } from 'reactstrap';
 import { format, formatDistance } from 'date-fns';
 
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
 import { NavLink } from 'react-router-dom';
-import { useBaseOwnerPath } from 'rhino/hooks/history';
 import { Flag } from 'rhino/components/models/fields/ModelFieldCountry';
 import { capitalize } from 'lodash';
 import { getModelIndexPath, getModelShowPath } from './routes';
 import { useModel } from 'rhino/hooks/models';
+import BreadcrumbItemWrapper from '../components/breadcrumbs';
 
 export const buildCancelAction = (extra) => ({
   name: 'cancel',
@@ -167,23 +166,6 @@ export const getStringForDisplay = (
     displayString?.length === 0
     ? empty
     : displayString;
-};
-
-export const BreadcrumbItemWrapper = ({ tag, to, children, ...props }) => {
-  const baseOwnerPath = useBaseOwnerPath();
-  const path = baseOwnerPath.build(to);
-
-  return (
-    <BreadcrumbItem tag={tag} to={path} {...props}>
-      {children}
-    </BreadcrumbItem>
-  );
-};
-
-BreadcrumbItemWrapper.propTypes = {
-  tag: PropTypes.elementType,
-  to: PropTypes.string,
-  children: PropTypes.node
 };
 
 export const breadcrumbChildrenFor = (model, resource, individual = false) => {

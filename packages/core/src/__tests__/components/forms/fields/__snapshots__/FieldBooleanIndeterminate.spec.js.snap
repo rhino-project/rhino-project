@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`FieldBooleanIndeterminate renders false as Boolean 1`] = `
+exports[`FieldBooleanIndeterminate > renders false as Boolean 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -13,7 +13,7 @@ exports[`FieldBooleanIndeterminate renders false as Boolean 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FieldBooleanIndeterminate renders false as String 1`] = `
+exports[`FieldBooleanIndeterminate > renders false as String 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -26,7 +26,7 @@ exports[`FieldBooleanIndeterminate renders false as String 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FieldBooleanIndeterminate renders indeterminate with null 1`] = `
+exports[`FieldBooleanIndeterminate > renders indeterminate with null 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -39,7 +39,7 @@ exports[`FieldBooleanIndeterminate renders indeterminate with null 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FieldBooleanIndeterminate renders indeterminate with undefined 1`] = `
+exports[`FieldBooleanIndeterminate > renders indeterminate with undefined 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -52,7 +52,7 @@ exports[`FieldBooleanIndeterminate renders indeterminate with undefined 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FieldBooleanIndeterminate renders true as Boolean 1`] = `
+exports[`FieldBooleanIndeterminate > renders true as Boolean 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -66,7 +66,7 @@ exports[`FieldBooleanIndeterminate renders true as Boolean 1`] = `
 </DocumentFragment>
 `;
 
-exports[`FieldBooleanIndeterminate renders true as String 1`] = `
+exports[`FieldBooleanIndeterminate > renders true as String 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"

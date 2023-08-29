@@ -4,27 +4,15 @@ import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ModelShowSimple from 'rhino/components/models/ModelShowSimple';
 import * as network from 'rhino/lib/networking';
+import modelLoader from 'rhino/models';
+import api from '../../../shared/modelFixtures';
 
-network.networkApiCall = jest.fn(() => ({
+vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
+
+vi.spyOn(network, 'networkApiCall').mockReturnValue({
   data: {
     test: 'test'
   }
-}));
-
-jest.mock('rhino/models', () => {
-  const api = require('../../../shared/modelFixtures');
-  // Require the original module to not be mocked...
-  const originalModule = jest.requireActual('rhino/models');
-
-  return {
-    __esModule: true, // Use it when dealing with esModules
-    ...originalModule,
-    default: {
-      api: {
-        ...api.default
-      }
-    }
-  };
 });
 
 describe('ModelDisplayGroup', () => {

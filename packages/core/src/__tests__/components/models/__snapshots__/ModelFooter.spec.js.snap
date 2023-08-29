@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelFooter should render the component with children 1`] = `
+exports[`ModelFooter > should render the component with children 1`] = `
 <DocumentFragment>
   <div>
     <div>
@@ -10,7 +10,7 @@ exports[`ModelFooter should render the component with children 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFooter should render the component with className from inherited props 1`] = `
+exports[`ModelFooter > should render the component with className from inherited props 1`] = `
 <DocumentFragment>
   <div
     class="dummy-class"
@@ -20,7 +20,7 @@ exports[`ModelFooter should render the component with className from inherited p
 </DocumentFragment>
 `;
 
-exports[`ModelFooter should render with global override shorthand 1`] = `
+exports[`ModelFooter > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -28,7 +28,7 @@ exports[`ModelFooter should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelFooter should render with global override shorthand for model 1`] = `
+exports[`ModelFooter > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -36,7 +36,7 @@ exports[`ModelFooter should render with global override shorthand for model 1`] 
 </DocumentFragment>
 `;
 
-exports[`ModelFooter should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelFooter > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

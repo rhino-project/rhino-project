@@ -1,20 +1,8 @@
+import modelLoader from 'rhino/models';
 import * as utils from 'rhino/utils/models';
+import api from '../../shared/modelFixtures';
 
-jest.mock('rhino/models', () => {
-  const api = require('../../shared/modelFixtures');
-  // Require the original module to not be mocked...
-  const originalModule = jest.requireActual('rhino/models');
-
-  return {
-    __esModule: true, // Use it when dealing with esModules
-    ...originalModule,
-    default: {
-      api: {
-        ...api.default
-      }
-    }
-  };
-});
+vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 describe('utils > models.js', () => {
   const userModel = utils.getModel('user');

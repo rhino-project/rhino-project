@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelShow should allow local overrides 1`] = `
+exports[`ModelShow > should allow local overrides 1`] = `
 <DocumentFragment>
   <div
     class="model-show model-show-user"
@@ -21,7 +21,7 @@ exports[`ModelShow should allow local overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelShow should render with global override shorthand 1`] = `
+exports[`ModelShow > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -29,7 +29,7 @@ exports[`ModelShow should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelShow should render with global override shorthand for model 1`] = `
+exports[`ModelShow > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelDisplayBoolean should render the empty text when value is nullish 1`] = `
+exports[`ModelDisplayBoolean > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -15,7 +15,7 @@ exports[`ModelDisplayBoolean should render the empty text when value is nullish 
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayBoolean should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelDisplayBoolean > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <input
     aria-invalid="false"
@@ -31,7 +31,7 @@ exports[`ModelDisplayBoolean should render the overridden empty text when value 
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayBoolean should render with global override shorthand 1`] = `
+exports[`ModelDisplayBoolean > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -39,7 +39,7 @@ exports[`ModelDisplayBoolean should render with global override shorthand 1`] = 
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayBoolean should render with global override shorthand for model 1`] = `
+exports[`ModelDisplayBoolean > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -47,7 +47,7 @@ exports[`ModelDisplayBoolean should render with global override shorthand for mo
 </DocumentFragment>
 `;
 
-exports[`ModelDisplayBoolean should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelDisplayBoolean > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

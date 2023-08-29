@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelCellBooleanIcon renders custom class 1`] = `
+exports[`ModelCellBooleanIcon > renders custom class 1`] = `
 <DocumentFragment>
   <svg
     class="customClass"
@@ -9,13 +9,13 @@ exports[`ModelCellBooleanIcon renders custom class 1`] = `
     width="32"
   >
     <use
-      xlink:href="bootstrap-icons.svg#check"
+      xlink:href="/src/assets/images/bootstrap-icons.svg#check"
     />
   </svg>
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon renders empty icon 1`] = `
+exports[`ModelCellBooleanIcon > renders empty icon 1`] = `
 <DocumentFragment>
   <svg
     fill="currentColor"
@@ -23,13 +23,13 @@ exports[`ModelCellBooleanIcon renders empty icon 1`] = `
     width="32"
   >
     <use
-      xlink:href="bootstrap-icons.svg#dash"
+      xlink:href="/src/assets/images/bootstrap-icons.svg#dash"
     />
   </svg>
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon renders false icon 1`] = `
+exports[`ModelCellBooleanIcon > renders false icon 1`] = `
 <DocumentFragment>
   <svg
     fill="currentColor"
@@ -37,13 +37,13 @@ exports[`ModelCellBooleanIcon renders false icon 1`] = `
     width="32"
   >
     <use
-      xlink:href="bootstrap-icons.svg#x"
+      xlink:href="/src/assets/images/bootstrap-icons.svg#x"
     />
   </svg>
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon renders true icon 1`] = `
+exports[`ModelCellBooleanIcon > renders true icon 1`] = `
 <DocumentFragment>
   <svg
     fill="currentColor"
@@ -51,13 +51,13 @@ exports[`ModelCellBooleanIcon renders true icon 1`] = `
     width="32"
   >
     <use
-      xlink:href="bootstrap-icons.svg#check"
+      xlink:href="/src/assets/images/bootstrap-icons.svg#check"
     />
   </svg>
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon should render the component with className from inherited props 1`] = `
+exports[`ModelCellBooleanIcon > should render the component with className from inherited props 1`] = `
 <DocumentFragment>
   <svg
     class="dummy-class"
@@ -66,13 +66,13 @@ exports[`ModelCellBooleanIcon should render the component with className from in
     width="32"
   >
     <use
-      xlink:href="bootstrap-icons.svg#baz"
+      xlink:href="/src/assets/images/bootstrap-icons.svg#baz"
     />
   </svg>
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon should render the empty text when value is nullish 1`] = `
+exports[`ModelCellBooleanIcon > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <svg
     fill="currentColor"
@@ -80,13 +80,13 @@ exports[`ModelCellBooleanIcon should render the empty text when value is nullish
     width="32"
   >
     <use
-      xlink:href="bootstrap-icons.svg#dash"
+      xlink:href="/src/assets/images/bootstrap-icons.svg#dash"
     />
   </svg>
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon should render the overridden empty text when value is nullish 1`] = `
+exports[`ModelCellBooleanIcon > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <svg
     fill="currentColor"
@@ -94,13 +94,13 @@ exports[`ModelCellBooleanIcon should render the overridden empty text when value
     width="32"
   >
     <use
-      xlink:href="bootstrap-icons.svg#baz"
+      xlink:href="/src/assets/images/bootstrap-icons.svg#baz"
     />
   </svg>
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon should render with global override shorthand 1`] = `
+exports[`ModelCellBooleanIcon > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -108,7 +108,7 @@ exports[`ModelCellBooleanIcon should render with global override shorthand 1`] =
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon should render with global override shorthand for model 1`] = `
+exports[`ModelCellBooleanIcon > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -116,7 +116,7 @@ exports[`ModelCellBooleanIcon should render with global override shorthand for m
 </DocumentFragment>
 `;
 
-exports[`ModelCellBooleanIcon should render with global override shorthand for model and attribute 1`] = `
+exports[`ModelCellBooleanIcon > should render with global override shorthand for model and attribute 1`] = `
 <DocumentFragment>
   <div>
     Bar

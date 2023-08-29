@@ -1,10 +1,8 @@
 import React from 'react';
-import { Route, Switch, useRouteMatch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
-import modelRoutePaths, { modelRoutes } from './model';
-import customRoutePaths, { customRoutes } from 'routes/custom';
-import NotFoundPage from 'rhino/components/shared/NotFoundPage';
-import { ENABLE_MODEL_ROUTES } from 'config';
+import modelRoutePaths from './model';
+import customRoutePaths from 'routes/custom';
 
 import {
   ForgotPasswordPage,
@@ -60,19 +58,6 @@ export const accountSettingsRoute = (match) => {
       component={SettingsPage}
     />
   ];
-};
-
-export const AppRoutes = () => {
-  const match = useRouteMatch();
-  return (
-    <Switch>
-      {accountSettingsRoute(match)}
-      {settingsRoute(match)}
-      {customRoutes(match)}
-      {ENABLE_MODEL_ROUTES ? modelRoutes(match) : []}
-      <Route component={NotFoundPage} />
-    </Switch>
-  );
 };
 
 export const authRoutes = () => {

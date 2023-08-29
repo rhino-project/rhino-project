@@ -4,11 +4,11 @@ import { render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as network from 'rhino/lib/networking';
 
-network.networkApiCall = jest.fn(() => ({
+vi.spyOn(network, 'networkApiCall').mockReturnValue({
   data: {
     test: 'test'
   }
-}));
+});
 
 /* eslint react/display-name: 0, react/prop-types: 0 */
 describe('ModelShow', () => {

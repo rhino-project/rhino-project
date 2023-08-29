@@ -4,7 +4,7 @@ import * as rhinoConfig from 'rhino.config';
 import FilterLabel from 'rhino/components/forms/FilterLabel';
 import fs from 'fs';
 
-jest.mock('rhino.config', () => ({
+vi.mock('rhino.config', () => ({
   __esModule: true,
   default: null
 }));

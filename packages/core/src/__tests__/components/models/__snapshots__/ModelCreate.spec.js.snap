@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelCreate should allow local overrides 1`] = `
+exports[`ModelCreate > should allow local overrides 1`] = `
 <DocumentFragment>
   <div
     class="model-create model-create-user"
@@ -18,7 +18,7 @@ exports[`ModelCreate should allow local overrides 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCreate should render with global override shorthand 1`] = `
+exports[`ModelCreate > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
@@ -26,7 +26,7 @@ exports[`ModelCreate should render with global override shorthand 1`] = `
 </DocumentFragment>
 `;
 
-exports[`ModelCreate should render with global override shorthand for model 1`] = `
+exports[`ModelCreate > should render with global override shorthand for model 1`] = `
 <DocumentFragment>
   <div>
     Bar

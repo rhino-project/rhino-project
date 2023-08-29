@@ -4,9 +4,9 @@ import FilterDate from 'rhino/components/forms/filters/FilterDate';
 import FormProvider from 'rhino/components/forms/FormProvider';
 import ModelFilterDate from 'rhino/components/models/filters/ModelFilterDate';
 
-jest.mock('rhino/components/forms/filters/FilterDate', () => {
-  return jest.fn(() => null);
-});
+vi.mock('rhino/components/forms/filters/FilterDate', () => ({
+  default: vi.fn(() => null)
+}));
 
 describe('ModelFilterDate', () => {
   const wrapper = ({ children }) => {
@@ -15,7 +15,7 @@ describe('ModelFilterDate', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it(`adds min as a prop`, () => {

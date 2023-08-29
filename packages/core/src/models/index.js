@@ -45,7 +45,7 @@ const hoistRhino = (data) => {
 
 class ModelLoader {
   async loadModels(forceStatic = false) {
-    if (forceStatic || process.env.NODE_ENV === 'production') {
+    if (forceStatic || import.meta.env.PROD) {
       this.api = hoistRhino(staticModels);
     } else {
       const { networkApiCall } = await import('rhino/lib/networking');
