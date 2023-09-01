@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_23_210533) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_06_185219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -128,11 +128,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_23_210533) do
     t.time "time"
     t.time "time_required"
     t.integer "year"
+    t.integer "year_required", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "currency", precision: 10, scale: 4
+    t.decimal "currency_required", precision: 10, scale: 4, null: false
     t.integer "array_int", array: true
     t.integer "enum"
+    t.integer "enum_required", null: false
     t.string "string_write_only"
     t.string "string_overrideable"
     t.string "phone"
