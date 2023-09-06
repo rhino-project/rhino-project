@@ -79,7 +79,14 @@ export const yupDefaultFromAttributeType = (attribute) => {
   }
 };
 
-const TRANSFORMABLE_TYPES = ['string', 'text', 'float', 'integer', 'number'];
+const TRANSFORMABLE_TYPES = [
+  'string',
+  'text',
+  'float',
+  'integer',
+  'number',
+  'decimal'
+];
 
 export const yupValidatorsFromAttribute = (attribute) => {
   let ytype = yupTypeFromAttribute(attribute);
