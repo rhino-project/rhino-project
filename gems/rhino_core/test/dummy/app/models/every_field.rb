@@ -2,6 +2,7 @@
 
 class EveryField < ApplicationRecord
   enum enum: { test: 0, example: 1 }
+  enum enum_required: %i[test_required example_required]
 
   belongs_to :user
   belongs_to :another_user, class_name: "User", foreign_key: :user_id
@@ -15,7 +16,8 @@ class EveryField < ApplicationRecord
   rhino_owner_base
   rhino_references %i[user another_user every_manies every_manies_not_nested]
   rhino_properties_read except: %i[string_write_only]
-  rhino_properties_format year: :year, currency: :currency, phone: :phone
+  rhino_properties_format year: :year, year_required: :year, currency: :currency,
+                          currency_required: :currency, phone: :phone
   rhino_properties_readable_name string_overrideable: "Overriden name"
 
   accepts_nested_attributes_for :every_manies, allow_destroy: true
@@ -52,11 +54,13 @@ class EveryField < ApplicationRecord
 
   validates :time_required, presence: true
 
-  validates :currency, presence: true
+  validates :currency_required, presence: true
 
   validates :year, numericality: { only_integer: true, allow_nil: true, greater_than: 5.years.ago.year, less_than: 0.years.ago.year }
-
+  validates :year_required, numericality: { only_integer: true, greater_than: 5.years.ago.year, less_than: 0.years.ago.year }
   validates :phone, phone: { allow_nil: true, message: "not a valid phone number", possible: true }
+
+  validates :enum_required, presence: true
 
   private
     def normalize_phone
