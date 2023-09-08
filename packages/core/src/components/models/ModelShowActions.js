@@ -26,10 +26,10 @@ export const ModelShowActionEdit = ({ children, ...props }) => {
     [model, resource]
   );
 
-  const handleClick = useCallback(() => baseOwnerNavigation.push(editPath), [
-    baseOwnerNavigation,
-    editPath
-  ]);
+  const handleClick = useCallback(
+    () => baseOwnerNavigation.push(editPath),
+    [baseOwnerNavigation, editPath]
+  );
 
   return (
     <IconButton

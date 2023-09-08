@@ -351,9 +351,10 @@ ModelFormFieldDatetime.propTypes = {
 };
 
 const ModelFormFieldYear = ({ attribute, path, error, value, onChange }) => {
-  const year = useMemo(() => (value ? new Date(value, 1, 1) : undefined), [
-    value
-  ]);
+  const year = useMemo(
+    () => (value ? new Date(value, 1, 1) : undefined),
+    [value]
+  );
   const minYear = useMemo(
     () => (attribute.minimum ? new Date(attribute.minimum, 1, 1) : undefined),
     [attribute]

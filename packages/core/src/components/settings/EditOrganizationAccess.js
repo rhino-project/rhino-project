@@ -24,10 +24,10 @@ const RemoveButton = (props) => {
     delete: { mutate, isLoading }
   } = useModelIndexContext();
 
-  const handleClick = useCallback(() => mutate(original.id), [
-    original.id,
-    mutate
-  ]);
+  const handleClick = useCallback(
+    () => mutate(original.id),
+    [original.id, mutate]
+  );
 
   return (
     <IconButton

@@ -36,13 +36,8 @@ const createFilteredObject = (obj) => {
 };
 
 export const ModelFiltersBase = ({ paths }) => {
-  const {
-    model,
-    defaultState,
-    filter,
-    setFilter,
-    setSearch
-  } = useModelIndexContext();
+  const { model, defaultState, filter, setFilter, setSearch } =
+    useModelIndexContext();
   // Use passed in paths or compute a sensible set
   const pathsOrDefault = useMemo(
     () =>

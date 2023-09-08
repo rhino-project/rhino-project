@@ -152,10 +152,10 @@ const ModelIndexCard = ({ overrides, paths, baseRoute }) => {
     },
     [baseRoute, baseOwnerNavigation, model]
   );
-  const pathsOrDefault = useMemo(() => paths || getViewablePaths(model), [
-    paths,
-    model
-  ]);
+  const pathsOrDefault = useMemo(
+    () => paths || getViewablePaths(model),
+    [paths, model]
+  );
   const computedPaths = usePaths(pathsOrDefault, resources);
   const displayAttributes = useMemo(
     () =>

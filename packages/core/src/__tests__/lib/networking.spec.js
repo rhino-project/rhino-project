@@ -1,4 +1,3 @@
 describe('networking', () => {
-  test('withRouterHOC', () => {
-  })
-})
+  test('withRouterHOC', () => {});
+});

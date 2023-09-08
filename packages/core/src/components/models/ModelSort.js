@@ -56,9 +56,10 @@ export const ModelSortBase = ({ paths }) => {
     [dropdownlist, order]
   );
 
-  const sortType = useMemo(() => (isDesc(order) ? 'arrow-down' : 'arrow-up'), [
-    order
-  ]);
+  const sortType = useMemo(
+    () => (isDesc(order) ? 'arrow-down' : 'arrow-up'),
+    [order]
+  );
 
   const handleToggle = () => setIsOpen((prevState) => !prevState);
 

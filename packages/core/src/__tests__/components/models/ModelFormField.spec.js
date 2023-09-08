@@ -26,10 +26,10 @@ const ATTRIBUTES = [
       type: 'reference',
       anyOf: [
         {
-          "$ref": "#/components/schemas/organization"
+          $ref: '#/components/schemas/organization'
         }
       ],
-      "x-rhino-attribute-array": {
+      'x-rhino-attribute-array': {
         creatable: true,
         updatable: true,
         destroyable: true
@@ -43,10 +43,10 @@ const ATTRIBUTES = [
       type: 'reference',
       anyOf: [
         {
-          "$ref": "#/components/schemas/organization"
+          $ref: '#/components/schemas/organization'
         }
       ],
-      "x-rhino-attribute-array": {
+      'x-rhino-attribute-array': {
         creatable: false,
         updatable: true,
         destroyable: true
@@ -60,10 +60,10 @@ const ATTRIBUTES = [
       type: 'reference',
       anyOf: [
         {
-          "$ref": "#/components/schemas/organization"
+          $ref: '#/components/schemas/organization'
         }
       ],
-      "x-rhino-attribute-array": {
+      'x-rhino-attribute-array': {
         creatable: true,
         updatable: false,
         destroyable: true
@@ -77,10 +77,10 @@ const ATTRIBUTES = [
       type: 'reference',
       anyOf: [
         {
-          "$ref": "#/components/schemas/organization"
+          $ref: '#/components/schemas/organization'
         }
       ],
-      "x-rhino-attribute-array": {
+      'x-rhino-attribute-array': {
         creatable: true,
         updatable: true,
         destroyable: false
@@ -99,13 +99,29 @@ const ATTRIBUTES = [
   { readableName: 'String Attribute', type: 'string' },
   { readableName: 'Boolean Attribute', type: 'boolean' },
   { readableName: 'Integer Attribute', type: 'integer' },
-  { readableName: 'Integer Attribute Select', type: 'integer', format: 'select' },
+  {
+    readableName: 'Integer Attribute Select',
+    type: 'integer',
+    format: 'select'
+  },
   { readableName: 'Decimal Attribute', type: 'decimal' },
   { readableName: 'Float Attribute', type: 'float' },
   { readableName: 'Number Attribute', type: 'number' },
-  { readableName: 'Decimal Attribute Currency', type: 'decimal', format: 'currency' },
-  { readableName: 'Float Attribute Currency', type: 'float', format: 'currency' },
-  { readableName: 'Number Attribute Currency', type: 'number', format: 'currency' },
+  {
+    readableName: 'Decimal Attribute Currency',
+    type: 'decimal',
+    format: 'currency'
+  },
+  {
+    readableName: 'Float Attribute Currency',
+    type: 'float',
+    format: 'currency'
+  },
+  {
+    readableName: 'Number Attribute Currency',
+    type: 'number',
+    format: 'currency'
+  },
   { readableName: 'Text Attribute', type: 'text' },
   { readableName: 'DateTime Attribute', type: 'string', format: 'datetime' },
   { readableName: 'Time Attribute', type: 'string', format: 'time' },
@@ -116,12 +132,13 @@ const ATTRIBUTES = [
 ];
 
 describe('ModelFormField', () => {
-  vi
-    .spyOn(utils, 'getIdentifierAttribute')
-    .mockImplementation(() => () => ({ name: 'id' }));
-  vi
-    .spyOn(queries, 'useModelIndex')
-    .mockImplementation(() => ({ data: {}, results: [] }));
+  vi.spyOn(utils, 'getIdentifierAttribute').mockImplementation(() => () => ({
+    name: 'id'
+  }));
+  vi.spyOn(queries, 'useModelIndex').mockImplementation(() => ({
+    data: {},
+    results: []
+  }));
   ATTRIBUTES.forEach((attribute) => {
     const readableName = attribute.readableName;
     const renderFunc = (attribute, extraProps = {}) =>

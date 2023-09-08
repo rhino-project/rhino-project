@@ -12,7 +12,7 @@ import { NetworkingMock } from '../../shared';
 vi.mock('axios');
 const networkingMock = new NetworkingMock();
 axios.mockImplementation(networkingMock.axiosMockImplementation());
-axios.CancelToken = {source: () => "adfasdf"}
+axios.CancelToken = { source: () => 'adfasdf' };
 
 describe('auth/queries', () => {
   const user = {
@@ -57,11 +57,11 @@ describe('auth/queries', () => {
       queryClient = new QueryClient({
         defaultOptions: {
           queries: {
-            retry: false,
-          },
+            retry: false
+          }
         },
         logger: {
-          error:  () => {}
+          error: () => {}
         }
       });
     });
@@ -183,7 +183,7 @@ describe('auth/queries', () => {
         });
       });
 
-      test("upon a 404, interacts with auth so useAuth emits null as user after signOut", async () => {
+      test('upon a 404, interacts with auth so useAuth emits null as user after signOut', async () => {
         await waitForFailure(renderedHook, {
           setup: () => {
             networkingMock.mockSignOutFailure(404);

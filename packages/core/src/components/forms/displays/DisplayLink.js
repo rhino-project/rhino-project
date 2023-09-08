@@ -7,10 +7,10 @@ const DisplayLink = ({ accessor, children, empty = '-', ...props }) => {
     field: { value: fieldValue }
   } = useController({ name: path });
 
-  const value = useMemo(() => (accessor ? accessor(fieldValue) : fieldValue), [
-    accessor,
-    fieldValue
-  ]);
+  const value = useMemo(
+    () => (accessor ? accessor(fieldValue) : fieldValue),
+    [accessor, fieldValue]
+  );
 
   return <div>{value ? <a href={value}>{children || value}</a> : empty}</div>;
 };

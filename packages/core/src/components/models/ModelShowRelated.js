@@ -27,10 +27,10 @@ export const ModelShowRelatedBase = ({ overrides, ...props }) => {
   const { getRelatedModels } = props;
   const modelClassNames = useModelClassNames('show-related', model);
 
-  const indexableModels = useMemo(() => getRelatedModels(model), [
-    getRelatedModels,
-    model
-  ]);
+  const indexableModels = useMemo(
+    () => getRelatedModels(model),
+    [getRelatedModels, model]
+  );
 
   return (
     <div className={modelClassNames}>

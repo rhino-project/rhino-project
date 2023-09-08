@@ -42,31 +42,33 @@ export class NetworkingMock {
     if (this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`] == null) {
       this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`] = {};
     }
-    this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`][`__${method}`] = () => {
-      return new Promise((resolve) =>
-        setTimeout(() => {
-          resolve({
-            data: { data }
-          });
-        }, 100)
-      );
-    };
+    this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`][`__${method}`] =
+      () => {
+        return new Promise((resolve) =>
+          setTimeout(() => {
+            resolve({
+              data: { data }
+            });
+          }, 100)
+        );
+      };
   }
 
   _mockFailure({ path, method, status, errors = {} }) {
     if (this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`] == null) {
       this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`] = {};
     }
-    this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`][`__${method}`] = () =>
-      new Promise((resolve, reject) =>
-        setTimeout(
-          () =>
-            reject({
-              response: { status, data: { errors } }
-            }),
-          100
-        )
-      );
+    this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`][`__${method}`] =
+      () =>
+        new Promise((resolve, reject) =>
+          setTimeout(
+            () =>
+              reject({
+                response: { status, data: { errors } }
+              }),
+            100
+          )
+        );
   }
 
   mockValidateSessionSuccess(user) {

@@ -1,22 +1,22 @@
-import { render } from "@testing-library/react";
+import { render } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import { Route, Router } from "react-router-dom";
-import AuthenticatedRoute from "rhino/routes/AuthenticatedRoute";
-import * as routes from "rhino/utils/routes";
+import { Route, Router } from 'react-router-dom';
+import AuthenticatedRoute from 'rhino/routes/AuthenticatedRoute';
+import * as routes from 'rhino/utils/routes';
 
 const authenticatedState = {
   initializing: false,
   user: {}
-}
+};
 
 const unauthenticatedState = {
   initializing: false,
   user: null
-}
+};
 
 const initializingState = {
   initializing: true
-}
+};
 
 let mockAuth;
 vi.mock('rhino/hooks/auth', () => ({
@@ -24,10 +24,8 @@ vi.mock('rhino/hooks/auth', () => ({
 }));
 
 vi.mock('rhino/components/logos', () => ({
-  SplashScreen: () => (
-    <div>__mockSplashScreen__</div>
-  )
-}))
+  SplashScreen: () => <div>__mockSplashScreen__</div>
+}));
 
 let mockPrevPath;
 let mockUnsetPrevPathFn;
@@ -36,43 +34,42 @@ vi.mock('rhino/utils/storage', () => ({
   getPrevPathSession: () => mockPrevPath,
   unsetPrevPathSession: () => mockUnsetPrevPathFn(),
   setPrevPathSession: () => mockSetPrevPathFn()
-}))
+}));
 
-vi.spyOn(routes, 'getSessionCreatePath').mockImplementation(() => "/__mockSessionCreate__");
+vi.spyOn(routes, 'getSessionCreatePath').mockImplementation(
+  () => '/__mockSessionCreate__'
+);
 
 describe('routes/AuthenticatedRoute', () => {
   let Wrapper;
 
   beforeEach(() => {
-    const history = createMemoryHistory()
-    Wrapper = ({children}) => (
+    const history = createMemoryHistory();
+    Wrapper = ({ children }) => (
       <Router history={history}>
-      <AuthenticatedRoute>
-        {children}
-      </AuthenticatedRoute>
-      <Route path="/__mockPrevPath__">
-        <div>__mockPrevPathRoute__</div>
-      </Route>
-      <Route path="/__mockSessionCreate__">
-        <div>__mockSessionCreateRoute__</div>
-      </Route>
+        <AuthenticatedRoute>{children}</AuthenticatedRoute>
+        <Route path="/__mockPrevPath__">
+          <div>__mockPrevPathRoute__</div>
+        </Route>
+        <Route path="/__mockSessionCreate__">
+          <div>__mockSessionCreateRoute__</div>
+        </Route>
       </Router>
-    )
-  })
+    );
+  });
 
   describe('initializing', () => {
-    test("renders SplashScreen", () => {
+    test('renders SplashScreen', () => {
       mockAuth = initializingState;
       const { queryByText } = render(
         <Wrapper>
           <div>should not render this</div>
         </Wrapper>
-      );    
-      expect(queryByText('__mockSplashScreen__')).toBeTruthy()
+      );
+      expect(queryByText('__mockSplashScreen__')).toBeTruthy();
     });
   });
 
-  
   describe('authenticated', () => {
     test('renders children', () => {
       mockAuth = authenticatedState;
@@ -83,7 +80,7 @@ describe('routes/AuthenticatedRoute', () => {
           <div>__should render children__</div>
         </Wrapper>
       );
-      expect(queryByText("__should render children__")).toBeTruthy();
+      expect(queryByText('__should render children__')).toBeTruthy();
     });
 
     describe('prevPath not empty', () => {
@@ -99,11 +96,11 @@ describe('routes/AuthenticatedRoute', () => {
         );
         queryByText = rendered.queryAllByText;
       });
-  
-      test('redirects to utils\' prevPath', () => {
+
+      test("redirects to utils' prevPath", () => {
         expect(queryByText('__mockPrevPathRoute__')).toBeTruthy();
       });
-  
+
       test('cleans prevPath', () => {
         expect(mockUnsetPrevPathFn).toHaveBeenCalled();
       });
@@ -122,9 +119,7 @@ describe('routes/AuthenticatedRoute', () => {
             <div>any component</div>
           </Wrapper>
         );
-        const rendered = render(
-          component(0)
-        );
+        const rendered = render(component(0));
         mockAuth = unauthenticatedState;
         rendered.rerender(component(1));
         queryByText = rendered.queryByText;
@@ -136,11 +131,10 @@ describe('routes/AuthenticatedRoute', () => {
       });
 
       test('redirects to sign in page', () => {
-        expect(queryByText("__mockSessionCreateRoute__")).toBeTruthy();
+        expect(queryByText('__mockSessionCreateRoute__')).toBeTruthy();
       });
     });
   });
-
 
   describe('unauthenticated', () => {
     let queryByText;
@@ -151,14 +145,14 @@ describe('routes/AuthenticatedRoute', () => {
         <Wrapper>
           <div>should not render this</div>
         </Wrapper>
-      );    
+      );
       queryByText = rendered.queryByText;
     });
 
     test('redirects to sign in page', () => {
-      expect(queryByText("__mockSessionCreateRoute__")).toBeTruthy();
+      expect(queryByText('__mockSessionCreateRoute__')).toBeTruthy();
     });
-  
+
     test('sets prevPath', () => {
       expect(mockSetPrevPathFn).toHaveBeenCalledWith();
     });

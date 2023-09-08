@@ -45,10 +45,10 @@ export const useModelQueryAction = (
   { queryOptions = {}, networkOptions = {}, ...restOptions }
 ) => {
   const baseEndpoint = useModelPathMember(model, { id });
-  const endpoint = useMemo(() => `${baseEndpoint}/${action}`, [
-    action,
-    baseEndpoint
-  ]);
+  const endpoint = useMemo(
+    () => `${baseEndpoint}/${action}`,
+    [action, baseEndpoint]
+  );
 
   // This looks like the useModelShow key with the addition of the action
   const extraQueryKeys = useMemo(

@@ -36,10 +36,10 @@ export const ModelIndexActionCreate = ({ children, ...props }) => {
     [model, location.pathname, parentId]
   );
 
-  const handleClick = useCallback(() => baseOwnerNavigation.push(createPath), [
-    baseOwnerNavigation,
-    createPath
-  ]);
+  const handleClick = useCallback(
+    () => baseOwnerNavigation.push(createPath),
+    [baseOwnerNavigation, createPath]
+  );
 
   return (
     <IconButton color="primary" icon="plus" onClick={handleClick} {...props}>

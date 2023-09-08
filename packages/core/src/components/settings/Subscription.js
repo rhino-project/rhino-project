@@ -40,9 +40,8 @@ const Subscription = ({ status, session_id }) => {
   const baseOwnerId = useBaseOwnerId();
 
   const { isInitialLoading, data: { data: prices } = {} } = usePrices();
-  const { isSuccess, data: { data: subscriptions } = {} } = useSubscription(
-    baseOwnerId
-  );
+  const { isSuccess, data: { data: subscriptions } = {} } =
+    useSubscription(baseOwnerId);
 
   const {
     isCheckSessionSuccess = isSuccess,

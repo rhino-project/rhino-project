@@ -7,13 +7,14 @@ export const ModelCellAttachmentDownloadBase = ({
   getValue,
   ...props
 }) => {
-  const syntheticGetValue = useCallback(() => getValue()?.url_attachment, [
-    getValue
-  ]);
-  const linkText = useMemo(() => children || getValue()?.display_name, [
-    children,
-    getValue
-  ]);
+  const syntheticGetValue = useCallback(
+    () => getValue()?.url_attachment,
+    [getValue]
+  );
+  const linkText = useMemo(
+    () => children || getValue()?.display_name,
+    [children, getValue]
+  );
 
   return (
     <CellLink getValue={syntheticGetValue} {...props}>

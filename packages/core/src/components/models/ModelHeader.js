@@ -5,10 +5,10 @@ import Header from 'rhino/components/table/Header';
 
 export const ModelHeaderBase = ({ model, path, children, ...props }) => {
   const { attribute } = useModelAndAttributeFromPath(model, path);
-  const headerText = useMemo(() => children || attribute?.readableName, [
-    children,
-    attribute
-  ]);
+  const headerText = useMemo(
+    () => children || attribute?.readableName,
+    [children, attribute]
+  );
 
   return <Header {...props}>{headerText}</Header>;
 };

@@ -3,11 +3,10 @@ import { useTableInheritedProps } from 'rhino/hooks/table';
 
 const CellLink = ({ children, empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
-  const linkText = useMemo(() => children || getValue() || empty, [
-    children,
-    empty,
-    getValue
-  ]);
+  const linkText = useMemo(
+    () => children || getValue() || empty,
+    [children, empty, getValue]
+  );
 
   if (!getValue()) return <div {...inheritedProps}>{empty}</div>;
 

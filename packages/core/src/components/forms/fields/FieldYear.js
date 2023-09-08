@@ -15,9 +15,10 @@ const FieldYear = ({ min, max, ...props }) => {
     name: path
   });
 
-  const year = useMemo(() => (value ? new Date(value, 0, 1) : undefined), [
-    value
-  ]);
+  const year = useMemo(
+    () => (value ? new Date(value, 0, 1) : undefined),
+    [value]
+  );
 
   const inheritedPropsOptions = useMemo(
     () => ({

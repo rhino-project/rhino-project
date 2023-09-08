@@ -14,11 +14,8 @@ const defaultComponents = {
 };
 
 export const ModelCreateBase = ({ overrides, ...props }) => {
-  const {
-    ModelCreateHeader,
-    ModelCreateForm,
-    ModelCreateActions
-  } = useOverrides(defaultComponents, overrides);
+  const { ModelCreateHeader, ModelCreateForm, ModelCreateActions } =
+    useOverrides(defaultComponents, overrides);
 
   if (ModelCreateForm().props?.paths)
     console.warn('ModelCreateForm pass legacy paths prop');

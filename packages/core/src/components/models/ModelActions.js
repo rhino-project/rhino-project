@@ -7,9 +7,10 @@ import { Button, IconButton } from 'rhino/components/buttons';
 const ModelActions = (props) => {
   const { actions } = props;
 
-  const actionInProgress = useMemo(() => actions.some((a) => a.loading), [
-    actions
-  ]);
+  const actionInProgress = useMemo(
+    () => actions.some((a) => a.loading),
+    [actions]
+  );
 
   return (
     <ModelWrapper {...props} baseClassName="actions">

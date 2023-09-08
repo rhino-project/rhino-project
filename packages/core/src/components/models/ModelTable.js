@@ -194,17 +194,12 @@ const ModelTable = (props) => {
     ModelTableCellRenderer
   ]);
 
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow
-  } = useTable({
-    columns: columns,
-    data: resources?.results || [],
-    memberActions
-  });
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({
+      columns: columns,
+      data: resources?.results || [],
+      memberActions
+    });
 
   if (loading) {
     return <Spinner className="mx-auto d-block" />;

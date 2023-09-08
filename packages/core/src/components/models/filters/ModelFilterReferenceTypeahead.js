@@ -11,9 +11,10 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
   const { filter, limit = 100, offset, order, search } = props;
   const { attribute, operator, plainPath } = useModelFilterField(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
-  const identifier = useMemo(() => getIdentifierAttribute(refModel), [
-    refModel
-  ]);
+  const identifier = useMemo(
+    () => getIdentifierAttribute(refModel),
+    [refModel]
+  );
   const [input, setInput] = useState('');
   const {
     field: { onChange, value: fieldValue, ...fieldProps },
@@ -27,10 +28,10 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
     [identifier.name]
   );
 
-  const value = useMemo(() => referenceAccessor(fieldValue), [
-    fieldValue,
-    referenceAccessor
-  ]);
+  const value = useMemo(
+    () => referenceAccessor(fieldValue),
+    [fieldValue, referenceAccessor]
+  );
 
   const { isSuccess, results, isInitialLoading } = useModelIndex(refModel, {
     filter,

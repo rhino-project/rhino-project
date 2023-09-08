@@ -197,10 +197,10 @@ export const useFilterPills = ({ control }) => {
   });
 
   // FIXME: Resetting the last pill does not clear the dirty
-  const resetPill = useCallback((path) => onChange(omit(pills, path)), [
-    pills,
-    onChange
-  ]);
+  const resetPill = useCallback(
+    (path) => onChange(omit(pills, path)),
+    [pills, onChange]
+  );
 
   // FIXME: Unclear why i have to reset to {} explicitly to clear the dirty
   const resetPills = useCallback(() => onChange({}), [onChange]);
@@ -209,10 +209,10 @@ export const useFilterPills = ({ control }) => {
 };
 
 export const useFilterField = (path, operator, options = {}) => {
-  const operatorPath = useMemo(() => compact([path, operator]).join('.'), [
-    path,
-    operator
-  ]);
+  const operatorPath = useMemo(
+    () => compact([path, operator]).join('.'),
+    [path, operator]
+  );
 
   // FIXME: Include useFilterPill here? There may be cases where it is not needed or even a problem like in ModelFilterReference
 

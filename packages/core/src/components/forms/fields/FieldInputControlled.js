@@ -15,10 +15,10 @@ const FieldInputControlled = ({ accessor, onChangeAccessor, ...props }) => {
     name: path
   });
 
-  const value = useMemo(() => (accessor ? accessor(fieldValue) : fieldValue), [
-    accessor,
-    fieldValue
-  ]);
+  const value = useMemo(
+    () => (accessor ? accessor(fieldValue) : fieldValue),
+    [accessor, fieldValue]
+  );
 
   const handleOnChange = useCallback(
     ({ target }) => {

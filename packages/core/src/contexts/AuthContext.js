@@ -31,14 +31,8 @@ export const AuthContext = createContext({
 
 const AuthProvider = ({ children }) => {
   const sessionQuery = useSession();
-  const {
-    isError,
-    isInitialLoading,
-    isFetching,
-    isSuccess,
-    data,
-    refetch
-  } = sessionQuery;
+  const { isError, isInitialLoading, isFetching, isSuccess, data, refetch } =
+    sessionQuery;
   const [user, setUser] = useState(null);
   const [initializing, setInitializing] = useState(true);
   useRollbarPerson(user);
