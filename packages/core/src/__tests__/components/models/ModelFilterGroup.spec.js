@@ -5,7 +5,7 @@ import ModelFilterGroup from 'rhino/components/models/ModelFilterGroup';
 import { sharedModelTests } from './sharedModelTests';
 
 describe('ModelFilterGroup', () => {
-  const wrapper = ({ children }) => {
+  const Wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
@@ -27,7 +27,7 @@ describe('ModelFilterGroup', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 

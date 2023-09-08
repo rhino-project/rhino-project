@@ -20,7 +20,7 @@ const components = [
 
 describe('Common model filter behaviour', () => {
   const modulePath = 'rhino/components/models/filters';
-  const wrapper = ({ children }) => {
+  const Wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
@@ -35,7 +35,7 @@ describe('Common model filter behaviour', () => {
           path="dummy"
         />,
         {
-          wrapper
+          wrapper: Wrapper
         }
       );
 
@@ -52,7 +52,7 @@ describe('Common model filter behaviour', () => {
           data-foo="bar"
         />,
         {
-          wrapper
+          wrapper: Wrapper
         }
       );
 

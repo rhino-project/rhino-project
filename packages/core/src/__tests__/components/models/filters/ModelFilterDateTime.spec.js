@@ -13,7 +13,7 @@ describe('ModelFilterDateTime', () => {
     vi.clearAllMocks();
   });
 
-  const wrapper = ({ children }) => {
+  const Wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
@@ -33,7 +33,7 @@ describe('ModelFilterDateTime', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -63,7 +63,7 @@ describe('ModelFilterDateTime', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
     expect(FilterDateTime).toHaveBeenLastCalledWith(
@@ -91,7 +91,7 @@ describe('ModelFilterDateTime', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -121,7 +121,7 @@ describe('ModelFilterDateTime', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 

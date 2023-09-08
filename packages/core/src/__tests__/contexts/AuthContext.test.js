@@ -4,7 +4,7 @@ import axios from 'axios';
 import AuthProvider, { AuthContext } from 'rhino/contexts/AuthContext';
 import { useContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { NetworkingMock } from '../../shared';
+import { NetworkingMock } from '__tests__/shared/mock';
 
 vi.mock('axios');
 const networkingMock = new NetworkingMock();

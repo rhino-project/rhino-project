@@ -54,9 +54,8 @@ exports[`ModelCellAttachmentImage > uses passed in alt 1`] = `
 <DocumentFragment>
   <img
     alt="foo"
-    height="50"
-    maxwidth="100%"
     src="https://example.com/image.png"
+    style="max-width: 100%;"
   />
 </DocumentFragment>
 `;
@@ -65,9 +64,8 @@ exports[`ModelCellAttachmentImage > uses url for alt as fallback 1`] = `
 <DocumentFragment>
   <img
     alt="https://example.com/image.png"
-    height="50"
-    maxwidth="100%"
     src="https://example.com/image.png"
+    style="max-width: 100%;"
   />
 </DocumentFragment>
 `;

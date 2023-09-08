@@ -3,7 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import * as rhinoConfig from 'rhino.config';
 import { MemoryRouter } from 'react-router-dom';
 
-const wrapper = ({ children }) => {
+const Wrapper = ({ children }) => {
   const methods = useForm();
   return (
     <MemoryRouter>
@@ -29,7 +29,9 @@ export const sharedDisplayTests = (Component) => {
   it(`should render with global override shorthand`, async () => {
     rhinoConfig.default = { version: 1, components: { [Component.name]: Bar } };
 
-    const { asFragment } = render(<Component path="dummy" />, { wrapper });
+    const { asFragment } = render(<Component path="dummy" />, {
+      wrapper: Wrapper
+    });
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -40,7 +42,7 @@ export const sharedDisplayTests = (Component) => {
     };
 
     const { asFragment } = render(<Component model="user" path="name" />, {
-      wrapper
+      wrapper: Wrapper
     });
     expect(asFragment()).toMatchSnapshot();
   });
@@ -52,7 +54,7 @@ export const sharedDisplayTests = (Component) => {
     };
 
     const { asFragment } = render(<Component model="user" path="name" />, {
-      wrapper
+      wrapper: Wrapper
     });
     expect(asFragment()).toMatchSnapshot();
   });
@@ -63,7 +65,9 @@ export const sharedDisplayTests = (Component) => {
       components: {}
     };
 
-    const { asFragment } = render(<Component path="dummy" />, { wrapper });
+    const { asFragment } = render(<Component path="dummy" />, {
+      wrapper: Wrapper
+    });
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -74,7 +78,7 @@ export const sharedDisplayTests = (Component) => {
     };
 
     const { asFragment } = render(<Component empty="baz" path="dummy" />, {
-      wrapper
+      wrapper: Wrapper
     });
     expect(asFragment()).toMatchSnapshot();
   });

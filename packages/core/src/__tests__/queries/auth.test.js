@@ -7,7 +7,7 @@ import {
   useSignOutAction,
   useSignUpAction
 } from 'rhino/queries/auth';
-import { NetworkingMock } from '../../shared';
+import { NetworkingMock } from '__tests__/shared/mock';
 
 vi.mock('axios');
 const networkingMock = new NetworkingMock();

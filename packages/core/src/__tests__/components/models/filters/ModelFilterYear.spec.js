@@ -9,7 +9,7 @@ vi.mock('rhino/components/forms/filters/FilterYear', () => ({
 }));
 
 describe('ModelFilterYear', () => {
-  const wrapper = ({ children }) => {
+  const Wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
@@ -33,7 +33,7 @@ describe('ModelFilterYear', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -63,7 +63,7 @@ describe('ModelFilterYear', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -92,7 +92,7 @@ describe('ModelFilterYear', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
     expect(FilterYear).toHaveBeenLastCalledWith(
@@ -121,7 +121,7 @@ describe('ModelFilterYear', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
