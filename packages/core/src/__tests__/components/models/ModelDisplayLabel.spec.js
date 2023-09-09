@@ -5,7 +5,7 @@ import ModelDisplayLabel from 'rhino/components/models/ModelDisplayLabel';
 import { sharedModelTests } from './sharedModelTests';
 
 describe('ModelDisplayLabel', () => {
-  const wrapper = ({ children }) => {
+  const Wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
@@ -21,7 +21,7 @@ describe('ModelDisplayLabel', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -38,7 +38,7 @@ describe('ModelDisplayLabel', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 

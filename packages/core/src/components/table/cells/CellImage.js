@@ -11,9 +11,8 @@ const CellImage = ({ empty = '-', ...props }) => {
     <img
       alt={src}
       src={src}
-      height="50"
       // Ensure image doesn't overflow table cell
-      maxwidth="100%"
+      style={{ height: '50', maxWidth: '100%' }}
       {...inheritedProps}
     />
   );

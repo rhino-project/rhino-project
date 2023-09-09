@@ -4,7 +4,7 @@ import FormProvider from 'rhino/components/forms/FormProvider';
 import ModelFilterFloat from 'rhino/components/models/filters/ModelFilterFloat';
 
 describe('ModelFilterFloat', () => {
-  const wrapper = ({ children }) => {
+  const Wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
@@ -16,7 +16,7 @@ describe('ModelFilterFloat', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -34,7 +34,7 @@ describe('ModelFilterFloat', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -48,7 +48,7 @@ describe('ModelFilterFloat', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -66,7 +66,7 @@ describe('ModelFilterFloat', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 

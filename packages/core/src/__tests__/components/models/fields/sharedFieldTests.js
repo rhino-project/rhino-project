@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import * as rhinoConfig from 'rhino.config';
 
-const wrapper = ({ children }) => {
+const Wrapper = ({ children }) => {
   const methods = useForm();
   return <FormProvider {...methods}>{children}</FormProvider>;
 };
@@ -25,7 +25,7 @@ export const sharedFieldTests = (Component) => {
     rhinoConfig.default = { version: 1, components: { [Component.name]: Bar } };
 
     const { asFragment } = render(<Component model="user" path="name" />, {
-      wrapper
+      wrapper: Wrapper
     });
     expect(asFragment()).toMatchSnapshot();
   });
@@ -37,7 +37,7 @@ export const sharedFieldTests = (Component) => {
     };
 
     const { asFragment } = render(<Component model="user" path="name" />, {
-      wrapper
+      wrapper: Wrapper
     });
     expect(asFragment()).toMatchSnapshot();
   });
@@ -49,7 +49,7 @@ export const sharedFieldTests = (Component) => {
     };
 
     const { asFragment } = render(<Component model="user" path="name" />, {
-      wrapper
+      wrapper: Wrapper
     });
     expect(asFragment()).toMatchSnapshot();
   });

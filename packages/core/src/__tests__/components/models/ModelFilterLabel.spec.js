@@ -5,7 +5,7 @@ import ModelFilterLabel from 'rhino/components/models/ModelFilterLabel';
 import { sharedModelTests } from './sharedModelTests';
 
 describe('ModelFilterLabel', () => {
-  const wrapper = ({ children }) => {
+  const Wrapper = ({ children }) => {
     const methods = useForm();
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
@@ -21,7 +21,7 @@ describe('ModelFilterLabel', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
@@ -38,7 +38,7 @@ describe('ModelFilterLabel', () => {
         path="dummy"
       />,
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
 
