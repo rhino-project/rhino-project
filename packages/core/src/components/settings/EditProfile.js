@@ -40,10 +40,10 @@ const EditProfile = () => {
   } = methods;
 
   const onError = useFieldSetErrors(setError);
-  const onSubmit = useCallback((values) => mutate(values, { onError }), [
-    mutate,
-    onError
-  ]);
+  const onSubmit = useCallback(
+    (values) => mutate(values, { onError }),
+    [mutate, onError]
+  );
 
   useEffect(() => setFocus('name'), [setFocus]);
 

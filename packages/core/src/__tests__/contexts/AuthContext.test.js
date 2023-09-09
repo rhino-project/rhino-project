@@ -9,7 +9,7 @@ import { NetworkingMock } from '../../shared';
 vi.mock('axios');
 const networkingMock = new NetworkingMock();
 axios.mockImplementation(networkingMock.axiosMockImplementation());
-axios.CancelToken = {source: () =>  "adfasdf"};
+axios.CancelToken = { source: () => 'adfasdf' };
 
 describe('AuthContext', () => {
   const user = { id: 1, name: '', email: '' };
@@ -38,11 +38,11 @@ describe('AuthContext', () => {
     queryClient = new QueryClient({
       defaultOptions: {
         queries: {
-          retry: false,
-        },
+          retry: false
+        }
       },
       logger: {
-        error:  () => {}
+        error: () => {}
       }
     });
   });
@@ -87,12 +87,10 @@ describe('AuthContext', () => {
     networkingMock.mockValidateSessionSuccess(changedUser);
     renderedHook.result.current.auth.refreshSession();
 
-    await waitFor(
-      () => {
-        expect(renderedHook.result.current.auth.resolving).toBe(true);
-        expect(renderedHook.result.current.auth.user).toBeTruthy();
-      }
-    );
+    await waitFor(() => {
+      expect(renderedHook.result.current.auth.resolving).toBe(true);
+      expect(renderedHook.result.current.auth.user).toBeTruthy();
+    });
     await waitFor(() => {
       expect(renderedHook.result.current.auth.resolving).toBe(false);
       expect(renderedHook.result.current.auth.user).toEqual(changedUser);
@@ -108,12 +106,10 @@ describe('AuthContext', () => {
     networkingMock.mockValidateSessionFailure();
     renderedHook.result.current.auth.refreshSession();
 
-    await waitFor(
-      () => {
-        expect(renderedHook.result.current.auth.resolving).toBe(true);
-        expect(renderedHook.result.current.auth.user).toBeTruthy();
-      }
-    );
+    await waitFor(() => {
+      expect(renderedHook.result.current.auth.resolving).toBe(true);
+      expect(renderedHook.result.current.auth.user).toBeTruthy();
+    });
     await waitFor(() => {
       expect(renderedHook.result.current.auth.resolving).toBe(false);
       expect(renderedHook.result.current.auth.user).toBeNull();
@@ -121,13 +117,12 @@ describe('AuthContext', () => {
   });
 
   describe('initializing', () => {
-
     test('Starts with initializing: true', () => {
       const { result } = renderHook(() => useContext(AuthContext), {
         wrapper: Wrapper
       });
       expect(result.current.initializing).toBe(true);
-    })
+    });
 
     test('Sets initializing to false after success', async () => {
       networkingMock.mockValidateSessionSuccess(user);
@@ -141,7 +136,7 @@ describe('AuthContext', () => {
         expect(result.current.user).toBeTruthy();
         expect(result.current.initializing).toBe(false);
       });
-    })
+    });
 
     test('Sets initializing to false after failure', async () => {
       networkingMock.mockValidateSessionFailure();
@@ -155,8 +150,8 @@ describe('AuthContext', () => {
         expect(result.current.user).toBeFalsy();
         expect(result.current.initializing).toBe(false);
       });
-    })
-  })
+    });
+  });
 
   test('Renders children when authenticated', async () => {
     networkingMock.mockValidateSessionSuccess(user);

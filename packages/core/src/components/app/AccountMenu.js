@@ -41,9 +41,10 @@ const AccountMenu = ({ sidebarMode = false }) => {
   const baseOwnerPath = useBaseOwnerPath();
   const accountSettingsPath = useAccountSettingsPath();
   const isAdmin = useHasRoleOf('admin');
-  const showOrgSettings = useMemo(() => hasOrganizationsModule() && isAdmin, [
-    isAdmin
-  ]);
+  const showOrgSettings = useMemo(
+    () => hasOrganizationsModule() && isAdmin,
+    [isAdmin]
+  );
 
   return (
     <UncontrolledDropdown

@@ -11,10 +11,10 @@ export const ModelDisplayLabelBase = ({
 }) => {
   const { attribute } = useModelAndAttributeFromPath(model, props.path);
 
-  const modelLabel = useMemo(() => label || attribute.readableName, [
-    attribute,
-    label
-  ]);
+  const modelLabel = useMemo(
+    () => label || attribute.readableName,
+    [attribute, label]
+  );
 
   return <DisplayLabel label={modelLabel} {...props} />;
 };

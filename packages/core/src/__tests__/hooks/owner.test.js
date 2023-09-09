@@ -9,16 +9,18 @@ import {
   useUserRoles
 } from 'rhino/hooks/owner';
 
-const wrapper = (context) => ({ children }) => (
-  <BaseOwnerContext.Provider value={context}>
-    {children}
-  </BaseOwnerContext.Provider>
-);
+const wrapper =
+  (context) =>
+  ({ children }) => (
+    <BaseOwnerContext.Provider value={context}>
+      {children}
+    </BaseOwnerContext.Provider>
+  );
 
 const validContext = {
   resolving: true,
-  baseOwner: { id: 1, name: '', },
-  usersRoles: [ {organization: { id: 1, name: ''}, role: {name: 'admin'}} ]
+  baseOwner: { id: 1, name: '' },
+  usersRoles: [{ organization: { id: 1, name: '' }, role: { name: 'admin' } }]
 };
 
 const nullishContext = {
@@ -96,11 +98,15 @@ describe('useBaseOwnerId', () => {
 
 describe('useRoles', () => {
   test('returns all roles names if more than one', () => {
-    const context = {...validContext, baseOwner: {...validContext.baseOwner}, usersRoles: [
-      { role: { name: 'aa'}, organization: validContext.baseOwner },
-      { role: { name: 'bb'}, organization: validContext.baseOwner },
-      { role: { name: 'cc'}, organization: validContext.baseOwner },
-    ]};
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
+      usersRoles: [
+        { role: { name: 'aa' }, organization: validContext.baseOwner },
+        { role: { name: 'bb' }, organization: validContext.baseOwner },
+        { role: { name: 'cc' }, organization: validContext.baseOwner }
+      ]
+    };
     const { result } = renderHook(() => useRoles(), {
       wrapper: wrapper(context)
     });
@@ -108,7 +114,7 @@ describe('useRoles', () => {
   });
 
   test('returns the role name if just one', () => {
-    const context = validContext
+    const context = validContext;
     const { result } = renderHook(() => useRoles(), {
       wrapper: wrapper(context)
     });
@@ -116,7 +122,11 @@ describe('useRoles', () => {
   });
 
   test('returns [] if users_roles is undefined', () => {
-    const context = {...validContext, baseOwner: {...validContext.baseOwner}, usersRoles: undefined};
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
+      usersRoles: undefined
+    };
     const { result } = renderHook(() => useRoles(), {
       wrapper: wrapper(context)
     });
@@ -124,9 +134,10 @@ describe('useRoles', () => {
   });
 
   test('returns [] if users_roles.role is undefined', () => {
-    const context = {...validContext, 
+    const context = {
+      ...validContext,
       baseOwner: {
-        ...validContext.baseOwner,
+        ...validContext.baseOwner
       },
       usersRoles: {
         role: undefined
@@ -139,9 +150,10 @@ describe('useRoles', () => {
   });
 
   test('filters out non-string values', () => {
-    const context = {...validContext, 
+    const context = {
+      ...validContext,
       baseOwner: {
-        ...validContext.baseOwner,
+        ...validContext.baseOwner
       },
       usersRoles: {
         role: {
@@ -158,27 +170,29 @@ describe('useRoles', () => {
 
 describe('useUsersRoles', () => {
   test('returns usersRoles stored in BaseOwnerContext', () => {
-    const context = {...validContext, 
-      baseOwner: {...validContext.baseOwner},
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
       usersRoles: [
-        { role: { name: 'aa'}, organization: validContext.baseOwner},
-        { role: { name: 'bb'}, organization: validContext.baseOwner},
-        { role: { name: 'cc'}, organization: validContext.baseOwner},
+        { role: { name: 'aa' }, organization: validContext.baseOwner },
+        { role: { name: 'bb' }, organization: validContext.baseOwner },
+        { role: { name: 'cc' }, organization: validContext.baseOwner }
       ]
     };
     const { result } = renderHook(() => useUserRoles(), {
       wrapper: wrapper(context)
     });
     expect(result.current).toEqual([
-      { role: { name: 'aa'}, organization: validContext.baseOwner},
-      { role: { name: 'bb'}, organization: validContext.baseOwner},
-      { role: { name: 'cc'}, organization: validContext.baseOwner},
+      { role: { name: 'aa' }, organization: validContext.baseOwner },
+      { role: { name: 'bb' }, organization: validContext.baseOwner },
+      { role: { name: 'cc' }, organization: validContext.baseOwner }
     ]);
   });
 
   test('returns usersRoles stored in BaseOwnerContext, even if empty', () => {
-    const context = {...validContext, 
-      baseOwner: {...validContext.baseOwner},
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
       usersRoles: []
     };
     const { result } = renderHook(() => useUserRoles(), {
@@ -188,8 +202,9 @@ describe('useUsersRoles', () => {
   });
 
   test('returns usersRoles stored in BaseOwnerContext, even if undefined', () => {
-    const context = {...validContext,
-      baseOwner: {...validContext.baseOwner},
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
       usersRoles: undefined
     };
     const { result } = renderHook(() => useUserRoles(), {
@@ -197,16 +212,17 @@ describe('useUsersRoles', () => {
     });
     expect(result.current).toEqual(undefined);
   });
-})
+});
 
 describe('useHasRoleOf', () => {
   test('returns true if there is at least one role with the given name when there is more than one role', () => {
-    const context = {...validContext, 
-      baseOwner: {...validContext.baseOwner},
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
       usersRoles: [
-        { role: { name: 'aa'}, organization: validContext.baseOwner},
-        { role: { name: 'bb'}, organization: validContext.baseOwner},
-        { role: { name: 'cc'}, organization: validContext.baseOwner},
+        { role: { name: 'aa' }, organization: validContext.baseOwner },
+        { role: { name: 'bb' }, organization: validContext.baseOwner },
+        { role: { name: 'cc' }, organization: validContext.baseOwner }
       ]
     };
     const { result } = renderHook(() => useHasRoleOf('bb'), {
@@ -216,10 +232,11 @@ describe('useHasRoleOf', () => {
   });
 
   test('returns true if there is at least one role with the given name when there is just one role', () => {
-    const context = {...validContext,
-      baseOwner: {...validContext.baseOwner},
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
       usersRoles: [
-        { role: { name: 'aa'}, organization: validContext.baseOwner},
+        { role: { name: 'aa' }, organization: validContext.baseOwner }
       ]
     };
     const { result } = renderHook(() => useHasRoleOf('aa'), {
@@ -229,12 +246,13 @@ describe('useHasRoleOf', () => {
   });
 
   test('returns false if there is no role with the given name when there is more than one role', () => {
-    const context = {...validContext, 
-      baseOwner: {...validContext.baseOwner},
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
       usersRoles: [
-        { role: { name: 'aa'}, organization: validContext.baseOwner},
-        { role: { name: 'bb'}, organization: validContext.baseOwner},
-        { role: { name: 'cc'}, organization: validContext.baseOwner},
+        { role: { name: 'aa' }, organization: validContext.baseOwner },
+        { role: { name: 'bb' }, organization: validContext.baseOwner },
+        { role: { name: 'cc' }, organization: validContext.baseOwner }
       ]
     };
     const { result } = renderHook(() => useHasRoleOf('xx'), {
@@ -244,7 +262,7 @@ describe('useHasRoleOf', () => {
   });
 
   test('returns false if there is no role with the given name when there is just one role', () => {
-    const context = validContext
+    const context = validContext;
     const { result } = renderHook(() => useHasRoleOf('manager'), {
       wrapper: wrapper(context)
     });
@@ -252,9 +270,10 @@ describe('useHasRoleOf', () => {
   });
 
   test('returns false if usersRoles is undefined', () => {
-    const context = {...validContext, 
+    const context = {
+      ...validContext,
       baseOwner: {
-        ...validContext.baseOwner,
+        ...validContext.baseOwner
       },
       usersRoles: undefined
     };
@@ -265,12 +284,12 @@ describe('useHasRoleOf', () => {
   });
 
   test('returns false if usersRoles.role is undefined', () => {
-    const context = {...validContext, 
+    const context = {
+      ...validContext,
       baseOwner: {
-        ...validContext.baseOwner,
+        ...validContext.baseOwner
       },
       usersRoles: [{ role: undefined }]
-      
     };
     const { result } = renderHook(() => useHasRoleOf('admin'), {
       wrapper: wrapper(context)

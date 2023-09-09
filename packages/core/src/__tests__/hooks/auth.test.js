@@ -8,9 +8,11 @@ import {
   useUserId
 } from 'rhino/hooks/auth';
 
-const wrapper = (context) => ({ children }) => (
-  <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
-);
+const wrapper =
+  (context) =>
+  ({ children }) => (
+    <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+  );
 
 const validContext = {
   resolving: true,

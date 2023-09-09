@@ -14,9 +14,10 @@ const ModelFilterReference = ({ model, path, ...props }) => {
   const { attribute, operator, plainPath } = useModelFilterField(model, path);
 
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
-  const identifier = useMemo(() => getIdentifierAttribute(refModel), [
-    refModel
-  ]);
+  const identifier = useMemo(
+    () => getIdentifierAttribute(refModel),
+    [refModel]
+  );
 
   // We need to use an accessor here because the value can an object or the id
   const referenceAccessor = useCallback(

@@ -15,9 +15,10 @@ const FieldPhone = (props) => {
     name: path
   });
 
-  const containerClass = useMemo(() => classnames({ 'is-invalid': error }), [
-    error
-  ]);
+  const containerClass = useMemo(
+    () => classnames({ 'is-invalid': error }),
+    [error]
+  );
 
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
 

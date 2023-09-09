@@ -13,13 +13,13 @@ vi.mock('rhino/hooks/auth', () => ({
 let mockBaseOwnerId;
 
 const mockUseBaseOwnerId = vi.fn(() => mockBaseOwnerId);
-vi.mock("rhino/hooks/owner", async () => {
-  const actual = await vi.importActual("rhino/hooks/owner")
+vi.mock('rhino/hooks/owner', async () => {
+  const actual = await vi.importActual('rhino/hooks/owner');
   return {
     ...actual,
     useBaseOwnerId: vi.fn(() => mockUseBaseOwnerId())
   };
-})
+});
 
 let mockUseBaseOwnerNavigationPushFn = vi.fn(() => {});
 vi.mock('rhino/hooks/history', () => ({
@@ -29,9 +29,7 @@ vi.mock('rhino/hooks/history', () => ({
 }));
 
 const mockUseModelShowResult = vi.fn();
-const mockUseModelShowFn = vi.fn(() =>
-  mockUseModelShowResult()
-);
+const mockUseModelShowFn = vi.fn(() => mockUseModelShowResult());
 vi.mock('rhino/hooks/queries', () => ({
   useModelShow: vi.fn(() => mockUseModelShowFn())
 }));

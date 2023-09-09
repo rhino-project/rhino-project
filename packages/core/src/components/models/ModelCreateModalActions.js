@@ -62,10 +62,8 @@ export const ModelCreateModalActionsBase = ({
   onModalClose,
   ...props
 }) => {
-  const {
-    ModelCreateModalActionSave,
-    ModelCreateModalActionCancel
-  } = useOverrides(defaultComponents, overrides);
+  const { ModelCreateModalActionSave, ModelCreateModalActionCancel } =
+    useOverrides(defaultComponents, overrides);
 
   const computedOverrides = useMemo(
     () => ({

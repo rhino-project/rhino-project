@@ -12,9 +12,10 @@ export const ModelFieldReferenceBase = ({ model, ...props }) => {
   const { path, limit = 10, offset, order } = props;
   const { attribute } = useModelAndAttributeFromPath(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
-  const identifier = useMemo(() => getIdentifierAttribute(refModel), [
-    refModel
-  ]);
+  const identifier = useMemo(
+    () => getIdentifierAttribute(refModel),
+    [refModel]
+  );
   const {
     field: { value, onChange, ...fieldProps },
     fieldState: { error }

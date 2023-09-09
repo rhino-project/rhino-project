@@ -3,9 +3,10 @@ import { useGlobalComponent } from 'rhino/hooks/overrides';
 import CellString from 'rhino/components/table/cells/CellString';
 
 export const ModelCellReferenceBase = ({ getValue, ...props }) => {
-  const syntheticGetValue = useCallback(() => getValue()?.display_name, [
-    getValue
-  ]);
+  const syntheticGetValue = useCallback(
+    () => getValue()?.display_name,
+    [getValue]
+  );
 
   return <CellString getValue={syntheticGetValue} {...props}></CellString>;
 };

@@ -7,10 +7,10 @@ export const ModelFieldLabelBase = ({ overrides, label, model, ...props }) => {
   const { path } = props;
   const { attribute } = useModelAndAttributeFromPath(model, path);
 
-  const modelLabel = useMemo(() => label || attribute.readableName, [
-    attribute,
-    label
-  ]);
+  const modelLabel = useMemo(
+    () => label || attribute.readableName,
+    [attribute, label]
+  );
 
   return (
     <FieldLabel

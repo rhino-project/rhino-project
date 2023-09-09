@@ -116,11 +116,10 @@ export const useModelPathCollection = (model) => {
 export const useModelKey = (model, action, extraKeys = []) => {
   const memoModel = useModel(model);
 
-  const queryKey = useMemo(() => [modelKey(memoModel, action), ...extraKeys], [
-    memoModel,
-    action,
-    extraKeys
-  ]);
+  const queryKey = useMemo(
+    () => [modelKey(memoModel, action), ...extraKeys],
+    [memoModel, action, extraKeys]
+  );
 
   return queryKey;
 };

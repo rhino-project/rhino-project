@@ -7,10 +7,10 @@ const DisplayImage = ({ accessor, altText, empty = '-', ...props }) => {
     field: { value: fieldValue }
   } = useController({ name: path });
 
-  const value = useMemo(() => (accessor ? accessor(fieldValue) : fieldValue), [
-    accessor,
-    fieldValue
-  ]);
+  const value = useMemo(
+    () => (accessor ? accessor(fieldValue) : fieldValue),
+    [accessor, fieldValue]
+  );
 
   if (!value) return <div>{empty}</div>;
 

@@ -67,8 +67,8 @@ export const useHasRoleOf = (role) => {
 export const useHasRoleIn = (roleList) => {
   const roles = useRoles();
 
-  return useMemo(() => roles.some((el) => roleList.includes(el)), [
-    roles,
-    roleList
-  ]);
+  return useMemo(
+    () => roles.some((el) => roleList.includes(el)),
+    [roles, roleList]
+  );
 };

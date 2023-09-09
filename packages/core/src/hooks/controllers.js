@@ -105,10 +105,10 @@ export const useModelIndexController = (options) => {
   const destroy = useModelDelete(model);
 
   // Pagination
-  const totalPages = useMemo(() => Math.ceil(query.total / limit), [
-    query.total,
-    limit
-  ]);
+  const totalPages = useMemo(
+    () => Math.ceil(query.total / limit),
+    [query.total, limit]
+  );
   const page = useMemo(() => Math.round(offset / limit + 0.5), [offset, limit]);
   const firstPage = useMemo(
     () =>
@@ -153,11 +153,10 @@ export const useModelIndexController = (options) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [syncUrl, filter, search, limit, offset, order]);
 
-  useEffect(() => setOffset(initialState.current.offset), [
-    filter,
-    search,
-    limit
-  ]);
+  useEffect(
+    () => setOffset(initialState.current.offset),
+    [filter, search, limit]
+  );
 
   return {
     model,
@@ -224,10 +223,10 @@ export const useModelShowController = (options) => {
   const update = useModelUpdate(model);
   const destroy = useModelDelete(model);
 
-  const pathsOrDefault = useMemo(() => paths || getViewablePaths(model), [
-    paths,
-    model
-  ]);
+  const pathsOrDefault = useMemo(
+    () => paths || getViewablePaths(model),
+    [paths, model]
+  );
   const computedPaths = usePaths(pathsOrDefault, resource);
 
   const schema = useSchema(model, computedPaths);
@@ -292,10 +291,10 @@ export const useModelCreateController = (options) => {
     queryOptions: { enabled: !!parentId, ...queryOptions }
   });
 
-  const pathsOrDefault = useMemo(() => paths || getCreatablePaths(model), [
-    paths,
-    model
-  ]);
+  const pathsOrDefault = useMemo(
+    () => paths || getCreatablePaths(model),
+    [paths, model]
+  );
   // FIXME: Do I need to pass the fake resource with the parent id?
   const computedPaths = usePaths(pathsOrDefault, {});
 
@@ -369,10 +368,10 @@ export const useModelEditController = (options) => {
 
   const { resource } = show;
 
-  const pathsOrDefault = useMemo(() => paths || getEditablePaths(model), [
-    paths,
-    model
-  ]);
+  const pathsOrDefault = useMemo(
+    () => paths || getEditablePaths(model),
+    [paths, model]
+  );
   const computedPaths = usePaths(pathsOrDefault, resource);
 
   const schema = useSchema(model, computedPaths);

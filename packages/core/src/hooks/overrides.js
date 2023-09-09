@@ -214,10 +214,10 @@ export const useGlobalComponent = (overrideName, BaseComponent, props) => {
 
   // FIXME: The top level model is not always available right now
   // ModelIndex, ModelShow, ModelCreate, ModelEdit have model as a prop still
-  const options = useMemo(() => (model ? { ...props, model } : props), [
-    model,
-    props
-  ]);
+  const options = useMemo(
+    () => (model ? { ...props, model } : props),
+    [model, props]
+  );
   const globalOverride = useGlobalOverrides(defaultComponents, {}, options);
   const GlobalOverrideComponent = globalOverride[overrideName];
   GlobalOverrideComponent.displayName = overrideName;
