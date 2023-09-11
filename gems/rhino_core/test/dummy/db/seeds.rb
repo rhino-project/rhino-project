@@ -7,8 +7,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
 if Rails.env.development?
-  user = User.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password')
+  user = User.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password', confirmed_at: Time.current)
+
   5.times do
     Category.create!(name: FFaker::Book.unique.genre)
   end
