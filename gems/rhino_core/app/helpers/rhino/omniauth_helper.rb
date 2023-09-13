@@ -4,6 +4,17 @@ module Rhino
   module OmniauthHelper
     module_function
 
+    def strategies_metadata
+      params = { resource_class: "User" }
+
+      strategies.each_with_object([]) do |strategy, array|
+        array << {
+          name: strategy,
+          path: "#{::OmniAuth.config.path_prefix}/#{strategy}?#{params.to_param}"
+        }
+      end
+    end
+
     def strategies
       strategies = ENV.keys.filter_map do |env|
         match = /AUTH_(.*)_CLIENT_ID/.match(env)
@@ -36,9 +47,11 @@ module Rhino
     end
 
     def azure_info
-      [client_id: ENV["AUTH_AZURE_OAUTH2_CLIENT_ID"],
-       client_secret: ENV["AUTH_AZURE_OAUTH2_SECRET_KEY"],
-       tenant_id: ENV["AUTH_AZURE_OAUTH2_TENANT_ID"]]
+      [
+        client_id: ENV["AUTH_AZURE_OAUTH2_CLIENT_ID"],
+        client_secret: ENV["AUTH_AZURE_OAUTH2_SECRET_KEY"],
+        tenant_id: ENV["AUTH_AZURE_OAUTH2_TENANT_ID"]
+      ]
     end
 
     def auth0_info
