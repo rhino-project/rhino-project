@@ -27,8 +27,8 @@ if Rails.env.development?
   OgTag.create!(name: 'fb')
   OgTag.create!(name: 'twitter')
 
-  user = User.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password')
-  user2 = User.create!(email: 'other@example.com', password: 'password', password_confirmation: 'password')
+  user = User.create!(email: 'test@example.com', password: 'password', password_confirmation: 'password', confirmed_at: Time.current)
+  user2 = User.create!(email: 'other@example.com', password: 'password', password_confirmation: 'password', confirmed_at: Time.current)
 
   org = []
   org << Organization.create!(name: "Single User Org")
