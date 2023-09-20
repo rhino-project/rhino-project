@@ -1,7 +1,7 @@
 import qs from 'qs';
-import { useHistory, useLocation } from 'react-router-dom';
-import { useBaseOwnerId } from './owner';
 import { useMemo } from 'react';
+import { useLocation, useNavigate } from 'react-router';
+import { useBaseOwnerId } from './owner';
 
 export const useParsedSearch = () => {
   const { search } = useLocation();
@@ -21,13 +21,13 @@ export const useBackHistoryLink = () => {
 };
 
 export const useBackHistory = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const backLink = useBackHistoryLink();
 
   // FIXME Should this be a push or a replace?
   return () => {
     if (backLink) {
-      history.push(backLink);
+      navigate(backLink);
     }
   };
 };
@@ -47,13 +47,13 @@ export const useBaseOwnerPath = () => {
 };
 
 export const useBaseOwnerNavigation = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const baseOwnerPath = useBaseOwnerPath();
   const currentBaseOwnerId = useBaseOwnerId();
 
   return {
     push: (path, baseOwnerId = currentBaseOwnerId) => {
-      history.push(baseOwnerPath.build(path, baseOwnerId));
+      navigate(baseOwnerPath.build(path, baseOwnerId));
     }
   };
 };

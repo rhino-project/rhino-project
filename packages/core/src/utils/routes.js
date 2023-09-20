@@ -1,20 +1,22 @@
 export const getRootPath = () => '/';
 
-export const getSessionCreatePath = () => '/signin';
+export const getAuthenticatedAppPath = () => '/main';
+export const getNonAuthenticatedAppPath = () => '/auth';
 
-export const getUserCreatePath = () => '/signup';
+export const getSessionCreatePath = () => 'signin';
 
-export const getForgotPasswordPath = () => '/forgot-password';
+export const getUserCreatePath = () => 'signup';
 
-export const getSettingsPath = () => '/settings';
+export const getForgotPasswordPath = () => 'forgot-password';
 
-export const getAccountSettingsPath = () => '/account/settings';
+export const getSettingsPath = () => 'settings';
 
-export const getModelIndexPath = (model) => `/${model.pluralName}`;
+export const getAccountSettingsPath = () => 'account/settings';
 
-export const getModelShowPath = (model, id) => `/${model.pluralName}/${id}`;
+export const getModelIndexPath = (model) => `${model.pluralName}`;
 
-export const getModelCreatePath = (model) => `/${model.pluralName}/new`;
+export const getModelShowPath = (model, id) => `${model.pluralName}/${id}`;
 
-export const getModelEditPath = (model, id) =>
-  `/${model.pluralName}/${id}/edit`;
+export const getModelCreatePath = (model) => `${model.pluralName}/new`;
+
+export const getModelEditPath = (model, id) => `${model.pluralName}/${id}/edit`;

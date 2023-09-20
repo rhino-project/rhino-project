@@ -1,9 +1,11 @@
 import { useMemo } from 'react';
 import {
   getAccountSettingsPath,
+  getAuthenticatedAppPath,
   getForgotPasswordPath,
   getModelEditPath,
   getModelIndexPath,
+  getNonAuthenticatedAppPath,
   getRootPath,
   getSessionCreatePath,
   getSettingsPath,
@@ -13,9 +15,17 @@ import { getModelCreatePath, getModelShowPath } from '../utils/routes';
 import { useModel } from './models';
 
 export const useRootPath = () => useMemo(() => getRootPath(), []);
+export const useAuthenticatedAppPath = () =>
+  useMemo(() => getAuthenticatedAppPath(), []);
 
-export const useSessionCreatePath = () =>
-  useMemo(() => getSessionCreatePath(), []);
+export const useSessionCreatePath = ({ absolute } = { absolute: false }) =>
+  useMemo(
+    () =>
+      absolute
+        ? `${getNonAuthenticatedAppPath()}/${getSessionCreatePath()}`
+        : getSessionCreatePath(),
+    [absolute]
+  );
 
 export const useUserCreatePath = () => useMemo(() => getUserCreatePath(), []);
 

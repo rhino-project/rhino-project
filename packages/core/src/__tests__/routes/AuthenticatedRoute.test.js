@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
-import { createMemoryHistory } from 'history';
-import { Route, Router } from 'react-router-dom';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import AuthenticatedRoute from 'rhino/routes/AuthenticatedRoute';
 import * as routes from 'rhino/utils/routes';
 
@@ -37,26 +36,36 @@ vi.mock('rhino/utils/storage', () => ({
 }));
 
 vi.spyOn(routes, 'getSessionCreatePath').mockImplementation(
-  () => '/__mockSessionCreate__'
+  () => '__mockSessionCreate__'
+);
+vi.spyOn(routes, 'getNonAuthenticatedAppPath').mockImplementation(
+  () => '/__notAuthenticated__'
 );
 
+function Wrapper({ children }) {
+  return (
+    <MemoryRouter initialEntries={['/__authenticated__']}>
+      <Routes>
+        <Route
+          path="/__authenticated__"
+          element={<AuthenticatedRoute>{children}</AuthenticatedRoute>}
+        />
+        <Route
+          path="/__mockPrevPath__"
+          element={<div>__mockPrevPathRoute__</div>}
+        />
+        <Route path="/__notAuthenticated__">
+          <Route
+            path="__mockSessionCreate__"
+            element={<div>__mockSessionCreateRoute__</div>}
+          />
+        </Route>
+      </Routes>
+    </MemoryRouter>
+  );
+}
+
 describe('routes/AuthenticatedRoute', () => {
-  const history = createMemoryHistory();
-
-  const Wrapper = ({ children }) => {
-    return (
-      <Router history={history}>
-        <AuthenticatedRoute>{children}</AuthenticatedRoute>
-        <Route path="/__mockPrevPath__">
-          <div>__mockPrevPathRoute__</div>
-        </Route>
-        <Route path="/__mockSessionCreate__">
-          <div>__mockSessionCreateRoute__</div>
-        </Route>
-      </Router>
-    );
-  };
-
   describe('initializing', () => {
     test('renders SplashScreen', () => {
       mockAuth = initializingState;

@@ -4,7 +4,6 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { NavItem, NavSection } from 'rhino/components/nav';
-import { useBaseOwnerPath } from 'rhino/hooks/history';
 import { getBaseOwnedModels } from 'rhino/utils/models';
 import { getModelIndexPath } from 'rhino/utils/routes';
 
@@ -16,7 +15,6 @@ const useNavModels = () => {
 };
 
 const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
-  const baseOwnerPath = useBaseOwnerPath();
   const models = useNavModels().filter(
     (e) => e.model !== 'users_role' && e.model !== 'users_role_invite'
   );
@@ -30,7 +28,7 @@ const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
             <NavItem
               key={m.model}
               title={m.pluralReadableName}
-              to={baseOwnerPath.build(modelsRoute(m))}
+              to={modelsRoute(m)}
               icon="list"
               className="px-3"
               extraClass={itemClass}

@@ -1,14 +1,14 @@
-import React, { useMemo } from 'react';
-import { Breadcrumb } from 'reactstrap';
 import { format, formatDistance } from 'date-fns';
+import { useMemo } from 'react';
+import { Breadcrumb } from 'reactstrap';
 
-import { getParentModel, isBaseOwned } from 'rhino/utils/models';
+import { capitalize } from 'lodash';
 import { NavLink } from 'react-router-dom';
 import { Flag } from 'rhino/components/models/fields/ModelFieldCountry';
-import { capitalize } from 'lodash';
-import { getModelIndexPath, getModelShowPath } from './routes';
 import { useModel } from 'rhino/hooks/models';
+import { getParentModel, isBaseOwned } from 'rhino/utils/models';
 import BreadcrumbItemWrapper from '../components/breadcrumbs';
+import { getModelIndexPath, getModelShowPath } from './routes';
 
 export const useModelClassNames = (baseName, model, attribute = null) => {
   // FIXME: This is a hack for 2.0 legacy support - should be sourced from the model context
@@ -160,7 +160,7 @@ export const breadcrumbChildrenFor = (model, resource, individual = false) => {
   if (isBaseOwned(model)) {
     const path = getModelIndexPath(model);
     result = [
-      <BreadcrumbItemWrapper key={path} tag={NavLink} to={path} exact>
+      <BreadcrumbItemWrapper key={path} tag={NavLink} to={path} end>
         {model.pluralReadableName}
       </BreadcrumbItemWrapper>
     ];
@@ -173,7 +173,7 @@ export const breadcrumbChildrenFor = (model, resource, individual = false) => {
   if (individual) {
     const path = getModelShowPath(model, resource.id);
     result.push(
-      <BreadcrumbItemWrapper key={path} tag={NavLink} to={path} exact>
+      <BreadcrumbItemWrapper key={path} tag={NavLink} to={path} end>
         {resource['display_name']}
       </BreadcrumbItemWrapper>
     );

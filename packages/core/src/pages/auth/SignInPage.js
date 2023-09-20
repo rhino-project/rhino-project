@@ -26,7 +26,8 @@ const SignInPage = () => {
       <p>Enter your email address and password to sign in.</p>
       {allowSignup && (
         <p>
-          New to {APP_NAME}? <NavLink to={userCreatePath}>Sign Up</NavLink>
+          New to {APP_NAME}?{' '}
+          <NavLink to={`../${userCreatePath}`}>Sign Up</NavLink>
         </p>
       )}
     </>
@@ -40,7 +41,7 @@ const SignInPage = () => {
         primaryAction="Sign In"
         secondaryAction={{
           content: 'Forgot Password?',
-          url: forgotPasswordPath
+          url: `../${forgotPasswordPath}`
         }}
         loading={isLoading}
         errors={error?.errors}

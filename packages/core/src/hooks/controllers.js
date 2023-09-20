@@ -1,10 +1,16 @@
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
 import qs from 'qs';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { DEFAULT_SORT, MAX_PAGES, PAGE_SIZE } from 'config';
 
-import withParams from 'rhino/routes/withParams';
+import { filter, isEqual, isString, merge } from 'lodash';
+import { useForm } from 'react-hook-form';
+import { ModelCreateContext } from 'rhino/components/models/ModelCreateProvider';
+import { ModelEditContext } from 'rhino/components/models/ModelEditProvider';
+import { ModelIndexContext } from 'rhino/components/models/ModelIndexProvider';
+import { ModelShowContext } from 'rhino/components/models/ModelShowProvider';
+import { useModel } from 'rhino/hooks/models';
 import {
   useModelCreate,
   useModelDelete,
@@ -12,21 +18,15 @@ import {
   useModelShow,
   useModelUpdate
 } from 'rhino/hooks/queries';
-import { useModel } from 'rhino/hooks/models';
-import { filter, isEqual, isString, merge } from 'lodash';
-import { ModelIndexContext } from 'rhino/components/models/ModelIndexProvider';
-import { ModelShowContext } from 'rhino/components/models/ModelShowProvider';
-import { ModelCreateContext } from 'rhino/components/models/ModelCreateProvider';
-import { ModelEditContext } from 'rhino/components/models/ModelEditProvider';
+import withParams from 'rhino/routes/withParams';
 import { getParentModel } from 'rhino/utils/models';
+import { useDebouncedCallback } from 'use-debounce';
 import {
   getCreatableAttributes,
   getUpdatableAttributes
 } from '../utils/models';
 import { useDefaultValues, useResolver, useSchema } from './form';
-import { useForm } from 'react-hook-form';
 import { usePaths } from './paths';
-import { useDebouncedCallback } from 'use-debounce';
 
 export const useModelIndexContext = () => {
   const context = useContext(ModelIndexContext);
@@ -43,7 +43,7 @@ export const useModelIndexController = (options) => {
   const model = useModel(options.model);
   const { syncUrl = true } = options;
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const location = useLocation();
 
   const defaultState = useRef({
@@ -136,9 +136,9 @@ export const useModelIndexController = (options) => {
       isEqual({ filter, limit, offset, order, search }, defaultState.current)
     ) {
       // If the current state is the same as the default state, remove the query params from the URL but only if they are not already empty
-      if (location.search) history.push(withParams(location.pathname, {}));
+      if (location.search) navigate(withParams(location.pathname, {}));
     } else {
-      history.push(
+      navigate(
         withParams(location.pathname, {
           filter,
           limit,

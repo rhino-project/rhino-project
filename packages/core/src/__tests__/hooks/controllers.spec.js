@@ -1,7 +1,8 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MemoryRouter, Route } from 'react-router-dom';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
+import { createWrapper } from '__tests__/shared/helpers';
 import { DEFAULT_SORT, PAGE_SIZE } from 'config';
 import {
   useModelCreateContext,
@@ -10,7 +11,6 @@ import {
   useModelIndexController,
   useModelShowContext
 } from 'rhino/hooks/controllers';
-import { createWrapper } from '__tests__/shared/helpers';
 
 // https://dev.to/alexclaes/test-a-hook-throwing-errors-in-react-18-with-renderhook-from-testing-library-20g8
 describe('useModelIndexContext', () => {
@@ -31,21 +31,18 @@ describe('useModelIndexContext', () => {
 });
 
 describe('useModelIndexController', () => {
-  let testHistory;
-
+  const Dummy = () => {
+    return null;
+  };
   const Wrapper = ({ children, ...props }) => {
     const queryClient = new QueryClient();
 
     return (
       <MemoryRouter {...props}>
         <QueryClientProvider client={queryClient}>
-          <Route
-            path="*"
-            render={({ history }) => {
-              testHistory = history;
-              return null;
-            }}
-          />
+          <Routes>
+            <Route path="*" element={<Dummy />} />
+          </Routes>
           {children}
         </QueryClientProvider>
       </MemoryRouter>
@@ -99,7 +96,7 @@ describe('useModelIndexController', () => {
         initialEntries: ['/users']
       }
     });
-    expect(testHistory.length).toBe(1);
+    expect(history.length).toBe(1);
   });
 
   it('takes limit, offset, order and search params from url over passed in base parameters', () => {
