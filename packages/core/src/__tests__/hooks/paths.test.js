@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 import { useRoles } from '../../../rhino/hooks/owner';
 import { usePaths } from '../../../rhino/hooks/paths';
 

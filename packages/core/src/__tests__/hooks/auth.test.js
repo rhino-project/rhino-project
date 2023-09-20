@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderHook } from '@testing-library/react-hooks/dom';
+import { renderHook } from '@testing-library/react';
 import { AuthContext } from 'rhino/contexts/AuthContext';
 import {
   useAuth,

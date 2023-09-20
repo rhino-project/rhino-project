@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks/dom';
+import { renderHook } from '@testing-library/react';
 import { useContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import routePaths from 'rhino/routes';
@@ -21,7 +21,7 @@ vi.mock('rhino/hooks/owner', async () => {
   };
 });
 
-let mockUseBaseOwnerNavigationPushFn = vi.fn(() => {});
+const mockUseBaseOwnerNavigationPushFn = vi.fn(() => {});
 vi.mock('rhino/hooks/history', () => ({
   useBaseOwnerNavigation: () => ({
     push: mockUseBaseOwnerNavigationPushFn
@@ -92,13 +92,13 @@ describe('BaseOwnerContext', () => {
         wrapper: Wrapper
       }
     );
-    expect(result.current).toBe(undefined);
+    expect(result.current).toBe(null);
 
     mockUseModelShowResult.mockImplementation(() => ({
       isInitialLoading: true
     }));
     rerender();
-    expect(result.current).toBe(undefined);
+    expect(result.current).toBe(null);
     return { result, rerender };
   }
 
@@ -132,7 +132,7 @@ describe('BaseOwnerContext', () => {
     });
 
     test('Does not render children while no baseOwner is set', async () => {
-      expect(result.current).toBe(undefined);
+      expect(result.current).toBe(null);
     });
 
     test('Emits context normally when there is a valid baseOwner', async () => {
@@ -171,7 +171,7 @@ describe('BaseOwnerContext', () => {
       emitFailureResult();
       rerender();
       // BaseOwnerProvider only renders children when successful, so the useContext hook rendered inside BaseOwnerProvider doesn't run and we don't get any context
-      expect(result.current).toBe(undefined);
+      expect(result.current).toBe(null);
     });
 
     test('Sets baseOwner to the first one in the list when useBaseOwnerId is null', async () => {
@@ -247,7 +247,7 @@ describe('BaseOwnerContext', () => {
     });
 
     test('Does not render children while no baseOwner is set', async () => {
-      expect(result.current).toBe(undefined);
+      expect(result.current).toBe(null);
     });
 
     test('Emits context normally when there is a valid baseOwner', async () => {
@@ -285,8 +285,9 @@ describe('BaseOwnerContext', () => {
     test('Does not render children when failure', async () => {
       emitFailureResult();
       rerender();
+
       // BaseOwnerProvider only renders children when successful, so the useContext hook rendered inside BaseOwnerProvider doesn't run and we don't get any context
-      expect(result.current).toBe(undefined);
+      expect(result.current).toBe(null);
     });
 
     test('Sets baseOwner to the user itself', async () => {
@@ -319,8 +320,7 @@ describe('BaseOwnerContext', () => {
 
     test("Does NOT navigate if the base owner id from URL is the same as the user's", async () => {
       // resetting number of calls to this mock
-      mockUseBaseOwnerNavigationPushFn = vi.fn(() => {});
-
+      const mockUseBaseOwnerNavigationPushFn = vi.fn(() => {});
       emitSuccessResult({
         mockBaseOwnerId: 898989,
         mockUser: { ...user, id: 898989 }

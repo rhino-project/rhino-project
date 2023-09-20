@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks/dom';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   useModelInvalidateIndex,
@@ -195,7 +195,7 @@ describe('useModelCreate', () => {
   test('selects axios data correctly and provides legacy support', async () => {
     const onSuccess = vi.fn();
 
-    const { result, waitFor } = renderHook(() => useModelCreate('user'), {
+    const { result } = renderHook(() => useModelCreate('user'), {
       wrapper: wrapper(queryClient)
     });
 
@@ -232,12 +232,12 @@ describe('useModelUpdate', () => {
   test('selects axios data correctly and provides legacy support', async () => {
     const onSuccess = vi.fn();
 
-    const { result, waitFor } = renderHook(() => useModelUpdate('user'), {
+    const { result } = renderHook(() => useModelUpdate('user'), {
       wrapper: wrapper(queryClient)
     });
 
-    result.current.mutate({ id: 6, test: 'foo' }, { onSuccess });
-    await waitFor(() => result.current.isSuccess);
+    act(() => result.current.mutate({ id: 6, test: 'foo' }, { onSuccess }));
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     // Backwards compat support
     console.warn = vi.fn();
@@ -269,7 +269,7 @@ describe('useModelDelete', () => {
   test('selects axios data correctly and provides legacy support', async () => {
     const onSuccess = vi.fn();
 
-    const { result, waitFor } = renderHook(() => useModelDelete('user'), {
+    const { result } = renderHook(() => useModelDelete('user'), {
       wrapper: wrapper(queryClient)
     });
 
@@ -302,16 +302,17 @@ describe('useModelShow', () => {
   test('selects axios data correctly and provides legacy support', async () => {
     const onSuccess = vi.fn();
 
-    const { result, waitFor } = renderHook(
+    const { result } = renderHook(
       () => useModelShow('user', 1, { queryOptions: { onSuccess } }),
       {
         wrapper: wrapper(queryClient)
       }
     );
 
-    await waitFor(() => result.current.isSuccess);
-
-    expect(result.current.data).toEqual({ test: 'test' });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+      expect(result.current.data).toEqual({ test: 'test' });
+    });
 
     // Backwards compat support
     console.warn = vi.fn();
@@ -438,16 +439,14 @@ describe('useModelIndex', () => {
       limit: 10,
       offset: 10
     };
-    const { result, waitFor } = renderHook(
-      () => useModelIndex('user', options),
-      {
-        wrapper: wrapper(queryClient)
-      }
-    );
+    const { result } = renderHook(() => useModelIndex('user', options), {
+      wrapper: wrapper(queryClient)
+    });
 
-    await waitFor(() => result.current.isSuccess);
-
-    expect(result.current.data).toEqual({ test: 'test' });
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+      expect(result.current.data).toEqual({ test: 'test' });
+    });
 
     // Backwards compat support
     console.warn = vi.fn();

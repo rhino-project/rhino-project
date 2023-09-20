@@ -1,5 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
-import { createMemoryHistory } from 'history';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Route, Router } from 'react-router-dom';
 
@@ -11,13 +10,14 @@ import {
   useModelIndexController,
   useModelShowContext
 } from 'rhino/hooks/controllers';
-import { act } from 'react-test-renderer';
 
+// https://dev.to/alexclaes/test-a-hook-throwing-errors-in-react-18-with-renderhook-from-testing-library-20g8
 describe('useModelIndexContext', () => {
-  it('throws and error with no context', () => {
-    const { result } = renderHook(() => useModelIndexContext());
-    expect(() => result.current).toThrow(
-      'useModelIndexContext must be used within a ModelIndexProvider'
+  it('throws and error with no context', async () => {
+    expect(() =>
+      renderHook(() => useModelIndexContext()).toThrow(
+        'useModelIndexContext must be used within a ModelIndexProvider'
+      )
     );
   });
 });
@@ -25,7 +25,7 @@ describe('useModelIndexContext', () => {
 describe('useModelIndexController', () => {
   let testHistory, testLocation;
 
-  const wrapper = ({ children, ...props }) => {
+  const Wrapper = ({ children, ...props }) => {
     const queryClient = new QueryClient();
 
     return (
@@ -45,11 +45,18 @@ describe('useModelIndexController', () => {
     );
   };
 
+  // See note at https://testing-library.com/docs/react-testing-library/api#renderhook-options-initialprops
+  const createWrapper = (Wrapper, props) => {
+    return function CreatedWrapper({ children }) {
+      return <Wrapper {...props}>{children}</Wrapper>;
+    };
+  };
+
   it('generates default params with no passed in base parameters', () => {
     const { result } = renderHook(
       () => useModelIndexController({ model: 'user' }),
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
     expect(result.current).toMatchObject({
@@ -73,7 +80,7 @@ describe('useModelIndexController', () => {
           search: 'baz'
         }),
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
     expect(result.current).toMatchObject({
@@ -87,7 +94,7 @@ describe('useModelIndexController', () => {
 
   it('does not push empty search when search is already empty', () => {
     renderHook(() => useModelIndexController({ model: 'user' }), {
-      wrapper,
+      wrapper: Wrapper,
       initialProps: {
         initialEntries: ['/users']
       }
@@ -107,12 +114,12 @@ describe('useModelIndexController', () => {
           search: 'baz'
         }),
       {
-        wrapper,
-        initialProps: {
+        wrapper: createWrapper(Wrapper, {
           initialEntries: ['/users?limit=17&offset=20&order=foo&search=bar']
-        }
+        })
       }
     );
+
     expect(result.current).toMatchObject({
       filter: { blog: { id: 1 } },
       limit: 17,
@@ -127,10 +134,9 @@ describe('useModelIndexController', () => {
       () =>
         useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
       {
-        wrapper,
-        initialProps: {
+        wrapper: createWrapper(Wrapper, {
           initialEntries: ['/users?filter[blog_post][published]=true']
-        }
+        })
       }
     );
     expect(result.current).toMatchObject({
@@ -147,10 +153,9 @@ describe('useModelIndexController', () => {
       () =>
         useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
       {
-        wrapper,
-        initialProps: {
+        wrapper: createWrapper(Wrapper, {
           initialEntries: ['/users?filter[blog][published]=true']
-        }
+        })
       }
     );
     expect(result.current).toMatchObject({
@@ -162,23 +167,25 @@ describe('useModelIndexController', () => {
     });
   });
 
-  it('merges nested filters from url with passed in base filter having precedence', () => {
+  it('merges nested filters from url with passed in base filter having precedence', async () => {
     const { result } = renderHook(
       () =>
         useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
       {
-        wrapper,
-        initialProps: {
+        wrapper: createWrapper(Wrapper, {
           initialEntries: ['/?filter[blog][published]=true&filter[blog][id]=2']
-        }
+        })
       }
     );
-    expect(result.current).toMatchObject({
-      filter: { blog: { id: 1, published: 'true' } },
-      limit: PAGE_SIZE,
-      offset: 0,
-      order: DEFAULT_SORT,
-      search: ''
+
+    await waitFor(() => {
+      expect(result.current).toMatchObject({
+        filter: { blog: { id: 1, published: 'true' } },
+        limit: PAGE_SIZE,
+        offset: 0,
+        order: DEFAULT_SORT,
+        search: ''
+      });
     });
   });
 
@@ -190,7 +197,7 @@ describe('useModelIndexController', () => {
           syncUrl: false
         }),
       {
-        wrapper,
+        wrapper: Wrapper,
         initialProps: {
           initialEntries: [
             '/?filter[blog][published]=true&offset=1&limit=2&search=bar&order=-baz'
@@ -212,7 +219,7 @@ describe('useModelIndexController', () => {
       () =>
         useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
       {
-        wrapper
+        wrapper: Wrapper
       }
     );
     expect(result.current).toMatchObject({
@@ -233,27 +240,30 @@ describe('useModelIndexController', () => {
 
 describe('useModelShowContext', () => {
   it('throws and error with no context', () => {
-    const { result } = renderHook(() => useModelShowContext());
-    expect(() => result.current).toThrow(
-      'useModelShowContext must be used within a ModelShowProvider'
+    expect(() =>
+      renderHook(() => useModelShowContext()).toThrow(
+        'useModelShowContext must be used within a ModelShowProvider'
+      )
     );
   });
 });
 
 describe('useModelCreateContext', () => {
   it('throws and error with no context', () => {
-    const { result } = renderHook(() => useModelCreateContext());
-    expect(() => result.current).toThrow(
-      'useModelCreateContext must be used within a ModelCreateProvider'
+    expect(() =>
+      renderHook(() => useModelCreateContext()).toThrow(
+        'useModelCreateContext must be used within a ModelCreateProvider'
+      )
     );
   });
 });
 
 describe('useModelEditContext', () => {
   it('throws and error with no context', () => {
-    const { result } = renderHook(() => useModelEditContext());
-    expect(() => result.current).toThrow(
-      'useModelEditContext must be used within a ModelEditProvider'
+    expect(() =>
+      renderHook(() => useModelEditContext()).toThrow(
+        'useModelEditContext must be used within a ModelEditProvider'
+      )
     );
   });
 });
