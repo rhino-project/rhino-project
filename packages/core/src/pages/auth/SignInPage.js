@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-
 import { APP_NAME } from 'config';
-import { useParsedSearch } from 'rhino/hooks/history';
-import { oauthProviders } from 'rhino/utils/models';
-import { useSignInAction, useSignupAllowed } from 'rhino/queries/auth';
-import AuthPage from './AuthPage';
-import AuthForm from 'rhino/components/auth/AuthForm';
+import { NavLink } from 'react-router-dom';
 import { SuccessAlert } from 'rhino/components/alerts';
+import AuthForm from 'rhino/components/auth/AuthForm';
 import OmniAuthButton from 'rhino/components/buttons/omniauth';
+import { useParsedSearch } from 'rhino/hooks/history';
 import { useForgotPasswordPath, useUserCreatePath } from 'rhino/hooks/routes';
+import { useSignInAction, useSignupAllowed } from 'rhino/queries/auth';
+import { oauthProviders } from 'rhino/utils/models';
+import AuthPage from './AuthPage';
 
 const SignInPage = () => {
   const userCreatePath = useUserCreatePath();
@@ -19,11 +17,9 @@ const SignInPage = () => {
 
   const { mutate: loginMutation, isLoading, error } = useSignInAction();
 
-  const [isAuthenticating, setIsAuthenticating] = useState('');
   const confirmed = queryParams?.['account_confirmation_success'] === 'true';
 
   const handleSubmit = (formValues) => loginMutation(formValues);
-  const handleAuth = (value) => setIsAuthenticating(value);
 
   const authDesc = (
     <>
@@ -54,10 +50,9 @@ const SignInPage = () => {
       <div className="d-flex justify-content-center">
         {oauthProviders().map((p) => (
           <OmniAuthButton
-            key={p}
-            provider={p}
-            loading={isAuthenticating}
-            handleAuth={handleAuth}
+            key={p.name}
+            provider={p.name}
+            providerPath={p.path}
           />
         ))}
       </div>
