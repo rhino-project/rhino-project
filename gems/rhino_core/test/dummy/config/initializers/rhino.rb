@@ -22,5 +22,5 @@ Rhino.setup do |config|
   # The list of resources exposed in the API
   config.resources += ['User', 'Account']
   config.resources += ['Blog', 'BlogPost', 'BlogDummy', 'BlogsCategory', 'Category', 'OgMetaTag', 'GoogleSheet']
-  config.resources += ['EveryField', 'EveryMany']
+  config.resources += ['EveryField', 'EveryFieldDummy', 'EveryMany']
 end
