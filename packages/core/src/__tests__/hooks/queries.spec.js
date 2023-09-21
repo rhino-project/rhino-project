@@ -15,6 +15,7 @@ import {
 import modelLoader from 'rhino/models';
 import api from '../../shared/modelFixtures';
 import * as network from '../../../rhino/lib/networking';
+import { createWrapper } from '__tests__/shared/helpers';
 
 const testQueryClient = () =>
   new QueryClient({
@@ -41,11 +42,9 @@ const MODEL_INDEX_KEY = 'models-users-index';
 const MODEL_SHOW_KEY = 'models-users-show';
 const MODEL_TEST_KEYS = ['test-key1', 'test-key2'];
 
-const wrapper = (queryClient) => {
-  return ({ children }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-};
+const Wrapper = ({ children, ...props }) => (
+  <QueryClientProvider {...props}>{children}</QueryClientProvider>
+);
 
 describe('useModelKey', () => {
   test('generates model key for index action', () => {
@@ -109,7 +108,7 @@ describe('useModelInvalidateIndex', () => {
         current: { invalidate }
       }
     } = renderHook(() => useModelInvalidateIndex('user'), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     invalidate();
@@ -125,7 +124,7 @@ describe('useModelInvalidateIndex', () => {
         current: { invalidate }
       }
     } = renderHook(() => useModelInvalidateIndex('user', MODEL_TEST_KEYS), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     invalidate();
@@ -151,7 +150,7 @@ describe('useModelInvalidateShow', () => {
         current: { invalidate }
       }
     } = renderHook(() => useModelInvalidateShow('user'), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     invalidate(1);
@@ -168,7 +167,7 @@ describe('useModelInvalidateShow', () => {
         current: { invalidate }
       }
     } = renderHook(() => useModelInvalidateShow('user', MODEL_TEST_KEYS), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     invalidate(1);
@@ -196,7 +195,7 @@ describe('useModelCreate', () => {
     const onSuccess = vi.fn();
 
     const { result } = renderHook(() => useModelCreate('user'), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     result.current.mutate({ test: 'foo' }, { onSuccess });
@@ -233,7 +232,7 @@ describe('useModelUpdate', () => {
     const onSuccess = vi.fn();
 
     const { result } = renderHook(() => useModelUpdate('user'), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     act(() => result.current.mutate({ id: 6, test: 'foo' }, { onSuccess }));
@@ -270,7 +269,7 @@ describe('useModelDelete', () => {
     const onSuccess = vi.fn();
 
     const { result } = renderHook(() => useModelDelete('user'), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     result.current.mutate(6, { onSuccess });
@@ -305,7 +304,7 @@ describe('useModelShow', () => {
     const { result } = renderHook(
       () => useModelShow('user', 1, { queryOptions: { onSuccess } }),
       {
-        wrapper: wrapper(queryClient)
+        wrapper: createWrapper(Wrapper, { client: queryClient })
       }
     );
 
@@ -337,7 +336,7 @@ describe('useModelIndex', () => {
 
   test('sets default non-legacy params', () => {
     renderHook(() => useModelIndex('user'), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {});
@@ -352,7 +351,7 @@ describe('useModelIndex', () => {
       offset: 10
     };
     renderHook(() => useModelIndex('user', options), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
@@ -364,7 +363,7 @@ describe('useModelIndex', () => {
 
   test('does not insert search, filter, order, limit, offset as undefined when not passed', () => {
     renderHook(() => useModelIndex('user', {}), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {});
@@ -380,7 +379,7 @@ describe('useModelIndex', () => {
     };
 
     renderHook(() => useModelIndex('user', options), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
@@ -400,7 +399,7 @@ describe('useModelIndex', () => {
     };
 
     renderHook(() => useModelIndex('user', options), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
@@ -421,7 +420,7 @@ describe('useModelIndex', () => {
       }
     };
     renderHook(() => useModelIndex('user', options), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
@@ -440,7 +439,7 @@ describe('useModelIndex', () => {
       offset: 10
     };
     const { result } = renderHook(() => useModelIndex('user', options), {
-      wrapper: wrapper(queryClient)
+      wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
     await waitFor(() => {

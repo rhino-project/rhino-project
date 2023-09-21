@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import { Route, Router } from 'react-router-dom';
 import AuthenticatedRoute from 'rhino/routes/AuthenticatedRoute';
@@ -41,11 +41,10 @@ vi.spyOn(routes, 'getSessionCreatePath').mockImplementation(
 );
 
 describe('routes/AuthenticatedRoute', () => {
-  let Wrapper;
+  const history = createMemoryHistory();
 
-  beforeEach(() => {
-    const history = createMemoryHistory();
-    Wrapper = ({ children }) => (
+  const Wrapper = ({ children }) => {
+    return (
       <Router history={history}>
         <AuthenticatedRoute>{children}</AuthenticatedRoute>
         <Route path="/__mockPrevPath__">
@@ -56,16 +55,14 @@ describe('routes/AuthenticatedRoute', () => {
         </Route>
       </Router>
     );
-  });
+  };
 
   describe('initializing', () => {
     test('renders SplashScreen', () => {
       mockAuth = initializingState;
-      const { queryByText } = render(
-        <Wrapper>
-          <div>should not render this</div>
-        </Wrapper>
-      );
+      const { queryByText } = render(<div>should not render this</div>, {
+        wrapper: Wrapper
+      });
       expect(queryByText('__mockSplashScreen__')).toBeTruthy();
     });
   });
@@ -75,11 +72,9 @@ describe('routes/AuthenticatedRoute', () => {
       mockAuth = authenticatedState;
       mockPrevPath = '';
       mockUnsetPrevPathFn = vi.fn();
-      const { queryByText } = render(
-        <Wrapper>
-          <div>__should render children__</div>
-        </Wrapper>
-      );
+      const { queryByText } = render(<div>__should render children__</div>, {
+        wrapper: Wrapper
+      });
       expect(queryByText('__should render children__')).toBeTruthy();
     });
 
@@ -89,11 +84,9 @@ describe('routes/AuthenticatedRoute', () => {
         mockAuth = authenticatedState;
         mockPrevPath = '/__mockPrevPath__';
         mockUnsetPrevPathFn = vi.fn();
-        const rendered = render(
-          <Wrapper>
-            <div>should not render this</div>
-          </Wrapper>
-        );
+        const rendered = render(<div>should not render this</div>, {
+          wrapper: Wrapper
+        });
         queryByText = rendered.queryAllByText;
       });
 
@@ -114,14 +107,10 @@ describe('routes/AuthenticatedRoute', () => {
         mockPrevPath = null;
         mockSetPrevPathFn = vi.fn();
         mockUnsetPrevPathFn = vi.fn();
-        const component = (dummyProp) => (
-          <Wrapper dummyProp={dummyProp}>
-            <div>any component</div>
-          </Wrapper>
-        );
-        const rendered = render(component(0));
+
+        const rendered = render(<div>any component</div>, { wrapper: Wrapper });
         mockAuth = unauthenticatedState;
-        rendered.rerender(component(1));
+        rendered.rerender();
         queryByText = rendered.queryByText;
       });
 

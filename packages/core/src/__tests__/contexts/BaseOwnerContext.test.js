@@ -92,13 +92,13 @@ describe('BaseOwnerContext', () => {
         wrapper: Wrapper
       }
     );
-    expect(result.current).toBe(null);
+    expect(result.current).toBeNull();
 
     mockUseModelShowResult.mockImplementation(() => ({
       isInitialLoading: true
     }));
     rerender();
-    expect(result.current).toBe(null);
+    expect(result.current).toBeNull();
     return { result, rerender };
   }
 
@@ -132,7 +132,7 @@ describe('BaseOwnerContext', () => {
     });
 
     test('Does not render children while no baseOwner is set', async () => {
-      expect(result.current).toBe(null);
+      expect(result.current).toBeNull();
     });
 
     test('Emits context normally when there is a valid baseOwner', async () => {
@@ -171,7 +171,7 @@ describe('BaseOwnerContext', () => {
       emitFailureResult();
       rerender();
       // BaseOwnerProvider only renders children when successful, so the useContext hook rendered inside BaseOwnerProvider doesn't run and we don't get any context
-      expect(result.current).toBe(null);
+      expect(result.current).toBeNull();
     });
 
     test('Sets baseOwner to the first one in the list when useBaseOwnerId is null', async () => {
@@ -247,7 +247,7 @@ describe('BaseOwnerContext', () => {
     });
 
     test('Does not render children while no baseOwner is set', async () => {
-      expect(result.current).toBe(null);
+      expect(result.current).toBeNull();
     });
 
     test('Emits context normally when there is a valid baseOwner', async () => {
@@ -287,7 +287,7 @@ describe('BaseOwnerContext', () => {
       rerender();
 
       // BaseOwnerProvider only renders children when successful, so the useContext hook rendered inside BaseOwnerProvider doesn't run and we don't get any context
-      expect(result.current).toBe(null);
+      expect(result.current).toBeNull();
     });
 
     test('Sets baseOwner to the user itself', async () => {

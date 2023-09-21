@@ -10,14 +10,22 @@ import {
   useModelIndexController,
   useModelShowContext
 } from 'rhino/hooks/controllers';
+import { createWrapper } from '__tests__/shared/helpers';
 
 // https://dev.to/alexclaes/test-a-hook-throwing-errors-in-react-18-with-renderhook-from-testing-library-20g8
 describe('useModelIndexContext', () => {
+  beforeEach(() => {
+    vi.spyOn(console, 'error');
+    console.error.mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    console.error.mockRestore();
+  });
+
   it('throws and error with no context', async () => {
-    expect(() =>
-      renderHook(() => useModelIndexContext()).toThrow(
-        'useModelIndexContext must be used within a ModelIndexProvider'
-      )
+    expect(() => renderHook(() => useModelIndexContext())).toThrow(
+      'useModelIndexContext must be used within a ModelIndexProvider'
     );
   });
 });
@@ -43,13 +51,6 @@ describe('useModelIndexController', () => {
         </QueryClientProvider>
       </MemoryRouter>
     );
-  };
-
-  // See note at https://testing-library.com/docs/react-testing-library/api#renderhook-options-initialprops
-  const createWrapper = (Wrapper, props) => {
-    return function CreatedWrapper({ children }) {
-      return <Wrapper {...props}>{children}</Wrapper>;
-    };
   };
 
   it('generates default params with no passed in base parameters', () => {
@@ -239,31 +240,52 @@ describe('useModelIndexController', () => {
 });
 
 describe('useModelShowContext', () => {
+  beforeEach(() => {
+    vi.spyOn(console, 'error');
+    console.error.mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    console.error.mockRestore();
+  });
+
   it('throws and error with no context', () => {
-    expect(() =>
-      renderHook(() => useModelShowContext()).toThrow(
-        'useModelShowContext must be used within a ModelShowProvider'
-      )
+    expect(() => renderHook(() => useModelShowContext())).toThrow(
+      'useModelShowContext must be used within a ModelShowProvider'
     );
   });
 });
 
 describe('useModelCreateContext', () => {
+  beforeEach(() => {
+    vi.spyOn(console, 'error');
+    console.error.mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    console.error.mockRestore();
+  });
+
   it('throws and error with no context', () => {
-    expect(() =>
-      renderHook(() => useModelCreateContext()).toThrow(
-        'useModelCreateContext must be used within a ModelCreateProvider'
-      )
+    expect(() => renderHook(() => useModelCreateContext())).toThrow(
+      'useModelCreateContext must be used within a ModelCreateProvider'
     );
   });
 });
 
 describe('useModelEditContext', () => {
+  beforeEach(() => {
+    vi.spyOn(console, 'error');
+    console.error.mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    console.error.mockRestore();
+  });
+
   it('throws and error with no context', () => {
-    expect(() =>
-      renderHook(() => useModelEditContext()).toThrow(
-        'useModelEditContext must be used within a ModelEditProvider'
-      )
+    expect(() => renderHook(() => useModelEditContext())).toThrow(
+      'useModelEditContext must be used within a ModelEditProvider'
     );
   });
 });

@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react';
+import { createWrapper } from '__tests__/shared/helpers';
 import {
   BaseOwnerContext,
   useBaseOwner,
@@ -9,13 +10,9 @@ import {
   useUserRoles
 } from 'rhino/hooks/owner';
 
-const wrapper =
-  (context) =>
-  ({ children }) => (
-    <BaseOwnerContext.Provider value={context}>
-      {children}
-    </BaseOwnerContext.Provider>
-  );
+const Wrapper = ({ children, ...props }) => (
+  <BaseOwnerContext.Provider {...props}>{children}</BaseOwnerContext.Provider>
+);
 
 const validContext = {
   resolving: true,
@@ -32,7 +29,7 @@ describe('useBaseOwnerContext', () => {
   test('exposes BaseOwnerContext', () => {
     const context = validContext;
     const { result } = renderHook(() => useBaseOwnerContext(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual(context);
   });
@@ -40,7 +37,7 @@ describe('useBaseOwnerContext', () => {
   test('exposes BaseOwnerContext when baseOwner is null', () => {
     const context = nullishContext;
     const { result } = renderHook(() => useBaseOwnerContext(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual(context);
   });
@@ -50,7 +47,7 @@ describe('useBaseOwner', () => {
   test('exposes baseOwner from BaseOwnerContext when baseOwner is valid', () => {
     const context = validContext;
     const { result } = renderHook(() => useBaseOwner(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual(context.baseOwner);
   });
@@ -58,7 +55,7 @@ describe('useBaseOwner', () => {
   test('exposes user from BaseOwnerContext when user is null', () => {
     const context = nullishContext;
     const { result } = renderHook(() => useBaseOwner(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toBeNull();
   });
@@ -74,7 +71,7 @@ describe('useBaseOwnerId', () => {
   test('returns the baseOwner id from useParams', () => {
     mockParams = { baseOwnerId: 55 };
     const { result } = renderHook(() => useBaseOwnerId(), {
-      wrapper: wrapper({})
+      wrapper: Wrapper
     });
     expect(result.current).toBe(55);
   });
@@ -82,17 +79,17 @@ describe('useBaseOwnerId', () => {
   test('returns the baseOwner id from useParams when it is null', () => {
     mockParams = { baseOwnerId: null };
     const { result } = renderHook(() => useBaseOwnerId(), {
-      wrapper: wrapper({})
+      wrapper: Wrapper
     });
-    expect(result.current).toBe(NaN);
+    expect(result.current).toBeNaN();
   });
 
   test('returns NaN as the baseOwner id from useParams when it is absent', () => {
     mockParams = {};
     const { result } = renderHook(() => useBaseOwnerId(), {
-      wrapper: wrapper({})
+      wrapper: Wrapper
     });
-    expect(result.current).toBe(NaN);
+    expect(result.current).toBeNaN();
   });
 });
 
@@ -108,7 +105,7 @@ describe('useRoles', () => {
       ]
     };
     const { result } = renderHook(() => useRoles(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual(['aa', 'bb', 'cc']);
   });
@@ -116,7 +113,7 @@ describe('useRoles', () => {
   test('returns the role name if just one', () => {
     const context = validContext;
     const { result } = renderHook(() => useRoles(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual([validContext.usersRoles[0].role.name]);
   });
@@ -128,7 +125,7 @@ describe('useRoles', () => {
       usersRoles: undefined
     };
     const { result } = renderHook(() => useRoles(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual([]);
   });
@@ -144,7 +141,7 @@ describe('useRoles', () => {
       }
     };
     const { result } = renderHook(() => useRoles(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual([]);
   });
@@ -162,7 +159,7 @@ describe('useRoles', () => {
       }
     };
     const { result } = renderHook(() => useRoles(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual([]);
   });
@@ -180,7 +177,7 @@ describe('useUsersRoles', () => {
       ]
     };
     const { result } = renderHook(() => useUserRoles(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual([
       { role: { name: 'aa' }, organization: validContext.baseOwner },
@@ -196,7 +193,7 @@ describe('useUsersRoles', () => {
       usersRoles: []
     };
     const { result } = renderHook(() => useUserRoles(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual([]);
   });
@@ -208,9 +205,9 @@ describe('useUsersRoles', () => {
       usersRoles: undefined
     };
     const { result } = renderHook(() => useUserRoles(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
-    expect(result.current).toEqual(undefined);
+    expect(result.current).toBeUndefined();
   });
 });
 
@@ -226,9 +223,9 @@ describe('useHasRoleOf', () => {
       ]
     };
     const { result } = renderHook(() => useHasRoleOf('bb'), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
-    expect(result.current).toEqual(true);
+    expect(result.current).toBe(true);
   });
 
   test('returns true if there is at least one role with the given name when there is just one role', () => {
@@ -240,9 +237,9 @@ describe('useHasRoleOf', () => {
       ]
     };
     const { result } = renderHook(() => useHasRoleOf('aa'), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
-    expect(result.current).toEqual(true);
+    expect(result.current).toBe(true);
   });
 
   test('returns false if there is no role with the given name when there is more than one role', () => {
@@ -256,17 +253,17 @@ describe('useHasRoleOf', () => {
       ]
     };
     const { result } = renderHook(() => useHasRoleOf('xx'), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
-    expect(result.current).toEqual(false);
+    expect(result.current).toBe(false);
   });
 
   test('returns false if there is no role with the given name when there is just one role', () => {
     const context = validContext;
     const { result } = renderHook(() => useHasRoleOf('manager'), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
-    expect(result.current).toEqual(false);
+    expect(result.current).toBe(false);
   });
 
   test('returns false if usersRoles is undefined', () => {
@@ -278,9 +275,9 @@ describe('useHasRoleOf', () => {
       usersRoles: undefined
     };
     const { result } = renderHook(() => useHasRoleOf('admin'), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
-    expect(result.current).toEqual(false);
+    expect(result.current).toBe(false);
   });
 
   test('returns false if usersRoles.role is undefined', () => {
@@ -292,8 +289,8 @@ describe('useHasRoleOf', () => {
       usersRoles: [{ role: undefined }]
     };
     const { result } = renderHook(() => useHasRoleOf('admin'), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
-    expect(result.current).toEqual(false);
+    expect(result.current).toBe(false);
   });
 });

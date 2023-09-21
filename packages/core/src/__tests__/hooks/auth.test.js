@@ -7,12 +7,11 @@ import {
   useUser,
   useUserId
 } from 'rhino/hooks/auth';
+import { createWrapper } from '__tests__/shared/helpers';
 
-const wrapper =
-  (context) =>
-  ({ children }) => (
-    <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
-  );
+const Wrapper = ({ children, ...props }) => (
+  <AuthContext.Provider {...props}>{children}</AuthContext.Provider>
+);
 
 const validContext = {
   resolving: true,
@@ -28,7 +27,7 @@ describe('useAuth', () => {
   test('exposes AuthContext', () => {
     const context = validContext;
     const { result } = renderHook(() => useAuth(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual(context);
   });
@@ -36,7 +35,7 @@ describe('useAuth', () => {
   test('exposes AuthContext when user is null', () => {
     const context = nullishContext;
     const { result } = renderHook(() => useAuth(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual(context);
   });
@@ -46,7 +45,7 @@ describe('useUser', () => {
   test('exposes user from AuthContext when user is valid', () => {
     const context = validContext;
     const { result } = renderHook(() => useUser(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toEqual(context.user);
   });
@@ -57,7 +56,7 @@ describe('useUser', () => {
       user: null
     };
     const { result } = renderHook(() => useUser(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toBeNull();
   });
@@ -67,7 +66,7 @@ describe('useAuthenticated', () => {
   test('returns true when there is an user in AuthContext', () => {
     const context = validContext;
     const { result } = renderHook(() => useAuthenticated(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toBe(true);
   });
@@ -78,7 +77,7 @@ describe('useAuthenticated', () => {
       user: null
     };
     const { result } = renderHook(() => useAuthenticated(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toBe(false);
   });
@@ -88,7 +87,7 @@ describe('useUserId', () => {
   test('returns the user id when there is an user in AuthContext', () => {
     const context = validContext;
     const { result } = renderHook(() => useUserId(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toBe(context.user.id);
   });
@@ -99,7 +98,7 @@ describe('useUserId', () => {
       user: null
     };
     const { result } = renderHook(() => useUser(), {
-      wrapper: wrapper(context)
+      wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toBeNull();
   });
