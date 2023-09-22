@@ -57,12 +57,14 @@ module Rhino
     end
 
     initializer 'rhino.register_module' do
+      require 'rhino/omniauth/strategies/azure_o_auth2'
+
       config.after_initialize do
         Rhino.registered_modules[:rhino] = {
           version: Rhino::VERSION,
           authOwner: Rhino.auth_owner.model_name.singular,
           baseOwner: Rhino.base_owner.model_name.singular,
-          oauth: Rhino::OmniauthHelper.strategies,
+          oauth: Rhino::OmniauthHelper.strategies_metadata,
           allow_signup: Rhino.allow_signup
         }
       end
