@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
+import { useMemo } from 'react';
+import { OmniIconButton } from 'rhino/components/buttons';
 
 import env from 'config';
-import { OmniIconButton } from 'rhino/components/buttons';
+import PropTypes from 'prop-types';
 
 const providerOverrides = {
   auth0: {
@@ -26,24 +27,28 @@ const providerOverrides = {
   }
 };
 
-const providerPath = (provider) =>
-  `${env.AUTH_ROOT_PATH}/${provider}?auth_origin_url=${window.location.href}`;
+const OmniAuthButton = ({ provider, providerPath, ...props }) => {
+  const endpoint = useMemo(() => {
+    const url = new URL(`${env.REACT_APP_API_ROOT_PATH}${providerPath}`);
 
-const OmniAuthButton = ({ provider, loading, handleAuth, ...props }) => (
-  <OmniIconButton
-    href={providerPath(provider)}
-    onClick={() => handleAuth(provider)}
-    icon={!loading && provider}
-    loading={loading === provider}
-    {...providerOverrides?.[provider]}
-    {...props}
-  />
-);
+    url.searchParams.append('auth_origin_url', window.location.href);
+
+    return url;
+  }, [providerPath]);
+
+  return (
+    <OmniIconButton
+      endpoint={endpoint.toString()}
+      icon={provider}
+      {...providerOverrides?.[provider]}
+      {...props}
+    />
+  );
+};
 
 OmniAuthButton.propTypes = {
   provider: PropTypes.string.isRequired,
-  loading: PropTypes.string.isRequired,
-  handleAuth: PropTypes.func.isRequired
+  providerPath: PropTypes.string.isRequired
 };
 
 export default OmniAuthButton;

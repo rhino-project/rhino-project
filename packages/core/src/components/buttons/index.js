@@ -1,5 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { Button as RSButton } from 'reactstrap';
@@ -46,16 +46,28 @@ IconButton.propTypes = {
   icon: PropTypes.string.isRequired
 };
 
-export const OmniIconButton = ({ icon, ...props }) => (
-  <div className="omni-icon-btn">
-    <Button className="omni-icon-btn__icon" {...props}>
-      <Icon style={{ height: '1rem', width: '1rem' }} icon={icon} />
-    </Button>
-  </div>
-);
+export const OmniIconButton = ({ icon, endpoint, ...props }) => {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <form method="post" action={endpoint} onSubmit={() => setLoading(true)}>
+      <div className="omni-icon-btn">
+        <Button
+          className="omni-icon-btn__icon"
+          {...props}
+          type="submit"
+          loading={loading}
+        >
+          <Icon style={{ height: '1rem', width: '1rem' }} icon={icon} />
+        </Button>
+      </div>
+    </form>
+  );
+};
 
 OmniIconButton.propTypes = {
-  icon: PropTypes.string.isRequired
+  icon: PropTypes.string.isRequired,
+  endpoint: PropTypes.string.isRequired
 };
 
 export const SubmitButton = (props) => (
