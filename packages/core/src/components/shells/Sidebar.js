@@ -1,36 +1,42 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Nav } from 'reactstrap';
 import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { Nav, NavbarBrand } from 'reactstrap';
+import { LightLogo } from 'rhino/components/logos';
 
-const Sidebar = ({ children, extraClass }) => {
+const Sidebar = ({ id = 'sidebarMenu', children, extraClass }) => {
   return (
     <Nav
-      id="sidebarMenu"
+      vertical
+      id={id}
       className={classnames(
         'nav-sidebar',
-        'col-md-3',
-        'col-lg-2',
+        'navbar-dark',
         'd-md-block',
-        'bg-light',
+        'bg-dark',
         'sidebar',
-        'collapse',
-        'position-fixed',
-        'top-1',
+        'top-0',
         'bottom-0',
         'left-0',
-        'pe-0',
+        'p-3',
+        'h-100',
         extraClass
       )}
     >
-      <div className="nav-sidebar-panel sticky-top pt-3 d-flex flex-column">
-        {children}
+      <div className="d-flex flex-column w-100 h-100">
+        <NavbarBrand className="flex-shrink-1">
+          <LightLogo />
+        </NavbarBrand>
+        <hr className="border-top border-gray-700 flex-shrink-1" />
+        <div className="nav-sidebar sticky-top overflow-y-auto overflow-x-hidden d-flex flex-column flex-grow-1 w-100">
+          {children}
+        </div>
       </div>
     </Nav>
   );
 };
 
 Sidebar.propTypes = {
+  id: PropTypes.string,
   children: PropTypes.node,
   extraClass: PropTypes.string
 };

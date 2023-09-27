@@ -1,11 +1,11 @@
-import { NavItem, NavSection } from 'rhino/components/nav';
+import CustomPrimaryNavigation from 'components/app/CustomPrimaryNavigation';
 import { ENABLE_MODEL_ROUTES } from 'config';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
-import { getBaseOwnedModels } from 'rhino/utils/models';
+import { NavItem, NavSection } from 'rhino/components/nav';
 import { useBaseOwnerPath } from 'rhino/hooks/history';
-import CustomPrimaryNavigation from 'components/app/CustomPrimaryNavigation';
+import { getBaseOwnedModels } from 'rhino/utils/models';
 import { getModelIndexPath } from 'rhino/utils/routes';
 
 const modelsRoute = (model) => getModelIndexPath(model);
@@ -32,6 +32,7 @@ const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
               title={m.pluralReadableName}
               to={baseOwnerPath.build(modelsRoute(m))}
               icon="list"
+              className="px-3"
               extraClass={itemClass}
             />
           ))}

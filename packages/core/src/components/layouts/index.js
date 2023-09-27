@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
 
@@ -9,7 +8,7 @@ MaxWidth.propTypes = {
 };
 
 export const Target = ({ children }) => (
-  <div className="vh-100 d-flex align-items-center justify-content-center">
+  <div className="h-100 d-flex align-items-center justify-content-center">
     <div className="flex-grow-1">{children}</div>
   </div>
 );

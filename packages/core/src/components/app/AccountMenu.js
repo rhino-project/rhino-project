@@ -1,21 +1,19 @@
-import React, { useMemo } from 'react';
-import PropTypes from 'prop-types';
+import { useMemo } from 'react';
+import { NavLink } from 'react-router-dom';
 import {
-  UncontrolledDropdown,
   DropdownItem,
   DropdownMenu,
-  DropdownToggle
+  DropdownToggle,
+  UncontrolledDropdown
 } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-import classnames from 'classnames';
 
-import { useSignOutAction } from 'rhino/queries/auth';
 import { NavIcon } from 'rhino/components/icons';
+import { useUser } from 'rhino/hooks/auth';
 import { useBaseOwnerPath } from 'rhino/hooks/history';
 import { useBaseOwner, useHasRoleOf } from 'rhino/hooks/owner';
-import { useUser } from 'rhino/hooks/auth';
-import { hasOrganizationsModule } from 'rhino/utils/models';
 import { useAccountSettingsPath, useSettingsPath } from 'rhino/hooks/routes';
+import { useSignOutAction } from 'rhino/queries/auth';
+import { hasOrganizationsModule } from 'rhino/utils/models';
 
 const OrganizationSettings = () => {
   const baseOwner = useBaseOwner();
@@ -35,7 +33,7 @@ const OrganizationSettings = () => {
   );
 };
 
-const AccountMenu = ({ sidebarMode = false }) => {
+const AccountMenu = () => {
   const { mutate: signOutAction } = useSignOutAction();
   const user = useUser();
   const baseOwnerPath = useBaseOwnerPath();
@@ -47,28 +45,20 @@ const AccountMenu = ({ sidebarMode = false }) => {
   );
 
   return (
-    <UncontrolledDropdown
-      className="d-flex"
-      nav={sidebarMode}
-      inNavbar={sidebarMode}
-      direction={sidebarMode ? 'up' : 'down'}
-    >
+    <UncontrolledDropdown nav direction="up">
       <DropdownToggle
         id="account-menu"
-        className="d-flex align-items-center"
+        className="d-flex align-items-center text-light no-arrow"
         nav
         caret
       >
         <NavIcon icon="person-circle" extraClass="flex-shrink-0" />
-        <span
-          className={classnames('d-block', 'overflow-hidden', 'flex-grow-1', {
-            'd-md-none': !sidebarMode
-          })}
-        >
+        <span className="d-block mx-2 text-truncate flex-grow-1">
           {user?.nickname || user?.name?.split(' ')[0]}
         </span>
+        <NavIcon icon="chevron-down" extraClass="flex-shrink-0" />
       </DropdownToggle>
-      <DropdownMenu end>
+      <DropdownMenu dark end>
         <DropdownItem
           id="account-settings"
           tag={NavLink}
@@ -87,7 +77,3 @@ const AccountMenu = ({ sidebarMode = false }) => {
 };
 
 export default AccountMenu;
-
-AccountMenu.propTypes = {
-  sidebarMode: PropTypes.bool
-};

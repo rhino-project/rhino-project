@@ -1,23 +1,20 @@
-import React from 'react';
+import { NavLink } from 'react-router-dom';
 import {
   Badge,
-  UncontrolledDropdown,
   DropdownItem,
   DropdownMenu,
-  DropdownToggle
+  DropdownToggle,
+  UncontrolledDropdown
 } from 'reactstrap';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import classnames from 'classnames';
 
+import { NavIcon } from 'rhino/components/icons';
 import {
   useNotifications,
-  useNotificationsOpenAll,
-  useNotificationsOpen
+  useNotificationsOpen,
+  useNotificationsOpenAll
 } from 'rhino/queries/notifications';
-import { NavIcon } from 'rhino/components/icons';
 
-const NotificationMenu = ({ sidebarMode = false }) => {
+const NotificationMenu = () => {
   const { data: { data: notifications } = {}, refetch } = useNotifications();
   const { mutate: openAll } = useNotificationsOpenAll();
   const { mutate: openOne } = useNotificationsOpen();
@@ -30,20 +27,20 @@ const NotificationMenu = ({ sidebarMode = false }) => {
   const handleClick = () => openAll({ onSuccess: () => refetch() });
 
   return (
-    <UncontrolledDropdown nav inNavbar direction={sidebarMode ? 'up' : 'down'}>
-      <DropdownToggle nav caret className="d-flex align-items-center">
+    <UncontrolledDropdown nav direction="up">
+      <DropdownToggle
+        nav
+        caret
+        className="d-flex align-items-center text-light no-arrow"
+      >
         <NavIcon icon="bell" extraClass="flex-shrink-0" />
-        <span
-          className={classnames('d-block', 'overflow-hidden', 'flex-grow-1', {
-            'd-md-none': !sidebarMode
-          })}
-        >
+        <span className="d-block ms-2 overflow-hidden flex-grow-1">
           Notifications
         </span>
 
-        {hasNotifications && <Badge>{notifications?.count}</Badge>}
+        {hasNotifications && <Badge pill>{notifications?.count}</Badge>}
       </DropdownToggle>
-      <DropdownMenu end={sidebarMode ? false : true}>
+      <DropdownMenu dark end>
         {notifications?.notifications?.map((n) => {
           return (
             <DropdownItem
@@ -74,7 +71,3 @@ const NotificationMenu = ({ sidebarMode = false }) => {
 };
 
 export default NotificationMenu;
-
-NotificationMenu.propTypes = {
-  sidebarMode: PropTypes.bool
-};
