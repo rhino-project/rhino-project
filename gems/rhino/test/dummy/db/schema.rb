@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_06_185219) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_21_143941) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,6 +98,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_185219) do
     t.string "field"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "every_field_dummies", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "string_overrideable"
+    t.index ["user_id"], name: "index_every_field_dummies_on_user_id"
   end
 
   create_table "every_fields", force: :cascade do |t|
@@ -230,6 +236,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_06_185219) do
   add_foreign_key "blogs", "users"
   add_foreign_key "blogs_categories", "blogs"
   add_foreign_key "blogs_categories", "categories"
+  add_foreign_key "every_field_dummies", "users"
   add_foreign_key "every_fields", "users"
   add_foreign_key "every_manies", "every_fields"
   add_foreign_key "og_meta_tags", "blog_posts"
