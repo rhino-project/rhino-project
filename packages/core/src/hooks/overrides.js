@@ -119,18 +119,6 @@ export const useOverrides = (defaultComponents, overrides) => {
   );
 };
 
-export const useOverridesWithGlobal = (
-  model,
-  base,
-  defaultComponents,
-  overrides
-) => {
-  return useOverrides(
-    defaultComponents,
-    overrides || globalOverrides?.[model.model]?.[base]
-  );
-};
-
 export const useMergedOverrides = (baseOverrides, overrides) => {
   const mergedOverrides = useMemo(() => {
     return merge(

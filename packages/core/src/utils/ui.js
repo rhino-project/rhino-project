@@ -10,22 +10,6 @@ import { getModelIndexPath, getModelShowPath } from './routes';
 import { useModel } from 'rhino/hooks/models';
 import BreadcrumbItemWrapper from '../components/breadcrumbs';
 
-export const buildCancelAction = (extra) => ({
-  name: 'cancel',
-  label: 'Cancel',
-  icon: 'x-square',
-  outline: true,
-  ...extra
-});
-
-export const buildSaveAction = (extra) => ({
-  name: 'save',
-  label: 'Save',
-  color: 'primary',
-  icon: 'save',
-  ...extra
-});
-
 export const useModelClassNames = (baseName, model, attribute = null) => {
   // FIXME: This is a hack for 2.0 legacy support - should be sourced from the model context
   const memoModel = useModel(model);
