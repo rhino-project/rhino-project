@@ -58,6 +58,13 @@ module ActiveRecordExtension
       assert_equal("Overriden name", @description[:"x-rhino-attribute"][:readableName])
     end
 
+    test "overriding a field does not affect other tables containing a field with the same name" do
+      assert_type("string_overrideable", :string)
+      description_dummy = EveryFieldDummy.describe_property("string_overrideable")
+      assert_equal("Overriden name", @description[:"x-rhino-attribute"][:readableName])
+      assert_equal("String Overrideable", description_dummy[:"x-rhino-attribute"][:readableName])
+    end
+
     test "float greater than" do
       assert_type("float_gt", :float)
       assert_equal(2, @description[:minimum])
