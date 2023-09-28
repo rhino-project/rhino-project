@@ -1,7 +1,5 @@
 import { waitFor } from '@testing-library/dom';
 import { renderHook } from '@testing-library/react-hooks/dom';
-import env from 'config';
-import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import AuthProvider from 'rhino/contexts/AuthContext';
 import { useAuth } from 'rhino/hooks/auth';
@@ -9,7 +7,8 @@ import {
   AUTH_BASE_PATH,
   AUTH_CREATE_END_POINT,
   AUTH_DESTROY_END_POINT,
-  AUTH_VALIDATE_TOKEN_END_POINT
+  AUTH_VALIDATE_TOKEN_END_POINT,
+  constructPath
 } from 'rhino/lib/networking';
 
 const defaultUser = {
@@ -20,10 +19,10 @@ const defaultUser = {
 
 export class NetworkingMock {
   axiosResult = {
-    [env.API_ROOT_PATH]: {
-      // 'post': () => promise with result
-      // 'delete': () => promise with result
-    }
+    // [env.REACT_APP_API_ROOT_PATH]: {
+    // 'post': () => promise with result
+    // 'delete': () => promise with result
+    // }
   };
 
   axiosMockImplementation() {
@@ -39,36 +38,36 @@ export class NetworkingMock {
   }
 
   _mockSuccess({ data, path, method }) {
-    if (this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`] == null) {
-      this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`] = {};
+    const fullPath = constructPath(path);
+    if (this.axiosResult[fullPath] == null) {
+      this.axiosResult[fullPath] = {};
     }
-    this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`][`__${method}`] =
-      () => {
-        return new Promise((resolve) =>
-          setTimeout(() => {
-            resolve({
-              data: { data }
-            });
-          }, 100)
-        );
-      };
+    this.axiosResult[fullPath][`__${method}`] = () => {
+      return new Promise((resolve) =>
+        setTimeout(() => {
+          resolve({
+            data: { data }
+          });
+        }, 100)
+      );
+    };
   }
 
   _mockFailure({ path, method, status, errors = {} }) {
-    if (this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`] == null) {
-      this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`] = {};
+    const fullPath = constructPath(path);
+    if (this.axiosResult[fullPath] == null) {
+      this.axiosResult[fullPath] = {};
     }
-    this.axiosResult[`${env.REACT_APP_API_ROOT_PATH}/${path}`][`__${method}`] =
-      () =>
-        new Promise((resolve, reject) =>
-          setTimeout(
-            () =>
-              reject({
-                response: { status, data: { errors } }
-              }),
-            100
-          )
-        );
+    this.axiosResult[fullPath][`__${method}`] = () =>
+      new Promise((resolve, reject) =>
+        setTimeout(
+          () =>
+            reject({
+              response: { status, data: { errors } }
+            }),
+          100
+        )
+      );
   }
 
   mockValidateSessionSuccess(user) {

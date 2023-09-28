@@ -19,7 +19,8 @@ const DEFAULT_HEADERS = {
   Accept: 'application/json'
 };
 
-const constructPath = (path) => REACT_APP_API_ROOT_PATH + '/' + path;
+export const constructPath = (path) =>
+  new URL(path, REACT_APP_API_ROOT_PATH).toString();
 
 const _buildHeaders = (headers = {}) => {
   return { ...DEFAULT_HEADERS, ...headers };
