@@ -1,8 +1,5 @@
-import { renderHook } from '@testing-library/react-hooks';
 import renderer from 'react-test-renderer';
 import * as rhinoConfig from 'rhino.config';
-import FilterLabel from 'rhino/components/forms/FilterLabel';
-import fs from 'fs';
 
 vi.mock('rhino.config', () => ({
   __esModule: true,

@@ -1,5 +1,6 @@
-import { waitFor } from '@testing-library/dom';
-import { renderHook } from '@testing-library/react-hooks/dom';
+import { renderHook, waitFor } from '@testing-library/react';
+import env from 'config';
+import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import AuthProvider from 'rhino/contexts/AuthContext';
 import { useAuth } from 'rhino/hooks/auth';
@@ -181,9 +182,12 @@ export class NetworkingMock {
     );
     expect(renderedHook.result.current.auth.resolving).toBe(true);
     expect(renderedHook.result.current.auth.user).toBeNull();
-    await renderedHook.waitForNextUpdate();
-    expect(renderedHook.result.current.auth.resolving).toBe(false);
-    expect(renderedHook.result.current.auth.user).toBeNull();
+
+    // wait for the hook to resolve
+    await waitFor(() => {
+      expect(renderedHook.result.current.auth.resolving).toBe(false);
+      expect(renderedHook.result.current.auth.user).toBeNull();
+    });
     return renderedHook;
   }
 }

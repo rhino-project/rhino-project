@@ -1,5 +1,4 @@
-import { render, waitFor } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks/dom';
+import { render, renderHook, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import AuthProvider, { AuthContext } from 'rhino/contexts/AuthContext';
 import { useContext } from 'react';
