@@ -33,6 +33,7 @@ const FieldTime = ({ ...props }) => {
   );
 
   const handleChange = (date) => {
+    // https://github.com/Hacker0x01/react-datepicker/issues/1991
     const dateWithoutMilliseconds = date
       ? new Date(
           2000,

@@ -32,7 +32,13 @@ const FieldDateTime = ({ min, max, ...props }) => {
     inheritedPropsOptions
   );
 
-  const handleChange = (date) => onChange(date?.toISOString() || null);
+  const handleChange = (date) => {
+    // https://github.com/Hacker0x01/react-datepicker/issues/1991
+    const dateWithoutMilliseconds = date ? new Date(date) : null;
+    dateWithoutMilliseconds?.setUTCMilliseconds(0);
+
+    onChange(dateWithoutMilliseconds?.toISOString() || null);
+  };
 
   return (
     <DatePicker
