@@ -144,7 +144,408 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           </th>
         </tr>
       </thead>
-      <tbody />
+      <tbody>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+          <td>
+            <div
+              class="placeholder-glow"
+            >
+              <span
+                class="placeholder col-6"
+              />
+            </div>
+          </td>
+        </tr>
+      </tbody>
       <tfoot>
         <tr>
           <th>

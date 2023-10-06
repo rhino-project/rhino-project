@@ -5,10 +5,9 @@ import { useModelIndexController } from 'rhino/hooks/controllers';
 import { Spinner } from 'reactstrap';
 import { useMemo } from 'react';
 
-export const ModelIndexSimple = ({ children, fallback = true, ...props }) => {
+export const ModelIndexSimple = ({ children, fallback = false, ...props }) => {
   const controller = useModelIndexController({
-    ...props,
-    queryOptions: { keepPreviousData: true }
+    ...props
   });
   const { isInitialLoading } = controller;
 
