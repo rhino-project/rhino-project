@@ -10,24 +10,136 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
     >
       <thead>
         <tr>
-          <th>
-            <div>
-              Foo
+          <th
+            class="table-header-clickable"
+          >
+            <div
+              class="d-flex flex-row gap-1"
+            >
+              <div>
+                Foo
+              </div>
+              <div
+                class="d-flex flex-column ms-auto"
+              >
+                <svg
+                  fill="currentColor"
+                  height="12"
+                  width="12"
+                >
+                  <use
+                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-up"
+                  />
+                </svg>
+                <svg
+                  fill="currentColor"
+                  height="12"
+                  width="12"
+                >
+                  <use
+                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-down"
+                  />
+                </svg>
+              </div>
             </div>
           </th>
-          <th>
-            <div>
-              Foo
+          <th
+            class="table-header-clickable"
+          >
+            <div
+              class="d-flex flex-row gap-1"
+            >
+              <div>
+                Foo
+              </div>
+              <div
+                class="d-flex flex-column ms-auto"
+              >
+                <svg
+                  fill="currentColor"
+                  height="12"
+                  width="12"
+                >
+                  <use
+                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-up"
+                  />
+                </svg>
+                <svg
+                  fill="currentColor"
+                  height="12"
+                  width="12"
+                >
+                  <use
+                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-down"
+                  />
+                </svg>
+              </div>
             </div>
           </th>
-          <th>
-            <div>
-              Foo
+          <th
+            class="table-header-clickable"
+          >
+            <div
+              class="d-flex flex-row gap-1"
+            >
+              <div>
+                Foo
+              </div>
+              <div
+                class="d-flex flex-column ms-auto"
+              >
+                <svg
+                  fill="currentColor"
+                  height="12"
+                  width="12"
+                >
+                  <use
+                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-up"
+                  />
+                </svg>
+                <svg
+                  fill="currentColor"
+                  height="12"
+                  width="12"
+                >
+                  <use
+                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-down"
+                  />
+                </svg>
+              </div>
             </div>
           </th>
-          <th>
-            <div>
-              Foo
+          <th
+            class="table-header-clickable"
+          >
+            <div
+              class="d-flex flex-row gap-1"
+            >
+              <div>
+                Foo
+              </div>
+              <div
+                class="d-flex flex-column ms-auto"
+              >
+                <svg
+                  fill="currentColor"
+                  height="12"
+                  width="12"
+                >
+                  <use
+                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-up"
+                  />
+                </svg>
+                <svg
+                  fill="currentColor"
+                  height="12"
+                  width="12"
+                >
+                  <use
+                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-down"
+                  />
+                </svg>
+              </div>
             </div>
           </th>
         </tr>

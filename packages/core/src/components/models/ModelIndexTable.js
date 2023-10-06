@@ -1,4 +1,11 @@
-import { cloneElement, isValidElement, useCallback, useMemo } from 'react';
+import {
+  cloneElement,
+  isValidElement,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
 import PropTypes from 'prop-types';
 import {
   createColumnHelper,
@@ -13,7 +20,7 @@ import {
 
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { filter, isString } from 'lodash';
+import { filter, get, isString, set, update } from 'lodash';
 import { usePaths } from 'rhino/hooks/paths';
 import Table from '../table/Table';
 import ModelCell from './ModelCell';
@@ -41,15 +48,28 @@ const defaultComponents = {
   ModelFooter
 };
 
+const isDesc = (order) => order?.charAt(0) === '-';
+
+const getSortableAttributes = (model) =>
+  filter(
+    model.properties,
+    (a) =>
+      a.type === 'string' ||
+      a.type === 'datetime' ||
+      a.type === 'float' ||
+      a.type === 'integer'
+  );
+
 export const ModelIndexTableBase = ({ overrides, ...props }) => {
   const { ModelHeader, ModelCell, ModelFooter } = useOverrides(
     defaultComponents,
     overrides
   );
 
-  const { model, resources, results } = useModelIndexContext();
-  const { baseRoute, paths } = props;
+  const { model, order, resources, results, setOrder } = useModelIndexContext();
+  const { baseRoute, paths, sortPaths } = props;
   const baseOwnerNavigation = useBaseOwnerNavigation();
+  const [sorting, setSorting] = useState([]);
 
   const pathsOrDefault = useMemo(() => {
     if (props.overrides?.ModelTable?.props?.paths)
@@ -71,6 +91,11 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
         `${baseRoute}${getModelShowPath(model, row.original.id)}`
       ),
     [baseRoute, baseOwnerNavigation, model]
+  );
+
+  const sortable = useMemo(
+    () => sortPaths || getSortableAttributes(model).map((a) => a.name),
+    [sortPaths, model]
   );
 
   const columns = useMemo(
@@ -99,11 +124,18 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
               id,
               header,
               cell,
-              footer
+              footer,
+              enableSorting: false
             });
           }
 
-          return columnHelper.display({ id, header, cell, footer });
+          return columnHelper.display({
+            id,
+            header,
+            cell,
+            footer,
+            enableSorting: false
+          });
         }
 
         // Path is a string
@@ -118,15 +150,48 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
           <ModelFooter model={model} path={path} {...info} />
         );
 
-        return columnHelper.accessor(path, { id: path, header, cell, footer });
+        return columnHelper.accessor(path, {
+          id: path,
+          header,
+          cell,
+          footer,
+          enableSorting: sortable.includes(path),
+          enableMultiSort: sortable.includes(path)
+        });
       }),
-    [computedPaths, model]
+    [computedPaths, model, sortable]
   );
+
+  useEffect(() => {
+    // The initial pass will set the sorting state from the order prop
+    if (sorting.length === 0) {
+      setSorting(
+        order.split(',').map((order) => {
+          const id = order.replace('-', '');
+          return { id, desc: isDesc(order) };
+        })
+      );
+
+      return;
+    }
+
+    // The sorting state has changed, update the order in the controller
+    setOrder(
+      sorting.map((order) => (order.desc ? '-' + order.id : order.id)).join(',')
+    );
+  }, [order, setOrder, sorting]);
 
   const table = useReactTable({
     data: results || [],
     columns,
-    getCoreRowModel: getCoreRowModel()
+    getCoreRowModel: getCoreRowModel(),
+    enableMultiSort: true,
+    enableSortingRemoval: false,
+    manualSorting: true,
+    state: {
+      sorting
+    },
+    onSortingChange: setSorting
   });
 
   return (

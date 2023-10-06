@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { useBaseOwnerId } from 'rhino/hooks/owner';
+import { useBaseOwnerFilters, useBaseOwnerId } from 'rhino/hooks/owner';
 import { useModel } from 'rhino/hooks/models';
 import ModelEditableCellReference from '../models/cells/ModelEditableCellReference';
 import ModelIndexHeader from '../models/ModelIndexHeader';
@@ -15,6 +15,7 @@ import ModelIndexActions, {
   ModelIndexActionCreate
 } from '../models/ModelIndexActions';
 import ModelIndexProvider from '../models/ModelIndexProvider';
+import ModelIndexSimple from '../models/ModelIndexSimple';
 
 const RemoveButton = (props) => {
   const {
@@ -48,14 +49,13 @@ const cellPaths = [
   <RemoveButton />
 ];
 
+const sortPaths = ['user.email', 'user.name'];
+
 const overrides = {
   ModelFilters: {
     props: {
       paths: ['role']
     }
-  },
-  ModelSort: {
-    props: { paths: ['user.email', 'user.name'] }
   }
 };
 
@@ -75,20 +75,20 @@ const EditOrganizationAccess = () => {
     ];
   }, [handleAction]);
 
-  const controller = useModelIndexController({
-    model,
-    filter: { organization: baseOwnerId },
-    order: 'user.email'
-  });
+  const filter = useBaseOwnerFilters(model);
 
   return (
     <>
-      <ModelIndexProvider {...controller}>
+      <ModelIndexSimple model={model} filter={filter} order="user.email">
         <ModelIndexHeader overrides={overrides} />
         <hr />
         <ModelIndexActions actions={actions} />
-        <ModelIndexTable paths={cellPaths} onRowClick={null} />
-      </ModelIndexProvider>
+        <ModelIndexTable
+          paths={cellPaths}
+          sortPaths={sortPaths}
+          onRowClick={null}
+        />
+      </ModelIndexSimple>
       <ModelCreateModal
         model="users_role_invite"
         parentId={baseOwnerId}
