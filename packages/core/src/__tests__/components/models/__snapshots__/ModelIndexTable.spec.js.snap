@@ -1,0 +1,79 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelIndexTable > should allow local overrides 1`] = `
+<DocumentFragment>
+  <div
+    class="model-index-table model-index-table-user"
+  >
+    <table
+      class="table table-striped table-hover"
+    >
+      <thead>
+        <tr>
+          <th>
+            <div>
+              Foo
+            </div>
+          </th>
+          <th>
+            <div>
+              Foo
+            </div>
+          </th>
+          <th>
+            <div>
+              Foo
+            </div>
+          </th>
+          <th>
+            <div>
+              Foo
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+      <tfoot>
+        <tr>
+          <th>
+            <div>
+              Baz
+            </div>
+          </th>
+          <th>
+            <div>
+              Baz
+            </div>
+          </th>
+          <th>
+            <div>
+              Baz
+            </div>
+          </th>
+          <th>
+            <div>
+              Baz
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelIndexTable > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelIndexTable > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
