@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import FieldInteger from 'rhino/components/forms/fields/FieldInteger';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
 const ModelFieldIntegerBase = ({ model, ...props }) => {
   return <FieldInteger {...props} />;
@@ -12,6 +12,10 @@ ModelFieldIntegerBase.propTypes = {
 };
 
 const ModelFieldInteger = (props) =>
-  useGlobalComponent('ModelFieldInteger', ModelFieldIntegerBase, props);
+  useGlobalComponentForAttribute(
+    'ModelFieldInteger',
+    ModelFieldIntegerBase,
+    props
+  );
 
 export default ModelFieldInteger;

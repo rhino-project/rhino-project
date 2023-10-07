@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from 'rhino/hooks/overrides';
 import ModelEditHeader from './ModelEditHeader';
 import ModelEditForm from './ModelEditForm';
 import ModelEditActions from './ModelEditActions';
@@ -43,6 +46,6 @@ ModelEditBase.propTypes = {
 };
 
 const ModelEdit = (props) =>
-  useGlobalComponent('ModelEdit', ModelEditBase, props);
+  useGlobalComponentForModel('ModelEdit', ModelEditBase, props);
 
 export default ModelEdit;

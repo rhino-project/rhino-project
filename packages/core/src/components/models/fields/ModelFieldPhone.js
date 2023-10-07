@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import FieldPhone from 'rhino/components/forms/fields/FieldPhone';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
 const ModelFieldPhoneBase = ({ model, ...props }) => {
   return <FieldPhone {...props} />;
@@ -12,6 +12,6 @@ ModelFieldPhoneBase.propTypes = {
 };
 
 const ModelFieldPhone = (props) =>
-  useGlobalComponent('ModelFieldPhone', ModelFieldPhoneBase, props);
+  useGlobalComponentForAttribute('ModelFieldPhone', ModelFieldPhoneBase, props);
 
 export default ModelFieldPhone;

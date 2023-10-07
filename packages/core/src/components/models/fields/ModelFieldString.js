@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import FieldInput from 'rhino/components/forms/fields/FieldInput';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 const ModelFieldStringBase = ({ model, ...props }) => {
@@ -22,6 +22,10 @@ ModelFieldStringBase.propTypes = {
 };
 
 const ModelFieldString = (props) =>
-  useGlobalComponent('ModelFieldString', ModelFieldStringBase, props);
+  useGlobalComponentForAttribute(
+    'ModelFieldString',
+    ModelFieldStringBase,
+    props
+  );
 
 export default ModelFieldString;

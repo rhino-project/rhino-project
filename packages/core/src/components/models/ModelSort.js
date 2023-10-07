@@ -12,7 +12,7 @@ import { filter } from 'lodash';
 import { getAttributeFromPath } from 'rhino/utils/models';
 import { IconButton } from 'rhino/components/buttons';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 
 const isDesc = (order) => order?.charAt(0) === '-';
 
@@ -103,6 +103,6 @@ ModelSortBase.propTypes = {
 };
 
 const ModelSort = (props) =>
-  useGlobalComponent('ModelSort', ModelSortBase, props);
+  useGlobalComponentForModel('ModelSort', ModelSortBase, props);
 
 export default ModelSort;

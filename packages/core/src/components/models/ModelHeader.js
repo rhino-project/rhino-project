@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import Header from 'rhino/components/table/Header';
 
@@ -14,6 +14,6 @@ export const ModelHeaderBase = ({ model, path, children, ...props }) => {
 };
 
 const ModelHeader = (props) =>
-  useGlobalComponent('ModelHeader', ModelHeaderBase, props);
+  useGlobalComponentForAttribute('ModelHeader', ModelHeaderBase, props);
 
 export default ModelHeader;

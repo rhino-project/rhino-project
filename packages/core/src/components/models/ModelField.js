@@ -25,7 +25,7 @@ import ModelFieldCurrency from './fields/ModelFieldCurrency';
 import ModelFieldIntegerSelect from './fields/ModelFieldIntegerSelect';
 import ModelFieldNested from './fields/ModelFieldNested';
 import ModelFieldOwnerReference from './fields/ModelFieldOwnerReference';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
 export const ModelFieldBase = ({ overrides, ...props }) => {
   const { model } = useModelContext();
@@ -107,6 +107,6 @@ export const ModelFieldBase = ({ overrides, ...props }) => {
 };
 
 const ModelField = (props) =>
-  useGlobalComponent('ModelField', ModelFieldBase, props);
+  useGlobalComponentForAttribute('ModelField', ModelFieldBase, props);
 
 export default ModelField;

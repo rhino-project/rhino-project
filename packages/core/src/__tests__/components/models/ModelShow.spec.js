@@ -3,6 +3,7 @@ import { sharedModelTests } from './sharedModelTests';
 import { render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import * as network from 'rhino/lib/networking';
+import rhinoConfig from 'rhino.config';
 
 vi.spyOn(network, 'networkApiCall').mockReturnValue({
   data: {
@@ -33,22 +34,56 @@ describe('ModelShow', () => {
 
   sharedModelTests(ModelShow);
 
-  it(`should allow local overrides`, async () => {
-    const { asFragment } = render(
-      <ModelShow
-        overrides={{
-          ModelShowHeader: Foo,
-          ModelShowActions: Baz,
-          ModelShowDescription: Bar,
-          ModelShowRelated: Foz
-        }}
-        model={{ model: 'user', properties: { name: {} } }}
-        modelId="1"
-        path="name"
-        fallback={false}
-      />,
-      { wrapper }
-    );
-    expect(asFragment()).toMatchSnapshot();
+  describe('local overrides', () => {
+    let configSpy;
+
+    beforeEach(() => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        ModelShowHeader: null,
+        ModelShowActions: {
+          props: {
+            paths: ['title', 'category']
+          }
+        },
+        ModelShowDescription: null,
+        ModelShowRelated: null
+      });
+    });
+
+    afterEach(() => {
+      configSpy.mockRestore();
+    });
+
+    it(`should allow local overrides`, () => {
+      const { asFragment } = render(
+        <ModelShow
+          overrides={{
+            ModelShowHeader: Foo,
+            ModelShowActions: Baz,
+            ModelShowDescription: Bar,
+            ModelShowRelated: Foz
+          }}
+          model={{ model: 'user', properties: { name: {} } }}
+          modelId="1"
+          path="name"
+          fallback={false}
+        />,
+        { wrapper }
+      );
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it(`should use global overrides when local are not present`, () => {
+      const { asFragment } = render(
+        <ModelShow
+          model={{ model: 'user', properties: { name: {} } }}
+          modelId="1"
+          path="name"
+          fallback={false}
+        />,
+        { wrapper }
+      );
+      expect(asFragment()).toMatchSnapshot();
+    });
   });
 });

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import FieldYear from 'rhino/components/forms/fields/FieldYear';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 const ModelFieldYearBase = ({ model, ...props }) => {
@@ -16,6 +16,6 @@ ModelFieldYearBase.propTypes = {
 };
 
 const ModelFieldYear = (props) =>
-  useGlobalComponent('ModelFieldYear', ModelFieldYearBase, props);
+  useGlobalComponentForAttribute('ModelFieldYear', ModelFieldYearBase, props);
 
 export default ModelFieldYear;

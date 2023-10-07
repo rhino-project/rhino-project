@@ -6,7 +6,7 @@ import { Alert, Input, Progress } from 'reactstrap';
 import Uploader from 'rhino/utils/uploader';
 import { CloseButton } from 'rhino/components/buttons';
 import { useForceUpdate } from 'rhino/hooks/util';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useController } from 'react-hook-form';
 
@@ -145,6 +145,6 @@ ModelFieldFileBase.defaultProps = {
 };
 
 const ModelFieldFile = (props) =>
-  useGlobalComponent('ModelFieldFile', ModelFieldFileBase, props);
+  useGlobalComponentForAttribute('ModelFieldFile', ModelFieldFileBase, props);
 
 export default ModelFieldFile;

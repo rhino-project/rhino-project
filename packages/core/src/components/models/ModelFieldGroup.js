@@ -1,4 +1,7 @@
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from 'rhino/hooks/overrides';
 import FieldGroup from '../forms/FieldGroup';
 import ModelFieldLabel from './ModelFieldLabel';
 import ModelField from './ModelField';
@@ -32,6 +35,6 @@ export const ModelFieldGroupBase = ({ overrides, ...props }) => {
 };
 
 const ModelFieldGroup = (props) =>
-  useGlobalComponent('ModelFieldGroup', ModelFieldGroupBase, props);
+  useGlobalComponentForModel('ModelFieldGroup', ModelFieldGroupBase, props);
 
 export default ModelFieldGroup;

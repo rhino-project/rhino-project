@@ -1,6 +1,6 @@
 import { breadcrumbFor } from 'rhino/utils/ui';
 import { useModelEditContext } from 'rhino/hooks/controllers';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
 
 export const ModelEditHeaderBase = (props) => {
@@ -19,6 +19,6 @@ export const ModelEditHeaderBase = (props) => {
 ModelEditHeaderBase.propTypes = {};
 
 const ModelEditHeader = (props) =>
-  useGlobalComponent('ModelEditHeader', ModelEditHeaderBase, props);
+  useGlobalComponentForModel('ModelEditHeader', ModelEditHeaderBase, props);
 
 export default ModelEditHeader;

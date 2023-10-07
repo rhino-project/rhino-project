@@ -6,7 +6,7 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
@@ -134,6 +134,6 @@ ModelIndexTableBase.defaultProps = {
 const columnHelper = createColumnHelper();
 
 export const ModelIndexTable = (props) =>
-  useGlobalComponent('ModelIndexTable', ModelIndexTableBase, props);
+  useGlobalComponentForModel('ModelIndexTable', ModelIndexTableBase, props);
 
 export default ModelIndexTable;

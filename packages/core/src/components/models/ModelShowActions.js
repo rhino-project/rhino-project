@@ -3,7 +3,10 @@ import { Children, useCallback, useMemo, useState } from 'react';
 import { useModelShowContext } from 'rhino/hooks/controllers';
 import { IconButton } from '../buttons';
 import { useBaseOwnerNavigation } from '../../hooks/history';
-import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import withParams from '../../routes/withParams';
 import { getParentModel, isBaseOwned } from '../../utils/models';
 import ModelEditModal from './ModelEditModal';
@@ -154,6 +157,6 @@ export const ModelShowActionsModalEdit = (props) => (
 );
 
 const ModelShowActions = (props) =>
-  useGlobalComponent('ModelShowActions', ModelShowActionsBase, props);
+  useGlobalComponentForModel('ModelShowActions', ModelShowActionsBase, props);
 
 export default ModelShowActions;

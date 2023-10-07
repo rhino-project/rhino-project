@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from 'rhino/hooks/overrides';
 import ModelShowDescription from 'rhino/components/models/ModelShowDescription';
 import ModelShowRelated from 'rhino/components/models/ModelShowRelated';
 import ModelShowActions from 'rhino/components/models/ModelShowActions';
@@ -45,6 +48,6 @@ ModelShowBase.propTypes = {
 };
 
 const ModelShow = (props) =>
-  useGlobalComponent('ModelShow', ModelShowBase, props);
+  useGlobalComponentForModel('ModelShow', ModelShowBase, props);
 
 export default ModelShow;

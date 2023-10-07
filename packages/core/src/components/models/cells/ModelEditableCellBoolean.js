@@ -1,6 +1,9 @@
 import { Input } from 'reactstrap';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForAttribute,
+  useOverrides
+} from 'rhino/hooks/overrides';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 
 const defaultComponents = {

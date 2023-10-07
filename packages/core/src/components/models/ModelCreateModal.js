@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import { useModelCreateContext } from '../../hooks/controllers';
-import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import ModelCreateModalActions from './ModelCreateModalActions';
 import ModelSection from './ModelSection';
 import ModelCreateSimple from './ModelCreateSimple';
@@ -76,6 +79,6 @@ ModelCreateModalBase.defaultProps = {
 };
 
 const ModelCreateModal = (props) =>
-  useGlobalComponent('ModelCreateModal', ModelCreateModalBase, props);
+  useGlobalComponentForModel('ModelCreateModal', ModelCreateModalBase, props);
 
 export default ModelCreateModal;

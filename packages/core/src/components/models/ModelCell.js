@@ -16,7 +16,7 @@ import ModelCellInteger from './cells/ModelCellInteger';
 import ModelCellReference from './cells/ModelCellReference';
 import ModelCellString from './cells/ModelCellString';
 import ModelCellTime from './cells/ModelCellTime';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
 export const ModelCellBase = ({ overrides, ...props }) => {
   const model = useModel(props.model);
@@ -87,6 +87,6 @@ export const ModelCellBase = ({ overrides, ...props }) => {
 };
 
 const ModelCell = (props) =>
-  useGlobalComponent('ModelCell', ModelCellBase, props);
+  useGlobalComponentForAttribute('ModelCell', ModelCellBase, props);
 
 export default ModelCell;

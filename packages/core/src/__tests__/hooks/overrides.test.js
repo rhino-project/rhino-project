@@ -1,10 +1,16 @@
 import { render, renderHook } from '@testing-library/react';
 import {
-  useGlobalOverrides,
+  useGlobalComponent,
+  useGlobalComponentForAttribute,
+  useGlobalComponentForModel,
   useMergedOverrides,
   useOverrides
 } from 'rhino/hooks/overrides';
 import * as rhinoConfig from 'rhino.config';
+import modelLoader from 'rhino/models';
+import api from '__tests__/shared/modelFixtures';
+
+vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 vi.mock('rhino.config', () => ({
   __esModule: true,
@@ -182,14 +188,14 @@ describe('useMergedOverrides', () => {
   });
 });
 
-describe('useGlobalOverrides', () => {
+describe('useGlobalComponent', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
-  const Baz = (props) => <div {...props}>Baz</div>;
 
-  const Foo = ({ overrides, ...props }) => {
-    const C = useGlobalOverrides({ Bar }, overrides, props);
-    return <C.Bar />;
+  const FooBase = ({ overrides, ...props }) => {
+    return <div {...props}>FooBase</div>;
   };
+
+  const Foo = (props) => useGlobalComponent('Foo', FooBase, props);
 
   beforeEach(() => {
     rhinoConfig.default = { version: 1, components: {} };
@@ -201,7 +207,7 @@ describe('useGlobalOverrides', () => {
   });
 
   it('should render with global override shorthand', () => {
-    rhinoConfig.default = { version: 1, components: { Bar: Baz } };
+    rhinoConfig.default = { version: 1, components: { Foo: Bar } };
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
@@ -209,7 +215,7 @@ describe('useGlobalOverrides', () => {
   it('should render with global override', () => {
     rhinoConfig.default = {
       version: 1,
-      components: { Bar: { component: Baz } }
+      components: { Foo: { component: Bar } }
     };
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
@@ -218,7 +224,7 @@ describe('useGlobalOverrides', () => {
   it('should render with global prop override', () => {
     rhinoConfig.default = {
       version: 1,
-      components: { Bar: { props: { data: 'bar' } } }
+      components: { Foo: { props: { data: 'bar' } } }
     };
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
@@ -227,48 +233,104 @@ describe('useGlobalOverrides', () => {
   it('should be empty with null', () => {
     rhinoConfig.default = {
       version: 1,
-      components: { Bar: null }
+      components: { Foo: null }
     };
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should replace array prop', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Bar: { props: { data: ['foo', 'bar'] } } }
-    };
-    const { asFragment } = render(
-      <Foo overrides={{ Bar: { props: { data: ['baz'] } } }} />
-    );
+  describe('for model', () => {
+    it('should not render with global override shorthand', () => {
+      rhinoConfig.default = { version: 1, components: { user: { Foo: Bar } } };
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should not render with global override', () => {
+      rhinoConfig.default = {
+        version: 1,
+        components: { user: { Foo: { component: Bar } } }
+      };
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+  });
+
+  describe('for attribute', () => {
+    it('should not render with global override shorthand', () => {
+      rhinoConfig.default = {
+        version: 1,
+        components: { user: { name: { Foo: Bar } } }
+      };
+      const { asFragment } = render(<Foo model="user" path="name" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should not render with global override', () => {
+      rhinoConfig.default = {
+        version: 1,
+        components: { user: { name: { Foo: { component: Bar } } } }
+      };
+      const { asFragment } = render(<Foo model="user" path="name" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+  });
+});
+
+describe('useGlobalComponentForModel', () => {
+  const Bar = (props) => <div {...props}>Bar</div>;
+
+  const FooBase = ({ overrides, ...props }) => {
+    return <div {...props}>FooBase</div>;
+  };
+
+  const Foo = (props) => useGlobalComponentForModel('Foo', FooBase, props);
+
+  beforeEach(() => {
+    rhinoConfig.default = { version: 1, components: {} };
+  });
+
+  it('should render without overrides', () => {
+    const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should render with local overrides instead of global overrides', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Bar: { component: Baz } }
-    };
-    const { asFragment } = render(
-      <Foo overrides={{ Bar: () => <div>Local</div> }} />
-    );
+  it('should render with global override shorthand', () => {
+    rhinoConfig.default = { version: 1, components: { Foo: Bar } };
+    const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it('should render with local props merged with global overrides component', () => {
+  it('should render with global override', () => {
     rhinoConfig.default = {
       version: 1,
-      components: { Bar: { component: Baz } }
+      components: { Foo: { component: Bar } }
     };
-    const { asFragment } = render(
-      <Foo overrides={{ Bar: { props: { className: 'test' } } }} />
-    );
+    const { asFragment } = render(<Foo />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render with global prop override', () => {
+    rhinoConfig.default = {
+      version: 1,
+      components: { Foo: { props: { data: 'bar' } } }
+    };
+    const { asFragment } = render(<Foo />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should be empty with null', () => {
+    rhinoConfig.default = {
+      version: 1,
+      components: { Foo: null }
+    };
+    const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   describe('for model', () => {
     it('should render with global override shorthand', () => {
-      rhinoConfig.default = { version: 1, components: { user: { Bar: Baz } } };
+      rhinoConfig.default = { version: 1, components: { user: { Foo: Bar } } };
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
@@ -276,34 +338,98 @@ describe('useGlobalOverrides', () => {
     it('should render with global override', () => {
       rhinoConfig.default = {
         version: 1,
-        components: { user: { Bar: { component: Baz } } }
+        components: { user: { Foo: { component: Bar } } }
       };
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
+  });
 
-    it('should render with local overrides instead of global overrides', () => {
+  describe('for attribute', () => {
+    it('should not render with global override shorthand', () => {
       rhinoConfig.default = {
         version: 1,
-        components: { user: { Bar: { component: Baz } } }
+        components: { user: { name: { Foo: Bar } } }
       };
-      const { asFragment } = render(
-        <Foo overrides={{ Bar: () => <div>Local</div> }} model="user" />
-      );
+      const { asFragment } = render(<Foo model="user" path="name" />);
       expect(asFragment()).toMatchSnapshot();
     });
 
-    it('should render with local props merged with global overrides component', () => {
+    it('should not render with global override', () => {
       rhinoConfig.default = {
         version: 1,
-        components: { user: { Bar: { component: Baz } } }
+        components: { user: { name: { Foo: { component: Bar } } } }
       };
-      const { asFragment } = render(
-        <Foo
-          overrides={{ Bar: { props: { className: 'test' } } }}
-          model="user"
-        />
-      );
+      const { asFragment } = render(<Foo model="user" path="name" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+  });
+});
+
+describe('useGlobalComponentForAttribute', () => {
+  const Bar = (props) => <div {...props}>Bar</div>;
+
+  const FooBase = ({ overrides, ...props }) => {
+    return <div {...props}>FooBase</div>;
+  };
+
+  const Foo = (props) => useGlobalComponentForAttribute('Foo', FooBase, props);
+
+  beforeEach(() => {
+    rhinoConfig.default = { version: 1, components: {} };
+  });
+
+  it('should render without overrides', () => {
+    const { asFragment } = render(<Foo />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render with global override shorthand', () => {
+    rhinoConfig.default = { version: 1, components: { Foo: Bar } };
+    const { asFragment } = render(<Foo />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render with global override', () => {
+    rhinoConfig.default = {
+      version: 1,
+      components: { Foo: { component: Bar } }
+    };
+    const { asFragment } = render(<Foo />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should render with global prop override', () => {
+    rhinoConfig.default = {
+      version: 1,
+      components: { Foo: { props: { data: 'bar' } } }
+    };
+    const { asFragment } = render(<Foo />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it('should be empty with null', () => {
+    rhinoConfig.default = {
+      version: 1,
+      components: { Foo: null }
+    };
+    const { asFragment } = render(<Foo />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  describe('for model', () => {
+    it('should render with global override shorthand', () => {
+      rhinoConfig.default = { version: 1, components: { user: { Foo: Bar } } };
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should render with global override', () => {
+      rhinoConfig.default = {
+        version: 1,
+        components: { user: { Foo: { component: Bar } } }
+      };
+      const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
   });
@@ -312,7 +438,7 @@ describe('useGlobalOverrides', () => {
     it('should render with global override shorthand', () => {
       rhinoConfig.default = {
         version: 1,
-        components: { user: { name: { Bar: Baz } } }
+        components: { user: { name: { Foo: Bar } } }
       };
       const { asFragment } = render(<Foo model="user" path="name" />);
       expect(asFragment()).toMatchSnapshot();
@@ -321,39 +447,9 @@ describe('useGlobalOverrides', () => {
     it('should render with global override', () => {
       rhinoConfig.default = {
         version: 1,
-        components: { user: { name: { Bar: { component: Baz } } } }
+        components: { user: { name: { Foo: { component: Bar } } } }
       };
       const { asFragment } = render(<Foo model="user" path="name" />);
-      expect(asFragment()).toMatchSnapshot();
-    });
-
-    it('should render with local overrides instead of global overrides', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { name: { Bar: { component: Baz } } } }
-      };
-      const { asFragment } = render(
-        <Foo
-          overrides={{ Bar: () => <div>Local</div> }}
-          model="user"
-          path="name"
-        />
-      );
-      expect(asFragment()).toMatchSnapshot();
-    });
-
-    it('should render with local props merged with global overrides component', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { name: { Bar: { component: Baz } } } }
-      };
-      const { asFragment } = render(
-        <Foo
-          overrides={{ Bar: { props: { className: 'test' } } }}
-          model="user"
-          path="name"
-        />
-      );
       expect(asFragment()).toMatchSnapshot();
     });
   });

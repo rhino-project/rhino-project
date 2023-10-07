@@ -1,4 +1,7 @@
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from 'rhino/hooks/overrides';
 import DisplayGroup from '../forms/DisplayGroup';
 import ModelDisplayLabel from './ModelDisplayLabel';
 import ModelDisplay from './ModelDisplay';
@@ -34,6 +37,6 @@ export const ModelDisplayGroupBase = ({ overrides, ...props }) => {
 };
 
 const ModelDisplayGroup = (props) =>
-  useGlobalComponent('ModelDisplayGroup', ModelDisplayGroupBase, props);
+  useGlobalComponentForModel('ModelDisplayGroup', ModelDisplayGroupBase, props);
 
 export default ModelDisplayGroup;

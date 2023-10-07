@@ -1,5 +1,5 @@
 import { useModelCreateContext } from 'rhino/hooks/controllers';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
 import ModelFieldGroup from './ModelFieldGroup';
 import { useRenderPaths } from 'rhino/hooks/paths';
@@ -17,6 +17,6 @@ export const ModelCreateFormBase = (props) => {
 ModelCreateFormBase.propTypes = {};
 
 const ModelCreateForm = (props) =>
-  useGlobalComponent('ModelCreateForm', ModelCreateFormBase, props);
+  useGlobalComponentForModel('ModelCreateForm', ModelCreateFormBase, props);
 
 export default ModelCreateForm;

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import FieldDate from 'rhino/components/forms/fields/FieldDate';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 const ModelFieldDateBase = ({ model, ...props }) => {
@@ -16,6 +16,6 @@ ModelFieldDateBase.propTypes = {
 };
 
 const ModelFieldDate = (props) =>
-  useGlobalComponent('ModelFieldDate', ModelFieldDateBase, props);
+  useGlobalComponentForAttribute('ModelFieldDate', ModelFieldDateBase, props);
 
 export default ModelFieldDate;
