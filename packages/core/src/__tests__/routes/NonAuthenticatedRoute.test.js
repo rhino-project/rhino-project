@@ -30,11 +30,10 @@ vi.mock('rhino/components/logos', () => ({
 vi.spyOn(routes, 'getRootPath').mockImplementation(() => '/__mockRootPath__');
 
 describe('routes/NonAuthenticatedRoute', () => {
-  let Wrapper;
-
-  beforeEach(() => {
+  const Wrapper = ({ children }) => {
     const history = createMemoryHistory();
-    Wrapper = ({ children }) => (
+
+    return (
       <Router history={history}>
         <NonAuthenticatedRoute>{children}</NonAuthenticatedRoute>
         <Route path="/__mockRootPath__">
@@ -42,16 +41,14 @@ describe('routes/NonAuthenticatedRoute', () => {
         </Route>
       </Router>
     );
-  });
+  };
 
   describe('initializing', () => {
     test('renders SplashScreen', () => {
       mockAuth = initializingState;
-      const { getByText } = render(
-        <Wrapper>
-          <div>should not render this</div>
-        </Wrapper>
-      );
+      const { getByText } = render(<div>should not render this</div>, {
+        wrapper: Wrapper
+      });
       expect(getByText('__mockSplashScreen__')).toBeTruthy();
     });
   });

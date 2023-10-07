@@ -113,6 +113,8 @@ describe('auth/queries', () => {
             networkingMock.mockValidateSessionSuccess(user);
           }
         });
+
+        expect(renderedHook.result.current.auth.resolving).toBe(false);
       });
 
       test('sets isError and makes useAuth output user: null', async () => {
