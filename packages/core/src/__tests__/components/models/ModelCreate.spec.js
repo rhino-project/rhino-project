@@ -7,7 +7,6 @@ import * as modelUtils from 'rhino/utils/models';
 // Create controller looks for a valid parent model
 vi.spyOn(modelUtils, 'getParentModel').mockReturnValue({ model: 'another' });
 
-/* eslint react/display-name: 0, react/prop-types: 0 */
 describe('ModelCreate', () => {
   const Foo = (props) => <div>Foo</div>;
   const Bar = (props) => <div>Bar</div>;

@@ -4,7 +4,6 @@ import ModelIndex from 'rhino/components/models/ModelIndex';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 
-/* eslint react/display-name: 0, react/prop-types: 0 */
 describe('ModelIndex', () => {
   const Foo = (props) => <div>Foo</div>;
   const Bar = (props) => <div>Bar</div>;

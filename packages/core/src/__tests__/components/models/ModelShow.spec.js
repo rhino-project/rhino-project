@@ -10,7 +10,6 @@ vi.spyOn(network, 'networkApiCall').mockReturnValue({
   }
 });
 
-/* eslint react/display-name: 0, react/prop-types: 0 */
 describe('ModelShow', () => {
   const Foo = (props) => <div>Foo</div>;
   const Bar = (props) => <div>Bar</div>;
