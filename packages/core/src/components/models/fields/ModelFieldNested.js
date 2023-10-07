@@ -13,7 +13,7 @@ import {
   UncontrolledDropdown
 } from 'reactstrap';
 
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { getModelFromRef, getUpdatableAttributes } from 'rhino/utils/models';
 import { useComputedPaths, useDefaultValues } from 'rhino/hooks/form';
 import { IconButton } from 'rhino/components/buttons';
@@ -275,6 +275,10 @@ ModelFieldNestedBase.propTypes = {
 };
 
 const ModelFieldNested = (props) =>
-  useGlobalComponent('ModelFieldNested', ModelFieldNestedBase, props);
+  useGlobalComponentForAttribute(
+    'ModelFieldNested',
+    ModelFieldNestedBase,
+    props
+  );
 
 export default ModelFieldNested;

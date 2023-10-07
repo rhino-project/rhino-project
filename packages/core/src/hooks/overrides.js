@@ -131,17 +131,18 @@ export const useMergedOverrides = (baseOverrides, overrides) => {
   return mergedOverrides;
 };
 
-export const useGlobalOverrides = (
-  defaultComponents,
-  overrides,
-  options = {}
+export const useGlobalComponent = (
+  overrideName,
+  BaseComponent,
+  props,
+  scope = {}
 ) => {
-  const model = useModel(options?.model);
+  const defaultComponents = useMemo(() => {
+    return { [overrideName]: BaseComponent };
+  }, [overrideName, BaseComponent]);
 
-  const { model: attributeModel, attribute } = useModelAndAttributeFromPath(
-    options?.model,
-    options?.path
-  );
+  const { attribute, attributeModel, model } = scope;
+  const propModel = useModel(props?.model);
 
   const computedOverrides = useMemo(() => {
     const scopedOverrides = {};
@@ -161,19 +162,19 @@ export const useGlobalOverrides = (
         // Global overrides
         rhinoConfig.components[key],
         // Legacy overrides
-        globalOverrides?.[model?.model]?.index?.[key],
+        globalOverrides?.[propModel?.model]?.index?.[key],
         defaultComponents?.['ModelShow']
-          ? globalOverrides?.[model?.model]?.show
+          ? globalOverrides?.[propModel?.model]?.show
           : undefined,
-        globalOverrides?.[model?.model]?.show?.[key],
+        globalOverrides?.[propModel?.model]?.show?.[key],
         defaultComponents?.['ModelCreate']
-          ? globalOverrides?.[model?.model]?.create
+          ? globalOverrides?.[propModel?.model]?.create
           : undefined,
-        globalOverrides?.[model?.model]?.create?.[key],
+        globalOverrides?.[propModel?.model]?.create?.[key],
         defaultComponents?.['ModelEdit']
-          ? globalOverrides?.[model?.model]?.edit
+          ? globalOverrides?.[propModel?.model]?.edit
           : undefined,
-        globalOverrides?.[model?.model]?.edit?.[key]
+        globalOverrides?.[propModel?.model]?.edit?.[key]
       ].find((override) => override !== undefined);
 
       if (overrideComponent !== undefined) {
@@ -183,32 +184,59 @@ export const useGlobalOverrides = (
 
     return mergeWith(
       scopedOverrides,
-      expandOverrides(overrides),
       // We need to replace arrays instead of merging them, for instance for
       // paths we want to replace
       arrayOverride
     );
-  }, [defaultComponents, overrides, model, attributeModel, attribute]);
+  }, [defaultComponents, model, propModel, attributeModel, attribute]);
 
-  return useOverrides(defaultComponents, computedOverrides);
-};
-
-export const useGlobalComponent = (overrideName, BaseComponent, props) => {
-  const { model } = useModelContext();
-
-  const defaultComponents = useMemo(() => {
-    return { [overrideName]: BaseComponent };
-  }, [overrideName, BaseComponent]);
-
-  // FIXME: The top level model is not always available right now
-  // ModelIndex, ModelShow, ModelCreate, ModelEdit have model as a prop still
-  const options = useMemo(
-    () => (model ? { ...props, model } : props),
-    [model, props]
-  );
-  const globalOverride = useGlobalOverrides(defaultComponents, {}, options);
+  const globalOverride = useOverrides(defaultComponents, computedOverrides);
   const GlobalOverrideComponent = globalOverride[overrideName];
   GlobalOverrideComponent.displayName = overrideName;
 
   return <GlobalOverrideComponent {...props} />;
+};
+
+export const useGlobalComponentForModel = (
+  overrideName,
+  BaseComponent,
+  props,
+  scope
+) => {
+  const { model } = useModelContext();
+  const propModel = useModel(props?.model);
+
+  // FIXME: The top level model is not always available right now
+  // ModelIndex, ModelShow, ModelCreate, ModelEdit have model as a prop still
+
+  const modelScope = useMemo(
+    () => (model ? { model, ...scope } : { model: propModel, ...scope }),
+    [model, propModel, scope]
+  );
+
+  return useGlobalComponent(overrideName, BaseComponent, props, modelScope);
+};
+
+export const useGlobalComponentForAttribute = (
+  overrideName,
+  BaseComponent,
+  props,
+  scope
+) => {
+  const { model: attributeModel, attribute } = useModelAndAttributeFromPath(
+    props?.model,
+    props?.path
+  );
+
+  const attributeScope = useMemo(
+    () => ({ attributeModel, attribute, ...scope }),
+    [attribute, attributeModel, scope]
+  );
+
+  return useGlobalComponentForModel(
+    overrideName,
+    BaseComponent,
+    props,
+    attributeScope
+  );
 };

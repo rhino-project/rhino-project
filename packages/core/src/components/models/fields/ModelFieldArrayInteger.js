@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { useController } from 'react-hook-form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 export const ModelFieldArrayIntegerBase = ({ model, ...props }) => {
@@ -53,7 +53,7 @@ ModelFieldArrayIntegerBase.propTypes = {
 };
 
 const ModelFieldArrayInteger = (props) =>
-  useGlobalComponent(
+  useGlobalComponentForAttribute(
     'ModelFieldArrayInteger',
     ModelFieldArrayIntegerBase,
     props

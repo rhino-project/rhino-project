@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import FieldBoolean from 'rhino/components/forms/fields/FieldBoolean';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
 const ModelFieldBooleanBase = ({ model, ...props }) => {
   return <FieldBoolean {...props} />;
@@ -12,6 +12,10 @@ ModelFieldBooleanBase.propTypes = {
 };
 
 const ModelFieldBoolean = (props) =>
-  useGlobalComponent('ModelFieldBoolean', ModelFieldBooleanBase, props);
+  useGlobalComponentForAttribute(
+    'ModelFieldBoolean',
+    ModelFieldBooleanBase,
+    props
+  );
 
 export default ModelFieldBoolean;

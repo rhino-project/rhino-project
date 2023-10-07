@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import FieldFloat from 'rhino/components/forms/fields/FieldFloat';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
 const ModelFieldFloatBase = ({ model, ...props }) => {
   return <FieldFloat {...props} />;
@@ -12,6 +12,6 @@ ModelFieldFloatBase.propTypes = {
 };
 
 const ModelFieldFloat = (props) =>
-  useGlobalComponent('ModelFieldFloat', ModelFieldFloatBase, props);
+  useGlobalComponentForAttribute('ModelFieldFloat', ModelFieldFloatBase, props);
 
 export default ModelFieldFloat;

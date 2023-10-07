@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { InputGroup } from 'reactstrap';
 import { useFieldError } from 'rhino/hooks/form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { FieldCurrency } from '../../forms/fields/FieldCurrency';
 
 const ModelFieldCurrencyBase = ({ overrides, ...props }) => {
@@ -28,6 +28,10 @@ ModelFieldCurrencyBase.propTypes = {
 };
 
 const ModelFieldCurrency = (props) =>
-  useGlobalComponent('ModelFieldCurrency', ModelFieldCurrencyBase, props);
+  useGlobalComponentForAttribute(
+    'ModelFieldCurrency',
+    ModelFieldCurrencyBase,
+    props
+  );
 
 export default ModelFieldCurrency;

@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import classnames from 'classnames';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { useController } from 'react-hook-form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useModelIndex } from 'rhino/hooks/queries';
 import { getIdentifierAttribute, getModelFromRef } from 'rhino/utils/models';
@@ -86,6 +86,10 @@ ModelFieldReferenceBase.propTypes = {
 };
 
 const ModelFieldReference = (props) =>
-  useGlobalComponent('ModelFieldReference', ModelFieldReferenceBase, props);
+  useGlobalComponentForAttribute(
+    'ModelFieldReference',
+    ModelFieldReferenceBase,
+    props
+  );
 
 export default ModelFieldReference;

@@ -1,4 +1,7 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useMergedOverrides
+} from 'rhino/hooks/overrides';
 import FilterGroup from '../forms/FilterGroup';
 import ModelFilter from './ModelFilter';
 import ModelFilterLabel from './ModelFilterLabel';
@@ -14,6 +17,6 @@ const ModelFilterGroupBase = ({ ...props }) => {
 };
 
 const ModelFilterGroup = (props) =>
-  useGlobalComponent('ModelFilterGroup', ModelFilterGroupBase, props);
+  useGlobalComponentForModel('ModelFilterGroup', ModelFilterGroupBase, props);
 
 export default ModelFilterGroup;

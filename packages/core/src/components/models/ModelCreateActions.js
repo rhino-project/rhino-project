@@ -6,7 +6,10 @@ import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useFormContext } from 'react-hook-form';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
 import { IconButton } from '../buttons';
-import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import { getModelShowPath } from 'rhino/utils/routes';
 import ModelSection from './ModelSection';
 
@@ -177,6 +180,10 @@ ModelCreateActionsBase.defaultProps = {
 };
 
 const ModelCreateActions = (props) =>
-  useGlobalComponent('ModelCreateActions', ModelCreateActionsBase, props);
+  useGlobalComponentForModel(
+    'ModelCreateActions',
+    ModelCreateActionsBase,
+    props
+  );
 
 export default ModelCreateActions;

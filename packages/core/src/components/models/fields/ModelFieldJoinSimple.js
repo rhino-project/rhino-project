@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useCallback, useMemo } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { useController } from 'react-hook-form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useModelIndex } from 'rhino/hooks/queries';
 import { getModelFromRef, getReferenceAttributes } from 'rhino/utils/models';
@@ -113,6 +113,10 @@ ModelFieldJoinSimpleBase.propTypes = {
 };
 
 const ModelFieldJoinSimple = (props) =>
-  useGlobalComponent('ModelFieldJoinSimple', ModelFieldJoinSimpleBase, props);
+  useGlobalComponentForAttribute(
+    'ModelFieldJoinSimple',
+    ModelFieldJoinSimpleBase,
+    props
+  );
 
 export default ModelFieldJoinSimple;

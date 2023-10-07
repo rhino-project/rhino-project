@@ -1,7 +1,10 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from 'rhino/hooks/overrides';
 import { getOwnedModels } from 'rhino/utils/models';
 import { useModelClassNames } from 'rhino/utils/ui';
 import { ModelIndexBase } from 'rhino/components/models/ModelIndex';
@@ -59,6 +62,6 @@ ModelShowRelatedBase.defaultProps = {
 };
 
 const ModelShowRelated = (props) =>
-  useGlobalComponent('ModelShowRelated', ModelShowRelatedBase, props);
+  useGlobalComponentForModel('ModelShowRelated', ModelShowRelatedBase, props);
 
 export default ModelShowRelated;

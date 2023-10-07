@@ -2,7 +2,10 @@ import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 import { useModelEditContext } from '../../hooks/controllers';
-import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import ModelEditModalActions from './ModelEditModalActions';
 import ModelEditSimple from './ModelEditSimple';
 import ModelSection from './ModelSection';
@@ -76,6 +79,6 @@ ModelEditModalBase.defaultProps = {
 };
 
 const ModelEditModal = (props) =>
-  useGlobalComponent('ModelEditModal', ModelEditModalBase, props);
+  useGlobalComponentForModel('ModelEditModal', ModelEditModalBase, props);
 
 export default ModelEditModal;

@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import { useModelFilterField } from 'rhino/hooks/form';
 import FilterLabel from '../forms/FilterLabel';
 
@@ -55,6 +55,6 @@ export const ModelFilterLabelBase = ({ overrides, label, model, ...props }) => {
 };
 
 const ModelFilterLabel = (props) =>
-  useGlobalComponent('ModelFilterLabel', ModelFilterLabelBase, props);
+  useGlobalComponentForModel('ModelFilterLabel', ModelFilterLabelBase, props);
 
 export default ModelFilterLabel;

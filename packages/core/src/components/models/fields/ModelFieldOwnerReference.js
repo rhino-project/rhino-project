@@ -1,4 +1,4 @@
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import ModelFieldReference from './ModelFieldReference';
 import { useBaseOwnerFilters } from 'rhino/hooks/owner';
 import { getModelFromRef } from 'rhino/utils/models';
@@ -18,7 +18,7 @@ export const ModelFieldOwnerReferenceBase = ({
 };
 
 const ModelFieldOwnerReference = (props) =>
-  useGlobalComponent(
+  useGlobalComponentForAttribute(
     'ModelFieldOwnerReference',
     ModelFieldOwnerReferenceBase,
     props

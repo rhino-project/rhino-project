@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from 'rhino/hooks/overrides';
 import ModelCreateHeader from './ModelCreateHeader';
 import ModelCreateForm from './ModelCreateForm';
 import ModelCreateActions from './ModelCreateActions';
@@ -37,6 +40,6 @@ ModelCreateBase.propTypes = {
 };
 
 const ModelCreate = (props) =>
-  useGlobalComponent('ModelCreate', ModelCreateBase, props);
+  useGlobalComponentForModel('ModelCreate', ModelCreateBase, props);
 
 export default ModelCreate;

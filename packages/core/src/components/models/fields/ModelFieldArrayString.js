@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { useController } from 'react-hook-form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
 export const ModelFieldArrayStringBase = ({ model, ...props }) => {
@@ -50,6 +50,10 @@ ModelFieldArrayStringBase.propTypes = {
 };
 
 const ModelFieldArrayString = (props) =>
-  useGlobalComponent('ModelFieldArrayString', ModelFieldArrayStringBase, props);
+  useGlobalComponentForAttribute(
+    'ModelFieldArrayString',
+    ModelFieldArrayStringBase,
+    props
+  );
 
 export default ModelFieldArrayString;

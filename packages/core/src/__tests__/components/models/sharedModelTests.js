@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import * as rhinoConfig from 'rhino.config';
+import rhinoConfig from 'rhino.config';
 
 const getBarValue = () => 'bar';
 
@@ -7,22 +7,16 @@ export const sharedModelTests = (Component) => {
   const overrideName = Component.displayName || Component.name;
   const Bar = (props) => <div>Bar</div>;
 
-  let oldDefault;
-
-  beforeEach(() => {
-    oldDefault = rhinoConfig.default;
-    rhinoConfig.default = { version: 1, components: {} };
-  });
+  let configSpy;
 
   afterEach(() => {
-    rhinoConfig.default = oldDefault;
+    configSpy.mockRestore();
   });
 
   it(`should render with global override shorthand`, async () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { [overrideName]: Bar }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ [overrideName]: Bar });
 
     const { asFragment } = render(
       <Component getValue={getBarValue} path="dummy" />
@@ -31,10 +25,9 @@ export const sharedModelTests = (Component) => {
   });
 
   it(`should render with global override shorthand for model`, async () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { user: { [overrideName]: Bar } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ user: { [overrideName]: Bar } });
 
     const { asFragment } = render(
       <Component getValue={getBarValue} model="user" path="name" />

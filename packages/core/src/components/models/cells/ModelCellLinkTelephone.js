@@ -1,4 +1,4 @@
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import CellLinkTelephone from 'rhino/components/table/cells/CellLinkTelephone';
 
 export const ModelCellLinkTelephoneBase = (props) => (
@@ -6,7 +6,7 @@ export const ModelCellLinkTelephoneBase = (props) => (
 );
 
 const ModelCellLinkTelephone = (props) =>
-  useGlobalComponent(
+  useGlobalComponentForAttribute(
     'ModelCellLinkTelephone',
     ModelCellLinkTelephoneBase,
     props

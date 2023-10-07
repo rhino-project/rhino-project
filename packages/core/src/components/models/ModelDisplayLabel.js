@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import DisplayLabel from '../forms/DisplayLabel';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
@@ -20,6 +20,6 @@ export const ModelDisplayLabelBase = ({
 };
 
 const ModelDisplayLabel = (props) =>
-  useGlobalComponent('ModelDisplayLabel', ModelDisplayLabelBase, props);
+  useGlobalComponentForModel('ModelDisplayLabel', ModelDisplayLabelBase, props);
 
 export default ModelDisplayLabel;

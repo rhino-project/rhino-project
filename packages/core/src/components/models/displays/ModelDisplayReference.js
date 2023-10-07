@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import DisplayString from 'rhino/components/forms/displays/DisplayString';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
 export const ModelDisplayReferenceBase = ({ model, ...props }) => {
   const accessor = useCallback((value) => value?.display_name, []);
@@ -9,6 +9,10 @@ export const ModelDisplayReferenceBase = ({ model, ...props }) => {
 };
 
 const ModelDisplayReference = (props) =>
-  useGlobalComponent('ModelDisplayReference', ModelDisplayReferenceBase, props);
+  useGlobalComponentForAttribute(
+    'ModelDisplayReference',
+    ModelDisplayReferenceBase,
+    props
+  );
 
 export default ModelDisplayReference;

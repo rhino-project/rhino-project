@@ -1,6 +1,6 @@
 import { breadcrumbFor } from 'rhino/utils/ui';
 import { useModelShowContext } from 'rhino/hooks/controllers';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 
 export const ModelShowHeaderBase = () => {
   const { model, resource } = useModelShowContext();
@@ -11,6 +11,6 @@ export const ModelShowHeaderBase = () => {
 ModelShowHeaderBase.propTypes = {};
 
 const ModelShowHeader = (props) =>
-  useGlobalComponent('ModelShowHeader', ModelShowHeaderBase, props);
+  useGlobalComponentForModel('ModelShowHeader', ModelShowHeaderBase, props);
 
 export default ModelShowHeader;

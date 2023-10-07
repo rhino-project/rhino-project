@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from 'rhino/hooks/overrides';
 
 import ModelIndexHeader from 'rhino/components/models/ModelIndexHeader';
 import ModelIndexTable from './ModelIndexTable';
@@ -48,6 +51,6 @@ ModelIndexBase.propTypes = {
 };
 
 const ModelIndex = (props) =>
-  useGlobalComponent('ModelIndex', ModelIndexBase, props);
+  useGlobalComponentForModel('ModelIndex', ModelIndexBase, props);
 
 export default ModelIndex;

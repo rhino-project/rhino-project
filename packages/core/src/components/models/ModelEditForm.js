@@ -1,4 +1,4 @@
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import { useModelEditContext } from 'rhino/hooks/controllers';
 import ModelSection from './ModelSection';
 import ModelFieldGroup from './ModelFieldGroup';
@@ -17,6 +17,6 @@ export const ModelEditFormBase = (props) => {
 ModelEditFormBase.propTypes = {};
 
 const ModelEditForm = (props) =>
-  useGlobalComponent('ModelEditForm', ModelEditFormBase, props);
+  useGlobalComponentForModel('ModelEditForm', ModelEditFormBase, props);
 
 export default ModelEditForm;

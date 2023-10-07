@@ -1,7 +1,7 @@
 import { isBaseOwned } from 'rhino/utils/models';
 import { breadcrumbFor } from 'rhino/utils/ui';
 import { useModelCreateContext } from 'rhino/hooks/controllers';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
 
 export const ModelCreateHeaderBase = (props) => {
@@ -26,6 +26,6 @@ export const ModelCreateHeaderBase = (props) => {
 ModelCreateHeaderBase.propTypes = {};
 
 const ModelCreateHeader = (props) =>
-  useGlobalComponent('ModelCreateHeader', ModelCreateHeaderBase, props);
+  useGlobalComponentForModel('ModelCreateHeader', ModelCreateHeaderBase, props);
 
 export default ModelCreateHeader;

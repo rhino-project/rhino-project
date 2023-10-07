@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelShow > should allow local overrides 1`] = `
+exports[`ModelShow > local overrides > should allow local overrides 1`] = `
 <DocumentFragment>
   <div
     class="model-show model-show-user"
@@ -16,6 +16,23 @@ exports[`ModelShow > should allow local overrides 1`] = `
     </div>
     <div>
       Foz
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelShow > local overrides > should use global overrides when local are not present 1`] = `
+<DocumentFragment>
+  <div
+    class="model-show model-show-user"
+  >
+    <div
+      class="model-show-actions model-show-actions-user"
+    >
+      <div
+        class="d-flex flex-row flex-wrap justify-content-between mb-3"
+        paths="title,category"
+      />
     </div>
   </div>
 </DocumentFragment>

@@ -3,7 +3,10 @@ import { Children, useCallback, useMemo, useState } from 'react';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 import { IconButton } from '../buttons';
 import { useBaseOwnerNavigation } from '../../hooks/history';
-import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import withParams from '../../routes/withParams';
 import { isBaseOwned } from '../../utils/models';
 import ModelCreateModal from './ModelCreateModal';
@@ -143,6 +146,6 @@ export const ModelIndexActionsModalCreate = (props) => (
 );
 
 const ModelIndexActions = (props) =>
-  useGlobalComponent('ModelIndexActions', ModelIndexActionsBase, props);
+  useGlobalComponentForModel('ModelIndexActions', ModelIndexActionsBase, props);
 
 export default ModelIndexActions;

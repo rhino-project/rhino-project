@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import { ModalFooter } from 'reactstrap';
 
-import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import ModelCreateActions, {
   ModelCreateActionCancel,
   ModelCreateActionSave,
@@ -105,7 +108,7 @@ export const ModelCreateModalActionsSaveShow = (props) => (
 );
 
 const ModelCreateModalActions = (props) =>
-  useGlobalComponent(
+  useGlobalComponentForModel(
     'ModelCreateModalActions',
     ModelCreateModalActionsBase,
     props

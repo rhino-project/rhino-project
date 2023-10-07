@@ -17,7 +17,7 @@ import ModelDisplayArrayReference from './displays/ModelDisplayArrayReference';
 import ModelDisplayReference from './displays/ModelDisplayReference';
 import ModelDisplayAttachment from './displays/ModelDisplayAttachment';
 import ModelDisplayAttachmentImage from './displays/ModelDisplayAttachmentImage';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import ModelDisplayCurrency from './displays/ModelDisplayCurrency';
 
 export const ModelDisplayBase = ({ overrides, ...props }) => {
@@ -87,6 +87,6 @@ export const ModelDisplayBase = ({ overrides, ...props }) => {
 };
 
 const ModelDisplay = (props) =>
-  useGlobalComponent('ModelDisplay', ModelDisplayBase, props);
+  useGlobalComponentForAttribute('ModelDisplay', ModelDisplayBase, props);
 
 export default ModelDisplay;

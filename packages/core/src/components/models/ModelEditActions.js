@@ -6,7 +6,10 @@ import { useFormContext } from 'react-hook-form';
 import { useFieldSetErrors } from 'rhino/hooks/form';
 import { IconButton } from '../buttons';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
-import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import { getModelShowPath } from '../../utils/routes';
 import ModelSection from './ModelSection';
 
@@ -146,6 +149,6 @@ ModelEditActionsBase.defaultProps = {
 };
 
 const ModelEditActions = (props) =>
-  useGlobalComponent('ModelEditActions', ModelEditActionsBase, props);
+  useGlobalComponentForModel('ModelEditActions', ModelEditActionsBase, props);
 
 export default ModelEditActions;

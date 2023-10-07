@@ -1,5 +1,5 @@
 import { useModelShowContext } from 'rhino/hooks/controllers';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
 import { useRenderPaths } from 'rhino/hooks/paths';
 import ModelDisplayGroup from './ModelDisplayGroup';
@@ -19,6 +19,10 @@ export const ModelShowDescriptionBase = (props) => {
 ModelShowDescriptionBase.propTypes = {};
 
 const ModelShowDescription = (props) =>
-  useGlobalComponent('ModelShowDescription', ModelShowDescriptionBase, props);
+  useGlobalComponentForModel(
+    'ModelShowDescription',
+    ModelShowDescriptionBase,
+    props
+  );
 
 export default ModelShowDescription;

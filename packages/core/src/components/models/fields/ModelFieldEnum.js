@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useCallback, useMemo } from 'react';
 import FieldSelectControlled from 'rhino/components/forms/fields/FieldSelectControlled';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { enumFromIndexWithTitle } from 'rhino/utils/ui';
 
@@ -30,6 +30,6 @@ ModelFieldEnumBase.propTypes = {
 };
 
 const ModelFieldEnum = (props) =>
-  useGlobalComponent('ModelFieldEnum', ModelFieldEnumBase, props);
+  useGlobalComponentForAttribute('ModelFieldEnum', ModelFieldEnumBase, props);
 
 export default ModelFieldEnum;
