@@ -6,7 +6,10 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from 'rhino/hooks/overrides';
 
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
@@ -32,7 +35,18 @@ const getViewablePaths = (model) =>
     );
   }).map((a) => a.name);
 
-export const ModelIndexTableBase = (props) => {
+const defaultComponents = {
+  ModelHeader,
+  ModelCell,
+  ModelFooter
+};
+
+export const ModelIndexTableBase = ({ overrides, ...props }) => {
+  const { ModelHeader, ModelCell, ModelFooter } = useOverrides(
+    defaultComponents,
+    overrides
+  );
+
   const { model, resources, results } = useModelIndexContext();
   const { baseRoute, paths } = props;
   const baseOwnerNavigation = useBaseOwnerNavigation();
