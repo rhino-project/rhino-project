@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "test_helper"
+require "minitest/unit"
+require "minitest/autorun"
 
 class Rhino::UsersRoleTest < ActiveSupport::TestCase
   def setup
@@ -69,6 +71,15 @@ class Rhino::UsersRoleTest < ActiveSupport::TestCase
 
     assert_equal "Validation failed: Role Must have at least one user as admin", exp.message
     assert_equal "Must have at least one user as admin", only_admin.errors.first.type
+  end
+
+  test "should allow deleting an admin user_role when this admin is the only admin and the parent org is being destroyed" do
+    only_admin = create :users_role, user: (create :user), organization: @organization, role: @admin_role
+
+    # Destroy the only_admin should decrease roles and orgs by 1
+    assert_difference ["UsersRole.count", "Organization.count"], -1 do
+      only_admin.organization.destroy!
+    end
   end
 end
 

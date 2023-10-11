@@ -6,7 +6,7 @@ module Rhino
 
     rhino_properties_update only: [:role]
 
-    validate :ensure_at_least_one_admin, on: %i[update destroy]
+    validate :ensure_at_least_one_admin, on: %i[update destroy], unless: :destroyed_by_association
 
     after_create_commit :track_account_added_user
     after_destroy_commit :track_account_removed_user
