@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import ModelFilters from 'rhino/components/models/ModelFilters';
 import ModelPager from 'rhino/components/models/ModelPager';
 import ModelSearch from 'rhino/components/models/ModelSearch';
-import ModelSort from 'rhino/components/models/ModelSort';
 import {
   useGlobalComponentForModel,
   useOverrides
@@ -14,12 +13,11 @@ import { useModelIndexContext } from 'rhino/hooks/controllers';
 const defaultComponents = {
   ModelSearch,
   ModelFilters,
-  ModelPager,
-  ModelSort
+  ModelPager
 };
 
 export const ModelIndexHeaderBase = ({ overrides, ...props }) => {
-  const { ModelSearch, ModelFilters, ModelPager, ModelSort } = useOverrides(
+  const { ModelSearch, ModelFilters, ModelPager } = useOverrides(
     defaultComponents,
     overrides
   );
@@ -31,11 +29,10 @@ export const ModelIndexHeaderBase = ({ overrides, ...props }) => {
       <div className="d-flex flex-column">
         {model.searchable === true && <ModelSearch {...props} />}
         <ModelFilters {...props} />
-        <div className="d-flex flex-row flex-wrap justify-content-between">
-          <div className="align-self-center">
-            <ModelSort {...props} />
+        <div className="d-flex flex-row">
+          <div className="ms-auto">
+            <ModelPager {...props} />
           </div>
-          <ModelPager {...props} />
         </div>
       </div>
     </div>
