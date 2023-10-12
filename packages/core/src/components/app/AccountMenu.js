@@ -48,6 +48,7 @@ const AccountMenu = ({ sidebarMode = false }) => {
 
   return (
     <UncontrolledDropdown
+      className="d-flex"
       nav={sidebarMode}
       inNavbar={sidebarMode}
       direction={sidebarMode ? 'up' : 'down'}
