@@ -1,8 +1,7 @@
-import React from 'react';
+import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { NavLink, NavItem as RSNavItem } from 'reactstrap';
-import classnames from 'classnames';
 
 import { NavIcon } from 'rhino/components/icons';
 
@@ -16,10 +15,10 @@ export const NavSection = ({
   return (
     <div className={className}>
       {title && (
-        <h6 className="nav-sidebar-section d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-uppercase text-secondary">
-          <span>{title}</span>
+        <div className="nav-sidebar-section d-flex justify-content-between align-items-center px-0 mt-3 mb-1 text-capitalize text-gray-400">
+          <span className="fw-medium">{title}</span>
           {icon && <NavIcon role="button" icon={icon} onClick={onIconClick} />}
-        </h6>
+        </div>
       )}
       <ul className="nav flex-column">{children}</ul>
     </div>
@@ -48,8 +47,10 @@ export const NavItem = ({ title, icon, extraClass, ...props }) => {
         )}
         {...props}
       >
-        <NavIcon icon={icon} />
-        <div>{title}</div>
+        <div className="d-flex align-items-center">
+          {icon && <NavIcon icon={icon} />}
+          <div className={classnames({ 'ms-2': icon })}>{title}</div>
+        </div>
       </NavLink>
     </RSNavItem>
   );

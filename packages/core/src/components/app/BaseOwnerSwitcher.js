@@ -1,16 +1,15 @@
-import { NavIcon } from 'rhino/components/icons';
-import { useBaseOwner, useBaseOwnerId, useUserRoles } from 'rhino/hooks/owner';
-import PropTypes from 'prop-types';
 import {
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
   UncontrolledDropdown
 } from 'reactstrap';
+import { NavIcon } from 'rhino/components/icons';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
+import { useBaseOwner, useBaseOwnerId, useUserRoles } from 'rhino/hooks/owner';
 import { useRootPath } from 'rhino/hooks/routes';
 
-const BaseOwnerSwitcher = ({ sidebarMode = false }) => {
+const BaseOwnerSwitcher = () => {
   const baseOwnerId = useBaseOwnerId();
   const baseOwnerNavigation = useBaseOwnerNavigation();
   const usersRoles = useUserRoles();
@@ -26,14 +25,19 @@ const BaseOwnerSwitcher = ({ sidebarMode = false }) => {
     baseOwnerNavigation.push(rootPath, baseOwnerClicked.id);
 
   return (
-    <UncontrolledDropdown nav inNavbar direction={sidebarMode ? 'up' : 'down'}>
-      <DropdownToggle nav caret className="d-flex align-items-center">
+    <UncontrolledDropdown nav direction="up">
+      <DropdownToggle
+        nav
+        caret
+        className="d-flex align-items-center text-light no-arrow"
+      >
         <NavIcon icon="building" extraClass="flex-shrink-0" />
-        <span className="d-block overflow-hidden flex-grow-1">
+        <span className="d-block ms-2 overflow-hidden flex-grow-1">
           {baseOwner?.name}
         </span>
+        <NavIcon icon="chevron-down" extraClass="flex-shrink-0" />
       </DropdownToggle>
-      <DropdownMenu end={sidebarMode ? false : true}>
+      <DropdownMenu dark end>
         {usersRoles.map((ur) => (
           <DropdownItem
             key={ur.organization.id}
@@ -47,12 +51,4 @@ const BaseOwnerSwitcher = ({ sidebarMode = false }) => {
   );
 };
 
-BaseOwnerSwitcher.propTypes = {
-  baseOwner: PropTypes.object
-};
-
 export default BaseOwnerSwitcher;
-
-BaseOwnerSwitcher.propTypes = {
-  sidebarMode: PropTypes.bool
-};

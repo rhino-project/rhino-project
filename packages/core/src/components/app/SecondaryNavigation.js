@@ -1,21 +1,26 @@
-import React, { useMemo } from 'react';
 import { PropTypes } from 'prop-types';
+import { useMemo } from 'react';
 
-import { hasNotificationsModule } from 'rhino/utils/models';
 import CustomSecondaryNavigation from 'components/app/CustomSecondaryNavigation';
+import { hasNotificationsModule } from 'rhino/utils/models';
 import AccountMenu from './AccountMenu';
-import NotificationMenu from './NotificationMenu';
 import BaseOwnerSwitcher from './BaseOwnerSwitcher';
+import NotificationMenu from './NotificationMenu';
 
-const SecondaryNavigation = ({ className, sidebarMode = false }) => {
+const SecondaryNavigation = ({ className }) => {
   const showNotifications = useMemo(() => hasNotificationsModule(), []);
 
   return (
     <div className={className}>
       <CustomSecondaryNavigation />
-      <BaseOwnerSwitcher sidebarMode={sidebarMode} />
-      {showNotifications && <NotificationMenu sidebarMode={sidebarMode} />}
-      <AccountMenu sidebarMode={sidebarMode} />
+      {showNotifications && (
+        <>
+          <NotificationMenu />
+          <hr className="border-top border-gray-700" />
+        </>
+      )}
+      <BaseOwnerSwitcher />
+      <AccountMenu />
     </div>
   );
 };
@@ -23,6 +28,5 @@ const SecondaryNavigation = ({ className, sidebarMode = false }) => {
 export default SecondaryNavigation;
 
 SecondaryNavigation.propTypes = {
-  className: PropTypes.string,
-  sidebarMode: PropTypes.bool
+  className: PropTypes.string
 };
