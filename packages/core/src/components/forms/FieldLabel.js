@@ -26,7 +26,7 @@ export const FieldLabelBase = ({ overrides, ...props }) => {
 
   // FIXME: Is mark as checked required? This is legacy
   return (
-    <FieldLabel {...extractedProps} for={path} checked {...inheritedProps}>
+    <FieldLabel {...extractedProps} htmlFor={path} checked {...inheritedProps}>
       {label}
     </FieldLabel>
   );
