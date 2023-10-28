@@ -5,7 +5,7 @@ import { useFieldError } from 'rhino/hooks/form';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { FieldCurrency } from '../../forms/fields/FieldCurrency';
 
-const ModelFieldCurrencyBase = ({ overrides, ...props }) => {
+const ModelFieldCurrencyBase = (props) => {
   // This bug was added in d08e56c. The error is not really passed down to the component
   // as a prop, it comes from the react form hooks. So error was always undefined.
   // FieldCurrency is able to get the error from the hooks and display the feedback.

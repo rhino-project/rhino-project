@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import DisplayArray from 'rhino/components/forms/displays/DisplayArray';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
+// eslint-disable-next-line no-unused-vars
 export const ModelDisplayArrayReferenceBase = ({ model, ...props }) => {
   const accessor = useCallback(
     (value) => value?.map((v) => v.display_name)?.join(', '),

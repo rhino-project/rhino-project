@@ -12,10 +12,10 @@ vi.spyOn(network, 'networkApiCall').mockReturnValue({
 });
 
 describe('ModelShow', () => {
-  const Foo = (props) => <div>Foo</div>;
-  const Bar = (props) => <div>Bar</div>;
-  const Baz = (props) => <div>Baz</div>;
-  const Foz = (props) => <div>Foz</div>;
+  const Foo = () => <div>Foo</div>;
+  const Bar = () => <div>Bar</div>;
+  const Baz = () => <div>Baz</div>;
+  const Foz = () => <div>Foz</div>;
 
   const wrapper = ({ children }) => {
     const queryClient = new QueryClient({

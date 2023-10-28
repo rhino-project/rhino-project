@@ -27,7 +27,7 @@ export const useSettingsPath = () => useMemo(() => getSettingsPath(), []);
 export const useAccountSettingsPath = () =>
   useMemo(() => getAccountSettingsPath(), []);
 
-export const useModelIndexPath = (model, id) => {
+export const useModelIndexPath = (model) => {
   const memoModel = useModel(model);
 
   return useMemo(() => getModelIndexPath(memoModel), [memoModel]);

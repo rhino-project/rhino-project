@@ -6,9 +6,9 @@ import ModelIndexTable from 'rhino/components/models/ModelIndexTable';
 import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
 
 describe('ModelIndexTable', () => {
-  const Foo = (props) => <div>Foo</div>;
-  const Bar = (props) => <div>Bar</div>;
-  const Baz = (props) => <div>Baz</div>;
+  const Foo = () => <div>Foo</div>;
+  const Bar = () => <div>Bar</div>;
+  const Baz = () => <div>Baz</div>;
 
   const wrapper = ({ children }) => {
     const queryClient = new QueryClient({

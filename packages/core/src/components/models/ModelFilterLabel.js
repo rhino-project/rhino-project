@@ -38,7 +38,7 @@ const operatorToLabel = (format, operator) => {
   }
 };
 
-export const ModelFilterLabelBase = ({ overrides, label, model, ...props }) => {
+export const ModelFilterLabelBase = ({ label, model, ...props }) => {
   const { path } = props;
   const { attribute, operator } = useModelFilterField(model, path);
   const modelLabel = useMemo(

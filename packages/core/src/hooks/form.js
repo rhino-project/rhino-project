@@ -208,7 +208,7 @@ export const useFilterPills = ({ control }) => {
   return { pills, resetPill, resetPills };
 };
 
-export const useFilterField = (path, operator, options = {}) => {
+export const useFilterField = (path, operator) => {
   const operatorPath = useMemo(
     () => compact([path, operator]).join('.'),
     [path, operator]

@@ -126,7 +126,6 @@ const defaultComponents = {
 
 export const ModelCreateActionsBase = ({
   overrides,
-  children,
   actions,
   append = false,
   prepend = false,

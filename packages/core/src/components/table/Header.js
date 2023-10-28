@@ -1,6 +1,6 @@
 import { useTableInheritedProps } from 'rhino/hooks/table';
 
-const Header = ({ children, empty = '-', ...props }) => {
+const Header = ({ children, ...props }) => {
   const { inheritedProps } = useTableInheritedProps(props);
 
   return <div {...inheritedProps}>{children}</div>;

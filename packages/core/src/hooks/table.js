@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-export const useTableInheritedProps = (props, options = {}) => {
+export const useTableInheritedProps = (props) => {
   const {
     cell,
     column,
@@ -10,7 +10,6 @@ export const useTableInheritedProps = (props, options = {}) => {
     renderValue,
     row,
     table,
-    header,
     ...inheritedProps
   } = props;
 
@@ -22,6 +21,7 @@ export const useTableInheritedProps = (props, options = {}) => {
       model,
       path,
       renderValue,
+      row,
       table
     };
 
@@ -30,7 +30,17 @@ export const useTableInheritedProps = (props, options = {}) => {
       extractedProps,
       inheritedProps
     };
-  }, [cell, column, getValue, model, path, renderValue, table, inheritedProps]);
+  }, [
+    cell,
+    column,
+    getValue,
+    model,
+    path,
+    renderValue,
+    row,
+    table,
+    inheritedProps
+  ]);
 
   return propReturns;
 };

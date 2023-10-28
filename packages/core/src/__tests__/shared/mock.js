@@ -1,5 +1,4 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import env from 'config';
 import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
 import AuthProvider from 'rhino/contexts/AuthContext';

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import FieldInteger from 'rhino/components/forms/fields/FieldInteger';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
+// eslint-disable-next-line no-unused-vars
 const ModelFieldIntegerBase = ({ model, ...props }) => {
   return <FieldInteger {...props} />;
 };

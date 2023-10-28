@@ -4,7 +4,7 @@ import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
 
-export const ModelCreateHeaderBase = (props) => {
+export const ModelCreateHeaderBase = () => {
   const {
     model,
     showParent: { model: parentModel, resource: parent }

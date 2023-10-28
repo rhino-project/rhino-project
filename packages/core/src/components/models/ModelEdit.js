@@ -17,7 +17,7 @@ const defaultComponents = {
   ModelEditActions
 };
 
-export const ModelEditBase = ({ overrides, wrapper, ...props }) => {
+export const ModelEditBase = ({ overrides, ...props }) => {
   const { ModelEditHeader, ModelEditForm, ModelEditActions } = useOverrides(
     defaultComponents,
     overrides

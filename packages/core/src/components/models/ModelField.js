@@ -27,7 +27,7 @@ import ModelFieldNested from './fields/ModelFieldNested';
 import ModelFieldOwnerReference from './fields/ModelFieldOwnerReference';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 
-export const ModelFieldBase = ({ overrides, ...props }) => {
+export const ModelFieldBase = (props) => {
   const { model } = useModelContext();
   const { path } = props;
 
@@ -51,6 +51,7 @@ export const ModelFieldBase = ({ overrides, ...props }) => {
         return <ModelFieldNested {...props} />;
       }
     case 'reference':
+      // eslint-disable-next-line no-case-declarations
       const refModel = getModelFromRef(attribute);
 
       if (path.endsWith('_attachment')) return <ModelFieldFile {...props} />;

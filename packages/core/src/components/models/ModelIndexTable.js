@@ -20,7 +20,7 @@ import {
 
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { filter, get, isString, set, update } from 'lodash';
+import { filter, isString } from 'lodash';
 import { usePaths } from 'rhino/hooks/paths';
 import Table from '../table/Table';
 import ModelCell from './ModelCell';
@@ -109,13 +109,13 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
           const id = path.props?.id || idx.toString();
           const header =
             path.props?.header ||
-            ((info) => (
+            (() => (
               <ModelHeader model={model} path={path?.props?.path || null} />
             ));
           const cell = (props) => cloneElement(path, { model, ...props });
           const footer =
             path.props?.footer ||
-            ((info) => (
+            (() => (
               <ModelFooter model={model} path={path?.props?.path || null} />
             ));
 

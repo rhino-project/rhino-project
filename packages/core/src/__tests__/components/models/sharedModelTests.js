@@ -5,7 +5,7 @@ const getBarValue = () => 'bar';
 
 export const sharedModelTests = (Component) => {
   const overrideName = Component.displayName || Component.name;
-  const Bar = (props) => <div>Bar</div>;
+  const Bar = () => <div>Bar</div>;
 
   let configSpy;
 

@@ -1,50 +1,47 @@
 import { render } from '@testing-library/react';
-import * as rhinoConfig from 'rhino.config';
+import rhinoConfig from 'rhino.config';
 import ModelHeader from 'rhino/components/models/ModelHeader';
 
 describe('ModelHeader', () => {
-  const Bar = (props) => <div>Bar</div>;
+  const Bar = () => <div>Bar</div>;
 
-  let oldDefault;
-
-  beforeEach(() => {
-    oldDefault = rhinoConfig.default;
-    rhinoConfig.default = { version: 1, components: {} };
-  });
+  let configSpy;
 
   afterEach(() => {
-    rhinoConfig.default = oldDefault;
+    configSpy.mockRestore();
   });
 
   it(`should render with global override shorthand`, async () => {
-    rhinoConfig.default = { version: 1, components: { ModelHeader: Bar } };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ ModelHeader: Bar });
 
     const { asFragment } = render(<ModelHeader path="dummy" />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it(`should render with global override shorthand for model`, async () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { user: { ModelHeader: Bar } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ user: { ModelHeader: Bar } });
 
     const { asFragment } = render(<ModelHeader model="user" path="name" />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it(`should render with global override shorthand for model and attribute`, async () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { user: { name: { ModelHeader: Bar } } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ user: { name: { ModelHeader: Bar } } });
 
     const { asFragment } = render(<ModelHeader model="user" path="name" />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it(`should render the component with className from inherited props`, async () => {
-    rhinoConfig.default = { version: 1, components: {} };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ version: 1, components: {} });
 
     const { asFragment } = render(
       <ModelHeader model="user" path="name" className="dummy-class" />
@@ -53,7 +50,9 @@ describe('ModelHeader', () => {
   });
 
   it(`should render the component with children`, async () => {
-    rhinoConfig.default = { version: 1, components: {} };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ version: 1, components: {} });
 
     const { asFragment } = render(
       <ModelHeader model="user" path="name">

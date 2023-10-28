@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import * as rhinoConfig from 'rhino.config';
+import rhinoConfig from 'rhino.config';
 
 const Wrapper = ({ children }) => {
   const methods = useForm();
@@ -8,21 +8,18 @@ const Wrapper = ({ children }) => {
 };
 
 export const sharedFieldTests = (Component) => {
-  const Bar = (props) => <div>Bar</div>;
+  const Bar = () => <div>Bar</div>;
 
-  let oldDefault;
-
-  beforeEach(() => {
-    oldDefault = rhinoConfig.default;
-    rhinoConfig.default = { version: 1, components: {} };
-  });
+  let configSpy;
 
   afterEach(() => {
-    rhinoConfig.default = oldDefault;
+    configSpy.mockRestore();
   });
 
   it(`should render with global override shorthand`, async () => {
-    rhinoConfig.default = { version: 1, components: { [Component.name]: Bar } };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ [Component.name]: Bar });
 
     const { asFragment } = render(<Component model="user" path="name" />, {
       wrapper: Wrapper
@@ -31,10 +28,9 @@ export const sharedFieldTests = (Component) => {
   });
 
   it(`should render with global override shorthand for model`, async () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { user: { [Component.name]: Bar } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ user: { [Component.name]: Bar } });
 
     const { asFragment } = render(<Component model="user" path="name" />, {
       wrapper: Wrapper
@@ -43,10 +39,9 @@ export const sharedFieldTests = (Component) => {
   });
 
   it(`should render with global override shorthand for model and attribute`, async () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { user: { name: { [Component.name]: Bar } } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ user: { name: { [Component.name]: Bar } } });
 
     const { asFragment } = render(<Component model="user" path="name" />, {
       wrapper: Wrapper

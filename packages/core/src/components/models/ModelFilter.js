@@ -18,7 +18,7 @@ import ModelFilterTime from './filters/ModelFilterTime';
 import ModelFilterYear from './filters/ModelFilterYear';
 import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 
-export const ModelFilterBase = ({ overrides, ...props }) => {
+export const ModelFilterBase = (props) => {
   const model = useModel(props.model);
   const { path } = props;
 
@@ -41,6 +41,7 @@ export const ModelFilterBase = ({ overrides, ...props }) => {
       return <ModelFilterFloat {...props} />;
 
     case 'reference':
+      // eslint-disable-next-line no-case-declarations
       const refModel = getModelFromRef(attribute);
 
       if (isOwnerGlobal(refModel)) return <ModelFilterReference {...props} />;
