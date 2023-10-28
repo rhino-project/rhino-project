@@ -1,5 +1,38 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`ModelShowDescription > should allow paths to be directly overridden 1`] = `
+<DocumentFragment>
+  <div
+    class="model-show-description model-show-description-undefined"
+  >
+    <div
+      class="mb-3"
+      id="DisplayLayoutVertical-title"
+      model="[object Object]"
+      path="title"
+    >
+      <label
+        class="form-label"
+        for="title"
+        id="displayLabel-title"
+        path="title"
+      />
+      <input
+        aria-invalid="false"
+        autocomplete="off"
+        class="form-control"
+        id="title"
+        name="title"
+        path="title"
+        readonly=""
+        type="text"
+        value="-"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelShowDescription > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>

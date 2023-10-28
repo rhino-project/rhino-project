@@ -6,7 +6,7 @@ import ModelDisplayGroup from './ModelDisplayGroup';
 
 export const ModelShowDescriptionBase = (props) => {
   const { model, paths } = useModelShowContext();
-  const renderPaths = useRenderPaths(paths, {
+  const renderPaths = useRenderPaths(props.paths || paths, {
     Component: ModelDisplayGroup,
     props: { model }
   });
