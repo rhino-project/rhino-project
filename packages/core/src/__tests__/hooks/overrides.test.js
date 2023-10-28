@@ -6,16 +6,11 @@ import {
   useMergedOverrides,
   useOverrides
 } from 'rhino/hooks/overrides';
-import * as rhinoConfig from 'rhino.config';
+import rhinoConfig from 'rhino.config';
 import modelLoader from 'rhino/models';
 import api from '__tests__/shared/modelFixtures';
 
 vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
-
-vi.mock('rhino.config', () => ({
-  __esModule: true,
-  default: null
-}));
 
 describe('useOverrides', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
@@ -191,66 +186,76 @@ describe('useMergedOverrides', () => {
 describe('useGlobalComponent', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
 
-  const FooBase = ({ overrides, ...props }) => {
+  const FooBase = (props) => {
     return <div {...props}>FooBase</div>;
   };
 
   const Foo = (props) => useGlobalComponent('Foo', FooBase, props);
 
-  beforeEach(() => {
-    rhinoConfig.default = { version: 1, components: {} };
+  let configSpy;
+
+  afterEach(() => {
+    configSpy.mockRestore();
   });
 
   it('should render without overrides', () => {
+    configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global override shorthand', () => {
-    rhinoConfig.default = { version: 1, components: { Foo: Bar } };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: Bar });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global override', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: { component: Bar } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: { component: Bar } });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global prop override', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: { props: { data: 'bar' } } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: { props: { data: 'bar' } } });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should be empty with null', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: null }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: null });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   describe('for model', () => {
     it('should not render with global override shorthand', () => {
-      rhinoConfig.default = { version: 1, components: { user: { Foo: Bar } } };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { Foo: Bar } });
+
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
 
     it('should not render with global override', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { Foo: { component: Bar } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { Foo: { component: Bar } } });
+
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
@@ -258,19 +263,19 @@ describe('useGlobalComponent', () => {
 
   describe('for attribute', () => {
     it('should not render with global override shorthand', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { name: { Foo: Bar } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { name: { Foo: Bar } } });
+
       const { asFragment } = render(<Foo model="user" path="name" />);
       expect(asFragment()).toMatchSnapshot();
     });
 
     it('should not render with global override', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { name: { Foo: { component: Bar } } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { name: { Foo: { component: Bar } } } });
+
       const { asFragment } = render(<Foo model="user" path="name" />);
       expect(asFragment()).toMatchSnapshot();
     });
@@ -280,66 +285,76 @@ describe('useGlobalComponent', () => {
 describe('useGlobalComponentForModel', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
 
-  const FooBase = ({ overrides, ...props }) => {
+  const FooBase = (props) => {
     return <div {...props}>FooBase</div>;
   };
 
   const Foo = (props) => useGlobalComponentForModel('Foo', FooBase, props);
 
-  beforeEach(() => {
-    rhinoConfig.default = { version: 1, components: {} };
+  let configSpy;
+
+  afterEach(() => {
+    configSpy.mockRestore();
   });
 
   it('should render without overrides', () => {
+    configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global override shorthand', () => {
-    rhinoConfig.default = { version: 1, components: { Foo: Bar } };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: Bar });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global override', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: { component: Bar } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: { component: Bar } });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global prop override', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: { props: { data: 'bar' } } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: { props: { data: 'bar' } } });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should be empty with null', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: null }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: null });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   describe('for model', () => {
     it('should render with global override shorthand', () => {
-      rhinoConfig.default = { version: 1, components: { user: { Foo: Bar } } };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { Foo: Bar } });
+
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
 
     it('should render with global override', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { Foo: { component: Bar } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { Foo: { component: Bar } } });
+
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
@@ -347,19 +362,19 @@ describe('useGlobalComponentForModel', () => {
 
   describe('for attribute', () => {
     it('should not render with global override shorthand', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { name: { Foo: Bar } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { name: { Foo: Bar } } });
+
       const { asFragment } = render(<Foo model="user" path="name" />);
       expect(asFragment()).toMatchSnapshot();
     });
 
     it('should not render with global override', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { name: { Foo: { component: Bar } } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { name: { Foo: { component: Bar } } } });
+
       const { asFragment } = render(<Foo model="user" path="name" />);
       expect(asFragment()).toMatchSnapshot();
     });
@@ -369,66 +384,76 @@ describe('useGlobalComponentForModel', () => {
 describe('useGlobalComponentForAttribute', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
 
-  const FooBase = ({ overrides, ...props }) => {
+  const FooBase = (props) => {
     return <div {...props}>FooBase</div>;
   };
 
   const Foo = (props) => useGlobalComponentForAttribute('Foo', FooBase, props);
 
-  beforeEach(() => {
-    rhinoConfig.default = { version: 1, components: {} };
+  let configSpy;
+
+  afterEach(() => {
+    configSpy.mockRestore();
   });
 
   it('should render without overrides', () => {
+    configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global override shorthand', () => {
-    rhinoConfig.default = { version: 1, components: { Foo: Bar } };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: Bar });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global override', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: { component: Bar } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: { component: Bar } });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should render with global prop override', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: { props: { data: 'bar' } } }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: { props: { data: 'bar' } } });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('should be empty with null', () => {
-    rhinoConfig.default = {
-      version: 1,
-      components: { Foo: null }
-    };
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: null });
+
     const { asFragment } = render(<Foo />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   describe('for model', () => {
     it('should render with global override shorthand', () => {
-      rhinoConfig.default = { version: 1, components: { user: { Foo: Bar } } };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { Foo: Bar } });
+
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
 
     it('should render with global override', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { Foo: { component: Bar } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { Foo: { component: Bar } } });
+
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
@@ -436,19 +461,19 @@ describe('useGlobalComponentForAttribute', () => {
 
   describe('for attribute', () => {
     it('should render with global override shorthand', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { name: { Foo: Bar } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { name: { Foo: Bar } } });
+
       const { asFragment } = render(<Foo model="user" path="name" />);
       expect(asFragment()).toMatchSnapshot();
     });
 
     it('should render with global override', () => {
-      rhinoConfig.default = {
-        version: 1,
-        components: { user: { name: { Foo: { component: Bar } } } }
-      };
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ user: { name: { Foo: { component: Bar } } } });
+
       const { asFragment } = render(<Foo model="user" path="name" />);
       expect(asFragment()).toMatchSnapshot();
     });

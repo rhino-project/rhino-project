@@ -1,6 +1,6 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MemoryRouter, Route, Router } from 'react-router-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
 
 import { DEFAULT_SORT, PAGE_SIZE } from 'config';
 import {
@@ -31,7 +31,7 @@ describe('useModelIndexContext', () => {
 });
 
 describe('useModelIndexController', () => {
-  let testHistory, testLocation;
+  let testHistory;
 
   const Wrapper = ({ children, ...props }) => {
     const queryClient = new QueryClient();
@@ -41,9 +41,8 @@ describe('useModelIndexController', () => {
         <QueryClientProvider client={queryClient}>
           <Route
             path="*"
-            render={({ history, location }) => {
+            render={({ history }) => {
               testHistory = history;
-              testLocation = location;
               return null;
             }}
           />

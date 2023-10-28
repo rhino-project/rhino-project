@@ -1,9 +1,7 @@
 import { Input } from 'reactstrap';
+import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
-import {
-  useGlobalComponentForAttribute,
-  useOverrides
-} from 'rhino/hooks/overrides';
+import { useOverrides } from 'rhino/hooks/overrides';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 
 const defaultComponents = {
@@ -37,5 +35,12 @@ export const ModelEditableCellBooleanBase = ({
     />
   );
 };
+
+const ModelEditableCellBoolean = (props) =>
+  useGlobalComponentForAttribute(
+    'ModelEditableCellBoolean',
+    ModelEditableCellBooleanBase,
+    props
+  );
 
 export default ModelEditableCellBoolean;

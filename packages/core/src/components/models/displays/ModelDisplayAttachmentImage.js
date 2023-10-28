@@ -2,7 +2,8 @@ import { useCallback, useMemo } from 'react';
 import { useWatch } from 'react-hook-form';
 import DisplayImage from 'rhino/components/forms/displays/DisplayImage';
 
-const ModelDisplayAttachmentImage = ({ children, model, ...props }) => {
+// eslint-disable-next-line no-unused-vars
+const ModelDisplayAttachmentImage = ({ model, ...props }) => {
   const accessor = useCallback((value) => value?.url, []);
   const watch = useWatch({ name: props.path });
 

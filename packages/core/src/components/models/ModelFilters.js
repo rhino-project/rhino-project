@@ -16,7 +16,7 @@ const createFilteredObject = (obj) => {
   const result = {};
   // iterate through all keys in the object
   for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
       // if the value is not undefined, add it to the new object
       if (obj[key] !== undefined) {
         // if the value is an object, recursively call the function

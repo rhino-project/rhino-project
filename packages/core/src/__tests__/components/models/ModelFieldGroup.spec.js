@@ -25,7 +25,7 @@ describe('ModelFieldGroup', () => {
     );
   };
 
-  const Bar = (props) => <div>Bar</div>;
+  const Bar = () => <div>Bar</div>;
 
   sharedModelTests(ModelFieldGroup);
 

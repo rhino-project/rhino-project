@@ -3,7 +3,7 @@ import { InputGroup, Input } from 'reactstrap';
 import { useDebouncedCallback } from 'use-debounce';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
 
-const ModelSearch = (props) => {
+const ModelSearch = () => {
   const { search, setSearch } = useModelIndexContext();
   const [searchTerm, setSearchTerm] = useState(search);
   const debounced = useDebouncedCallback((newSearch) => {

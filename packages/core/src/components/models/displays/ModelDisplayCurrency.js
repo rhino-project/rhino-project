@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { InputGroup } from 'reactstrap';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 
+// eslint-disable-next-line no-unused-vars
 export const ModelDisplayCurrencyBase = ({ model, error, ...props }) => (
   <InputGroup
     className={classnames({

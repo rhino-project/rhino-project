@@ -3,7 +3,7 @@ import { useModelEditContext } from 'rhino/hooks/controllers';
 import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
 
-export const ModelEditHeaderBase = (props) => {
+export const ModelEditHeaderBase = () => {
   const {
     model,
     show: { resource }

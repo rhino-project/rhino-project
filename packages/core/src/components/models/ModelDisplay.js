@@ -20,7 +20,7 @@ import ModelDisplayAttachmentImage from './displays/ModelDisplayAttachmentImage'
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import ModelDisplayCurrency from './displays/ModelDisplayCurrency';
 
-export const ModelDisplayBase = ({ overrides, ...props }) => {
+export const ModelDisplayBase = (props) => {
   const { model } = useModelContext();
 
   const { path } = props;

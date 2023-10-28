@@ -86,7 +86,7 @@ export const networkApiCall = (path, options) => {
 };
 
 const handler = {
-  get(target, prop, receiver) {
+  get(target, prop) {
     // If the data is being access data.data, its the older form, return it
     if (prop === 'data') {
       console.warn('Legacy data access used in query hooks');

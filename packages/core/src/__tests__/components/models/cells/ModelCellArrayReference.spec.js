@@ -25,7 +25,7 @@ describe('ModelCellArrayReference', () => {
   it('should render with an accessor function', () => {
     const { asFragment } = render(
       <ModelCellArrayReference
-        accessor={(value) => 'function value'}
+        accessor={() => 'function value'}
         getValue={() => [{}, {}]}
       />
     );

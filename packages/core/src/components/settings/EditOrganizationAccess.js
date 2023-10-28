@@ -6,15 +6,11 @@ import ModelEditableCellReference from '../models/cells/ModelEditableCellReferen
 import ModelIndexHeader from '../models/ModelIndexHeader';
 import ModelIndexTable from '../models/ModelIndexTable';
 import { IconButton } from '../buttons';
-import {
-  useModelIndexContext,
-  useModelIndexController
-} from 'rhino/hooks/controllers';
+import { useModelIndexContext } from 'rhino/hooks/controllers';
 import ModelCreateModal from '../models/ModelCreateModal';
 import ModelIndexActions, {
   ModelIndexActionCreate
 } from '../models/ModelIndexActions';
-import ModelIndexProvider from '../models/ModelIndexProvider';
 import ModelIndexSimple from '../models/ModelIndexSimple';
 
 const RemoveButton = (props) => {

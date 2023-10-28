@@ -8,9 +8,9 @@ import * as modelUtils from 'rhino/utils/models';
 vi.spyOn(modelUtils, 'getParentModel').mockReturnValue({ model: 'another' });
 
 describe('ModelCreate', () => {
-  const Foo = (props) => <div>Foo</div>;
-  const Bar = (props) => <div>Bar</div>;
-  const Baz = (props) => <div>Baz</div>;
+  const Foo = () => <div>Foo</div>;
+  const Bar = () => <div>Bar</div>;
+  const Baz = () => <div>Baz</div>;
 
   const wrapper = ({ children }) => {
     const queryClient = new QueryClient({

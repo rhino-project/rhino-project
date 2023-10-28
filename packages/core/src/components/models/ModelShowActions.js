@@ -46,7 +46,7 @@ export const ModelShowActionEdit = ({ children, ...props }) => {
   );
 };
 
-export const ModelShowActionEditModal = ({ children, ...props }) => {
+export const ModelShowActionEditModal = (props) => {
   const { model, resource } = useModelShowContext();
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -104,7 +104,6 @@ const defaultComponents = {
 
 export const ModelShowActionsBase = ({
   overrides,
-  children,
   actions,
   append = false,
   prepend = false,

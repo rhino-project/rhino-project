@@ -91,7 +91,7 @@ const ModelCellNested = ({ path, ...props }) => {
   );
 };
 
-const ModelFieldNestedBase = ({ overrides, model, ...props }) => {
+const ModelFieldNestedBase = ({ model, ...props }) => {
   const { path: arrayPath, paths } = props;
   const { attribute } = useModelAndAttributeFromPath(model, arrayPath);
   const refModel = getModelFromRef(attribute);

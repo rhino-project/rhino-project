@@ -19,6 +19,7 @@ const FieldBoolean = (props) => {
     <Input
       {...extractedProps}
       {...fieldProps}
+      innerRef={ref}
       type="checkbox"
       invalid={!!error}
       checked={value}

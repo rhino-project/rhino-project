@@ -3,7 +3,7 @@ import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import FieldLabel from '../forms/FieldLabel';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 
-export const ModelFieldLabelBase = ({ overrides, label, model, ...props }) => {
+export const ModelFieldLabelBase = ({ label, model, ...props }) => {
   const { path } = props;
   const { attribute } = useModelAndAttributeFromPath(model, path);
 

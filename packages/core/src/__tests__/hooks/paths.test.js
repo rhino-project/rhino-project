@@ -27,7 +27,7 @@ describe('usePaths', () => {
   });
 
   it('returns the computed paths when paths is a function', () => {
-    const pathsFn = vi.fn((roles, resource) => ['path1', 'path2']);
+    const pathsFn = vi.fn(() => ['path1', 'path2']);
     const { result } = renderHook(() => usePaths(pathsFn, {}));
     expect(pathsFn).toHaveBeenCalledWith(['role1', 'role2'], {});
     expect(result.current).toEqual(['path1', 'path2']);

@@ -5,9 +5,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 
 describe('ModelIndex', () => {
-  const Foo = (props) => <div>Foo</div>;
-  const Bar = (props) => <div>Bar</div>;
-  const Baz = (props) => <div>Baz</div>;
+  const Foo = () => <div>Foo</div>;
+  const Bar = () => <div>Bar</div>;
+  const Baz = () => <div>Baz</div>;
 
   const wrapper = ({ children }) => {
     const queryClient = new QueryClient({
