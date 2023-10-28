@@ -83,6 +83,172 @@ const api = {
           }
         },
         required: ['name']
+      },
+      blog: {
+        'x-rhino-model': {
+          model: 'blog',
+          modelPlural: 'blogs',
+          name: 'blog',
+          pluralName: 'blogs',
+          readableName: 'Blog',
+          pluralReadableName: 'Blogs',
+          ownedBy: 'organization',
+          singular: false,
+          path: '/api/blogs',
+          searchable: true
+        },
+        type: 'object',
+        properties: {
+          id: {
+            'x-rhino-attribute': {
+              name: 'id',
+              readableName: 'Id',
+              readable: true,
+              creatable: false,
+              updatable: false
+            },
+            readOnly: true,
+            nullable: false,
+            type: 'identifier'
+          },
+          title: {
+            'x-rhino-attribute': {
+              name: 'title',
+              readableName: 'Title',
+              readable: true,
+              creatable: true,
+              updatable: true
+            },
+            nullable: false,
+            type: 'string'
+          },
+          published_at: {
+            'x-rhino-attribute': {
+              name: 'published_at',
+              readableName: 'Published At',
+              readable: true,
+              creatable: true,
+              updatable: true
+            },
+            nullable: true,
+            type: 'string',
+            format: 'datetime'
+          },
+          created_at: {
+            'x-rhino-attribute': {
+              name: 'created_at',
+              readableName: 'Created At',
+              readable: true,
+              creatable: false,
+              updatable: false
+            },
+            readOnly: true,
+            nullable: false,
+            type: 'string',
+            format: 'datetime'
+          },
+          updated_at: {
+            'x-rhino-attribute': {
+              name: 'updated_at',
+              readableName: 'Updated At',
+              readable: true,
+              creatable: false,
+              updatable: false
+            },
+            readOnly: true,
+            nullable: false,
+            type: 'string',
+            format: 'datetime'
+          },
+          author: {
+            'x-rhino-attribute': {
+              name: 'author',
+              readableName: 'Author',
+              readable: true,
+              creatable: false,
+              updatable: false
+            },
+            readOnly: true,
+            nullable: false,
+            type: 'reference',
+            anyOf: [
+              {
+                $ref: '#/components/schemas/user'
+              }
+            ]
+          },
+          organization: {
+            'x-rhino-attribute': {
+              name: 'organization',
+              readableName: 'Organization',
+              readable: true,
+              creatable: true,
+              updatable: true
+            },
+            nullable: false,
+            type: 'reference',
+            anyOf: [
+              {
+                $ref: '#/components/schemas/organization'
+              }
+            ]
+          },
+          category: {
+            'x-rhino-attribute': {
+              name: 'category',
+              readableName: 'Category',
+              readable: true,
+              creatable: true,
+              updatable: true
+            },
+            nullable: true,
+            type: 'reference',
+            anyOf: [
+              {
+                $ref: '#/components/schemas/category'
+              }
+            ]
+          },
+          banner_attachment: {
+            'x-rhino-attribute': {
+              name: 'banner_attachment',
+              readableName: 'Banner Attachment',
+              readable: true,
+              creatable: true,
+              updatable: true
+            },
+            nullable: true,
+            type: 'reference',
+            anyOf: [
+              {
+                $ref: '#/components/schemas/active_storage_attachment'
+              }
+            ],
+            format: 'image'
+          },
+          blog_posts: {
+            'x-rhino-attribute': {
+              name: 'blog_posts',
+              readableName: 'Blog Posts',
+              readable: true,
+              creatable: false,
+              updatable: false
+            },
+            readOnly: true,
+            nullable: true,
+            type: 'array',
+            items: {
+              type: 'reference',
+              anyOf: [
+                {
+                  $ref: '#/components/schemas/blog_post'
+                }
+              ],
+              'x-rhino-attribute-array': {}
+            }
+          }
+        },
+        required: ['title', 'organization']
       }
     }
   },

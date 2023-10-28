@@ -1,5 +1,36 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`ModelCreateForm > should allow paths to be directly overridden 1`] = `
+<DocumentFragment>
+  <div
+    class="model-create-form model-create-form-undefined"
+  >
+    <div
+      class="mb-3"
+      id="FieldLayoutVertical-title"
+      model="[object Object]"
+      path="title"
+    >
+      <label
+        class="form-label"
+        for="title"
+        id="fieldLabel-title"
+        path="title"
+      />
+      <input
+        aria-invalid="false"
+        autocomplete="off"
+        class="form-control"
+        id="title"
+        name="title"
+        path="title"
+        type="text"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelCreateForm > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
