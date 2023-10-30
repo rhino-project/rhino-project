@@ -1,9 +1,8 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { Spinner } from 'reactstrap';
 
-import { Target } from 'rhino/components/layouts';
 import ErrorBoundary from 'rhino/components/errors/errorBoundary';
+import { Target } from 'rhino/components/layouts';
 
 const BasePage = ({ children, loading }) => {
   if (loading) {
@@ -16,7 +15,7 @@ const BasePage = ({ children, loading }) => {
 
   return (
     <ErrorBoundary>
-      <div className="pt-3">{children}</div>
+      <div className="py-3">{children}</div>
     </ErrorBoundary>
   );
 };

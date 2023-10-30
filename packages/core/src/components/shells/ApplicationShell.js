@@ -72,12 +72,12 @@ const ApplicationShell = ({ children }) => {
               </Navbar>
             </div>
           )}
-          <div className="d-md-flex flex-grow-1">
+          <div className="d-md-flex flex-grow-1 h-100">
             <Sidebar extraClass="d-none flex-shrink-0">
               <SidebarLayout />
             </Sidebar>
             <main className="flex-grow-1 overflow-hidden h-100" role="main">
-              <Container fluid className="h-100">
+              <Container fluid className="h-100 overflow-y-auto">
                 {children}
               </Container>
             </main>
