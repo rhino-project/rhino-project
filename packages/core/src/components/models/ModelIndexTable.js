@@ -1,4 +1,10 @@
 import {
+  createColumnHelper,
+  getCoreRowModel,
+  useReactTable
+} from '@tanstack/react-table';
+import PropTypes from 'prop-types';
+import {
   cloneElement,
   isValidElement,
   useCallback,
@@ -6,27 +12,21 @@ import {
   useMemo,
   useState
 } from 'react';
-import PropTypes from 'prop-types';
-import {
-  createColumnHelper,
-  getCoreRowModel,
-  useReactTable
-} from '@tanstack/react-table';
 
 import {
   useGlobalComponentForModel,
   useOverrides
 } from 'rhino/hooks/overrides';
 
-import { useBaseOwnerNavigation } from 'rhino/hooks/history';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
 import { filter, isString } from 'lodash';
+import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import { usePaths } from 'rhino/hooks/paths';
+import { getModelShowPath } from 'rhino/utils/routes';
 import Table from '../table/Table';
 import ModelCell from './ModelCell';
-import ModelHeader from './ModelHeader';
 import ModelFooter from './ModelFooter';
-import { getModelShowPath } from '../../utils/routes';
+import ModelHeader from './ModelHeader';
 import ModelSection from './ModelSection';
 
 const getViewablePaths = (model) =>

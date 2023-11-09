@@ -1,21 +1,21 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { createWrapper } from '__tests__/shared/helpers';
 import {
+  useModelCreate,
+  useModelDelete,
+  useModelIndex,
   useModelInvalidateIndex,
+  useModelInvalidateShow,
   useModelKey,
   useModelKeyIndex,
   useModelKeyShow,
-  useModelIndex,
-  useModelInvalidateShow,
   useModelShow,
-  useModelCreate,
-  useModelUpdate,
-  useModelDelete
+  useModelUpdate
 } from 'rhino/hooks/queries';
 import modelLoader from 'rhino/models';
-import api from '../../shared/modelFixtures';
 import * as network from '../../../rhino/lib/networking';
-import { createWrapper } from '__tests__/shared/helpers';
+import api from '../../shared/modelFixtures';
 
 const testQueryClient = () =>
   new QueryClient({

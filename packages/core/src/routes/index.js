@@ -1,20 +1,18 @@
-import React from 'react';
 import { Route } from 'react-router-dom';
 
-import modelRoutePaths from './model';
 import customRoutePaths from 'routes/custom';
+import modelRoutePaths from './model';
 
 import {
+  AcceptInvitationPage,
   ForgotPasswordPage,
   ResetPasswordExpiredPage,
   ResetPasswordPage,
   SignInPage,
-  SignUpPage,
-  AcceptInvitationPage
+  SignUpPage
 } from 'rhino/pages/auth';
-import SettingsPage from 'rhino/pages/settings/SettingsPage';
 import OrganizationSettingsPage from 'rhino/pages/settings/OrganizationSettingsPage';
-import NonAuthenticatedRoute from './NonAuthenticatedRoute';
+import SettingsPage from 'rhino/pages/settings/SettingsPage';
 import { hasOrganizationsModule } from 'rhino/utils/models';
 import {
   getAccountSettingsPath,
@@ -37,73 +35,61 @@ const routePaths = {
   tokenExpired: () => '/reset-password/expired'
 };
 
-export const settingsRoute = (match) => {
+export const settingsRoute = () => {
   if (!hasOrganizationsModule()) return [];
 
   return [
     <Route
       key={routePaths.settings()}
-      path={`${match.path}${routePaths.settings()}/:activeTab?`}
-      component={OrganizationSettingsPage}
+      path={`${routePaths.settings()}/:activeTab?`}
+      element={<OrganizationSettingsPage />}
     />
   ];
 };
 
-export const accountSettingsRoute = (match) => {
+export const accountSettingsRoute = () => {
   return [
     <Route
       key={routePaths.settings()}
-      exact
-      path={`${match.path}${routePaths.accountSettings()}/:activeTab?`}
-      component={SettingsPage}
+      path={`${routePaths.accountSettings()}/:activeTab?`}
+      element={<SettingsPage />}
     />
   ];
 };
 
 export const authRoutes = () => {
   return [
-    <NonAuthenticatedRoute
+    <Route
       key={routePaths.sessionCreate()}
-      exact
       path={routePaths.sessionCreate()}
-    >
-      <SignInPage />
-    </NonAuthenticatedRoute>,
-    <NonAuthenticatedRoute
+      element={<SignInPage />}
+      index
+    />,
+    <Route
       key={routePaths.userCreate()}
-      exact
       path={routePaths.userCreate()}
-    >
-      <SignUpPage />
-    </NonAuthenticatedRoute>,
-    <NonAuthenticatedRoute
+      element={<SignUpPage />}
+    />,
+    <Route
       key={routePaths.userAccept()}
-      exact
       path={routePaths.userAccept()}
-    >
-      <AcceptInvitationPage />
-    </NonAuthenticatedRoute>,
-    <NonAuthenticatedRoute
+      element={<AcceptInvitationPage />}
+    />,
+    <Route
       key={routePaths.forgotPassword()}
-      exact
       path={routePaths.forgotPassword()}
-    >
-      <ForgotPasswordPage />
-    </NonAuthenticatedRoute>,
-    <NonAuthenticatedRoute
+      element={<ForgotPasswordPage />}
+    />,
+    <Route
       key={routePaths.resetPassword()}
-      exact
       path={routePaths.resetPassword()}
-    >
-      <ResetPasswordPage />
-    </NonAuthenticatedRoute>,
-    <NonAuthenticatedRoute
+      element={<ResetPasswordPage />}
+    />,
+    <Route
       key={routePaths.tokenExpired()}
-      exact
       path={routePaths.tokenExpired()}
-    >
-      <ResetPasswordExpiredPage />
-    </NonAuthenticatedRoute>
+      element={<ResetPasswordExpiredPage />}
+    />
   ];
 };
 

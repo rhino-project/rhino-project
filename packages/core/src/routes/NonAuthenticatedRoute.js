@@ -1,27 +1,20 @@
 import PropTypes from 'prop-types';
-import { Redirect, Route } from 'react-router';
+import { Navigate } from 'react-router';
 import { SplashScreen } from 'rhino/components/logos';
 import { useAuth } from 'rhino/hooks/auth';
-import { useRootPath } from 'rhino/hooks/routes';
+import { useAuthenticatedAppPath } from 'rhino/hooks/routes';
 
-const NonAuthenticatedRoute = ({ children, ...rest }) => {
-  const rootPath = useRootPath();
+const NonAuthenticatedRoute = ({ children }) => {
+  const authenticatedAppPath = useAuthenticatedAppPath();
   const { initializing, user } = useAuth();
 
-  return (
-    <Route
-      {...rest}
-      render={() => {
-        if (initializing) {
-          return <SplashScreen />;
-        } else if (!user) {
-          return children;
-        } else {
-          return <Redirect to={rootPath} />;
-        }
-      }}
-    />
-  );
+  if (initializing) {
+    return <SplashScreen />;
+  } else if (!user) {
+    return children;
+  } else {
+    return <Navigate to={authenticatedAppPath} replace />;
+  }
 };
 
 NonAuthenticatedRoute.propTypes = {

@@ -22,9 +22,9 @@ export const useBaseOwner = () => {
 };
 
 export const useBaseOwnerId = () => {
-  const routeParams = useParams();
+  const { baseOwnerId } = useParams();
 
-  return parseInt(routeParams.baseOwnerId);
+  return useMemo(() => parseInt(baseOwnerId), [baseOwnerId]);
 };
 
 export const useBaseOwnerFilters = (model, options = {}) => {

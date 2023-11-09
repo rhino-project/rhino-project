@@ -1,13 +1,12 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-import { useAcceptInvitationAction } from 'rhino/queries/auth';
-import AuthPage from './AuthPage';
+import { Alert } from 'reactstrap';
 import AuthForm from 'rhino/components/auth/AuthForm';
 import { useAuthenticated } from 'rhino/hooks/auth';
 import { useParsedSearch } from 'rhino/hooks/history';
-import { Alert } from 'reactstrap';
 import { useRootPath } from 'rhino/hooks/routes';
+import { useAcceptInvitationAction } from 'rhino/queries/auth';
+import AuthPage from './AuthPage';
 
 const AcceptInvitationPage = () => {
   const rootPath = useRootPath();
@@ -24,7 +23,7 @@ const AcceptInvitationPage = () => {
 
   // If we signin successfully, redirect
   // FIXME Redirect pattern should be an HOC
-  if (isAuthenticated) return <Redirect to={rootPath} />;
+  if (isAuthenticated) return <Navigate to={rootPath} replace />;
   const authDesc = <p>Enter a password to create account.</p>;
   return (
     <AuthPage description={authDesc}>

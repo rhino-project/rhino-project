@@ -1,9 +1,7 @@
-import React from 'react';
-
-import AuthPage from './AuthPage';
 import { DangerAlert } from 'rhino/components/alerts';
 import { LinkButton } from 'rhino/components/buttons';
 import { useForgotPasswordPath } from 'rhino/hooks/routes';
+import AuthPage from './AuthPage';
 
 const ResetPasswordExpiredPage = () => {
   const forgotPasswordPath = useForgotPasswordPath();
@@ -17,7 +15,7 @@ const ResetPasswordExpiredPage = () => {
         title="Password reset token has expired"
         description="You tried to reset your password but the secure link has expired."
       >
-        <LinkButton outline to={forgotPasswordPath}>
+        <LinkButton outline to={`../${forgotPasswordPath}`}>
           Forgot password?
         </LinkButton>
       </DangerAlert>

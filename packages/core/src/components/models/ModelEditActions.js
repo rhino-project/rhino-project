@@ -1,16 +1,16 @@
-import { Children, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { Children, useCallback, useMemo } from 'react';
 
-import { useModelEditContext } from 'rhino/hooks/controllers';
 import { useFormContext } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { useModelEditContext } from 'rhino/hooks/controllers';
 import { useFieldSetErrors } from 'rhino/hooks/form';
-import { IconButton } from '../buttons';
-import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
+import { useBackHistory } from '../../hooks/history';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import { getModelShowPath } from '../../utils/routes';
+import { IconButton } from '../buttons';
 import ModelSection from './ModelSection';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
@@ -45,17 +45,14 @@ export const ModelEditActionSave = ({ children, onSave, ...props }) => {
 };
 
 export const ModelEditActionSaveShow = ({ onSave, ...props }) => {
-  const { model } = useModelEditContext();
-  const { push } = useBaseOwnerNavigation();
+  const navigate = useNavigate();
   const handleSave = useCallback(
     (data) => {
-      const showPath = getModelShowPath(model, data.id);
-
       if (onSave) onSave(data);
 
-      push(showPath);
+      navigate('..');
     },
-    [model, push, onSave]
+    [navigate, onSave]
   );
 
   return <ModelEditActionSave onSave={handleSave} {...props} />;
