@@ -28,6 +28,7 @@ import ModelCell from './ModelCell';
 import ModelFooter from './ModelFooter';
 import ModelHeader from './ModelHeader';
 import ModelSection from './ModelSection';
+import { PAGE_SIZE } from 'config';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -65,8 +66,8 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
     defaultComponents,
     overrides
   );
-
-  const { model, order, resources, results, setOrder } = useModelIndexContext();
+  const { isInitialLoading, model, order, resources, results, setOrder } =
+    useModelIndexContext();
   const { baseRoute, paths, sortPaths } = props;
   const baseOwnerNavigation = useBaseOwnerNavigation();
   const [sorting, setSorting] = useState([]);
@@ -139,9 +140,14 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
         }
 
         // Path is a string
-        const cell = (info) => (
-          <ModelCell model={model} path={path} {...info} />
-        );
+        const cell = (info) =>
+          isInitialLoading ? (
+            <div className="placeholder-glow">
+              <span className="placeholder col-6"></span>
+            </div>
+          ) : (
+            <ModelCell model={model} path={path} {...info} />
+          );
 
         const header = (info) => (
           <ModelHeader model={model} path={path} {...info} />
@@ -159,7 +165,7 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
           enableMultiSort: sortable.includes(path)
         });
       }),
-    [computedPaths, model, sortable]
+    [computedPaths, isInitialLoading, model, sortable]
   );
 
   useEffect(() => {
@@ -181,8 +187,12 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
     );
   }, [order, setOrder, sorting]);
 
+  const data = useMemo(() => {
+    return results || Array(PAGE_SIZE).fill({});
+  }, [results]);
+
   const table = useReactTable({
-    data: results || [],
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     enableMultiSort: true,
