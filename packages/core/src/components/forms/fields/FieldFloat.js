@@ -8,8 +8,8 @@ const setValueAs = (value) => {
   return parsed;
 };
 
-export const FieldInteger = (props) => (
+export const FieldFloat = (props) => (
   <FieldInput type="number" setValueAs={setValueAs} {...props} />
 );
 
-export default FieldInteger;
+export default FieldFloat;
