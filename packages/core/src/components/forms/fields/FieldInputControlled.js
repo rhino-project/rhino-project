@@ -4,8 +4,13 @@ import { Input } from 'reactstrap';
 import { useController } from 'react-hook-form';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 import { useCallback, useMemo } from 'react';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const FieldInputControlled = ({ accessor, onChangeAccessor, ...props }) => {
+export const FieldInputControlledBase = ({
+  accessor,
+  onChangeAccessor,
+  ...props
+}) => {
   const { path } = props;
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const {
@@ -44,10 +49,13 @@ const FieldInputControlled = ({ accessor, onChangeAccessor, ...props }) => {
   );
 };
 
-FieldInputControlled.propTypes = {
+FieldInputControlledBase.propTypes = {
   accessor: PropTypes.func,
   path: PropTypes.string.isRequired,
   type: PropTypes.string
 };
+
+const FieldInputControlled = (props) =>
+  useGlobalComponent('FieldInputControlled', FieldInputControlledBase, props);
 
 export default FieldInputControlled;

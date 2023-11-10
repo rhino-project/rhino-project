@@ -5,8 +5,9 @@ import classnames from 'classnames';
 import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const FieldYear = ({ min, max, ...props }) => {
+export const FieldYearBase = ({ min, max, ...props }) => {
   const { path } = props;
   const {
     field: { value, onChange, onBlur },
@@ -55,8 +56,11 @@ const FieldYear = ({ min, max, ...props }) => {
   );
 };
 
-FieldYear.propTypes = {
+FieldYearBase.propTypes = {
   path: PropTypes.string.isRequired
 };
+
+const FieldYear = (props) =>
+  useGlobalComponent('FieldYear', FieldYearBase, props);
 
 export default FieldYear;

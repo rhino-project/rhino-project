@@ -7,13 +7,10 @@ import {
   useFieldRegister,
   useFieldInheritedProps
 } from 'rhino/hooks/form';
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
-
-const defaultComponents = { FieldInput: Input };
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 // FIXME: Is there a better way to handle setValueAs?
-const FieldInputBase = ({ overrides, setValueAs, ...props }) => {
-  const { FieldInput } = useOverrides(defaultComponents, overrides);
+export const FieldInputBase = ({ setValueAs, ...props }) => {
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const { path } = props;
 
@@ -26,7 +23,7 @@ const FieldInputBase = ({ overrides, setValueAs, ...props }) => {
   const placeholder = useFieldPlaceholder(props);
 
   return (
-    <FieldInput
+    <Input
       {...extractedProps}
       {...fieldProps}
       innerRef={ref}

@@ -1,0 +1,24 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldInputControlled > renders inside of model context 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="text"
+    value=""
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldInputControlled > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

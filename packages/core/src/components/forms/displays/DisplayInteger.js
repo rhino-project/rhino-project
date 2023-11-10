@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
-import FieldInputControlled from '../fields/FieldInputControlled';
+import { FieldInputControlledBase } from '../fields/FieldInputControlled';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const DisplayInteger = ({ empty = '-', ...props }) => {
+export const DisplayIntegerBase = ({ empty = '-', ...props }) => {
   const accessor = useCallback(
     (value) => {
       if (value == null) return empty;
@@ -12,8 +13,16 @@ const DisplayInteger = ({ empty = '-', ...props }) => {
   );
 
   return (
-    <FieldInputControlled type="text" accessor={accessor} readOnly {...props} />
+    <FieldInputControlledBase
+      type="text"
+      accessor={accessor}
+      readOnly
+      {...props}
+    />
   );
 };
+
+const DisplayInteger = (props) =>
+  useGlobalComponent('DisplayInteger', DisplayIntegerBase, props);
 
 export default DisplayInteger;

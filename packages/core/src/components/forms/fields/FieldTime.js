@@ -5,8 +5,9 @@ import classnames from 'classnames';
 import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const FieldTime = ({ ...props }) => {
+export const FieldTimeBase = ({ ...props }) => {
   const { path } = props;
   const {
     field: { value, onChange, onBlur },
@@ -64,8 +65,11 @@ const FieldTime = ({ ...props }) => {
   );
 };
 
-FieldTime.propTypes = {
+FieldTimeBase.propTypes = {
   path: PropTypes.string.isRequired
 };
+
+const FieldTime = (props) =>
+  useGlobalComponent('FieldTime', FieldTimeBase, props);
 
 export default FieldTime;

@@ -1,7 +1,15 @@
-import FieldInputControlled from '../fields/FieldInputControlled';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { FieldInputControlledBase } from '../fields/FieldInputControlled';
 
-const DisplayStringControlled = (props) => (
-  <FieldInputControlled type="text" readOnly {...props} />
+export const DisplayStringControlledBase = (props) => (
+  <FieldInputControlledBase type="text" readOnly {...props} />
 );
+
+const DisplayStringControlled = (props) =>
+  useGlobalComponent(
+    'DisplayStringControlled',
+    DisplayStringControlledBase,
+    props
+  );
 
 export default DisplayStringControlled;

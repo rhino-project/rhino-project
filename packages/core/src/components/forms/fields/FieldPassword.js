@@ -1,13 +1,14 @@
-import FieldInput from './FieldInput';
+import { FieldInputBase } from './FieldInput';
 import { IconButton } from '../../buttons';
 import { useState } from 'react';
 import { InputGroup } from 'reactstrap';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-export const FieldPassword = (props) => {
+export const FieldPasswordBase = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <InputGroup>
-      <FieldInput type={showPassword ? 'text' : 'password'} {...props} />
+      <FieldInputBase type={showPassword ? 'text' : 'password'} {...props} />
       <IconButton
         icon={showPassword ? 'eye-slash-fill' : 'eye-fill'}
         color="outline-secondary"
@@ -17,5 +18,8 @@ export const FieldPassword = (props) => {
     </InputGroup>
   );
 };
+
+const FieldPassword = (props) =>
+  useGlobalComponent('FieldPassword', FieldPasswordBase, props);
 
 export default FieldPassword;

@@ -1,5 +1,11 @@
-import FieldInput from './FieldInput';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { FieldInputBase } from './FieldInput';
 
-export const FieldSelect = (props) => <FieldInput type="select" {...props} />;
+export const FieldSelectBase = (props) => (
+  <FieldInputBase type="select" {...props} />
+);
+
+const FieldSelect = (props) =>
+  useGlobalComponent('FieldSelect', FieldSelectBase, props);
 
 export default FieldSelect;

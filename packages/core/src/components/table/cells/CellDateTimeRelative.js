@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
 import { formatRelative, parseISO } from 'date-fns';
 import { useTableInheritedProps } from 'rhino/hooks/table';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const CellDateTimeRelative = ({
+export const CellDateTimeRelativeBase = ({
   empty = '-',
   baseDate = new Date(),
   options = {},
@@ -17,5 +18,8 @@ const CellDateTimeRelative = ({
 
   return <div {...inheritedProps}>{value}</div>;
 };
+
+const CellDateTimeRelative = (props) =>
+  useGlobalComponent('CellDateTimeRelative', CellDateTimeRelativeBase, props);
 
 export default CellDateTimeRelative;

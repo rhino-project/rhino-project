@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 
-const CellBoolean = ({
+export const CellBooleanBase = ({
   trueText = 'Yes',
   falseText = 'No',
   empty = '-',
@@ -16,5 +17,8 @@ const CellBoolean = ({
 
   return <div {...inheritedProps}>{value}</div>;
 };
+
+const CellBoolean = (props) =>
+  useGlobalComponent('CellBoolean', CellBooleanBase, props);
 
 export default CellBoolean;

@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 
-const CellImage = ({ empty = '-', ...props }) => {
+export const CellImageBase = ({ empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
   const src = useMemo(() => getValue(), [getValue]);
 
@@ -17,5 +18,8 @@ const CellImage = ({ empty = '-', ...props }) => {
     />
   );
 };
+
+const CellImage = (props) =>
+  useGlobalComponent('CellImage', CellImageBase, props);
 
 export default CellImage;

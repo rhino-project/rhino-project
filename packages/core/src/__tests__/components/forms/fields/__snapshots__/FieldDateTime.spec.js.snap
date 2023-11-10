@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldDateTime > renders empty with empty string date 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDateTime > renders empty with null date 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDateTime > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDateTime > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

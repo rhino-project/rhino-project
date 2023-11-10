@@ -13,3 +13,11 @@ exports[`FieldInput > renders inside of model context 1`] = `
   />
 </DocumentFragment>
 `;
+
+exports[`FieldInput > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

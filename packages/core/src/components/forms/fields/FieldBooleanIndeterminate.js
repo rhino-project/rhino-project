@@ -4,6 +4,7 @@ import { Input } from 'reactstrap';
 import { useController } from 'react-hook-form';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 // FIXME: This is duplicated from in ModelFilterBoolean
 // Ensure that if the value is a string coming from the url, it is either 'true' or 'false'
@@ -17,7 +18,7 @@ const parseBooleanFilterValue = (value) => {
   return null;
 };
 
-const FieldBooleanIndeterminate = (props) => {
+export const FieldBooleanIndeterminateBase = (props) => {
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const { readOnly, path } = props;
   const {
@@ -63,8 +64,15 @@ const FieldBooleanIndeterminate = (props) => {
   );
 };
 
-FieldBooleanIndeterminate.propTypes = {
+FieldBooleanIndeterminateBase.propTypes = {
   path: PropTypes.string.isRequired
 };
+
+const FieldBooleanIndeterminate = (props) =>
+  useGlobalComponent(
+    'FieldBooleanIndeterminate',
+    FieldBooleanIndeterminateBase,
+    props
+  );
 
 export default FieldBooleanIndeterminate;

@@ -1,8 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 import CellLink from 'rhino/components/table/cells/CellLink';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const CellLinkTelephone = ({ children, empty = '-', ...props }) => {
+export const CellLinkTelephoneBase = ({ children, empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
   const syntheticGetValue = useCallback(
     () => `tel:${getValue()?.replace(/\D/g, '')}`,
@@ -20,5 +21,8 @@ const CellLinkTelephone = ({ children, empty = '-', ...props }) => {
     </CellLink>
   );
 };
+
+const CellLinkTelephone = (props) =>
+  useGlobalComponent('CellLinkTelephone', CellLinkTelephoneBase, props);
 
 export default CellLinkTelephone;

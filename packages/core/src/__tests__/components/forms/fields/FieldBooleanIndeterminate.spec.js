@@ -1,12 +1,15 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import FieldBooleanIndeterminate from 'rhino/components/forms/fields/FieldBooleanIndeterminate';
+import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldBooleanIndeterminate', () => {
   const FormWrapper = ({ children, defaultValues }) => {
     const methods = useForm({ defaultValues });
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
+
+  sharedFieldTests(FieldBooleanIndeterminate);
 
   it('renders true as Boolean', () => {
     const { asFragment } = render(<FieldBooleanIndeterminate path="dummy" />, {

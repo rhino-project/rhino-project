@@ -1,7 +1,8 @@
 import { useCallback } from 'react';
-import FieldInputControlled from '../fields/FieldInputControlled';
+import { FieldInputControlledBase } from '../fields/FieldInputControlled';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const DisplayText = ({ empty = '-', ...props }) => {
+export const DisplayTextBase = ({ empty = '-', ...props }) => {
   const accessor = useCallback(
     (value) => {
       if (!value) return empty;
@@ -12,7 +13,7 @@ const DisplayText = ({ empty = '-', ...props }) => {
   );
 
   return (
-    <FieldInputControlled
+    <FieldInputControlledBase
       type="textarea"
       accessor={accessor}
       readOnly
@@ -20,5 +21,8 @@ const DisplayText = ({ empty = '-', ...props }) => {
     />
   );
 };
+
+const DisplayText = (props) =>
+  useGlobalComponent('DisplayText', DisplayTextBase, props);
 
 export default DisplayText;

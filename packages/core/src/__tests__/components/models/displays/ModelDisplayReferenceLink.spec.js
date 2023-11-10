@@ -17,8 +17,10 @@ vi.mock('rhino/utils/routes', () => {
   };
 });
 
-vi.mock('rhino/utils/models', () => {
+vi.mock('rhino/utils/models', async () => {
+  const actual = await vi.importActual('rhino/utils/models');
   return {
+    ...actual,
     getAttributeFromPath: vi.fn(() => ({})),
     getModelFromRef: vi.fn(() => ({
       name: 'Dummy'
