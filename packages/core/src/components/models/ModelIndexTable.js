@@ -28,7 +28,6 @@ import ModelCell from './ModelCell';
 import ModelFooter from './ModelFooter';
 import ModelHeader from './ModelHeader';
 import ModelSection from './ModelSection';
-import { PAGE_SIZE } from 'config';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -66,8 +65,15 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
     defaultComponents,
     overrides
   );
-  const { isInitialLoading, model, order, resources, results, setOrder } =
-    useModelIndexContext();
+  const {
+    isInitialLoading,
+    limit,
+    model,
+    order,
+    resources,
+    results,
+    setOrder
+  } = useModelIndexContext();
   const { baseRoute, paths, sortPaths } = props;
   const baseOwnerNavigation = useBaseOwnerNavigation();
   const [sorting, setSorting] = useState([]);
@@ -188,8 +194,8 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
   }, [order, setOrder, sorting]);
 
   const data = useMemo(() => {
-    return results || Array(PAGE_SIZE).fill({});
-  }, [results]);
+    return results || Array(limit).fill({});
+  }, [limit, results]);
 
   const table = useReactTable({
     data,
