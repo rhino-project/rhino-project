@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { InputGroup } from 'reactstrap';
 import { useFieldError } from 'rhino/hooks/form';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { FieldCurrency } from '../../forms/fields/FieldCurrency';
+import FieldCurrency from '../../forms/fields/FieldCurrency';
 
 const ModelFieldCurrencyBase = (props) => {
   // This bug was added in d08e56c. The error is not really passed down to the component

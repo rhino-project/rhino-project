@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 
-const CellLink = ({ children, empty = '-', ...props }) => {
+export const CellLinkBase = ({ children, empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
   const linkText = useMemo(
     () => children || getValue() || empty,
@@ -21,5 +22,7 @@ const CellLink = ({ children, empty = '-', ...props }) => {
     </a>
   );
 };
+
+const CellLink = (props) => useGlobalComponent('CellLink', CellLinkBase, props);
 
 export default CellLink;

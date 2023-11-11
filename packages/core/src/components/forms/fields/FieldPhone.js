@@ -5,8 +5,9 @@ import { useMemo } from 'react';
 
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 import PhoneInput from 'react-phone-input-2';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const FieldPhone = (props) => {
+export const FieldPhoneBase = (props) => {
   const { path } = props;
   const {
     field: fieldProps,
@@ -35,8 +36,11 @@ const FieldPhone = (props) => {
   );
 };
 
-FieldPhone.propTypes = {
+FieldPhoneBase.propTypes = {
   path: PropTypes.string.isRequired
 };
+
+const FieldPhone = (props) =>
+  useGlobalComponent('FieldPhone', FieldPhoneBase, props);
 
 export default FieldPhone;

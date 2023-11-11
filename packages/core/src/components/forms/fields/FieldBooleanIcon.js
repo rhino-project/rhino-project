@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-
 import { useController } from 'react-hook-form';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 import { Icon } from 'rhino/components/icons';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const FieldBooleanIcon = ({
+export const FieldBooleanIconBase = ({
   trueIcon = 'check',
   falseIcon = 'x',
   ...props
@@ -28,8 +28,11 @@ const FieldBooleanIcon = ({
   );
 };
 
-FieldBooleanIcon.propTypes = {
+FieldBooleanIconBase.propTypes = {
   path: PropTypes.string.isRequired
 };
+
+const FieldBooleanIcon = (props) =>
+  useGlobalComponent('FieldBooleanIcon', FieldBooleanIconBase, props);
 
 export default FieldBooleanIcon;

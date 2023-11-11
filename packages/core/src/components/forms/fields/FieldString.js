@@ -1,5 +1,11 @@
-import FieldInput from './FieldInput';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { FieldInputBase } from './FieldInput';
 
-const FieldString = (props) => <FieldInput type="text" {...props} />;
+export const FieldStringBase = (props) => (
+  <FieldInputBase type="text" {...props} />
+);
+
+const FieldString = (props) =>
+  useGlobalComponent('FieldString', FieldStringBase, props);
 
 export default FieldString;

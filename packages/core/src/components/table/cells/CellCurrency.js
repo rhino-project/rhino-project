@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 
-const CellCurrency = ({ empty = '-', ...props }) => {
+export const CellCurrencyBase = ({ empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
   const value = useMemo(() => {
     const number = parseFloat(getValue());
@@ -15,5 +16,8 @@ const CellCurrency = ({ empty = '-', ...props }) => {
 
   return <div {...inheritedProps}>{value}</div>;
 };
+
+const CellCurrency = (props) =>
+  useGlobalComponent('CellCurrency', CellCurrencyBase, props);
 
 export default CellCurrency;

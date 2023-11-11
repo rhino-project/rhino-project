@@ -1,10 +1,12 @@
+import PropTypes from 'prop-types';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 import { useController } from 'react-hook-form';
 import { Input } from 'reactstrap';
 import { useCallback, useMemo, useRef } from 'react';
 import { applyCurrencyMask, applyCurrencyMaskFromInput } from 'rhino/utils/ui';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-export const FieldCurrency = ({ ...props }) => {
+export const FieldCurrencyBase = ({ ...props }) => {
   const { path } = props;
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const inputRef = useRef(null);
@@ -48,3 +50,12 @@ export const FieldCurrency = ({ ...props }) => {
     />
   );
 };
+
+FieldCurrencyBase.propTypes = {
+  path: PropTypes.string.isRequired
+};
+
+const FieldCurrency = (props) =>
+  useGlobalComponent('FieldCurrency', FieldCurrencyBase, props);
+
+export default FieldCurrency;

@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldBoolean > renders inside of model context 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBoolean > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

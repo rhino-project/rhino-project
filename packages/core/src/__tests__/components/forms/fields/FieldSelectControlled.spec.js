@@ -1,12 +1,15 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import FieldSelectControlled from 'rhino/components/forms/fields/FieldSelectControlled';
+import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldSelectControlled', () => {
   const FormWrapper = ({ children, defaultValues }) => {
     const methods = useForm({ defaultValues });
     return <FormProvider {...methods}>{children}</FormProvider>;
   };
+
+  sharedFieldTests(FieldSelectControlled);
 
   it('renders with title', () => {
     const { asFragment } = render(

@@ -59,3 +59,31 @@ exports[`FieldDate > renders empty with null date 1`] = `
   </div>
 </DocumentFragment>
 `;
+
+exports[`FieldDate > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDate > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

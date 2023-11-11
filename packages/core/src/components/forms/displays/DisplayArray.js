@@ -1,7 +1,12 @@
 import { useCallback } from 'react';
-import FieldInputControlled from '../fields/FieldInputControlled';
+import { FieldInputControlledBase } from '../fields/FieldInputControlled';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const DisplayArray = ({ accessor: propAccessor, empty = '-', ...props }) => {
+export const DisplayArrayBase = ({
+  accessor: propAccessor,
+  empty = '-',
+  ...props
+}) => {
   const accessor = useCallback(
     (value) => {
       // If the accessor prop is defined, use it to get the value to display.
@@ -15,8 +20,16 @@ const DisplayArray = ({ accessor: propAccessor, empty = '-', ...props }) => {
   );
 
   return (
-    <FieldInputControlled type="text" accessor={accessor} readOnly {...props} />
+    <FieldInputControlledBase
+      type="text"
+      accessor={accessor}
+      readOnly
+      {...props}
+    />
   );
 };
+
+const DisplayArray = (props) =>
+  useGlobalComponent('DisplayArray', DisplayArrayBase, props);
 
 export default DisplayArray;

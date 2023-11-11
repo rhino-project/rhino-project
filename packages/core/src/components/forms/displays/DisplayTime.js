@@ -1,8 +1,13 @@
 import { useCallback } from 'react';
 import { format as dateFormat, parseISO } from 'date-fns';
-import FieldInputControlled from '../fields/FieldInputControlled';
+import { FieldInputControlledBase } from '../fields/FieldInputControlled';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-const DisplayTime = ({ format = 'MMMM d, yyyy', empty = '-', ...props }) => {
+export const DisplayTimeBase = ({
+  format = 'MMMM d, yyyy',
+  empty = '-',
+  ...props
+}) => {
   const accessor = useCallback(
     (value) => {
       if (!value) return empty;
@@ -13,8 +18,16 @@ const DisplayTime = ({ format = 'MMMM d, yyyy', empty = '-', ...props }) => {
   );
 
   return (
-    <FieldInputControlled type="text" accessor={accessor} readOnly {...props} />
+    <FieldInputControlledBase
+      type="text"
+      accessor={accessor}
+      readOnly
+      {...props}
+    />
   );
 };
+
+const DisplayTime = (props) =>
+  useGlobalComponent('DisplayTime', DisplayTimeBase, props);
 
 export default DisplayTime;

@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldSelect > renders inside of model context 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldSelect > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
