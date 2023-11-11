@@ -33,7 +33,6 @@ vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 const abortFn = vi.fn();
 
-// @ts-ignore
 global.AbortController = vi.fn(() => ({
   abort: abortFn
 }));

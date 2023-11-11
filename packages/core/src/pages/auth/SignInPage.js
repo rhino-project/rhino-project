@@ -1,4 +1,3 @@
-import { APP_NAME } from 'config';
 import { NavLink } from 'react-router-dom';
 import { SuccessAlert } from 'rhino/components/alerts';
 import AuthForm from 'rhino/components/auth/AuthForm';
@@ -8,8 +7,10 @@ import { useForgotPasswordPath, useUserCreatePath } from 'rhino/hooks/routes';
 import { useSignInAction, useSignupAllowed } from 'rhino/queries/auth';
 import { oauthProviders } from 'rhino/utils/models';
 import AuthPage from './AuthPage';
+import { useRhinoConfig } from 'rhino/config';
 
 const SignInPage = () => {
+  const { appName } = useRhinoConfig();
   const userCreatePath = useUserCreatePath();
   const forgotPasswordPath = useForgotPasswordPath();
   const queryParams = useParsedSearch();
@@ -26,7 +27,7 @@ const SignInPage = () => {
       <p>Enter your email address and password to sign in.</p>
       {allowSignup && (
         <p>
-          New to {APP_NAME}?{' '}
+          New to {appName}?{' '}
           <NavLink to={`../${userCreatePath}`}>Sign Up</NavLink>
         </p>
       )}

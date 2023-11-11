@@ -22,8 +22,7 @@ Toasted.propTypes = {
 };
 
 const Toaster = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [toast, addToast, removeToast] = useToast();
+  const [toast, , removeToast] = useToast();
 
   const handleClose = (id) => removeToast(id);
 

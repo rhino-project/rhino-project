@@ -39,6 +39,7 @@ export const useRenderPaths = (paths, options) => {
           <Component path={path} {...props} />
         )
       ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [paths, props]
   );
 

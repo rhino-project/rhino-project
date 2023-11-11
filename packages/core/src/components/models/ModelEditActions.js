@@ -109,6 +109,7 @@ export const ModelEditActionsBase = ({
       [hasCancel && <ModelEditActionCancel />, <ModelEditActionSave />].filter(
         Boolean
       ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [hasCancel]
   );
 

@@ -1,9 +1,9 @@
 import CustomPrimaryNavigation from 'components/app/CustomPrimaryNavigation';
-import { ENABLE_MODEL_ROUTES } from 'config';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { NavItem, NavSection } from 'rhino/components/nav';
+import { useRhinoConfig } from 'rhino/config';
 import { getBaseOwnedModels } from 'rhino/utils/models';
 import { getModelIndexPath } from 'rhino/utils/routes';
 
@@ -15,6 +15,7 @@ const useNavModels = () => {
 };
 
 const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
+  const { enableModelRoutes } = useRhinoConfig();
   const models = useNavModels().filter(
     (e) => e.model !== 'users_role' && e.model !== 'users_role_invite'
   );
@@ -22,7 +23,7 @@ const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
   return (
     <>
       <CustomPrimaryNavigation className={className} itemClass={itemClass} />
-      {ENABLE_MODEL_ROUTES && (
+      {enableModelRoutes && (
         <NavSection title={title} className={className}>
           {map(models, (m) => (
             <NavItem

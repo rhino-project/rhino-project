@@ -1,14 +1,15 @@
 import { NavLink, Navigate } from 'react-router-dom';
 
-import { APP_NAME } from 'config';
 import AuthForm from 'rhino/components/auth/AuthForm';
 import { useAuthenticated } from 'rhino/hooks/auth';
 import { useRootPath, useSessionCreatePath } from 'rhino/hooks/routes';
 import { useSignUpAction } from 'rhino/queries/auth';
 import { hasOrganizationsModule } from 'rhino/utils/models';
 import AuthPage from './AuthPage';
+import { useRhinoConfig } from 'rhino/config';
 
 const SignUpPage = () => {
+  const { appName } = useRhinoConfig();
   const rootPath = useRootPath();
   const sessionCreatePath = useSessionCreatePath();
   const isAuthenticated = useAuthenticated();
@@ -25,7 +26,7 @@ const SignUpPage = () => {
       <p>Enter your email address and password to create account.</p>
       <br />
       <p>
-        Already have a {APP_NAME} account?{' '}
+        Already have a {appName} account?{' '}
         <NavLink to={`../${sessionCreatePath}`}>Sign In</NavLink>
       </p>
     </>

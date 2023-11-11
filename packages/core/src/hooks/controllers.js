@@ -2,8 +2,6 @@ import qs from 'qs';
 import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { DEFAULT_SORT, MAX_PAGES, PAGE_SIZE } from 'config';
-
 import { filter, isEqual, isString, merge } from 'lodash';
 import { useForm } from 'react-hook-form';
 import { ModelCreateContext } from 'rhino/components/models/ModelCreateProvider';
@@ -28,6 +26,14 @@ import {
 import { useDefaultValues, useResolver, useSchema } from './form';
 import { usePaths } from './paths';
 
+export const DEFAULT_LIMIT = 10;
+
+// FIXME: This should be calculated as the first sortable field found in the model
+export const DEFAULT_SORT = '-updated_at';
+
+// FIXME the calculation of first page number to show should be handled in the pager not in the controller
+const MAX_PAGES = 3;
+
 export const useModelIndexContext = () => {
   const context = useContext(ModelIndexContext);
 
@@ -48,7 +54,7 @@ export const useModelIndexController = (options) => {
 
   const defaultState = useRef({
     filter: options?.filter ?? {},
-    limit: options?.limit ?? PAGE_SIZE,
+    limit: options?.limit ?? DEFAULT_LIMIT,
     offset: options?.offset ?? 0,
     order: options?.order ?? DEFAULT_SORT,
     search: options?.search ?? ''

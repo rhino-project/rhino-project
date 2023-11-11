@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { OmniIconButton } from 'rhino/components/buttons';
 
-import env from 'config';
 import PropTypes from 'prop-types';
+import { API_ROOT_PATH } from 'rhino/config';
 
 const providerOverrides = {
   auth0: {
@@ -29,7 +29,7 @@ const providerOverrides = {
 
 const OmniAuthButton = ({ provider, providerPath, ...props }) => {
   const endpoint = useMemo(() => {
-    const url = new URL(`${env.REACT_APP_API_ROOT_PATH}${providerPath}`);
+    const url = new URL(`${API_ROOT_PATH}${providerPath}`);
 
     url.searchParams.append('auth_origin_url', window.location.href);
 
