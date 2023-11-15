@@ -5,8 +5,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import api from '__tests__/shared/modelFixtures';
 import modelLoader from 'rhino/models';
+import rhinoConfig from 'rhino.config';
 
 vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
+vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+  version: 1,
+  components: {}
+});
 
 describe('ModelShowDescription', () => {
   const wrapper = ({ children }) => {
@@ -27,7 +32,12 @@ describe('ModelShowDescription', () => {
 
   it(`should allow paths to be directly overridden`, async () => {
     const { asFragment } = render(
-      <ModelShowSimple model="blog" fallback={false}>
+      <ModelShowSimple
+        model="blog"
+        // Default title of null so that empty shows
+        extraDefaultValues={{ title: null }}
+        fallback={false}
+      >
         <ModelShowDescription paths={['title']} />
       </ModelShowSimple>,
       { wrapper }

@@ -55,4 +55,22 @@ export const sharedDisplayTests = (Component) => {
 
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it(`should render the empty text when value is nullish`, async () => {
+    configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
+
+    const { asFragment } = render(<Component path="dummy" />, {
+      wrapper: FormWrapper
+    });
+    expect(asFragment()).toMatchSnapshot();
+  });
+
+  it(`should render the overridden empty text when value is nullish`, async () => {
+    configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
+
+    const { asFragment } = render(<Component empty="baz" path="dummy" />, {
+      wrapper: FormWrapper
+    });
+    expect(asFragment()).toMatchSnapshot();
+  });
 };

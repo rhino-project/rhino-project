@@ -6,6 +6,14 @@ import { InputGroup } from 'reactstrap';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useFieldError } from 'rhino/hooks/form';
 
+export const FieldPasswordBaseInput = ({ showPassword, ...props }) => {
+  return (
+    <>
+      <FieldInputBase type={showPassword ? 'text' : 'password'} {...props} />
+    </>
+  );
+};
+
 export const FieldPasswordBase = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const error = useFieldError(props.path);
@@ -16,7 +24,7 @@ export const FieldPasswordBase = (props) => {
         'is-invalid': error
       })}
     >
-      <FieldInputBase type={showPassword ? 'text' : 'password'} {...props} />
+      <FieldPasswordBaseInput showPassword={showPassword} {...props} />
       <IconButton
         icon={showPassword ? 'eye-slash-fill' : 'eye-fill'}
         color="outline-secondary"

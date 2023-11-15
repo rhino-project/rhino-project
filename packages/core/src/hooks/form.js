@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   assign,
+  capitalize,
   cloneDeep,
   compact,
   get,
@@ -8,10 +9,10 @@ import {
   omit,
   toPath
 } from 'lodash';
-import { useController, useFormContext } from 'react-hook-form';
+import { useController, useFormContext, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getModelAndAttributeFromPath } from 'rhino/utils/models';
-import { useModel } from './models';
+import { useModel, useModelAndAttributeFromPath } from './models';
 import { object } from 'yup';
 import { yupValidatorsFromAttribute } from '../utils/yup';
 
@@ -80,12 +81,6 @@ export const useComputedPaths = (model, paths, getDefaultAttributes) => {
   return computedPaths;
 };
 
-export const useFieldPlaceholder = (props) => {
-  const { label, placeholder } = props;
-
-  return useMemo(() => placeholder || label, [label, placeholder]);
-};
-
 export const useFieldInheritedProps = (
   props,
   options = { prefix: null, className: null }
@@ -147,6 +142,131 @@ export const useFieldError = (path) => {
 
   // Cannot memoize this because the errors object is a stable object
   return get(errors, path);
+};
+
+export const useModelFieldGroup = ({ model, ...props }) => {
+  const { path } = props;
+  const { attribute } = useModelAndAttributeFromPath(model, path);
+
+  const label = useMemo(
+    () => props?.label || attribute.readableName,
+    [attribute, props?.label]
+  );
+
+  const placeholder = useMemo(
+    () => props?.placeholder || label,
+    [label, props?.placeholder]
+  );
+
+  return {
+    attribute,
+    model,
+    fieldGroupProps: {
+      label,
+      nullable: attribute.nullable,
+      placeholder,
+      required: !!attribute['x-rhino-required'],
+      ...props
+    }
+  };
+};
+
+export const useModelDisplayGroup = useModelFieldGroup;
+
+export const useModelFieldGroupEnum = (props) => {
+  const inputProps = useModelFieldGroup(props);
+  const { attribute } = inputProps;
+
+  const children = useMemo(
+    () =>
+      attribute.enum.map((e) => (
+        <option key={e} value={e}>
+          {capitalize(e)}
+        </option>
+      )),
+    [attribute]
+  );
+
+  const accessor = useCallback((value) => value || -1, []);
+  const title = `${attribute.readableName}...`;
+
+  return {
+    ...inputProps,
+    fieldGroupProps: {
+      ...inputProps.fieldGroupProps,
+      accessor,
+      children,
+      title
+    }
+  };
+};
+
+export const useModelFieldGroupIntegerSelect = (props) => {
+  const inputProps = useModelFieldGroup(props);
+  const { attribute } = inputProps;
+  // Translate to html input prop naming from the OpenAPI naming
+  const { minimum: min, maximum: max } = attribute;
+
+  const children = useMemo(
+    () =>
+      Array.from({ length: max - min }, (x, i) => ({
+        id: i + min,
+        display_name: `${i + min}`
+      })),
+    [min, max]
+  );
+
+  const accessor = useCallback((value) => value || -1, []);
+  const title = `${attribute.readableName}...`;
+
+  return {
+    ...inputProps,
+    fieldGroupProps: {
+      ...inputProps.fieldGroupProps,
+      accessor,
+      children,
+      title
+    }
+  };
+};
+
+export const useModelDisplayFieldGroupAttachment = (props) => {
+  const inputProps = useModelFieldGroup(props);
+
+  const accessor = useCallback((value) => value?.url, []);
+  const watch = useWatch({ name: props.path });
+
+  const children = useMemo(
+    () => props.children || watch?.display_name,
+    [props.children, watch]
+  );
+
+  return {
+    ...inputProps,
+    fieldGroupProps: {
+      ...inputProps.fieldGroupProps,
+      accessor,
+      children
+    }
+  };
+};
+
+export const useModelDisplayFieldGroupAttachmentImage = (props) => {
+  const inputProps = useModelFieldGroup(props);
+
+  const accessor = useCallback((value) => value?.url, []);
+  const watch = useWatch({ name: props.path });
+
+  const alt = useMemo(() => watch?.display_name, [watch]);
+
+  return {
+    ...inputProps,
+    fieldGroupProps: {
+      ...inputProps.fieldGroupProps,
+      accessor,
+      alt
+    }
+  };
 };
 
 export const useDefaultValues = (model, paths, options = {}) => {

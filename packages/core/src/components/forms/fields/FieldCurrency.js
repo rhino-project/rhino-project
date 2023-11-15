@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { useFieldError, useFieldInheritedProps } from 'rhino/hooks/form';
 import { useController } from 'react-hook-form';
 import { Input, InputGroup } from 'reactstrap';
 import { useCallback, useMemo, useRef } from 'react';
 import { applyCurrencyMask, applyCurrencyMaskFromInput } from 'rhino/utils/ui';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 
-export const FieldCurrencyBase = ({ ...props }) => {
+export const FieldCurrencyBaseInput = ({ ...props }) => {
   const { path } = props;
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const inputRef = useRef(null);
@@ -37,9 +37,25 @@ export const FieldCurrencyBase = ({ ...props }) => {
 
   const value = useMemo(() => applyCurrencyMask(fieldValue), [fieldValue]);
 
-  // This bug was added in d08e56c. The error is not really passed down to the component
-  // as a prop, it comes from the react form hooks. So error was always undefined.
-  // FieldCurrency is able to get the error from the hooks and display the feedback.
+  return (
+    <Input
+      {...extractedProps}
+      {...fieldProps}
+      defaultValue={value}
+      autoComplete="off"
+      innerRef={inputRef}
+      invalid={!!error}
+      onChange={handleOnChange}
+      onBlur={handleOnBlur}
+      {...inheritedProps}
+    />
+  );
+};
+
+export const FieldCurrencyBase = ({ ...props }) => {
+  const { path } = props;
+  const error = useFieldError(path);
+
   return (
     <InputGroup
       className={classnames({
@@ -47,17 +63,7 @@ export const FieldCurrencyBase = ({ ...props }) => {
       })}
     >
       <span className="input-group-text">$</span>
-      <Input
-        {...extractedProps}
-        {...fieldProps}
-        defaultValue={value}
-        autoComplete="off"
-        innerRef={inputRef}
-        invalid={!!error}
-        onChange={handleOnChange}
-        onBlur={handleOnBlur}
-        {...inheritedProps}
-      />
+      <FieldCurrencyBaseInput {...props} />
     </InputGroup>
   );
 };

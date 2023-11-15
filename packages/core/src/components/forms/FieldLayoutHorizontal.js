@@ -1,4 +1,4 @@
-import { FormGroup, Col } from 'reactstrap';
+import { Col, FormGroup } from 'reactstrap';
 
 import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
 import FieldLabel from './FieldLabel';

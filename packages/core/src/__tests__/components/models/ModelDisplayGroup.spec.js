@@ -6,6 +6,7 @@ import ModelShowSimple from 'rhino/components/models/ModelShowSimple';
 import * as network from 'rhino/lib/networking';
 import modelLoader from 'rhino/models';
 import api from '../../../shared/modelFixtures';
+import rhinoConfig from 'rhino.config';
 
 vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
@@ -13,6 +14,11 @@ vi.spyOn(network, 'networkApiCall').mockReturnValue({
   data: {
     test: 'test'
   }
+});
+
+vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+  version: 1,
+  components: {}
 });
 
 describe('ModelDisplayGroup', () => {

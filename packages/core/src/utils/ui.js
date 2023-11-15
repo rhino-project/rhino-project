@@ -4,11 +4,11 @@ import { Breadcrumb } from 'reactstrap';
 
 import { capitalize } from 'lodash';
 import { NavLink } from 'react-router-dom';
-import { Flag } from 'rhino/components/models/fields/ModelFieldCountry';
 import { useModel } from 'rhino/hooks/models';
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
 import BreadcrumbItemWrapper from '../components/breadcrumbs';
 import { getModelIndexPath, getModelShowPath } from './routes';
+import { Flag } from 'rhino/components/forms/fields/FieldCountry';
 
 export const useModelClassNames = (baseName, model, attribute = null) => {
   // FIXME: This is a hack for 2.0 legacy support - should be sourced from the model context

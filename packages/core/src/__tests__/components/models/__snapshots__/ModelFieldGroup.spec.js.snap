@@ -1,32 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`ModelFieldGroup > should merge overrides 1`] = `
-<DocumentFragment>
-  <div
-    class="mb-3"
-    id="FieldLayoutVertical-name"
-    model="[object Object]"
-    path="name"
-  >
-    <label
-      class="form-label"
-      for="name"
-      id="fieldLabel-name"
-      path="name"
-    />
-    <input
-      aria-invalid="false"
-      autocomplete="off"
-      class="form-control"
-      id="name"
-      name="name"
-      path="name"
-      type="text"
-    />
-  </div>
-</DocumentFragment>
-`;
-
 exports[`ModelFieldGroup > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
@@ -47,25 +20,39 @@ exports[`ModelFieldGroup > should render without prop 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
-    id="FieldLayoutVertical-name"
-    model="[object Object]"
-    path="name"
+    id="FieldLayout-title"
+    label="Title"
+    path="title"
+    placeholder="Title"
   >
     <label
       class="form-label"
-      for="name"
-      id="fieldLabel-name"
-      path="name"
-    />
+      for="title"
+      id="fieldLabel-title"
+      path="title"
+      placeholder="Title"
+    >
+      Title
+    </label>
     <input
       aria-invalid="false"
       autocomplete="off"
       class="form-control"
-      id="name"
-      name="name"
-      path="name"
+      id="title"
+      label="Title"
+      name="title"
+      path="title"
+      placeholder="Title"
       type="text"
     />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFieldGroup > should use overrides 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
   </div>
 </DocumentFragment>
 `;

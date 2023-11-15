@@ -5,7 +5,7 @@ import Field from './fields/FieldInput';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 import DisplayLabel from './DisplayLabel';
 
-const INHERITED_PROP_OPTIONS = { prefix: 'DisplayLayoutVertical' };
+const INHERITED_PROP_OPTIONS = { prefix: 'DisplayLayoutHorizontal' };
 
 const defaultComponents = {
   FormGroup,

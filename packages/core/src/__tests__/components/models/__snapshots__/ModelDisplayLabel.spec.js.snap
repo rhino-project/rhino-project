@@ -6,7 +6,6 @@ exports[`ModelDisplayLabel > should override label with prop 1`] = `
     class="form-label"
     for="dummy"
     id="displayLabel-dummy"
-    label="Dummy Override"
     path="dummy"
   >
     Dummy Override
@@ -20,7 +19,6 @@ exports[`ModelDisplayLabel > should render label with readable name 1`] = `
     class="form-label"
     for="dummy"
     id="displayLabel-dummy"
-    label="Dummy"
     path="dummy"
   >
     Dummy
