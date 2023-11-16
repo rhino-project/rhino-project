@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 import { useController } from 'react-hook-form';
-import { Input } from 'reactstrap';
+import { Input, InputGroup } from 'reactstrap';
 import { useCallback, useMemo, useRef } from 'react';
 import { applyCurrencyMask, applyCurrencyMaskFromInput } from 'rhino/utils/ui';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
@@ -36,18 +37,28 @@ export const FieldCurrencyBase = ({ ...props }) => {
 
   const value = useMemo(() => applyCurrencyMask(fieldValue), [fieldValue]);
 
+  // This bug was added in d08e56c. The error is not really passed down to the component
+  // as a prop, it comes from the react form hooks. So error was always undefined.
+  // FieldCurrency is able to get the error from the hooks and display the feedback.
   return (
-    <Input
-      {...extractedProps}
-      {...fieldProps}
-      defaultValue={value}
-      autoComplete="off"
-      innerRef={inputRef}
-      invalid={!!error}
-      onChange={handleOnChange}
-      onBlur={handleOnBlur}
-      {...inheritedProps}
-    />
+    <InputGroup
+      className={classnames({
+        'is-invalid': error
+      })}
+    >
+      <span className="input-group-text">$</span>
+      <Input
+        {...extractedProps}
+        {...fieldProps}
+        defaultValue={value}
+        autoComplete="off"
+        innerRef={inputRef}
+        invalid={!!error}
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}
+        {...inheritedProps}
+      />
+    </InputGroup>
   );
 };
 
