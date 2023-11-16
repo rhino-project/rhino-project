@@ -1,25 +1,9 @@
-import classnames from 'classnames';
 import PropTypes from 'prop-types';
-import { InputGroup } from 'reactstrap';
-import { useFieldError } from 'rhino/hooks/form';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import FieldCurrency from '../../forms/fields/FieldCurrency';
 
 const ModelFieldCurrencyBase = (props) => {
-  // This bug was added in d08e56c. The error is not really passed down to the component
-  // as a prop, it comes from the react form hooks. So error was always undefined.
-  // FieldCurrency is able to get the error from the hooks and display the feedback.
-  const error = useFieldError(props.path);
-  return (
-    <InputGroup
-      className={classnames({
-        'is-invalid': error
-      })}
-    >
-      <span className="input-group-text">$</span>
-      <FieldCurrency {...props} />
-    </InputGroup>
-  );
+  return <FieldCurrency {...props} />;
 };
 
 ModelFieldCurrencyBase.propTypes = {
