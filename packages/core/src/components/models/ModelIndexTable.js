@@ -171,6 +171,7 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
           enableMultiSort: sortable.includes(path)
         });
       }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [computedPaths, isInitialLoading, model, sortable]
   );
 

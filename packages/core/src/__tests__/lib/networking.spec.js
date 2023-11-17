@@ -6,10 +6,8 @@ describe('networking', () => {
   describe('constructPath', () => {
     describe('root path with slash', () => {
       beforeEach(() => {
-        vi.mock('config', () => ({
-          default: {
-            REACT_APP_API_ROOT_PATH: 'http://example.com/'
-          }
+        vi.mock('rhino/config/index', () => ({
+          API_ROOT_PATH: 'http://example.com/'
         }));
       });
 
@@ -28,10 +26,8 @@ describe('networking', () => {
 
     describe('root path without slash', () => {
       beforeEach(() => {
-        vi.mock('config', () => ({
-          default: {
-            REACT_APP_API_ROOT_PATH: 'http://example.com'
-          }
+        vi.mock('rhino/config/index', () => ({
+          API_ROOT_PATH: 'http://example.com/'
         }));
       });
 

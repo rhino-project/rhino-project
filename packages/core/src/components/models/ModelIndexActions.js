@@ -109,6 +109,7 @@ export const ModelIndexActionsBase = ({
 
   const computedDefaultActions = useMemo(
     () => [<ModelIndexActionCreate />],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 

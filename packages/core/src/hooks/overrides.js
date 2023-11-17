@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import globalOverrides from 'models/overrides';
-import rhinoConfig from 'rhino.config';
 import {
   clone,
   cloneDeep,
@@ -17,6 +16,7 @@ import {
   useModelAndAttributeFromPath
 } from './models';
 import { NullComponent } from '../components/null';
+import { useRhinoConfig } from 'rhino/config';
 
 // Based on:
 // https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646
@@ -137,6 +137,7 @@ export const useGlobalComponent = (
   props,
   scope = {}
 ) => {
+  const { components } = useRhinoConfig();
   const defaultComponents = useMemo(() => {
     return { [overrideName]: BaseComponent };
   }, [overrideName, BaseComponent]);
@@ -153,14 +154,12 @@ export const useGlobalComponent = (
 
       const overrideComponent = [
         // Attribute and attribute model overrides
-        rhinoConfig.components?.[attributeModel?.model]?.[attribute?.name]?.[
-          key
-        ],
-        rhinoConfig.components?.[attributeModel?.model]?.[key],
+        components?.[attributeModel?.model]?.[attribute?.name]?.[key],
+        components?.[attributeModel?.model]?.[key],
         // Model overrides
-        rhinoConfig.components?.[model?.model]?.[key],
+        components?.[model?.model]?.[key],
         // Global overrides
-        rhinoConfig.components[key],
+        components[key],
         // Legacy overrides
         globalOverrides?.[propModel?.model]?.index?.[key],
         defaultComponents?.['ModelShow']
@@ -188,7 +187,14 @@ export const useGlobalComponent = (
       // paths we want to replace
       arrayOverride
     );
-  }, [defaultComponents, model, propModel, attributeModel, attribute]);
+  }, [
+    components,
+    defaultComponents,
+    model,
+    propModel,
+    attributeModel,
+    attribute
+  ]);
 
   const globalOverride = useOverrides(defaultComponents, computedOverrides);
   const GlobalOverrideComponent = globalOverride[overrideName];

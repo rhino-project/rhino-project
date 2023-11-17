@@ -118,6 +118,7 @@ export const ModelShowActionsBase = ({
         resource?.can_current_user_edit && <ModelShowActionEdit />,
         resource?.can_current_user_destroy && <ModelShowActionDelete />
       ].filter(Boolean),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [resource?.can_current_user_destroy, resource?.can_current_user_edit]
   );
 

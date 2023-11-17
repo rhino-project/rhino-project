@@ -1,9 +1,7 @@
 import { DirectUpload } from '@rails/activestorage';
-import env from 'config';
+import { API_ROOT_PATH } from 'rhino/config';
 
-const REACT_APP_API_ROOT_PATH = env.REACT_APP_API_ROOT_PATH;
-const END_POINT =
-  REACT_APP_API_ROOT_PATH + '/rails/active_storage/direct_uploads';
+const END_POINT = `${API_ROOT_PATH}/rails/active_storage/direct_uploads`;
 
 export default class Uploader {
   constructor(uploadable, file, notify) {

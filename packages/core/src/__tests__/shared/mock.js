@@ -19,7 +19,7 @@ const defaultUser = {
 
 export class NetworkingMock {
   axiosResult = {
-    // [env.REACT_APP_API_ROOT_PATH]: {
+    // [API_ROOT_PATH]: {
     // 'post': () => promise with result
     // 'delete': () => promise with result
     // }

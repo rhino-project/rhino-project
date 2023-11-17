@@ -3,8 +3,9 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import { createWrapper } from '__tests__/shared/helpers';
-import { DEFAULT_SORT, PAGE_SIZE } from 'config';
 import {
+  DEFAULT_LIMIT,
+  DEFAULT_SORT,
   useModelCreateContext,
   useModelEditContext,
   useModelIndexContext,
@@ -58,7 +59,7 @@ describe('useModelIndexController', () => {
     );
     expect(result.current).toMatchObject({
       filter: {},
-      limit: PAGE_SIZE,
+      limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,
       search: ''
@@ -71,7 +72,7 @@ describe('useModelIndexController', () => {
         useModelIndexController({
           model: 'user',
           filter: { foo: 'bar' },
-          limit: PAGE_SIZE - 1,
+          limit: DEFAULT_LIMIT - 1,
           offset: 20,
           order: '-foo',
           search: 'baz'
@@ -82,7 +83,7 @@ describe('useModelIndexController', () => {
     );
     expect(result.current).toMatchObject({
       filter: { foo: 'bar' },
-      limit: PAGE_SIZE - 1,
+      limit: DEFAULT_LIMIT - 1,
       offset: 20,
       order: '-foo',
       search: 'baz'
@@ -138,7 +139,7 @@ describe('useModelIndexController', () => {
     );
     expect(result.current).toMatchObject({
       filter: { blog: { id: 1 }, blog_post: { published: 'true' } },
-      limit: PAGE_SIZE,
+      limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,
       search: ''
@@ -157,7 +158,7 @@ describe('useModelIndexController', () => {
     );
     expect(result.current).toMatchObject({
       filter: { blog: { id: 1, published: 'true' } },
-      limit: PAGE_SIZE,
+      limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,
       search: ''
@@ -178,7 +179,7 @@ describe('useModelIndexController', () => {
     await waitFor(() => {
       expect(result.current).toMatchObject({
         filter: { blog: { id: 1, published: 'true' } },
-        limit: PAGE_SIZE,
+        limit: DEFAULT_LIMIT,
         offset: 0,
         order: DEFAULT_SORT,
         search: ''
@@ -204,7 +205,7 @@ describe('useModelIndexController', () => {
     );
     expect(result.current).toMatchObject({
       filter: {},
-      limit: PAGE_SIZE,
+      limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,
       search: ''
@@ -220,7 +221,7 @@ describe('useModelIndexController', () => {
       }
     );
     expect(result.current).toMatchObject({
-      limit: PAGE_SIZE,
+      limit: DEFAULT_LIMIT,
       offset: 0
     });
 
@@ -229,8 +230,8 @@ describe('useModelIndexController', () => {
     });
 
     expect(result.current).toMatchObject({
-      limit: PAGE_SIZE,
-      offset: PAGE_SIZE
+      limit: DEFAULT_LIMIT,
+      offset: DEFAULT_LIMIT
     });
   });
 });
