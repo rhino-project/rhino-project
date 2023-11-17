@@ -8,7 +8,7 @@ import { useFieldInheritedProps } from 'rhino/hooks/form';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const FieldYearBase = ({ min, max, ...props }) => {
-  const { path } = props;
+  const { path, placeholder } = props;
   const {
     field: { value, onChange, onBlur },
     fieldState: { error }
@@ -51,6 +51,7 @@ export const FieldYearBase = ({ min, max, ...props }) => {
       autoComplete="off"
       minDate={min}
       maxDate={max}
+      placeholderText={placeholder}
       {...inheritedProps}
     />
   );

@@ -1,5 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldBoolean > render with place holder 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    placeholder="placeholder"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
 exports[`FieldBoolean > renders inside of model context 1`] = `
 <DocumentFragment>
   <input

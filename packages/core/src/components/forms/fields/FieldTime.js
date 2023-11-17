@@ -8,7 +8,7 @@ import { useFieldInheritedProps } from 'rhino/hooks/form';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const FieldTimeBase = ({ ...props }) => {
-  const { path } = props;
+  const { path, placeholder } = props;
   const {
     field: { value, onChange, onBlur },
     fieldState: { error }
@@ -60,6 +60,7 @@ export const FieldTimeBase = ({ ...props }) => {
       dateFormat="h:mm aa"
       showTimeSelect
       showTimeSelectOnly
+      placeholderText={placeholder}
       {...inheritedProps}
     />
   );

@@ -1,5 +1,26 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldYear > render with place holder 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        placeholder="placeholder"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`FieldYear > renders empty with empty string date 1`] = `
 <DocumentFragment>
   <div

@@ -1,5 +1,20 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldInput > render with place holder 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    placeholder="placeholder"
+    type="text"
+  />
+</DocumentFragment>
+`;
+
 exports[`FieldInput > renders inside of model context 1`] = `
 <DocumentFragment>
   <input

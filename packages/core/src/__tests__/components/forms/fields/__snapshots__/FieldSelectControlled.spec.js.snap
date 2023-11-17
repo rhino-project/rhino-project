@@ -1,5 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldSelectControlled > render with place holder 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    placeholder="placeholder"
+  />
+</DocumentFragment>
+`;
+
 exports[`FieldSelectControlled > renders inside of model context 1`] = `
 <DocumentFragment>
   <select
