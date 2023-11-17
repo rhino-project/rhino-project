@@ -55,4 +55,14 @@ export const sharedFieldTests = (Component) => {
 
     expect(asFragment()).toMatchSnapshot();
   });
+
+  it('render with place holder', () => {
+    const { asFragment } = render(
+      <Component path="dummy" placeholder="placeholder" />,
+      {
+        wrapper: FormWrapper
+      }
+    );
+    expect(asFragment()).toMatchSnapshot();
+  });
 };

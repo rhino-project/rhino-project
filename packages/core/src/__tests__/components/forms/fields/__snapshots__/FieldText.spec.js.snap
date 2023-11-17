@@ -1,5 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldText > render with place holder 1`] = `
+<DocumentFragment>
+  <textarea
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    placeholder="placeholder"
+  />
+</DocumentFragment>
+`;
+
 exports[`FieldText > renders inside of model context 1`] = `
 <DocumentFragment>
   <textarea

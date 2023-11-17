@@ -1,5 +1,25 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldTime > render with place holder 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        placeholder="placeholder"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`FieldTime > renders empty with empty string date 1`] = `
 <DocumentFragment>
   <div
