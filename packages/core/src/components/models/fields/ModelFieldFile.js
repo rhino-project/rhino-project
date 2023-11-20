@@ -9,6 +9,7 @@ import { useForceUpdate } from 'rhino/hooks/util';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useController } from 'react-hook-form';
+import { DangerAlert } from '../../alerts';
 
 const fileInputText = (value, multiple, uploadedFileNames) => {
   if (!multiple && typeof value === 'string') return uploadedFileNames[value];
@@ -117,10 +118,10 @@ export const ModelFieldFileBase = ({ model, multiple, path }) => {
         </div>
       )}
       {failed && (
-        <Alert color="danger">
-          <h6>Oops! Something went wrong, please try again.</h6>
-          <p>{errors?.toString()}</p>
-        </Alert>
+        <DangerAlert
+          title="Oops! Something went wrong, please try again."
+          description={errors?.toString()}
+        />
       )}
       {error && <p className="text-danger mt-1 small">{error?.message}</p>}
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'reactstrap';
 import Rollbar from 'rollbar';
+import { DangerAlert } from '../alerts';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -23,12 +24,12 @@ class ErrorBoundary extends React.Component {
       // Error path
       return (
         <div className="pt-3">
-          <Alert color="danger">
-            <h4>
-              Something went wrong. Please refresh the page to retry or use the
-              menu to start over.
-            </h4>
-          </Alert>
+          <DangerAlert
+            title={
+              'Something went wrong. Please refresh the page to retry or use' +
+              'the menu to start over.'
+            }
+          />
         </div>
       );
     }

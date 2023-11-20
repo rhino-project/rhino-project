@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import FieldGroup from '../forms/FieldGroup';
 import FieldGroupPassword from '../forms/fieldGroups/FieldGroupPassword';
 import { useResolver } from 'rhino/hooks/form';
+import { DangerAlert } from '../alerts';
 
 const AuthField = (props) => <FieldGroup {...props} />;
 const AuthFieldPassword = (props) => <FieldGroupPassword {...props} />;
@@ -149,7 +150,7 @@ const AuthForm = ({
         )}
 
         {(Array.isArray(errors) || omniError) && (
-          <Alert color="danger">{omniError || errors[0]}</Alert>
+          <DangerAlert title={omniError || errors[0]} />
         )}
 
         <div className="d-flex flex-column">
