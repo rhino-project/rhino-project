@@ -8,12 +8,13 @@ export const DetailAlert = ({
   description,
   color = 'primary',
   closable = false,
+  className = '',
   children
 }) => {
   const AlertComponent = closable ? UncontrolledAlert : Alert;
 
   return (
-    <AlertComponent color={color}>
+    <AlertComponent className={className} color={color}>
       <h6>{title}</h6>
       {description && <p>{description}</p>}
       {children}
