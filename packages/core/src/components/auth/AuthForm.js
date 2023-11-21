@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Alert, Form } from 'reactstrap';
+import { Alert, Button, Form } from 'reactstrap';
 import * as yup from 'yup';
 
 import { useParsedSearch } from 'rhino/hooks/history';
-import { LinkButton, SubmitButton } from 'rhino/components/buttons';
+import { LinkButton } from 'rhino/components/buttons';
 import FormProvider from '../forms/FormProvider';
 import { useForm } from 'react-hook-form';
 import FieldGroup from '../forms/FieldGroup';
@@ -156,14 +156,16 @@ const AuthForm = ({
         <div className="d-flex flex-column">
           {secondaryAction && (
             <LinkButton
-              className="mb-2 text-right"
+              className={`mb-2 text-right ${secondaryAction.className}`}
               color="link"
               to={secondaryAction.url}
             >
               {secondaryAction.content}
             </LinkButton>
           )}
-          <SubmitButton loading={loading}>{primaryAction}</SubmitButton>
+          <Button className={primaryAction.className} loading={loading}>
+            {primaryAction.content}
+          </Button>
         </div>
       </Form>
     </FormProvider>
@@ -179,7 +181,7 @@ AuthForm.propTypes = {
   organizationField: PropTypes.bool.isRequired,
   passwordField: PropTypes.bool.isRequired,
   passwordConfirmField: PropTypes.bool.isRequired,
-  primaryAction: PropTypes.string.isRequired,
+  primaryAction: PropTypes.object.isRequired,
   secondaryAction: PropTypes.object
 };
 

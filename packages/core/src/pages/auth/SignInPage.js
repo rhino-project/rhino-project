@@ -8,8 +8,9 @@ import { useSignInAction, useSignupAllowed } from 'rhino/queries/auth';
 import { oauthProviders } from 'rhino/utils/models';
 import AuthPage from './AuthPage';
 import { useRhinoConfig } from 'rhino/config';
+import PropTypes from 'prop-types';
 
-const SignInPage = ({ description }) => {
+const SignInPage = ({ ...props }) => {
   const { appName } = useRhinoConfig();
   const userCreatePath = useUserCreatePath();
   const forgotPasswordPath = useForgotPasswordPath();
@@ -35,11 +36,13 @@ const SignInPage = ({ description }) => {
   );
 
   return (
-    <AuthPage description={description || authDesc}>
+    <AuthPage description={authDesc} {...props}>
       <AuthForm
         emailField
         passwordField
-        primaryAction="Sign In"
+        primaryAction={{
+          content: 'Sign In'
+        }}
         secondaryAction={{
           content: 'Forgot Password?',
           url: `../${forgotPasswordPath}`
@@ -47,6 +50,7 @@ const SignInPage = ({ description }) => {
         loading={isLoading}
         errors={error?.errors}
         onSubmit={handleSubmit}
+        {...props}
       />
       {oauthProviders().length > 0 && <hr />}
       <div className="d-flex justify-content-center">
@@ -66,6 +70,12 @@ const SignInPage = ({ description }) => {
       )}
     </AuthPage>
   );
+};
+
+SignInPage.propTypes = {
+  description: PropTypes.node,
+  primaryAction: PropTypes.object,
+  secondaryAction: PropTypes.object
 };
 
 export default SignInPage;
