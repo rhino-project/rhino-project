@@ -4,7 +4,7 @@ import { useSessionCreatePath } from 'rhino/hooks/routes';
 import { useForgotPasswordAction } from 'rhino/queries/auth';
 import AuthPage from './AuthPage';
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage = ({ description }) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: forgotPasswordAction,
@@ -17,7 +17,9 @@ const ForgotPasswordPage = () => {
   const handleSubmit = (formValues) => forgotPasswordAction(formValues);
 
   return (
-    <AuthPage description="Enter email to reset your password.">
+    <AuthPage
+      description={description || 'Enter email to reset your password.'}
+    >
       <AuthForm
         emailField
         primaryAction="Reset Password"

@@ -9,7 +9,7 @@ import { oauthProviders } from 'rhino/utils/models';
 import AuthPage from './AuthPage';
 import { useRhinoConfig } from 'rhino/config';
 
-const SignInPage = () => {
+const SignInPage = ({ description }) => {
   const { appName } = useRhinoConfig();
   const userCreatePath = useUserCreatePath();
   const forgotPasswordPath = useForgotPasswordPath();
@@ -35,7 +35,7 @@ const SignInPage = () => {
   );
 
   return (
-    <AuthPage description={authDesc}>
+    <AuthPage description={description || authDesc}>
       <AuthForm
         emailField
         passwordField
