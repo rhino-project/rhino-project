@@ -4,7 +4,7 @@ import * as yup from 'yup';
 
 import { SubmitButton } from 'rhino/components/buttons';
 import { baseOwnerModel } from 'rhino/utils/models';
-import { SuccessAlert } from 'rhino/components/alerts';
+import { DangerAlert, SuccessAlert } from 'rhino/components/alerts';
 import { useBaseOwner, useBaseOwnerId } from 'rhino/hooks/owner';
 import { useModelShow, useModelUpdate } from 'rhino/hooks/queries';
 import FormProvider from '../forms/FormProvider';
@@ -57,7 +57,7 @@ const EditOrganizationProfile = () => {
         <Form onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup path="name" label="Name" />
           {Array.isArray(error?.errors) && (
-            <Alert color="danger">{error.errors[0]}</Alert>
+            <DangerAlert title={error.errors[0]} />
           )}
 
           <SubmitButton loading={isLoading} disabled={!isDirty}>

@@ -14,7 +14,7 @@ import {
   useCheckSession
 } from 'rhino/queries/subscription';
 import { Button } from 'rhino/components/buttons';
-import { SuccessAlert } from 'rhino/components/alerts';
+import { DangerAlert, SuccessAlert } from 'rhino/components/alerts';
 
 export const SubscriptionTab = ({ activeTab, toggle }) => {
   return (
@@ -100,9 +100,7 @@ const Subscription = ({ status, session_id }) => {
             description={'Thanks for subscribing.'}
           />
         )}
-        {sessionCheckError() && (
-          <Alert color="danger">{sessionCheckError()}</Alert>
-        )}
+        {sessionCheckError() && <DangerAlert title={sessionCheckError()} />}
       </div>
     );
 };

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { Alert, Form } from 'reactstrap';
 import * as yup from 'yup';
 
-import { SuccessAlert } from 'rhino/components/alerts';
+import { DangerAlert, SuccessAlert } from 'rhino/components/alerts';
 import { SubmitButton } from 'rhino/components/buttons';
 import { useModelShow, useModelUpdate } from 'rhino/hooks/queries';
 import { useFieldSetErrors, useResolver } from 'rhino/hooks/form';
@@ -54,7 +54,7 @@ const EditProfile = () => {
           <FieldGroup path="name" label="Name" />
           <FieldGroup path="nickname" label="Nick Name" />
           {Array.isArray(error?.errors) && (
-            <Alert color="danger">{error.errors[0]}</Alert>
+            <DangerAlert title={error.errors[0]} />
           )}
 
           <SubmitButton loading={isLoading} disabled={!isDirty}>

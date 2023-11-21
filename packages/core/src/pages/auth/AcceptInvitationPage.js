@@ -7,6 +7,7 @@ import { useParsedSearch } from 'rhino/hooks/history';
 import { useRootPath } from 'rhino/hooks/routes';
 import { useAcceptInvitationAction } from 'rhino/queries/auth';
 import AuthPage from './AuthPage';
+import { DangerAlert } from '../../components/alerts';
 
 const AcceptInvitationPage = () => {
   const rootPath = useRootPath();
@@ -28,9 +29,9 @@ const AcceptInvitationPage = () => {
   return (
     <AuthPage description={authDesc}>
       {error?.errors['invitation_token'] && (
-        <Alert color="danger">
-          {'Invitation token ' + error?.errors['invitation_token']}
-        </Alert>
+        <DangerAlert
+          title={'Invitation token ' + error?.errors['invitation_token']}
+        />
       )}
       <AuthForm
         passwordField
