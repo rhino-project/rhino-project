@@ -1,6 +1,4 @@
 import { Navigate } from 'react-router-dom';
-
-import { Alert } from 'reactstrap';
 import AuthForm from 'rhino/components/auth/AuthForm';
 import { useAuthenticated } from 'rhino/hooks/auth';
 import { useParsedSearch } from 'rhino/hooks/history';
@@ -8,8 +6,9 @@ import { useRootPath } from 'rhino/hooks/routes';
 import { useAcceptInvitationAction } from 'rhino/queries/auth';
 import AuthPage from './AuthPage';
 import { DangerAlert } from '../../components/alerts';
+import PropTypes from 'prop-types';
 
-const AcceptInvitationPage = () => {
+const AcceptInvitationPage = (props) => {
   const rootPath = useRootPath();
   const isAuthenticated = useAuthenticated();
   const {
@@ -27,7 +26,7 @@ const AcceptInvitationPage = () => {
   if (isAuthenticated) return <Navigate to={rootPath} replace />;
   const authDesc = <p>Enter a password to create account.</p>;
   return (
-    <AuthPage description={authDesc}>
+    <AuthPage description={authDesc} {...props}>
       {error?.errors['invitation_token'] && (
         <DangerAlert
           title={'Invitation token ' + error?.errors['invitation_token']}
@@ -40,9 +39,25 @@ const AcceptInvitationPage = () => {
         loading={isLoading}
         errors={error?.errors}
         onSubmit={handleSubmit}
+        {...props}
       />
     </AuthPage>
   );
+};
+
+AcceptInvitationPage.propTypes = {
+  description: PropTypes.node,
+  children: PropTypes.node,
+  currentPasswordField: PropTypes.bool,
+  errors: PropTypes.array,
+  emailField: PropTypes.bool,
+  loading: PropTypes.bool,
+  onSubmit: PropTypes.func,
+  organizationField: PropTypes.bool,
+  passwordField: PropTypes.bool,
+  passwordConfirmField: PropTypes.bool,
+  primaryAction: PropTypes.string,
+  secondaryAction: PropTypes.object
 };
 
 export default AcceptInvitationPage;

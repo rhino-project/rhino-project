@@ -5,7 +5,7 @@ import { useForgotPasswordAction } from 'rhino/queries/auth';
 import AuthPage from './AuthPage';
 import PropTypes from 'prop-types';
 
-const ForgotPasswordPage = ({ ...props }) => {
+const ForgotPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: forgotPasswordAction,
@@ -21,9 +21,7 @@ const ForgotPasswordPage = ({ ...props }) => {
     <AuthPage description="Enter email to reset your password." {...props}>
       <AuthForm
         emailField
-        primaryAction={{
-          content: 'Reset Password'
-        }}
+        primaryAction="Reset Password"
         secondaryAction={{
           content: 'Sign In',
           url: `../${sessionCreatePath}`
@@ -42,7 +40,16 @@ const ForgotPasswordPage = ({ ...props }) => {
 
 ForgotPasswordPage.propTypes = {
   description: PropTypes.node,
-  primaryAction: PropTypes.object,
+  children: PropTypes.node,
+  currentPasswordField: PropTypes.bool,
+  errors: PropTypes.array,
+  emailField: PropTypes.bool,
+  loading: PropTypes.bool,
+  onSubmit: PropTypes.func,
+  organizationField: PropTypes.bool,
+  passwordField: PropTypes.bool,
+  passwordConfirmField: PropTypes.bool,
+  primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
 

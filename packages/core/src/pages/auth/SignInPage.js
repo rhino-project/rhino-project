@@ -10,7 +10,7 @@ import AuthPage from './AuthPage';
 import { useRhinoConfig } from 'rhino/config';
 import PropTypes from 'prop-types';
 
-const SignInPage = ({ ...props }) => {
+const SignInPage = (props) => {
   const { appName } = useRhinoConfig();
   const userCreatePath = useUserCreatePath();
   const forgotPasswordPath = useForgotPasswordPath();
@@ -40,9 +40,7 @@ const SignInPage = ({ ...props }) => {
       <AuthForm
         emailField
         passwordField
-        primaryAction={{
-          content: 'Sign In'
-        }}
+        primaryAction="Sign In"
         secondaryAction={{
           content: 'Forgot Password?',
           url: `../${forgotPasswordPath}`
@@ -74,7 +72,16 @@ const SignInPage = ({ ...props }) => {
 
 SignInPage.propTypes = {
   description: PropTypes.node,
-  primaryAction: PropTypes.object,
+  children: PropTypes.node,
+  currentPasswordField: PropTypes.bool,
+  errors: PropTypes.array,
+  emailField: PropTypes.bool,
+  loading: PropTypes.bool,
+  onSubmit: PropTypes.func,
+  organizationField: PropTypes.bool,
+  passwordField: PropTypes.bool,
+  passwordConfirmField: PropTypes.bool,
+  primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
 

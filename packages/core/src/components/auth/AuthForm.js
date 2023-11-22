@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Alert, Button, Form } from 'reactstrap';
+import { Button, Form } from 'reactstrap';
 import * as yup from 'yup';
 
 import { useParsedSearch } from 'rhino/hooks/history';
@@ -156,16 +156,14 @@ const AuthForm = ({
         <div className="d-flex flex-column">
           {secondaryAction && (
             <LinkButton
-              className={`mb-2 text-right ${secondaryAction.className}`}
+              className="mb-2 text-right"
               color="link"
               to={secondaryAction.url}
             >
               {secondaryAction.content}
             </LinkButton>
           )}
-          <Button className={primaryAction.className} loading={loading}>
-            {primaryAction.content}
-          </Button>
+          <Button loading={loading}>{primaryAction}</Button>
         </div>
       </Form>
     </FormProvider>
@@ -181,7 +179,7 @@ AuthForm.propTypes = {
   organizationField: PropTypes.bool.isRequired,
   passwordField: PropTypes.bool.isRequired,
   passwordConfirmField: PropTypes.bool.isRequired,
-  primaryAction: PropTypes.object.isRequired,
+  primaryAction: PropTypes.string.isRequired,
   secondaryAction: PropTypes.object
 };
 

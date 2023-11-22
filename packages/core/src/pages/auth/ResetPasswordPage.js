@@ -5,8 +5,9 @@ import { useParsedSearch } from 'rhino/hooks/history';
 import { useSessionCreatePath } from 'rhino/hooks/routes';
 import { useResetPasswordAction } from 'rhino/queries/auth';
 import AuthPage from './AuthPage';
+import PropTypes from 'prop-types';
 
-const ResetPasswordPage = () => {
+const ResetPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: resetPasswordAction,
@@ -27,7 +28,7 @@ const ResetPasswordPage = () => {
   );
 
   return (
-    <AuthPage description={authDesc}>
+    <AuthPage description={authDesc} {...props}>
       <AuthForm
         passwordField
         passwordConfirmField
@@ -35,6 +36,7 @@ const ResetPasswordPage = () => {
         loading={isLoading}
         errors={error?.errors}
         onSubmit={handleSubmit}
+        {...props}
       />
       {isSuccess && (
         <SuccessAlert title={message}>
@@ -43,6 +45,21 @@ const ResetPasswordPage = () => {
       )}
     </AuthPage>
   );
+};
+
+ResetPasswordPage.propTypes = {
+  description: PropTypes.node,
+  children: PropTypes.node,
+  currentPasswordField: PropTypes.bool,
+  errors: PropTypes.array,
+  emailField: PropTypes.bool,
+  loading: PropTypes.bool,
+  onSubmit: PropTypes.func,
+  organizationField: PropTypes.bool,
+  passwordField: PropTypes.bool,
+  passwordConfirmField: PropTypes.bool,
+  primaryAction: PropTypes.string,
+  secondaryAction: PropTypes.object
 };
 
 export default ResetPasswordPage;
