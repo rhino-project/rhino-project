@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Alert, Form } from 'reactstrap';
+import { Button, Form } from 'reactstrap';
 import * as yup from 'yup';
 
 import { useParsedSearch } from 'rhino/hooks/history';
-import { LinkButton, SubmitButton } from 'rhino/components/buttons';
+import { LinkButton } from 'rhino/components/buttons';
 import FormProvider from '../forms/FormProvider';
 import { useForm } from 'react-hook-form';
 import FieldGroup from '../forms/FieldGroup';
@@ -163,7 +163,7 @@ const AuthForm = ({
               {secondaryAction.content}
             </LinkButton>
           )}
-          <SubmitButton loading={loading}>{primaryAction}</SubmitButton>
+          <Button loading={loading}>{primaryAction}</Button>
         </div>
       </Form>
     </FormProvider>

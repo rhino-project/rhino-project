@@ -1,4 +1,4 @@
-import { NavLink, Navigate } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
 import AuthForm from 'rhino/components/auth/AuthForm';
 import { useAuthenticated } from 'rhino/hooks/auth';
@@ -7,8 +7,9 @@ import { useSignUpAction } from 'rhino/queries/auth';
 import { hasOrganizationsModule } from 'rhino/utils/models';
 import AuthPage from './AuthPage';
 import { useRhinoConfig } from 'rhino/config';
+import PropTypes from 'prop-types';
 
-const SignUpPage = () => {
+const SignUpPage = (props) => {
   const { appName } = useRhinoConfig();
   const rootPath = useRootPath();
   const sessionCreatePath = useSessionCreatePath();
@@ -33,7 +34,7 @@ const SignUpPage = () => {
   );
 
   return (
-    <AuthPage description={authDesc}>
+    <AuthPage description={authDesc} {...props}>
       <AuthForm
         emailField
         passwordField
@@ -43,9 +44,25 @@ const SignUpPage = () => {
         loading={isLoading}
         errors={error?.errors}
         onSubmit={handleSubmit}
+        {...props}
       />
     </AuthPage>
   );
+};
+
+SignUpPage.propTypes = {
+  description: PropTypes.node,
+  children: PropTypes.node,
+  currentPasswordField: PropTypes.bool,
+  errors: PropTypes.array,
+  emailField: PropTypes.bool,
+  loading: PropTypes.bool,
+  onSubmit: PropTypes.func,
+  organizationField: PropTypes.bool,
+  passwordField: PropTypes.bool,
+  passwordConfirmField: PropTypes.bool,
+  primaryAction: PropTypes.string,
+  secondaryAction: PropTypes.object
 };
 
 export default SignUpPage;

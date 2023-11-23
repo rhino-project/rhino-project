@@ -5,8 +5,9 @@ import { DarkLogo } from 'rhino/components/logos';
 // External Dependencies
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'reactstrap';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
 
-const AuthPage = ({ children, description }) => {
+const AuthPageBase = ({ children, description }) => {
   return (
     <Container className="h-100">
       <Target>
@@ -26,9 +27,12 @@ const AuthPage = ({ children, description }) => {
   );
 };
 
-AuthPage.propTypes = {
+AuthPageBase.propTypes = {
   children: PropTypes.node,
   description: PropTypes.node
 };
+
+const AuthPage = (props) =>
+  useGlobalComponentForModel('AuthPage', AuthPageBase, props);
 
 export default AuthPage;
