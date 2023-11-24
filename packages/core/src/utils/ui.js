@@ -39,8 +39,8 @@ const getDateTimeDisplayString = (dateTime, type) =>
   dateTime && type === 'date'
     ? new Date(dateTime.replace(/-/g, `/`).replace(/T.+/, ''))
     : dateTime && type !== 'date'
-    ? new Date(dateTime)
-    : '';
+      ? new Date(dateTime)
+      : '';
 
 export const getDateTimeLongString = (attribute, value) =>
   format(
