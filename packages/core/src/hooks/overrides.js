@@ -93,8 +93,6 @@ const initializeOverrideWrappers = (defaultComponents, getOverridesProp) => {
   for (const name of Object.keys(defaultComponents)) {
     components[name] = (props) => {
       const overrides = getOverridesProp() || {};
-      // eslint-disable-next-line no-unused-vars
-      const override = overrides[name];
 
       const [Component, mergedProps] = getOverrides(
         overrides[name],

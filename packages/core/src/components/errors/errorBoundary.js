@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
 import Rollbar from 'rollbar';
 import { DangerAlert } from '../alerts';
 

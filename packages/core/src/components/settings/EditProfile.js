@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { Alert, Form } from 'reactstrap';
+import { Form } from 'reactstrap';
 import * as yup from 'yup';
 
 import { DangerAlert, SuccessAlert } from 'rhino/components/alerts';
