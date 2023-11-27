@@ -1,5 +1,5 @@
 import { useMemo, useCallback, useEffect } from 'react';
-import { Alert, Form } from 'reactstrap';
+import { Form } from 'reactstrap';
 import * as yup from 'yup';
 
 import { SubmitButton } from 'rhino/components/buttons';

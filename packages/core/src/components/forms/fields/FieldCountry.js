@@ -3,7 +3,6 @@ import classnames from 'classnames';
 
 import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { CloseButton } from 'rhino/components/buttons';
 import PhoneInput from 'react-phone-input-2';
