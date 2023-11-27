@@ -52,6 +52,7 @@ export const sharedCellTests = (Component) => {
   });
 
   it('renders inside of model context', () => {
+    configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
     const { asFragment } = render(<Component />, {
       wrapper: FormWrapper
     });
