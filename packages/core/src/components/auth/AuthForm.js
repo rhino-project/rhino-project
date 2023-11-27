@@ -7,12 +7,12 @@ import { useParsedSearch } from 'rhino/hooks/history';
 import { LinkButton } from 'rhino/components/buttons';
 import FormProvider from '../forms/FormProvider';
 import { useForm } from 'react-hook-form';
-import FieldGroup from '../forms/FieldGroup';
 import FieldGroupPassword from '../forms/fieldGroups/FieldGroupPassword';
 import { useResolver } from 'rhino/hooks/form';
 import { DangerAlert } from '../alerts';
+import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
 
-const AuthField = (props) => <FieldGroup {...props} />;
+const AuthField = (props) => <FieldGroupString {...props} />;
 const AuthFieldPassword = (props) => <FieldGroupPassword {...props} />;
 
 const AuthForm = ({

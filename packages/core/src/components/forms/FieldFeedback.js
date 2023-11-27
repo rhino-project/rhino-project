@@ -1,14 +1,11 @@
 import { FormFeedback } from 'reactstrap';
 
 import { useFieldError, useFieldInheritedProps } from 'rhino/hooks/form';
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 const INHERITED_PROP_OPTIONS = { prefix: 'fieldFeedback' };
 
-const defaultComponents = { FieldFeedback: FormFeedback };
-
-export const FieldFeedbackBase = ({ overrides, ...props }) => {
-  const { FieldFeedback } = useOverrides(defaultComponents, overrides);
+export const FieldFeedbackBase = (props) => {
   const { extractedProps, inheritedProps } = useFieldInheritedProps(
     props,
     INHERITED_PROP_OPTIONS
@@ -18,9 +15,9 @@ export const FieldFeedbackBase = ({ overrides, ...props }) => {
   if (!error) return null;
 
   return (
-    <FieldFeedback {...extractedProps} {...inheritedProps}>
+    <FormFeedback {...extractedProps} {...inheritedProps}>
       {error.message}
-    </FieldFeedback>
+    </FormFeedback>
   );
 };
 

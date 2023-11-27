@@ -4,8 +4,7 @@ exports[`ModelDisplayGroup > should merge overrides 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
-    id="DisplayLayoutVertical-name"
-    model="[object Object]"
+    id="DisplayLayout-name"
     path="name"
   >
     <label
@@ -49,8 +48,7 @@ exports[`ModelDisplayGroup > should render without prop 1`] = `
 <DocumentFragment>
   <div
     class="mb-3"
-    id="DisplayLayoutVertical-name"
-    model="[object Object]"
+    id="DisplayLayout-name"
     path="name"
   >
     <label

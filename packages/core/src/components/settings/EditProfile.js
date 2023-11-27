@@ -8,7 +8,7 @@ import { useModelShow, useModelUpdate } from 'rhino/hooks/queries';
 import { useFieldSetErrors, useResolver } from 'rhino/hooks/form';
 import { useForm } from 'react-hook-form';
 import FormProvider from '../forms/FormProvider';
-import FieldGroup from '../forms/FieldGroup';
+import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
 
 const EditProfile = () => {
   const { model, resource: account } = useModelShow('account', null);
@@ -51,8 +51,8 @@ const EditProfile = () => {
     <>
       <FormProvider {...methods}>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <FieldGroup path="name" label="Name" />
-          <FieldGroup path="nickname" label="Nick Name" />
+          <FieldGroupString path="name" label="Name" />
+          <FieldGroupString path="nickname" label="Nick Name" />
           {Array.isArray(error?.errors) && (
             <DangerAlert title={error.errors[0]} />
           )}

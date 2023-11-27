@@ -100,74 +100,62 @@ const api = {
         type: 'object',
         properties: {
           id: {
-            'x-rhino-attribute': {
-              name: 'id',
-              readableName: 'Id',
-              readable: true,
-              creatable: false,
-              updatable: false
-            },
+            name: 'id',
+            readableName: 'Id',
+            readable: true,
+            creatable: false,
+            updatable: false,
             readOnly: true,
             nullable: false,
             type: 'identifier'
           },
           title: {
-            'x-rhino-attribute': {
-              name: 'title',
-              readableName: 'Title',
-              readable: true,
-              creatable: true,
-              updatable: true
-            },
+            name: 'title',
+            readableName: 'Title',
+            readable: true,
+            creatable: true,
+            updatable: true,
             nullable: false,
             type: 'string'
           },
           published_at: {
-            'x-rhino-attribute': {
-              name: 'published_at',
-              readableName: 'Published At',
-              readable: true,
-              creatable: true,
-              updatable: true
-            },
+            name: 'published_at',
+            readableName: 'Published At',
+            readable: true,
+            creatable: true,
+            updatable: true,
             nullable: true,
             type: 'string',
             format: 'datetime'
           },
           created_at: {
-            'x-rhino-attribute': {
-              name: 'created_at',
-              readableName: 'Created At',
-              readable: true,
-              creatable: false,
-              updatable: false
-            },
+            name: 'created_at',
+            readableName: 'Created At',
+            readable: true,
+            creatable: false,
+            updatable: false,
             readOnly: true,
             nullable: false,
             type: 'string',
             format: 'datetime'
           },
           updated_at: {
-            'x-rhino-attribute': {
-              name: 'updated_at',
-              readableName: 'Updated At',
-              readable: true,
-              creatable: false,
-              updatable: false
-            },
+            name: 'updated_at',
+            readableName: 'Updated At',
+            readable: true,
+            creatable: false,
+            updatable: false,
             readOnly: true,
             nullable: false,
             type: 'string',
             format: 'datetime'
           },
           author: {
-            'x-rhino-attribute': {
-              name: 'author',
-              readableName: 'Author',
-              readable: true,
-              creatable: false,
-              updatable: false
-            },
+            name: 'author',
+            readableName: 'Author',
+            readable: true,
+            creatable: false,
+            updatable: false,
             readOnly: true,
             nullable: false,
             type: 'reference',
@@ -178,13 +166,11 @@ const api = {
             ]
           },
           organization: {
-            'x-rhino-attribute': {
-              name: 'organization',
-              readableName: 'Organization',
-              readable: true,
-              creatable: true,
-              updatable: true
-            },
+            name: 'organization',
+            readableName: 'Organization',
+            readable: true,
+            creatable: true,
+            updatable: true,
             nullable: false,
             type: 'reference',
             anyOf: [
@@ -193,47 +179,12 @@ const api = {
               }
             ]
           },
-          category: {
-            'x-rhino-attribute': {
-              name: 'category',
-              readableName: 'Category',
-              readable: true,
-              creatable: true,
-              updatable: true
-            },
-            nullable: true,
-            type: 'reference',
-            anyOf: [
-              {
-                $ref: '#/components/schemas/category'
-              }
-            ]
-          },
-          banner_attachment: {
-            'x-rhino-attribute': {
-              name: 'banner_attachment',
-              readableName: 'Banner Attachment',
-              readable: true,
-              creatable: true,
-              updatable: true
-            },
-            nullable: true,
-            type: 'reference',
-            anyOf: [
-              {
-                $ref: '#/components/schemas/active_storage_attachment'
-              }
-            ],
-            format: 'image'
-          },
           blog_posts: {
-            'x-rhino-attribute': {
-              name: 'blog_posts',
-              readableName: 'Blog Posts',
-              readable: true,
-              creatable: false,
-              updatable: false
-            },
+            name: 'blog_posts',
+            readableName: 'Blog Posts',
+            readable: true,
+            creatable: false,
+            updatable: false,
             readOnly: true,
             nullable: true,
             type: 'array',

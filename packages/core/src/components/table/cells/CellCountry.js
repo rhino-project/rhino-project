@@ -1,4 +1,4 @@
-import { Flag } from 'rhino/components/models/fields/ModelFieldCountry';
+import { Flag } from 'rhino/components/forms/fields/FieldCountry';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 import { useTableInheritedProps } from 'rhino/hooks/table';
 

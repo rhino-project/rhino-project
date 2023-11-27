@@ -30,12 +30,12 @@ import Table from 'rhino/components/table/Table';
 import { Icon } from 'rhino/components/icons';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { useFieldArray } from 'react-hook-form';
-import ModelDisplay from '../ModelDisplay';
 import FieldHidden from 'rhino/components/forms/fields/FieldHidden';
 import { useTableInheritedProps } from 'rhino/hooks/table';
-import ModelField from '../ModelField';
 import FieldFeedback from 'rhino/components/forms/FieldFeedback';
 import ModelSection from '../ModelSection';
+import { ModelFieldGroupBase } from '../ModelFieldGroup';
+import { ModelDisplayGroupBase } from '../ModelDisplayGroup';
 
 const columnHelper = createColumnHelper();
 const destroyFilter = (row) => row.original._destroy !== '1';
@@ -46,16 +46,19 @@ const getNestedUpdatableAttributes = (model) =>
 
 const ModelCellNestedDisplay = (props) => (
   <>
-    <ModelDisplay {...props} />
+    <ModelDisplayGroupBase
+      className="mb-0"
+      labelHidden
+      placeholder=""
+      plaintext
+      {...props}
+    />
     <FieldFeedback {...props} />
   </>
 );
 
 const ModelCellNestedEditable = (props) => (
-  <>
-    <ModelField {...props} />
-    <FieldFeedback {...props} />
-  </>
+  <ModelFieldGroupBase className="mb-0" labelHidden {...props} />
 );
 
 const ModelCellNested = ({ path, ...props }) => {

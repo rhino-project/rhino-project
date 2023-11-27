@@ -7,23 +7,29 @@ exports[`ModelEditForm > should allow paths to be directly overridden 1`] = `
   >
     <div
       class="mb-3"
-      id="FieldLayoutVertical-title"
-      model="[object Object]"
+      id="FieldLayout-title"
+      label="Title"
       path="title"
+      placeholder="Title"
     >
       <label
         class="form-label"
         for="title"
         id="fieldLabel-title"
         path="title"
-      />
+        placeholder="Title"
+      >
+        Title
+      </label>
       <input
         aria-invalid="false"
         autocomplete="off"
         class="form-control"
         id="title"
+        label="Title"
         name="title"
         path="title"
+        placeholder="Title"
         type="text"
       />
     </div>

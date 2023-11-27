@@ -5,7 +5,7 @@ import Field from './fields/FieldInput';
 import { useFieldInheritedProps } from 'rhino/hooks/form';
 import DisplayLabel from './DisplayLabel';
 
-const INHERITED_PROP_OPTIONS = { prefix: 'DisplayLayoutVertical' };
+const INHERITED_PROP_OPTIONS = { prefix: 'DisplayLayout' };
 
 const defaultComponents = {
   FormGroup,
@@ -14,7 +14,11 @@ const defaultComponents = {
   Display: Field
 };
 
-export const DisplayLayoutVerticalBase = ({ overrides, ...props }) => {
+export const DisplayLayoutVerticalBase = ({
+  overrides,
+  labelHidden = false,
+  ...props
+}) => {
   const { FormGroup, DisplayLabel, Display } = useOverrides(
     defaultComponents,
     overrides
@@ -27,7 +31,7 @@ export const DisplayLayoutVerticalBase = ({ overrides, ...props }) => {
 
   return (
     <FormGroup {...extractedProps} {...inheritedProps}>
-      <DisplayLabel {...inheritedProps} />
+      <DisplayLabel hidden={labelHidden} {...inheritedProps} />
       <Display {...inheritedProps} />
     </FormGroup>
   );

@@ -8,6 +8,22 @@ exports[`DisplayImage > renders inside of model context 1`] = `
 </DocumentFragment>
 `;
 
+exports[`DisplayImage > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div>
+    -
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayImage > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div>
+    baz
+  </div>
+</DocumentFragment>
+`;
+
 exports[`DisplayImage > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>

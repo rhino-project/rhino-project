@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import api from '__tests__/shared/modelFixtures';
 import modelLoader from 'rhino/models';
+import rhinoConfig from 'rhino.config';
 
 vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 vi.mock('rhino/utils/models', async () => {
@@ -13,6 +14,10 @@ vi.mock('rhino/utils/models', async () => {
     ...actual,
     getParentModel: vi.fn().mockReturnValue('user')
   };
+});
+vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+  version: 1,
+  components: {}
 });
 
 describe('ModelCreateForm', () => {

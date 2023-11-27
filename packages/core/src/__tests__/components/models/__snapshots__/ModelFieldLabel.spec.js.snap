@@ -6,7 +6,6 @@ exports[`ModelFieldLabel > should override label with prop 1`] = `
     class="form-label"
     for="dummy"
     id="fieldLabel-dummy"
-    label="Dummy Override"
     path="dummy"
   >
     Dummy Override
@@ -20,7 +19,6 @@ exports[`ModelFieldLabel > should render label with readable name 1`] = `
     class="form-label"
     for="dummy"
     id="fieldLabel-dummy"
-    label="Dummy"
     path="dummy"
   >
     Dummy

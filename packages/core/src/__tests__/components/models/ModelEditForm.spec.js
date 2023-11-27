@@ -5,8 +5,13 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import api from '__tests__/shared/modelFixtures';
 import modelLoader from 'rhino/models';
+import rhinoConfig from 'rhino.config';
 
 vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
+vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+  version: 1,
+  components: {}
+});
 
 describe('ModelEditForm', () => {
   const wrapper = ({ children }) => {

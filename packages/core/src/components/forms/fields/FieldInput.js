@@ -3,7 +3,6 @@ import { Input } from 'reactstrap';
 
 import {
   useFieldError,
-  useFieldPlaceholder,
   useFieldRegister,
   useFieldInheritedProps
 } from 'rhino/hooks/form';
@@ -20,8 +19,6 @@ export const FieldInputBase = ({ setValueAs, ...props }) => {
   // FIXME: I should be able to get the error from the fieldProps/form context
   const error = useFieldError(path);
 
-  const placeholder = useFieldPlaceholder(props);
-
   return (
     <Input
       {...extractedProps}
@@ -29,7 +26,6 @@ export const FieldInputBase = ({ setValueAs, ...props }) => {
       innerRef={ref}
       autoComplete="off"
       invalid={!!error}
-      placeholder={placeholder}
       {...inheritedProps}
     />
   );

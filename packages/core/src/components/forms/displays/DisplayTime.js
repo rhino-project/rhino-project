@@ -4,7 +4,7 @@ import { FieldInputControlledBase } from '../fields/FieldInputControlled';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
 
 export const DisplayTimeBase = ({
-  format = 'MMMM d, yyyy',
+  format = 'hh:mm a',
   empty = '-',
   ...props
 }) => {
