@@ -4,6 +4,11 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 import ModelIndexTable from 'rhino/components/models/ModelIndexTable';
 import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
+import modelLoader from 'rhino/models';
+import api from '__tests__/shared/modelFixtures';
+import rhinoConfig from '../../../../rhino.config';
+
+vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 describe('ModelIndexTable', () => {
   const Foo = () => <div>Foo</div>;
@@ -33,6 +38,10 @@ describe('ModelIndexTable', () => {
   sharedModelTests(ModelIndexTable);
 
   it(`should allow local overrides`, async () => {
+    const configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({});
+
     const { asFragment } = render(
       <ModelIndexTable
         overrides={{
@@ -44,5 +53,7 @@ describe('ModelIndexTable', () => {
       { wrapper }
     );
     expect(asFragment()).toMatchSnapshot();
+
+    configSpy.mockRestore();
   });
 });
