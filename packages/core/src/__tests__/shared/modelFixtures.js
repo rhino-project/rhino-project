@@ -22,6 +22,7 @@ const api = {
           },
           name: {
             name: 'name',
+            readableName: 'Name',
             nullable: true,
             type: 'string'
           },

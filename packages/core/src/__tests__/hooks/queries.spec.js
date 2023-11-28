@@ -13,9 +13,7 @@ import {
   useModelShow,
   useModelUpdate
 } from 'rhino/hooks/queries';
-import modelLoader from 'rhino/models';
 import * as network from '../../../rhino/lib/networking';
-import api from '../../shared/modelFixtures';
 
 const testQueryClient = () =>
   new QueryClient({
@@ -28,8 +26,6 @@ const testQueryClient = () =>
       error: () => {}
     }
   });
-
-vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 const abortFn = vi.fn();
 

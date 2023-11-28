@@ -1,13 +1,9 @@
 import { render } from '@testing-library/react';
 import rhinoConfig from 'rhino.config';
-import modelLoader from 'rhino/models';
-import api from '__tests__/shared/modelFixtures';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ModelShowSimple from 'rhino/components/models/ModelShowSimple';
 
 const getBarValue = () => 'bar';
-
-vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 export const sharedDisplayTests = (Component) => {
   const overrideName = Component.displayName || Component.name;

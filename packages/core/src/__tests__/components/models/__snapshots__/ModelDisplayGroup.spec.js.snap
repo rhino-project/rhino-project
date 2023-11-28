@@ -5,21 +5,28 @@ exports[`ModelDisplayGroup > should merge overrides 1`] = `
   <div
     class="mb-3"
     id="DisplayLayout-name"
+    label="Name"
     path="name"
+    placeholder="Name"
   >
     <label
       class="form-label"
       for="name"
       id="displayLabel-name"
       path="name"
-    />
+      placeholder="Name"
+    >
+      Name
+    </label>
     <input
       aria-invalid="false"
       autocomplete="off"
       class="form-control"
       id="name"
+      label="Name"
       name="name"
       path="name"
+      placeholder="Name"
       readonly=""
       type="text"
       value=""
@@ -49,21 +56,28 @@ exports[`ModelDisplayGroup > should render without prop 1`] = `
   <div
     class="mb-3"
     id="DisplayLayout-name"
+    label="Name"
     path="name"
+    placeholder="Name"
   >
     <label
       class="form-label"
       for="name"
       id="displayLabel-name"
       path="name"
-    />
+      placeholder="Name"
+    >
+      Name
+    </label>
     <input
       aria-invalid="false"
       autocomplete="off"
       class="form-control"
       id="name"
+      label="Name"
       name="name"
       path="name"
+      placeholder="Name"
       readonly=""
       type="text"
       value=""

@@ -7,10 +7,6 @@ import {
   useOverrides
 } from 'rhino/hooks/overrides';
 import rhinoConfig from 'rhino.config';
-import modelLoader from 'rhino/models';
-import api from '__tests__/shared/modelFixtures';
-
-vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 describe('useOverrides', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
