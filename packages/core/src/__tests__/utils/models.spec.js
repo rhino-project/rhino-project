@@ -1,8 +1,4 @@
-import modelLoader from 'rhino/models';
 import * as utils from 'rhino/utils/models';
-import api from '../../shared/modelFixtures';
-
-vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 describe('utils > models.js', () => {
   const userModel = utils.getModel('user');

@@ -3,11 +3,8 @@ import ModelFieldGroup from 'rhino/components/models/ModelFieldGroup';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ModelEditSimple from 'rhino/components/models/ModelEditSimple';
-import modelLoader from 'rhino/models';
-import api from '../../../shared/modelFixtures';
 import rhinoConfig from 'rhino.config';
 
-vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
   version: 1,
   components: {}

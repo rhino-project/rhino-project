@@ -4,11 +4,7 @@ import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ModelShowSimple from 'rhino/components/models/ModelShowSimple';
 import * as network from 'rhino/lib/networking';
-import modelLoader from 'rhino/models';
-import api from '../../../shared/modelFixtures';
 import rhinoConfig from 'rhino.config';
-
-vi.spyOn(modelLoader, 'api', 'get').mockReturnValue(api);
 
 vi.spyOn(network, 'networkApiCall').mockReturnValue({
   data: {
