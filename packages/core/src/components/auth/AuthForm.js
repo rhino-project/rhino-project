@@ -12,8 +12,12 @@ import { useResolver } from 'rhino/hooks/form';
 import { DangerAlert } from '../alerts';
 import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
 
-const AuthField = (props) => <FieldGroupString {...props} />;
-const AuthFieldPassword = (props) => <FieldGroupPassword {...props} />;
+const AuthField = (props) => (
+  <FieldGroupString placeholder="Email" {...props} />
+);
+const AuthFieldPassword = (props) => (
+  <FieldGroupPassword placeholder="Password" {...props} />
+);
 
 const AuthForm = ({
   emailField,
