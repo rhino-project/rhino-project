@@ -8,7 +8,6 @@ import {
   CardSubtitle,
   Spinner
 } from 'reactstrap';
-import routePaths from 'rhino/routes';
 import { get, filter } from 'lodash';
 import classnames from 'classnames';
 import { getAttributeFromPath } from 'rhino/utils/models';
@@ -18,6 +17,7 @@ import { useOverrides } from 'rhino/hooks/overrides';
 import { useBaseOwnerNavigation } from 'rhino/hooks/history';
 import { usePaths } from 'rhino/hooks/paths';
 import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { getModelShowPath } from 'rhino/utils/routes';
 
 const ShowCardText = ({ model, attribute, path, resource }) => {
   const modelClassNames = useModelClassNames(
@@ -147,7 +147,7 @@ const ModelIndexCard = ({ overrides, paths, baseRoute }) => {
   const handleClick = useCallback(
     (resource) => {
       baseOwnerNavigation.push(
-        `${baseRoute}${routePaths[model.name].show(resource.id)}`
+        `${baseRoute}${getModelShowPath(model, resource.id)}`
       );
     },
     [baseRoute, baseOwnerNavigation, model]
