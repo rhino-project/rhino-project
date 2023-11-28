@@ -102,8 +102,7 @@ export const ModelIndexActionsBase = ({
   overrides,
   actions,
   append = false,
-  prepend = false,
-  ...props
+  prepend = false
 }) => {
   const { ModelIndexActionCreate } = useOverrides(defaultComponents, overrides);
 
@@ -127,10 +126,7 @@ export const ModelIndexActionsBase = ({
 
   return (
     <ModelSection baseClassName="index-actions">
-      <div
-        className="d-flex flex-row flex-wrap justify-content-between mb-3"
-        {...props}
-      >
+      <div className="d-flex flex-row flex-wrap justify-content-between mb-3">
         {Children.map(computedActions, (action) => action)}
       </div>
     </ModelSection>
