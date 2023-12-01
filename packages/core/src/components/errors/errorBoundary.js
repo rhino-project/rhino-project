@@ -1,9 +1,11 @@
-import React from 'react';
+import { Context, getRollbarFromContext } from '@rollbar/react';
 import PropTypes from 'prop-types';
-import Rollbar from 'rollbar';
+import React from 'react';
 import { DangerAlert } from '../alerts';
 
 class ErrorBoundary extends React.Component {
+  static contextType = Context;
+
   constructor(props) {
     super(props);
     this.state = { error: null, errorInfo: null };
@@ -15,7 +17,7 @@ class ErrorBoundary extends React.Component {
       error: error,
       errorInfo: errorInfo
     });
-    Rollbar.error(error);
+    getRollbarFromContext(this.context).error(error);
   }
 
   render() {
