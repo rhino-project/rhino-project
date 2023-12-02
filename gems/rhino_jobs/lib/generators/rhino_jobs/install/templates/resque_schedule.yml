@@ -1,0 +1,9 @@
+# See https://github.com/JustinAiken/active_scheduler
+#
+# simple_job:
+#   every: "30s"
+#   queue: "simple"
+#   class: "SimpleJob"
+#   args:
+#     -
+#   description: "It's a simple job."
