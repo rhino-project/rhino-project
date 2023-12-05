@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { capitalize } from 'lodash';
 import { useWatch } from 'react-hook-form';
 
 import { enumFromIndexWithTitle } from 'rhino/utils/ui';
@@ -24,8 +23,7 @@ const ModelFilterEnum = ({ model, path, ...props }) => {
   const { setPill } = useFilterPill(operatorPath);
 
   useEffect(() => {
-    // Capitalize returns '' for undefined
-    if (watch) setPill(capitalize(watch));
+    if (watch) setPill(watch);
   }, [setPill, watch]);
 
   return (
