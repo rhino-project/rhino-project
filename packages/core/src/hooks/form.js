@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   assign,
-  capitalize,
   cloneDeep,
   compact,
   get,
@@ -181,7 +180,7 @@ export const useModelFieldGroupEnum = (props) => {
     () =>
       attribute.enum.map((e) => (
         <option key={e} value={e}>
-          {capitalize(e)}
+          {e}
         </option>
       )),
     [attribute]
