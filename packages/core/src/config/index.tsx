@@ -1,13 +1,33 @@
 import { merge } from 'lodash';
 import { useMemo } from 'react';
 import rhinoConfig from 'rhino.config';
+import {
+  RhinoConfigAttributeComponentMap,
+  RhinoConfigGlobalComponentMap,
+  RhinoConfigModelComponentMap
+} from './components';
+
+export type RhinoConfigGlobalComponent =
+  | RhinoConfigGlobalComponentMap
+  | RhinoConfigModelComponentMap
+  | RhinoConfigAttributeComponentMap;
+
+export type RhinoConfigModelComponent =
+  | RhinoConfigModelComponentMap
+  | RhinoConfigAttributeComponentMap;
+
+export type RhinoConfigAttributeComponent = RhinoConfigAttributeComponentMap;
 
 export interface RhinoConfig {
   version: number;
   appName: string;
   enableModelRoutes: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  components: Record<string, any>;
+
+  // Config for global, model and attribute components
+  components:
+    | RhinoConfigGlobalComponent
+    | Record<string, RhinoConfigModelComponent>
+    | Record<string, Record<string, RhinoConfigAttributeComponent>>;
 }
 
 export const API_ROOT_PATH =
