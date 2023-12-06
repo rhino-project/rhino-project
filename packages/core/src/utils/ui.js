@@ -2,7 +2,6 @@ import { format, formatDistance } from 'date-fns';
 import { useMemo } from 'react';
 import { Breadcrumb } from 'reactstrap';
 
-import { capitalize } from 'lodash';
 import { NavLink } from 'react-router-dom';
 import { useModel } from 'rhino/hooks/models';
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
@@ -224,7 +223,7 @@ export const optionsFromIndexWithTitle = (
 export const enumFromIndexWithTitle = (enums = [], title) => {
   const options = enums.map((e) => (
     <option key={e} value={e}>
-      {capitalize(e)}
+      {e}
     </option>
   ));
 
