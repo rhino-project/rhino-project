@@ -72,30 +72,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -103,30 +91,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -134,30 +110,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -165,30 +129,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -196,30 +148,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -227,30 +167,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -258,30 +186,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -289,30 +205,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -320,30 +224,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
@@ -351,30 +243,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
           class="table-row-clickable"
         >
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
           <td>
-            <div
-              class="placeholder-glow"
-            >
-              <span
-                class="placeholder col-6"
-              />
+            <div>
+              Bar
             </div>
           </td>
         </tr>
