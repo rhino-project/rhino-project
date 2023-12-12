@@ -20,7 +20,11 @@ export const sharedDisplayTests = (Component) => {
 
     return (
       <QueryClientProvider client={queryClient}>
-        <ModelShowSimple fallback={false} model="user">
+        <ModelShowSimple
+          fallback={false}
+          model="user"
+          queryOptions={{ enabled: false }}
+        >
           {children}
         </ModelShowSimple>
       </QueryClientProvider>
