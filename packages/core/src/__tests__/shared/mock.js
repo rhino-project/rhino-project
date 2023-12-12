@@ -138,7 +138,7 @@ export class NetworkingMock {
     }
 
     this.mockValidateSessionSuccess(user);
-    const renderedHook = renderHook(
+    const view = renderHook(
       () => ({
         auth: useAuth(),
         main: hook()
@@ -147,16 +147,14 @@ export class NetworkingMock {
         wrapper: AuthWrapper
       }
     );
-    await waitFor(() => {
-      expect(renderedHook.result.current.auth.resolving).toBe(true);
-      expect(renderedHook.result.current.auth.user).toBeNull();
-    });
-    await waitFor(() => {
-      expect(renderedHook.result.current.auth.resolving).toBe(false);
-      expect(renderedHook.result.current.auth.user).toEqual(user);
-    });
 
-    return renderedHook;
+    await waitFor(() => expect(view.result.current.auth.resolving).toBe(true));
+    expect(view.result.current.auth.user).toBeNull();
+
+    await waitFor(() => expect(view.result.current.auth.resolving).toBe(false));
+    expect(view.result.current.auth.user).toEqual(user);
+
+    return view;
   }
 
   async produceUnauthenticatedState({ queryClient, hook = () => null }) {
@@ -170,7 +168,7 @@ export class NetworkingMock {
     }
 
     this.mockValidateSessionFailure();
-    const renderedHook = renderHook(
+    const view = renderHook(
       () => ({
         auth: useAuth(),
         main: hook()
@@ -179,14 +177,13 @@ export class NetworkingMock {
         wrapper: AuthWrapper
       }
     );
-    expect(renderedHook.result.current.auth.resolving).toBe(true);
-    expect(renderedHook.result.current.auth.user).toBeNull();
+    expect(view.result.current.auth.resolving).toBe(true);
+    expect(view.result.current.auth.user).toBeNull();
 
     // wait for the hook to resolve
-    await waitFor(() => {
-      expect(renderedHook.result.current.auth.resolving).toBe(false);
-      expect(renderedHook.result.current.auth.user).toBeNull();
-    });
-    return renderedHook;
+    await waitFor(() => expect(view.result.current.auth.resolving).toBe(false));
+    expect(view.result.current.auth.user).toBeNull();
+
+    return view;
   }
 }
