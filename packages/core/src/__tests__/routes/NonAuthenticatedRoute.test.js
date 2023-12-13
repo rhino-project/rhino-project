@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Navigate, Route, Routes } from 'react-router';
 import NonAuthenticatedRoute from 'rhino/routes/NonAuthenticatedRoute';
 import * as routes from 'rhino/utils/routes';
@@ -52,35 +52,36 @@ describe('routes/NonAuthenticatedRoute', () => {
   describe('initializing', () => {
     test('renders SplashScreen', () => {
       mockAuth = initializingState;
-      const { getByText } = render(<div>should not render this</div>, {
+      render(<div>should not render this</div>, {
         wrapper: Wrapper
       });
-      expect(getByText('__mockSplashScreen__')).toBeTruthy();
+      expect(screen.getByText('__mockSplashScreen__')).toBeTruthy();
     });
   });
 
   describe('authenticated', () => {
     test('redirects to rootPath', () => {
       mockAuth = authenticatedState;
-      const { getByText } = render(
+      render(
         <Wrapper>
           <div>__should not render this__</div>
         </Wrapper>
       );
 
-      expect(getByText('__mockRootPathRoute__')).toBeTruthy();
+      expect(screen.getByText('__mockRootPathRoute__')).toBeTruthy();
     });
   });
 
   describe('unauthenticated', () => {
     test('renders children', () => {
       mockAuth = unauthenticatedState;
-      const { getByText } = render(
+      render(
         <Wrapper>
           <div>__should render children__</div>
         </Wrapper>
       );
-      expect(getByText('__should render children__')).toBeTruthy();
+
+      expect(screen.getByText('__should render children__')).toBeTruthy();
     });
   });
 });

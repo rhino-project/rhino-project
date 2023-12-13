@@ -303,10 +303,8 @@ describe('useModelShow', () => {
       }
     );
 
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual({ test: 'test' });
-    });
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.data).toEqual({ test: 'test' });
 
     // Backwards compat support
     console.warn = vi.fn();
@@ -437,10 +435,8 @@ describe('useModelIndex', () => {
       wrapper: createWrapper(Wrapper, { client: queryClient })
     });
 
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBe(true);
-      expect(result.current.data).toEqual({ test: 'test' });
-    });
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
+    expect(result.current.data).toEqual({ test: 'test' });
 
     // Backwards compat support
     console.warn = vi.fn();

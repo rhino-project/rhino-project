@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import AuthenticatedRoute from 'rhino/routes/AuthenticatedRoute';
 import * as routes from 'rhino/utils/routes';
@@ -69,10 +69,10 @@ describe('routes/AuthenticatedRoute', () => {
   describe('initializing', () => {
     test('renders SplashScreen', () => {
       mockAuth = initializingState;
-      const { queryByText } = render(<div>should not render this</div>, {
+      render(<div>should not render this</div>, {
         wrapper: Wrapper
       });
-      expect(queryByText('__mockSplashScreen__')).toBeTruthy();
+      expect(screen.getByText('__mockSplashScreen__')).toBeTruthy();
     });
   });
 
@@ -81,77 +81,84 @@ describe('routes/AuthenticatedRoute', () => {
       mockAuth = authenticatedState;
       mockPrevPath = '';
       mockUnsetPrevPathFn = vi.fn();
-      const { queryByText } = render(<div>__should render children__</div>, {
+      render(<div>__should render children__</div>, {
         wrapper: Wrapper
       });
-      expect(queryByText('__should render children__')).toBeTruthy();
+      expect(screen.getByText('__should render children__')).toBeTruthy();
     });
 
     describe('prevPath not empty', () => {
-      let queryByText;
       beforeEach(() => {
         mockAuth = authenticatedState;
         mockPrevPath = '/__mockPrevPath__';
         mockUnsetPrevPathFn = vi.fn();
-        const rendered = render(<div>should not render this</div>, {
-          wrapper: Wrapper
-        });
-        queryByText = rendered.queryAllByText;
       });
 
       test("redirects to utils' prevPath", () => {
-        expect(queryByText('__mockPrevPathRoute__')).toBeTruthy();
+        render(<div>should not render this</div>, {
+          wrapper: Wrapper
+        });
+        expect(screen.getByText('__mockPrevPathRoute__')).toBeTruthy();
       });
 
       test('cleans prevPath', () => {
+        render(<div>should not render this</div>, {
+          wrapper: Wrapper
+        });
         expect(mockUnsetPrevPathFn).toHaveBeenCalled();
       });
     });
 
     describe('sign out', () => {
-      let queryByText;
-
       beforeEach(() => {
         mockAuth = authenticatedState;
         mockPrevPath = null;
         mockSetPrevPathFn = vi.fn();
         mockUnsetPrevPathFn = vi.fn();
-
-        const rendered = render(<div>any component</div>, { wrapper: Wrapper });
-        mockAuth = unauthenticatedState;
-        rendered.rerender();
-        queryByText = rendered.queryByText;
       });
 
       test('does not change prevPath', () => {
+        const { rerender } = render(<div>any component</div>, {
+          wrapper: Wrapper
+        });
+        mockAuth = unauthenticatedState;
+        rerender();
         expect(mockSetPrevPathFn).not.toHaveBeenCalled();
         expect(mockUnsetPrevPathFn).not.toHaveBeenCalled();
       });
 
       test('redirects to sign in page', () => {
-        expect(queryByText('__mockSessionCreateRoute__')).toBeTruthy();
+        const { rerender } = render(<div>any component</div>, {
+          wrapper: Wrapper
+        });
+        mockAuth = unauthenticatedState;
+        rerender();
+        expect(screen.getByText('__mockSessionCreateRoute__')).toBeTruthy();
       });
     });
   });
 
   describe('unauthenticated', () => {
-    let queryByText;
     beforeEach(() => {
       mockAuth = unauthenticatedState;
       mockSetPrevPathFn = vi.fn();
-      const rendered = render(
+    });
+
+    test('redirects to sign in page', () => {
+      render(
         <Wrapper>
           <div>should not render this</div>
         </Wrapper>
       );
-      queryByText = rendered.queryByText;
-    });
-
-    test('redirects to sign in page', () => {
-      expect(queryByText('__mockSessionCreateRoute__')).toBeTruthy();
+      expect(screen.getByText('__mockSessionCreateRoute__')).toBeTruthy();
     });
 
     test('sets prevPath', () => {
+      render(
+        <Wrapper>
+          <div>should not render this</div>
+        </Wrapper>
+      );
       expect(mockSetPrevPathFn).toHaveBeenCalledWith();
     });
   });

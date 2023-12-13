@@ -1,4 +1,4 @@
-import { render, renderHook, waitFor } from '@testing-library/react';
+import { render, renderHook, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
 import AuthProvider, { AuthContext } from 'rhino/contexts/AuthContext';
 import { useContext } from 'react';
@@ -54,10 +54,7 @@ describe('AuthContext', () => {
     expect(result.current.user).toBeNull();
     expect(result.current.resolving).toBe(true);
 
-    await waitFor(() => {
-      expect(result.current.user).toBeTruthy();
-      expect(result.current.resolving).toBe(false);
-    });
+    await waitFor(() => expect(result.current.resolving).toBe(false));
     expect(result.current.user).toEqual(user);
   });
 
@@ -69,10 +66,7 @@ describe('AuthContext', () => {
     expect(result.current.user).toBeNull();
     expect(result.current.resolving).toBe(true);
 
-    await waitFor(() => {
-      expect(result.current.user).toBeNull();
-      expect(result.current.resolving).toBe(false);
-    });
+    await waitFor(() => expect(result.current.resolving).toBe(false));
     expect(result.current.user).toBeNull();
   });
 
@@ -86,14 +80,15 @@ describe('AuthContext', () => {
     networkingMock.mockValidateSessionSuccess(changedUser);
     renderedHook.result.current.auth.refreshSession();
 
-    await waitFor(() => {
-      expect(renderedHook.result.current.auth.resolving).toBe(true);
-      expect(renderedHook.result.current.auth.user).toBeTruthy();
-    });
-    await waitFor(() => {
-      expect(renderedHook.result.current.auth.resolving).toBe(false);
-      expect(renderedHook.result.current.auth.user).toEqual(changedUser);
-    });
+    await waitFor(() =>
+      expect(renderedHook.result.current.auth.resolving).toBe(true)
+    );
+    expect(renderedHook.result.current.auth.user).toBeTruthy();
+
+    await waitFor(() =>
+      expect(renderedHook.result.current.auth.resolving).toBe(false)
+    );
+    expect(renderedHook.result.current.auth.user).toEqual(changedUser);
   });
 
   test('Cleans user when already logged in and session fails in refetching', async () => {
@@ -105,14 +100,15 @@ describe('AuthContext', () => {
     networkingMock.mockValidateSessionFailure();
     renderedHook.result.current.auth.refreshSession();
 
-    await waitFor(() => {
-      expect(renderedHook.result.current.auth.resolving).toBe(true);
-      expect(renderedHook.result.current.auth.user).toBeTruthy();
-    });
-    await waitFor(() => {
-      expect(renderedHook.result.current.auth.resolving).toBe(false);
-      expect(renderedHook.result.current.auth.user).toBeNull();
-    });
+    await waitFor(() =>
+      expect(renderedHook.result.current.auth.resolving).toBe(true)
+    );
+    expect(renderedHook.result.current.auth.user).toBeTruthy();
+
+    await waitFor(() =>
+      expect(renderedHook.result.current.auth.resolving).toBe(false)
+    );
+    expect(renderedHook.result.current.auth.user).toBeNull();
   });
 
   describe('initializing', () => {
@@ -131,10 +127,8 @@ describe('AuthContext', () => {
       expect(result.current.user).toBeNull();
       expect(result.current.initializing).toBe(true);
 
-      await waitFor(() => {
-        expect(result.current.user).toBeTruthy();
-        expect(result.current.initializing).toBe(false);
-      });
+      await waitFor(() => expect(result.current.initializing).toBe(false));
+      expect(result.current.user).toBeTruthy();
     });
 
     test('Sets initializing to false after failure', async () => {
@@ -145,42 +139,40 @@ describe('AuthContext', () => {
       expect(result.current.user).toBeNull();
       expect(result.current.initializing).toBe(true);
 
-      await waitFor(() => {
-        expect(result.current.user).toBeFalsy();
-        expect(result.current.initializing).toBe(false);
-      });
+      await waitFor(() => expect(result.current.initializing).toBe(false));
+      expect(result.current.user).toBeFalsy();
     });
   });
 
   test('Renders children when authenticated', async () => {
     networkingMock.mockValidateSessionSuccess(user);
 
-    const { queryByText } = render(
+    render(
       <Wrapper>
         <Inner />
       </Wrapper>
     );
     await waitFor(() => {
-      expect(queryByText('resolving: true')).toBeTruthy();
+      expect(screen.getByText('resolving: true')).toBeTruthy();
     });
     await waitFor(() => {
-      expect(queryByText('resolving: false')).toBeTruthy();
+      expect(screen.getByText('resolving: false')).toBeTruthy();
     });
   });
 
   test('Renders children when not authenticated', async () => {
     networkingMock.mockValidateSessionSuccess(user);
 
-    const { queryByText } = render(
+    render(
       <Wrapper>
         <Inner />
       </Wrapper>
     );
     await waitFor(() => {
-      expect(queryByText('resolving: true')).toBeTruthy();
+      expect(screen.getByText('resolving: true')).toBeTruthy();
     });
     await waitFor(() => {
-      expect(queryByText('resolving: false')).toBeTruthy();
+      expect(screen.getByText('resolving: false')).toBeTruthy();
     });
   });
 });
