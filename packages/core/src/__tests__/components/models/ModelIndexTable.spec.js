@@ -23,7 +23,11 @@ describe('ModelIndexTable', () => {
     return (
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ModelIndexSimple model="user" fallback={false}>
+          <ModelIndexSimple
+            model="user"
+            fallback={false}
+            queryOptions={{ enabled: false }}
+          >
             {children}
           </ModelIndexSimple>
         </MemoryRouter>

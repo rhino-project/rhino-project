@@ -38,6 +38,7 @@ describe('ModelIndex', () => {
         model={{ model: 'user', properties: { name: {} } }}
         path="name"
         fallback={false}
+        queryOptions={{ enabled: false }}
       />,
       { wrapper }
     );
