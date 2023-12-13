@@ -24,7 +24,11 @@ export const sharedCellTests = (Component) => {
     return (
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ModelIndexSimple fallback={false} model="user">
+          <ModelIndexSimple
+            fallback={false}
+            model="user"
+            queryOptions={{ enabled: false }}
+          >
             <ModelIndexTable paths={Children.toArray(children)} />
           </ModelIndexSimple>
         </MemoryRouter>
