@@ -25,6 +25,7 @@ import {
 } from '../utils/models';
 import { useDefaultValues, useResolver, useSchema } from './form';
 import { usePaths } from './paths';
+import { useBaseOwnerFilters } from './owner';
 
 export const DEFAULT_LIMIT = 10;
 
@@ -47,13 +48,18 @@ export const useModelIndexContext = () => {
 
 export const useModelIndexController = (options) => {
   const model = useModel(options.model);
-  const { syncUrl = true } = options;
+  const { syncUrl = true, defaultFiltersBaseOwner = true } = options;
+  const baseOwnerFilter = useBaseOwnerFilters(model, {
+    extraFilters: options?.filter
+  });
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const defaultState = useRef({
-    filter: options?.filter ?? {},
+    filter: defaultFiltersBaseOwner
+      ? baseOwnerFilter ?? {}
+      : options?.filter ?? {},
     limit: options?.limit ?? DEFAULT_LIMIT,
     offset: options?.offset ?? 0,
     order: options?.order ?? DEFAULT_SORT,
