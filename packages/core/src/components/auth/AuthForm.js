@@ -1,10 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Form } from 'reactstrap';
+import { Form } from 'reactstrap';
 import * as yup from 'yup';
 
 import { useParsedSearch } from 'rhino/hooks/history';
-import { LinkButton } from 'rhino/components/buttons';
+import { Button, LinkButton } from 'rhino/components/buttons';
 import FormProvider from '../forms/FormProvider';
 import { useForm } from 'react-hook-form';
 import FieldGroupPassword from '../forms/fieldGroups/FieldGroupPassword';
