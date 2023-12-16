@@ -1,5 +1,24 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldBooleanIcon > render with disabled 1`] = `
+<DocumentFragment>
+  <svg
+    class=""
+    disabled=""
+    fill="currentColor"
+    height="32"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    width="32"
+  >
+    <use
+      xlink:href="/src/assets/images/bootstrap-icons.svg#x"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
 exports[`FieldBooleanIcon > render with place holder 1`] = `
 <DocumentFragment>
   <svg
