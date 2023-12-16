@@ -318,6 +318,8 @@ export const useModelCreateController = (options) => {
 
   const methods = useForm({
     defaultValues,
+    disabled:
+      options?.disabled ?? (showParent.isInitialLoading || mutation.isLoading),
     resolver,
     ...options
   });
@@ -394,6 +396,8 @@ export const useModelEditController = (options) => {
 
   const methods = useForm({
     defaultValues,
+    disabled:
+      options?.disabled ?? (show.isInitialLoading || mutation.isLoading),
     resolver,
     values: resource,
     resetOptions: {

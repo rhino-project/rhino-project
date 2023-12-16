@@ -1,5 +1,20 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldHidden > render with disabled 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    disabled=""
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="hidden"
+  />
+</DocumentFragment>
+`;
+
 exports[`FieldHidden > render with place holder 1`] = `
 <DocumentFragment>
   <input
