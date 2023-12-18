@@ -32,9 +32,6 @@ describe('useModelIndexContext', () => {
 });
 
 describe('useModelIndexController', () => {
-  const Dummy = () => {
-    return null;
-  };
   const Wrapper = ({ children, ...props }) => {
     const queryClient = new QueryClient();
 
@@ -42,9 +39,8 @@ describe('useModelIndexController', () => {
       <MemoryRouter {...props}>
         <QueryClientProvider client={queryClient}>
           <Routes>
-            <Route path="*" element={<Dummy />} />
+            <Route path="/:baseOwnerId/*" element={<>{children}</>} />
           </Routes>
-          {children}
         </QueryClientProvider>
       </MemoryRouter>
     );
@@ -52,11 +48,38 @@ describe('useModelIndexController', () => {
 
   it('generates default params with no passed in base parameters', () => {
     const { result } = renderHook(
-      () => useModelIndexController({ model: 'user' }),
+      () => useModelIndexController({ model: 'blog' }),
       {
-        wrapper: Wrapper
+        wrapper: createWrapper(Wrapper, {
+          initialEntries: ['/1']
+        })
       }
     );
+    expect(result.current).toMatchObject({
+      filter: { organization: 1 },
+      limit: DEFAULT_LIMIT,
+      offset: 0,
+      order: DEFAULT_SORT,
+      search: ''
+    });
+  });
+
+  it('generates default params with no passed in base parameters and defaultFiltersBaseOwner false', () => {
+    const { result } = renderHook(
+      () =>
+        useModelIndexController({
+          model: 'blog',
+          defaultFiltersBaseOwner: false
+        }),
+      {
+        wrapper: createWrapper(Wrapper, {
+          initialEntries: ['/1']
+        })
+      }
+    );
+    expect(result.current).not.toMatchObject({
+      filter: { organization: 1 }
+    });
     expect(result.current).toMatchObject({
       filter: {},
       limit: DEFAULT_LIMIT,
@@ -70,19 +93,21 @@ describe('useModelIndexController', () => {
     const { result } = renderHook(
       () =>
         useModelIndexController({
-          model: 'user',
-          filter: { foo: 'bar' },
+          model: 'blog',
+          filter: { organization: 1, foo: 'bar' },
           limit: DEFAULT_LIMIT - 1,
           offset: 20,
           order: '-foo',
           search: 'baz'
         }),
       {
-        wrapper: Wrapper
+        wrapper: createWrapper(Wrapper, {
+          initialEntries: ['/1']
+        })
       }
     );
     expect(result.current).toMatchObject({
-      filter: { foo: 'bar' },
+      filter: { organization: 1, foo: 'bar' },
       limit: DEFAULT_LIMIT - 1,
       offset: 20,
       order: '-foo',
@@ -92,10 +117,9 @@ describe('useModelIndexController', () => {
 
   it('does not push empty search when search is already empty', () => {
     renderHook(() => useModelIndexController({ model: 'user' }), {
-      wrapper: Wrapper,
-      initialProps: {
-        initialEntries: ['/users']
-      }
+      wrapper: createWrapper(Wrapper, {
+        initialEntries: ['/1/users']
+      })
     });
     expect(history.length).toBe(1);
   });
@@ -113,7 +137,7 @@ describe('useModelIndexController', () => {
         }),
       {
         wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/users?limit=17&offset=20&order=foo&search=bar']
+          initialEntries: ['/1/users?limit=17&offset=20&order=foo&search=bar']
         })
       }
     );
@@ -130,10 +154,13 @@ describe('useModelIndexController', () => {
   it('takes filter from url with passed in base filter having precedence', () => {
     const { result } = renderHook(
       () =>
-        useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
+        useModelIndexController({
+          model: 'user',
+          filter: { blog: { id: 1 } }
+        }),
       {
         wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/users?filter[blog_post][published]=true']
+          initialEntries: ['/1/users?filter[blog_post][published]=true']
         })
       }
     );
@@ -149,10 +176,13 @@ describe('useModelIndexController', () => {
   it('merges nested filters from url', () => {
     const { result } = renderHook(
       () =>
-        useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
+        useModelIndexController({
+          model: 'user',
+          filter: { blog: { id: 1 } }
+        }),
       {
         wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/users?filter[blog][published]=true']
+          initialEntries: ['/1/users?filter[blog][published]=true']
         })
       }
     );
@@ -171,7 +201,9 @@ describe('useModelIndexController', () => {
         useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
       {
         wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/?filter[blog][published]=true&filter[blog][id]=2']
+          initialEntries: [
+            '/1/?filter[blog][published]=true&filter[blog][id]=2'
+          ]
         })
       }
     );
@@ -195,12 +227,11 @@ describe('useModelIndexController', () => {
           syncUrl: false
         }),
       {
-        wrapper: Wrapper,
-        initialProps: {
+        wrapper: createWrapper(Wrapper, {
           initialEntries: [
-            '/?filter[blog][published]=true&offset=1&limit=2&search=bar&order=-baz'
+            '/1/?filter[blog][published]=true&offset=1&limit=2&search=bar&order=-baz'
           ]
-        }
+        })
       }
     );
     expect(result.current).toMatchObject({
@@ -217,7 +248,9 @@ describe('useModelIndexController', () => {
       () =>
         useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
       {
-        wrapper: Wrapper
+        wrapper: createWrapper(Wrapper, {
+          initialEntries: ['/1']
+        })
       }
     );
     expect(result.current).toMatchObject({
