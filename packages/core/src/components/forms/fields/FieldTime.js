@@ -10,7 +10,7 @@ import { useGlobalComponent } from 'rhino/hooks/overrides';
 export const FieldTimeBase = ({ ...props }) => {
   const { path, placeholder } = props;
   const {
-    field: { value, onChange, onBlur },
+    field: { value, onChange, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -52,11 +52,10 @@ export const FieldTimeBase = ({ ...props }) => {
   return (
     <DatePicker
       {...extractedProps}
+      {...fieldProps}
       wrapperClassName={wrapperClassName}
       selected={date}
       onChange={handleChange}
-      // FIXME: On blur does not always work
-      onBlur={onBlur}
       dateFormat="h:mm aa"
       showTimeSelect
       showTimeSelectOnly

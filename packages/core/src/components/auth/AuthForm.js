@@ -95,6 +95,7 @@ const AuthForm = ({
 
   const methods = useForm({
     defaultValues,
+    disabled: loading,
     mode: 'onBlur',
     resolver
   });
