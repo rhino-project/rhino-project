@@ -1,5 +1,19 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`FieldSelectControlled > render with disabled 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    disabled=""
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  />
+</DocumentFragment>
+`;
+
 exports[`FieldSelectControlled > render with place holder 1`] = `
 <DocumentFragment>
   <select

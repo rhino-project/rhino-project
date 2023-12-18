@@ -28,6 +28,7 @@ const EditProfile = () => {
 
   const methods = useForm({
     defaultValues,
+    disabled: isLoading,
     values: account,
     mode: 'onBlur',
     resolver

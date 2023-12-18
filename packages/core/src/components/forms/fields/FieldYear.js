@@ -10,7 +10,7 @@ import { useGlobalComponent } from 'rhino/hooks/overrides';
 export const FieldYearBase = ({ min, max, ...props }) => {
   const { path, placeholder } = props;
   const {
-    field: { value, onChange, onBlur },
+    field: { value, onChange, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -41,11 +41,10 @@ export const FieldYearBase = ({ min, max, ...props }) => {
   return (
     <DatePicker
       {...extractedProps}
+      {...fieldProps}
       wrapperClassName={wrapperClassName}
       selected={year}
       onChange={handleChange}
-      // FIXME: On blur does not always work
-      onBlur={onBlur}
       showYearPicker
       dateFormat="yyyy"
       autoComplete="off"

@@ -10,7 +10,7 @@ import { useGlobalComponent } from 'rhino/hooks/overrides';
 export const FieldDateBase = ({ min, max, ...props }) => {
   const { placeholder, path } = props;
   const {
-    field: { value, onChange, onBlur },
+    field: { value, onChange, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -49,11 +49,10 @@ export const FieldDateBase = ({ min, max, ...props }) => {
   return (
     <DatePicker
       {...extractedProps}
+      {...fieldProps}
       wrapperClassName={wrapperClassName}
       selected={date}
       onChange={handleChange}
-      // FIXME: On blur does not always work
-      onBlur={onBlur}
       dateFormat="MMMM d, yyyy"
       autoComplete="off"
       minDate={min}
