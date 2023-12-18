@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { useBaseOwnerFilters, useBaseOwnerId } from 'rhino/hooks/owner';
+import { useBaseOwnerId } from 'rhino/hooks/owner';
 import { useModel } from 'rhino/hooks/models';
 import ModelEditableCellReference from '../models/cells/ModelEditableCellReference';
 import ModelIndexHeader from '../models/ModelIndexHeader';
@@ -71,11 +71,9 @@ const EditOrganizationAccess = () => {
     ];
   }, [handleAction]);
 
-  const filter = useBaseOwnerFilters(model);
-
   return (
     <>
-      <ModelIndexSimple model={model} filter={filter} order="user.email">
+      <ModelIndexSimple model={model} order="user.email">
         <ModelIndexHeader overrides={overrides} />
         <hr />
         <ModelIndexActions actions={actions} />

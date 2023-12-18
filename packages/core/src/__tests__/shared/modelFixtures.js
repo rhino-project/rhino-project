@@ -70,6 +70,7 @@ const api = {
       organization: {
         model: 'organization',
         modelPlural: 'organizations',
+        ownedBy: null,
         type: 'object',
         properties: {
           id: {
@@ -99,6 +100,7 @@ const api = {
           searchable: true
         },
         type: 'object',
+        ownedBy: 'organization',
         properties: {
           id: {
             name: 'id',
