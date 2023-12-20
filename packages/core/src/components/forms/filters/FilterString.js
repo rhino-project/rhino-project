@@ -1,5 +1,13 @@
 import FieldString from '../fields/FieldString';
 
-const FilterString = (props) => <FieldString {...props} />;
+const setValueAs = (value) => {
+  if (value === '') return null;
+
+  return value;
+};
+
+const FilterString = (props) => (
+  <FieldString setValueAs={setValueAs} {...props} />
+);
 
 export default FilterString;

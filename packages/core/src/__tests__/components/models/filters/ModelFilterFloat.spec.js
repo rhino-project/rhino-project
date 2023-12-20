@@ -1,12 +1,23 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { useForm } from 'react-hook-form';
-import FormProvider from 'rhino/components/forms/FormProvider';
+import { MemoryRouter } from 'react-router-dom';
+import ModelFiltersSimple from 'rhino/components/models/ModelFiltersSimple';
+import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
 import ModelFilterFloat from 'rhino/components/models/filters/ModelFilterFloat';
 
 describe('ModelFilterFloat', () => {
-  const Wrapper = ({ children }) => {
-    const methods = useForm();
-    return <FormProvider {...methods}>{children}</FormProvider>;
+  const Wrapper = ({ children, ...props }) => {
+    const queryClient = new QueryClient();
+
+    return (
+      <MemoryRouter {...props}>
+        <QueryClientProvider client={queryClient}>
+          <ModelIndexSimple model="blog">
+            <ModelFiltersSimple>{children}</ModelFiltersSimple>
+          </ModelIndexSimple>
+        </QueryClientProvider>
+      </MemoryRouter>
+    );
   };
 
   it(`adds min as a prop`, () => {

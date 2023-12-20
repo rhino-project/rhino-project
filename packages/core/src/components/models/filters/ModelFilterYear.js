@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import { useWatch } from 'react-hook-form';
 
 import { useEffect, useMemo } from 'react';
-import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
+import { useModelFilterField } from 'rhino/hooks/form';
 import FilterYear from '../../forms/filters/FilterYear';
+import { useModelFiltersContext } from 'rhino/hooks/controllers';
 
 const ModelFilterYear = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
@@ -30,15 +31,11 @@ const ModelFilterYear = ({ model, path, ...props }) => {
 
   const watch = useWatch({ name: operatorPath });
 
-  const { resetPill, setPill } = useFilterPill(operatorPath);
+  const { setPill } = useModelFiltersContext();
 
   useEffect(() => {
-    if (watch) {
-      setPill(watch);
-    } else {
-      resetPill();
-    }
-  }, [attribute, resetPill, setPill, watch]);
+    if (watch) setPill(operatorPath, watch);
+  }, [attribute, operatorPath, setPill, watch]);
 
   return <FilterYear path={operatorPath} min={min} max={max} {...props} />;
 };

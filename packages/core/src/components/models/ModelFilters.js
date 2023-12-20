@@ -1,129 +1,103 @@
-import { useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import { omit } from 'lodash';
-import { useForm } from 'react-hook-form';
-
-import { getReferenceAttributes } from 'rhino/utils/models';
 import { IconButton } from 'rhino/components/buttons';
-import { usePaths, useRenderPaths } from 'rhino/hooks/paths';
-import FormProvider from '../forms/FormProvider';
+import { useRenderPaths } from 'rhino/hooks/paths';
 import ModelFilterGroup from './ModelFilterGroup';
-import { useFilterPills } from 'rhino/hooks/form';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
+import {
+  useModelFiltersContext,
+  useModelFiltersController,
+  useModelIndexContext
+} from 'rhino/hooks/controllers';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
+import ModelFiltersProvider from './ModelFiltersProvider';
 
-const createFilteredObject = (obj) => {
-  const result = {};
-  // iterate through all keys in the object
-  for (const key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) {
-      // if the value is not undefined, add it to the new object
-      if (obj[key] !== undefined) {
-        // if the value is an object, recursively call the function
-        if (typeof obj[key] === 'object') {
-          result[key] = createFilteredObject(obj[key]);
-          // if the object is now empty, don't add it to the new object
-          if (Object.keys(result[key]).length === 0) {
-            delete result[key];
-          }
-        } else {
-          result[key] = obj[key];
-        }
-      }
-    }
-  }
-  return result;
-};
-
-export const ModelFiltersBase = ({ paths }) => {
-  const { model, defaultState, filter, setFilter, setSearch } =
-    useModelIndexContext();
-  // Use passed in paths or compute a sensible set
-  const pathsOrDefault = useMemo(
-    () =>
-      paths ||
-      getReferenceAttributes(model)
-        .filter(
-          (a) => a.name !== model.ownedBy && !a.name.endsWith('_attachment')
-        )
-        .map((a) => a.name),
-    [model, paths]
-  );
-  const computedPaths = usePaths(pathsOrDefault);
-
-  const methods = useForm({ defaultValues: { ...filter, pills: {} } });
-  const { control, reset, resetField, watch } = methods;
-  const { pills, resetPill } = useFilterPills({ control });
-
-  useEffect(() => {
-    const subscription = watch((value, { name }) => {
-      if (name === 'pills') return;
-
-      // Only pass the defined values to the filter
-      setFilter(createFilteredObject(omit(value, 'pills')));
-    });
-    return () => subscription.unsubscribe();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch]);
+export const ModelFiltersPill = ({ path }) => {
+  const {
+    methods: { setValue },
+    pills,
+    resetPill
+  } = useModelFiltersContext();
 
   const handleClear = (path) => {
     resetPill(path);
-    resetField(path);
+    // Default values are always null
+    setValue(path, null);
   };
+
+  return (
+    <IconButton
+      icon="x"
+      color="light"
+      size="sm"
+      className="me-2 mb-2"
+      onClick={() => handleClear(path)}
+    >
+      {pills[path]}
+    </IconButton>
+  );
+};
+
+export const ModelFiltersPills = ({ showClearAll = true }) => {
+  const {
+    defaultValues,
+    methods: { reset },
+    paths,
+    pills,
+    setPills
+  } = useModelFiltersContext();
+  const { defaultState, setFilter, setSearch } = useModelIndexContext();
 
   const handleClearAll = (e) => {
     e.preventDefault();
 
-    // This will trip the watchs for pill resets as well
-    reset({ ...defaultState?.filter, pills: {} });
-    setFilter({ ...defaultState?.filter });
+    reset(defaultValues);
+    setFilter({});
+    setPills({});
     setSearch(defaultState?.search);
   };
 
-  const renderPaths = useRenderPaths(computedPaths, {
-    Component: ModelFilterGroup,
-    props: { model }
-  });
+  if (paths?.length <= 0) return null;
 
   return (
-    <div className="d-flex flex-column my-2">
-      <div className="row">
-        <FormProvider {...methods}>{renderPaths}</FormProvider>
-      </div>
-      {computedPaths?.length > 0 && (
-        <div className="d-flex flex-wrap align-items-center m-2">
-          {pills &&
-            Object.keys(pills).map(
-              (p) =>
-                pills[p] != null && (
-                  <IconButton
-                    key={p}
-                    icon="x"
-                    color="light"
-                    size="sm"
-                    className="me-2 mb-2"
-                    onClick={() => handleClear(p)}
-                  >
-                    {pills[p]}
-                  </IconButton>
-                )
-            )}
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <a
-            href="#"
-            className="mb-2 col-12 col-lg-auto text-decoration-none"
-            onClick={handleClearAll}
-          >
-            Clear all filters
-          </a>
-        </div>
+    <div className="d-flex flex-wrap align-items-center m-2">
+      {Object.keys(pills).map(
+        (p) => pills[p] != null && <ModelFiltersPill key={p} path={p} />
+      )}
+      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      {showClearAll && (
+        <a
+          href="#"
+          className="mb-2 col-12 col-lg-auto text-decoration-none"
+          onClick={handleClearAll}
+        >
+          Clear all filters
+        </a>
       )}
     </div>
   );
 };
 
-ModelFiltersBase.propTypes = {
-  paths: PropTypes.array
+export const ModelFiltersForm = () => {
+  const { model, paths } = useModelFiltersContext();
+  const renderPaths = useRenderPaths(paths, {
+    Component: ModelFilterGroup,
+    props: { model }
+  });
+
+  return <>{renderPaths}</>;
+};
+
+export const ModelFiltersBase = (props) => {
+  const controller = useModelFiltersController(props);
+
+  return (
+    <ModelFiltersProvider {...controller}>
+      <div className="d-flex flex-column my-2">
+        <div className="row">
+          <ModelFiltersForm />
+        </div>
+        <ModelFiltersPills />
+      </div>
+    </ModelFiltersProvider>
+  );
 };
 
 const ModelFilters = (props) =>
