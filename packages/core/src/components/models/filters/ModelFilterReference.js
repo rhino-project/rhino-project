@@ -7,7 +7,8 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { getIdentifierAttribute, getModelFromRef } from 'rhino/utils/models';
 import { useModelIndex } from 'rhino/hooks/queries';
 import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectControlled';
-import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
+import { useModelFilterField } from 'rhino/hooks/form';
+import { useModelFiltersContext } from 'rhino/hooks/controllers';
 
 const ModelFilterReference = ({ model, path, ...props }) => {
   const { filter, limit = 100, offset, order, search } = props;
@@ -41,17 +42,15 @@ const ModelFilterReference = ({ model, path, ...props }) => {
 
   const watch = useWatch({ name: fullPath });
 
-  const { resetPill, setPill } = useFilterPill(fullPath);
+  const { setPill } = useModelFiltersContext(fullPath);
 
   useEffect(() => {
     if (isSuccess && watch) {
       const resource = results.find((r) => `${r[identifier.name]}` === watch);
 
-      setPill(resource?.display_name);
-    } else if (!watch) {
-      resetPill();
+      setPill(fullPath, resource?.display_name);
     }
-  }, [identifier.name, results, resetPill, setPill, watch, isSuccess]);
+  }, [identifier.name, results, setPill, watch, isSuccess, fullPath]);
 
   // If there is no order, we sort by display_name
   // This has to be client side because display_name is not a sortable field in the database

@@ -3,7 +3,8 @@ import { useWatch } from 'react-hook-form';
 
 import { useEffect } from 'react';
 import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectControlled';
-import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
+import { useModelFilterField } from 'rhino/hooks/form';
+import { useModelFiltersContext } from 'rhino/hooks/controllers';
 
 // FIXME: Nothing tests this yet
 const ModelFilterIntegerSelect = ({ model, path, ...props }) => {
@@ -18,10 +19,11 @@ const ModelFilterIntegerSelect = ({ model, path, ...props }) => {
   );
 
   const watch = useWatch({ name: operatorPath });
-  const { setPill } = useFilterPill(operatorPath);
+  const { setPill } = useModelFiltersContext();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => setPill(watch), [watch]);
+  useEffect(() => {
+    if (watch) setPill(watch);
+  }, [setPill, watch]);
 
   return (
     <FilterSelectControlled path={operatorPath} {...props}>

@@ -1,7 +1,9 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { useForm } from 'react-hook-form';
+import { MemoryRouter } from 'react-router-dom';
 import FilterYear from 'rhino/components/forms/filters/FilterYear';
-import FormProvider from 'rhino/components/forms/FormProvider';
+import ModelFiltersSimple from 'rhino/components/models/ModelFiltersSimple';
+import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
 import ModelFilterYear from 'rhino/components/models/filters/ModelFilterYear';
 
 vi.mock('rhino/components/forms/filters/FilterYear', () => ({
@@ -9,11 +11,19 @@ vi.mock('rhino/components/forms/filters/FilterYear', () => ({
 }));
 
 describe('ModelFilterYear', () => {
-  const Wrapper = ({ children }) => {
-    const methods = useForm();
-    return <FormProvider {...methods}>{children}</FormProvider>;
-  };
+  const Wrapper = ({ children, ...props }) => {
+    const queryClient = new QueryClient();
 
+    return (
+      <MemoryRouter {...props}>
+        <QueryClientProvider client={queryClient}>
+          <ModelIndexSimple model="blog">
+            <ModelFiltersSimple>{children}</ModelFiltersSimple>
+          </ModelIndexSimple>
+        </QueryClientProvider>
+      </MemoryRouter>
+    );
+  };
   beforeEach(() => {
     vi.clearAllMocks();
   });

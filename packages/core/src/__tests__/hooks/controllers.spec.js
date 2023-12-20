@@ -56,7 +56,12 @@ describe('useModelIndexController', () => {
       }
     );
     expect(result.current).toMatchObject({
-      filter: { organization: 1 },
+      defaultState: { filter: { organization: 1 } },
+      initialState: { filter: { organization: 1 } },
+      filter: {},
+      totalFilters: 0,
+      fullFilter: { organization: 1 },
+      totalFullFilters: 1,
       limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,
@@ -78,10 +83,15 @@ describe('useModelIndexController', () => {
       }
     );
     expect(result.current).not.toMatchObject({
-      filter: { organization: 1 }
+      fullFilter: { organization: 1 }
     });
     expect(result.current).toMatchObject({
+      defaultState: { filter: {} },
+      initialState: { filter: {} },
       filter: {},
+      totalFilters: 0,
+      fullFilter: {},
+      totalFullFilters: 0,
       limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,
@@ -94,11 +104,11 @@ describe('useModelIndexController', () => {
       () =>
         useModelIndexController({
           model: 'blog',
-          filter: { organization: 1, foo: 'bar' },
-          limit: DEFAULT_LIMIT - 1,
-          offset: 20,
-          order: '-foo',
-          search: 'baz'
+          defaultFilter: { organization: 1, foo: 'bar' },
+          defaultLimit: DEFAULT_LIMIT - 1,
+          defaultOffset: 20,
+          defaultOrder: '-foo',
+          defaultSearch: 'baz'
         }),
       {
         wrapper: createWrapper(Wrapper, {
@@ -107,7 +117,12 @@ describe('useModelIndexController', () => {
       }
     );
     expect(result.current).toMatchObject({
-      filter: { organization: 1, foo: 'bar' },
+      defaultState: { filter: { organization: 1, foo: 'bar' } },
+      initialState: { filter: { organization: 1, foo: 'bar' } },
+      filter: {},
+      totalFilters: 0,
+      fullFilter: { organization: 1, foo: 'bar' },
+      totalFullFilters: 2,
       limit: DEFAULT_LIMIT - 1,
       offset: 20,
       order: '-foo',
@@ -129,7 +144,7 @@ describe('useModelIndexController', () => {
       () =>
         useModelIndexController({
           model: 'user',
-          filter: { blog: { id: 1 } },
+          defaultFilter: { blog: { id: 1 } },
           limit: 10,
           offset: 30,
           order: 'updated_at',
@@ -143,7 +158,18 @@ describe('useModelIndexController', () => {
     );
 
     expect(result.current).toMatchObject({
-      filter: { blog: { id: 1 } },
+      defaultState: { filter: { blog: { id: 1 } } },
+      initialState: {
+        filter: { blog: { id: 1 } },
+        limit: 17,
+        offset: 20,
+        order: 'foo',
+        search: 'bar'
+      },
+      filter: {},
+      totalFilters: 0,
+      fullFilter: { blog: { id: 1 } },
+      totalFullFilters: 1,
       limit: 17,
       offset: 20,
       order: 'foo',
@@ -156,16 +182,21 @@ describe('useModelIndexController', () => {
       () =>
         useModelIndexController({
           model: 'user',
-          filter: { blog: { id: 1 } }
+          defaultFilter: { blog: { id: 1 } }
         }),
       {
         wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1/users?filter[blog_post][published]=true']
+          initialEntries: ['/1/users?filter[blog][id]=2']
         })
       }
     );
     expect(result.current).toMatchObject({
-      filter: { blog: { id: 1 }, blog_post: { published: 'true' } },
+      defaultState: { filter: { blog: { id: 1 } } },
+      initialState: { filter: { blog: { id: 1 } } },
+      filter: {},
+      totalFilters: 0,
+      fullFilter: { blog: { id: 1 } },
+      totalFullFilters: 1,
       limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,
@@ -178,7 +209,7 @@ describe('useModelIndexController', () => {
       () =>
         useModelIndexController({
           model: 'user',
-          filter: { blog: { id: 1 } }
+          defaultFilter: { blog: { id: 1 } }
         }),
       {
         wrapper: createWrapper(Wrapper, {
@@ -187,7 +218,12 @@ describe('useModelIndexController', () => {
       }
     );
     expect(result.current).toMatchObject({
-      filter: { blog: { id: 1, published: 'true' } },
+      defaultState: { filter: { blog: { id: 1 } } },
+      initialState: { filter: { blog: { id: 1, published: 'true' } } },
+      filter: { blog: { published: 'true' } },
+      totalFilters: 1,
+      fullFilter: { blog: { id: 1, published: 'true' } },
+      totalFullFilters: 2,
       limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,
@@ -198,7 +234,10 @@ describe('useModelIndexController', () => {
   it('merges nested filters from url with passed in base filter having precedence', async () => {
     const { result } = renderHook(
       () =>
-        useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
+        useModelIndexController({
+          model: 'user',
+          defaultFilter: { blog: { id: 1 } }
+        }),
       {
         wrapper: createWrapper(Wrapper, {
           initialEntries: [
@@ -210,7 +249,12 @@ describe('useModelIndexController', () => {
 
     await waitFor(() => {
       expect(result.current).toMatchObject({
-        filter: { blog: { id: 1, published: 'true' } },
+        defaultState: { filter: { blog: { id: 1 } } },
+        initialState: { filter: { blog: { id: 1, published: 'true' } } },
+        filter: { blog: { published: 'true' } },
+        totalFilters: 1,
+        fullFilter: { blog: { id: 1, published: 'true' } },
+        totalFullFilters: 2,
         limit: DEFAULT_LIMIT,
         offset: 0,
         order: DEFAULT_SORT,
@@ -235,7 +279,12 @@ describe('useModelIndexController', () => {
       }
     );
     expect(result.current).toMatchObject({
+      defaultState: { filter: {} },
+      initialState: { filter: {} },
       filter: {},
+      totalFilters: 0,
+      fullFilter: {},
+      totalFullFilters: 0,
       limit: DEFAULT_LIMIT,
       offset: 0,
       order: DEFAULT_SORT,

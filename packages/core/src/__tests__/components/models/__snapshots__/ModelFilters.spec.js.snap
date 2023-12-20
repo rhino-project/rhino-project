@@ -1,0 +1,98 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelFilters > resets reference filter defaults 1`] = `
+<DocumentFragment>
+  <div
+    class="d-flex flex-column my-2"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="col-12 col-lg-4 d-flex flex-column mb-3"
+        id="FilterLayoutVertical-author"
+        model="[object Object]"
+        path="author"
+      >
+        <label
+          class="form-label"
+          for="author"
+          id="filterLabel-author"
+          label="Author "
+          path="author"
+        >
+          Author 
+        </label>
+        <select
+          aria-invalid="false"
+          autocomplete="off"
+          class="form-select"
+          id="author.id"
+          name="author.id"
+          path="author.id"
+        >
+          <option
+            value="2"
+          >
+            other@example.com
+          </option>
+          <option
+            value="1"
+          >
+            test
+          </option>
+          <option
+            disabled=""
+            value="-1"
+          >
+            Author...
+          </option>
+        </select>
+      </div>
+    </div>
+    <div
+      class="d-flex flex-wrap align-items-center m-2"
+    >
+      <button
+        class="me-2 mb-2 btn btn-light btn-sm"
+        type="button"
+      >
+        <svg
+          class="me-1"
+          fill="currentColor"
+          height="32"
+          style="height: 1rem; width: 1rem;"
+          width="32"
+        >
+          <use
+            xlink:href="/src/assets/images/bootstrap-icons.svg#x"
+          />
+        </svg>
+        other@example.com
+      </button>
+      <a
+        class="mb-2 col-12 col-lg-auto text-decoration-none"
+        href="#"
+      >
+        Clear all filters
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFilters > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFilters > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
