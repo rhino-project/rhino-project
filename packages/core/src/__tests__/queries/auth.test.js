@@ -1,5 +1,4 @@
 import { waitFor } from '@testing-library/react';
-import { act } from '@testing-library/react';
 import axios from 'axios';
 import { QueryClient } from '@tanstack/react-query';
 import {
@@ -35,9 +34,7 @@ describe('auth/queries', () => {
 
     async function waitForFailure({ result }, { setup }) {
       setup();
-      act(() => {
-        result.current.main.mutate();
-      });
+      result.current.main.mutate();
 
       await waitFor(() => expect(result.current.main.isLoading).toBe(true));
 
@@ -68,9 +65,7 @@ describe('auth/queries', () => {
           setup: () => networkingMock.mockSignInFailure()
         });
 
-        await waitFor(() =>
-          expect(renderedHook.result.current.auth.resolving).toBe(false)
-        );
+        expect(renderedHook.result.current.auth.resolving).toBe(false);
         expect(renderedHook.result.current.auth.user).toBeNull();
       });
 
@@ -86,9 +81,7 @@ describe('auth/queries', () => {
           }
         });
 
-        await waitFor(() =>
-          expect(renderedHook.result.current.auth.resolving).toBe(false)
-        );
+        expect(renderedHook.result.current.auth.resolving).toBe(false);
         expect(renderedHook.result.current.auth.user).toEqual(user);
       });
     });
@@ -118,9 +111,7 @@ describe('auth/queries', () => {
           setup: () => networkingMock.mockSignUpFailure()
         });
 
-        await waitFor(() =>
-          expect(renderedHook.result.current.auth.resolving).toBe(false)
-        );
+        expect(renderedHook.result.current.auth.resolving).toBe(false);
         expect(renderedHook.result.current.auth.user).toBeNull();
       });
 
@@ -136,9 +127,7 @@ describe('auth/queries', () => {
           }
         });
 
-        await waitFor(() =>
-          expect(renderedHook.result.current.auth.resolving).toBe(false)
-        );
+        expect(renderedHook.result.current.auth.resolving).toBe(false);
         expect(renderedHook.result.current.auth.user).toEqual(user);
       });
     });
