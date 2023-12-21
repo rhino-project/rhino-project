@@ -148,7 +148,7 @@ export class NetworkingMock {
       }
     );
 
-    await waitFor(() => expect(view.result.current.auth.resolving).toBe(true));
+    expect(view.result.current.auth.resolving).toBe(true);
     expect(view.result.current.auth.user).toBeNull();
 
     await waitFor(() => expect(view.result.current.auth.resolving).toBe(false));
