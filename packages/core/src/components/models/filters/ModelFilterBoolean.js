@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import { useWatch } from 'react-hook-form';
 
 import { useEffect } from 'react';
-import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
+import { useModelFilterField } from 'rhino/hooks/form';
 import FilterBoolean from '../../forms/filters/FilterBoolean';
+import { useModelFiltersContext } from 'rhino/hooks/controllers';
 
 // FIXME: This is duplicated from FieldBooleanIndeterminate
 // Ensure that if the value is a string coming from the url, it is either 'true' or 'false'
@@ -32,16 +33,12 @@ const ModelFilterBoolean = ({ model, path, ...props }) => {
 
   const watch = useWatch({ name: operatorPath });
 
-  const { resetPill, setPill } = useFilterPill(operatorPath);
+  const { setPill } = useModelFiltersContext();
 
   useEffect(() => {
-    // If its not true or false explicitly, reset the pill
-    if (watch != null) {
-      setPill(buildBooleanPill(attribute, watch));
-    } else {
-      resetPill();
-    }
-  }, [attribute, resetPill, setPill, watch]);
+    if (watch != null)
+      setPill(operatorPath, buildBooleanPill(attribute, watch));
+  }, [attribute, operatorPath, setPill, watch]);
 
   return <FilterBoolean path={operatorPath} {...props} />;
 };

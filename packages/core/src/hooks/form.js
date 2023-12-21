@@ -1,21 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import {
-  assign,
-  cloneDeep,
-  compact,
-  get,
-  isString,
-  omit,
-  toPath
-} from 'lodash';
-import { useController, useFormContext, useWatch } from 'react-hook-form';
+import { assign, cloneDeep, compact, get, isString, toPath } from 'lodash';
+import { useFormContext, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getModelAndAttributeFromPath } from 'rhino/utils/models';
 import { useModel, useModelAndAttributeFromPath } from './models';
 import { object } from 'yup';
 import { yupValidatorsFromAttribute } from '../utils/yup';
 
-export const useSchema = (model, paths) => {
+export const useSchema = (model, paths, options = {}) => {
+  const { yupSchemaFromAttribute = yupValidatorsFromAttribute } = options;
+
   const schema = useMemo(() => {
     let schema = object();
 
@@ -28,7 +22,7 @@ export const useSchema = (model, paths) => {
       );
 
       // Have to handle nested such as blog.user
-      let subSchema = yupValidatorsFromAttribute(attribute);
+      let subSchema = yupSchemaFromAttribute(attribute);
 
       const pathParts = toPath(plainPath);
       pathParts
@@ -44,7 +38,7 @@ export const useSchema = (model, paths) => {
     });
 
     return schema;
-  }, [model, paths]);
+  }, [model, paths, yupSchemaFromAttribute]);
 
   return schema;
 };
@@ -269,7 +263,7 @@ export const useModelDisplayFieldGroupAttachmentImage = (props) => {
 };
 
 export const useDefaultValues = (model, paths, options = {}) => {
-  const schema = useSchema(model, paths);
+  const schema = useSchema(model, paths, options);
 
   const defaultValues = useMemo(
     () => ({ ...schema.default(), ...options.extraDefaultValues }),
@@ -285,55 +279,11 @@ export const useResolver = (schema) => {
   return resolver;
 };
 
-export const useFilterPill = (path) => {
-  const { getValues, setValue } = useFormContext();
-
-  const setPill = useCallback(
-    (value) =>
-      setValue(
-        'pills',
-        { ...getValues('pills'), [path]: value },
-        { shouldDirty: true }
-      ),
-    [getValues, setValue, path]
-  );
-
-  const resetPill = useCallback(() => {
-    setValue('pills', omit({ ...getValues('pills') }, path));
-  }, [getValues, setValue, path]);
-
-  return { resetPill, setPill };
-};
-
-export const useFilterPills = ({ control }) => {
-  const methods = useFormContext();
-  const {
-    field: { value: pills, onChange }
-  } = useController({
-    name: 'pills',
-    control: control || methods.control,
-    defaultValue: {}
-  });
-
-  // FIXME: Resetting the last pill does not clear the dirty
-  const resetPill = useCallback(
-    (path) => onChange(omit(pills, path)),
-    [pills, onChange]
-  );
-
-  // FIXME: Unclear why i have to reset to {} explicitly to clear the dirty
-  const resetPills = useCallback(() => onChange({}), [onChange]);
-
-  return { pills, resetPill, resetPills };
-};
-
 export const useFilterField = (path, operator) => {
   const operatorPath = useMemo(
     () => compact([path, operator]).join('.'),
     [path, operator]
   );
-
-  // FIXME: Include useFilterPill here? There may be cases where it is not needed or even a problem like in ModelFilterReference
 
   return { operatorPath };
 };

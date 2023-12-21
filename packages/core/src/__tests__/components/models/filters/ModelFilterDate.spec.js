@@ -1,7 +1,9 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { useForm } from 'react-hook-form';
+import { MemoryRouter } from 'react-router-dom';
+import ModelFiltersSimple from 'rhino/components/models/ModelFiltersSimple';
+import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
 import FilterDate from 'rhino/components/forms/filters/FilterDate';
-import FormProvider from 'rhino/components/forms/FormProvider';
 import ModelFilterDate from 'rhino/components/models/filters/ModelFilterDate';
 
 vi.mock('rhino/components/forms/filters/FilterDate', () => ({
@@ -9,9 +11,18 @@ vi.mock('rhino/components/forms/filters/FilterDate', () => ({
 }));
 
 describe('ModelFilterDate', () => {
-  const Wrapper = ({ children }) => {
-    const methods = useForm();
-    return <FormProvider {...methods}>{children}</FormProvider>;
+  const Wrapper = ({ children, ...props }) => {
+    const queryClient = new QueryClient();
+
+    return (
+      <MemoryRouter {...props}>
+        <QueryClientProvider client={queryClient}>
+          <ModelIndexSimple model="blog">
+            <ModelFiltersSimple>{children}</ModelFiltersSimple>
+          </ModelIndexSimple>
+        </QueryClientProvider>
+      </MemoryRouter>
+    );
   };
 
   beforeEach(() => {
