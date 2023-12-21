@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useEffect, useMemo } from 'react';
-import { useModelFilterField, useFilterPill } from 'rhino/hooks/form';
+import { useModelFilterField } from 'rhino/hooks/form';
 import FilterInteger from '../../forms/filters/FilterInteger';
+import { useModelFiltersContext } from 'rhino/hooks/controllers';
 
 const ModelFilterInteger = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
@@ -20,20 +21,13 @@ const ModelFilterInteger = ({ model, path, ...props }) => {
     return attribute.maximum;
   }, [attribute]);
 
-  const watch = useWatch({ name: operatorPath, defaultValue: '' });
+  const watch = useWatch({ name: operatorPath });
 
-  const { resetPill, setPill } = useFilterPill(operatorPath);
+  const { setPill } = useModelFiltersContext();
 
-  // If the user clears the input, we want to reset the pill
   useEffect(() => {
-    if (watch !== undefined && watch !== '') {
-      setPill(watch);
-    } else {
-      resetPill();
-      // FIXME: This is a hack to reset the field when clear all filters is clicked
-      resetField(operatorPath);
-    }
-  }, [operatorPath, resetField, resetPill, setPill, watch]);
+    if (watch !== undefined && watch !== '') setPill(operatorPath, watch);
+  }, [operatorPath, resetField, setPill, watch]);
 
   return <FilterInteger path={operatorPath} min={min} max={max} {...props} />;
 };

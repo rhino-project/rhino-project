@@ -1,8 +1,15 @@
 import qs from 'qs';
-import { useContext, useEffect, useMemo, useRef, useState } from 'react';
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { filter, isEqual, isString, merge } from 'lodash';
+import { filter, isEqual, isPlainObject, isString, merge, omit } from 'lodash';
 import { useForm } from 'react-hook-form';
 import { ModelCreateContext } from 'rhino/components/models/ModelCreateProvider';
 import { ModelEditContext } from 'rhino/components/models/ModelEditProvider';
@@ -17,7 +24,11 @@ import {
   useModelUpdate
 } from 'rhino/hooks/queries';
 import withParams from 'rhino/routes/withParams';
-import { getParentModel } from 'rhino/utils/models';
+import {
+  getBaseOwnerFilters,
+  getParentModel,
+  getReferenceAttributes
+} from 'rhino/utils/models';
 import { useDebouncedCallback } from 'use-debounce';
 import {
   getCreatableAttributes,
@@ -25,7 +36,9 @@ import {
 } from '../utils/models';
 import { useDefaultValues, useResolver, useSchema } from './form';
 import { usePaths } from './paths';
-import { useBaseOwnerFilters } from './owner';
+import { useBaseOwnerId } from './owner';
+import { ModelFiltersContext } from 'rhino/components/models/ModelFiltersProvider';
+import { yupFiltersFromAttribute } from 'rhino/utils/yup';
 
 export const DEFAULT_LIMIT = 10;
 
@@ -46,24 +59,75 @@ export const useModelIndexContext = () => {
   return context;
 };
 
+// https://chat.openai.com/share/55cc13f5-99ae-43f4-9781-15c0016861e9
+// Finds the keys unique to obj2
+const findDeepDifference = (obj1, obj2) => {
+  const differences = {};
+
+  const compare = (item1, item2, path = []) => {
+    if (isPlainObject(item2)) {
+      Object.keys(item2).forEach((key) => {
+        if (
+          !item1 ||
+          !Object.prototype.hasOwnProperty.call(item1, key) ||
+          isPlainObject(item2[key])
+        ) {
+          compare(item1 && item1[key], item2[key], path.concat(key));
+        }
+      });
+    } else if (
+      !item1 ||
+      !Object.prototype.hasOwnProperty.call(item1, path[path.length - 1])
+    ) {
+      // Assign value only if the key does not exist in obj1
+      let current = differences;
+      for (let i = 0; i < path.length - 1; i++) {
+        if (!current[path[i]]) current[path[i]] = {};
+        current = current[path[i]];
+      }
+      current[path[path.length - 1]] = item2;
+    }
+  };
+
+  compare(obj1, obj2);
+  return differences;
+};
+
+// https://chat.openai.com/share/55cc13f5-99ae-43f4-9781-15c0016861e9
+// Counts the number of leaf nodes in an object
+const countLeafNodes = (obj) => {
+  const reducer = (acc, value) => {
+    if (isPlainObject(value)) {
+      return acc + Object.values(value).reduce(reducer, 0);
+    } else {
+      return acc + 1;
+    }
+  };
+
+  return Object.values(obj).reduce(reducer, 0);
+};
+
+// Reset/change default state - when baseOwnerFilter changes for instance or tabbed filtering
+//      Does initial state need to be reset?
+// Count of filters
 export const useModelIndexController = (options) => {
   const model = useModel(options.model);
   const { syncUrl = true, defaultFiltersBaseOwner = true } = options;
-  const baseOwnerFilter = useBaseOwnerFilters(model, {
-    extraFilters: options?.filter
-  });
+  const baseOwnerId = useBaseOwnerId();
 
   const navigate = useNavigate();
   const location = useLocation();
-
   const defaultState = useRef({
     filter: defaultFiltersBaseOwner
-      ? baseOwnerFilter ?? {}
-      : options?.filter ?? {},
-    limit: options?.limit ?? DEFAULT_LIMIT,
-    offset: options?.offset ?? 0,
-    order: options?.order ?? DEFAULT_SORT,
-    search: options?.search ?? ''
+      ? merge(
+          getBaseOwnerFilters(model, baseOwnerId),
+          options?.defaultFilter
+        ) ?? {}
+      : options?.defaultFilter ?? {},
+    limit: options?.defaultLimit ?? DEFAULT_LIMIT,
+    offset: options?.defaultOffset ?? 0,
+    order: options?.defaultOrder ?? DEFAULT_SORT,
+    search: options?.defaultSearch ?? ''
   });
 
   const initialState = useRef(null);
@@ -96,14 +160,41 @@ export const useModelIndexController = (options) => {
     };
   }
 
-  const [filter, setFilter] = useState(initialState.current.filter);
+  const [filter, internalSetFilter] = useState(
+    findDeepDifference(defaultState.current.filter, initialState.current.filter)
+  );
+  const [fullFilter, setFullFilter] = useState(initialState.current.filter);
   const [limit, setLimit] = useState(initialState.current.limit);
   const [offset, setOffset] = useState(initialState.current.offset);
   const [order, setOrder] = useState(initialState.current.order);
   const [search, setSearch] = useState(initialState.current.search);
 
+  const setFilter = useCallback((filter) => {
+    internalSetFilter(findDeepDifference(defaultState.current.filter, filter));
+    setFullFilter(merge({}, filter ?? {}, defaultState.current?.filter));
+  }, []);
+
+  const setDefaultFilter = useCallback(
+    (defaultFilter) => {
+      const updatedDefaultFilter = defaultFiltersBaseOwner
+        ? merge({}, getBaseOwnerFilters(model, baseOwnerId), defaultFilter)
+        : defaultFilter;
+
+      defaultState.current.filter = updatedDefaultFilter ?? {};
+
+      const newFilter = findDeepDifference(defaultState.current.filter, filter);
+      const newFullFilter = merge({}, newFilter, defaultState.current?.filter);
+
+      initialState.current.filter = newFullFilter;
+
+      internalSetFilter(newFilter);
+      setFullFilter(newFullFilter);
+    },
+    [baseOwnerId, defaultFiltersBaseOwner, filter, model]
+  );
+
   const query = useModelIndex(model, {
-    filter,
+    filter: fullFilter,
     limit,
     offset,
     order,
@@ -111,6 +202,12 @@ export const useModelIndexController = (options) => {
     queryOptions: options?.queryOptions,
     networkOptions: options?.networkOptions
   });
+
+  const totalFilters = useMemo(() => countLeafNodes(filter), [filter]);
+  const totalFullFilters = useMemo(
+    () => countLeafNodes(fullFilter),
+    [fullFilter]
+  );
 
   const create = useModelCreate(model);
   const update = useModelUpdate(model);
@@ -145,7 +242,10 @@ export const useModelIndexController = (options) => {
     if (!syncUrl) return;
 
     if (
-      isEqual({ filter, limit, offset, order, search }, defaultState.current)
+      isEqual(
+        { filter: fullFilter, limit, offset, order, search },
+        defaultState.current
+      )
     ) {
       // If the current state is the same as the default state, remove the query params from the URL but only if they are not already empty
       if (location.search) navigate(withParams(location.pathname, {}));
@@ -163,7 +263,7 @@ export const useModelIndexController = (options) => {
 
     // https://github.com/facebook/react/issues/22305#issuecomment-1113508762
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [syncUrl, filter, search, limit, offset, order]);
+  }, [syncUrl, filter, fullFilter, search, limit, offset, order]);
 
   useEffect(
     () => setOffset(initialState.current.offset),
@@ -181,6 +281,10 @@ export const useModelIndexController = (options) => {
     setSearch,
     filter,
     setFilter,
+    totalFilters,
+    fullFilter,
+    totalFullFilters,
+    setDefaultFilter,
     limit,
     setLimit,
     offset,
@@ -422,5 +526,108 @@ export const useModelEditController = (options) => {
     paths: computedPaths,
     resolver,
     schema
+  };
+};
+
+export const useModelFiltersContext = () => {
+  const context = useContext(ModelFiltersContext);
+
+  if (context === undefined) {
+    throw new Error(
+      'useModelFiltersContext must be used within a ModelFiltersProvider'
+    );
+  }
+  return context;
+};
+
+const createFilteredObject = (obj) => {
+  const result = {};
+  // iterate through all keys in the object
+  for (const key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) {
+      // if the value is not undefined, add it to the new object
+      if (obj[key] !== undefined) {
+        // if the value is an object, recursively call the function
+        if (typeof obj[key] === 'object') {
+          result[key] = createFilteredObject(obj[key]);
+          // if the object is now empty, don't add it to the new object
+          if (Object.keys(result[key]).length === 0) {
+            delete result[key];
+          }
+        } else {
+          result[key] = obj[key];
+        }
+      }
+    }
+  }
+  return result;
+};
+
+export const useModelFiltersController = (options) => {
+  const { setFilter, initialState, model } = useModelIndexContext();
+  const { extraDefaultValues, paths } = options;
+  const [pills, setPills] = useState({});
+
+  const pathsOrDefault = useMemo(
+    () =>
+      paths ||
+      getReferenceAttributes(model)
+        .filter(
+          (a) => a.name !== model.ownedBy && !a.name.endsWith('_attachment')
+        )
+        .map((a) => a.name),
+    [paths, model]
+  );
+  const computedPaths = usePaths(pathsOrDefault);
+
+  const schema = useSchema(model, computedPaths, {
+    yupSchemaFromAttribute: yupFiltersFromAttribute
+  });
+  const defaultValues = useDefaultValues(model, computedPaths, {
+    extraDefaultValues,
+    yupSchemaFromAttribute: yupFiltersFromAttribute
+  });
+  const resolver = useResolver(schema);
+
+  const methods = useForm({
+    defaultValues,
+    values: initialState.filter,
+    resolver,
+
+    // Keep the default values because the initial state is likely to be sparse
+    resetOptions: { keepDefaultValues: true }
+  });
+  const { watch } = methods;
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      // Only pass the defined and non-null values to the filter
+      setFilter(createFilteredObject(value));
+    });
+    return () => subscription.unsubscribe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watch]);
+
+  const setPill = useCallback(
+    (path, value) => {
+      setPills((pills) => ({ ...pills, [path]: value }));
+    },
+    [setPills]
+  );
+
+  const resetPill = useCallback(
+    (path) => setPills((pills) => omit(pills, path)),
+    [setPills]
+  );
+
+  return {
+    model,
+    defaultValues,
+    methods,
+    paths: computedPaths,
+    pills,
+    setPill,
+    resetPill,
+    setPills
   };
 };

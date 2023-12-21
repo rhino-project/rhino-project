@@ -48,6 +48,19 @@ const transformEmptyString = (value, originalValue) => {
   return value;
 };
 
+const transformFilterEmptyString = (value, originalValue) => {
+  if (originalValue === '') return null;
+
+  return value;
+};
+
+const transformFilterReference = (value, originalValue) => {
+  if (originalValue === -1 || originalValue === '-1' || originalValue == null)
+    return undefined;
+
+  return value;
+};
+
 export const yupDefaultFromAttributeType = (attribute) => {
   switch (attribute.type) {
     case 'array':
@@ -137,6 +150,19 @@ export const yupValidatorsFromAttribute = (attribute) => {
 
   // Enums
   if (attribute.enum) ytype.oneOf(attribute.enum);
+
+  return ytype;
+};
+
+export const yupFiltersFromAttribute = (attribute) => {
+  let ytype = yup.mixed().nullable().default(null);
+
+  if (TRANSFORMABLE_TYPES.includes(attribute.type))
+    ytype = ytype.transform(transformFilterEmptyString);
+
+  // Empty references must be transformed to undefined, but we need them to be set for form display
+  if (attribute.type === 'reference')
+    ytype = ytype.transform(transformFilterReference);
 
   return ytype;
 };
