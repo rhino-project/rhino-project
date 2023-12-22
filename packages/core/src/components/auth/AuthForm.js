@@ -150,6 +150,7 @@ const AuthForm = ({
           <AuthField
             path="organization"
             label="Organization"
+            placeholder="Organization"
             autoComplete="organizaton"
           />
         )}
