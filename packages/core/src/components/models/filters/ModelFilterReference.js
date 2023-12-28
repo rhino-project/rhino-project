@@ -65,7 +65,11 @@ const ModelFilterReference = ({ model, path, ...props }) => {
   }, [results, order]);
 
   return (
-    <FilterSelectControlled path={fullPath} accessor={referenceAccessor}>
+    <FilterSelectControlled
+      id={plainPath}
+      path={fullPath}
+      accessor={referenceAccessor}
+    >
       {optionsFromIndexWithTitle(sortedResults, `${attribute.readableName}...`)}
     </FilterSelectControlled>
   );
