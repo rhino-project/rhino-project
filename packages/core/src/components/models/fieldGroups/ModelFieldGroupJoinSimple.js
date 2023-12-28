@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useId, useMemo } from 'react';
 import { useController } from 'react-hook-form';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { getModelFromRef, getReferenceAttributes } from 'rhino/utils/models';
@@ -92,12 +92,14 @@ export const ModelFieldJoinSimpleBaseInput = ({ model, ...props }) => {
     },
     [joinModel, onChange, value]
   );
+  const id = useId();
 
   return (
     <Typeahead
-      id={path}
+      id={id}
       {...fieldProps}
       className={error ? 'is-invalid' : ''}
+      inputProps={{ id: path }}
       clearButton={attribute.nullable}
       labelKey="display_name"
       multiple
