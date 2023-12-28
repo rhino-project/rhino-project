@@ -27,7 +27,7 @@ exports[`ModelFilters > resets reference filter defaults 1`] = `
           aria-invalid="false"
           autocomplete="off"
           class="form-select"
-          id="author.id"
+          id="author"
           name="author.id"
           path="author.id"
         >
