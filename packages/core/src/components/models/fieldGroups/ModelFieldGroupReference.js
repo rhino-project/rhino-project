@@ -4,7 +4,7 @@ import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
 import { useModelFieldGroup } from 'rhino/hooks/form';
 import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
 import { getIdentifierAttribute, getModelFromRef } from 'rhino/utils/models';
-import { useMemo, useState } from 'react';
+import { useId, useMemo, useState } from 'react';
 import { useController } from 'react-hook-form';
 import { useModelIndex } from 'rhino/hooks/queries';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
@@ -64,12 +64,14 @@ export const ModelFieldReferenceBaseInput = ({ model, ...props }) => {
   }, [results, value, valString]);
 
   const handleChange = (selected) => onChange(selected[0] || null);
+  const id = useId();
 
   return (
     <AsyncTypeahead
-      id={path}
+      id={id}
       {...fieldProps}
       className={classnames({ 'is-invalid': error })}
+      inputProps={{ id: path }}
       clearButton={attribute.nullable}
       labelKey="display_name"
       options={results || []}

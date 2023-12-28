@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useCallback } from 'react';
+import { useCallback, useId } from 'react';
 import { useController } from 'react-hook-form';
 import { Typeahead } from 'react-bootstrap-typeahead';
 import { useModelFieldGroup } from 'rhino/hooks/form';
@@ -29,11 +29,13 @@ export const ModelFieldArrayStringBaseInput = ({ nullable, ...props }) => {
     },
     [onChange]
   );
+  const id = useId();
 
   return (
     <Typeahead
-      id={path}
+      id={id}
       {...fieldProps}
+      inputProps={{ id: path }}
       className={error ? 'is-invalid' : ''}
       clearButton={nullable}
       allowNew

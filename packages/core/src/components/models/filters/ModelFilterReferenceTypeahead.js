@@ -1,6 +1,6 @@
 import { useModelFilterField } from '../../../hooks/form';
 import { useController } from 'react-hook-form';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { getIdentifierAttribute, getModelFromRef } from '../../../utils/models';
 import { useModelIndex } from '../../../hooks/queries';
@@ -70,9 +70,13 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
     );
   }, [referenceAccessor, results, value]);
 
+  const id = useId();
+
   return (
     <AsyncTypeahead
-      id={path}
+      id={id}
+      {...fieldProps}
+      inputProps={{ id: path }}
       options={results ?? []}
       selected={selectedOption}
       isLoading={isInitialLoading}
@@ -84,7 +88,6 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
       }}
       labelKey="display_name"
       delay={500}
-      {...fieldProps}
       {...props}
     />
   );
