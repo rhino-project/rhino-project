@@ -20,6 +20,14 @@ class ActiveRecordExtensionPropertyTest < ActiveSupport::TestCase
     assert_not Blog.new.describe_property("updated_at")[:nullable]
   end
 
+  test "virtual properties should not be writeable" do
+    assert ({
+      readable: true,
+      creatable: false,
+      updatable: false
+    }) <= EveryField.describe_property("float_virtual")[:"x-rhino-attribute"]
+  end
+
   test "tag list is an array of strings" do
     assert_equal({
       "x-rhino-attribute": {
