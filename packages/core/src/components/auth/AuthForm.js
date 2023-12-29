@@ -93,9 +93,23 @@ const AuthForm = ({
   const defaultValues = useMemo(() => schema.default(), [schema]);
   const resolver = useResolver(schema);
 
+  // Just use the first error for each field
+  const reducedErrors = useMemo(() => {
+    if (!errors) return null;
+
+    return Object.keys(errors).reduce((errorObj, name) => {
+      errorObj[name] = {
+        type: 'manual',
+        message: errors[name][0]
+      };
+      return errorObj;
+    }, {});
+  }, [errors]);
+
   const methods = useForm({
     defaultValues,
     disabled: loading,
+    errors: reducedErrors,
     mode: 'onBlur',
     resolver
   });
@@ -178,7 +192,7 @@ const AuthForm = ({
 
 AuthForm.propTypes = {
   currentPasswordField: PropTypes.bool.isRequired,
-  errors: PropTypes.array,
+  errors: PropTypes.object,
   emailField: PropTypes.bool.isRequired,
   loading: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
