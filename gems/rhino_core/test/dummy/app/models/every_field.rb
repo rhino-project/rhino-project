@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EveryField < ApplicationRecord
+  attr_readonly :string_readonly
+
   enum enum: { test: 0, example: 1 }
   enum enum_required: %i[test_required example_required]
 
