@@ -28,6 +28,14 @@ class ActiveRecordExtensionPropertyTest < ActiveSupport::TestCase
     }) <= EveryField.describe_property("float_virtual")[:"x-rhino-attribute"]
   end
 
+  test "readonly properties should not be updatable" do
+    assert ({
+      readable: true,
+      creatable: true,
+      updatable: false
+    }) <= EveryField.describe_property("string_readonly")[:"x-rhino-attribute"]
+  end
+
   test "tag list is an array of strings" do
     assert_equal({
       "x-rhino-attribute": {
