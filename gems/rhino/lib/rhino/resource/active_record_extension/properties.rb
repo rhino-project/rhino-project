@@ -28,7 +28,8 @@ module Rhino
           end
 
           def updatable_properties
-            writeable_properties
+            # https://api.rubyonrails.org/classes/ActiveRecord/ReadonlyAttributes/ClassMethods.html#method-i-readonly_attributes
+            writeable_properties - readonly_attributes.to_a
           end
 
           private
