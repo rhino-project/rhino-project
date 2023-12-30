@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_21_143941) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_29_231242) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -145,6 +145,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_21_143941) do
     t.string "string_write_only"
     t.string "string_overrideable"
     t.string "phone"
+    t.virtual "float_virtual", type: :float, as: "(float_no_nil / (2)::double precision)", stored: true
     t.index ["user_id"], name: "index_every_fields_on_user_id"
   end
 
