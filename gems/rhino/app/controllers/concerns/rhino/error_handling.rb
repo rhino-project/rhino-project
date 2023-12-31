@@ -43,7 +43,7 @@ module Rhino
 
       def unprocessable(errors = nil)
         render json: {
-          errors: (errors || ['Unprocessable request.'])
+          errors: (errors&.to_hash(full_messages: true) || ['Unprocessable request.'])
         }, status: :unprocessable_entity
       end
 
