@@ -3,6 +3,7 @@ import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
 import ModelSection from './ModelSection';
 import { useRenderPaths } from 'rhino/hooks/paths';
 import ModelDisplayGroup from './ModelDisplayGroup';
+import FormErrors from '../forms/FormErrors';
 
 export const ModelShowDescriptionBase = (props) => {
   const { model, paths } = useModelShowContext();
@@ -12,7 +13,10 @@ export const ModelShowDescriptionBase = (props) => {
   });
 
   return (
-    <ModelSection baseClassName="show-description">{renderPaths}</ModelSection>
+    <ModelSection baseClassName="show-description">
+      <FormErrors />
+      {renderPaths}
+    </ModelSection>
   );
 };
 

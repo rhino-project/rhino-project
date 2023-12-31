@@ -42,6 +42,39 @@ import { yupFiltersFromAttribute } from 'rhino/utils/yup';
 
 export const DEFAULT_LIMIT = 10;
 
+const useFormBuildErrors = () => {
+  const [errors, setErrors] = useState(null);
+
+  const onError = useCallback((e) => {
+    // Errors can be an array of strings or an object with keys
+    // If it is an array of strings, we assume it is a base error
+    if (Array.isArray(e.errors)) {
+      setErrors({
+        root: {
+          type: 'manual',
+          message: e.errors?.[0]
+        }
+      });
+      return;
+    }
+
+    const newErrors = Object.keys(e.errors).reduce((errorObj, name) => {
+      const key = name === 'base' ? 'root' : name;
+
+      errorObj[key] = {
+        type: 'manual',
+        message: e.errors[name][0]
+      };
+
+      return errorObj;
+    }, {});
+
+    setErrors(newErrors);
+  }, []);
+
+  return [errors, onError];
+};
+
 // FIXME: This should be calculated as the first sortable field found in the model
 export const DEFAULT_SORT = '-updated_at';
 
@@ -329,15 +362,17 @@ export const useModelShowController = (options) => {
   const model = useModel(options.model);
   const { extraDefaultValues, modelId, paths } = options;
 
+  const [errors, onError] = useFormBuildErrors();
+
   const query = useModelShow(model, modelId, {
     queryOptions: options?.queryOptions,
     networkOptions: options?.networkOptions
   });
   const { resource } = query;
 
-  const create = useModelCreate(model);
-  const update = useModelUpdate(model);
-  const destroy = useModelDelete(model);
+  const create = useModelCreate(model, { onError });
+  const update = useModelUpdate(model, { onError });
+  const destroy = useModelDelete(model, { onError });
 
   const pathsOrDefault = useMemo(
     () => paths || getViewablePaths(model),
@@ -353,6 +388,7 @@ export const useModelShowController = (options) => {
 
   const methods = useForm({
     defaultValues,
+    errors,
     resolver,
     values: resource,
     resetOptions: {
@@ -397,8 +433,9 @@ const getCreatablePaths = (model) =>
 export const useModelCreateController = (options) => {
   const model = useModel(options.model);
   const { extraDefaultValues, parentId, paths, queryOptions } = options;
+  const [errors, onError] = useFormBuildErrors();
 
-  const mutation = useModelCreate(model);
+  const mutation = useModelCreate(model, { onError });
 
   // Fetch the parent model for the owner value and the breadcrumb
   const parentModel = useMemo(() => getParentModel(model), [model]);
@@ -424,6 +461,7 @@ export const useModelCreateController = (options) => {
     defaultValues,
     disabled:
       options?.disabled ?? (showParent.isInitialLoading || mutation.isLoading),
+    errors,
     resolver,
     ...options
   });
@@ -472,8 +510,9 @@ export const useModelEditController = (options) => {
     debounceDelay = 2000,
     queryOptions
   } = options;
+  const [errors, onError] = useFormBuildErrors();
 
-  const mutation = useModelUpdate(model);
+  const mutation = useModelUpdate(model, { onError });
   const debouncedMutate = useDebouncedCallback(
     (observation) => mutation.mutate(observation),
     debounceDelay
@@ -500,6 +539,7 @@ export const useModelEditController = (options) => {
 
   const methods = useForm({
     defaultValues,
+    errors,
     disabled:
       options?.disabled ?? (show.isInitialLoading || mutation.isLoading),
     resolver,

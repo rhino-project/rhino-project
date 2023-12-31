@@ -5,7 +5,7 @@ class Blog < ApplicationRecord
   belongs_to :author, default: -> { Rhino::Current.user }, class_name: "User", foreign_key: :user_id
 
   belongs_to :category, optional: true
-  has_many :blog_posts, dependent: :destroy
+  has_many :blog_posts, dependent: :restrict_with_error
 
   has_one_attached :banner
 
