@@ -7,15 +7,18 @@ module Rhino
     included do # rubocop:disable Metrics/BlockLength
       rescue_from Exception, with: :handle_uncaught_error
 
-      rescue_from ActionController::ParameterMissing do |e|
+      # ActiveRecord::DeleteRestrictionError is for dependent: :restrict_with_exception
+      rescue_from ActionController::ParameterMissing, ActiveRecord::DeleteRestrictionError do |e|
         render json: { errors: [e.message] }, status: :bad_request
       end
 
       rescue_from Pundit::NotAuthorizedError, with: :forbidden
 
-      rescue_from ActiveRecord::RecordInvalid do |e|
+      # ActiveRecord::RecordNotDestroyed is for dependent: :restrict_with_error
+      rescue_from ActiveRecord::RecordInvalid, ActiveRecord::RecordNotDestroyed do |e|
         unprocessable e.record.errors
       end
+
       rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
       def handle_uncaught_error(exception)
