@@ -11,6 +11,7 @@ import { ModelEditContext } from '../models/ModelEditProvider';
 import { ModelCreateContext } from '../models/ModelCreateProvider';
 import { useLocalStorage } from 'react-use';
 import { pick } from 'lodash';
+import env from 'rhino/config/env';
 
 const RhinoDevToolModelIndex = () => {
   const context = useContext(ModelIndexContext);
@@ -119,6 +120,10 @@ const RhinoDevTool = () => {
               <h5>Rhino</h5>
               <CloseButton onClick={toggleCollapse} />
             </div>
+            <details>
+              <summary>Env</summary>
+              <pre>{JSON.stringify(env, null, 2)}</pre>
+            </details>
             <details>
               <summary>Model: {model.readableName}</summary>
               <pre>
