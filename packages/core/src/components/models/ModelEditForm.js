@@ -3,6 +3,7 @@ import { useModelEditContext } from 'rhino/hooks/controllers';
 import ModelSection from './ModelSection';
 import ModelFieldGroup from './ModelFieldGroup';
 import { useRenderPaths } from 'rhino/hooks/paths';
+import FormErrors from '../forms/FormErrors';
 
 export const ModelEditFormBase = (props) => {
   const { model, paths } = useModelEditContext();
@@ -11,7 +12,12 @@ export const ModelEditFormBase = (props) => {
     props: { model }
   });
 
-  return <ModelSection baseClassName="edit-form">{renderPaths}</ModelSection>;
+  return (
+    <ModelSection baseClassName="edit-form">
+      <FormErrors />
+      {renderPaths}
+    </ModelSection>
+  );
 };
 
 ModelEditFormBase.propTypes = {};

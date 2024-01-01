@@ -4,7 +4,6 @@ import { Children, useCallback, useMemo } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useModelEditContext } from 'rhino/hooks/controllers';
-import { useFieldSetErrors } from 'rhino/hooks/form';
 import { useBackHistory } from '../../hooks/history';
 import {
   useGlobalComponentForModel,
@@ -24,11 +23,9 @@ export const ModelEditActionSave = ({ children, onSave, ...props }) => {
     [onSave]
   );
 
-  const onError = useFieldSetErrors();
-
   const handleClick = useCallback(
-    () => handleSubmit((values) => mutate(values, { onSuccess, onError }))(),
-    [mutate, handleSubmit, onError, onSuccess]
+    () => handleSubmit((values) => mutate(values, { onSuccess }))(),
+    [mutate, handleSubmit, onSuccess]
   );
 
   return (

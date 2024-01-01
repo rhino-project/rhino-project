@@ -1,7 +1,6 @@
 import { Children, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { useFieldSetErrors } from 'rhino/hooks/form';
 import { useModelCreateContext } from 'rhino/hooks/controllers';
 import { useFormContext } from 'react-hook-form';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
@@ -24,17 +23,12 @@ export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
     [onSave]
   );
 
-  const onError = useFieldSetErrors();
-
   const handleClick = useCallback(
     () =>
       handleSubmit((values) =>
-        mutate(
-          { [parentModel.model]: parentId, ...values },
-          { onSuccess, onError }
-        )
+        mutate({ [parentModel.model]: parentId, ...values }, { onSuccess })
       )(),
-    [mutate, handleSubmit, onError, onSuccess, parentId, parentModel]
+    [mutate, handleSubmit, onSuccess, parentId, parentModel]
   );
 
   return (
