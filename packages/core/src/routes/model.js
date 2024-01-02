@@ -61,24 +61,35 @@ export const modelCrudRoutes = (model) => {
         <Route
           key={`${model.name}-collection-index`}
           index
-          element={<ModelIndex model={model} />}
+          element={
+            <ModelIndex key={`${model.name}-collection-index`} model={model} />
+          }
         />
         <Route
           key={`${model.name}-collection-create`}
           path="new"
-          element={<CreateModel model={model} />}
+          element={
+            <CreateModel
+              key={`${model.name}-collection-create`}
+              model={model}
+            />
+          }
         />
       </Route>
       <Route key={`${model.pluralName}-member`} path=":id">
         <Route
           key={`${model.name}-member-show`}
           index
-          element={<ShowModel model={model} />}
+          element={
+            <ShowModel key={`${model.name}-member-show`} model={model} />
+          }
         />
         <Route
-          key={`${model.name}-member-edit`}
+          key={`${model.name}-member-show`}
           path="edit"
-          element={<EditModel model={model} />}
+          element={
+            <EditModel key={`${model.name}-member-show`} model={model} />
+          }
         />
       </Route>
     </Route>
