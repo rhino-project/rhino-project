@@ -1,28 +1,18 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import BaseAuthedPage from 'rhino/pages/BaseAuthedPage';
 import { MaxWidth } from 'rhino/components/layouts';
 
-const ModelPage = ({ breadcrumb, children, loading }) => {
+const ModelPage = ({ children, ...props }) => {
   return (
-    <BaseAuthedPage loading={loading}>
-      <MaxWidth>
-        {breadcrumb}
-        {children}
-      </MaxWidth>
+    <BaseAuthedPage {...props}>
+      <MaxWidth>{children}</MaxWidth>
     </BaseAuthedPage>
   );
 };
 
 ModelPage.propTypes = {
-  breadcrumb: PropTypes.node,
-  children: PropTypes.node,
-  loading: PropTypes.bool.isRequired
-};
-
-ModelPage.defaultProps = {
-  loading: false
+  children: PropTypes.node
 };
 
 export default ModelPage;
