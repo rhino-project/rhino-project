@@ -17,6 +17,7 @@ import ModelCellReference from './cells/ModelCellReference';
 import ModelCellString from './cells/ModelCellString';
 import ModelCellTime from './cells/ModelCellTime';
 import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
+import ModelCellIdentifier from './cells/ModellCellIdentifier';
 
 export const ModelCellBase = (props) => {
   const model = useModel(props.model);
@@ -51,6 +52,7 @@ export const ModelCellBase = (props) => {
       return <ModelCellFloat {...props} />;
 
     case 'identifier':
+      return <ModelCellIdentifier {...props} />;
     case 'integer':
       return <ModelCellInteger {...props} />;
 
