@@ -76,6 +76,7 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
     <AsyncTypeahead
       id={id}
       {...fieldProps}
+      minLength={0}
       inputProps={{ id: path }}
       options={results ?? []}
       selected={selectedOption}
