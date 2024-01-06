@@ -113,7 +113,7 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
             path.props?.accessor ||
             (isString(path.props?.path) ? path.props?.path : null);
           // FIXME: Any issue using idx as id?
-          const id = path.props?.id || idx.toString();
+          const id = path.props?.id || path.props?.path || idx.toString();
           const header =
             path.props?.header ||
             (() => (
@@ -132,7 +132,8 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
               header,
               cell,
               footer,
-              enableSorting: false
+              enableSorting: sortable.includes(id),
+              enableMultiSort: sortable.includes(id)
             });
           }
 
