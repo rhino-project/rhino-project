@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import { useModelFiltersContext } from 'rhino/hooks/controllers';
 
 const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
-  const { filter, limit = 100, offset, order, search } = props;
+  const { filter, limit = 10, offset, order, search } = props;
   const { attribute, operator, plainPath } = useModelFilterField(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(
@@ -46,7 +46,8 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
     limit,
     offset,
     order,
-    search: input || search
+    search: input || search,
+    queryOptions: { keepPreviousData: true }
   });
 
   const { setPill } = useModelFiltersContext();
