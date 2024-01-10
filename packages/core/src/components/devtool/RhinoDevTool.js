@@ -10,6 +10,7 @@ import { ModelShowContext } from '../models/ModelShowProvider';
 import { ModelEditContext } from '../models/ModelEditProvider';
 import { ModelCreateContext } from '../models/ModelCreateProvider';
 import { useLocalStorage } from 'react-use';
+import { pick } from 'lodash';
 
 const RhinoDevToolModelIndex = () => {
   const context = useContext(ModelIndexContext);
@@ -21,8 +22,7 @@ const RhinoDevToolModelIndex = () => {
       <summary>Context: Index</summary>
       <pre>
         {JSON.stringify(
-          context,
-          [
+          pick(context, [
             'parentId',
             'defaultState',
             'initialState',
@@ -47,7 +47,8 @@ const RhinoDevToolModelIndex = () => {
             'firstPage',
             'lastPage',
             'setPage'
-          ],
+          ]),
+          null,
           2
         )}
       </pre>
@@ -63,13 +64,7 @@ const RhinoDevToolModelShow = () => {
   return (
     <details>
       <summary>Context: Show</summary>
-      <pre>
-        {JSON.stringify(
-          context,
-          ['modelId', 'methods', 'paths', 'resolver', 'schema'],
-          2
-        )}
-      </pre>
+      <pre>{JSON.stringify(pick(context, ['modelId', 'paths']), null, 2)}</pre>
     </details>
   );
 };
@@ -82,20 +77,7 @@ const RhinoDevToolModelCreate = () => {
   return (
     <details>
       <summary>Context: Create</summary>
-      <pre>
-        {JSON.stringify(
-          context,
-          [
-            'parentId',
-            'parentModel',
-            'showParent',
-            'methods',
-            'paths',
-            'schema'
-          ],
-          2
-        )}
-      </pre>
+      <pre>{JSON.stringify(pick(context, ['parentId', 'paths']), null, 2)}</pre>
     </details>
   );
 };
@@ -108,9 +90,7 @@ const RhinoDevToolModelEdit = () => {
   return (
     <details>
       <summary>Context: Edit</summary>
-      <pre>
-        {JSON.stringify(context, ['modelId', 'methods', 'paths', 'schema'], 2)}
-      </pre>
+      <pre>{JSON.stringify(pick(context, ['modelId', 'paths']), null, 2)}</pre>
     </details>
   );
 };
@@ -141,7 +121,17 @@ const RhinoDevTool = () => {
             </div>
             <details>
               <summary>Model: {model.readableName}</summary>
-              <pre>{JSON.stringify(model, null, 2)}</pre>
+              <pre>
+                {JSON.stringify(
+                  model,
+                  // These are hoisted to the top of the model object
+                  (key, value) =>
+                    ['x-rhino-attribute', 'x-rhino-model'].includes(key)
+                      ? undefined
+                      : value,
+                  2
+                )}
+              </pre>
             </details>
             <RhinoDevToolModelShow />
             <RhinoDevToolModelIndex />
