@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { loadStripe as Stripe } from '@stripe/stripe-js';
 import { networkApiCall } from 'rhino/lib/networking';
+import { useRhinoConfig } from 'rhino/config';
 
 const GET_PRICES_API_PATH = 'api/subscription/prices';
 const CHECKOUT_API_PATH = 'api/subscription/create-checkout-session';
@@ -13,7 +14,10 @@ const SUCCESS_URL = '/settings?status=success&session_id={CHECKOUT_SESSION_ID}';
 
 // Create a Checkout Session with the selected plan ID
 export async function CreateCheckoutSession(price, base_owner_id) {
-  const stripe = await Stripe(import.meta.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
+  const {
+    env: { STRIPE_PUBLISHABLE_KEY }
+  } = useRhinoConfig();
+  const stripe = await Stripe(STRIPE_PUBLISHABLE_KEY);
   const {
     data: { sessionId }
   } = await networkApiCall(CHECKOUT_API_PATH, {
