@@ -1,6 +1,7 @@
 import { merge } from 'lodash';
 import { useMemo } from 'react';
 import rhinoConfig from 'rhino.config';
+import env from 'rhino/config/env';
 import {
   RhinoConfigAttributeComponentMap,
   RhinoConfigGlobalComponentMap,
@@ -23,6 +24,9 @@ export interface RhinoConfig {
   appName: string;
   enableModelRoutes: boolean;
 
+  // Config for env variables
+  env: typeof env;
+
   // Config for global, model and attribute components
   components:
     | RhinoConfigGlobalComponent
@@ -30,17 +34,11 @@ export interface RhinoConfig {
     | Record<string, Record<string, RhinoConfigAttributeComponent>>;
 }
 
-export const API_ROOT_PATH =
-  import.meta.env.VITE_API_ROOT_PATH || import.meta.env.REACT_APP_API_ROOT_PATH;
-
-export const DESIGN_SYSTEM_ENABLED =
-  import.meta.env.DEV ||
-  import.meta.env.REACT_APP_DESIGN_SYSTEM_ENABLED === 'true';
-
 export const defaultConfig: RhinoConfig = {
   version: 1,
   appName: 'BoilerPlate',
   enableModelRoutes: true,
+  env,
   components: {}
 };
 
