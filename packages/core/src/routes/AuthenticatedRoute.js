@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
 import { Navigate, useLocation } from 'react-router';
+import { usePrevious } from 'react-use';
 import { SplashScreen } from 'rhino/components/logos';
 import { useAuth } from 'rhino/hooks/auth';
 import { useSessionCreatePath } from 'rhino/hooks/routes';
-import { usePrevious } from 'rhino/hooks/util';
 import {
   getPrevPathSession,
   setPrevPathSession,
