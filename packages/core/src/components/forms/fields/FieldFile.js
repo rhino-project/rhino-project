@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { Input, Progress } from 'reactstrap';
 import { useController } from 'react-hook-form';
 import { useMemo, useRef, useState } from 'react';
+import { useUpdate } from 'react-use';
 import { useGlobalComponent } from 'rhino/hooks/overrides';
-import { useForceUpdate } from 'rhino/hooks/util';
 import Uploader from 'rhino/utils/uploader';
 import { CloseButton } from 'rhino/components/buttons';
 import { DangerAlert } from 'rhino/components/alerts';
@@ -32,7 +32,7 @@ export const FieldFileBase = ({ multiple, required, ...props }) => {
   const [failed, setFailed] = useState(false);
   const [errors, setErrors] = useState(null);
   const [clearCounter, setClearCounter] = useState(0);
-  const forceUpdate = useForceUpdate();
+  const forceUpdate = useUpdate();
   const uploadedFileIds = useRef([]);
   const uploadedFileNames = useRef({});
 
