@@ -283,6 +283,18 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
 </DocumentFragment>
 `;
 
+exports[`ModelIndexTable > should allow local overrides of Table 1`] = `
+<DocumentFragment>
+  <div
+    class="model-index-table model-index-table-user"
+  >
+    <div>
+      Foo
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelIndexTable > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
