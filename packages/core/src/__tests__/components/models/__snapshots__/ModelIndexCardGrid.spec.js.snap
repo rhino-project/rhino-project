@@ -1,0 +1,60 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelIndexCardGrid > should allow local overrides 1`] = `
+<DocumentFragment>
+  <div
+    class="model-index-table model-index-table-user"
+  >
+    <div
+      class="d-flex flex-row flex-wrap gap-2"
+    >
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+      <div>
+        Foo
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelIndexCardGrid > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelIndexCardGrid > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

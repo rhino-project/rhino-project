@@ -45,7 +45,8 @@ const getViewablePaths = (model) =>
 const defaultComponents = {
   ModelHeader,
   ModelCell,
-  ModelFooter
+  ModelFooter,
+  Table
 };
 
 const isDesc = (order) => order?.charAt(0) === '-';
@@ -61,7 +62,7 @@ const getSortableAttributes = (model) =>
   );
 
 export const ModelIndexTableBase = ({ overrides, ...props }) => {
-  const { ModelHeader, ModelCell, ModelFooter } = useOverrides(
+  const { ModelHeader, ModelCell, ModelFooter, Table } = useOverrides(
     defaultComponents,
     overrides
   );
