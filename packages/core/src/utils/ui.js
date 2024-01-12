@@ -7,7 +7,6 @@ import { useModel } from 'rhino/hooks/models';
 import { getParentModel, isBaseOwned } from 'rhino/utils/models';
 import BreadcrumbItemWrapper from '../components/breadcrumbs';
 import { getModelIndexPath, getModelShowPath } from './routes';
-import { Flag } from 'rhino/components/forms/fields/FieldCountry';
 
 export const useModelClassNames = (baseName, model, attribute = null) => {
   // FIXME: This is a hack for 2.0 legacy support - should be sourced from the model context
@@ -49,107 +48,6 @@ export const getDateTimeLongString = (attribute, value) =>
 
 export const getDateTimeDistanceString = (attribute, value) =>
   formatDistance(new Date(value), new Date(), { addSuffix: true });
-
-export const getStringForDisplay = (
-  attribute,
-  value,
-  { dateFormat = getDateTimeLongString, empty = '-' } = {}
-) => {
-  let displayString;
-
-  switch (attribute.type) {
-    case 'array':
-      switch (attribute.items?.type) {
-        case 'string':
-        case 'integer':
-          displayString = value?.join(', ');
-          break;
-        default:
-          if (
-            attribute?.items?.anyOf?.[0]?.['$ref'] ===
-            '#/components/schemas/active_storage_attachment'
-          ) {
-            displayString = `${value?.length} files`;
-          } else {
-            displayString = value?.map((v) => v.display_name).join(', ');
-          }
-      }
-      break;
-    case 'reference':
-      if (attribute.name.endsWith('_attachment')) {
-        if (!value) {
-          displayString = empty;
-        } else {
-          if (attribute.format === 'image') {
-            displayString = (
-              <img
-                src={value.url}
-                alt={value.display_name}
-                style={{ maxWidth: '100%', maxHeight: '100%' }}
-              />
-            );
-          } else {
-            displayString = (
-              <a href={value.url} onClick={(e) => e.stopPropagation()}>
-                {value.display_name}
-              </a>
-            );
-          }
-        }
-      } else {
-        displayString = value?.display_name;
-      }
-      break;
-    case 'boolean':
-      displayString = value ? 'Yes' : 'No';
-      break;
-    case 'string':
-      switch (attribute.format) {
-        case 'datetime':
-        case 'date':
-        case 'time':
-          if (value) {
-            displayString = dateFormat(attribute, value);
-          }
-          break;
-        case 'country':
-          if (value) {
-            displayString = <Flag country={value} />;
-          }
-          break;
-        default:
-          displayString = value;
-      }
-      break;
-    case 'decimal':
-    case 'float':
-    case 'number':
-      if (attribute.format === 'currency') {
-        const number = parseFloat(value);
-        if (isNaN(number)) {
-          displayString = null;
-        } else if (number < 0) {
-          displayString = `-$${(-1 * number).toFixed(2)}`;
-        } else {
-          displayString = `$${number.toFixed(2)}`;
-        }
-      } else {
-        displayString = value;
-      }
-      break;
-    default:
-      displayString = value;
-  }
-
-  // Try to determine when the value is actually empty
-  // Which does not include a number being 0 (int, float)
-  return displayString === null ||
-    displayString === undefined ||
-    displayString === '' ||
-    displayString?.length === 0
-    ? empty
-    : displayString;
-};
 
 export const breadcrumbChildrenFor = (model, resource, individual = false) => {
   let result = [];
@@ -254,16 +152,6 @@ export const optionsFromNumberRangeWithTitle = (first, last, title) => {
   );
 
   return options;
-};
-
-export const getOptionsList = (index) => {
-  if (!index) return [];
-
-  return index.results.map((result) => ({
-    key: result.id,
-    text: result.display_name,
-    value: result.id
-  }));
 };
 
 export const applyCurrencyMaskFromInput = ({
