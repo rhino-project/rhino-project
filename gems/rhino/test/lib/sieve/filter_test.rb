@@ -230,6 +230,46 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
     expect_results_from_blog1
   end
 
+  test "accepts operator gt_coalesce e.g. '?filter[blog][published_at][gt_coalesce]=1999-12-31'" do
+    @instance1.update published_at: nil
+    @params = { "blog" => {
+      "published_at" => { "gt_coalesce" => @instance2.published_at - 2.days }
+    } }
+    expect_results_from_blog2
+  end
+
+  test "accepts operator gteq_coalesce e.g. '?filter[blog][published_at][gteq_coalesce]=1999-12-31'" do
+    @instance1.update published_at: nil
+    @params = { "blog" => {
+      "published_at" => { "gteq_coalesce" => @instance2.published_at }
+    } }
+    expect_results_from_all
+  end
+
+  test "accepts operator lt_coalesce e.g. '?filter[blog][published_at][lt_coalesce]=1999-12-31'" do
+    @instance1.update published_at: nil
+    @params = { "blog" => {
+      "published_at" => { "lt_coalesce" => @instance2.published_at + 2.days }
+    } }
+    expect_results_from_blog2
+  end
+
+  test "accepts operator lteq_coalesce e.g. '?filter[blog][published_at][lteq_coalesce]=1999-12-31'" do
+    @instance1.update published_at: nil
+    @params = { "blog" => {
+      "published_at" => { "lteq_coalesce" => @instance2.published_at }
+    } }
+    expect_results_from_all
+  end
+
+  test "accepts operator eq_coalesce e.g. '?filter[blog][published_at][eq_coalesce]=1999-12-31'" do
+    @instance1.update published_at: nil
+    @params = { "blog" => {
+      "published_at" => { "eq_coalesce" => @instance2.published_at }
+    } }
+    expect_results_from_all
+  end
+
   test "accepts operator diff e.g. '?filter[blog][title][diff]=1999-12-31'" do
     @params = { "blog" => {
       "title" => {

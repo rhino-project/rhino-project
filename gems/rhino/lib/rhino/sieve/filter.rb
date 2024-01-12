@@ -106,10 +106,14 @@ module Rhino
       end
 
       BASIC_AREL_OPS = %w[eq gt lt gteq lteq].freeze
-      def merge_where_clause(base, scope, column_name, value, operation = nil) # rubocop:disable Metrics/MethodLength
+      BASIC_AREL_COALESCE_OPS = BASIC_AREL_OPS.map { |op| "#{op}_coalesce" }.freeze
+      def merge_where_clause(base, scope, column_name, value, operation = nil) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
         arel_node = base.arel_table[column_name]
         where_clause = case operation
                        when *BASIC_AREL_OPS then arel_node.send(operation, value)
+                       when *BASIC_AREL_COALESCE_OPS
+                         coalesce = Arel::Nodes::NamedFunction.new('COALESCE', [arel_node, Arel::Nodes.build_quoted(value)])
+                         coalesce.send(operation.split('_').first, value)
                        when 'diff' then arel_node.not_eq(value)
                        when 'is_null' then apply_is_null(arel_node, value)
                        when /^tree_(.*)/ then apply_tree(Regexp.last_match(1), base, column_name, arel_node, value)
