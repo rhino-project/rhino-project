@@ -1,0 +1,7 @@
+**/.next
+**/.nx/cache
+**/build
+**/coverage
+**/dist
+**/codemods/**/__testfixtures__
+pnpm-lock.yaml
