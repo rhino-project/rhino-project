@@ -1,5 +1,5 @@
 {
-  "name": "@rhino-project/eslint-plugin-rhino",
+  "name": "@rhino-project/eslint-plugin-rhino-project",
   "version": "0.1.3",
   "description": "ESLint plugin for Rhino",
   "author": "Eliya Cohen",

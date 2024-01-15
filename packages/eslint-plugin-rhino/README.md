@@ -1,4 +1,4 @@
-## eslint-plugin-rhino
+## eslint-plugin-rhino-project
 
 Eslint plugin for rhino-project
 
@@ -10,10 +10,10 @@ You'll first need to install [ESLint](https://eslint.org/):
 npm i eslint --save-dev
 ```
 
-Next, install `@rhino-project/eslint-plugin-rhino`:
+Next, install `@rhino-project/eslint-plugin-rhino-project`:
 
 ```sh
-npm install @rhino-project/eslint-plugin-rhino --save-dev
+npm install @rhino-project/eslint-plugin-rhino-project --save-dev
 ```
 
 ### Usage
@@ -22,7 +22,7 @@ Add `eslint-plugin-rhino` to the plugins section of your `.eslintrc` configurati
 
 ```json
 {
-  "plugins": ["rhino"]
+  "plugins": ["rhino-project"]
 }
 ```
 
@@ -32,7 +32,7 @@ To use the recommended configuration, extend it in your `.eslintrc` file:
 
 ```json
 {
-  "extends": ["plugin:rhino/recommended"]
+  "extends": ["plugin:rhino-project/recommended"]
 }
 ```
 
@@ -44,6 +44,6 @@ To use the all configuration, extend it in your `.eslintrc` file:
 
 ```json
 {
-  "extends": ["plugin:rhino/all"]
+  "extends": ["plugin:rhino-rpoject/all"]
 }
 ```

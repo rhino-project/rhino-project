@@ -9,8 +9,8 @@ import { fileURLToPath } from 'node:url'
  */
 export const packages = [
   {
-    name: '@rhino-project/eslint-plugin-rhino',
-    packageDir: 'packages/eslint-plugin-rhino',
+    name: '@rhino-project/eslint-plugin-rhino-project',
+    packageDir: 'packages/eslint-plugin-rhino-project',
   },
 ]
 

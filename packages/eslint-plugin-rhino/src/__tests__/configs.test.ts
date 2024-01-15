@@ -7,10 +7,10 @@ describe('configs', () => {
       {
         "recommended": {
           "plugins": [
-            "@rhino-project/eslint-plugin-rhino",
+            "@rhino-project/eslint-plugin-rhino-project",
           ],
           "rules": {
-            "@rhino-project/rhino/no-hooks-get-model": "warn",
+            "@rhino-project/rhino-project/no-hooks-get-model": "warn",
           },
         },
       }

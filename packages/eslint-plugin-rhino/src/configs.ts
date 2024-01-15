@@ -11,7 +11,7 @@ function generateRecommendedConfig(
       return {
         ...memo,
         ...(recommended
-          ? { [`@rhino-project/rhino/${name}`]: recommended }
+          ? { [`@rhino-project/rhino-project/${name}`]: recommended }
           : {}),
       }
     },
@@ -21,7 +21,7 @@ function generateRecommendedConfig(
 
 export const configs = {
   recommended: {
-    plugins: ['@rhino-project/eslint-plugin-rhino'],
+    plugins: ['@rhino-project/eslint-plugin-rhino-project'],
     rules: generateRecommendedConfig(rules),
   },
 }
