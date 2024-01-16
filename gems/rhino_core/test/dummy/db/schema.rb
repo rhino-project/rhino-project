@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_30_033523) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_17_214809) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -90,6 +90,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_30_033523) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "delegated_type_comments", force: :cascade do |t|
+    t.string "subject"
+    t.string "body"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "delegated_type_entries", force: :cascade do |t|
+    t.string "entryable_type"
+    t.integer "entryable_id"
+    t.bigint "user_id", null: false
+    t.string "string_field"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_delegated_type_entries_on_user_id"
+  end
+
+  create_table "delegated_type_messages", force: :cascade do |t|
+    t.string "subject"
+    t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -238,6 +263,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_30_033523) do
   add_foreign_key "blogs", "users"
   add_foreign_key "blogs_categories", "blogs"
   add_foreign_key "blogs_categories", "categories"
+  add_foreign_key "delegated_type_entries", "users"
   add_foreign_key "every_field_dummies", "users"
   add_foreign_key "every_fields", "users"
   add_foreign_key "every_manies", "every_fields"
