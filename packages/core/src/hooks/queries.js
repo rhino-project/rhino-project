@@ -8,11 +8,11 @@ import { useCallback, useMemo } from 'react';
 
 /**
  * @typedef {import('../utils/models.js').Model} Model
- * @typedef {import('react-query').QueryKey} QueryKey
- * @typedef {import('react-query').UseMutationOptions} UseMutationOptions
- * @typedef {import('react-query').UseMutationResult} UseMutationResult
- * @typedef {import('react-query').UseQueryOptions} UseQueryOptions
- * @typedef {import('react-query').UseQueryResult} UseQueryResult
+ * @typedef {import('@tanstack/react-query').QueryKey} QueryKey
+ * @typedef {import('@tanstack/react-query').UseMutationOptions} UseMutationOptions
+ * @typedef {import('@tanstack/react-query').UseMutationResult} UseMutationResult
+ * @typedef {import('@tanstack/react-query').UseQueryOptions} UseQueryOptions
+ * @typedef {import('@tanstack/react-query').UseQueryResult} UseQueryResult
  */
 
 export const modelKey = (model, action) =>
