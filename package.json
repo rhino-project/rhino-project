@@ -38,7 +38,7 @@
   "namespace": "@rhino-project",
   "devDependencies": {
     "@tanstack/config": "^0.1.8",
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
     "@types/eslint": "^8.56.0",
     "@types/node": "^18.19.3",
