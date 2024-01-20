@@ -12,6 +12,10 @@ export const packages = [
     name: '@rhino-project/eslint-plugin-rhino',
     packageDir: 'packages/eslint-plugin-rhino',
   },
+  {
+    name: '@rhino-project/vite-plugin-rhino',
+    packageDir: 'packages/vite-plugin-rhino',
+  },
 ]
 
 /**
