@@ -7,7 +7,7 @@ import { useForgotPasswordPath, useUserCreatePath } from 'rhino/hooks/routes';
 import { useSignInAction, useSignupAllowed } from 'rhino/queries/auth';
 import { oauthProviders } from 'rhino/utils/models';
 import AuthPage from './AuthPage';
-import { useRhinoConfig } from 'rhino/config';
+import { useRhinoConfig } from '@rhino-project/config';
 import PropTypes from 'prop-types';
 
 const SignInPage = (props) => {

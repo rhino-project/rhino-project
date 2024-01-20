@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { OmniIconButton } from 'rhino/components/buttons';
 
 import PropTypes from 'prop-types';
-import { useRhinoConfig } from 'rhino/config';
+import { useRhinoConfig } from '@rhino-project/config';
 
 const providerOverrides = {
   auth0: {

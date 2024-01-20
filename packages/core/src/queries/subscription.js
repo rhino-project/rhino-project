@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { loadStripe as Stripe } from '@stripe/stripe-js';
 import { networkApiCall } from 'rhino/lib/networking';
-import { useRhinoConfig } from 'rhino/config';
+import { useRhinoConfig } from '@rhino-project/config';
 
 const GET_PRICES_API_PATH = 'api/subscription/prices';
 const CHECKOUT_API_PATH = 'api/subscription/create-checkout-session';

@@ -6,7 +6,7 @@ import { useRootPath, useSessionCreatePath } from 'rhino/hooks/routes';
 import { useSignUpAction } from 'rhino/queries/auth';
 import { hasOrganizationsModule } from 'rhino/utils/models';
 import AuthPage from './AuthPage';
-import { useRhinoConfig } from 'rhino/config';
+import { useRhinoConfig } from '@rhino-project/config';
 import PropTypes from 'prop-types';
 
 const SignUpPage = (props) => {
