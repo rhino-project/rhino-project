@@ -3,7 +3,7 @@ import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { NavItem, NavSection } from 'rhino/components/nav';
-import { useRhinoConfig } from 'rhino/config';
+import { useRhinoConfig } from '@rhino-project/config';
 import { getBaseOwnedModels } from 'rhino/utils/models';
 import { getModelIndexPath } from 'rhino/utils/routes';
 

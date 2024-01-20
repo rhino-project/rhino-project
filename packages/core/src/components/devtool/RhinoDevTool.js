@@ -11,7 +11,7 @@ import { ModelEditContext } from '../models/ModelEditProvider';
 import { ModelCreateContext } from '../models/ModelCreateProvider';
 import { useLocalStorage } from 'react-use';
 import { pick } from 'lodash';
-import env from 'rhino/config/env';
+import env from '@rhino-project/config/env';
 
 const RhinoDevToolModelIndex = () => {
   const context = useContext(ModelIndexContext);
