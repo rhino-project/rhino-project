@@ -117,6 +117,8 @@ importers:
         specifier: ^8.56.0
         version: 8.56.0
 
+  packages/vite-plugin-rhino: {}
+
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
