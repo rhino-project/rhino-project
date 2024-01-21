@@ -29,7 +29,7 @@ const testQueryClient = () =>
 
 const abortFn = vi.fn();
 
-global.AbortController = vi.fn(() => ({
+window.global.AbortController = vi.fn(() => ({
   abort: abortFn
 }));
 
