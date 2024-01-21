@@ -128,7 +128,6 @@ export class NetworkingMock {
     hook = () => null,
     user = defaultUser
   }) {
-    // eslint-disable-next-line react/prop-types
     function AuthWrapper({ children }) {
       return (
         <QueryClientProvider client={queryClient}>
@@ -158,7 +157,6 @@ export class NetworkingMock {
   }
 
   async produceUnauthenticatedState({ queryClient, hook = () => null }) {
-    // eslint-disable-next-line react/prop-types
     function AuthWrapper({ children }) {
       return (
         <QueryClientProvider client={queryClient}>

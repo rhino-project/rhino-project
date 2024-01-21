@@ -80,7 +80,6 @@ export const ModelCellBase = (props) => {
         default:
           return <ModelCellString {...props} />;
       }
-    // eslint-disable-next-line no-fallthrough
     default:
       console.assert(false, 'No available cell for ', attribute);
   }

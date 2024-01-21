@@ -60,7 +60,6 @@ export const ModelFilterBase = (props) => {
         default:
           return <ModelFilterString {...props} />;
       }
-    // eslint-disable-next-line no-fallthrough
     default:
       console.assert(false, 'No available filter for ', attribute);
   }

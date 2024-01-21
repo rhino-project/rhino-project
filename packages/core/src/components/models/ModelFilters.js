@@ -61,7 +61,6 @@ export const ModelFiltersPills = ({ showClearAll = true }) => {
       {Object.keys(pills).map(
         (p) => pills[p] != null && <ModelFiltersPill key={p} path={p} />
       )}
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
       {showClearAll && (
         <a
           href="#"
