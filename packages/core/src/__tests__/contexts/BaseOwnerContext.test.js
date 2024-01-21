@@ -66,7 +66,6 @@ describe('BaseOwnerContext', () => {
   let result;
   let rerender;
 
-  // eslint-disable-next-line react/prop-types
   function Wrapper({ children }) {
     const queryClient = new QueryClient({
       defaultOptions: {

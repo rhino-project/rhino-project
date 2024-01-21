@@ -120,7 +120,6 @@ export const ModelDisplayGroupBase = ({ overrides, ...originalProps }) => {
       }
     case 'text':
       return <ModelDisplayGroupText {...props} />;
-    // eslint-disable-next-line no-fallthrough
     default:
       console.assert(false, 'No available display for ', attribute);
   }

@@ -14,7 +14,6 @@ describe('AuthContext', () => {
   const user = { id: 1, name: '', email: '' };
   let queryClient;
 
-  // eslint-disable-next-line react/prop-types
   function Wrapper({ children }) {
     return (
       <QueryClientProvider client={queryClient}>
