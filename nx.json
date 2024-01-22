@@ -9,7 +9,6 @@
       "analyzeSourceFiles": false
     }
   },
-  "nxCloudAccessToken": "MmE2Y2YwMzQtOWRlZi00YzgzLTgyYzctZjkxNTkwNzVmM2VkfHJlYWQ=",
   "parallel": 5,
   "namedInputs": {
     "sharedGlobals": [
@@ -60,5 +59,6 @@
       "outputs": ["{projectRoot}/build", "{projectRoot}/dist"],
       "cache": true
     }
-  }
+  },
+  "nxCloudAccessToken": "NGNkZWQ3MGUtZmY0NC00ODAwLWE3M2ItZWQwODUxMjJmMzg5fHJlYWQtd3JpdGU="
 }
