@@ -1,0 +1,12 @@
+// https://typescript-eslint.io/linting/typed-linting/monorepos#one-root-tsconfigjson
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // ensure that nobody can accidentally use this config for a build
+    "noEmit": true
+  },
+  "include": [
+    "src",
+    "cypress"
+  ]
+}
