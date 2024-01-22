@@ -2,12 +2,12 @@ import react from '@vitejs/plugin-react';
 import { defineConfig, loadEnv, transformWithEsbuild } from 'vite';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 import eslint from 'vite-plugin-eslint';
+import { RhinoProjectVite } from '@rhino-project/vite-plugin-rhino';
 
 // https://stackoverflow.com/questions/68241263/absolute-path-not-working-in-vite-project-react-ts
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 import fs from 'fs/promises';
-import path from 'node:path';
 import url from 'node:url';
 
 // The vitePlugin and esBuildPlugin are both needed to support JSX in JS and are based on:
@@ -19,12 +19,11 @@ function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-const nodeModulesStr = `${path.sep}node_modules${path.sep}`;
 // NOTE: Keep trailing slash to use resulting path in prefix matching.
 const srcDir = url.fileURLToPath(new URL('./src/', import.meta.url));
 // NOTE: Since ESBuild evaluates this regex using Go's engine, it is not
 // clear whether the JS-specific regex escape logic is sound.
-const srcRegex = new RegExp(`^${escapeRegExp(srcDir)}.*\.js$`);
+const srcRegex = new RegExp(`^${escapeRegExp(srcDir)}.*[.]js$`);
 
 const vitePlugin = (isProd) => ({
   name: 'js-in-jsx',
@@ -131,6 +130,7 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
+      RhinoProjectVite(),
       vitePlugin(mode === 'production'),
       envCheckPlugin(),
       react(),
