@@ -1,6 +1,6 @@
 {
   "name": "@rhino-project/config",
-  "version": "0.1.0",
+  "version": "0.7.0",
   "current": {
     "node": "v20.10.0",
     "npm": "10.2.3"
