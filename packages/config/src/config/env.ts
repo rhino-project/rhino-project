@@ -7,5 +7,5 @@ export default {
   ROLLBAR_ENV: import.meta.env.VITE_ROLLBAR_ENV || import.meta.env.MODE,
   ROLLBAR_ENABLED:
     import.meta.env.PROD || import.meta.env.VITE_ROLLBAR_ENABLED === 'true',
-  STRIPE_PUBLISHABLE_KEY: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY
-};
+  STRIPE_PUBLISHABLE_KEY: import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY,
+}
