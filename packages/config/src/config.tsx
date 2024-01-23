@@ -1,4 +1,3 @@
-import { merge } from 'lodash'
 import { useMemo } from 'react'
 import env from './env'
 import {
@@ -6,6 +5,7 @@ import {
   RhinoConfigGlobalComponentMap,
   RhinoConfigModelComponentMap,
 } from './components'
+import merge from 'lodash-es/merge'
 
 // We expect the user to create a file called rhino.config.js in the root of their project
 // @ts-ignore
