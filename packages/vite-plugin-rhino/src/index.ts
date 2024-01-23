@@ -4,13 +4,9 @@ export function RhinoProjectVite(): Plugin {
   return {
     name: 'vite-plugin-rhino',
     config: async () => ({
-      resolve: {
-        alias: [
-          {
-            find: '@rhino-project/rhino.config',
-            replacement: 'rhino.config',
-          },
-        ],
+      optimizeDeps: {
+        // Don't process with esbuild so that we can use resolveId for rhino.config
+        exclude: ['@rhino-project/config'],
       },
     }),
   }
