@@ -14,7 +14,7 @@ export function RhinoProjectVite(): Plugin {
       if (source === 'rhino.config') {
         // Replace 'rhino.config' with the path to the local file
         // FIXME: Allow the location to be configured
-        return path.resolve(__dirname, 'src/rhino.config.js')
+        return { id: 'src/rhino.config.js', external: 'relative' }
       }
       return null // Other imports are handled as usual
     },
