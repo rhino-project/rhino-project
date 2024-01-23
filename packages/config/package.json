@@ -1,15 +1,15 @@
 {
-  "name": "@rhino-project/vite-plugin-rhino",
+  "name": "@rhino-project/config",
   "version": "0.7.0",
-  "description": "Vite plugin for Rhino Project",
+  "description": "",
   "author": "JP Rosevear",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/rhino-project/rhino-project.git",
-    "directory": "packages/vite-plugin-rhino"
+    "directory": "packages/config"
   },
-  "homepage": "https://github.com/rhino-project/rhino-project",
+  "homepage": "https://rhino-project.org",
   "type": "module",
   "types": "dist/esm/index.d.ts",
   "main": "dist/cjs/index.cjs",
@@ -31,17 +31,30 @@
   "scripts": {
     "clean": "rimraf ./dist && rimraf ./coverage",
     "test:types": "tsc",
+    "test:lib": "vitest",
+    "test:lib:dev": "pnpm run test:lib --watch",
     "test:build": "publint --strict",
     "build": "vite build"
   },
-  "keywords": [
-    "rhino-project"
-  ],
+  "keywords": [],
   "engines": {
     "node": ">=18"
   },
   "files": [
     "dist",
-    "src/**"
-  ]
+    "src"
+  ],
+  "dependencies": {
+    "lodash": "4.17.21"
+  },
+  "devDependencies": {
+    "@types/lodash": "4.14.170",
+    "@vitejs/plugin-react": "^4.2.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16"
+  }
 }
