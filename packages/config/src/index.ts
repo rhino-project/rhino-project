@@ -1,1 +1,1 @@
-export { useRhinoConfig } from './config'
+export * from './config'

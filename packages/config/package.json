@@ -45,10 +45,10 @@
     "src"
   ],
   "dependencies": {
-    "lodash": "4.17.21"
+    "lodash-es": "4.17.21"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.170",
+    "@types/lodash-es": "^4.17.0",
     "@vitejs/plugin-react": "^4.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
