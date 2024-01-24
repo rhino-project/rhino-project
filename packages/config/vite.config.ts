@@ -17,7 +17,7 @@ const config = defineConfig({
 
 export default mergeConfig(
   tanstackBuildConfig({
-    entry: './src/index.ts',
+    entry: ['./src/index.ts', './src/env.ts'],
     srcDir: './src',
   }),
   config,
