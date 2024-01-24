@@ -37,15 +37,13 @@ export function RhinoProjectVite(): Plugin {
 
     load(id) {
       if (id === RESOLVED_ENV_MODULE_ID) {
-        let envExports = `export const env = {`
+        let envExports = `export default {`
         Object.keys(CONFIG.env).forEach((key) => {
           const baseKey = key.replace(/^VITE_/, '')
 
           envExports = envExports + `${baseKey}: import.meta.env.${key},`
         })
         envExports = envExports + `}`
-
-        console.log('Vite Config in load hook:', envExports)
 
         return envExports
       }
