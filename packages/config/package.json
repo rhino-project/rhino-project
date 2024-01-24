@@ -25,6 +25,16 @@
         "default": "./dist/cjs/index.cjs"
       }
     },
+    "./env": {
+      "import": {
+        "types": "./dist/esm/env.d.ts",
+        "default": "./dist/esm/env.js"
+      },
+      "require": {
+        "types": "./dist/cjs/env.d.cts",
+        "default": "./dist/cjs/env.cjs"
+      }
+    },
     "./package.json": "./package.json"
   },
   "sideEffects": false,
