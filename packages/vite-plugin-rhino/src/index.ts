@@ -1,7 +1,7 @@
 import path from 'path'
 import { Plugin, ResolvedConfig } from 'vite'
 
-const CONFIG_MODULE_ID = 'rhino.confg'
+const CONFIG_MODULE_ID = 'rhino.config'
 
 const ENV_MODULE_ID = 'virtual:@rhino-project/config/env'
 const RESOLVED_ENV_MODULE_ID = '\0' + ENV_MODULE_ID
