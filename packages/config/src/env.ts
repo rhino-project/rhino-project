@@ -4,4 +4,9 @@ import env from 'virtual:@rhino-project/config/env'
 
 export default {
   ...env,
+
+  // Compound env vars
+  DESIGN_SYSTEM_ENABLED: env.DEV || env.VITE_DESIGN_SYSTEM_ENABLED === 'true',
+  ROLLBAR_ENV: env.VITE_ROLLBAR_ENV || env.MODE,
+  ROLLBAR_ENABLED: env.PROD || env.VITE_ROLLBAR_ENABLED === 'true',
 }
