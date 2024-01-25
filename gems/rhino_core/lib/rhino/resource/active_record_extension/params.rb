@@ -28,8 +28,8 @@ module Rhino
               reference.is_a?(Hash) ? reference.keys.first : reference
             end
 
-            def assoc_from_sym(sym)
-              assoc = reflect_on_association(sym)
+            def assoc_from_sym(sym, base = self)
+              assoc = base.reflect_on_association(sym)
 
               # Delegate types support bolstered by rhino/rhino/app/overrides/active_record/delegated_type_override.rb
               return assoc.active_record.send("#{assoc.name}_types").map(&:constantize) if assoc.options[:polymorphic]
@@ -187,7 +187,7 @@ module Rhino
                   # if its a cardinal though, such as blog: 1 instead of blog: {name : 'my blog' }
                   # fallback to transforming to the foreign key
                   if param_value.is_a?(ActionController::Parameters)
-                    klasses = assoc_from_sym(param_key)
+                    klasses = assoc_from_sym(param_key, parent)
 
                     next hash[attr_key] = klasses.map { |klass| parent.transform_params_recursive(param_value, klass) }.reduce(:merge)
                   end
