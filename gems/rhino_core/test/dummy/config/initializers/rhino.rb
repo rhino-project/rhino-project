@@ -23,5 +23,6 @@ Rhino.setup do |config|
   config.resources += ['User', 'Account']
   config.resources += ['Blog', 'BlogPost', 'BlogDummy', 'BlogsCategory', 'Category', 'OgMetaTag', 'GoogleSheet']
   config.resources += ['EveryField', 'EveryFieldDummy', 'EveryMany']
+  config.resources += ['Parent', 'ChildOne', 'ChildMany', 'GrandChildOne', 'GrandChildMany']
   config.resources += ['DelegatedTypeEntry', 'DelegatedTypeMessage', 'DelegatedTypeComment']
 end

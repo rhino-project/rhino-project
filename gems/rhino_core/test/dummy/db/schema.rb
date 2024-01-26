@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_17_214809) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_25_214542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,6 +92,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_17_214809) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "child_manies", force: :cascade do |t|
+    t.bigint "parent_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_child_manies_on_parent_id"
+  end
+
+  create_table "child_ones", force: :cascade do |t|
+    t.bigint "parent_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_child_ones_on_parent_id"
   end
 
   create_table "delegated_type_comments", force: :cascade do |t|
@@ -182,6 +198,22 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_17_214809) do
     t.index ["every_field_id"], name: "index_every_manies_on_every_field_id"
   end
 
+  create_table "grand_child_manies", force: :cascade do |t|
+    t.bigint "child_many_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_many_id"], name: "index_grand_child_manies_on_child_many_id"
+  end
+
+  create_table "grand_child_ones", force: :cascade do |t|
+    t.bigint "child_one_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_one_id"], name: "index_grand_child_ones_on_child_one_id"
+  end
+
   create_table "og_meta_tags", force: :cascade do |t|
     t.bigint "blog_post_id", null: false
     t.string "tag_name"
@@ -189,6 +221,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_17_214809) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["blog_post_id"], name: "index_og_meta_tags_on_blog_post_id"
+  end
+
+  create_table "parents", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_parents_on_user_id"
   end
 
   create_table "property_lists", force: :cascade do |t|
@@ -263,10 +303,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_17_214809) do
   add_foreign_key "blogs", "users"
   add_foreign_key "blogs_categories", "blogs"
   add_foreign_key "blogs_categories", "categories"
+  add_foreign_key "child_manies", "parents"
+  add_foreign_key "child_ones", "parents"
   add_foreign_key "delegated_type_entries", "users"
   add_foreign_key "every_field_dummies", "users"
   add_foreign_key "every_fields", "users"
   add_foreign_key "every_manies", "every_fields"
+  add_foreign_key "grand_child_manies", "child_manies"
+  add_foreign_key "grand_child_ones", "child_ones"
   add_foreign_key "og_meta_tags", "blog_posts"
+  add_foreign_key "parents", "users"
   add_foreign_key "taggings", "tags"
 end
