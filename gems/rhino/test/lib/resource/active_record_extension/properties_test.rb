@@ -36,6 +36,12 @@ class ActiveRecordExtensionPropertyTest < ActiveSupport::TestCase
     }) <= EveryField.describe_property("string_readonly")[:"x-rhino-attribute"]
   end
 
+  test "delegated type references should produce multiple anyOf" do
+    assert_equal [{ :$ref => "#/components/schemas/delegated_type_message" },
+                  { :$ref => "#/components/schemas/delegated_type_comment" }],
+                 DelegatedTypeEntry.describe_property("entryable")[:anyOf]
+  end
+
   test "tag list is an array of strings" do
     assert_equal({
       "x-rhino-attribute": {

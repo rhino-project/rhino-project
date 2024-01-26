@@ -425,9 +425,11 @@ export const useModelCreateContext = () => {
 };
 
 // We removed ownedBy from the creatable attributes because it is set automatically
+// We removed anyOf with more than one element because we don't support them automatically
 const getCreatablePaths = (model) =>
   getCreatableAttributes(model)
     .filter((a) => a.name !== model.ownedBy)
+    .filter((a) => !a.anyOf || a.anyOf?.length <= 1)
     .map((a) => a.name);
 
 export const useModelCreateController = (options) => {
@@ -615,6 +617,7 @@ export const useModelFiltersController = (options) => {
         .filter(
           (a) => a.name !== model.ownedBy && !a.name.endsWith('_attachment')
         )
+        .filter((a) => !a.anyOf || a.anyOf?.length <= 1)
         .map((a) => a.name),
     [paths, model]
   );

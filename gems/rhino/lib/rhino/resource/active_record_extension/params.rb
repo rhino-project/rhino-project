@@ -29,7 +29,12 @@ module Rhino
             end
 
             def assoc_from_sym(sym)
-              reflect_on_association(sym).klass
+              assoc = reflect_on_association(sym)
+
+              # Delegate types support bolstered by rhino/rhino/app/overrides/active_record/delegated_type_override.rb
+              return assoc.active_record.send("#{assoc.name}_types").map(&:constantize) if assoc.options[:polymorphic]
+
+              [assoc.klass]
             end
 
             def props_by_type(type)
@@ -53,9 +58,11 @@ module Rhino
                   next unless refs_index.key?(prop_sym)
 
                   next_refs = refs_index[prop_sym].is_a?(Hash) ? refs_index[prop_sym][prop_sym] : []
-                  assoc = assoc_from_sym(prop_sym)
+                  klasses = assoc_from_sym(prop_sym)
 
-                  next params << { prop.to_s => assoc.send(:readable_params, type, next_refs) }
+                  assoc_params = klasses.map { |klass| klass.send(:readable_params, type, next_refs) }
+
+                  next params << { prop.to_s => assoc_params.flatten.uniq }
                 end
 
                 # JSON columns need special handling - allow all the nested params
@@ -75,7 +82,7 @@ module Rhino
             def writeable_params(type, _refs = references) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
               params = []
 
-              props_by_type(type).each do |prop|
+              props_by_type(type).each do |prop| # rubocop:disable Metrics/BlockLength
                 desc = describe_property(prop)
                 prop_sym = prop.to_sym
 
@@ -87,7 +94,7 @@ module Rhino
                   # We only accept if the active record accepts it
                   next unless nested_attributes_options.key?(prop_sym) || desc.dig(:items, :anyOf)[0]&.dig(:$ref)
 
-                  assoc = assoc_from_sym(prop_sym)
+                  assoc = assoc_from_sym(prop_sym).first
 
                   # This does not handle nested for a polymorphic model, but neither does rails
                   # FIXME: Do we need to handle :update_only option?
@@ -123,9 +130,16 @@ module Rhino
 
                 # Accept { blog_post: { :id }} as well as { blog_post: 3 } below
                 if desc[:type] == :reference
-                  assoc = assoc_from_sym(prop_sym)
+                  klasses = assoc_from_sym(prop_sym)
 
-                  params << { prop => [assoc.identifier_property] }
+                  params << if nested_attributes_options.key?(prop_sym)
+                    assoc_params = klasses.map(&:identifier_property)
+                    assoc_params << klasses.map { |klass| klass.send(:writeable_params, "update") }
+
+                    { prop => assoc_params.flatten.uniq }
+                  else
+                    { prop => klasses.map(&:identifier_property).uniq }
+                  end
                 end
 
                 # Otherwise prop and param are equivalent
@@ -173,7 +187,9 @@ module Rhino
                   # if its a cardinal though, such as blog: 1 instead of blog: {name : 'my blog' }
                   # fallback to transforming to the foreign key
                   if param_value.is_a?(ActionController::Parameters)
-                    next hash[attr_key] = parent.transform_params_recursive(param_value, association.klass)
+                    klasses = assoc_from_sym(param_key)
+
+                    next hash[attr_key] = klasses.map { |klass| parent.transform_params_recursive(param_value, klass) }.reduce(:merge)
                   end
                 end
 

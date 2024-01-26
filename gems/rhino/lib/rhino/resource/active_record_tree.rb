@@ -20,7 +20,7 @@ module Rhino
         def describe_property(property)
           return super unless property == "children"
 
-          super.deep_merge({ type: :array, items: ref_descriptor(model_name.element) })
+          super.deep_merge({ type: :array, items: ref_descriptor([model_name.element]) })
         end
 
         # FIXME: Need to recurse to a MAX DEPTH
