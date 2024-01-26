@@ -38,12 +38,10 @@ module Rhino
             property.is_a?(Hash) ? property.keys.first : property
           end
 
-          def ref_descriptor(name)
+          def ref_descriptor(names)
             {
               type: :reference,
-              anyOf: [
-                { :$ref => "#/components/schemas/#{name.singularize}" }
-              ]
+              anyOf: names.map { |name| { :$ref => "#/components/schemas/#{name.singularize}" } }
             }
           end
 
@@ -84,16 +82,26 @@ module Rhino
             { "x-rhino-attribute-array": array_options.merge(_properties_array[ref_sym] || {}) }
           end
 
-          def property_type_and_format_ref(name)
-            # FIXME: The tr hack is to match how model_name in rails handles modularized classes
-            class_name = reflections[name].options[:class_name]&.underscore&.tr('/', '_') || name
-            return ref_descriptor(class_name) unless reflections[name].macro == :has_many
+          # rubocop:todo Metrics/PerceivedComplexity
+          # rubocop:todo Metrics/AbcSize
+          def property_type_and_format_ref(name) # rubocop:todo Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/PerceivedComplexity
+            assoc = reflections[name]
+            klasses = if assoc.options[:polymorphic]
+             assoc.active_record.send("#{assoc.name}_types").map(&:constantize).map { |m| m.model_name.singular }
+            else
+              # FIXME: The tr hack is to match how model_name in rails handles modularized classes
+              [assoc.options[:class_name]&.underscore&.tr('/', '_') || name]
+            end
+
+            return ref_descriptor(klasses) unless reflections[name].macro == :has_many
 
             {
               type: :array,
-              items: ref_descriptor(class_name).merge(nested_array_options(name))
+              items: ref_descriptor(klasses).merge(nested_array_options(name))
             }
           end
+          # rubocop:enable Metrics/AbcSize
+          # rubocop:enable Metrics/PerceivedComplexity
 
           def property_type_and_format(name) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
             # Special cases
