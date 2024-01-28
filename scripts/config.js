@@ -1,7 +1,7 @@
 // @ts-check
 
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 /**
  * List your npm packages here. The first package will be used as the versioner.
@@ -10,17 +10,17 @@ import { fileURLToPath } from 'node:url'
 export const packages = [
   {
     name: '@rhino-project/eslint-plugin-rhino',
-    packageDir: 'packages/eslint-plugin-rhino',
+    packageDir: 'packages/eslint-plugin-rhino'
   },
   {
     name: '@rhino-project/vite-plugin-rhino',
-    packageDir: 'packages/vite-plugin-rhino',
+    packageDir: 'packages/vite-plugin-rhino'
   },
   {
     name: '@rhino-project/config',
-    packageDir: 'packages/config',
-  },
-]
+    packageDir: 'packages/config'
+  }
+];
 
 /**
  * Contains config for publishable branches.
@@ -28,25 +28,25 @@ export const packages = [
  */
 export const branchConfigs = {
   main: {
-    prerelease: false,
+    prerelease: false
   },
   next: {
-    prerelease: true,
+    prerelease: true
   },
   beta: {
-    prerelease: true,
+    prerelease: true
   },
   alpha: {
-    prerelease: true,
+    prerelease: true
   },
   rc: {
-    prerelease: true,
+    prerelease: true
   },
   v4: {
     prerelease: false,
-    previousVersion: true,
-  },
-}
+    previousVersion: true
+  }
+};
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-export const rootDir = resolve(__dirname, '..')
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
+export const rootDir = resolve(__dirname, '..');

@@ -1,15 +1,15 @@
-import { AST_NODE_TYPES } from '@typescript-eslint/utils'
-import { createRule } from '../../utils/create-rule'
-import { ASTUtils } from '../../utils/ast-utils'
+import { AST_NODE_TYPES } from '@typescript-eslint/utils';
+import { createRule } from '../../utils/create-rule';
+import { ASTUtils } from '../../utils/ast-utils';
 
-export const name = 'no-hooks-get-model'
+export const name = 'no-hooks-get-model';
 
 const queryHooks = [
   'useModelIndex',
   'useModelCreate',
   'useModelUpdate',
-  'useModelDelete',
-]
+  'useModelDelete'
+];
 
 export const rule = createRule({
   name,
@@ -18,15 +18,15 @@ export const rule = createRule({
     docs: {
       description:
         "suggest replacing `getModel('...')` with `'...'` for hooks.",
-      recommended: 'warn',
+      recommended: 'warn'
     },
     messages: {
       replaceGetModel:
-        "Replace `getModel('...'))` usage with direct string usage for hooks.",
+        "Replace `getModel('...'))` usage with direct string usage for hooks."
     },
     hasSuggestions: true,
     fixable: 'code', // Indicates that the rule is automatically fixable
-    schema: [], // no options
+    schema: [] // no options
   },
   defaultOptions: [],
 
@@ -37,9 +37,9 @@ export const rule = createRule({
           !ASTUtils.isIdentifierWithOneOfNames(node.callee, queryHooks) ||
           node.parent?.type !== AST_NODE_TYPES.VariableDeclarator
         ) {
-          return
+          return;
         }
-        const firstArgument = node.arguments[0]
+        const firstArgument = node.arguments[0];
 
         // Check if the first argument is a `getModel` call
         if (
@@ -51,10 +51,10 @@ export const rule = createRule({
           ) ||
           !helpers.isRhinoImport(firstArgument.callee)
         ) {
-          return
+          return;
         }
         // Ensure `getModel` is called with a string literal
-        const getModelArg = firstArgument.arguments[0]
+        const getModelArg = firstArgument.arguments[0];
         if (
           !(
             getModelArg &&
@@ -62,7 +62,7 @@ export const rule = createRule({
             typeof getModelArg.value === 'string'
           )
         ) {
-          return
+          return;
         }
 
         context.report({
@@ -72,31 +72,31 @@ export const rule = createRule({
             {
               messageId: 'replaceGetModel',
               fix(fixer) {
-                const sourceCode = context.getSourceCode()
-                const getModelText = sourceCode.getText(getModelArg)
-                let replacementText = `useModelIndex(${getModelText}`
+                const sourceCode = context.getSourceCode();
+                const getModelText = sourceCode.getText(getModelArg);
+                let replacementText = `useModelIndex(${getModelText}`;
 
                 if (node.arguments.length > 1) {
                   // Include additional arguments, correctly handling commas
                   const argsAfterGetModel = sourceCode.text
                     .slice(firstArgument.range[1], node.range[1])
-                    .trim()
+                    .trim();
 
                   const additionalArgs = argsAfterGetModel.startsWith(',')
                     ? argsAfterGetModel
-                    : ', ' + argsAfterGetModel
+                    : ', ' + argsAfterGetModel;
 
-                  replacementText += additionalArgs
+                  replacementText += additionalArgs;
                 } else {
-                  replacementText += ')'
+                  replacementText += ')';
                 }
 
-                return fixer.replaceText(node, replacementText)
-              },
-            },
-          ],
-        })
-      },
-    }
-  },
-})
+                return fixer.replaceText(node, replacementText);
+              }
+            }
+          ]
+        });
+      }
+    };
+  }
+});

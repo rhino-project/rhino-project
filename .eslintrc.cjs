@@ -10,39 +10,39 @@ const config = {
     'plugin:@typescript-eslint/recommended',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'prettier',
+    'prettier'
   ],
   env: {
     browser: true,
-    es2020: true,
+    es2020: true
   },
   parserOptions: {
     tsconfigRootDir: __dirname,
     project: './tsconfig.json',
     sourceType: 'module',
-    ecmaVersion: 2020,
+    ecmaVersion: 2020
   },
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+      '@typescript-eslint/parser': ['.ts', '.tsx']
     },
     'import/resolver': {
-      typescript: true,
+      typescript: true
     },
     react: {
-      version: 'detect',
-    },
+      version: 'detect'
+    }
   },
   rules: {
     '@typescript-eslint/array-type': [
       'error',
-      { default: 'generic', readonly: 'generic' },
+      { default: 'generic', readonly: 'generic' }
     ],
     '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/consistent-type-imports': [
       'error',
-      { prefer: 'type-imports' },
+      { prefer: 'type-imports' }
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
@@ -53,7 +53,7 @@ const config = {
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-inferrable-types': [
       'error',
-      { ignoreParameters: true },
+      { ignoreParameters: true }
     ],
     'import/default': 'off',
     'import/export': 'off',
@@ -75,22 +75,22 @@ const config = {
           'sibling',
           'index',
           'object',
-          'type',
-        ],
-      },
+          'type'
+        ]
+      }
     ],
     'no-redeclare': 'off',
     'no-shadow': 'error',
-    'sort-imports': ['error', { ignoreDeclarationSort: true }],
+    'sort-imports': ['error', { ignoreDeclarationSort: true }]
   },
   overrides: [
     {
       files: ['**/*.test.{ts,tsx}'],
       rules: {
-        '@typescript-eslint/no-unnecessary-condition': 'off',
-      },
-    },
-  ],
-}
+        '@typescript-eslint/no-unnecessary-condition': 'off'
+      }
+    }
+  ]
+};
 
-module.exports = config
+module.exports = config;
