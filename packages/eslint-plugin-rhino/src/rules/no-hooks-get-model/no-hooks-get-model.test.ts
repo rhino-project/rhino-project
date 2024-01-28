@@ -1,11 +1,11 @@
-import { ESLintUtils } from '@typescript-eslint/utils'
-import { normalizeIndent } from '../../utils/test-utils'
-import { rule } from './no-hooks-get-model.rule'
+import { ESLintUtils } from '@typescript-eslint/utils';
+import { normalizeIndent } from '../../utils/test-utils';
+import { rule } from './no-hooks-get-model.rule';
 
 const ruleTester = new ESLintUtils.RuleTester({
   parser: '@typescript-eslint/parser',
-  settings: {},
-})
+  settings: {}
+});
 
 ruleTester.run('no-hooks-get-model', rule, {
   valid: [
@@ -14,7 +14,7 @@ ruleTester.run('no-hooks-get-model', rule, {
       code: normalizeIndent`
       import { getModel } from '../../rhino/utils/models';
       const { model } = useModelIndex("model", { queryOptions: { disabled: true } });
-      `,
+      `
     },
     {
       name: 'should not fail when getModel is used without rhino import',
@@ -22,8 +22,8 @@ ruleTester.run('no-hooks-get-model', rule, {
       import { getModel } from 'other-package';
 
       const { model } = useModelIndex(getModel("model"), { queryOptions: { disabled: true } });
-      `,
-    },
+      `
+    }
   ],
   invalid: [
     {
@@ -43,11 +43,11 @@ ruleTester.run('no-hooks-get-model', rule, {
                 import { getModel } from '../../rhino/utils/models';
 
                 const { model } = useModelIndex("model", { queryOptions: { disabled: true } });
-                `,
-            },
-          ],
-        },
-      ],
-    },
-  ],
-})
+                `
+            }
+          ]
+        }
+      ]
+    }
+  ]
+});

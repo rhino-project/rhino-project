@@ -9,7 +9,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
-    'plugin:@rhino-project/rhino/recommended',
+    'plugin:@rhino-project/rhino/recommended'
   ],
   plugins: [
     'jsx-a11y',
@@ -17,7 +17,7 @@ module.exports = {
     'react-hooks',
     'react-refresh',
     '@tanstack/query',
-    '@rhino-project/rhino',
+    '@rhino-project/rhino'
   ],
   ignorePatterns: [
     'dist',
@@ -25,7 +25,7 @@ module.exports = {
     // These are helper scripts that are not part of the codebase
     'copyAndReplace.js',
     'copyAndReplaceDisplay.js',
-    'extractComponents.js',
+    'extractComponents.js'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -34,35 +34,35 @@ module.exports = {
     project: [
       './tsconfig.json',
       './tsconfig.node.json',
-      './tsconfig.cypress.json',
+      './tsconfig.cypress.json'
     ],
-    tsconfigRootDir: __dirname,
+    tsconfigRootDir: __dirname
   },
   globals: {
-    vi: 'readonly',
+    vi: 'readonly'
   },
   overrides: [
     {
       files: ['src/**/*.{ts,tsx}'],
-      extends: ['plugin:@typescript-eslint/recommended-type-checked'],
+      extends: ['plugin:@typescript-eslint/recommended-type-checked']
     },
     {
       files: ['src/__tests__/**'],
       plugins: ['vitest', 'testing-library'],
-      extends: ['plugin:vitest/recommended', 'plugin:testing-library/react'],
+      extends: ['plugin:vitest/recommended', 'plugin:testing-library/react']
     },
     {
       files: ['cypress/**'],
       plugins: ['cypress'],
-      extends: ['plugin:cypress/recommended'],
-    },
+      extends: ['plugin:cypress/recommended']
+    }
   ],
   rules: {
     'no-console': [
       'warn',
       {
-        allow: ['assert', 'error', 'warn'],
-      },
+        allow: ['assert', 'error', 'warn']
+      }
     ],
     'no-restricted-globals': 'off',
     'no-var': 'error',
@@ -74,13 +74,13 @@ module.exports = {
       'warn',
       {
         allowConstantExport: true,
-        checkJS: true,
-      },
-    ],
+        checkJS: true
+      }
+    ]
   },
   settings: {
     react: {
-      version: 'detect',
-    },
-  },
-}
+      version: 'detect'
+    }
+  }
+};

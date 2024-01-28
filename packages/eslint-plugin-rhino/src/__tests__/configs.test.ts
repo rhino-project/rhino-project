@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest'
-import { configs } from '../configs'
+import { describe, expect, it } from 'vitest';
+import { configs } from '../configs';
 
 describe('configs', () => {
   it('should match snapshot', () => {
@@ -14,6 +14,6 @@ describe('configs', () => {
           },
         },
       }
-    `)
-  })
-})
+    `);
+  });
+});

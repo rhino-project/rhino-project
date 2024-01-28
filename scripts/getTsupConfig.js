@@ -1,6 +1,6 @@
 // @ts-check
 
-import { esbuildPluginFilePathExtensions } from 'esbuild-plugin-file-path-extensions'
+import { esbuildPluginFilePathExtensions } from 'esbuild-plugin-file-path-extensions';
 
 /**
  * @param {Object} opts - Options for building configurations.
@@ -16,8 +16,8 @@ export function modernConfig(opts) {
     dts: true,
     sourcemap: true,
     clean: true,
-    esbuildPlugins: [esbuildPluginFilePathExtensions({ esmExtension: 'js' })],
-  }
+    esbuildPlugins: [esbuildPluginFilePathExtensions({ esmExtension: 'js' })]
+  };
 }
 
 /**
@@ -34,6 +34,6 @@ export function legacyConfig(opts) {
     dts: true,
     sourcemap: true,
     clean: true,
-    esbuildPlugins: [esbuildPluginFilePathExtensions({ esmExtension: 'js' })],
-  }
+    esbuildPlugins: [esbuildPluginFilePathExtensions({ esmExtension: 'js' })]
+  };
 }
