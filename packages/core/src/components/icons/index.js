@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import icons from 'assets/images/bootstrap-icons.svg';
+import icons from 'bootstrap-icons/bootstrap-icons.svg';
 
 // eslint-disable-next-line react/display-name
 export const Icon = forwardRef(
