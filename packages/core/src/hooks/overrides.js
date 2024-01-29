@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import globalOverrides from 'models/overrides';
 import {
   clone,
   cloneDeep,
@@ -141,7 +140,6 @@ export const useGlobalComponent = (
   }, [overrideName, BaseComponent]);
 
   const { attribute, attributeModel, model } = scope;
-  const propModel = useModel(props?.model);
 
   const computedOverrides = useMemo(() => {
     const scopedOverrides = {};
@@ -157,21 +155,8 @@ export const useGlobalComponent = (
         // Model overrides
         components?.[model?.model]?.[key],
         // Global overrides
-        components[key],
+        components[key]
         // Legacy overrides
-        globalOverrides?.[propModel?.model]?.index?.[key],
-        defaultComponents?.['ModelShow']
-          ? globalOverrides?.[propModel?.model]?.show
-          : undefined,
-        globalOverrides?.[propModel?.model]?.show?.[key],
-        defaultComponents?.['ModelCreate']
-          ? globalOverrides?.[propModel?.model]?.create
-          : undefined,
-        globalOverrides?.[propModel?.model]?.create?.[key],
-        defaultComponents?.['ModelEdit']
-          ? globalOverrides?.[propModel?.model]?.edit
-          : undefined,
-        globalOverrides?.[propModel?.model]?.edit?.[key]
       ].find((override) => override !== undefined);
 
       if (overrideComponent !== undefined) {
@@ -185,14 +170,7 @@ export const useGlobalComponent = (
       // paths we want to replace
       arrayOverride
     );
-  }, [
-    components,
-    defaultComponents,
-    model,
-    propModel,
-    attributeModel,
-    attribute
-  ]);
+  }, [components, defaultComponents, model, attributeModel, attribute]);
 
   const globalOverride = useOverrides(defaultComponents, computedOverrides);
   const GlobalOverrideComponent = globalOverride[overrideName];
