@@ -19,7 +19,7 @@ module.exports = (file, api) => {
       }
 
       // Replace with '@rhino-project' and update the path
-      path.node.source.value = `@rhino-project${additionalPath}`;
+      path.node.source.value = `@rhino-project/core${additionalPath}`;
     }
   });
 

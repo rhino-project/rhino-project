@@ -1,3 +1,3 @@
-import { getModel } from '@rhino-project/utils/models'
-import DefaultRhino from '@rhino-project/components/model'
-import DefaultRelativeRhino from '@rhino-project/utils'
+import { getModel } from '@rhino-project/core/utils/models'
+import DefaultRhino from '@rhino-project/core/components/model'
+import DefaultRelativeRhino from '@rhino-project/core/utils'
