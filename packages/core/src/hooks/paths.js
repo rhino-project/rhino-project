@@ -1,7 +1,6 @@
-import { Children, cloneElement, isValidElement, useMemo } from 'react';
-import { useRoles } from './owner';
-import ModelFieldGroup from 'rhino/components/models/ModelFieldGroup';
 import { isObject, uniqBy } from 'lodash';
+import { useMemo } from 'react';
+import { useRoles } from './owner';
 
 export const usePaths = (paths, resource) => {
   const roles = useRoles();
@@ -25,23 +24,4 @@ export const usePaths = (paths, resource) => {
     }
     return computedPaths;
   }, [paths, roles, resource]);
-};
-
-export const useRenderPaths = (paths, options) => {
-  const { Component = ModelFieldGroup, props } = options;
-
-  const renderPaths = useMemo(
-    () =>
-      Children.map(paths, (path) =>
-        isValidElement(path) ? (
-          cloneElement(path, props)
-        ) : (
-          <Component path={path} {...props} />
-        )
-      ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [paths, props]
-  );
-
-  return renderPaths;
 };
