@@ -135,6 +135,9 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
+      vite-plugin-externalize-deps:
+        specifier: ^0.8.0
+        version: 0.8.0(vite@5.1.3)
 
   packages/eslint-plugin-rhino:
     dependencies:

@@ -1,18 +1,15 @@
 import { tanstackBuildConfig } from '@tanstack/config/build';
 import { defineConfig, mergeConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
+import { externalizeDeps } from 'vite-plugin-externalize-deps';
 
 const config = defineConfig({
-  plugins: [react()],
-  build: {
-    rollupOptions: {
-      external: ['rhino.config', 'virtual:@rhino-project/config/env'],
-      output: {
-        preserveModules: false,
-        preserveModulesRoot: 'src'
-      }
-    }
-  }
+  plugins: [
+    externalizeDeps({
+      include: ['rhino.config', 'virtual:@rhino-project/config/env']
+    }),
+    react()
+  ]
 });
 
 export default mergeConfig(
