@@ -1,8 +1,8 @@
 import { useModelShowContext } from 'rhino/hooks/controllers';
 import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
-import ModelSection from './ModelSection';
-import { useRenderPaths } from 'rhino/hooks/paths';
+import { useRenderPaths } from 'rhino/hooks/renderPaths';
 import ModelDisplayGroup from './ModelDisplayGroup';
+import ModelSection from './ModelSection';
 import FormErrors from '../forms/FormErrors';
 
 export const ModelShowDescriptionBase = (props) => {
