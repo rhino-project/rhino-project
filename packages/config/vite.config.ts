@@ -6,7 +6,7 @@ const config = defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['react', 'rhino.config', 'virtual:@rhino-project/config/env'],
+      external: ['rhino.config', 'virtual:@rhino-project/config/env'],
       output: {
         preserveModules: false,
         preserveModulesRoot: 'src'
