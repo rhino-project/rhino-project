@@ -39,6 +39,11 @@
       "inputs": ["default", "^public"],
       "cache": true
     },
+    "test:format": {
+      "dependsOn": ["^build"],
+      "inputs": ["default", "^public"],
+      "cache": true
+    },
     "test:types": {
       "dependsOn": ["^build"],
       "inputs": ["default", "^public"],
