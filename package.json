@@ -11,8 +11,8 @@
     "clean": "pnpm --filter \"./packages/**\" run clean",
     "preinstall": "node -e \"if(process.env.CI == 'true') {console.log('Skipping preinstall...'); process.exit(1)}\" || npx -y only-allow pnpm",
     "test": "pnpm run test:ci",
-    "test:pr": "nx affected --targets=test:format,test:lib,test:types,test:build,build --exclude=examples/**",
-    "test:ci": "nx run-many --targets=test:format,test:lib,test:types,test:build,build --exclude=examples/**",
+    "test:pr": "nx affected --targets=test:format,test:lib,test:types,test:build,build",
+    "test:ci": "nx run-many --targets=test:format,test:lib,test:types,test:build,build",
     "test:format": "pnpm run prettier --check",
     "test:lib": "nx affected --target=test:lib --exclude=examples/**",
     "test:lib:dev": "pnpm run test:lib && nx watch --all -- pnpm run test:lib",
@@ -34,7 +34,7 @@
   },
   "namespace": "@rhino-project",
   "devDependencies": {
-    "@tanstack/config": "^0.2.1",
+    "@tanstack/config": "^0.4.4",
     "@types/eslint": "^8.56.2",
     "@types/node": "^20.10.7",
     "@types/react": "^18.2.47",
@@ -52,7 +52,7 @@
     "rimraf": "^5.0.5",
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.12",
-    "vitest": "^1.1.3"
+    "vite": "^5.1.3",
+    "vitest": "^1.2.2"
   }
 }
