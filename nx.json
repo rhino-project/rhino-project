@@ -4,11 +4,7 @@
     "defaultBase": "main"
   },
   "defaultBase": "main",
-  "pluginsConfig": {
-    "@nrwl/js": {
-      "analyzeSourceFiles": false
-    }
-  },
+  "nxCloudAccessToken": "ZjU1ZTVmODktNGZiNy00YjdhLWI3OGUtZmUxYmQ5NDFiMzEyfHJlYWQtd3JpdGU=",
   "parallel": 5,
   "namedInputs": {
     "sharedGlobals": [
@@ -59,6 +55,5 @@
       "outputs": ["{projectRoot}/build", "{projectRoot}/dist"],
       "cache": true
     }
-  },
-  "nxCloudAccessToken": "MDg5ZDQ5ZDMtODBmYS00MDUxLTkzMDItNjI0NTUwN2IxOTQ5fHJlYWQtd3JpdGU="
+  }
 }
