@@ -1,12 +1,12 @@
 import { IconButton } from 'rhino/components/buttons';
-import { useRenderPaths } from 'rhino/hooks/paths';
-import ModelFilterGroup from './ModelFilterGroup';
 import {
   useModelFiltersContext,
   useModelFiltersController,
   useModelIndexContext
 } from 'rhino/hooks/controllers';
+import { useRenderPaths } from 'rhino/hooks/renderPaths';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
+import ModelFilterGroup from './ModelFilterGroup';
 import ModelFiltersProvider from './ModelFiltersProvider';
 
 export const ModelFiltersPill = ({ path }) => {

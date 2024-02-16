@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
+import { useRenderPaths } from 'rhino/hooks/renderPaths';
 import { useModelEditContext } from '../../hooks/controllers';
 import {
   useGlobalComponentForModel,
@@ -8,9 +9,8 @@ import {
 } from '../../hooks/overrides';
 import ModelEditModalActions from './ModelEditModalActions';
 import ModelEditSimple from './ModelEditSimple';
-import ModelSection from './ModelSection';
 import ModelFieldGroup from './ModelFieldGroup';
-import { useRenderPaths } from 'rhino/hooks/paths';
+import ModelSection from './ModelSection';
 
 export const ModelEditModalHeader = (props) => {
   const { model } = useModelEditContext();
