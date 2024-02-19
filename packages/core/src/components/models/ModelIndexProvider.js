@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+import env from '@rhino-project/config/env';
 import { ModelContext } from './ModelProvider';
 import RhinoDevTool from '../devtool/RhinoDevTool';
 
@@ -11,9 +12,7 @@ const ModelIndexProvider = ({ children, ...props }) => {
     <ModelContext.Provider value={{ model }}>
       <ModelIndexContext.Provider value={{ ...props }}>
         {/* Don't show dev tool if we're in a nested index */}
-        {import.meta.env.MODE === 'development' && !props.parentId && (
-          <RhinoDevTool />
-        )}
+        {env.MODE === 'development' && !props.parentId && <RhinoDevTool />}
         {children}
       </ModelIndexContext.Provider>
     </ModelContext.Provider>
