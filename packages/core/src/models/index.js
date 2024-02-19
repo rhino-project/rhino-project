@@ -1,6 +1,7 @@
 import { each } from 'lodash';
 
 import staticModels from 'models/static';
+import env from '@rhino-project/config/env';
 
 const MODEL_PATH = '/api/info/openapi';
 
@@ -45,7 +46,7 @@ const hoistRhino = (data) => {
 
 class ModelLoader {
   async loadModels(forceStatic = false) {
-    if (forceStatic || import.meta.env.PROD) {
+    if (forceStatic || env.PROD) {
       this.api = hoistRhino(staticModels);
     } else {
       const { networkApiCall } = await import('../lib/networking');
