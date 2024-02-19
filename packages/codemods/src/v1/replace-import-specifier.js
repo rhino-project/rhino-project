@@ -16,17 +16,26 @@ module.exports = (file, api) => {
         additionalPath = pathSections.join('/');
       }
 
-      // Convert default imports to named imports if necessary
-      if (
-        path.node.specifiers.length === 1 &&
-        path.node.specifiers[0].type === 'ImportDefaultSpecifier'
-      ) {
-        const defaultImportName = path.node.specifiers[0].local.name;
-        // Replace the default import with a named import
-        path.node.specifiers = [
-          jscodeshift.importSpecifier(jscodeshift.identifier(defaultImportName))
-        ];
-      }
+      // Initialize an array to hold all specifiers as named imports
+      const newSpecifiers = [];
+
+      // Convert default import to named import if it exists
+      path.node.specifiers.forEach((specifier) => {
+        if (specifier.type === 'ImportDefaultSpecifier') {
+          // Use the default import's name as a named import
+          newSpecifiers.push(
+            jscodeshift.importSpecifier(
+              jscodeshift.identifier(specifier.local.name)
+            )
+          );
+        } else if (specifier.type === 'ImportSpecifier') {
+          // Keep named imports as they are
+          newSpecifiers.push(specifier);
+        }
+      });
+
+      // Update the specifiers on the import declaration
+      path.node.specifiers = newSpecifiers;
 
       // Update the import path
       path.node.source.value = `@rhino-project/core${additionalPath}`;
