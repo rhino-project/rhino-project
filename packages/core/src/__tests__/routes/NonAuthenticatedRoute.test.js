@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Navigate, Route, Routes } from 'react-router';
+import { MemoryRouter, Navigate, Route, Routes } from 'react-router-dom';
 import NonAuthenticatedRoute from 'rhino/routes/NonAuthenticatedRoute';
 import * as routes from 'rhino/utils/routes';
 
