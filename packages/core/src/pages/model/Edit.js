@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import ModelEdit from 'rhino/components/models/ModelEdit';
 import ModelPage from './ModelPage';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 
 const Edit = ({ model }) => {
   const { id } = useParams();

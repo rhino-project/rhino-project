@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Children, useCallback, useMemo } from 'react';
 
 import { useFormContext } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useModelEditContext } from 'rhino/hooks/controllers';
 import { useBackHistory } from '../../hooks/history';
 import {

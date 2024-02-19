@@ -1,6 +1,6 @@
 import qs from 'qs';
 import { useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useBaseOwnerId } from './owner';
 
 export const useParsedSearch = () => {

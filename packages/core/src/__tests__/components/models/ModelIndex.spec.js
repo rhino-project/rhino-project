@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import { sharedModelTests } from './sharedModelTests';
 import ModelIndex from 'rhino/components/models/ModelIndex';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('ModelIndex', () => {
   const Foo = () => <div>Foo</div>;

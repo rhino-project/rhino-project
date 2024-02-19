@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { Navigate, useLocation } from 'react-router';
+import { Navigate, useLocation } from 'react-router-dom';
 import { usePrevious } from 'react-use';
 import { SplashScreen } from 'rhino/components/logos';
 import { useAuth } from 'rhino/hooks/auth';
