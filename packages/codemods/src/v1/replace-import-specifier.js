@@ -1,3 +1,4 @@
+// https://chat.openai.com/share/e/5481e14a-668e-48f5-a049-eacb8a8e1e60
 module.exports = (file, api) => {
   const jscodeshift = api.jscodeshift;
   const root = jscodeshift(file.source);
@@ -16,29 +17,54 @@ module.exports = (file, api) => {
         additionalPath = pathSections.join('/');
       }
 
-      // Initialize an array to hold all specifiers as named imports
-      const newSpecifiers = [];
+      // Define the new hook special cases
+      const isHookSpecialCase =
+        match[0].endsWith('rhino/hooks/auth') ||
+        match[0].endsWith('rhino/hooks/owner') ||
+        match[0].endsWith('rhino/hooks/history');
 
-      // Convert default import to named import if it exists
-      path.node.specifiers.forEach((specifier) => {
-        if (specifier.type === 'ImportDefaultSpecifier') {
-          // Use the default import's name as a named import
-          newSpecifiers.push(
-            jscodeshift.importSpecifier(
+      // Existing special cases
+      const isModelLoaderSpecialCase =
+        path.node.specifiers.length === 1 &&
+        path.node.specifiers[0].type === 'ImportDefaultSpecifier' &&
+        path.node.specifiers[0].local.name === 'modelLoader' &&
+        match[0].endsWith('rhino/models');
+
+      const isRoutesSpecialCase = match[0].endsWith('rhino/utils/routes');
+      const isModelsSpecialCase = match[0].endsWith('rhino/utils/models');
+      const isModelRoutesSpecialCase = match[0].endsWith('rhino/routes/model');
+
+      if (
+        !isModelLoaderSpecialCase &&
+        !isRoutesSpecialCase &&
+        !isModelsSpecialCase &&
+        !isModelRoutesSpecialCase &&
+        !isHookSpecialCase
+      ) {
+        // Convert all specifiers to named imports for general cases
+        const newSpecifiers = path.node.specifiers.map((specifier) => {
+          if (specifier.type === 'ImportDefaultSpecifier') {
+            return jscodeshift.importSpecifier(
               jscodeshift.identifier(specifier.local.name)
-            )
-          );
-        } else if (specifier.type === 'ImportSpecifier') {
-          // Keep named imports as they are
-          newSpecifiers.push(specifier);
-        }
-      });
+            );
+          }
+          return specifier;
+        });
+        path.node.specifiers = newSpecifiers;
+      }
 
-      // Update the specifiers on the import declaration
-      path.node.specifiers = newSpecifiers;
-
-      // Update the import path
-      path.node.source.value = `@rhino-project/core${additionalPath}`;
+      // Update the import path based on special cases
+      if (isModelLoaderSpecialCase) {
+        path.node.source.value = `@rhino-project/core/models`;
+      } else if (isRoutesSpecialCase || isModelsSpecialCase) {
+        path.node.source.value = `@rhino-project/core/utils`;
+      } else if (isModelRoutesSpecialCase) {
+        path.node.source.value = `@rhino-project/core/routes`;
+      } else if (isHookSpecialCase) {
+        path.node.source.value = `@rhino-project/core/hooks`;
+      } else {
+        path.node.source.value = `@rhino-project/core${additionalPath}`;
+      }
     }
   });
 
