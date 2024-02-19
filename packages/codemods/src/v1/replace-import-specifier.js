@@ -6,19 +6,29 @@ module.exports = (file, api) => {
     const match = path.node.source.value.match(/^(rhino|^(\.\.\/)+rhino)(.*)$/);
     if (match) {
       let additionalPath = match[3];
-
-      // Split the path and check the last section
       const pathSections = additionalPath.split('/');
+
       if (
         pathSections.length > 1 &&
         /^[A-Z]/.test(pathSections[pathSections.length - 1])
       ) {
-        // Drop the last section if it starts with a capital letter
         pathSections.pop();
         additionalPath = pathSections.join('/');
       }
 
-      // Replace with '@rhino-project' and update the path
+      // Convert default imports to named imports if necessary
+      if (
+        path.node.specifiers.length === 1 &&
+        path.node.specifiers[0].type === 'ImportDefaultSpecifier'
+      ) {
+        const defaultImportName = path.node.specifiers[0].local.name;
+        // Replace the default import with a named import
+        path.node.specifiers = [
+          jscodeshift.importSpecifier(jscodeshift.identifier(defaultImportName))
+        ];
+      }
+
+      // Update the import path
       path.node.source.value = `@rhino-project/core${additionalPath}`;
     }
   });
