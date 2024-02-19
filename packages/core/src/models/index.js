@@ -48,7 +48,7 @@ class ModelLoader {
     if (forceStatic || import.meta.env.PROD) {
       this.api = hoistRhino(staticModels);
     } else {
-      const { networkApiCall } = await import('rhino/lib/networking');
+      const { networkApiCall } = await import('../lib/networking');
 
       return networkApiCall(MODEL_PATH).then(
         (response) => (this.api = hoistRhino(response.data))
