@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true, 'cypress/globals': true },
+  env: { browser: true, es2020: true },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -11,14 +11,7 @@ module.exports = {
     'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:@rhino-project/rhino/recommended'
   ],
-  plugins: [
-    'jsx-a11y',
-    'react',
-    'react-hooks',
-    'react-refresh',
-    '@tanstack/query',
-    '@rhino-project/rhino'
-  ],
+  plugins: ['react', 'react-hooks', 'react-refresh', '@rhino-project/rhino'],
   ignorePatterns: [
     'dist',
     '.eslintrc.cjs',
@@ -31,11 +24,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: [
-      './tsconfig.json',
-      './tsconfig.node.json',
-      './tsconfig.cypress.json'
-    ],
+    project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname
   },
   globals: {
@@ -50,11 +39,6 @@ module.exports = {
       files: ['src/__tests__/**'],
       plugins: ['vitest', 'testing-library'],
       extends: ['plugin:vitest/recommended', 'plugin:testing-library/react']
-    },
-    {
-      files: ['cypress/**'],
-      plugins: ['cypress'],
-      extends: ['plugin:cypress/recommended']
     }
   ],
   rules: {
