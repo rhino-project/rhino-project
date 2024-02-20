@@ -28,7 +28,7 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
                   width="12"
                 >
                   <use
-                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-up"
+                    xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#caret-up"
                   />
                 </svg>
                 <svg
@@ -37,7 +37,7 @@ exports[`ModelIndexTable > should allow local overrides 1`] = `
                   width="12"
                 >
                   <use
-                    xlink:href="/src/assets/images/bootstrap-icons.svg#caret-down"
+                    xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#caret-down"
                   />
                 </svg>
               </div>
