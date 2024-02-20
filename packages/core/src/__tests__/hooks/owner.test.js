@@ -63,7 +63,7 @@ describe('useBaseOwner', () => {
 
 let mockParams;
 const mockUseParamsFn = vi.fn(() => mockParams);
-vi.mock('react-router', () => ({
+vi.mock('react-router-dom', () => ({
   useParams: () => mockUseParamsFn()
 }));
 
