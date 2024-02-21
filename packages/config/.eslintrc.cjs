@@ -7,11 +7,9 @@ module.exports = {
     'plugin:deprecation/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:prettier/recommended',
-    'plugin:@tanstack/eslint-plugin-query/recommended',
-    'plugin:@rhino-project/rhino/recommended'
+    'plugin:prettier/recommended'
   ],
-  plugins: ['react', 'react-hooks', 'react-refresh', '@rhino-project/rhino'],
+  plugins: ['react', 'react-hooks', 'react-refresh'],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -20,18 +18,10 @@ module.exports = {
     project: ['./tsconfig.json', './tsconfig.node.json'],
     tsconfigRootDir: __dirname
   },
-  globals: {
-    vi: 'readonly'
-  },
   overrides: [
     {
       files: ['src/**/*.{ts,tsx}'],
       extends: ['plugin:@typescript-eslint/recommended-type-checked']
-    },
-    {
-      files: ['src/__tests__/**'],
-      plugins: ['vitest', 'testing-library'],
-      extends: ['plugin:vitest/recommended', 'plugin:testing-library/react']
     }
   ],
   rules: {
