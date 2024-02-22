@@ -10,7 +10,7 @@ root    = File.expand_path("..", __dir__)
 version = File.read("#{root}/RHINO_PROJECT_VERSION").strip
 tag     = "v#{version}"
 
-(FRAMEWORKS + ["rhino"]).each do |framework|
+(FRAMEWORKS + ["rhino_project"]).each do |framework|
   namespace framework do
     gem     = "pkg/#{framework}-#{version}.gem"
     gemspec = "#{framework}.gemspec"
@@ -21,13 +21,14 @@ tag     = "v#{version}"
 
     task :update_versions do
       glob = root.dup
-      if framework == "rails"
+      if framework == "rhino_project"
         glob << "/version.rb"
       else
         glob << "/#{framework}/lib/*"
-        glob << "/gem_version.rb"
+        glob << "/version.rb"
       end
 
+      puts glob
       file = Dir[glob].first
       ruby = File.read(file)
 
@@ -49,7 +50,7 @@ tag     = "v#{version}"
       File.open(file, "w") { |f| f.write ruby }
     end
 
-    task gem => %w(update_versions pkg) do
+    task gem => %w(update_versions) do
       cmd = ""
       cmd += "cd #{framework} && " unless framework == "rails"
       cmd += "bundle exec rake package && " unless framework == "rails"
@@ -145,7 +146,7 @@ namespace :changelog do
 end
 
 namespace :all do
-  task build: FRAMEWORKS.map { |f| "#{f}:build"           } + ["rails:build"]
+  task build: FRAMEWORKS.map { |f| "#{f}:build"           } + ["rhino:build"]
   task update_versions: FRAMEWORKS.map { |f| "#{f}:update_versions" } + ["rails:update_versions"]
   task install: FRAMEWORKS.map { |f| "#{f}:install"         } + ["rails:install"]
   task push: FRAMEWORKS.map { |f| "#{f}:push"            } + ["rails:push"]

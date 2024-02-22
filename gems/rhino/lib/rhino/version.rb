@@ -1,5 +1,17 @@
 # frozen_string_literal: true
 
 module Rhino
-  VERSION = "0.2.0"
+  # Returns the currently loaded version of Active Job as a +Gem::Version+.
+  def self.gem_version
+    Gem::Version.new VERSION::STRING
+  end
+
+  module VERSION
+    MAJOR = 0
+    MINOR = 20
+    TINY  = 0
+    PRE   = "beta.3"
+
+    STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
+  end
 end

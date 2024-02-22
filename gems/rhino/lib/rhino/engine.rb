@@ -130,6 +130,7 @@ module Rhino
     end
 
     def self.run_from_dev_setup?
+      puts "**** #{Rake.application.top_level_tasks} ****"
       Rake.application.top_level_tasks == ["rhino:dev:setup"]
     end
   end
