@@ -1,12 +1,10 @@
 $LOAD_PATH.push File.expand_path('lib', __dir__)
-
-# Maintain your gem's version:
-require 'rhino/version'
+version = File.read(File.expand_path("../RHINO_PROJECT_VERSION", __dir__)).strip
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |spec|
   spec.name        = 'rhino'
-  spec.version     = Rhino::VERSION
+  spec.version     = version
   spec.authors     = ['JP Rosevear']
   spec.email       = ['jprosevear@gmail.com']
   spec.homepage    = ''
