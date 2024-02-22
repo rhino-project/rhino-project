@@ -31,7 +31,5 @@ FieldInputBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldInput = (props) =>
+export const FieldInput = (props) =>
   useGlobalComponent('FieldInput', FieldInputBase, props);
-
-export default FieldInput;

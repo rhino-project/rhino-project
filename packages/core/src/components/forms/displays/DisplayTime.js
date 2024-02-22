@@ -27,7 +27,5 @@ export const DisplayTimeBase = ({
   );
 };
 
-const DisplayTime = (props) =>
+export const DisplayTime = (props) =>
   useGlobalComponent('DisplayTime', DisplayTimeBase, props);
-
-export default DisplayTime;

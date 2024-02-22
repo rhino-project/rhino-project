@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingInteger = (props) => {
   return <FieldGroupFloatingInteger {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupInteger = (props) =>
+export const ModelFieldGroupInteger = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupInteger',
     ModelFieldGroupIntegerVertical,
     props
   );
-
-export default ModelFieldGroupInteger;

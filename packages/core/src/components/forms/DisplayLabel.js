@@ -28,7 +28,5 @@ export const DisplayLabelBase = ({ label, ...props }) => {
   );
 };
 
-const DisplayLabel = (props) =>
+export const DisplayLabel = (props) =>
   useGlobalComponent('DisplayLabel', DisplayLabelBase, props);
-
-export default DisplayLabel;

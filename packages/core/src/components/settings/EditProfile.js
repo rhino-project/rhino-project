@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form';
 import FormProvider from '../forms/FormProvider';
 import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
 
-const EditProfile = () => {
+export const EditProfile = () => {
   const { model, resource: account } = useModelShow('account', null);
   const { mutate, isLoading, isSuccess, error } = useModelUpdate(model);
 
@@ -70,5 +70,3 @@ const EditProfile = () => {
     </>
   );
 };
-
-export default EditProfile;

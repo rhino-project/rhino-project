@@ -8,7 +8,7 @@ import { useBaseOwnerNavigation } from '../hooks/history';
 import { useRootPath } from '../hooks/routes';
 import { BaseOwnerContext, useBaseOwnerId } from '../hooks/owner';
 
-const BaseOwnerProvider = ({ children }) => {
+export const BaseOwnerProvider = ({ children }) => {
   const user = useUser();
   const baseOwnerId = useBaseOwnerId();
   const baseOwnerNavigation = useBaseOwnerNavigation();
@@ -77,5 +77,3 @@ const BaseOwnerProvider = ({ children }) => {
 BaseOwnerProvider.propTypes = {
   children: PropTypes.node
 };
-
-export default BaseOwnerProvider;

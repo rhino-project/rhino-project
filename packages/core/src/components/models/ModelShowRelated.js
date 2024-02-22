@@ -58,7 +58,5 @@ ModelShowRelatedBase.defaultProps = {
   getRelatedModels
 };
 
-const ModelShowRelated = (props) =>
+export const ModelShowRelated = (props) =>
   useGlobalComponentForModel('ModelShowRelated', ModelShowRelatedBase, props);
-
-export default ModelShowRelated;

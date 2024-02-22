@@ -8,7 +8,5 @@ export const DisplayReferenceBase = (props) => {
   return <DisplayString {...props} accessor={accessor} />;
 };
 
-const DisplayReference = (props) =>
+export const DisplayReference = (props) =>
   useGlobalComponent('DisplayReference', DisplayReferenceBase, props);
-
-export default DisplayReference;

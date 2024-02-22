@@ -30,7 +30,5 @@ export const FieldLabelBase = ({ label, ...props }) => {
   );
 };
 
-const FieldLabel = (props) =>
+export const FieldLabel = (props) =>
   useGlobalComponent('FieldLabel', FieldLabelBase, props);
-
-export default FieldLabel;

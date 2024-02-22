@@ -57,11 +57,9 @@ export const ModelEditableCellReferenceBase = ({ model, ...props }) => {
   );
 };
 
-const ModelEditableCellReference = (props) =>
+export const ModelEditableCellReference = (props) =>
   useGlobalComponentForAttribute(
     'ModelEditableCellReference',
     ModelEditableCellReferenceBase,
     props
   );
-
-export default ModelEditableCellReference;

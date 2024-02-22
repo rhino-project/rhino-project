@@ -35,11 +35,9 @@ export const DisplayLayoutHorizontalBase = ({ overrides, ...props }) => {
   );
 };
 
-const DisplayLayoutHorizontal = (props) =>
+export const DisplayLayoutHorizontal = (props) =>
   useGlobalComponent(
     'DisplayLayoutHorizontal',
     DisplayLayoutHorizontalBase,
     props
   );
-
-export default DisplayLayoutHorizontal;

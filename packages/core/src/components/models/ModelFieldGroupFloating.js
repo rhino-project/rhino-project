@@ -48,5 +48,3 @@ const defaultComponents = {
 export const ModelFieldGroupFloating = (props) => {
   return <ModelFieldGroupBase overrides={defaultComponents} {...props} />;
 };
-
-export default ModelFieldGroupFloating;

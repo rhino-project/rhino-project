@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingArray = (props) => {
   return <DisplayGroupFloatingArray {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupArray = (props) =>
+export const ModelDisplayGroupArray = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupArray',
     ModelDisplayGroupVerticalArray,
     props
   );
-
-export default ModelDisplayGroupArray;

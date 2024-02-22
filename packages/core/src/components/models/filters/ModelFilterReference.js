@@ -10,7 +10,7 @@ import FilterSelectControlled from '../../forms/filters/FilterSelectControlled';
 import { useModelFilterField } from '../../../hooks/form';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 
-const ModelFilterReference = ({ model, path, ...props }) => {
+export const ModelFilterReference = ({ model, path, ...props }) => {
   const { filter, limit = 100, offset, order, search } = props;
   const { attribute, operator, plainPath } = useModelFilterField(model, path);
 
@@ -79,5 +79,3 @@ ModelFilterReference.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterReference;

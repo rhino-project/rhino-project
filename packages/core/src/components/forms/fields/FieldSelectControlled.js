@@ -23,7 +23,5 @@ export const FieldSelectControlledBase = ({ children, title, ...props }) => {
   );
 };
 
-const FieldSelectControlled = (props) =>
+export const FieldSelectControlled = (props) =>
   useGlobalComponent('FieldSelectControlled', FieldSelectControlledBase, props);
-
-export default FieldSelectControlled;

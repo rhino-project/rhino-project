@@ -5,5 +5,3 @@ export const PageAnalytics = ({ children }) => {
 
   return children;
 };
-
-export default PageAnalytics;

@@ -26,7 +26,5 @@ export const FieldGroupFloatingTime = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupTime = (props) =>
+export const FieldGroupTime = (props) =>
   useGlobalComponent('FieldGroupTime', FieldGroupTimeBase, props);
-
-export default FieldGroupTime;

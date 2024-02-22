@@ -13,7 +13,5 @@ const ModelFilterGroupBase = ({ ...props }) => {
   return <FilterGroup overrides={overrides} {...props} />;
 };
 
-const ModelFilterGroup = (props) =>
+export const ModelFilterGroup = (props) =>
   useGlobalComponentForModel('ModelFilterGroup', ModelFilterGroupBase, props);
-
-export default ModelFilterGroup;

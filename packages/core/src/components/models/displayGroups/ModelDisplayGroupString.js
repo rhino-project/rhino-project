@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingString = (props) => {
   return <DisplayGroupFloatingString {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupString = (props) =>
+export const ModelDisplayGroupString = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupString',
     ModelDisplayGroupVerticalString,
     props
   );
-
-export default ModelDisplayGroupString;

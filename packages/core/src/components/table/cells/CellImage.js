@@ -19,7 +19,5 @@ export const CellImageBase = ({ empty = '-', ...props }) => {
   );
 };
 
-const CellImage = (props) =>
+export const CellImage = (props) =>
   useGlobalComponent('CellImage', CellImageBase, props);
-
-export default CellImage;

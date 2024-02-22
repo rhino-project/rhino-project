@@ -31,7 +31,5 @@ export const DisplayImageBase = ({
   );
 };
 
-const DisplayImage = (props) =>
+export const DisplayImage = (props) =>
   useGlobalComponent('DisplayImage', DisplayImageBase, props);
-
-export default DisplayImage;

@@ -42,7 +42,5 @@ ModelEditBase.propTypes = {
   onActionError: PropTypes.func
 };
 
-const ModelEdit = (props) =>
+export const ModelEdit = (props) =>
   useGlobalComponentForModel('ModelEdit', ModelEditBase, props);
-
-export default ModelEdit;

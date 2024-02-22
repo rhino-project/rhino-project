@@ -28,5 +28,3 @@ ModelShowSimple.propTypes = {
     PropTypes.node
   ])
 };
-
-export default ModelShowSimple;

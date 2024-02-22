@@ -171,11 +171,9 @@ export const ModelFieldGroupFloatingJoinSimple = (props) => {
   );
 };
 
-const ModelFieldGroupJoinSimple = (props) =>
+export const ModelFieldGroupJoinSimple = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupJoinSimple',
     ModelFieldGroupJoinSimpleVertical,
     props
   );
-
-export default ModelFieldGroupJoinSimple;

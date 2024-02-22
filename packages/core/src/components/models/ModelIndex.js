@@ -47,7 +47,5 @@ ModelIndexBase.propTypes = {
   parent: PropTypes.object
 };
 
-const ModelIndex = (props) =>
+export const ModelIndex = (props) =>
   useGlobalComponentForModel('ModelIndex', ModelIndexBase, props);
-
-export default ModelIndex;

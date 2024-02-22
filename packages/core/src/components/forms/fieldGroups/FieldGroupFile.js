@@ -22,7 +22,5 @@ export const FieldGroupHorizontalFile = ({ overrides, ...props }) => {
 const FieldGroupFloatingFile = FieldGroupFileBase;
 export { FieldGroupFloatingFile };
 
-const FieldGroupFile = (props) =>
+export const FieldGroupFile = (props) =>
   useGlobalComponent('FieldGroupFile', FieldGroupFileBase, props);
-
-export default FieldGroupFile;

@@ -87,11 +87,9 @@ export const ModelFieldGroupFloatingArrayString = (props) => {
   );
 };
 
-const ModelFieldGroupArrayString = (props) =>
+export const ModelFieldGroupArrayString = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupArrayString',
     ModelFieldGroupArrayStringVertical,
     props
   );
-
-export default ModelFieldGroupArrayString;

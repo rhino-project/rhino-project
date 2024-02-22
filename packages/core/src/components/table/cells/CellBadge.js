@@ -10,7 +10,5 @@ export const CellBadgeBase = ({ empty = '-', ...props }) => {
   return <Badge {...inheritedProps}>{getValue()}</Badge>;
 };
 
-const CellBadge = (props) =>
+export const CellBadge = (props) =>
   useGlobalComponent('CellBadge', CellBadgeBase, props);
-
-export default CellBadge;

@@ -28,7 +28,7 @@ const buildBooleanPill = (attribute, value) => {
   return `${state}${attribute.readableName}`;
 };
 
-const ModelFilterBoolean = ({ model, path, ...props }) => {
+export const ModelFilterBoolean = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
 
   const watch = useWatch({ name: operatorPath });
@@ -47,5 +47,3 @@ ModelFilterBoolean.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterBoolean;

@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingPhone = (props) => {
   return <FieldGroupFloatingPhone {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupPhone = (props) =>
+export const ModelFieldGroupPhone = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupPhone',
     ModelFieldGroupPhoneVertical,
     props
   );
-
-export default ModelFieldGroupPhone;

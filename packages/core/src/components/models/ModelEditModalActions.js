@@ -104,11 +104,9 @@ export const ModelEditModalActionsSaveShow = (props) => (
   <ModelEditActionsBase overrides={MODAL_EDIT_SAVESHOW_OVERRIDES} {...props} />
 );
 
-const ModelEditModalActions = (props) =>
+export const ModelEditModalActions = (props) =>
   useGlobalComponentForModel(
     'ModelEditModalActions',
     ModelEditModalActionsBase,
     props
   );
-
-export default ModelEditModalActions;

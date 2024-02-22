@@ -4,7 +4,7 @@ import ModelEdit from '../../components/models/ModelEdit';
 import ModelPage from './ModelPage';
 import { useParams } from 'react-router-dom';
 
-const Edit = ({ model }) => {
+export const Edit = ({ model }) => {
   const { id } = useParams();
 
   return (
@@ -17,5 +17,3 @@ const Edit = ({ model }) => {
 Edit.propTypes = {
   model: PropTypes.object.isRequired
 };
-
-export default Edit;

@@ -5,11 +5,9 @@ export const ModelCellBooleanIconBase = (props) => (
   <CellBooleanIcon {...props} />
 );
 
-const ModelCellBooleanIcon = (props) =>
+export const ModelCellBooleanIcon = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellBooleanIcon',
     ModelCellBooleanIconBase,
     props
   );
-
-export default ModelCellBooleanIcon;

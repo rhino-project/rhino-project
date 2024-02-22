@@ -33,7 +33,5 @@ FieldBooleanBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldBoolean = (props) =>
+export const FieldBoolean = (props) =>
   useGlobalComponent('FieldBoolean', FieldBooleanBase, props);
-
-export default FieldBoolean;

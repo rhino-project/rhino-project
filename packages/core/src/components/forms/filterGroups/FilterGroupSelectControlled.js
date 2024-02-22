@@ -9,5 +9,3 @@ export const FilterGroupSelectControlled = ({ overrides, ...props }) => {
 
   return <FilterGroup overrides={mergedOverrides} {...props} />;
 };
-
-export default FilterGroupSelectControlled;

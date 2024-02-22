@@ -37,11 +37,9 @@ export const DisplayGroupFloatingCurrency = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupCurrency = (props) =>
+export const DisplayGroupCurrency = (props) =>
   useGlobalComponent(
     'DisplayGroupCurrency',
     DisplayGroupVerticalCurrency,
     props
   );
-
-export default DisplayGroupCurrency;

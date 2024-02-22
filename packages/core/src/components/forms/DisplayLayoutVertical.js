@@ -37,7 +37,5 @@ export const DisplayLayoutVerticalBase = ({
   );
 };
 
-const DisplayLayoutVertical = (props) =>
+export const DisplayLayoutVertical = (props) =>
   useGlobalComponent('DisplayLayoutVertical', DisplayLayoutVerticalBase, props);
-
-export default DisplayLayoutVertical;

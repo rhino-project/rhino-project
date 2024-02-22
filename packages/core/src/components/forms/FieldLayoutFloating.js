@@ -35,7 +35,5 @@ export const FieldLayoutFloatingBase = ({ overrides, ...props }) => {
   );
 };
 
-const FieldLayoutFloating = (props) =>
+export const FieldLayoutFloating = (props) =>
   useGlobalComponent('FieldLayoutFloating', FieldLayoutFloatingBase, props);
-
-export default FieldLayoutFloating;

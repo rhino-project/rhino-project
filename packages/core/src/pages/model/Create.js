@@ -4,7 +4,7 @@ import { useParsedSearch } from '../../hooks/history';
 import ModelCreate from '../../components/models/ModelCreate';
 import ModelPage from './ModelPage';
 
-const Create = ({ model }) => {
+export const Create = ({ model }) => {
   const { parentId } = useParsedSearch();
 
   return (
@@ -17,5 +17,3 @@ const Create = ({ model }) => {
 Create.propTypes = {
   model: PropTypes.object.isRequired
 };
-
-export default Create;

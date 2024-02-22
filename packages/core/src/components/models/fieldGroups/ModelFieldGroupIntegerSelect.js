@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingIntegerSelect = (props) => {
   return <FieldGroupHorizontalSelectControlled {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupIntegerSelect = (props) =>
+export const ModelFieldGroupIntegerSelect = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupIntegerSelect',
     ModelFieldGroupIntegerSelectVertical,
     props
   );
-
-export default ModelFieldGroupIntegerSelect;

@@ -3,7 +3,7 @@ import FormProvider from '../forms/FormProvider';
 
 export const ModelFiltersContext = createContext();
 
-const ModelFiltersProvider = ({ children, ...props }) => {
+export const ModelFiltersProvider = ({ children, ...props }) => {
   const { methods } = props;
 
   return (
@@ -12,5 +12,3 @@ const ModelFiltersProvider = ({ children, ...props }) => {
     </ModelFiltersContext.Provider>
   );
 };
-
-export default ModelFiltersProvider;

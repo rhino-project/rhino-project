@@ -2,7 +2,7 @@ import { useBaseOwnerPath } from '../../hooks/history';
 import { Link } from 'react-router-dom';
 import { useRootPath } from '../../hooks/routes';
 
-const NotFoundPage = () => {
+export const NotFoundPage = () => {
   const { build } = useBaseOwnerPath();
   const rootPath = useRootPath();
   return (
@@ -12,5 +12,3 @@ const NotFoundPage = () => {
     </div>
   );
 };
-
-export default NotFoundPage;

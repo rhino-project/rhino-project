@@ -37,7 +37,5 @@ export const FieldLayoutHorizontalBase = ({ overrides, ...props }) => {
   );
 };
 
-const FieldLayoutHorizontal = (props) =>
+export const FieldLayoutHorizontal = (props) =>
   useGlobalComponent('FieldLayoutHorizontal', FieldLayoutHorizontalBase, props);
-
-export default FieldLayoutHorizontal;

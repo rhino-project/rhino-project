@@ -60,7 +60,5 @@ FieldYearBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldYear = (props) =>
+export const FieldYear = (props) =>
   useGlobalComponent('FieldYear', FieldYearBase, props);
-
-export default FieldYear;

@@ -38,5 +38,3 @@ const defaultComponents = {
 export const ModelDisplayGroupHorizontal = (props) => {
   return <ModelDisplayGroupBase overrides={defaultComponents} {...props} />;
 };
-
-export default ModelDisplayGroupHorizontal;

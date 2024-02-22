@@ -6,7 +6,7 @@ import { useModelFilterField } from '../../../hooks/form';
 import FilterString from '../../forms/filters/FilterString';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 
-const ModelFilterString = ({ model, path, ...props }) => {
+export const ModelFilterString = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   const { resetField } = useFormContext();
 
@@ -33,5 +33,3 @@ ModelFilterString.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterString;

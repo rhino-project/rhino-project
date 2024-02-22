@@ -1,5 +1,3 @@
 import FieldYear from '../fields/FieldYear';
 
-const FilterYear = (props) => <FieldYear {...props} />;
-
-export default FilterYear;
+export const FilterYear = (props) => <FieldYear {...props} />;

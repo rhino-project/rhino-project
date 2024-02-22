@@ -3,7 +3,5 @@ import CellTime from '../../table/cells/CellTime';
 
 export const ModelCellTimeBase = (props) => <CellTime {...props} />;
 
-const ModelCellTime = (props) =>
+export const ModelCellTime = (props) =>
   useGlobalComponentForAttribute('ModelCellTime', ModelCellTimeBase, props);
-
-export default ModelCellTime;

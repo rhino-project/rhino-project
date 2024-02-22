@@ -23,11 +23,9 @@ export const ModelCellAttachmentDownloadBase = ({
   );
 };
 
-const ModelCellAttachmentDownload = (props) =>
+export const ModelCellAttachmentDownload = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellAttachmentDownload',
     ModelCellAttachmentDownloadBase,
     props
   );
-
-export default ModelCellAttachmentDownload;

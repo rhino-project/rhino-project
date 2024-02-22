@@ -13,11 +13,9 @@ export const ModelCellAttachmentImageBase = ({ getValue, ...props }) => {
   return <CellImage alt={altText} getValue={syntheticGetValue} {...props} />;
 };
 
-const ModelCellAttachmentImage = (props) =>
+export const ModelCellAttachmentImage = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellAttachmentImage',
     ModelCellAttachmentImageBase,
     props
   );
-
-export default ModelCellAttachmentImage;

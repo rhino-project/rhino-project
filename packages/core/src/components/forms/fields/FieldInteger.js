@@ -13,7 +13,5 @@ export const FieldIntegerBase = (props) => (
   <FieldInputBase type="number" setValueAs={setValueAs} {...props} />
 );
 
-const FieldInteger = (props) =>
+export const FieldInteger = (props) =>
   useGlobalComponent('FieldInteger', FieldIntegerBase, props);
-
-export default FieldInteger;

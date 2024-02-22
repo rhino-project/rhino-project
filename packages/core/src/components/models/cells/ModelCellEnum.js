@@ -22,7 +22,5 @@ export const ModelCellEnumBase = (props) => {
   return <CellBadge style={style} color="none" {...props} />;
 };
 
-const ModelCellEnum = (props) =>
+export const ModelCellEnum = (props) =>
   useGlobalComponentForAttribute('ModelCellEnum', ModelCellEnumBase, props);
-
-export default ModelCellEnum;

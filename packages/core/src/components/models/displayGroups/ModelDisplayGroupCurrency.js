@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingCurrency = (props) => {
   return <DisplayGroupFloatingCurrency {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupCurrency = (props) =>
+export const ModelDisplayGroupCurrency = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupCurrency',
     ModelDisplayGroupVerticalCurrency,
     props
   );
-
-export default ModelDisplayGroupCurrency;

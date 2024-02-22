@@ -142,7 +142,5 @@ ModelEditActionsBase.defaultProps = {
   hasCancel: false
 };
 
-const ModelEditActions = (props) =>
+export const ModelEditActions = (props) =>
   useGlobalComponentForModel('ModelEditActions', ModelEditActionsBase, props);
-
-export default ModelEditActions;

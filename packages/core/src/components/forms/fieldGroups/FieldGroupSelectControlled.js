@@ -29,11 +29,9 @@ export const FieldGroupFloatingSelectControlled = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupSelectControlled = (props) =>
+export const FieldGroupSelectControlled = (props) =>
   useGlobalComponent(
     'FieldGroupSelectControlled',
     FieldGroupSelectControlledBase,
     props
   );
-
-export default FieldGroupSelectControlled;

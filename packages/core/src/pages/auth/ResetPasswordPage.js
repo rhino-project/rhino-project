@@ -7,7 +7,7 @@ import { useResetPasswordAction } from '../../queries/auth';
 import AuthPage from './AuthPage';
 import PropTypes from 'prop-types';
 
-const ResetPasswordPage = (props) => {
+export const ResetPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: resetPasswordAction,
@@ -61,5 +61,3 @@ ResetPasswordPage.propTypes = {
   primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
-
-export default ResetPasswordPage;

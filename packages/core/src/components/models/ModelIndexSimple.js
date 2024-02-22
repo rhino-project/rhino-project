@@ -31,5 +31,3 @@ ModelIndexSimple.propTypes = {
     PropTypes.node
   ])
 };
-
-export default ModelIndexSimple;

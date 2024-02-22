@@ -95,7 +95,5 @@ export const ModelFiltersBase = (props) => {
   );
 };
 
-const ModelFilters = (props) =>
+export const ModelFilters = (props) =>
   useGlobalComponentForModel('ModelFilters', ModelFiltersBase, props);
-
-export default ModelFilters;

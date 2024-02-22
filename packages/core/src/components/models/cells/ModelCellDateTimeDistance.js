@@ -5,11 +5,9 @@ export const ModelCellDateTimeDistanceBase = (props) => (
   <CellDateTimeDistance {...props} />
 );
 
-const ModelCellDateTimeDistance = (props) =>
+export const ModelCellDateTimeDistance = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellDateTimeDistance',
     ModelCellDateTimeDistanceBase,
     props
   );
-
-export default ModelCellDateTimeDistance;

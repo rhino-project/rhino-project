@@ -21,11 +21,9 @@ export const ModelCellArrayReferenceBase = ({
   return <CellString getValue={syntheticGetValue} {...props} />;
 };
 
-const ModelCellArrayReference = (props) =>
+export const ModelCellArrayReference = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellArrayReference',
     ModelCellArrayReferenceBase,
     props
   );
-
-export default ModelCellArrayReference;

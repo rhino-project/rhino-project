@@ -27,7 +27,7 @@ const providerOverrides = {
   }
 };
 
-const OmniAuthButton = ({ provider, providerPath, ...props }) => {
+export const OmniAuthButton = ({ provider, providerPath, ...props }) => {
   const {
     env: { API_ROOT_PATH }
   } = useRhinoConfig();
@@ -53,5 +53,3 @@ OmniAuthButton.propTypes = {
   provider: PropTypes.string.isRequired,
   providerPath: PropTypes.string.isRequired
 };
-
-export default OmniAuthButton;

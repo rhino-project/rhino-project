@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingFloat = (props) => {
   return <DisplayGroupFloatingFloat {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupFloat = (props) =>
+export const ModelDisplayGroupFloat = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupFloat',
     ModelDisplayGroupVerticalFloat,
     props
   );
-
-export default ModelDisplayGroupFloat;

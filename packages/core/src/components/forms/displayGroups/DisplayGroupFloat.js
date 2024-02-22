@@ -26,7 +26,5 @@ export const DisplayGroupFloatingFloat = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupFloat = (props) =>
+export const DisplayGroupFloat = (props) =>
   useGlobalComponent('DisplayGroupFloat', DisplayGroupVerticalFloat, props);
-
-export default DisplayGroupFloat;

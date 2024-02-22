@@ -29,7 +29,5 @@ export const DisplayStringBase = ({
   );
 };
 
-const DisplayString = (props) =>
+export const DisplayString = (props) =>
   useGlobalComponent('DisplayString', DisplayStringBase, props);
-
-export default DisplayString;

@@ -26,7 +26,5 @@ export const DisplayGroupFloatingDate = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupDate = (props) =>
+export const DisplayGroupDate = (props) =>
   useGlobalComponent('DisplayGroupDate', DisplayGroupVerticalDate, props);
-
-export default DisplayGroupDate;

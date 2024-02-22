@@ -18,7 +18,5 @@ export const CellBooleanBase = ({
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellBoolean = (props) =>
+export const CellBoolean = (props) =>
   useGlobalComponent('CellBoolean', CellBooleanBase, props);
-
-export default CellBoolean;

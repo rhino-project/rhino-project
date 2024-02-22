@@ -72,7 +72,5 @@ FieldCurrencyBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldCurrency = (props) =>
+export const FieldCurrency = (props) =>
   useGlobalComponent('FieldCurrency', FieldCurrencyBase, props);
-
-export default FieldCurrency;

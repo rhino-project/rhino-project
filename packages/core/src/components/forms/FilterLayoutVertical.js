@@ -31,7 +31,5 @@ export const FilterLayoutVerticalBase = ({ overrides, ...props }) => {
   );
 };
 
-const FilterLayoutVertical = (props) =>
+export const FilterLayoutVertical = (props) =>
   useGlobalComponent('FilterLayoutVertical', FilterLayoutVerticalBase, props);
-
-export default FilterLayoutVertical;

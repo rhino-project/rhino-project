@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { BreadcrumbItem } from 'reactstrap';
 import { useBaseOwnerPath } from '../../hooks/history';
 
-const BreadcrumbItemWrapper = ({ tag, to, children, ...props }) => {
+export const BreadcrumbItemWrapper = ({ tag, to, children, ...props }) => {
   const baseOwnerPath = useBaseOwnerPath();
   const path = baseOwnerPath.build(to);
 
@@ -18,5 +18,3 @@ BreadcrumbItemWrapper.propTypes = {
   to: PropTypes.string,
   children: PropTypes.node
 };
-
-export default BreadcrumbItemWrapper;

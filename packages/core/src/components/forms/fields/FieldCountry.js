@@ -65,7 +65,5 @@ FieldCountryBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldCountry = (props) =>
+export const FieldCountry = (props) =>
   useGlobalComponent('FieldCountry', FieldCountryBase, props);
-
-export default FieldCountry;

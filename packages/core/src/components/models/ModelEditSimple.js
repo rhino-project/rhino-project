@@ -31,5 +31,3 @@ ModelEditSimple.propTypes = {
     PropTypes.node
   ])
 };
-
-export default ModelEditSimple;

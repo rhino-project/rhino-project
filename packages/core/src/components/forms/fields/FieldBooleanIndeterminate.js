@@ -68,11 +68,9 @@ FieldBooleanIndeterminateBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldBooleanIndeterminate = (props) =>
+export const FieldBooleanIndeterminate = (props) =>
   useGlobalComponent(
     'FieldBooleanIndeterminate',
     FieldBooleanIndeterminateBase,
     props
   );
-
-export default FieldBooleanIndeterminate;

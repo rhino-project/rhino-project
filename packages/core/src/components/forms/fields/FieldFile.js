@@ -132,7 +132,5 @@ FieldFileBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldFile = (props) =>
+export const FieldFile = (props) =>
   useGlobalComponent('FieldFile', FieldFileBase, props);
-
-export default FieldFile;

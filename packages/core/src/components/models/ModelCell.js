@@ -87,7 +87,5 @@ export const ModelCellBase = (props) => {
   return 'No cell for this attribute type';
 };
 
-const ModelCell = (props) =>
+export const ModelCell = (props) =>
   useGlobalComponentForAttribute('ModelCell', ModelCellBase, props);
-
-export default ModelCell;

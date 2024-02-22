@@ -11,7 +11,5 @@ export const CellStringBase = ({ empty = '-', ...props }) => {
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellString = (props) =>
+export const CellString = (props) =>
   useGlobalComponent('CellString', CellStringBase, props);
-
-export default CellString;

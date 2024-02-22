@@ -9,7 +9,5 @@ const CellFloatBase = ({ empty = '-', ...props }) => {
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellFloat = (props) =>
+export const CellFloat = (props) =>
   useGlobalComponent('CellFloat', CellFloatBase, props);
-
-export default CellFloat;

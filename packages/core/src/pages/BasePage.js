@@ -4,7 +4,7 @@ import { Spinner } from 'reactstrap';
 import ErrorBoundary from '../components/errors/errorBoundary';
 import { Target } from '../components/layouts';
 
-const BasePage = ({ children, loading }) => {
+export const BasePage = ({ children, loading }) => {
   if (loading) {
     return (
       <Target>
@@ -28,5 +28,3 @@ BasePage.propTypes = {
 BasePage.defaultProps = {
   loading: false
 };
-
-export default BasePage;

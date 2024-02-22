@@ -37,7 +37,7 @@ const buildDateTimePill = (attribute, operator, newValue) => {
   )} ${format(date, getDateTimeFormat(attribute))}`;
 };
 
-const ModelFilterDate = ({ model, path, ...props }) => {
+export const ModelFilterDate = ({ model, path, ...props }) => {
   const { attribute, operator, operatorPath } = useModelFilterField(
     model,
     path
@@ -83,5 +83,3 @@ ModelFilterDate.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterDate;

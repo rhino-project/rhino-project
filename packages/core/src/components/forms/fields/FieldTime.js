@@ -69,7 +69,5 @@ FieldTimeBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldTime = (props) =>
+export const FieldTime = (props) =>
   useGlobalComponent('FieldTime', FieldTimeBase, props);
-
-export default FieldTime;

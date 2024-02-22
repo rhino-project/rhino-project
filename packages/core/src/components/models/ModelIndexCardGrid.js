@@ -86,5 +86,3 @@ export const ModelIndexCardGrid = (props) =>
     ModelIndexCardGridBase,
     props
   );
-
-export default ModelIndexCardGrid;

@@ -22,7 +22,5 @@ export const CellLinkEmailBase = ({ children, empty = '-', ...props }) => {
   );
 };
 
-const CellLinkEmail = (props) =>
+export const CellLinkEmail = (props) =>
   useGlobalComponent('CellLinkEmail', CellLinkEmailBase, props);
-
-export default CellLinkEmail;

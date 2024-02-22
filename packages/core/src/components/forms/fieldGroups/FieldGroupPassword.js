@@ -74,7 +74,5 @@ export const FieldGroupFloatingPassword = ({ overrides, ...props }) => {
   );
 };
 
-const FieldGroupPassword = (props) =>
+export const FieldGroupPassword = (props) =>
   useGlobalComponent('FieldGroupPassword', FieldGroupPasswordBase, props);
-
-export default FieldGroupPassword;

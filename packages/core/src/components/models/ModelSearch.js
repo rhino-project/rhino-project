@@ -3,7 +3,7 @@ import { InputGroup, Input } from 'reactstrap';
 import { useDebouncedCallback } from 'use-debounce';
 import { useModelIndexContext } from '../../hooks/controllers';
 
-const ModelSearch = () => {
+export const ModelSearch = () => {
   const { search, setSearch } = useModelIndexContext();
   const [searchTerm, setSearchTerm] = useState(search);
   const debounced = useDebouncedCallback((newSearch) => {
@@ -39,5 +39,3 @@ const ModelSearch = () => {
 };
 
 ModelSearch.propTypes = {};
-
-export default ModelSearch;

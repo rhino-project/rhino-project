@@ -5,11 +5,9 @@ export const ModelCellLinkTelephoneBase = (props) => (
   <CellLinkTelephone {...props} />
 );
 
-const ModelCellLinkTelephone = (props) =>
+export const ModelCellLinkTelephone = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellLinkTelephone',
     ModelCellLinkTelephoneBase,
     props
   );
-
-export default ModelCellLinkTelephone;

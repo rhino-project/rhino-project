@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingBoolean = (props) => {
   return <FieldGroupFloatingBoolean {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupBoolean = (props) =>
+export const ModelFieldGroupBoolean = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupBoolean',
     ModelFieldGroupBooleanVertical,
     props
   );
-
-export default ModelFieldGroupBoolean;

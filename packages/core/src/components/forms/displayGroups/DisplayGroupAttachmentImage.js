@@ -28,11 +28,9 @@ export const DisplayGroupHorizontalAttachmentImage = ({
 const DisplayGroupFloatingAttachmentImage = DisplayGroupVerticalAttachmentImage;
 export { DisplayGroupFloatingAttachmentImage };
 
-const DisplayGroupAttachmentImage = (props) =>
+export const DisplayGroupAttachmentImage = (props) =>
   useGlobalComponent(
     'DisplayGroupAttachmentImage',
     DisplayGroupVerticalAttachmentImage,
     props
   );
-
-export default DisplayGroupAttachmentImage;

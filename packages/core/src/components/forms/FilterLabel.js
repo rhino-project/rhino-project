@@ -31,7 +31,5 @@ export const FilterLabelBase = ({ overrides, ...props }) => {
   );
 };
 
-const FilterLabel = (props) =>
+export const FilterLabel = (props) =>
   useGlobalComponent('FilterLabel', FilterLabelBase, props);
-
-export default FilterLabel;

@@ -21,7 +21,7 @@ Toasted.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-const Toaster = () => {
+export const Toaster = () => {
   const [toast, , removeToast] = useToast();
 
   const handleClose = (id) => removeToast(id);
@@ -50,5 +50,3 @@ const Toaster = () => {
 Toaster.propTypes = {};
 
 Toaster.defaultProps = {};
-
-export default Toaster;

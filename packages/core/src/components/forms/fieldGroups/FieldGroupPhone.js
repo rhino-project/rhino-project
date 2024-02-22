@@ -26,7 +26,5 @@ export const FieldGroupFloatingPhone = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupPhone = (props) =>
+export const FieldGroupPhone = (props) =>
   useGlobalComponent('FieldGroupPhone', FieldGroupPhoneBase, props);
-
-export default FieldGroupPhone;

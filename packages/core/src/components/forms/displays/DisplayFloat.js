@@ -22,7 +22,5 @@ export const DisplayFloatBase = ({ empty = '-', ...props }) => {
   );
 };
 
-const DisplayFloat = (props) =>
+export const DisplayFloat = (props) =>
   useGlobalComponent('DisplayFloat', DisplayFloatBase, props);
-
-export default DisplayFloat;

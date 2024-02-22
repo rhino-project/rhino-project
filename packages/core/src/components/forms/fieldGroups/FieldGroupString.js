@@ -26,7 +26,5 @@ export const FieldGroupFloatingString = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupString = (props) =>
+export const FieldGroupString = (props) =>
   useGlobalComponent('FieldGroupString', FieldGroupStringBase, props);
-
-export default FieldGroupString;

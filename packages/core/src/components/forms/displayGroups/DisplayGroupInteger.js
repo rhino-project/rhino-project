@@ -26,7 +26,5 @@ export const DisplayGroupFloatingInteger = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupInteger = (props) =>
+export const DisplayGroupInteger = (props) =>
   useGlobalComponent('DisplayGroupInteger', DisplayGroupVerticalInteger, props);
-
-export default DisplayGroupInteger;

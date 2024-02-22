@@ -142,7 +142,5 @@ export const ModelIndexActionsModalCreate = (props) => (
   <ModelIndexActionsBase overrides={MODAL_CREATE_OVERRIDES} {...props} />
 );
 
-const ModelIndexActions = (props) =>
+export const ModelIndexActions = (props) =>
   useGlobalComponentForModel('ModelIndexActions', ModelIndexActionsBase, props);
-
-export default ModelIndexActions;

@@ -32,7 +32,5 @@ FieldBooleanIconBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldBooleanIcon = (props) =>
+export const FieldBooleanIcon = (props) =>
   useGlobalComponent('FieldBooleanIcon', FieldBooleanIconBase, props);
-
-export default FieldBooleanIcon;

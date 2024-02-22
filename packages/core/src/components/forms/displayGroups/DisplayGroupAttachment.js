@@ -22,11 +22,9 @@ export const DisplayGroupHorizontalAttachment = ({ overrides, ...props }) => {
 const DisplayGroupFloatingAttachment = DisplayGroupVerticalAttachment;
 export { DisplayGroupFloatingAttachment };
 
-const DisplayGroupAttachment = (props) =>
+export const DisplayGroupAttachment = (props) =>
   useGlobalComponent(
     'DisplayGroupAttachment',
     DisplayGroupVerticalAttachment,
     props
   );
-
-export default DisplayGroupAttachment;

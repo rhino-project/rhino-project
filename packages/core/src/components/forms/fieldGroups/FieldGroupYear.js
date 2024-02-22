@@ -26,7 +26,5 @@ export const FieldGroupFloatingYear = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupYear = (props) =>
+export const FieldGroupYear = (props) =>
   useGlobalComponent('FieldGroupYear', FieldGroupYearBase, props);
-
-export default FieldGroupYear;

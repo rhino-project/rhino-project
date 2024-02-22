@@ -21,7 +21,5 @@ export { DisplayGroupHorizontalBoolean };
 const DisplayGroupFloatingBoolean = DisplayGroupBooleanBase;
 export { DisplayGroupFloatingBoolean };
 
-const DisplayGroupBoolean = (props) =>
+export const DisplayGroupBoolean = (props) =>
   useGlobalComponent('DisplayGroupBoolean', DisplayGroupBooleanBase, props);
-
-export default DisplayGroupBoolean;

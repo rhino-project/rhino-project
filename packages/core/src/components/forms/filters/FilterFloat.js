@@ -1,5 +1,3 @@
 import FieldFloat from '../fields/FieldFloat';
 
-const FilterFloat = (props) => <FieldFloat {...props} />;
-
-export default FilterFloat;
+export const FilterFloat = (props) => <FieldFloat {...props} />;

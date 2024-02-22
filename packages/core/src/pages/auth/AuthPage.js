@@ -31,7 +31,5 @@ AuthPageBase.propTypes = {
   description: PropTypes.node
 };
 
-const AuthPage = (props) =>
+export const AuthPage = (props) =>
   useGlobalComponentForModel('AuthPage', AuthPageBase, props);
-
-export default AuthPage;

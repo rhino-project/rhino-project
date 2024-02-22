@@ -277,11 +277,9 @@ ModelFieldNestedBase.propTypes = {
   errors: PropTypes.object
 };
 
-const ModelFieldNested = (props) =>
+export const ModelFieldNested = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldNested',
     ModelFieldNestedBase,
     props
   );
-
-export default ModelFieldNested;

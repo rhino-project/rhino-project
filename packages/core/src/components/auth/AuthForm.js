@@ -19,7 +19,7 @@ const AuthFieldPassword = (props) => (
   <FieldGroupPassword placeholder="Password" {...props} />
 );
 
-const AuthForm = ({
+export const AuthForm = ({
   emailField,
   currentPasswordField,
   organizationField,
@@ -211,5 +211,3 @@ AuthForm.defaultProps = {
   passwordField: false,
   passwordConfirmField: false
 };
-
-export default AuthForm;
