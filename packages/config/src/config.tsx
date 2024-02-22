@@ -45,7 +45,8 @@ export const defaultConfig: RhinoConfig = {
 };
 
 export const getRhinoConfig = (): RhinoConfig => {
-  const mergedConfig = merge({}, defaultConfig, rhinoConfig);
+  // FIXME: Is there a better way to get rhinoConfig as RhinoConfig?
+  const mergedConfig = merge({}, defaultConfig, rhinoConfig as RhinoConfig);
 
   return mergedConfig;
 };
