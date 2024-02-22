@@ -151,7 +151,7 @@ namespace :all do
   task build: FRAMEWORKS.map { |f| "#{f}:build"           } + ["rhino_project:build"]
   task update_versions: FRAMEWORKS.map { |f| "#{f}:update_versions" } + ["hino_project:update_versions"]
   task install: FRAMEWORKS.map { |f| "#{f}:install"         } + ["hino_project:install"]
-  task push: FRAMEWORKS.map { |f| "#{f}:push"            } + ["hino_project:push"]
+  task push: FRAMEWORKS.map { |f| "#{f}:push"            } + ["rhino_project:push"]
 
   task :ensure_clean_state do
     unless `git status -s | grep -v 'RAILS_VERSION\\|CHANGELOG\\|Gemfile.lock\\|package.json\\|version.rb\\|tasks/release.rb'`.strip.empty?
