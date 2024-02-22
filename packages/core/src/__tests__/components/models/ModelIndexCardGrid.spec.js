@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 import { ModelIndexCardGrid } from '../../../components/models/ModelIndexCardGrid';
 import { ModelIndexSimple } from '../../../components/models/ModelIndexSimple';
-import { rhinoConfig } from '../../../../rhino.config';
 
 describe('ModelIndexCardGrid', () => {
   const Foo = () => <div>Foo</div>;
@@ -36,10 +35,6 @@ describe('ModelIndexCardGrid', () => {
   sharedModelTests(ModelIndexCardGrid);
 
   it(`should allow local overrides`, async () => {
-    const configSpy = vi
-      .spyOn(rhinoConfig, 'components', 'get')
-      .mockReturnValue({});
-
     const { asFragment } = render(
       <ModelIndexCardGrid
         overrides={{
@@ -49,7 +44,5 @@ describe('ModelIndexCardGrid', () => {
       { wrapper }
     );
     expect(asFragment()).toMatchSnapshot();
-
-    configSpy.mockRestore();
   });
 });

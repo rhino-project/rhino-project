@@ -6,15 +6,15 @@ import { BaseOwnerProvider } from '../../contexts/BaseOwnerContext';
 import { BaseOwnerContext } from '../../hooks/owner';
 
 let mockUser;
-vi.mock('rhino/hooks/auth', () => ({
+vi.mock('../../hooks/auth', () => ({
   useUser: vi.fn(() => mockUser)
 }));
 
 let mockBaseOwnerId;
 
 const mockUseBaseOwnerId = vi.fn(() => mockBaseOwnerId);
-vi.mock('rhino/hooks/owner', async () => {
-  const actual = await vi.importActual('rhino/hooks/owner');
+vi.mock('../../hooks/owner', async () => {
+  const actual = await vi.importActual('../../hooks/owner');
   return {
     ...actual,
     useBaseOwnerId: vi.fn(() => mockUseBaseOwnerId())
@@ -35,7 +35,7 @@ vi.mock('rhino/hooks/queries', () => ({
 }));
 
 let mockHasOrganizationsModule;
-vi.mock('rhino/utils/models', () => ({
+vi.mock('../../utils/models', () => ({
   hasOrganizationsModule: vi.fn(() => mockHasOrganizationsModule),
   getModel: () => ({})
 }));

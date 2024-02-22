@@ -6,6 +6,7 @@ import { transformWithEsbuild } from 'vite';
 // https://stackoverflow.com/questions/68241263/absolute-path-not-working-in-vite-project-react-ts
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { externalizeDeps } from 'vite-plugin-externalize-deps';
+import { resolve } from 'node:path';
 
 // Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 function escapeRegExp(string) {
@@ -66,7 +67,21 @@ const config = defineConfig({
     environment: 'jsdom',
     globals: true,
     watch: false,
-    setupFiles: ['src/__tests__/shared/setupTests.js']
+    setupFiles: ['src/__tests__/shared/setupTests.js'],
+    alias: {
+      'rhino.config': resolve('src/__tests__/shared/rhino.config.js'),
+      'virtual:@rhino-project/config/env': resolve(
+        'src/__tests__/shared/env.js'
+      ),
+      'models/static': resolve('src/__tests__/shared/modelFixtures.js'),
+      'routes/custom': resolve('src/__tests__/shared/customRoutes.js'),
+      'assets/images/logo-dark.svg': resolve(
+        'src/__tests__/shared/logo-dark.svg'
+      ),
+      'assets/images/logo-light.svg': resolve(
+        'src/__tests__/shared/logo-light.svg'
+      )
+    }
   }
 });
 

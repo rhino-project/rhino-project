@@ -6,8 +6,8 @@ import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple
 import { ModelFilterDateTime } from '../../../../components/models/filters/ModelFilterDateTime';
 import { FilterDateTime } from '../../../../components/forms/filters/FilterDateTime';
 
-vi.mock('rhino/components/forms/filters/FilterDateTime', () => ({
-  default: vi.fn(() => null)
+vi.mock('../../../../components/forms/filters/FilterDateTime', () => ({
+  FilterDateTime: vi.fn(() => null)
 }));
 
 describe('ModelFilterDateTime', () => {

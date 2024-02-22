@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
 import { ModelIndexTable } from '../../../components/models/ModelIndexTable';
 import { ModelIndexSimple } from '../../../components/models/ModelIndexSimple';
-import { rhinoConfig } from '../../../../rhino.config';
 
 describe('ModelIndexTable', () => {
   const Foo = () => <div>Foo</div>;
@@ -38,10 +37,6 @@ describe('ModelIndexTable', () => {
   sharedModelTests(ModelIndexTable);
 
   it(`should allow local overrides`, async () => {
-    const configSpy = vi
-      .spyOn(rhinoConfig, 'components', 'get')
-      .mockReturnValue({});
-
     const { asFragment } = render(
       <ModelIndexTable
         overrides={{
@@ -53,15 +48,9 @@ describe('ModelIndexTable', () => {
       { wrapper }
     );
     expect(asFragment()).toMatchSnapshot();
-
-    configSpy.mockRestore();
   });
 
   it(`should allow local overrides of Table`, async () => {
-    const configSpy = vi
-      .spyOn(rhinoConfig, 'components', 'get')
-      .mockReturnValue({});
-
     const { asFragment } = render(
       <ModelIndexTable
         overrides={{
@@ -71,7 +60,5 @@ describe('ModelIndexTable', () => {
       { wrapper }
     );
     expect(asFragment()).toMatchSnapshot();
-
-    configSpy.mockRestore();
   });
 });

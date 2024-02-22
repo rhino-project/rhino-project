@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { sharedCellTests } from './sharedCellTests';
-import { ModelCellLinkTelephone } from '../../../../../rhino/components/models/cells/ModelCellLinkTelephone';
+import { ModelCellLinkTelephone } from '../../../../components/models/cells/ModelCellLinkTelephone';
 
 describe('ModelCellLinkTelephone', () => {
   sharedCellTests(ModelCellLinkTelephone);
