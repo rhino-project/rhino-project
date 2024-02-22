@@ -4,8 +4,6 @@ require "net/http"
 
 $:.unshift __dir__
 require "tasks/release"
-require "railties/lib/rails/api/task"
-require "tools/preview_docs"
 
 desc "Build gem files for all projects"
 task build: "all:build"
@@ -44,44 +42,5 @@ end
 desc "Install gems for all projects."
 task install: "all:install"
 
-desc "Generate documentation for the Rails framework"
-if ENV["EDGE"]
-  Rails::API::EdgeTask.new("rdoc")
-else
-  Rails::API::StableTask.new("rdoc")
-end
-
-desc "Generate documentation for previewing"
-task :preview_docs do
-  FileUtils.mkdir_p("preview")
-  PreviewDocs.new.render("preview")
-
-  require "guides/rails_guides"
-  Rake::Task[:rdoc].invoke
-
-  FileUtils.cp_r("doc/rdoc", "preview/api")
-  FileUtils.cp_r("guides/output", "preview/guides")
-
-  system("tar -czf preview.tar.gz preview")
-end
-
-desc "Bump all versions to match RAILS_VERSION"
+desc "Bump all versions to match RHINO_PROJECT_VERSION"
 task update_versions: "all:update_versions"
-
-# We have a webhook configured in GitHub that gets invoked after pushes.
-# This hook triggers the following tasks:
-#
-#   * updates the local checkout
-#   * updates Rails Contributors
-#   * generates and publishes edge docs
-#   * if there's a new stable tag, generates and publishes stable docs
-#
-# Everything is automated and you do NOT need to run this task normally.
-desc "Publishes docs, run this AFTER a new stable tag has been pushed"
-task :publish_docs do
-  Net::HTTP.new("api.rubyonrails.org", 8080).start do |http|
-    request  = Net::HTTP::Post.new("/rails-master-hook")
-    response = http.request(request)
-    puts response.body
-  end
-end
