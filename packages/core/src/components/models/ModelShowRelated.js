@@ -1,14 +1,11 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  useGlobalComponentForModel,
-  useOverrides
-} from 'rhino/hooks/overrides';
-import { getOwnedModels } from 'rhino/utils/models';
-import { useModelClassNames } from 'rhino/utils/ui';
-import { ModelIndexBase } from 'rhino/components/models/ModelIndex';
-import { useModelShowContext } from 'rhino/hooks/controllers';
+import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
+import { getOwnedModels } from '../../utils/models';
+import { useModelClassNames } from '../../utils/ui';
+import { ModelIndexBase } from './ModelIndex';
+import { useModelShowContext } from '../../hooks/controllers';
 
 // Get models owned by this, but filter out models that match properties on the
 // models, those are directly displayable (1:many would be nested)

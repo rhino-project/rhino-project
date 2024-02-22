@@ -4,10 +4,10 @@ import {
   DropdownToggle,
   UncontrolledDropdown
 } from 'reactstrap';
-import { NavIcon } from 'rhino/components/icons';
-import { useBaseOwnerNavigation } from 'rhino/hooks/history';
-import { useBaseOwner, useBaseOwnerId, useUserRoles } from 'rhino/hooks/owner';
-import { useRootPath } from 'rhino/hooks/routes';
+import { NavIcon } from '../icons';
+import { useBaseOwnerNavigation } from '../../hooks/history';
+import { useBaseOwner, useBaseOwnerId, useUserRoles } from '../../hooks/owner';
+import { useRootPath } from '../../hooks/routes';
 
 const BaseOwnerSwitcher = () => {
   const baseOwnerId = useBaseOwnerId();

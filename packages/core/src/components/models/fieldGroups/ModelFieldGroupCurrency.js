@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import FieldGroupCurrency, {
-  FieldGroupFloatingCurrency,
-  FieldGroupHorizontalCurrency
-} from 'rhino/components/forms/fieldGroups/FieldGroupCurrency';
-import { useModelFieldGroup } from 'rhino/hooks/form';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import FieldGroupCurrency, { FieldGroupFloatingCurrency, FieldGroupHorizontalCurrency } from '../../forms/fieldGroups/FieldGroupCurrency';
+import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupCurrencyVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroup(props);

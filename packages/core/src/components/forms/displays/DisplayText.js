@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { FieldInputControlledBase } from '../fields/FieldInputControlled';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const DisplayTextBase = ({ empty = '-', ...props }) => {
   const accessor = useCallback(

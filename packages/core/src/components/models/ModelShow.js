@@ -1,12 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  useGlobalComponentForModel,
-  useOverrides
-} from 'rhino/hooks/overrides';
-import ModelShowDescription from 'rhino/components/models/ModelShowDescription';
-import ModelShowRelated from 'rhino/components/models/ModelShowRelated';
-import ModelShowActions from 'rhino/components/models/ModelShowActions';
+import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
+import ModelShowDescription from './ModelShowDescription';
+import ModelShowRelated from './ModelShowRelated';
+import ModelShowActions from './ModelShowActions';
 import ModelShowSimple from './ModelShowSimple';
 import ModelShowHeader from './ModelShowHeader';
 import ModelSection from './ModelSection';

@@ -1,4 +1,4 @@
-import ModelCellAttachments from 'rhino/components/models/cells/ModelCellAttachments';
+import ModelCellAttachments from '../../../../components/models/cells/ModelCellAttachments';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellAttachments', () => {

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
-import { SplashScreen } from 'rhino/components/logos';
-import { useAuth } from 'rhino/hooks/auth';
-import { useAuthenticatedAppPath } from 'rhino/hooks/routes';
+import { SplashScreen } from '../components/logos';
+import { useAuth } from '../hooks/auth';
+import { useAuthenticatedAppPath } from '../hooks/routes';
 
 const NonAuthenticatedRoute = ({ children }) => {
   const authenticatedAppPath = useAuthenticatedAppPath();

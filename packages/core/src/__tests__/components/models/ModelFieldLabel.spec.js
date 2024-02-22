@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { useForm } from 'react-hook-form';
-import FormProvider from 'rhino/components/forms/FormProvider';
-import ModelFieldLabel from 'rhino/components/models/ModelFieldLabel';
+import FormProvider from '../../../components/forms/FormProvider';
+import ModelFieldLabel from '../../../components/models/ModelFieldLabel';
 import { sharedModelTests } from './sharedModelTests';
 
 describe('ModelFieldLabel', () => {

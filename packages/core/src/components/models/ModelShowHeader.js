@@ -1,6 +1,6 @@
-import { breadcrumbFor } from 'rhino/utils/ui';
-import { useModelShowContext } from 'rhino/hooks/controllers';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
+import { breadcrumbFor } from '../../utils/ui';
+import { useModelShowContext } from '../../hooks/controllers';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
 
 export const ModelShowHeaderBase = () => {
   const { model, resource } = useModelShowContext();

@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelDisplayGroup } from 'rhino/hooks/form';
-import DisplayGroupTime, {
-  DisplayGroupFloatingTime,
-  DisplayGroupHorizontalTime
-} from 'rhino/components/forms/displayGroups/DisplayGroupTime';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelDisplayGroup } from '../../../hooks/form';
+import DisplayGroupTime, { DisplayGroupFloatingTime, DisplayGroupHorizontalTime } from '../../forms/displayGroups/DisplayGroupTime';
 
 export const ModelDisplayGroupVerticalTime = (props) => {
   // FIXME - displayGroupProps instead?

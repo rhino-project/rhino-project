@@ -1,5 +1,5 @@
 import env from '@rhino-project/config/env';
-import { constructPath } from 'rhino/lib/networking';
+import { constructPath } from '../../lib/networking';
 
 const EXPECTED_URL = new URL('api', env.API_ROOT_PATH).toString();
 

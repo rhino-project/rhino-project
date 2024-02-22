@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
-import { useRenderPaths } from 'rhino/hooks/renderPaths';
+import { useRenderPaths } from '../../hooks/renderPaths';
 import { useModelEditContext } from '../../hooks/controllers';
 import {
   useGlobalComponentForModel,

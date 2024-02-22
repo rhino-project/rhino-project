@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelFieldGroupIntegerSelect } from 'rhino/hooks/form';
-import FieldGroupSelectControlled, {
-  FieldGroupFloatingSelectControlled,
-  FieldGroupHorizontalSelectControlled
-} from 'rhino/components/forms/fieldGroups/FieldGroupSelectControlled';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelFieldGroupIntegerSelect } from '../../../hooks/form';
+import FieldGroupSelectControlled, { FieldGroupFloatingSelectControlled, FieldGroupHorizontalSelectControlled } from '../../forms/fieldGroups/FieldGroupSelectControlled';
 
 export const ModelFieldGroupIntegerSelectVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroupIntegerSelect(props);

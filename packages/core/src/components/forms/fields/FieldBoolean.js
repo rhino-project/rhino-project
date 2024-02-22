@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
 import { useController } from 'react-hook-form';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useFieldInheritedProps } from '../../../hooks/form';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const FieldBooleanBase = (props) => {
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);

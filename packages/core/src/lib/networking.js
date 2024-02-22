@@ -1,7 +1,7 @@
 import axios from 'axios';
 import qs from 'qs';
 import * as networking from './networking.js';
-import { toastStore } from 'rhino/queries/toast';
+import { toastStore } from '../queries/toast';
 import env from '@rhino-project/config/env';
 
 export const AUTH_BASE_PATH = 'api/auth';

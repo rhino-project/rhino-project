@@ -4,10 +4,10 @@ import { Input, Progress } from 'reactstrap';
 import { useController } from 'react-hook-form';
 import { useMemo, useRef, useState } from 'react';
 import { useUpdate } from 'react-use';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import Uploader from 'rhino/utils/uploader';
-import { CloseButton } from 'rhino/components/buttons';
-import { DangerAlert } from 'rhino/components/alerts';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import Uploader from '../../../utils/uploader';
+import { CloseButton } from '../../buttons';
+import { DangerAlert } from '../../alerts';
 
 const fileInputText = (value, multiple, uploadedFileNames) => {
   if (!multiple && typeof value === 'string') return uploadedFileNames[value];

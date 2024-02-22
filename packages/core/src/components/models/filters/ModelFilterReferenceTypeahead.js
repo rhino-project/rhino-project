@@ -6,7 +6,7 @@ import { getIdentifierAttribute, getModelFromRef } from '../../../utils/models';
 import { useModelIndex } from '../../../hooks/queries';
 import { compact } from 'lodash';
 import PropTypes from 'prop-types';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
 const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
   const { filter, limit = 10, offset, order, search } = props;

@@ -1,5 +1,5 @@
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import CellInteger from 'rhino/components/table/cells/CellInteger';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import CellInteger from '../../table/cells/CellInteger';
 
 export const ModelCellIntegerBase = (props) => <CellInteger {...props} />;
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useModelShowController } from 'rhino/hooks/controllers';
+import { useModelShowController } from '../../hooks/controllers';
 import ModelShowProvider from './ModelShowProvider';
 import { useMemo } from 'react';
 import { Spinner } from 'reactstrap';

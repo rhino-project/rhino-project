@@ -1,5 +1,5 @@
-import ModelEditForm from 'rhino/components/models/ModelEditForm';
-import ModelEditSimple from 'rhino/components/models/ModelEditSimple';
+import ModelEditForm from '../../../components/models/ModelEditForm';
+import ModelEditSimple from '../../../components/models/ModelEditSimple';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';

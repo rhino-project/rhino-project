@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import FieldGroupTime, {
-  FieldGroupFloatingTime,
-  FieldGroupHorizontalTime
-} from 'rhino/components/forms/fieldGroups/FieldGroupTime';
-import { useModelFieldGroup } from 'rhino/hooks/form';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import FieldGroupTime, { FieldGroupFloatingTime, FieldGroupHorizontalTime } from '../../forms/fieldGroups/FieldGroupTime';
+import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupTimeVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroup(props);

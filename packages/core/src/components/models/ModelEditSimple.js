@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import ModelEditProvider from './ModelEditProvider';
-import { useModelEditController } from 'rhino/hooks/controllers';
+import { useModelEditController } from '../../hooks/controllers';
 import { useMemo } from 'react';
 import { Spinner } from 'reactstrap';
 

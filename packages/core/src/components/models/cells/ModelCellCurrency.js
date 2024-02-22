@@ -1,5 +1,5 @@
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import CellCurrency from 'rhino/components/table/cells/CellCurrency';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import CellCurrency from '../../table/cells/CellCurrency';
 
 export const ModelCellCurrencyBase = (props) => <CellCurrency {...props} />;
 

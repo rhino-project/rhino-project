@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom';
-import AuthForm from 'rhino/components/auth/AuthForm';
-import { useAuthenticated } from 'rhino/hooks/auth';
-import { useParsedSearch } from 'rhino/hooks/history';
-import { useRootPath } from 'rhino/hooks/routes';
-import { useAcceptInvitationAction } from 'rhino/queries/auth';
+import AuthForm from '../../components/auth/AuthForm';
+import { useAuthenticated } from '../../hooks/auth';
+import { useParsedSearch } from '../../hooks/history';
+import { useRootPath } from '../../hooks/routes';
+import { useAcceptInvitationAction } from '../../queries/auth';
 import AuthPage from './AuthPage';
 import { DangerAlert } from '../../components/alerts';
 import PropTypes from 'prop-types';

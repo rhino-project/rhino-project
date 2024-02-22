@@ -1,5 +1,5 @@
 import { sharedDisplayTests } from './sharedDisplayTests';
-import DisplayReference from 'rhino/components/forms/displays/DisplayReference';
+import DisplayReference from '../../../../components/forms/displays/DisplayReference';
 
 describe('DisplayReference', () => {
   sharedDisplayTests(DisplayReference);

@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import FieldGroupInteger, {
-  FieldGroupFloatingInteger,
-  FieldGroupHorizontalInteger
-} from 'rhino/components/forms/fieldGroups/FieldGroupInteger';
-import { useModelFieldGroup } from 'rhino/hooks/form';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import FieldGroupInteger, { FieldGroupFloatingInteger, FieldGroupHorizontalInteger } from '../../forms/fieldGroups/FieldGroupInteger';
+import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupIntegerVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroup(props);

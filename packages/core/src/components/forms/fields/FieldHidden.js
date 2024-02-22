@@ -1,4 +1,4 @@
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 import { FieldInputBase } from './FieldInput';
 
 export const FieldHiddenBase = (props) => (

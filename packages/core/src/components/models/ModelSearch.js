@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { InputGroup, Input } from 'reactstrap';
 import { useDebouncedCallback } from 'use-debounce';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { useModelIndexContext } from '../../hooks/controllers';
 
 const ModelSearch = () => {
   const { search, setSearch } = useModelIndexContext();

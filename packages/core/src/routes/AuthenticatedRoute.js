@@ -2,14 +2,10 @@ import PropTypes from 'prop-types';
 
 import { Navigate, useLocation } from 'react-router-dom';
 import { usePrevious } from 'react-use';
-import { SplashScreen } from 'rhino/components/logos';
-import { useAuth } from 'rhino/hooks/auth';
-import { useSessionCreatePath } from 'rhino/hooks/routes';
-import {
-  getPrevPathSession,
-  setPrevPathSession,
-  unsetPrevPathSession
-} from 'rhino/utils/storage';
+import { SplashScreen } from '../components/logos';
+import { useAuth } from '../hooks/auth';
+import { useSessionCreatePath } from '../hooks/routes';
+import { getPrevPathSession, setPrevPathSession, unsetPrevPathSession } from '../utils/storage';
 
 const AuthenticatedRoute = ({ children }) => {
   const sessionCreatePath = useSessionCreatePath({ absolute: true });

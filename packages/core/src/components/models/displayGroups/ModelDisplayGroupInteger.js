@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelDisplayGroup } from 'rhino/hooks/form';
-import DisplayGroupInteger, {
-  DisplayGroupFloatingInteger,
-  DisplayGroupHorizontalInteger
-} from 'rhino/components/forms/displayGroups/DisplayGroupInteger';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelDisplayGroup } from '../../../hooks/form';
+import DisplayGroupInteger, { DisplayGroupFloatingInteger, DisplayGroupHorizontalInteger } from '../../forms/displayGroups/DisplayGroupInteger';
 
 export const ModelDisplayGroupVerticalInteger = (props) => {
   // FIXME - displayGroupProps instead?

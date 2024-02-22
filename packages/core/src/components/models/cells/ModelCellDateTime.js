@@ -1,5 +1,5 @@
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import CellDateTime from 'rhino/components/table/cells/CellDateTime';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import CellDateTime from '../../table/cells/CellDateTime';
 
 export const ModelCellDateTimeBase = (props) => <CellDateTime {...props} />;
 

@@ -1,4 +1,4 @@
-import ModelCellBoolean from 'rhino/components/models/cells/ModelCellBoolean';
+import ModelCellBoolean from '../../../../components/models/cells/ModelCellBoolean';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellBooelan', () => {

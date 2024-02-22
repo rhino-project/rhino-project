@@ -1,7 +1,7 @@
 import { Children, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { useModelCreateContext } from 'rhino/hooks/controllers';
+import { useModelCreateContext } from '../../hooks/controllers';
 import { useFormContext } from 'react-hook-form';
 import { useBackHistory, useBaseOwnerNavigation } from '../../hooks/history';
 import { IconButton } from '../buttons';
@@ -9,7 +9,7 @@ import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import { getModelShowPath } from 'rhino/utils/routes';
+import { getModelShowPath } from '../../utils/routes';
 import ModelSection from './ModelSection';
 
 export const ModelCreateActionSave = ({ children, onSave, ...props }) => {

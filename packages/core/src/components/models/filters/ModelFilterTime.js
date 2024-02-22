@@ -3,10 +3,10 @@ import { useWatch } from 'react-hook-form';
 import { format, parseISO } from 'date-fns';
 
 import { useEffect, useMemo } from 'react';
-import { useModelFilterField } from 'rhino/hooks/form';
+import { useModelFilterField } from '../../../hooks/form';
 import FilterTime from '../../forms/filters/FilterTime';
-import { getDateTimeFormat } from 'rhino/utils/ui';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { getDateTimeFormat } from '../../../utils/ui';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
 // FIXME: Replicated in ModelFilterDate, ModelFilterDateTime, ModelFilterTime
 const operatorToLabel = (format, operator) => {

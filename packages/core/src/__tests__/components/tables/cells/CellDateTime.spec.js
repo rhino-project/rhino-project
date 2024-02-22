@@ -1,4 +1,4 @@
-import CellDateTime from 'rhino/components/table/cells/CellDateTime';
+import CellDateTime from '../../../../components/table/cells/CellDateTime';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('CellDateTime', () => {

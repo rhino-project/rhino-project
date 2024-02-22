@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useBaseOwnerFilters } from 'rhino/hooks/owner';
+import { useBaseOwnerFilters } from '../../../hooks/owner';
 import ModelFilterReference from './ModelFilterReference';
 
 const ModelFilterOwnerReference = (props) => {

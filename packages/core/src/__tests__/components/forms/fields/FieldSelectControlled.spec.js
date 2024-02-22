@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import FieldSelectControlled from 'rhino/components/forms/fields/FieldSelectControlled';
+import FieldSelectControlled from '../../../../components/forms/fields/FieldSelectControlled';
 import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldSelectControlled', () => {

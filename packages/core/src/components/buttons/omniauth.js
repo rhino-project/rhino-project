@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { OmniIconButton } from 'rhino/components/buttons';
+import { OmniIconButton } from './';
 
 import PropTypes from 'prop-types';
 import { useRhinoConfig } from '@rhino-project/config';

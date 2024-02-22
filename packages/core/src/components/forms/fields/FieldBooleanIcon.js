@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useController } from 'react-hook-form';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
-import { Icon } from 'rhino/components/icons';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useFieldInheritedProps } from '../../../hooks/form';
+import { Icon } from '../../icons';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const FieldBooleanIconBase = ({
   trueIcon = 'check',

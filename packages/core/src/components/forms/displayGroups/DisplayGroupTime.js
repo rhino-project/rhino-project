@@ -1,4 +1,4 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
 import DisplayLayoutVertical from '../DisplayLayoutVertical';
 import DisplayTime from '../displays/DisplayTime';
 import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';

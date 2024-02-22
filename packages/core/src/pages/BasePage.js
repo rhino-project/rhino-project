@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Spinner } from 'reactstrap';
 
-import ErrorBoundary from 'rhino/components/errors/errorBoundary';
-import { Target } from 'rhino/components/layouts';
+import ErrorBoundary from '../components/errors/errorBoundary';
+import { Target } from '../components/layouts';
 
 const BasePage = ({ children, loading }) => {
   if (loading) {

@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 import { Breadcrumb } from 'reactstrap';
 
 import { NavLink } from 'react-router-dom';
-import { useModel } from 'rhino/hooks/models';
-import { getParentModel, isBaseOwned } from 'rhino/utils/models';
+import { useModel } from '../hooks/models';
+import { getParentModel, isBaseOwned } from './models';
 import BreadcrumbItemWrapper from '../components/breadcrumbs';
 import { getModelIndexPath, getModelShowPath } from './routes';
 

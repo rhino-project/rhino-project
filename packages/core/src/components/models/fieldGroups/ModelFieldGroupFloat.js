@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import FieldGroupFloat, {
-  FieldGroupFloatingFloat,
-  FieldGroupHorizontalFloat
-} from 'rhino/components/forms/fieldGroups/FieldGroupFloat';
-import { useModelFieldGroup } from 'rhino/hooks/form';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import FieldGroupFloat, { FieldGroupFloatingFloat, FieldGroupHorizontalFloat } from '../../forms/fieldGroups/FieldGroupFloat';
+import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupFloatVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroup(props);

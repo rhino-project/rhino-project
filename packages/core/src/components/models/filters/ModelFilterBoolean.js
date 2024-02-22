@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { useWatch } from 'react-hook-form';
 
 import { useEffect } from 'react';
-import { useModelFilterField } from 'rhino/hooks/form';
+import { useModelFilterField } from '../../../hooks/form';
 import FilterBoolean from '../../forms/filters/FilterBoolean';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
 // FIXME: This is duplicated from FieldBooleanIndeterminate
 // Ensure that if the value is a string coming from the url, it is either 'true' or 'false'

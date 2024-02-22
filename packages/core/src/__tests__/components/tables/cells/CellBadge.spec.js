@@ -1,4 +1,4 @@
-import CellBadge from 'rhino/components/table/cells/CellBadge';
+import CellBadge from '../../../../components/table/cells/CellBadge';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('CellBadge', () => {

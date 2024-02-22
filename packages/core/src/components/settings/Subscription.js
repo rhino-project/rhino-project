@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { Col, Row, NavItem, NavLink, Alert } from 'reactstrap';
 import classnames from 'classnames';
 import { format } from 'date-fns';
-import { useBaseOwnerId } from 'rhino/hooks/owner';
+import { useBaseOwnerId } from '../../hooks/owner';
 
-import { getDateTimeFormat } from 'rhino/utils/ui';
+import { getDateTimeFormat } from '../../utils/ui';
 import {
   displayAmount,
   CreateCheckoutSession,
   usePrices,
   useSubscription,
-  useCheckSession
-} from 'rhino/queries/subscription';
-import { Button } from 'rhino/components/buttons';
-import { DangerAlert, SuccessAlert } from 'rhino/components/alerts';
+  useCheckSession,
+} from '../../queries/subscription';
+import { Button } from '../buttons';
+import { DangerAlert, SuccessAlert } from '../alerts';
 
 export const SubscriptionTab = ({ activeTab, toggle }) => {
   return (

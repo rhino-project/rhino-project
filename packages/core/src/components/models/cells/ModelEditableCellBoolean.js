@@ -1,8 +1,8 @@
 import { Input } from 'reactstrap';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { useOverrides } from 'rhino/hooks/overrides';
-import { useTableInheritedProps } from 'rhino/hooks/table';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelIndexContext } from '../../../hooks/controllers';
+import { useOverrides } from '../../../hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
 
 const defaultComponents = {
   ModelEditableCellBoolean: Input

@@ -1,18 +1,15 @@
 import { useMemo } from 'react';
 import { TabContent, TabPane, Nav } from 'reactstrap';
 
-import BaseAuthedPage from 'rhino/pages/BaseAuthedPage';
-import EditOrganizationProfile from 'rhino/components/settings/EditOrganizationProfile';
-import EditOrganizationAccess from 'rhino/components/settings/EditOrganizationAccess';
-import Subscription from 'rhino/components/settings/Subscription';
-import { useBaseOwnerPath, useParsedSearch } from 'rhino/hooks/history';
-import {
-  hasOrganizationsModule,
-  hasSubscriptionsModule
-} from 'rhino/utils/models';
-import { NavItem } from 'rhino/components/nav';
+import BaseAuthedPage from '../BaseAuthedPage';
+import EditOrganizationProfile from '../../components/settings/EditOrganizationProfile';
+import EditOrganizationAccess from '../../components/settings/EditOrganizationAccess';
+import Subscription from '../../components/settings/Subscription';
+import { useBaseOwnerPath, useParsedSearch } from '../../hooks/history';
+import { hasOrganizationsModule, hasSubscriptionsModule } from '../../utils/models';
+import { NavItem } from '../../components/nav';
 import { useParams } from 'react-router-dom';
-import { getSettingsPath } from 'rhino/utils/routes';
+import { getSettingsPath } from '../../utils/routes';
 
 const tabTo = (baseOwnerPath, tabId) =>
   baseOwnerPath.build(`${getSettingsPath()}/${tabId}`);

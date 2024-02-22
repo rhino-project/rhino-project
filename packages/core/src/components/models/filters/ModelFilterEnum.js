@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { useWatch } from 'react-hook-form';
 
-import { enumFromIndexWithTitle } from 'rhino/utils/ui';
+import { enumFromIndexWithTitle } from '../../../utils/ui';
 import { useCallback, useEffect, useMemo } from 'react';
-import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectControlled';
-import { useModelFilterField } from 'rhino/hooks/form';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import FilterSelectControlled from '../../forms/filters/FilterSelectControlled';
+import { useModelFilterField } from '../../../hooks/form';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
 const ModelFilterEnum = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);

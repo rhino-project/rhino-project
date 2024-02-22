@@ -1,9 +1,5 @@
-import { useModel } from 'rhino/hooks/models';
-import {
-  getModelAndAttributeFromPath,
-  getModelFromRef,
-  isOwnerGlobal
-} from 'rhino/utils/models';
+import { useModel } from '../../hooks/models';
+import { getModelAndAttributeFromPath, getModelFromRef, isOwnerGlobal } from '../../utils/models';
 import ModelFilterBoolean from './filters/ModelFilterBoolean';
 import ModelFilterDate from './filters/ModelFilterDate';
 import ModelFilterDateTime from './filters/ModelFilterDateTime';
@@ -16,7 +12,7 @@ import ModelFilterReference from './filters/ModelFilterReference';
 import ModelFilterString from './filters/ModelFilterString';
 import ModelFilterTime from './filters/ModelFilterTime';
 import ModelFilterYear from './filters/ModelFilterYear';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
 
 export const ModelFilterBase = (props) => {
   const model = useModel(props.model);

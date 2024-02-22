@@ -2,13 +2,13 @@ import { useMemo, useCallback, useEffect } from 'react';
 import { Form } from 'reactstrap';
 import * as yup from 'yup';
 
-import { SubmitButton } from 'rhino/components/buttons';
-import { baseOwnerModel } from 'rhino/utils/models';
-import { DangerAlert, SuccessAlert } from 'rhino/components/alerts';
-import { useBaseOwner, useBaseOwnerId } from 'rhino/hooks/owner';
-import { useModelShow, useModelUpdate } from 'rhino/hooks/queries';
+import { SubmitButton } from '../buttons';
+import { baseOwnerModel } from '../../utils/models';
+import { DangerAlert, SuccessAlert } from '../alerts';
+import { useBaseOwner, useBaseOwnerId } from '../../hooks/owner';
+import { useModelShow, useModelUpdate } from '../../hooks/queries';
 import FormProvider from '../forms/FormProvider';
-import { useFieldSetErrors, useResolver } from 'rhino/hooks/form';
+import { useFieldSetErrors, useResolver } from '../../hooks/form';
 import { useForm } from 'react-hook-form';
 import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
 

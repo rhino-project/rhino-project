@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Navigate, Route, Routes } from 'react-router-dom';
-import NonAuthenticatedRoute from 'rhino/routes/NonAuthenticatedRoute';
-import * as routes from 'rhino/utils/routes';
+import NonAuthenticatedRoute from '../../routes/NonAuthenticatedRoute';
+import * as routes from '../../utils/routes';
 
 const authenticatedState = {
   initializing: false,

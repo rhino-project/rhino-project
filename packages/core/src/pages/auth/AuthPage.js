@@ -1,6 +1,5 @@
-// Internal Dependencies
-import { Target } from 'rhino/components/layouts';
-import { DarkLogo } from 'rhino/components/logos';
+import { Target } from '../../components/layouts';
+import { DarkLogo } from '../../components/logos';
 
 // External Dependencies
 import PropTypes from 'prop-types';

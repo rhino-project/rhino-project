@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import { useTableInheritedProps } from 'rhino/hooks/table';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
 
 const CellFloatBase = ({ empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);

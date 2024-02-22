@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import CellLink from 'rhino/components/table/cells/CellLink';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import CellLink from '../../table/cells/CellLink';
 
 export const ModelCellAttachmentDownloadBase = ({
   children,

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
 import ModelPage from './ModelPage';
-import ModelShow from 'rhino/components/models/ModelShow';
+import ModelShow from '../../components/models/ModelShow';
 
 const Show = ({ model }) => {
   const { id } = useParams();

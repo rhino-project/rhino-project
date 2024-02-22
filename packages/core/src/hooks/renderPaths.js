@@ -1,5 +1,5 @@
 import { Children, cloneElement, isValidElement, useMemo } from 'react';
-import ModelFieldGroup from 'rhino/components/models/ModelFieldGroup';
+import ModelFieldGroup from '../components/models/ModelFieldGroup';
 
 export const useRenderPaths = (paths, options) => {
   const { Component = ModelFieldGroup, props } = options;

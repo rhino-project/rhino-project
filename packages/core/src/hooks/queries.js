@@ -1,9 +1,9 @@
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
 import { cloneDeep, has, merge, set } from 'lodash';
 
-import { networkApiCallOnlyData } from 'rhino/lib/networking';
-import { useModel } from 'rhino/hooks/models';
-import { getModel } from 'rhino/utils/models';
+import { networkApiCallOnlyData } from '../lib/networking';
+import { useModel } from './models';
+import { getModel } from '../utils/models';
 import { useCallback, useMemo } from 'react';
 
 /**

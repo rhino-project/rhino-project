@@ -1,13 +1,6 @@
-import {
-  useGlobalComponentForAttribute,
-  useOverrides
-} from 'rhino/hooks/overrides';
-import { useModelContext } from 'rhino/hooks/models';
-import {
-  getModelAndAttributeFromPath,
-  getModelFromRef,
-  isOwnerGlobal
-} from 'rhino/utils/models';
+import { useGlobalComponentForAttribute, useOverrides } from '../../hooks/overrides';
+import { useModelContext } from '../../hooks/models';
+import { getModelAndAttributeFromPath, getModelFromRef, isOwnerGlobal } from '../../utils/models';
 import ModelFieldGroupArrayInteger from './fieldGroups/ModelFieldGroupArrayInteger';
 import ModelFieldGroupArrayString from './fieldGroups/ModelFieldGroupArrayString';
 import ModelFieldGroupBoolean from './fieldGroups/ModelFieldGroupBoolean';
