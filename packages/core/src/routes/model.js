@@ -1,12 +1,12 @@
 import { each, map } from 'lodash';
 import { Route } from 'react-router-dom';
 
-import { modelLoader } from '../models';
+import modelLoader from '../models';
 
-import { CreateModel } from '../pages/model/Create';
-import { EditModel } from '../pages/model/Edit';
-import { ModelIndex } from '../pages/model/Index';
-import { ShowModel } from '../pages/model/Show';
+import { Create as CreateModel } from '../pages/model/Create';
+import { Edit as EditModel } from '../pages/model/Edit';
+import { Index as ModelIndex } from '../pages/model/Index';
+import { Show as ShowModel } from '../pages/model/Show';
 
 const generateModelRoutePaths = () => {
   const routes = {};

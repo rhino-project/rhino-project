@@ -11,7 +11,7 @@ import {
   getForgotPasswordPath,
   getSessionCreatePath,
   getSettingsPath,
-  getUserCreatePath,
+  getUserCreatePath
 } from '../utils/routes';
 
 export const routePaths = {
@@ -48,3 +48,7 @@ export const accountSettingsRoute = () => {
     />
   ];
 };
+
+export { modelRoutes } from './model';
+export * from './AuthenticatedRoute';
+export * from './NonAuthenticatedRoute';

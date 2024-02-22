@@ -1,7 +1,7 @@
 import { FormGroup } from 'reactstrap';
 
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
-import { Field } from './fields/FieldInput';
+import { FieldInput as Field } from './fields/FieldInput';
 import { useFieldInheritedProps } from '../../hooks/form';
 import { FilterLabel } from './FilterLabel';
 
