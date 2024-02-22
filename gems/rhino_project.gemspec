@@ -18,12 +18,12 @@ Gem::Specification.new do |s|
   s.email    = ""
   s.homepage = "https://rhino-project.org"
 
-  s.files = ["README.md", "LICENSE"]
+  s.files = ["README.md", "../LICENSE"]
 
   s.metadata = {
   }
 
-  s.add_dependency "rhino", version
+  # s.add_dependency "rhino", version
   # s.add_dependency "rhino_jobs",    version
   # s.add_dependency "rhino_notifications",    version
   # s.add_dependency "rhino_organizations",  version
