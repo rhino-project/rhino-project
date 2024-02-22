@@ -1,0 +1,567 @@
+{
+  "name": "@rhino-project/core",
+  "version": "0.17.1",
+  "description": "",
+  "author": "JP Rosevear",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhino-project/rhino-project.git",
+    "directory": "packages/core"
+  },
+  "homepage": "https://rhino-project.org",
+  "type": "module",
+  "types": "dist/esm/index.d.ts",
+  "main": "dist/cjs/index.cjs",
+  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    },
+    "./contexts": {
+      "import": {
+        "types": "./dist/esm/contexts/index.d.ts",
+        "default": "./dist/esm/contexts/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/contexts/index.d.ts",
+        "default": "./dist/cjs/contexts/index.cjs"
+      }
+    },
+    "./queries": {
+      "import": {
+        "types": "./dist/esm/queries/index.d.ts",
+        "default": "./dist/esm/queries/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/queries/index.d.ts",
+        "default": "./dist/cjs/queries/index.cjs"
+      }
+    },
+    "./utils": {
+      "import": {
+        "types": "./dist/esm/utils/index.d.ts",
+        "default": "./dist/esm/utils/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/utils/index.d.ts",
+        "default": "./dist/cjs/utils/index.cjs"
+      }
+    },
+    "./models": {
+      "import": {
+        "types": "./dist/esm/models/index.d.ts",
+        "default": "./dist/esm/models/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/models/index.d.ts",
+        "default": "./dist/cjs/models/index.cjs"
+      }
+    },
+    "./components/settings": {
+      "import": {
+        "types": "./dist/esm/components/settings/index.d.ts",
+        "default": "./dist/esm/components/settings/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/settings/index.d.ts",
+        "default": "./dist/cjs/components/settings/index.cjs"
+      }
+    },
+    "./components/pagination": {
+      "import": {
+        "types": "./dist/esm/components/pagination/index.d.ts",
+        "default": "./dist/esm/components/pagination/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/pagination/index.d.ts",
+        "default": "./dist/cjs/components/pagination/index.cjs"
+      }
+    },
+    "./components/forms/filters": {
+      "import": {
+        "types": "./dist/esm/components/forms/filters/index.d.ts",
+        "default": "./dist/esm/components/forms/filters/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/forms/filters/index.d.ts",
+        "default": "./dist/cjs/components/forms/filters/index.cjs"
+      }
+    },
+    "./components/forms/displays": {
+      "import": {
+        "types": "./dist/esm/components/forms/displays/index.d.ts",
+        "default": "./dist/esm/components/forms/displays/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/forms/displays/index.d.ts",
+        "default": "./dist/cjs/components/forms/displays/index.cjs"
+      }
+    },
+    "./components/forms/fieldGroups": {
+      "import": {
+        "types": "./dist/esm/components/forms/fieldGroups/index.d.ts",
+        "default": "./dist/esm/components/forms/fieldGroups/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/forms/fieldGroups/index.d.ts",
+        "default": "./dist/cjs/components/forms/fieldGroups/index.cjs"
+      }
+    },
+    "./components/forms": {
+      "import": {
+        "types": "./dist/esm/components/forms/index.d.ts",
+        "default": "./dist/esm/components/forms/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/forms/index.d.ts",
+        "default": "./dist/cjs/components/forms/index.cjs"
+      }
+    },
+    "./components/forms/displayGroups": {
+      "import": {
+        "types": "./dist/esm/components/forms/displayGroups/index.d.ts",
+        "default": "./dist/esm/components/forms/displayGroups/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/forms/displayGroups/index.d.ts",
+        "default": "./dist/cjs/components/forms/displayGroups/index.cjs"
+      }
+    },
+    "./components/forms/filterGroups": {
+      "import": {
+        "types": "./dist/esm/components/forms/filterGroups/index.d.ts",
+        "default": "./dist/esm/components/forms/filterGroups/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/forms/filterGroups/index.d.ts",
+        "default": "./dist/cjs/components/forms/filterGroups/index.cjs"
+      }
+    },
+    "./components/forms/fields": {
+      "import": {
+        "types": "./dist/esm/components/forms/fields/index.d.ts",
+        "default": "./dist/esm/components/forms/fields/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/forms/fields/index.d.ts",
+        "default": "./dist/cjs/components/forms/fields/index.cjs"
+      }
+    },
+    "./components/empties": {
+      "import": {
+        "types": "./dist/esm/components/empties/index.d.ts",
+        "default": "./dist/esm/components/empties/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/empties/index.d.ts",
+        "default": "./dist/cjs/components/empties/index.cjs"
+      }
+    },
+    "./components/buttons": {
+      "import": {
+        "types": "./dist/esm/components/buttons/index.d.ts",
+        "default": "./dist/esm/components/buttons/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/buttons/index.d.ts",
+        "default": "./dist/cjs/components/buttons/index.cjs"
+      }
+    },
+    "./components/app": {
+      "import": {
+        "types": "./dist/esm/components/app/index.d.ts",
+        "default": "./dist/esm/components/app/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/app/index.d.ts",
+        "default": "./dist/cjs/components/app/index.cjs"
+      }
+    },
+    "./components/auth": {
+      "import": {
+        "types": "./dist/esm/components/auth/index.d.ts",
+        "default": "./dist/esm/components/auth/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/auth/index.d.ts",
+        "default": "./dist/cjs/components/auth/index.cjs"
+      }
+    },
+    "./components/shells": {
+      "import": {
+        "types": "./dist/esm/components/shells/index.d.ts",
+        "default": "./dist/esm/components/shells/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/shells/index.d.ts",
+        "default": "./dist/cjs/components/shells/index.cjs"
+      }
+    },
+    "./components/logos": {
+      "import": {
+        "types": "./dist/esm/components/logos/index.d.ts",
+        "default": "./dist/esm/components/logos/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/logos/index.d.ts",
+        "default": "./dist/cjs/components/logos/index.cjs"
+      }
+    },
+    "./components": {
+      "import": {
+        "types": "./dist/esm/components/index.d.ts",
+        "default": "./dist/esm/components/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/index.d.ts",
+        "default": "./dist/cjs/components/index.cjs"
+      }
+    },
+    "./components/shared": {
+      "import": {
+        "types": "./dist/esm/components/shared/index.d.ts",
+        "default": "./dist/esm/components/shared/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/shared/index.d.ts",
+        "default": "./dist/cjs/components/shared/index.cjs"
+      }
+    },
+    "./components/models/filters": {
+      "import": {
+        "types": "./dist/esm/components/models/filters/index.d.ts",
+        "default": "./dist/esm/components/models/filters/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/models/filters/index.d.ts",
+        "default": "./dist/cjs/components/models/filters/index.cjs"
+      }
+    },
+    "./components/models/cells": {
+      "import": {
+        "types": "./dist/esm/components/models/cells/index.d.ts",
+        "default": "./dist/esm/components/models/cells/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/models/cells/index.d.ts",
+        "default": "./dist/cjs/components/models/cells/index.cjs"
+      }
+    },
+    "./components/models/fieldGroups": {
+      "import": {
+        "types": "./dist/esm/components/models/fieldGroups/index.d.ts",
+        "default": "./dist/esm/components/models/fieldGroups/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/models/fieldGroups/index.d.ts",
+        "default": "./dist/cjs/components/models/fieldGroups/index.cjs"
+      }
+    },
+    "./components/models": {
+      "import": {
+        "types": "./dist/esm/components/models/index.d.ts",
+        "default": "./dist/esm/components/models/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/models/index.d.ts",
+        "default": "./dist/cjs/components/models/index.cjs"
+      }
+    },
+    "./components/models/displayGroups": {
+      "import": {
+        "types": "./dist/esm/components/models/displayGroups/index.d.ts",
+        "default": "./dist/esm/components/models/displayGroups/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/models/displayGroups/index.d.ts",
+        "default": "./dist/cjs/components/models/displayGroups/index.cjs"
+      }
+    },
+    "./components/models/fields": {
+      "import": {
+        "types": "./dist/esm/components/models/fields/index.d.ts",
+        "default": "./dist/esm/components/models/fields/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/models/fields/index.d.ts",
+        "default": "./dist/cjs/components/models/fields/index.cjs"
+      }
+    },
+    "./components/models/ModelIndex": {
+      "import": {
+        "types": "./dist/esm/components/models/ModelIndex.d.ts",
+        "default": "./dist/esm/components/models/ModelIndex.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/models/ModelIndex.d.ts",
+        "default": "./dist/cjs/components/models/ModelIndex.cjs"
+      }
+    },
+    "./components/alerts": {
+      "import": {
+        "types": "./dist/esm/components/alerts/index.d.ts",
+        "default": "./dist/esm/components/alerts/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/alerts/index.d.ts",
+        "default": "./dist/cjs/components/alerts/index.cjs"
+      }
+    },
+    "./components/checkboxes": {
+      "import": {
+        "types": "./dist/esm/components/checkboxes/index.d.ts",
+        "default": "./dist/esm/components/checkboxes/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/checkboxes/index.d.ts",
+        "default": "./dist/cjs/components/checkboxes/index.cjs"
+      }
+    },
+    "./components/null": {
+      "import": {
+        "types": "./dist/esm/components/null/index.d.ts",
+        "default": "./dist/esm/components/null/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/null/index.d.ts",
+        "default": "./dist/cjs/components/null/index.cjs"
+      }
+    },
+    "./components/layouts": {
+      "import": {
+        "types": "./dist/esm/components/layouts/index.d.ts",
+        "default": "./dist/esm/components/layouts/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/layouts/index.d.ts",
+        "default": "./dist/cjs/components/layouts/index.cjs"
+      }
+    },
+    "./components/table/cells": {
+      "import": {
+        "types": "./dist/esm/components/table/cells/index.d.ts",
+        "default": "./dist/esm/components/table/cells/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/table/cells/index.d.ts",
+        "default": "./dist/cjs/components/table/cells/index.cjs"
+      }
+    },
+    "./components/table": {
+      "import": {
+        "types": "./dist/esm/components/table/index.d.ts",
+        "default": "./dist/esm/components/table/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/table/index.d.ts",
+        "default": "./dist/cjs/components/table/index.cjs"
+      }
+    },
+    "./components/icons": {
+      "import": {
+        "types": "./dist/esm/components/icons/index.d.ts",
+        "default": "./dist/esm/components/icons/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/icons/index.d.ts",
+        "default": "./dist/cjs/components/icons/index.cjs"
+      }
+    },
+    "./components/devtool": {
+      "import": {
+        "types": "./dist/esm/components/devtool/index.d.ts",
+        "default": "./dist/esm/components/devtool/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/devtool/index.d.ts",
+        "default": "./dist/cjs/components/devtool/index.cjs"
+      }
+    },
+    "./components/nav": {
+      "import": {
+        "types": "./dist/esm/components/nav/index.d.ts",
+        "default": "./dist/esm/components/nav/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/nav/index.d.ts",
+        "default": "./dist/cjs/components/nav/index.cjs"
+      }
+    },
+    "./components/errors": {
+      "import": {
+        "types": "./dist/esm/components/errors/index.d.ts",
+        "default": "./dist/esm/components/errors/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/errors/index.d.ts",
+        "default": "./dist/cjs/components/errors/index.cjs"
+      }
+    },
+    "./components/breadcrumbs": {
+      "import": {
+        "types": "./dist/esm/components/breadcrumbs/index.d.ts",
+        "default": "./dist/esm/components/breadcrumbs/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/breadcrumbs/index.d.ts",
+        "default": "./dist/cjs/components/breadcrumbs/index.cjs"
+      }
+    },
+    "./components/analytics": {
+      "import": {
+        "types": "./dist/esm/components/analytics/index.d.ts",
+        "default": "./dist/esm/components/analytics/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/components/analytics/index.d.ts",
+        "default": "./dist/cjs/components/analytics/index.cjs"
+      }
+    },
+    "./hooks": {
+      "import": {
+        "types": "./dist/esm/hooks/index.d.ts",
+        "default": "./dist/esm/hooks/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/hooks/index.d.ts",
+        "default": "./dist/cjs/hooks/index.cjs"
+      }
+    },
+    "./lib": {
+      "import": {
+        "types": "./dist/esm/lib/index.d.ts",
+        "default": "./dist/esm/lib/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/lib/index.d.ts",
+        "default": "./dist/cjs/lib/index.cjs"
+      }
+    },
+    "./pages/settings": {
+      "import": {
+        "types": "./dist/esm/pages/settings/index.d.ts",
+        "default": "./dist/esm/pages/settings/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/pages/settings/index.d.ts",
+        "default": "./dist/cjs/pages/settings/index.cjs"
+      }
+    },
+    "./pages/auth": {
+      "import": {
+        "types": "./dist/esm/pages/auth/index.d.ts",
+        "default": "./dist/esm/pages/auth/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/pages/auth/index.d.ts",
+        "default": "./dist/cjs/pages/auth/index.cjs"
+      }
+    },
+    "./pages": {
+      "import": {
+        "types": "./dist/esm/pages/index.d.ts",
+        "default": "./dist/esm/pages/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/pages/index.d.ts",
+        "default": "./dist/cjs/pages/index.cjs"
+      }
+    },
+    "./pages/model/Index": {
+      "import": {
+        "types": "./dist/esm/pages/model/Index.d.ts",
+        "default": "./dist/esm/pages/model/Index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/pages/model/Index.d.ts",
+        "default": "./dist/cjs/pages/model/Index.cjs"
+      }
+    },
+    "./routes": {
+      "import": {
+        "types": "./dist/esm/routes/index.d.ts",
+        "default": "./dist/esm/routes/index.js"
+      },
+      "require": {
+        "types": "./dist/cjs/routes/index.d.ts",
+        "default": "./dist/cjs/routes/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rimraf ./dist && rimraf ./coverage",
+    "test:types": "tsc",
+    "test:lib": "vitest",
+    "test:lib:dev": "pnpm run test:lib --watch",
+    "test:build": "publint --strict",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@hookform/devtools": "4.3.1",
+    "@hookform/resolvers": "3.3.2",
+    "@rails/actioncable": "7.0.3",
+    "@rails/activestorage": "7.0.3",
+    "@rhino-project/config": "workspace:*",
+    "@rollbar/react": "0.11.2",
+    "@stripe/react-stripe-js": "2.1.0",
+    "@stripe/stripe-js": "1.52.0",
+    "@tanstack/react-query": "4.32.6",
+    "@tanstack/react-query-devtools": "4.32.6",
+    "@tanstack/react-table": "8.10.3",
+    "axios": "1.6.5",
+    "bootstrap": "5.3.2",
+    "bootstrap-icons": "1.11.3",
+    "classnames": "2.3.1",
+    "date-fns": "2.28.0",
+    "lodash": "4.17.21",
+    "prop-types": "15.7.2",
+    "qs": "6.9.7",
+    "react": "18.2.0",
+    "react-bootstrap-typeahead": "6.3.2",
+    "react-datepicker": "4.8.0",
+    "react-dom": "18.2.0",
+    "react-helmet": "6.1.0",
+    "react-hook-form": "7.49.2",
+    "react-phone-input-2": "2.15.1",
+    "react-router": "6.16.0",
+    "react-router-dom": "6.16.0",
+    "react-use": "17.4.2",
+    "reactstrap": "^9.1.9",
+    "rollbar": "2.26.2",
+    "use-debounce": "5.2.0",
+    "uuid": "8.3.2",
+    "yup": "1.3.3"
+  },
+  "devDependencies": {
+    "@testing-library/react": "14.0.0",
+    "@types/lodash-es": "^4.17.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "jsdom": "22.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "vite-plugin-externalize-deps": "^0.8.0",
+    "vite-tsconfig-paths": "4.3.1"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-dom": ">=16"
+  }
+}
