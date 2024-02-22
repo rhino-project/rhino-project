@@ -7,8 +7,8 @@ import { SubmitButton } from '../buttons';
 import { useModelShow, useModelUpdate } from '../../hooks/queries';
 import { useFieldSetErrors, useResolver } from '../../hooks/form';
 import { useForm } from 'react-hook-form';
-import FormProvider from '../forms/FormProvider';
-import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
+import { FormProvider } from '../forms/FormProvider';
+import { FieldGroupString } from '../forms/fieldGroups/FieldGroupString';
 
 export const EditProfile = () => {
   const { model, resource: account } = useModelShow('account', null);

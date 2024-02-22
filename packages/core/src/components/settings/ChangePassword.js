@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useUserUpdateAction } from '../../queries/auth';
-import AuthForm from '../auth/AuthForm';
+import { AuthForm } from '../auth/AuthForm';
 import { SuccessAlert } from '../alerts';
 
 export const ChangePassword = () => {

@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
-import ModelFieldGroup from '../../../components/models/ModelFieldGroup';
+import { ModelFieldGroup } from '../../../components/models/ModelFieldGroup';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ModelEditSimple from '../../../components/models/ModelEditSimple';
+import { ModelEditSimple } from '../../../components/models/ModelEditSimple';
 import rhinoConfig from 'rhino.config';
 
 vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({

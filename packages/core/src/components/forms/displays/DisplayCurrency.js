@@ -1,7 +1,7 @@
 import { useGlobalComponent } from '../../../hooks/overrides';
 import { InputGroup } from 'reactstrap';
 import { applyCurrencyMask } from '../../../utils/ui';
-import DisplayString from './DisplayString';
+import { DisplayString } from './DisplayString';
 
 export const DisplayCurrencyBaseInput = (props) => {
   return (

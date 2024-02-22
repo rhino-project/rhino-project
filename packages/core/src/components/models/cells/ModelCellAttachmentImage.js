@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellImage from '../../table/cells/CellImage';
+import { CellImage } from '../../table/cells/CellImage';
 
 export const ModelCellAttachmentImageBase = ({ getValue, ...props }) => {
   const syntheticGetValue = useCallback(() => getValue()?.url, [getValue]);

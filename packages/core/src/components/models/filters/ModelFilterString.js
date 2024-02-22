@@ -3,7 +3,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useEffect } from 'react';
 import { useModelFilterField } from '../../../hooks/form';
-import FilterString from '../../forms/filters/FilterString';
+import { FilterString } from '../../forms/filters/FilterString';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 
 export const ModelFilterString = ({ model, path, ...props }) => {

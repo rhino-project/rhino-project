@@ -3,7 +3,7 @@ import { useWatch } from 'react-hook-form';
 
 import { useEffect, useMemo } from 'react';
 import { useModelFilterField } from '../../../hooks/form';
-import FilterYear from '../../forms/filters/FilterYear';
+import { FilterYear } from '../../forms/filters/FilterYear';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 
 export const ModelFilterYear = ({ model, path, ...props }) => {

@@ -5,7 +5,7 @@ import { Breadcrumb } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import { useModel } from '../hooks/models';
 import { getParentModel, isBaseOwned } from './models';
-import BreadcrumbItemWrapper from '../components/breadcrumbs';
+import { BreadcrumbItemWrapper } from '../components/breadcrumbs';
 import { getModelIndexPath, getModelShowPath } from './routes';
 
 export const useModelClassNames = (baseName, model, attribute = null) => {

@@ -7,10 +7,10 @@ import { baseOwnerModel } from '../../utils/models';
 import { DangerAlert, SuccessAlert } from '../alerts';
 import { useBaseOwner, useBaseOwnerId } from '../../hooks/owner';
 import { useModelShow, useModelUpdate } from '../../hooks/queries';
-import FormProvider from '../forms/FormProvider';
+import { FormProvider } from '../forms/FormProvider';
 import { useFieldSetErrors, useResolver } from '../../hooks/form';
 import { useForm } from 'react-hook-form';
-import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
+import { FieldGroupString } from '../forms/fieldGroups/FieldGroupString';
 
 export const EditOrganizationProfile = () => {
   const baseOwner = useBaseOwner();

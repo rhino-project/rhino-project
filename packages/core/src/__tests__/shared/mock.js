@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import AuthProvider from '../../contexts/AuthContext';
+import { AuthProvider } from '../../contexts/AuthContext';
 import { useAuth } from '../../hooks/auth';
 import {
   AUTH_BASE_PATH,

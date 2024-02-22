@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand } from 'reactstrap';
-import PrimaryNavigation from '../app/PrimaryNavigation';
-import SecondaryNavigation from '../app/SecondaryNavigation';
+import { PrimaryNavigation } from '../app/PrimaryNavigation';
+import { SecondaryNavigation } from '../app/SecondaryNavigation';
 import { Icon } from '../icons';
 import { LightLogo } from '../logos';
-import Sidebar from './Sidebar';
+import { Sidebar } from './Sidebar';
 
 const SidebarLayout = () => (
   <>

@@ -7,10 +7,10 @@ import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import ModelCreateModalActions from './ModelCreateModalActions';
-import ModelCreateSimple from './ModelCreateSimple';
-import ModelFieldGroup from './ModelFieldGroup';
-import ModelSection from './ModelSection';
+import { ModelCreateModalActions } from './ModelCreateModalActions';
+import { ModelCreateSimple } from './ModelCreateSimple';
+import { ModelFieldGroup } from './ModelFieldGroup';
+import { ModelSection } from './ModelSection';
 
 export const ModelCreateModalHeader = (props) => {
   const { model } = useModelCreateContext();

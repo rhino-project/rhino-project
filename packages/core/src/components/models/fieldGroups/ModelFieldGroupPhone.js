@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import FieldGroupPhone, { FieldGroupFloatingPhone, FieldGroupHorizontalPhone } from '../../forms/fieldGroups/FieldGroupPhone';
+import { FieldGroupPhone, FieldGroupFloatingPhone, FieldGroupHorizontalPhone } from '../../forms/fieldGroups/FieldGroupPhone';
 import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupPhoneVertical = (props) => {

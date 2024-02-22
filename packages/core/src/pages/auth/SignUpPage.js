@@ -1,11 +1,11 @@
 import { Navigate, NavLink } from 'react-router-dom';
 
-import AuthForm from '../../components/auth/AuthForm';
+import { AuthForm } from '../../components/auth/AuthForm';
 import { useAuthenticated } from '../../hooks/auth';
 import { useRootPath, useSessionCreatePath } from '../../hooks/routes';
 import { useSignUpAction } from '../../queries/auth';
 import { hasOrganizationsModule } from '../../utils/models';
-import AuthPage from './AuthPage';
+import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/config';
 import PropTypes from 'prop-types';
 

@@ -1,12 +1,12 @@
 import { useGlobalComponent, useMergedOverrides, useOverrides } from '../../../hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldCurrency from '../fields/FieldCurrency';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldCurrency } from '../fields/FieldCurrency';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 import classnames from 'classnames';
 import { FormGroup, InputGroup } from 'reactstrap';
 import { useFieldError, useFieldInheritedProps } from '../../../hooks/form';
-import FieldLabel from '../FieldLabel';
-import FieldFeedback from '../FieldFeedback';
+import { FieldLabel } from '../FieldLabel';
+import { FieldFeedback } from '../FieldFeedback';
 import { FieldCurrencyBaseInput } from '../fields/FieldCurrency';
 
 const BASE_OVERRIDES = {

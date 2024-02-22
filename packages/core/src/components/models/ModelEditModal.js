@@ -7,10 +7,10 @@ import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import ModelEditModalActions from './ModelEditModalActions';
-import ModelEditSimple from './ModelEditSimple';
-import ModelFieldGroup from './ModelFieldGroup';
-import ModelSection from './ModelSection';
+import { ModelEditModalActions } from './ModelEditModalActions';
+import { ModelEditSimple } from './ModelEditSimple';
+import { ModelFieldGroup } from './ModelFieldGroup';
+import { ModelSection } from './ModelSection';
 
 export const ModelEditModalHeader = (props) => {
   const { model } = useModelEditContext();

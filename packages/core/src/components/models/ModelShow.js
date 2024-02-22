@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
-import ModelShowDescription from './ModelShowDescription';
-import ModelShowRelated from './ModelShowRelated';
-import ModelShowActions from './ModelShowActions';
-import ModelShowSimple from './ModelShowSimple';
-import ModelShowHeader from './ModelShowHeader';
-import ModelSection from './ModelSection';
+import { ModelShowDescription } from './ModelShowDescription';
+import { ModelShowRelated } from './ModelShowRelated';
+import { ModelShowActions } from './ModelShowActions';
+import { ModelShowSimple } from './ModelShowSimple';
+import { ModelShowHeader } from './ModelShowHeader';
+import { ModelSection } from './ModelSection';
 
 const defaultComponents = {
   ModelShowHeader,

@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useTableInheritedProps } from '../../../hooks/table';
-import CellLink from './CellLink';
+import { CellLink } from './CellLink';
 import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const CellLinkEmailBase = ({ children, empty = '-', ...props }) => {

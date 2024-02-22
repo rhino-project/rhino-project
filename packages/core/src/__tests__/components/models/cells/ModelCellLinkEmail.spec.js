@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { sharedCellTests } from './sharedCellTests';
-import ModelCellLinkEmail from '../../../../../rhino/components/models/cells/ModelCellLinkEmail';
+import { ModelCellLinkEmail } from '../../../../../rhino/components/models/cells/ModelCellLinkEmail';
 
 describe('ModelCellLinkEmail', () => {
   sharedCellTests(ModelCellLinkEmail);

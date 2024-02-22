@@ -1,4 +1,4 @@
-import ModelShowHeader from '../../../components/models/ModelShowHeader';
+import { ModelShowHeader } from '../../../components/models/ModelShowHeader';
 import { sharedModelTests } from './sharedModelTests';
 
 describe('ModelShowHeader', () => {

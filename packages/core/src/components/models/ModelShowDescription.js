@@ -1,9 +1,9 @@
 import { useModelShowContext } from '../../hooks/controllers';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
 import { useRenderPaths } from '../../hooks/renderPaths';
-import ModelDisplayGroup from './ModelDisplayGroup';
-import ModelSection from './ModelSection';
-import FormErrors from '../forms/FormErrors';
+import { ModelDisplayGroup } from './ModelDisplayGroup';
+import { ModelSection } from './ModelSection';
+import { FormErrors } from '../forms/FormErrors';
 
 export const ModelShowDescriptionBase = (props) => {
   const { model, paths } = useModelShowContext();

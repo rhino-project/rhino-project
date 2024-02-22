@@ -1,5 +1,5 @@
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellTime from '../../table/cells/CellTime';
+import { CellTime } from '../../table/cells/CellTime';
 
 export const ModelCellTimeBase = (props) => <CellTime {...props} />;
 

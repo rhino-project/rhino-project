@@ -2,7 +2,7 @@ import { isBaseOwned } from '../../utils/models';
 import { breadcrumbFor } from '../../utils/ui';
 import { useModelCreateContext } from '../../hooks/controllers';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
-import ModelSection from './ModelSection';
+import { ModelSection } from './ModelSection';
 
 export const ModelCreateHeaderBase = () => {
   const {

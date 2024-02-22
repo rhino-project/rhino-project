@@ -1,8 +1,8 @@
 import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayEnum from '../displays/DisplayEnum';
-import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';
-import DisplayLayoutFloating from '../DisplayLayoutFloating';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayEnum } from '../displays/DisplayEnum';
+import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
+import { DisplayLayoutFloating } from '../DisplayLayoutFloating';
 
 const BASE_OVERRIDES = {
   Display: DisplayEnum

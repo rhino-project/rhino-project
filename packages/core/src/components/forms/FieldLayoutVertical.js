@@ -1,9 +1,9 @@
 import { FormGroup } from 'reactstrap';
 
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
-import FieldLabel from './FieldLabel';
-import Field from './fields/FieldInput';
-import FieldFeedback from './FieldFeedback';
+import { FieldLabel } from './FieldLabel';
+import { Field } from './fields/FieldInput';
+import { FieldFeedback } from './FieldFeedback';
 import { useFieldInheritedProps } from '../../hooks/form';
 
 const INHERITED_PROP_OPTIONS = { prefix: 'FieldLayout' };

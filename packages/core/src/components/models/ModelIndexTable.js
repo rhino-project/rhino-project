@@ -20,11 +20,11 @@ import { useModelIndexContext } from '../../hooks/controllers';
 import { useBaseOwnerNavigation } from '../../hooks/history';
 import { usePaths } from '../../hooks/paths';
 import { getModelShowPath } from '../../utils/routes';
-import Table from '../table/Table';
-import ModelCell from './ModelCell';
-import ModelFooter from './ModelFooter';
-import ModelHeader from './ModelHeader';
-import ModelSection from './ModelSection';
+import { Table } from '../table/Table';
+import { ModelCell } from './ModelCell';
+import { ModelFooter } from './ModelFooter';
+import { ModelHeader } from './ModelHeader';
+import { ModelSection } from './ModelSection';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {

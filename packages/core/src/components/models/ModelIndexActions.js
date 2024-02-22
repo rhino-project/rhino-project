@@ -9,12 +9,12 @@ import {
   useOverrides
 } from '../../hooks/overrides';
 import { useBaseOwnerId } from '../../hooks/owner';
-import withParams from '../../routes/withParams';
+import { withParams } from '../../routes/withParams';
 import { isBaseOwned } from '../../utils/models';
 import { IconButton } from '../buttons';
-import ModelCreateModal from './ModelCreateModal';
+import { ModelCreateModal } from './ModelCreateModal';
 import { ModelCreateModalActionSaveShow } from './ModelCreateModalActions';
-import ModelSection from './ModelSection';
+import { ModelSection } from './ModelSection';
 
 export const ModelIndexActionCreate = ({ children, ...props }) => {
   const { model, parentId: contextParentId } = useModelIndexContext();

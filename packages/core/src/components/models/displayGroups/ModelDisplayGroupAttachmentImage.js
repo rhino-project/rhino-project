@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useModelDisplayFieldGroupAttachmentImage } from '../../../hooks/form';
-import DisplayGroupAttachmentImage, { DisplayGroupFloatingAttachmentImage, DisplayGroupHorizontalAttachmentImage } from '../../forms/displayGroups/DisplayGroupAttachmentImage';
+import {
+  DisplayGroupAttachmentImage,
+  DisplayGroupFloatingAttachmentImage,
+  DisplayGroupHorizontalAttachmentImage,
+} from '../../forms/displayGroups/DisplayGroupAttachmentImage';
 
 export const ModelDisplayGroupVerticalAttachmentImage = (props) => {
   // FIXME - displayGroupProps instead?

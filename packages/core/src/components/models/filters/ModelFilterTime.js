@@ -4,7 +4,7 @@ import { format, parseISO } from 'date-fns';
 
 import { useEffect, useMemo } from 'react';
 import { useModelFilterField } from '../../../hooks/form';
-import FilterTime from '../../forms/filters/FilterTime';
+import { FilterTime } from '../../forms/filters/FilterTime';
 import { getDateTimeFormat } from '../../../utils/ui';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 

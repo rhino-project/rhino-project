@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useModelFieldGroup } from '../../../hooks/form';
-import ModelFieldNested from '../fields/ModelFieldNested';
-import FieldLayoutVertical from '../../forms/FieldLayoutVertical';
+import { ModelFieldNested } from '../fields/ModelFieldNested';
+import { FieldLayoutVertical } from '../../forms/FieldLayoutVertical';
 
 const BASE_OVERRIDES = {
   Field: ModelFieldNested

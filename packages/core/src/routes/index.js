@@ -1,10 +1,10 @@
 import { Route } from 'react-router-dom';
 
 import customRoutePaths from 'routes/custom';
-import modelRoutePaths from './model';
+import { modelRoutePaths } from './model';
 
-import OrganizationSettingsPage from '../pages/settings/OrganizationSettingsPage';
-import SettingsPage from '../pages/settings/SettingsPage';
+import { OrganizationSettingsPage } from '../pages/settings/OrganizationSettingsPage';
+import { SettingsPage } from '../pages/settings/SettingsPage';
 import { hasOrganizationsModule } from '../utils/models';
 import {
   getAccountSettingsPath,

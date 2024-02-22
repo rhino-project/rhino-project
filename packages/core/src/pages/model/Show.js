@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 
-import ModelPage from './ModelPage';
-import ModelShow from '../../components/models/ModelShow';
+import { ModelPage } from './ModelPage';
+import { ModelShow } from '../../components/models/ModelShow';
 
 export const Show = ({ model }) => {
   const { id } = useParams();

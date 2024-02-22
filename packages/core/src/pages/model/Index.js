@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import ModelIndex from '../../components/models/ModelIndex';
-import ModelPage from './ModelPage';
+import { ModelIndex } from '../../components/models/ModelIndex';
+import { ModelPage } from './ModelPage';
 
 export const Index = (props) => {
   const { model, title } = props;

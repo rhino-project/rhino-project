@@ -3,7 +3,7 @@ import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useEffect, useMemo } from 'react';
 import { useModelFilterField } from '../../../hooks/form';
-import FilterInteger from '../../forms/filters/FilterInteger';
+import { FilterInteger } from '../../forms/filters/FilterInteger';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 
 export const ModelFilterInteger = ({ model, path, ...props }) => {

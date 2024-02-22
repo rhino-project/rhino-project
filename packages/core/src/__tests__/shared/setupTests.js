@@ -1,4 +1,4 @@
-import modelLoader from '../../models';
+import { modelLoader } from '../../models';
 import api from '__tests__/shared/modelFixtures';
 
 // Force modelLoader to load models synchronously and then mock the api

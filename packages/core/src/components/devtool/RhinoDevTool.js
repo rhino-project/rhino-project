@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import classnames from 'classnames';
 
-import RhinoLogo from './rhinoRedLogo.png';
-import styles from './RhinoDevTool.module.css';
+import { RhinoLogo } from './rhinoRedLogo.png';
+import { styles } from './RhinoDevTool.module.css';
 import { CloseButton } from '../buttons';
 import { useModelContext } from '../../hooks/models';
 import { ModelIndexContext } from '../models/ModelIndexProvider';

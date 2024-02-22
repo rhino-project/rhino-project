@@ -1,1 +1,1 @@
-import BasePage from './BasePage';
+import { BasePage } from './BasePage';

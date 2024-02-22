@@ -1,8 +1,8 @@
 import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldPhone from '../fields/FieldPhone';
-import FieldLayoutFloating from '../FieldLayoutFloating';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldPhone } from '../fields/FieldPhone';
+import { FieldLayoutFloating } from '../FieldLayoutFloating';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 
 const BASE_OVERRIDES = {
   Field: FieldPhone

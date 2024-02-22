@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import rhinoConfig from 'rhino.config';
-import ModelFooter from '../../../components/models/ModelFooter';
+import { ModelFooter } from '../../../components/models/ModelFooter';
 
 describe('ModelFooter', () => {
   const Bar = () => <div>Bar</div>;

@@ -1,5 +1,5 @@
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
-import FilterLayoutVertical from './FilterLayoutVertical';
+import { FilterLayoutVertical } from './FilterLayoutVertical';
 
 const defaultComponents = {
   FilterLayout: FilterLayoutVertical

@@ -1,7 +1,7 @@
 import { breadcrumbFor } from '../../utils/ui';
 import { useModelEditContext } from '../../hooks/controllers';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
-import ModelSection from './ModelSection';
+import { ModelSection } from './ModelSection';
 
 export const ModelEditHeaderBase = () => {
   const {

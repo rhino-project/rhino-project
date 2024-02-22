@@ -1,4 +1,4 @@
-import ModelCellInteger from '../../../../components/models/cells/ModelCellInteger';
+import { ModelCellInteger } from '../../../../components/models/cells/ModelCellInteger';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellInteger', () => {

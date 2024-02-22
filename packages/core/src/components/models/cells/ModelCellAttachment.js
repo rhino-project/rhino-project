@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellLink from '../../table/cells/CellLink';
+import { CellLink } from '../../table/cells/CellLink';
 
 export const ModelCellAttachmentBase = ({ children, getValue, ...props }) => {
   const syntheticGetValue = useCallback(() => getValue()?.url, [getValue]);

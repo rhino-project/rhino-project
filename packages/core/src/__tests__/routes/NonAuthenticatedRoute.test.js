@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Navigate, Route, Routes } from 'react-router-dom';
-import NonAuthenticatedRoute from '../../routes/NonAuthenticatedRoute';
+import { NonAuthenticatedRoute } from '../../routes/NonAuthenticatedRoute';
 import * as routes from '../../utils/routes';
 
 const authenticatedState = {

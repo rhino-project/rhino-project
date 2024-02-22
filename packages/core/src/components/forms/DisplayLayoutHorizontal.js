@@ -1,9 +1,9 @@
 import { Col, FormGroup } from 'reactstrap';
 
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
-import Field from './fields/FieldInput';
+import { Field } from './fields/FieldInput';
 import { useFieldInheritedProps } from '../../hooks/form';
-import DisplayLabel from './DisplayLabel';
+import { DisplayLabel } from './DisplayLabel';
 
 const INHERITED_PROP_OPTIONS = { prefix: 'DisplayLayoutHorizontal' };
 

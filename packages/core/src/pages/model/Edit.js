@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import ModelEdit from '../../components/models/ModelEdit';
-import ModelPage from './ModelPage';
+import { ModelEdit } from '../../components/models/ModelEdit';
+import { ModelPage } from './ModelPage';
 import { useParams } from 'react-router-dom';
 
 export const Edit = ({ model }) => {

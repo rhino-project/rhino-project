@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import FieldGroupBoolean, { FieldGroupFloatingBoolean, FieldGroupHorizontalBoolean } from '../../forms/fieldGroups/FieldGroupBoolean';
+import { FieldGroupBoolean, FieldGroupFloatingBoolean, FieldGroupHorizontalBoolean } from '../../forms/fieldGroups/FieldGroupBoolean';
 import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupBooleanVertical = (props) => {

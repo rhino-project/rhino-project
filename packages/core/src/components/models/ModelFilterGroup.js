@@ -1,7 +1,7 @@
 import { useGlobalComponentForModel, useMergedOverrides } from '../../hooks/overrides';
-import FilterGroup from '../forms/FilterGroup';
-import ModelFilter from './ModelFilter';
-import ModelFilterLabel from './ModelFilterLabel';
+import { FilterGroup } from '../forms/FilterGroup';
+import { ModelFilter } from './ModelFilter';
+import { ModelFilterLabel } from './ModelFilterLabel';
 
 const BASE_OVERRIDES = {
   FilterLayout: { FilterLabel: ModelFilterLabel, Filter: ModelFilter }

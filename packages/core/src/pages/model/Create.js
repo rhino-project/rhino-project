@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 
 import { useParsedSearch } from '../../hooks/history';
-import ModelCreate from '../../components/models/ModelCreate';
-import ModelPage from './ModelPage';
+import { ModelCreate } from '../../components/models/ModelCreate';
+import { ModelPage } from './ModelPage';
 
 export const Create = ({ model }) => {
   const { parentId } = useParsedSearch();

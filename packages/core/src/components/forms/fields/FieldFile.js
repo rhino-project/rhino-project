@@ -5,7 +5,7 @@ import { useController } from 'react-hook-form';
 import { useMemo, useRef, useState } from 'react';
 import { useUpdate } from 'react-use';
 import { useGlobalComponent } from '../../../hooks/overrides';
-import Uploader from '../../../utils/uploader';
+import { Uploader } from '../../../utils/uploader';
 import { CloseButton } from '../../buttons';
 import { DangerAlert } from '../../alerts';
 

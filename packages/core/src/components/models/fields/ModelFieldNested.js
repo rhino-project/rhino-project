@@ -24,16 +24,16 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 import { isString } from 'lodash';
-import ModelHeader from '../ModelHeader';
-import ModelFooter from '../ModelFooter';
-import Table from '../../table/Table';
+import { ModelHeader } from '../ModelHeader';
+import { ModelFooter } from '../ModelFooter';
+import { Table } from '../../table/Table';
 import { Icon } from '../../icons';
 import { useModelAndAttributeFromPath } from '../../../hooks/models';
 import { useFieldArray } from 'react-hook-form';
-import FieldHidden from '../../forms/fields/FieldHidden';
+import { FieldHidden } from '../../forms/fields/FieldHidden';
 import { useTableInheritedProps } from '../../../hooks/table';
-import FieldFeedback from '../../forms/FieldFeedback';
-import ModelSection from '../ModelSection';
+import { FieldFeedback } from '../../forms/FieldFeedback';
+import { ModelSection } from '../ModelSection';
 import { ModelFieldGroupBase } from '../ModelFieldGroup';
 import { ModelDisplayGroupBase } from '../ModelDisplayGroup';
 

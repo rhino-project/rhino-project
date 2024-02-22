@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { sharedModelTests } from './sharedModelTests';
-import ModelEdit from '../../../components/models/ModelEdit';
+import { ModelEdit } from '../../../components/models/ModelEdit';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 describe('ModelEdit', () => {

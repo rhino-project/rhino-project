@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useModelAndAttributeFromPath } from '../../../hooks/models';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellBadge from '../../table/cells/CellBadge';
+import { CellBadge } from '../../table/cells/CellBadge';
 
 const COLOR_PALETTE = ['#0369a1', '#047857', '#6d28d9', '#a21caf', '#be123c'];
 

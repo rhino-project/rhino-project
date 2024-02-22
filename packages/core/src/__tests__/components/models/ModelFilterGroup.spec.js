@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { useForm } from 'react-hook-form';
-import FormProvider from '../../../components/forms/FormProvider';
-import ModelFilterGroup from '../../../components/models/ModelFilterGroup';
+import { FormProvider } from '../../../components/forms/FormProvider';
+import { ModelFilterGroup } from '../../../components/models/ModelFilterGroup';
 import { sharedModelTests } from './sharedModelTests';
 
 describe('ModelFilterGroup', () => {

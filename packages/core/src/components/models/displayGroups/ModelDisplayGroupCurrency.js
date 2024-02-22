@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useModelDisplayGroup } from '../../../hooks/form';
-import DisplayGroupCurrency, { DisplayGroupFloatingCurrency, DisplayGroupHorizontalCurrency } from '../../forms/displayGroups/DisplayGroupCurrency';
+import {
+  DisplayGroupCurrency,
+  DisplayGroupFloatingCurrency,
+  DisplayGroupHorizontalCurrency,
+} from '../../forms/displayGroups/DisplayGroupCurrency';
 
 export const ModelDisplayGroupVerticalCurrency = (props) => {
   // FIXME - displayGroupProps instead?

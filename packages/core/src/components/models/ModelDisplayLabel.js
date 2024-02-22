@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
-import DisplayLabel from '../forms/DisplayLabel';
+import { DisplayLabel } from '../forms/DisplayLabel';
 import { useModelAndAttributeFromPath } from '../../hooks/models';
 
 export const ModelDisplayLabelBase = ({ label, model, ...props }) => {

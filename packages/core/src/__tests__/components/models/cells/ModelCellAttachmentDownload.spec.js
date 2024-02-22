@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import ModelCellAttachmentDownload from '../../../../components/models/cells/ModelCellAttachmentDownload';
+import { ModelCellAttachmentDownload } from '../../../../components/models/cells/ModelCellAttachmentDownload';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellAttachmentDownload', () => {

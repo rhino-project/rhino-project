@@ -1,8 +1,8 @@
 import { SuccessAlert } from '../../components/alerts';
-import AuthForm from '../../components/auth/AuthForm';
+import { AuthForm } from '../../components/auth/AuthForm';
 import { useSessionCreatePath } from '../../hooks/routes';
 import { useForgotPasswordAction } from '../../queries/auth';
-import AuthPage from './AuthPage';
+import { AuthPage } from './AuthPage';
 import PropTypes from 'prop-types';
 
 export const ForgotPasswordPage = (props) => {

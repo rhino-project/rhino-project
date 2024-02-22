@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import FieldGroupFloat, { FieldGroupFloatingFloat, FieldGroupHorizontalFloat } from '../../forms/fieldGroups/FieldGroupFloat';
+import { FieldGroupFloat, FieldGroupFloatingFloat, FieldGroupHorizontalFloat } from '../../forms/fieldGroups/FieldGroupFloat';
 import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupFloatVertical = (props) => {

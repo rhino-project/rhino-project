@@ -3,7 +3,7 @@ import { useWatch } from 'react-hook-form';
 
 import { enumFromIndexWithTitle } from '../../../utils/ui';
 import { useCallback, useEffect, useMemo } from 'react';
-import FilterSelectControlled from '../../forms/filters/FilterSelectControlled';
+import { FilterSelectControlled } from '../../forms/filters/FilterSelectControlled';
 import { useModelFilterField } from '../../../hooks/form';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 

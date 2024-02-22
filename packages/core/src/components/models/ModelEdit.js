@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
-import ModelEditHeader from './ModelEditHeader';
-import ModelEditForm from './ModelEditForm';
-import ModelEditActions from './ModelEditActions';
-import ModelEditSimple from './ModelEditSimple';
-import ModelSection from './ModelSection';
+import { ModelEditHeader } from './ModelEditHeader';
+import { ModelEditForm } from './ModelEditForm';
+import { ModelEditActions } from './ModelEditActions';
+import { ModelEditSimple } from './ModelEditSimple';
+import { ModelSection } from './ModelSection';
 
 const defaultComponents = {
   ModelEditHeader,

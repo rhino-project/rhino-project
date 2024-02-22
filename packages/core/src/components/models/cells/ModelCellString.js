@@ -1,5 +1,5 @@
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellString from '../../table/cells/CellString';
+import { CellString } from '../../table/cells/CellString';
 
 export const ModelCellStringBase = (props) => <CellString {...props} />;
 

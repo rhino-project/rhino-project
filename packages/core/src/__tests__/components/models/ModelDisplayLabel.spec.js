@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { useForm } from 'react-hook-form';
-import FormProvider from '../../../components/forms/FormProvider';
-import ModelDisplayLabel from '../../../components/models/ModelDisplayLabel';
+import { FormProvider } from '../../../components/forms/FormProvider';
+import { ModelDisplayLabel } from '../../../components/models/ModelDisplayLabel';
 import { sharedModelTests } from './sharedModelTests';
 
 describe('ModelDisplayLabel', () => {

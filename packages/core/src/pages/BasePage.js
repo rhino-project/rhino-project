@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Spinner } from 'reactstrap';
 
-import ErrorBoundary from '../components/errors/errorBoundary';
+import { ErrorBoundary } from '../components/errors/errorBoundary';
 import { Target } from '../components/layouts';
 
 export const BasePage = ({ children, loading }) => {
