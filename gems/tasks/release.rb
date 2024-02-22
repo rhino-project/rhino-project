@@ -52,7 +52,7 @@ directory "pkg"
       File.open(file, "w") { |f| f.write ruby }
     end
 
-    task gem => %w(update_versions) do
+    task gem => %w(update_versions pkg) do
       cmd = ""
       cmd += "cd #{framework} && " unless framework == "rhino_project"
       cmd += "bundle exec rake package && " unless framework == "rhino_project"
