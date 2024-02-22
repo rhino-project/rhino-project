@@ -1,0 +1,111 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldTime > render with disabled 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        disabled=""
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > render with place holder 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        placeholder="placeholder"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > renders empty with empty string date 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > renders empty with null date 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

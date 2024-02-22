@@ -1,0 +1,301 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`useGlobalComponent > for attribute > should not render with global override 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+    path="name"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponent > for attribute > should not render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+    path="name"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponent > for model > should not render with global override 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponent > for model > should not render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponent > should be empty with null 1`] = `<DocumentFragment />`;
+
+exports[`useGlobalComponent > should render with global override 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponent > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponent > should render with global prop override 1`] = `
+<DocumentFragment>
+  <div
+    data="bar"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponent > should render without overrides 1`] = `
+<DocumentFragment>
+  <div>
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should render with global override 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+    path="name"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+    path="name"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for model > should render with global override 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for model > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > should be empty with null 1`] = `<DocumentFragment />`;
+
+exports[`useGlobalComponentForAttribute > should render with global override 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > should render with global prop override 1`] = `
+<DocumentFragment>
+  <div
+    data="bar"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > should render without overrides 1`] = `
+<DocumentFragment>
+  <div>
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > for attribute > should not render with global override 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+    path="name"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > for attribute > should not render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+    path="name"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > for model > should render with global override 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > for model > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > should be empty with null 1`] = `<DocumentFragment />`;
+
+exports[`useGlobalComponentForModel > should render with global override 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > should render with global prop override 1`] = `
+<DocumentFragment>
+  <div
+    data="bar"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > should render without overrides 1`] = `
+<DocumentFragment>
+  <div>
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useOverrides > should render with automatically nested overrides 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      Baz
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useOverrides > should render with explicit component overrides 1`] = `
+<DocumentFragment>
+  <div>
+    Baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useOverrides > should render with manually nested overrides 1`] = `
+<DocumentFragment>
+  <div>
+    <div>
+      Baz
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useOverrides > should render with null component 1`] = `<DocumentFragment />`;
+
+exports[`useOverrides > should render with props overrides 1`] = `
+<DocumentFragment>
+  <div
+    class="Bar"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useOverrides > should render with shorthand component overrides 1`] = `
+<DocumentFragment>
+  <div>
+    Baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useOverrides > should render with style overrides 1`] = `
+<DocumentFragment>
+  <div
+    style="color: red;"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useOverrides > should render without overrides 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

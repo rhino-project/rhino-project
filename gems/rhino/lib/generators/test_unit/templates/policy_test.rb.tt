@@ -1,0 +1,57 @@
+# frozen_string_literal: true
+
+require "test_helper"
+
+class <%= class_name %>PolicyTest < Rhino::TestCase::Policy
+  # Testing for a policy where users can view any blog, create, update and destroy their own
+  # but cannot update or destroy another users blog.
+
+  # def setup
+  #   @current_user = create :user
+  #   @another_user = create :user
+
+  #   @blog = Blog.create(title: "Test Blog", author: @current_user)
+  #   @another_user_blog = Blog.create(title: "Other Blog", author: @another_user)
+  # end
+
+  # test "allows create for user" do
+  #   assert_permit @current_user, Blog, :create
+  # end
+
+  # test "allows update for user" do
+  #   assert_permit @current_user, @blog, :update
+  # end
+
+  # test "does not allow update for another users blog" do
+  #   assert_not_permit @current_user, @another_user_blog, :update
+  # end
+
+  # test "allows destroy for user" do
+  #   assert_permit @current_user, @blog, :destroy
+  # end
+
+  # test "does not allow destroy for another users blog" do
+  #   assert_not_permit @current_user, @another_user_blog, :destroy
+  # end
+
+  # test "allows index for user and returns correct blogs" do
+  #   assert_permit @current_user, Blog, :index
+  #   assert_scope_only @current_user, Blog, [@blog, @another_user_blog]
+  # end
+
+  # test "allows show for user and returns correct blog" do
+  #   assert_permit @current_user, @blog, :show
+  #   assert_scope_only @current_user, @blog, [@blog]
+  # end
+
+  # test "allows show for another users blog" do
+  #   assert_permit @current_user, @another_user_blog, :show
+  #   assert_scope_only @current_user, [@another_user_blog]
+  # end
+
+  # If the user could instead not show another users blog, the following test could be used instead
+  ## test "does not allow show for another users blog" do
+  ##   assert_not_permit @current_user, @another_user_blog, :show
+  ##   assert_scope_empty @current_user, @another_user_blog
+  ## end
+end

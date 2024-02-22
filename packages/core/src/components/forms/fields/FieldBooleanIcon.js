@@ -1,0 +1,38 @@
+import PropTypes from 'prop-types';
+import { useController } from 'react-hook-form';
+import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { Icon } from 'rhino/components/icons';
+import { useGlobalComponent } from 'rhino/hooks/overrides';
+
+export const FieldBooleanIconBase = ({
+  trueIcon = 'check',
+  falseIcon = 'x',
+  ...props
+}) => {
+  const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
+  const { path } = props;
+  const {
+    field: { value, onChange, ...fieldProps }
+  } = useController({
+    name: path
+  });
+
+  return (
+    <Icon
+      {...extractedProps}
+      icon={value ? trueIcon : falseIcon}
+      onClick={() => onChange(!value)}
+      {...fieldProps}
+      {...inheritedProps}
+    />
+  );
+};
+
+FieldBooleanIconBase.propTypes = {
+  path: PropTypes.string.isRequired
+};
+
+const FieldBooleanIcon = (props) =>
+  useGlobalComponent('FieldBooleanIcon', FieldBooleanIconBase, props);
+
+export default FieldBooleanIcon;
