@@ -10,6 +10,8 @@ root    = File.expand_path("..", __dir__)
 version = File.read("#{root}/RHINO_PROJECT_VERSION").strip
 tag     = "v#{version}"
 
+directory "pkg"
+
 (FRAMEWORKS + ["rhino_project"]).each do |framework|
   namespace framework do
     gem     = "pkg/#{framework}-#{version}.gem"
