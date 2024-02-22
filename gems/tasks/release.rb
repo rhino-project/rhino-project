@@ -149,9 +149,9 @@ end
 
 namespace :all do
   task build: FRAMEWORKS.map { |f| "#{f}:build"           } + ["rhino:build"]
-  task update_versions: FRAMEWORKS.map { |f| "#{f}:update_versions" } + ["rails:update_versions"]
-  task install: FRAMEWORKS.map { |f| "#{f}:install"         } + ["rails:install"]
-  task push: FRAMEWORKS.map { |f| "#{f}:push"            } + ["rails:push"]
+  task update_versions: FRAMEWORKS.map { |f| "#{f}:update_versions" } + ["rhino:update_versions"]
+  task install: FRAMEWORKS.map { |f| "#{f}:install"         } + ["rhino:install"]
+  task push: FRAMEWORKS.map { |f| "#{f}:push"            } + ["rhino:push"]
 
   task :ensure_clean_state do
     unless `git status -s | grep -v 'RAILS_VERSION\\|CHANGELOG\\|Gemfile.lock\\|package.json\\|version.rb\\|tasks/release.rb'`.strip.empty?
