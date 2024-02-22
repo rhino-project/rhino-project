@@ -52,8 +52,8 @@ tag     = "v#{version}"
 
     task gem => %w(update_versions) do
       cmd = ""
-      cmd += "cd #{framework} && " unless framework == "rails"
-      cmd += "bundle exec rake package && " unless framework == "rails"
+      cmd += "cd #{framework} && " unless framework == "rhino_project"
+      cmd += "bundle exec rake package && " unless framework == "rhino_project"
       cmd += "gem build #{gemspec} && mv #{framework}-#{version}.gem #{root}/pkg/"
       sh cmd
     end
