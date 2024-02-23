@@ -1,4 +1,4 @@
-import { each, map } from 'lodash';
+import { each, map } from 'lodash-es';
 import { Route } from 'react-router-dom';
 
 import modelLoader from '../models';

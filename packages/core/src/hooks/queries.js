@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
-import { cloneDeep, has, merge, set } from 'lodash';
+import { cloneDeep, has, merge, set } from 'lodash-es';
 
 import { networkApiCallOnlyData } from '../lib/networking';
 import { useModel } from './models';

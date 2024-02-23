@@ -18,7 +18,7 @@ import {
   useOverrides
 } from '../../hooks/overrides';
 
-import { filter, isString } from 'lodash';
+import { filter, isString } from 'lodash-es';
 import { useModelIndexContext } from '../../hooks/controllers';
 import { useBaseOwnerNavigation } from '../../hooks/history';
 import { usePaths } from '../../hooks/paths';

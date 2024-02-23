@@ -512,7 +512,7 @@
     "bootstrap-icons": "1.11.3",
     "classnames": "2.3.1",
     "date-fns": "2.28.0",
-    "lodash": "4.17.21",
+    "lodash-es": "4.17.21",
     "prop-types": "15.7.2",
     "qs": "6.9.7",
     "react": "18.2.0",

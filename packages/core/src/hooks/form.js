@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { assign, cloneDeep, compact, get, isString, toPath } from 'lodash';
+import { assign, cloneDeep, compact, get, isString, toPath } from 'lodash-es';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getModelAndAttributeFromPath } from '../utils/models';

@@ -9,7 +9,14 @@ import {
 } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { filter, isEqual, isPlainObject, isString, merge, omit } from 'lodash';
+import {
+  filter,
+  isEqual,
+  isPlainObject,
+  isString,
+  merge,
+  omit
+} from 'lodash-es';
 import { useForm } from 'react-hook-form';
 import { ModelCreateContext } from '../components/models/ModelCreateProvider';
 import { ModelEditContext } from '../components/models/ModelEditProvider';

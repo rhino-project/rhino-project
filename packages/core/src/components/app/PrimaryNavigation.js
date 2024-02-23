@@ -1,5 +1,5 @@
 import CustomPrimaryNavigation from 'components/app/CustomPrimaryNavigation';
-import { map } from 'lodash';
+import { map } from 'lodash-es';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { NavItem, NavSection } from '../nav';

@@ -10,7 +10,7 @@ import { ModelShowContext } from '../models/ModelShowProvider';
 import { ModelEditContext } from '../models/ModelEditProvider';
 import { ModelCreateContext } from '../models/ModelCreateProvider';
 import { useLocalStorage } from 'react-use';
-import { pick } from 'lodash';
+import { pick } from 'lodash-es';
 import env from '@rhino-project/config/env';
 
 const RhinoDevToolModelIndex = () => {

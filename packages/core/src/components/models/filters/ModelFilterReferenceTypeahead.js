@@ -4,7 +4,7 @@ import { useCallback, useEffect, useId, useMemo, useState } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { getIdentifierAttribute, getModelFromRef } from '../../../utils/models';
 import { useModelIndex } from '../../../hooks/queries';
-import { compact } from 'lodash';
+import { compact } from 'lodash-es';
 import PropTypes from 'prop-types';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 

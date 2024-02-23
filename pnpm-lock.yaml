@@ -189,7 +189,7 @@ importers:
       date-fns:
         specifier: 2.28.0
         version: 2.28.0
-      lodash:
+      lodash-es:
         specifier: 4.17.21
         version: 4.17.21
       prop-types:
