@@ -88,6 +88,7 @@ const config = defineConfig({
 export default mergeConfig(
   tanstackBuildConfig({
     entry: [
+      './src/index.js',
       './src/contexts/index.js',
       './src/queries/index.js',
       './src/utils/index.js',
