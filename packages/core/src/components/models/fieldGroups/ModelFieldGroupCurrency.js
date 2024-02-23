@@ -3,7 +3,7 @@ import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import {
   FieldGroupCurrency,
   FieldGroupFloatingCurrency,
-  FieldGroupHorizontalCurrency,
+  FieldGroupHorizontalCurrency
 } from '../../forms/fieldGroups/FieldGroupCurrency';
 import { useModelFieldGroup } from '../../../hooks/form';
 

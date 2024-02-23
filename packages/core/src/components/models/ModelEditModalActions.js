@@ -10,7 +10,7 @@ import {
   ModelEditActionCancel,
   ModelEditActionSave,
   ModelEditActionSaveShow,
-  ModelEditActionsBase,
+  ModelEditActionsBase
 } from './ModelEditActions';
 import { useCallback, useMemo } from 'react';
 import { ModelSection } from './ModelSection';

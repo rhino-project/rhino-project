@@ -4,7 +4,7 @@ import { useModelDisplayGroup } from '../../../hooks/form';
 import {
   DisplayGroupCurrency,
   DisplayGroupFloatingCurrency,
-  DisplayGroupHorizontalCurrency,
+  DisplayGroupHorizontalCurrency
 } from '../../forms/displayGroups/DisplayGroupCurrency';
 
 export const ModelDisplayGroupVerticalCurrency = (props) => {

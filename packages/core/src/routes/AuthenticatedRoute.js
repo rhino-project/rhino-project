@@ -5,7 +5,11 @@ import { usePrevious } from 'react-use';
 import { SplashScreen } from '../components/logos';
 import { useAuth } from '../hooks/auth';
 import { useSessionCreatePath } from '../hooks/routes';
-import { getPrevPathSession, setPrevPathSession, unsetPrevPathSession } from '../utils/storage';
+import {
+  getPrevPathSession,
+  setPrevPathSession,
+  unsetPrevPathSession
+} from '../utils/storage';
 
 export const AuthenticatedRoute = ({ children }) => {
   const sessionCreatePath = useSessionCreatePath({ absolute: true });

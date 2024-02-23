@@ -6,7 +6,10 @@ import { ChangePassword } from '../../components/settings/ChangePassword';
 import { EditProfile } from '../../components/settings/EditProfile';
 import { Subscription } from '../../components/settings/Subscription';
 import { useBaseOwnerPath, useParsedSearch } from '../../hooks/history';
-import { hasOrganizationsModule, hasSubscriptionsModule } from '../../utils/models';
+import {
+  hasOrganizationsModule,
+  hasSubscriptionsModule
+} from '../../utils/models';
 import { NavItem } from '../../components/nav';
 import { useParams } from 'react-router-dom';
 import { getAccountSettingsPath } from '../../utils/routes';

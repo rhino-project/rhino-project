@@ -11,7 +11,7 @@ import {
   CreateCheckoutSession,
   usePrices,
   useSubscription,
-  useCheckSession,
+  useCheckSession
 } from '../../queries/subscription';
 import { Button } from '../buttons';
 import { DangerAlert, SuccessAlert } from '../alerts';

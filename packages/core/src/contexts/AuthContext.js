@@ -8,7 +8,10 @@ import React, {
   useState
 } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { AUTH_SESSION_KEY, AUTH_VALIDATE_TOKEN_END_POINT } from '../lib/networking';
+import {
+  AUTH_SESSION_KEY,
+  AUTH_VALIDATE_TOKEN_END_POINT
+} from '../lib/networking';
 import { useRollbarPerson } from '@rollbar/react';
 
 const useSession = () => {

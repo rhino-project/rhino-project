@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
 
-import { useFieldError, useFieldRegister, useFieldInheritedProps } from '../../../hooks/form';
+import {
+  useFieldError,
+  useFieldRegister,
+  useFieldInheritedProps
+} from '../../../hooks/form';
 import { useGlobalComponent } from '../../../hooks/overrides';
 
 // FIXME: Is there a better way to handle setValueAs?

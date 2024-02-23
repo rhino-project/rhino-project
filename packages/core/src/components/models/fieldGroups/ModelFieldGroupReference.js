@@ -101,11 +101,11 @@ const ModelFieldGroupReferenceVertical = (props) => {
 
   return (
     // FIXME: Hack for ModelFieldReferenceBaseInput to do the query
-    (<FieldLayoutVerticalBase
+    <FieldLayoutVerticalBase
       overrides={BASE_OVERRIDES}
       model={model}
       {...fieldGroupProps}
-    />)
+    />
   );
 };
 
@@ -121,11 +121,11 @@ export const ModelFieldGroupHorizontalReference = (props) => {
 
   return (
     // FIXME: Hack for ModelFieldReferenceBaseInput to do the query
-    (<FieldLayoutHorizontalBase
+    <FieldLayoutHorizontalBase
       overrides={BASE_OVERRIDES}
       model={model}
       {...fieldGroupProps}
-    />)
+    />
   );
 };
 

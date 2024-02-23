@@ -4,7 +4,10 @@ import PropTypes from 'prop-types';
 import { ModelFilters } from './ModelFilters';
 import { ModelPager } from './ModelPager';
 import { ModelSearch } from './ModelSearch';
-import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import { useModelIndexContext } from '../../hooks/controllers';
 
 const defaultComponents = {

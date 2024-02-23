@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useModelDisplayGroup } from '../../../hooks/form';
-import { DisplayGroupDate, DisplayGroupFloatingDate, DisplayGroupHorizontalDate } from '../../forms/displayGroups/DisplayGroupDate';
+import {
+  DisplayGroupDate,
+  DisplayGroupFloatingDate,
+  DisplayGroupHorizontalDate
+} from '../../forms/displayGroups/DisplayGroupDate';
 
 export const ModelDisplayGroupVerticalDate = (props) => {
   // FIXME - displayGroupProps instead?

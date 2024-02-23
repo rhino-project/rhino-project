@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import { FieldGroupYear, FieldGroupFloatingYear, FieldGroupHorizontalYear } from '../../forms/fieldGroups/FieldGroupYear';
+import {
+  FieldGroupYear,
+  FieldGroupFloatingYear,
+  FieldGroupHorizontalYear
+} from '../../forms/fieldGroups/FieldGroupYear';
 import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupYearVertical = (props) => {

@@ -13,7 +13,10 @@ import {
   useState
 } from 'react';
 
-import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 
 import { filter, isString } from 'lodash';
 import { useModelIndexContext } from '../../hooks/controllers';

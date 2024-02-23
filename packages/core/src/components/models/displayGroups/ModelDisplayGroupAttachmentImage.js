@@ -4,7 +4,7 @@ import { useModelDisplayFieldGroupAttachmentImage } from '../../../hooks/form';
 import {
   DisplayGroupAttachmentImage,
   DisplayGroupFloatingAttachmentImage,
-  DisplayGroupHorizontalAttachmentImage,
+  DisplayGroupHorizontalAttachmentImage
 } from '../../forms/displayGroups/DisplayGroupAttachmentImage';
 
 export const ModelDisplayGroupVerticalAttachmentImage = (props) => {

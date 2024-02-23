@@ -8,7 +8,10 @@ import { ModelIndexTable } from '../models/ModelIndexTable';
 import { IconButton } from '../buttons';
 import { useModelIndexContext } from '../../hooks/controllers';
 import { ModelCreateModal } from '../models/ModelCreateModal';
-import { ModelIndexActions, ModelIndexActionCreate } from '../models/ModelIndexActions';
+import {
+  ModelIndexActions,
+  ModelIndexActionCreate
+} from '../models/ModelIndexActions';
 import { ModelIndexSimple } from '../models/ModelIndexSimple';
 
 const RemoveButton = (props) => {

@@ -3,7 +3,7 @@ import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import {
   FieldGroupDateTime,
   FieldGroupFloatingDateTime,
-  FieldGroupHorizontalDateTime,
+  FieldGroupHorizontalDateTime
 } from '../../forms/fieldGroups/FieldGroupDateTime';
 import { useModelFieldGroup } from '../../../hooks/form';
 

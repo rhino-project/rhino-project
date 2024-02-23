@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useModelDisplayGroup } from '../../../hooks/form';
-import { DisplayGroupArray, DisplayGroupFloatingArray, DisplayGroupHorizontalArray } from '../../forms/displayGroups/DisplayGroupArray';
+import {
+  DisplayGroupArray,
+  DisplayGroupFloatingArray,
+  DisplayGroupHorizontalArray
+} from '../../forms/displayGroups/DisplayGroupArray';
 
 export const ModelDisplayGroupVerticalArray = (props) => {
   // FIXME - displayGroupProps instead?

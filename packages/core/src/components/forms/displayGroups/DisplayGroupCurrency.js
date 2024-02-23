@@ -1,6 +1,12 @@
-import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
 import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
-import { DisplayCurrency, DisplayCurrencyBaseInput } from '../displays/DisplayCurrency';
+import {
+  DisplayCurrency,
+  DisplayCurrencyBaseInput
+} from '../displays/DisplayCurrency';
 import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
 import { DisplayLayoutFloating } from '../DisplayLayoutFloating';
 

@@ -8,7 +8,11 @@ import {
 } from 'reactstrap';
 
 import { NavIcon } from '../icons';
-import { useNotifications, useNotificationsOpen, useNotificationsOpenAll } from '../../queries/notifications';
+import {
+  useNotifications,
+  useNotificationsOpen,
+  useNotificationsOpenAll
+} from '../../queries/notifications';
 
 export const NotificationMenu = () => {
   const { data: { data: notifications } = {}, refetch } = useNotifications();

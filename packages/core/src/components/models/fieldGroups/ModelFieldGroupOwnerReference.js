@@ -3,7 +3,7 @@ import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import {
   ModelFieldGroupReference,
   ModelFieldGroupFloatingReference,
-  ModelFieldGroupHorizontalReference,
+  ModelFieldGroupHorizontalReference
 } from './ModelFieldGroupReference';
 import { useModelAndAttributeFromPath } from '../../../hooks/models';
 import { useMemo } from 'react';

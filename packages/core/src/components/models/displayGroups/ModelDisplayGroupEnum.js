@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useModelDisplayGroup } from '../../../hooks/form';
-import { DisplayGroupEnum, DisplayGroupFloatingEnum, DisplayGroupHorizontalEnum } from '../../forms/displayGroups/DisplayGroupEnum';
+import {
+  DisplayGroupEnum,
+  DisplayGroupFloatingEnum,
+  DisplayGroupHorizontalEnum
+} from '../../forms/displayGroups/DisplayGroupEnum';
 
 export const ModelDisplayGroupVerticalEnum = (props) => {
   // FIXME - displayGroupProps instead?

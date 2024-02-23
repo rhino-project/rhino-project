@@ -1,7 +1,12 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react';
 import { AuthContext } from '../../contexts/AuthContext';
-import { useAuth, useAuthenticated, useUser, useUserId } from '../../hooks/auth';
+import {
+  useAuth,
+  useAuthenticated,
+  useUser,
+  useUserId
+} from '../../hooks/auth';
 import { createWrapper } from '__tests__/shared/helpers';
 
 const Wrapper = ({ children, ...props }) => (

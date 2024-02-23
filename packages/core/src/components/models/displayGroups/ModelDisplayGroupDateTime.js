@@ -4,7 +4,7 @@ import { useModelDisplayGroup } from '../../../hooks/form';
 import {
   DisplayGroupDateTime,
   DisplayGroupFloatingDateTime,
-  DisplayGroupHorizontalDateTime,
+  DisplayGroupHorizontalDateTime
 } from '../../forms/displayGroups/DisplayGroupDateTime';
 
 export const ModelDisplayGroupVerticalDateTime = (props) => {

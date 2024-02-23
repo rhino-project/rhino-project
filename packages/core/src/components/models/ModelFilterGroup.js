@@ -1,4 +1,7 @@
-import { useGlobalComponentForModel, useMergedOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useMergedOverrides
+} from '../../hooks/overrides';
 import { FilterGroup } from '../forms/FilterGroup';
 import { ModelFilter } from './ModelFilter';
 import { ModelFilterLabel } from './ModelFilterLabel';

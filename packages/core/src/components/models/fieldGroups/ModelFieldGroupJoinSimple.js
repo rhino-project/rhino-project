@@ -129,11 +129,11 @@ const ModelFieldGroupJoinSimpleVertical = (props) => {
   // FIXME: Merged overrides?
   return (
     // FIXME: Hack for ModelFieldReferenceBaseInput to do the query
-    (<FieldLayoutVerticalBase
+    <FieldLayoutVerticalBase
       overrides={BASE_OVERRIDES}
       model={model}
       {...fieldGroupProps}
-    />)
+    />
   );
 };
 
@@ -163,11 +163,11 @@ export const ModelFieldGroupFloatingJoinSimple = (props) => {
   // FIXME: Merged overrides?
   return (
     // FIXME: Hack for ModelFieldReferenceBaseInput to do the query
-    (<FieldLayoutFloating
+    <FieldLayoutFloating
       overrides={BASE_OVERRIDES}
       model={model}
       {...fieldGroupProps}
-    />)
+    />
   );
 };
 

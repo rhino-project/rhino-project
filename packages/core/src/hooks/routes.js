@@ -9,7 +9,7 @@ import {
   getRootPath,
   getSessionCreatePath,
   getSettingsPath,
-  getUserCreatePath,
+  getUserCreatePath
 } from '../utils/routes';
 import { getModelCreatePath, getModelShowPath } from '../utils/routes';
 import { useModel } from './models';

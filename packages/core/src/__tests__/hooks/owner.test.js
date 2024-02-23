@@ -7,7 +7,7 @@ import {
   useBaseOwnerId,
   useHasRoleOf,
   useRoles,
-  useUserRoles,
+  useUserRoles
 } from '../../hooks/owner';
 
 const Wrapper = ({ children, ...props }) => (

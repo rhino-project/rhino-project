@@ -10,7 +10,7 @@ import {
   useModelEditContext,
   useModelIndexContext,
   useModelIndexController,
-  useModelShowContext,
+  useModelShowContext
 } from '../../hooks/controllers';
 
 // https://dev.to/alexclaes/test-a-hook-throwing-errors-in-react-18-with-renderhook-from-testing-library-20g8

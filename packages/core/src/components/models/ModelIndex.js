@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
 
-import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 
 import { ModelIndexHeader } from './ModelIndexHeader';
 import { ModelIndexTable } from './ModelIndexTable';

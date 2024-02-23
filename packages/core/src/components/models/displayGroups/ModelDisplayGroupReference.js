@@ -4,7 +4,7 @@ import { useModelDisplayGroup } from '../../../hooks/form';
 import {
   DisplayGroupReference,
   DisplayGroupFloatingReference,
-  DisplayGroupHorizontalReference,
+  DisplayGroupHorizontalReference
 } from '../../forms/displayGroups/DisplayGroupReference';
 
 export const ModelDisplayGroupVerticalReference = (props) => {

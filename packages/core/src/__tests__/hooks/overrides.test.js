@@ -4,7 +4,7 @@ import {
   useGlobalComponentForAttribute,
   useGlobalComponentForModel,
   useMergedOverrides,
-  useOverrides,
+  useOverrides
 } from '../../hooks/overrides';
 import rhinoConfig from 'rhino.config';
 

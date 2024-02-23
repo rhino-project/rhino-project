@@ -1,6 +1,13 @@
-import { useGlobalComponentForAttribute, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForAttribute,
+  useOverrides
+} from '../../hooks/overrides';
 import { useModelContext } from '../../hooks/models';
-import { getModelAndAttributeFromPath, getModelFromRef, isOwnerGlobal } from '../../utils/models';
+import {
+  getModelAndAttributeFromPath,
+  getModelFromRef,
+  isOwnerGlobal
+} from '../../utils/models';
 import { ModelFieldGroupArrayInteger } from './fieldGroups/ModelFieldGroupArrayInteger';
 import { ModelFieldGroupArrayString } from './fieldGroups/ModelFieldGroupArrayString';
 import { ModelFieldGroupBoolean } from './fieldGroups/ModelFieldGroupBoolean';

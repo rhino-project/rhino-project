@@ -21,10 +21,14 @@ import {
   useModelDelete,
   useModelIndex,
   useModelShow,
-  useModelUpdate,
+  useModelUpdate
 } from './queries';
 import { withParams } from '../routes/withParams';
-import { getBaseOwnerFilters, getParentModel, getReferenceAttributes } from '../utils/models';
+import {
+  getBaseOwnerFilters,
+  getParentModel,
+  getReferenceAttributes
+} from '../utils/models';
 import { useDebouncedCallback } from 'use-debounce';
 import {
   getCreatableAttributes,

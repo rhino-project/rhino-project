@@ -4,7 +4,7 @@ import { useModelFieldGroupEnum } from '../../../hooks/form';
 import {
   FieldGroupSelectControlled,
   FieldGroupFloatingSelectControlled,
-  FieldGroupHorizontalSelectControlled,
+  FieldGroupHorizontalSelectControlled
 } from '../../forms/fieldGroups/FieldGroupSelectControlled';
 
 export const ModelFieldGroupEnumVertical = (props) => {

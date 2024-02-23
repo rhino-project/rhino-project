@@ -1,7 +1,11 @@
 import { waitFor } from '@testing-library/react';
 import axios from 'axios';
 import { QueryClient } from '@tanstack/react-query';
-import { useSignInAction, useSignOutAction, useSignUpAction } from '../../queries/auth';
+import {
+  useSignInAction,
+  useSignOutAction,
+  useSignUpAction
+} from '../../queries/auth';
 import { NetworkingMock } from '__tests__/shared/mock';
 
 vi.mock('axios');

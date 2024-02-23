@@ -7,7 +7,7 @@ import {
   AUTH_CREATE_END_POINT,
   AUTH_DESTROY_END_POINT,
   AUTH_PASSWORD_END_POINT,
-  NetworkUnauthorizedError,
+  NetworkUnauthorizedError
 } from '../lib/networking';
 import { useAuth } from '../hooks/auth';
 import { useMemo } from 'react';

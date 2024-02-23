@@ -1,4 +1,7 @@
-import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
 import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
 import { DisplayDateTime } from '../displays/DisplayDateTime';
 import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';

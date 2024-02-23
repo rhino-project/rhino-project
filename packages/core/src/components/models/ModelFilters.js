@@ -1,5 +1,9 @@
 import { IconButton } from '../buttons';
-import { useModelFiltersContext, useModelFiltersController, useModelIndexContext } from '../../hooks/controllers';
+import {
+  useModelFiltersContext,
+  useModelFiltersController,
+  useModelIndexContext
+} from '../../hooks/controllers';
 import { useRenderPaths } from '../../hooks/renderPaths';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
 import { ModelFilterGroup } from './ModelFilterGroup';

@@ -14,7 +14,11 @@ const useNavModels = () => {
   return useMemo(() => models, [models]);
 };
 
-export const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
+export const PrimaryNavigation = ({
+  title = 'Resources',
+  className,
+  itemClass
+}) => {
   const { enableModelRoutes } = useRhinoConfig();
   const models = useNavModels().filter(
     (e) => e.model !== 'users_role' && e.model !== 'users_role_invite'

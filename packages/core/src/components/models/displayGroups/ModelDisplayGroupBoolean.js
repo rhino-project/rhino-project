@@ -4,7 +4,7 @@ import { useModelDisplayGroup } from '../../../hooks/form';
 import {
   DisplayGroupBoolean,
   DisplayGroupFloatingBoolean,
-  DisplayGroupHorizontalBoolean,
+  DisplayGroupHorizontalBoolean
 } from '../../forms/displayGroups/DisplayGroupBoolean';
 
 export const ModelDisplayGroupVerticalBoolean = (props) => {

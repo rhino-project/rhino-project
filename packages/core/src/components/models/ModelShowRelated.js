@@ -1,7 +1,10 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
+import {
+  useGlobalComponentForModel,
+  useOverrides
+} from '../../hooks/overrides';
 import { getOwnedModels } from '../../utils/models';
 import { useModelClassNames } from '../../utils/ui';
 import { ModelIndexBase } from './ModelIndex';

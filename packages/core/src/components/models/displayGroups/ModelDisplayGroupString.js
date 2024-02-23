@@ -4,7 +4,7 @@ import { useModelDisplayGroup } from '../../../hooks/form';
 import {
   DisplayGroupString,
   DisplayGroupFloatingString,
-  DisplayGroupHorizontalString,
+  DisplayGroupHorizontalString
 } from '../../forms/displayGroups/DisplayGroupString';
 
 export const ModelDisplayGroupVerticalString = (props) => {

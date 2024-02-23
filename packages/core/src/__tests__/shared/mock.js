@@ -8,7 +8,7 @@ import {
   AUTH_CREATE_END_POINT,
   AUTH_DESTROY_END_POINT,
   AUTH_VALIDATE_TOKEN_END_POINT,
-  constructPath,
+  constructPath
 } from '../../lib/networking';
 
 const defaultUser = {

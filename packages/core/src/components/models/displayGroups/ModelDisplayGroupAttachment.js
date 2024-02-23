@@ -4,7 +4,7 @@ import { useModelDisplayFieldGroupAttachment } from '../../../hooks/form';
 import {
   DisplayGroupAttachment,
   DisplayGroupFloatingAttachment,
-  DisplayGroupHorizontalAttachment,
+  DisplayGroupHorizontalAttachment
 } from '../../forms/displayGroups/DisplayGroupAttachment';
 
 export const ModelDisplayGroupVerticalAttachment = (props) => {

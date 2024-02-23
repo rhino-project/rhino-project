@@ -4,7 +4,7 @@ import { useModelDisplayGroup } from '../../../hooks/form';
 import {
   DisplayGroupInteger,
   DisplayGroupFloatingInteger,
-  DisplayGroupHorizontalInteger,
+  DisplayGroupHorizontalInteger
 } from '../../forms/displayGroups/DisplayGroupInteger';
 
 export const ModelDisplayGroupVerticalInteger = (props) => {

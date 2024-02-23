@@ -1,5 +1,11 @@
-import { useGlobalComponentForAttribute, useOverrides } from '../../hooks/overrides';
-import { useModelAndAttributeFromPath, useModelContext } from '../../hooks/models';
+import {
+  useGlobalComponentForAttribute,
+  useOverrides
+} from '../../hooks/overrides';
+import {
+  useModelAndAttributeFromPath,
+  useModelContext
+} from '../../hooks/models';
 
 import { ModelDisplayGroupArray } from './displayGroups/ModelDisplayGroupArray';
 import { ModelDisplayGroupArrayReference } from './displayGroups/ModelDisplayGroupArrayReference';

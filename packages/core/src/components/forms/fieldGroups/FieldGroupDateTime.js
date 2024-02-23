@@ -1,4 +1,7 @@
-import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
 import { FieldLayoutVertical } from '../FieldLayoutVertical';
 import { FieldDateTime } from '../fields/FieldDateTime';
 import { FieldLayoutFloating } from '../FieldLayoutFloating';

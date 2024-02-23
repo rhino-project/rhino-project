@@ -1,5 +1,9 @@
 import { useModel } from '../../hooks/models';
-import { getModelAndAttributeFromPath, getModelFromRef, isOwnerGlobal } from '../../utils/models';
+import {
+  getModelAndAttributeFromPath,
+  getModelFromRef,
+  isOwnerGlobal
+} from '../../utils/models';
 import { ModelFilterBoolean } from './filters/ModelFilterBoolean';
 import { ModelFilterDate } from './filters/ModelFilterDate';
 import { ModelFilterDateTime } from './filters/ModelFilterDateTime';
