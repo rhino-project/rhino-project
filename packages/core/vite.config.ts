@@ -8,17 +8,8 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 import { externalizeDeps } from 'vite-plugin-externalize-deps';
 import { resolve } from 'node:path';
 
-// Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
-function escapeRegExp(string) {
-  // $& means the whole matched string
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
 // NOTE: Keep trailing slash to use resulting path in prefix matching.
 const srcDir = url.fileURLToPath(new URL('./src/', import.meta.url));
-// NOTE: Since ESBuild evaluates this regex using Go's engine, it is not
-// clear whether the JS-specific regex escape logic is sound.
-const srcRegex = new RegExp(`^${escapeRegExp(srcDir)}.*[.]js$`);
 
 const vitePlugin = (isProd) => ({
   name: 'js-in-jsx',
