@@ -4,7 +4,7 @@ import { useUserUpdateAction } from '../../queries/auth';
 import AuthForm from '../auth/AuthForm';
 import { SuccessAlert } from '../alerts';
 
-const ChangePassword = () => {
+export const ChangePassword = () => {
   const {
     mutate: userUpdate,
     isLoading,
@@ -31,5 +31,3 @@ const ChangePassword = () => {
     </>
   );
 };
-
-export default ChangePassword;

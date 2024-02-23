@@ -96,7 +96,7 @@ const RhinoDevToolModelEdit = () => {
   );
 };
 
-const RhinoDevTool = () => {
+export const RhinoDevTool = () => {
   const { model } = useModelContext();
   const [isCollapsed, setIsCollapsed] = useLocalStorage('rhinoDevTool', true);
 
@@ -148,5 +148,3 @@ const RhinoDevTool = () => {
     </>
   );
 };
-
-export default RhinoDevTool;

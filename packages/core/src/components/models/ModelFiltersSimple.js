@@ -17,5 +17,3 @@ ModelFiltersSimple.propTypes = {
     PropTypes.node
   ])
 };
-
-export default ModelFiltersSimple;

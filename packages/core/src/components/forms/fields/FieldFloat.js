@@ -13,7 +13,5 @@ export const FieldFloatBase = (props) => (
   <FieldInputBase type="number" setValueAs={setValueAs} {...props} />
 );
 
-const FieldFloat = (props) =>
+export const FieldFloat = (props) =>
   useGlobalComponent('FieldFloat', FieldFloatBase, props);
-
-export default FieldFloat;

@@ -25,7 +25,5 @@ export const ModelCreateHeaderBase = () => {
 
 ModelCreateHeaderBase.propTypes = {};
 
-const ModelCreateHeader = (props) =>
+export const ModelCreateHeader = (props) =>
   useGlobalComponentForModel('ModelCreateHeader', ModelCreateHeaderBase, props);
-
-export default ModelCreateHeader;

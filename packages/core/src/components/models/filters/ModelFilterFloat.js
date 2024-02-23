@@ -8,7 +8,7 @@ import { useModelFiltersContext } from '../../../hooks/controllers';
 
 const FLOAT_INCREMENT = 0.000000000000001;
 
-const ModelFilterFloat = ({ model, path, ...props }) => {
+export const ModelFilterFloat = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   const { resetField } = useFormContext();
 
@@ -39,5 +39,3 @@ ModelFilterFloat.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterFloat;

@@ -8,7 +8,7 @@ import AuthPage from './AuthPage';
 import { DangerAlert } from '../../components/alerts';
 import PropTypes from 'prop-types';
 
-const AcceptInvitationPage = (props) => {
+export const AcceptInvitationPage = (props) => {
   const rootPath = useRootPath();
   const isAuthenticated = useAuthenticated();
   const {
@@ -59,5 +59,3 @@ AcceptInvitationPage.propTypes = {
   primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
-
-export default AcceptInvitationPage;

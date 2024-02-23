@@ -5,7 +5,7 @@ import { useForgotPasswordAction } from '../../queries/auth';
 import AuthPage from './AuthPage';
 import PropTypes from 'prop-types';
 
-const ForgotPasswordPage = (props) => {
+export const ForgotPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: forgotPasswordAction,
@@ -52,5 +52,3 @@ ForgotPasswordPage.propTypes = {
   primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
-
-export default ForgotPasswordPage;

@@ -14,7 +14,7 @@ const useNavModels = () => {
   return useMemo(() => models, [models]);
 };
 
-const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
+export const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
   const { enableModelRoutes } = useRhinoConfig();
   const models = useNavModels().filter(
     (e) => e.model !== 'users_role' && e.model !== 'users_role_invite'
@@ -40,8 +40,6 @@ const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
     </>
   );
 };
-
-export default PrimaryNavigation;
 
 PrimaryNavigation.propTypes = {
   title: PropTypes.string,

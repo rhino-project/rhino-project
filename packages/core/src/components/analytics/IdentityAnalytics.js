@@ -6,5 +6,3 @@ export const IdentityAnalytics = ({ children }) => {
 
   return children;
 };
-
-export default IdentityAnalytics;

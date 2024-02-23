@@ -18,7 +18,7 @@ const SidebarLayout = () => (
   </>
 );
 
-const ApplicationShell = ({ children }) => {
+export const ApplicationShell = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
   const openSidebar = () => {
@@ -87,8 +87,6 @@ const ApplicationShell = ({ children }) => {
     </>
   );
 };
-
-export default ApplicationShell;
 
 ApplicationShell.propTypes = {
   children: PropTypes.node

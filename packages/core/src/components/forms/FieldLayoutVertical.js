@@ -38,7 +38,5 @@ export const FieldLayoutVerticalBase = ({
   );
 };
 
-const FieldLayoutVertical = (props) =>
+export const FieldLayoutVertical = (props) =>
   useGlobalComponent('FieldLayoutVertical', FieldLayoutVerticalBase, props);
-
-export default FieldLayoutVertical;

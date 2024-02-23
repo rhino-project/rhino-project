@@ -63,7 +63,5 @@ export const ModelFilterBase = (props) => {
   return 'No filter for this attribute type';
 };
 
-const ModelFilter = (props) =>
+export const ModelFilter = (props) =>
   useGlobalComponentForModel('ModelFilter', ModelFilterBase, props);
-
-export default ModelFilter;

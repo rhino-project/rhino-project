@@ -47,11 +47,9 @@ export const DisplayGroupFloatingAttachments = ({ overrides, ...props }) => {
   );
 };
 
-const DisplayGroupAttachments = (props) =>
+export const DisplayGroupAttachments = (props) =>
   useGlobalComponent(
     'DisplayGroupAttachments',
     DisplayGroupVerticalAttachments,
     props
   );
-
-export default DisplayGroupAttachments;

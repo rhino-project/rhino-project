@@ -22,7 +22,5 @@ export const DisplayTextBase = ({ empty = '-', ...props }) => {
   );
 };
 
-const DisplayText = (props) =>
+export const DisplayText = (props) =>
   useGlobalComponent('DisplayText', DisplayTextBase, props);
-
-export default DisplayText;

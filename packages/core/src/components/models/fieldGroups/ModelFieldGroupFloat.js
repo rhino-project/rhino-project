@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingFloat = (props) => {
   return <FieldGroupFloatingFloat {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupFloat = (props) =>
+export const ModelFieldGroupFloat = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupFloat',
     ModelFieldGroupFloatVertical,
     props
   );
-
-export default ModelFieldGroupFloat;

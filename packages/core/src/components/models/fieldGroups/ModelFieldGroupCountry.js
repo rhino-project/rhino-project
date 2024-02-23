@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingCountry = (props) => {
   return <FieldGroupFloatingCountry {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupCountry = (props) =>
+export const ModelFieldGroupCountry = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupCountry',
     ModelFieldGroupCountryVertical,
     props
   );
-
-export default ModelFieldGroupCountry;

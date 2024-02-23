@@ -27,7 +27,5 @@ export const FieldGroupFloatingCountry = ({ overrides, ...props }) => {
   );
 };
 
-const FieldGroupCountry = (props) =>
+export const FieldGroupCountry = (props) =>
   useGlobalComponent('FieldGroupCountry', FieldGroupCountryBase, props);
-
-export default FieldGroupCountry;

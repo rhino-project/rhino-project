@@ -26,11 +26,9 @@ export const DisplayGroupFloatingReference = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupReference = (props) =>
+export const DisplayGroupReference = (props) =>
   useGlobalComponent(
     'DisplayGroupReference',
     DisplayGroupVerticalReference,
     props
   );
-
-export default DisplayGroupReference;

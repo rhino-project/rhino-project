@@ -10,7 +10,5 @@ export const DisplayArrayBase = (props) => {
   return <DisplayString type="text" accessor={accessor} readOnly {...props} />;
 };
 
-const DisplayArray = (props) =>
+export const DisplayArray = (props) =>
   useGlobalComponent('DisplayArray', DisplayArrayBase, props);
-
-export default DisplayArray;

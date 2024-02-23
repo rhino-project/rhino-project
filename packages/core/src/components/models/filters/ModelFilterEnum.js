@@ -7,7 +7,7 @@ import FilterSelectControlled from '../../forms/filters/FilterSelectControlled';
 import { useModelFilterField } from '../../../hooks/form';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 
-const ModelFilterEnum = ({ model, path, ...props }) => {
+export const ModelFilterEnum = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
 
   const options = useMemo(
@@ -38,5 +38,3 @@ ModelFilterEnum.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterEnum;

@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingBoolean = (props) => {
   return <DisplayGroupFloatingBoolean {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupBoolean = (props) =>
+export const ModelDisplayGroupBoolean = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupBoolean',
     ModelDisplayGroupVerticalBoolean,
     props
   );
-
-export default ModelDisplayGroupBoolean;

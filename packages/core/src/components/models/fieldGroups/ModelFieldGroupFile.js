@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingFile = (props) => {
   return <FieldGroupFloatingFile {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupFile = (props) =>
+export const ModelFieldGroupFile = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupFile',
     ModelFieldGroupFileVertical,
     props
   );
-
-export default ModelFieldGroupFile;

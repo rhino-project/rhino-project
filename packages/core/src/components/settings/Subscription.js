@@ -36,7 +36,7 @@ SubscriptionTab.propTypes = {
   toggle: PropTypes.func.isRequired
 };
 
-const Subscription = ({ status, session_id }) => {
+export const Subscription = ({ status, session_id }) => {
   const baseOwnerId = useBaseOwnerId();
 
   const { isInitialLoading, data: { data: prices } = {} } = usePrices();
@@ -109,8 +109,6 @@ Subscription.propTypes = {
   status: PropTypes.oneOf(['success', 'canceled']),
   session_id: PropTypes.string
 };
-
-export default Subscription;
 
 //Displays latest subscription end period
 const displayCurrentSubscription = (subscription) => {

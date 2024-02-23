@@ -21,7 +21,5 @@ export const ModelFieldLabelBase = ({ label, model, ...props }) => {
   );
 };
 
-const ModelFieldLabel = (props) =>
+export const ModelFieldLabel = (props) =>
   useGlobalComponentForModel('ModelFieldLabel', ModelFieldLabelBase, props);
-
-export default ModelFieldLabel;

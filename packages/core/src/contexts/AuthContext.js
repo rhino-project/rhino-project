@@ -26,7 +26,7 @@ export const AuthContext = createContext({
   resolving: true
 });
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const sessionQuery = useSession();
   const { isError, isInitialLoading, isFetching, isSuccess, data, refetch } =
     sessionQuery;
@@ -74,5 +74,3 @@ const AuthProvider = ({ children }) => {
 AuthProvider.propTypes = {
   children: PropTypes.node
 };
-
-export default AuthProvider;

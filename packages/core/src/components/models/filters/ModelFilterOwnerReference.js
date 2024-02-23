@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useBaseOwnerFilters } from '../../../hooks/owner';
 import ModelFilterReference from './ModelFilterReference';
 
-const ModelFilterOwnerReference = (props) => {
+export const ModelFilterOwnerReference = (props) => {
   const { model } = props;
   const filter = useBaseOwnerFilters(model);
 
@@ -14,5 +14,3 @@ ModelFilterOwnerReference.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterOwnerReference;

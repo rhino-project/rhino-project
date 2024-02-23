@@ -28,7 +28,7 @@ const OrganizationSettings = () => {
   );
 };
 
-const AccountMenu = () => {
+export const AccountMenu = () => {
   const { mutate: signOutAction } = useSignOutAction();
   const user = useUser();
   const accountSettingsPath = useAccountSettingsPath();
@@ -69,5 +69,3 @@ const AccountMenu = () => {
     </UncontrolledDropdown>
   );
 };
-
-export default AccountMenu;

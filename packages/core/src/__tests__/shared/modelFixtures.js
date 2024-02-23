@@ -1,4 +1,4 @@
-const api = {
+export const api = {
   openapi: '3.0.3',
   components: {
     schemas: {
@@ -218,5 +218,3 @@ const api = {
     }
   }
 };
-
-export default api;

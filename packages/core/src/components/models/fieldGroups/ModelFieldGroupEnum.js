@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingEnum = (props) => {
   return <FieldGroupFloatingSelectControlled {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupEnum = (props) =>
+export const ModelFieldGroupEnum = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupEnum',
     ModelFieldGroupEnumVertical,
     props
   );
-
-export default ModelFieldGroupEnum;

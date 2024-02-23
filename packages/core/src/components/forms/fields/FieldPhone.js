@@ -40,7 +40,5 @@ FieldPhoneBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldPhone = (props) =>
+export const FieldPhone = (props) =>
   useGlobalComponent('FieldPhone', FieldPhoneBase, props);
-
-export default FieldPhone;

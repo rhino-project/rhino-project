@@ -23,7 +23,5 @@ export const DisplayCurrencyBase = (props) => {
   );
 };
 
-const DisplayCurrency = (props) =>
+export const DisplayCurrency = (props) =>
   useGlobalComponent('DisplayCurrency', DisplayCurrencyBase, props);
-
-export default DisplayCurrency;

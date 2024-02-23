@@ -17,7 +17,5 @@ export const CellCurrencyBase = ({ empty = '-', ...props }) => {
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellCurrency = (props) =>
+export const CellCurrency = (props) =>
   useGlobalComponent('CellCurrency', CellCurrencyBase, props);
-
-export default CellCurrency;

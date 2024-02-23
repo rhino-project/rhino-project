@@ -5,7 +5,5 @@ export const FieldTextBase = (props) => (
   <FieldInputBase type="textarea" {...props} />
 );
 
-const FieldText = (props) =>
+export const FieldText = (props) =>
   useGlobalComponent('FieldText', FieldTextBase, props);
-
-export default FieldText;

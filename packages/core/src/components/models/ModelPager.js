@@ -27,7 +27,5 @@ export const ModelPagerBase = (props) => {
   );
 };
 
-const ModelPager = (props) =>
+export const ModelPager = (props) =>
   useGlobalComponentForModel('ModelPager', ModelPagerBase, props);
-
-export default ModelPager;

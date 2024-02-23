@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingEnum = (props) => {
   return <DisplayGroupFloatingEnum {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupEnum = (props) =>
+export const ModelDisplayGroupEnum = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupEnum',
     ModelDisplayGroupVerticalEnum,
     props
   );
-
-export default ModelDisplayGroupEnum;

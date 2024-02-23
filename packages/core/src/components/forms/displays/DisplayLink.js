@@ -21,7 +21,5 @@ export const DisplayLinkBase = ({
   return <div>{value ? <a href={value}>{children || value}</a> : empty}</div>;
 };
 
-const DisplayLink = (props) =>
+export const DisplayLink = (props) =>
   useGlobalComponent('DisplayLink', DisplayLinkBase, props);
-
-export default DisplayLink;

@@ -26,7 +26,5 @@ export const DisplayGroupFloatingTime = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupTime = (props) =>
+export const DisplayGroupTime = (props) =>
   useGlobalComponent('DisplayGroupTime', DisplayGroupVerticalTime, props);
-
-export default DisplayGroupTime;

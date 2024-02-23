@@ -21,7 +21,5 @@ export const CellDateTimeDistanceBase = ({
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellDateTimeDistance = (props) =>
+export const CellDateTimeDistance = (props) =>
   useGlobalComponent('CellDateTimeDistance', CellDateTimeDistanceBase, props);
-
-export default CellDateTimeDistance;

@@ -152,7 +152,5 @@ export const ModelFieldGroupBase = ({ overrides, ...originalProps }) => {
   return 'No field for this attribute type';
 };
 
-const ModelFieldGroup = (props) =>
+export const ModelFieldGroup = (props) =>
   useGlobalComponentForAttribute('ModelFieldGroup', ModelFieldGroupBase, props);
-
-export default ModelFieldGroup;

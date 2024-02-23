@@ -67,7 +67,5 @@ FieldDateBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldDate = (props) =>
+export const FieldDate = (props) =>
   useGlobalComponent('FieldDate', FieldDateBase, props);
-
-export default FieldDate;

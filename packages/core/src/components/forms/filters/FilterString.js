@@ -6,8 +6,6 @@ const setValueAs = (value) => {
   return value;
 };
 
-const FilterString = (props) => (
+export const FilterString = (props) => (
   <FieldString setValueAs={setValueAs} {...props} />
 );
-
-export default FilterString;

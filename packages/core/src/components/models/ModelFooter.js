@@ -13,7 +13,5 @@ export const ModelFooterBase = ({ model, path, children, ...props }) => {
   return <Footer {...props}>{footerText}</Footer>;
 };
 
-const ModelFooter = (props) =>
+export const ModelFooter = (props) =>
   useGlobalComponentForAttribute('ModelFooter', ModelFooterBase, props);
-
-export default ModelFooter;

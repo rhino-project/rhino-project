@@ -35,7 +35,5 @@ export const FieldPasswordBase = (props) => {
   );
 };
 
-const FieldPassword = (props) =>
+export const FieldPassword = (props) =>
   useGlobalComponent('FieldPassword', FieldPasswordBase, props);
-
-export default FieldPassword;

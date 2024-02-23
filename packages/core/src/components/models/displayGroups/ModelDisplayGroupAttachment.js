@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingAttachment = (props) => {
   return <DisplayGroupFloatingAttachment {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupAttachment = (props) =>
+export const ModelDisplayGroupAttachment = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupAttachment',
     ModelDisplayGroupVerticalAttachment,
     props
   );
-
-export default ModelDisplayGroupAttachment;

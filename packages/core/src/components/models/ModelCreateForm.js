@@ -22,7 +22,5 @@ export const ModelCreateFormBase = (props) => {
 
 ModelCreateFormBase.propTypes = {};
 
-const ModelCreateForm = (props) =>
+export const ModelCreateForm = (props) =>
   useGlobalComponentForModel('ModelCreateForm', ModelCreateFormBase, props);
-
-export default ModelCreateForm;

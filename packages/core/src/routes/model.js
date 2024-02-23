@@ -23,7 +23,7 @@ const generateModelRoutePaths = () => {
   return routes;
 };
 
-const modelRoutePaths = {
+export const modelRoutePaths = {
   ...generateModelRoutePaths()
 };
 
@@ -98,4 +98,3 @@ export const modelCrudRoutes = (model) => {
 
 export const modelRoutes = () =>
   map(modelLoader.api.components.schemas, (m) => modelCrudRoutes(m));
-export default modelRoutePaths;

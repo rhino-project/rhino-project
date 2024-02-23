@@ -14,7 +14,7 @@ import {
   getUserCreatePath,
 } from '../utils/routes';
 
-const routePaths = {
+export const routePaths = {
   ...modelRoutePaths,
   ...customRoutePaths,
   sessionCreate: getSessionCreatePath,
@@ -48,5 +48,3 @@ export const accountSettingsRoute = () => {
     />
   ];
 };
-
-export default routePaths;

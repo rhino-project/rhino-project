@@ -48,5 +48,3 @@ const defaultComponents = {
 export const ModelFieldGroupHorizontal = (props) => {
   return <ModelFieldGroupBase overrides={defaultComponents} {...props} />;
 };
-
-export default ModelFieldGroupHorizontal;

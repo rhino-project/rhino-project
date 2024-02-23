@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingDate = (props) => {
   return <FieldGroupFloatingDate {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupDate = (props) =>
+export const ModelFieldGroupDate = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupDate',
     ModelFieldGroupDateVertical,
     props
   );
-
-export default ModelFieldGroupDate;

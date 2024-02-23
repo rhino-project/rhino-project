@@ -11,7 +11,5 @@ export const FilterGroupBase = ({ overrides, ...props }) => {
   return <FilterLayout {...props} />;
 };
 
-const FilterGroup = (props) =>
+export const FilterGroup = (props) =>
   useGlobalComponent('FilterGroup', FilterGroupBase, props);
-
-export default FilterGroup;

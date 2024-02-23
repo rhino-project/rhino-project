@@ -5,7 +5,5 @@ export const DisplayEnumBase = (props) => {
   return <DisplayStringBase {...props} />;
 };
 
-const DisplayEnum = (props) =>
+export const DisplayEnum = (props) =>
   useGlobalComponent('DisplayEnum', DisplayEnumBase, props);
-
-export default DisplayEnum;

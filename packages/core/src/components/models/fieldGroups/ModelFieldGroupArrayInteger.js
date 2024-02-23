@@ -94,11 +94,9 @@ export const ModelFieldGroupFloatingArrayInteger = (props) => {
   );
 };
 
-const ModelFieldGroupArrayInteger = (props) =>
+export const ModelFieldGroupArrayInteger = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupArrayInteger',
     ModelFieldGroupArrayIntegerVertical,
     props
   );
-
-export default ModelFieldGroupArrayInteger;

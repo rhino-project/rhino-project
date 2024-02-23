@@ -13,7 +13,5 @@ export const ModelHeaderBase = ({ model, path, children, ...props }) => {
   return <Header {...props}>{headerText}</Header>;
 };
 
-const ModelHeader = (props) =>
+export const ModelHeader = (props) =>
   useGlobalComponentForAttribute('ModelHeader', ModelHeaderBase, props);
-
-export default ModelHeader;

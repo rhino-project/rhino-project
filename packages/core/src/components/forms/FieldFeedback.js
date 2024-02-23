@@ -21,7 +21,5 @@ export const FieldFeedbackBase = (props) => {
   );
 };
 
-const FieldFeedback = (props) =>
+export const FieldFeedback = (props) =>
   useGlobalComponent('FieldFeedback', FieldFeedbackBase, props);
-
-export default FieldFeedback;

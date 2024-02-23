@@ -30,11 +30,9 @@ ModelFieldGroupNestedVertical.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const ModelFieldGroupNested = (props) =>
+export const ModelFieldGroupNested = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupNested',
     ModelFieldGroupNestedVertical,
     props
   );
-
-export default ModelFieldGroupNested;

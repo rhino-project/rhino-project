@@ -13,7 +13,5 @@ export const CellReferenceBase = ({ empty = '-', ...props }) => {
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellReference = (props) =>
+export const CellReference = (props) =>
   useGlobalComponent('CellReference', CellReferenceBase, props);
-
-export default CellReference;

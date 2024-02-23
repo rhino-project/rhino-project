@@ -14,7 +14,7 @@ import { getSettingsPath } from '../../utils/routes';
 const tabTo = (baseOwnerPath, tabId) =>
   baseOwnerPath.build(`${getSettingsPath()}/${tabId}`);
 
-const SettingsPage = () => {
+export const SettingsPage = () => {
   //Checking subscription payment related status
   const { status, session_id } = useParsedSearch(); //FIXME use session_id for checking later
   const baseOwnerPath = useBaseOwnerPath();
@@ -54,5 +54,3 @@ const SettingsPage = () => {
     </BaseAuthedPage>
   );
 };
-
-export default SettingsPage;

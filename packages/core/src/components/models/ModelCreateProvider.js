@@ -6,7 +6,7 @@ import RhinoDevTool from '../devtool/RhinoDevTool';
 
 export const ModelCreateContext = createContext();
 
-const ModelCreateProvider = ({ children, ...props }) => {
+export const ModelCreateProvider = ({ children, ...props }) => {
   const { methods, model } = props;
 
   return (
@@ -18,5 +18,3 @@ const ModelCreateProvider = ({ children, ...props }) => {
     </ModelContext.Provider>
   );
 };
-
-export default ModelCreateProvider;

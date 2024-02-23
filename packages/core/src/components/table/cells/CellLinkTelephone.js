@@ -22,7 +22,5 @@ export const CellLinkTelephoneBase = ({ children, empty = '-', ...props }) => {
   );
 };
 
-const CellLinkTelephone = (props) =>
+export const CellLinkTelephone = (props) =>
   useGlobalComponent('CellLinkTelephone', CellLinkTelephoneBase, props);
-
-export default CellLinkTelephone;

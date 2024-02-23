@@ -31,5 +31,3 @@ ModelCreateSimple.propTypes = {
     PropTypes.node
   ])
 };
-
-export default ModelCreateSimple;

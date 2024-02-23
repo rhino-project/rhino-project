@@ -25,11 +25,9 @@ export const ModelCellIdentifierBase = ({ children, getValue, ...props }) => {
   );
 };
 
-const ModelCellIdentifier = (props) =>
+export const ModelCellIdentifier = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellIdentifier',
     ModelCellIdentifierBase,
     props
   );
-
-export default ModelCellIdentifier;

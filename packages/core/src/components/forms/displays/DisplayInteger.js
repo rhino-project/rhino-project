@@ -22,7 +22,5 @@ export const DisplayIntegerBase = ({ empty = '-', ...props }) => {
   );
 };
 
-const DisplayInteger = (props) =>
+export const DisplayInteger = (props) =>
   useGlobalComponent('DisplayInteger', DisplayIntegerBase, props);
-
-export default DisplayInteger;

@@ -5,7 +5,7 @@ import RhinoDevTool from '../devtool/RhinoDevTool';
 
 export const ModelIndexContext = createContext();
 
-const ModelIndexProvider = ({ children, ...props }) => {
+export const ModelIndexProvider = ({ children, ...props }) => {
   const { model } = props;
 
   return (
@@ -18,5 +18,3 @@ const ModelIndexProvider = ({ children, ...props }) => {
     </ModelContext.Provider>
   );
 };
-
-export default ModelIndexProvider;

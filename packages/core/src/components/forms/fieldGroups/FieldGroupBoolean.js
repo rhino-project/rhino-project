@@ -21,7 +21,5 @@ export { FieldGroupHorizontalBoolean };
 const FieldGroupFloatingBoolean = FieldGroupBooleanBase;
 export { FieldGroupFloatingBoolean };
 
-const FieldGroupBoolean = (props) =>
+export const FieldGroupBoolean = (props) =>
   useGlobalComponent('FieldGroupBoolean', FieldGroupBooleanBase, props);
-
-export default FieldGroupBoolean;

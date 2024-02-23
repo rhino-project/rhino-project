@@ -121,11 +121,9 @@ export const ModelDisplayGroupBase = ({ overrides, ...originalProps }) => {
   return 'No Display for this attribute type';
 };
 
-const ModelDisplayGroup = (props) =>
+export const ModelDisplayGroup = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroup',
     ModelDisplayGroupBase,
     props
   );
-
-export default ModelDisplayGroup;

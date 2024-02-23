@@ -18,7 +18,5 @@ export const CellDateTimeBase = ({
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellDateTime = (props) =>
+export const CellDateTime = (props) =>
   useGlobalComponent('CellDateTime', CellDateTimeBase, props);
-
-export default CellDateTime;

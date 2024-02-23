@@ -54,7 +54,5 @@ export const ModelFilterLabelBase = ({ label, model, ...props }) => {
   return <FilterLabel label={modelLabel} {...props} />;
 };
 
-const ModelFilterLabel = (props) =>
+export const ModelFilterLabel = (props) =>
   useGlobalComponentForModel('ModelFilterLabel', ModelFilterLabelBase, props);
-
-export default ModelFilterLabel;

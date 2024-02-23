@@ -23,6 +23,4 @@ export const CellLinkBase = ({ children, empty = '-', ...props }) => {
   );
 };
 
-const CellLink = (props) => useGlobalComponent('CellLink', CellLinkBase, props);
-
-export default CellLink;
+export const CellLink = (props) => useGlobalComponent('CellLink', CellLinkBase, props);

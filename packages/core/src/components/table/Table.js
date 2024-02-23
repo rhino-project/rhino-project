@@ -19,7 +19,7 @@ const TableSortIndicator = ({ column }) => {
   );
 };
 
-const Table = ({ table, onRowClick }) => {
+export const Table = ({ table, onRowClick }) => {
   const handleRowClick = useCallback(
     (row) => {
       if (onRowClick) onRowClick(row);
@@ -93,5 +93,3 @@ const Table = ({ table, onRowClick }) => {
     </BTable>
   );
 };
-
-export default Table;

@@ -27,7 +27,5 @@ export const DisplayDateTimeBase = ({
   );
 };
 
-const DisplayDateTime = (props) =>
+export const DisplayDateTime = (props) =>
   useGlobalComponent('DisplayDateTime', DisplayDateTimeBase, props);
-
-export default DisplayDateTime;

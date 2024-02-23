@@ -54,11 +54,9 @@ export const ModelFieldGroupFloatingOwnerReference = ({
   return <ModelFieldGroupFloatingReference filter={filter} {...props} />;
 };
 
-const ModelFieldGroupOwnerReference = (props) =>
+export const ModelFieldGroupOwnerReference = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupOwnerReference',
     ModelFieldGroupOwnerReferenceVertical,
     props
   );
-
-export default ModelFieldGroupOwnerReference;

@@ -16,11 +16,9 @@ export const ModelCellAttachmentBase = ({ children, getValue, ...props }) => {
   );
 };
 
-const ModelCellAttachment = (props) =>
+export const ModelCellAttachment = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellAttachment',
     ModelCellAttachmentBase,
     props
   );
-
-export default ModelCellAttachment;

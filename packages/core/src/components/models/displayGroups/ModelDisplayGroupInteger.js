@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingInteger = (props) => {
   return <DisplayGroupFloatingInteger {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupInteger = (props) =>
+export const ModelDisplayGroupInteger = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupInteger',
     ModelDisplayGroupVerticalInteger,
     props
   );
-
-export default ModelDisplayGroupInteger;

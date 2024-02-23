@@ -11,7 +11,5 @@ export const DisplayArrayReferenceBase = (props) => {
   return <DisplayString {...props} accessor={accessor} />;
 };
 
-const DisplayArrayReference = (props) =>
+export const DisplayArrayReference = (props) =>
   useGlobalComponent('DisplayArrayReference', DisplayArrayReferenceBase, props);
-
-export default DisplayArrayReference;

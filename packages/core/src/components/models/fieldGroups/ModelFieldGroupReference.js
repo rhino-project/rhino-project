@@ -142,11 +142,9 @@ export const ModelFieldGroupFloatingReference = (props) => {
   );
 };
 
-const ModelFieldGroupReference = (props) =>
+export const ModelFieldGroupReference = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupReference',
     ModelFieldGroupReferenceVertical,
     props
   );
-
-export default ModelFieldGroupReference;

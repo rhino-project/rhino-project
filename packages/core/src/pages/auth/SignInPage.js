@@ -10,7 +10,7 @@ import AuthPage from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/config';
 import PropTypes from 'prop-types';
 
-const SignInPage = (props) => {
+export const SignInPage = (props) => {
   const { appName } = useRhinoConfig();
   const userCreatePath = useUserCreatePath();
   const forgotPasswordPath = useForgotPasswordPath();
@@ -84,5 +84,3 @@ SignInPage.propTypes = {
   primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
-
-export default SignInPage;

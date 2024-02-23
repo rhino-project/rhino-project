@@ -173,11 +173,9 @@ ModelCreateActionsBase.defaultProps = {
   hasCancel: false
 };
 
-const ModelCreateActions = (props) =>
+export const ModelCreateActions = (props) =>
   useGlobalComponentForModel(
     'ModelCreateActions',
     ModelCreateActionsBase,
     props
   );
-
-export default ModelCreateActions;

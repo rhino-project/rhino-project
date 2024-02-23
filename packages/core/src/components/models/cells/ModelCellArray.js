@@ -11,7 +11,5 @@ export const ModelCellArrayBase = ({ getValue, ...props }) => {
   return <CellString getValue={syntheticGetValue} {...props} />;
 };
 
-const ModelCellArray = (props) =>
+export const ModelCellArray = (props) =>
   useGlobalComponentForAttribute('ModelCellArray', ModelCellArrayBase, props);
-
-export default ModelCellArray;

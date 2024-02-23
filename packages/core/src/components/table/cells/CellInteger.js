@@ -9,7 +9,5 @@ export const CellIntegerBase = ({ empty = '-', ...props }) => {
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellInteger = (props) =>
+export const CellInteger = (props) =>
   useGlobalComponent('CellInteger', CellIntegerBase, props);
-
-export default CellInteger;

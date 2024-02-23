@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingText = (props) => {
   return <FieldGroupFloatingText {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupText = (props) =>
+export const ModelFieldGroupText = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupText',
     ModelFieldGroupTextVertical,
     props
   );
-
-export default ModelFieldGroupText;

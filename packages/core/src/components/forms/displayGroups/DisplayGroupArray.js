@@ -26,7 +26,5 @@ export const DisplayGroupFloatingArray = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupArray = (props) =>
+export const DisplayGroupArray = (props) =>
   useGlobalComponent('DisplayGroupArray', DisplayGroupVerticalArray, props);
-
-export default DisplayGroupArray;

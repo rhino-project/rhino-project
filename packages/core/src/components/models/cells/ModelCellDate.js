@@ -3,7 +3,5 @@ import CellDate from '../../table/cells/CellDate';
 
 export const ModelCellDateBase = (props) => <CellDate {...props} />;
 
-const ModelCellDate = (props) =>
+export const ModelCellDate = (props) =>
   useGlobalComponentForAttribute('ModelCellDate', ModelCellDateBase, props);
-
-export default ModelCellDate;

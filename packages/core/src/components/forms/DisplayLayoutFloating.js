@@ -33,7 +33,5 @@ export const DisplayLayoutFloatingBase = ({ overrides, ...props }) => {
   );
 };
 
-const DisplayLayoutFloating = (props) =>
+export const DisplayLayoutFloating = (props) =>
   useGlobalComponent('DisplayLayoutFloating', DisplayLayoutFloatingBase, props);
-
-export default DisplayLayoutFloating;

@@ -28,11 +28,9 @@ export const ModelFieldGroupFloatingYear = (props) => {
   return <FieldGroupFloatingYear {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupYear = (props) =>
+export const ModelFieldGroupYear = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupYear',
     ModelFieldGroupYearVertical,
     props
   );
-
-export default ModelFieldGroupYear;

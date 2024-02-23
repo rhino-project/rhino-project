@@ -26,7 +26,5 @@ export const DisplayGroupFloatingEnum = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupEnum = (props) =>
+export const DisplayGroupEnum = (props) =>
   useGlobalComponent('DisplayGroupEnum', DisplayGroupVerticalEnum, props);
-
-export default DisplayGroupEnum;

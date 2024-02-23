@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingTime = (props) => {
   return <DisplayGroupFloatingTime {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupTime = (props) =>
+export const ModelDisplayGroupTime = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupTime',
     ModelDisplayGroupVerticalTime,
     props
   );
-
-export default ModelDisplayGroupTime;

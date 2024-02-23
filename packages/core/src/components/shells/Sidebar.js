@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Nav, NavbarBrand } from 'reactstrap';
 import { LightLogo } from '../logos';
 
-const Sidebar = ({ id = 'sidebarMenu', children, extraClass }) => {
+export const Sidebar = ({ id = 'sidebarMenu', children, extraClass }) => {
   return (
     <Nav
       vertical
@@ -40,5 +40,3 @@ Sidebar.propTypes = {
   children: PropTypes.node,
   extraClass: PropTypes.string
 };
-
-export default Sidebar;

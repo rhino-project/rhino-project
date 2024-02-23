@@ -18,7 +18,5 @@ export const CellBooleanIconBase = ({
   return <Icon icon={value} {...inheritedProps} />;
 };
 
-const CellBooleanIcon = (props) =>
+export const CellBooleanIcon = (props) =>
   useGlobalComponent('CellBooleanIcon', CellBooleanIconBase, props);
-
-export default CellBooleanIcon;

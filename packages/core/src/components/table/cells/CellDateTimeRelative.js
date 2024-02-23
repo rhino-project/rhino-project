@@ -19,7 +19,5 @@ export const CellDateTimeRelativeBase = ({
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellDateTimeRelative = (props) =>
+export const CellDateTimeRelative = (props) =>
   useGlobalComponent('CellDateTimeRelative', CellDateTimeRelativeBase, props);
-
-export default CellDateTimeRelative;

@@ -36,11 +36,9 @@ export const ModelEditableCellBooleanBase = ({
   );
 };
 
-const ModelEditableCellBoolean = (props) =>
+export const ModelEditableCellBoolean = (props) =>
   useGlobalComponentForAttribute(
     'ModelEditableCellBoolean',
     ModelEditableCellBooleanBase,
     props
   );
-
-export default ModelEditableCellBoolean;

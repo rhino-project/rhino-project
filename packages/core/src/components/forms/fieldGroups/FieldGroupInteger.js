@@ -26,7 +26,5 @@ export const FieldGroupFloatingInteger = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupInteger = (props) =>
+export const FieldGroupInteger = (props) =>
   useGlobalComponent('FieldGroupInteger', FieldGroupIntegerBase, props);
-
-export default FieldGroupInteger;

@@ -55,7 +55,5 @@ FieldInputControlledBase.propTypes = {
   type: PropTypes.string
 };
 
-const FieldInputControlled = (props) =>
+export const FieldInputControlled = (props) =>
   useGlobalComponent('FieldInputControlled', FieldInputControlledBase, props);
-
-export default FieldInputControlled;

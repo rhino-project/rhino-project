@@ -68,7 +68,5 @@ export const FieldGroupFloatingCurrency = ({ overrides, ...props }) => {
   );
 };
 
-const FieldGroupCurrency = (props) =>
+export const FieldGroupCurrency = (props) =>
   useGlobalComponent('FieldGroupCurrency', FieldGroupCurrencyBase, props);
-
-export default FieldGroupCurrency;

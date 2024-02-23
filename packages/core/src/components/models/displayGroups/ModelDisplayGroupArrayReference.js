@@ -31,11 +31,9 @@ export const ModelDisplayGroupFloatingArrayReference = (props) => {
   return <DisplayGroupFloatingArrayReference {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupArrayReference = (props) =>
+export const ModelDisplayGroupArrayReference = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupArrayReference',
     ModelDisplayGroupVerticalArrayReference,
     props
   );
-
-export default ModelDisplayGroupArrayReference;

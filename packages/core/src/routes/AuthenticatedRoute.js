@@ -7,7 +7,7 @@ import { useAuth } from '../hooks/auth';
 import { useSessionCreatePath } from '../hooks/routes';
 import { getPrevPathSession, setPrevPathSession, unsetPrevPathSession } from '../utils/storage';
 
-const AuthenticatedRoute = ({ children }) => {
+export const AuthenticatedRoute = ({ children }) => {
   const sessionCreatePath = useSessionCreatePath({ absolute: true });
   const { initializing, user } = useAuth();
   const previousUser = usePrevious(user);
@@ -37,5 +37,3 @@ const AuthenticatedRoute = ({ children }) => {
 AuthenticatedRoute.propTypes = {
   children: PropTypes.node
 };
-
-export default AuthenticatedRoute;

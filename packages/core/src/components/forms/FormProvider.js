@@ -3,7 +3,7 @@ import { FormProvider as RHFFormProvider } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import env from '@rhino-project/config/env';
 
-const FormProvider = ({ children, ...props }) => {
+export const FormProvider = ({ children, ...props }) => {
   const { control } = props;
 
   return (
@@ -27,5 +27,3 @@ const FormProvider = ({ children, ...props }) => {
 FormProvider.propTypes = {
   children: PropTypes.node
 };
-
-export default FormProvider;

@@ -78,7 +78,5 @@ ModelCreateModalBase.defaultProps = {
   isOpen: false
 };
 
-const ModelCreateModal = (props) =>
+export const ModelCreateModal = (props) =>
   useGlobalComponentForModel('ModelCreateModal', ModelCreateModalBase, props);
-
-export default ModelCreateModal;

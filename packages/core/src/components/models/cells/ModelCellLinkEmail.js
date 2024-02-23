@@ -3,11 +3,9 @@ import CellLinkEmail from '../../table/cells/CellLinkEmail';
 
 export const ModelCellLinkEmailBase = (props) => <CellLinkEmail {...props} />;
 
-const ModelCellLinkEmail = (props) =>
+export const ModelCellLinkEmail = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellLinkEmail',
     ModelCellLinkEmailBase,
     props
   );
-
-export default ModelCellLinkEmail;

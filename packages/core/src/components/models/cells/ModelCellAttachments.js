@@ -11,11 +11,9 @@ export const ModelCellAttachmentsBase = ({ getValue, ...props }) => {
   return <CellString getValue={syntheticGetValue} {...props} />;
 };
 
-const ModelCellAttachments = (props) =>
+export const ModelCellAttachments = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellAttachments',
     ModelCellAttachmentsBase,
     props
   );
-
-export default ModelCellAttachments;

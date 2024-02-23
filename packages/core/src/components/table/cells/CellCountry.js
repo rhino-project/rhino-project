@@ -9,7 +9,5 @@ export const CellCountryBase = ({ empty = '-', ...props }) => {
   return <Flag country={getValue()} {...inheritedProps} />;
 };
 
-const CellCountry = (props) =>
+export const CellCountry = (props) =>
   useGlobalComponent('CellCountry', CellCountryBase, props);
-
-export default CellCountry;

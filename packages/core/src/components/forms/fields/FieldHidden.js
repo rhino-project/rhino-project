@@ -5,7 +5,5 @@ export const FieldHiddenBase = (props) => (
   <FieldInputBase type="hidden" {...props} />
 );
 
-const FieldHidden = (props) =>
+export const FieldHidden = (props) =>
   useGlobalComponent('FieldHidden', FieldHiddenBase, props);
-
-export default FieldHidden;

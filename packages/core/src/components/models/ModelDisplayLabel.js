@@ -14,7 +14,5 @@ export const ModelDisplayLabelBase = ({ label, model, ...props }) => {
   return <DisplayLabel label={modelLabel} {...props} />;
 };
 
-const ModelDisplayLabel = (props) =>
+export const ModelDisplayLabel = (props) =>
   useGlobalComponentForModel('ModelDisplayLabel', ModelDisplayLabelBase, props);
-
-export default ModelDisplayLabel;

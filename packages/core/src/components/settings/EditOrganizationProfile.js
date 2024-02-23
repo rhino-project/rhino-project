@@ -12,7 +12,7 @@ import { useFieldSetErrors, useResolver } from '../../hooks/form';
 import { useForm } from 'react-hook-form';
 import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
 
-const EditOrganizationProfile = () => {
+export const EditOrganizationProfile = () => {
   const baseOwner = useBaseOwner();
   const model = baseOwnerModel();
   const baseOwnerId = useBaseOwnerId();
@@ -74,5 +74,3 @@ const EditOrganizationProfile = () => {
     </>
   );
 };
-
-export default EditOrganizationProfile;

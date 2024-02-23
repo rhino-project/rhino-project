@@ -55,7 +55,7 @@ const overrides = {
   }
 };
 
-const EditOrganizationAccess = () => {
+export const EditOrganizationAccess = () => {
   const model = useModel('users_role');
   const baseOwnerId = useBaseOwnerId();
   const [modalOpen, setModalOpen] = useState(false);
@@ -92,5 +92,3 @@ const EditOrganizationAccess = () => {
     </>
   );
 };
-
-export default EditOrganizationAccess;

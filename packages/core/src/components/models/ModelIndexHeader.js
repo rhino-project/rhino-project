@@ -40,7 +40,5 @@ ModelIndexHeaderBase.propTypes = {
   overrides: PropTypes.object
 };
 
-const ModelIndexHeader = (props) =>
+export const ModelIndexHeader = (props) =>
   useGlobalComponentForModel('ModelIndexHeader', ModelIndexHeaderBase, props);
-
-export default ModelIndexHeader;
