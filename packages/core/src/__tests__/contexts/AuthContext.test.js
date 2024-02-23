@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AuthProvider, AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { NetworkingMock } from '__tests__/shared/mock';
+import { NetworkingMock } from '../shared/mock';
 
 vi.mock('axios');
 const networkingMock = new NetworkingMock();

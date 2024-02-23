@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { createWrapper } from '__tests__/shared/helpers';
+import { createWrapper } from '../shared/helpers';
 import {
   BaseOwnerContext,
   useBaseOwner,

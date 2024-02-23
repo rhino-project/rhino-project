@@ -7,7 +7,7 @@ import {
   useUser,
   useUserId
 } from '../../hooks/auth';
-import { createWrapper } from '__tests__/shared/helpers';
+import { createWrapper } from '../shared/helpers';
 
 const Wrapper = ({ children, ...props }) => (
   <AuthContext.Provider {...props}>{children}</AuthContext.Provider>

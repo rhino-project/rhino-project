@@ -6,7 +6,7 @@ import {
   useSignOutAction,
   useSignUpAction
 } from '../../queries/auth';
-import { NetworkingMock } from '__tests__/shared/mock';
+import { NetworkingMock } from '../shared/mock';
 
 vi.mock('axios');
 const networkingMock = new NetworkingMock();

@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
-import { createWrapper } from '__tests__/shared/helpers';
+import { createWrapper } from '../../shared/helpers';
 import { ModelIndexSimple } from '../../../components/models/ModelIndexSimple';
 
 describe('ModelFilters', () => {
