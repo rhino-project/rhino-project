@@ -9,7 +9,10 @@ const config = defineConfig({
       include: ['rhino.config', 'virtual:@rhino-project/config/env']
     }),
     react()
-  ]
+  ],
+  test: {
+    watch: false
+  }
 });
 
 export default mergeConfig(

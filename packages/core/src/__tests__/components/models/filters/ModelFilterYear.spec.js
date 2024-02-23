@@ -6,8 +6,8 @@ import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSi
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterYear } from '../../../../components/models/filters/ModelFilterYear';
 
-vi.mock('rhino/components/forms/filters/FilterYear', () => ({
-  default: vi.fn(() => null)
+vi.mock('../../../../components/forms/filters/FilterYear', () => ({
+  FilterYear: vi.fn(() => null)
 }));
 
 describe('ModelFilterYear', () => {

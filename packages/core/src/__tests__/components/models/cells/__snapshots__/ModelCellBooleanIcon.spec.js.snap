@@ -9,7 +9,7 @@ exports[`ModelCellBooleanIcon > renders custom class 1`] = `
     width="32"
   >
     <use
-      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#check"
+      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#check"
     />
   </svg>
 </DocumentFragment>
@@ -23,7 +23,7 @@ exports[`ModelCellBooleanIcon > renders empty icon 1`] = `
     width="32"
   >
     <use
-      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#dash"
+      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#dash"
     />
   </svg>
 </DocumentFragment>
@@ -37,7 +37,7 @@ exports[`ModelCellBooleanIcon > renders false icon 1`] = `
     width="32"
   >
     <use
-      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
     />
   </svg>
 </DocumentFragment>
@@ -51,7 +51,7 @@ exports[`ModelCellBooleanIcon > renders true icon 1`] = `
     width="32"
   >
     <use
-      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#check"
+      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#check"
     />
   </svg>
 </DocumentFragment>
@@ -66,7 +66,7 @@ exports[`ModelCellBooleanIcon > should render the component with className from 
     width="32"
   >
     <use
-      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#baz"
+      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#baz"
     />
   </svg>
 </DocumentFragment>
@@ -80,7 +80,7 @@ exports[`ModelCellBooleanIcon > should render the empty text when value is nulli
     width="32"
   >
     <use
-      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#dash"
+      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#dash"
     />
   </svg>
 </DocumentFragment>
@@ -94,7 +94,7 @@ exports[`ModelCellBooleanIcon > should render the overridden empty text when val
     width="32"
   >
     <use
-      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#baz"
+      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#baz"
     />
   </svg>
 </DocumentFragment>

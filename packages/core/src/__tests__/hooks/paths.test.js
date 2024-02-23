@@ -1,8 +1,8 @@
 import { renderHook } from '@testing-library/react';
-import { useRoles } from '../../../rhino/hooks/owner';
-import { usePaths } from '../../../rhino/hooks/paths';
+import { useRoles } from '../../hooks/owner';
+import { usePaths } from '../../hooks/paths';
 
-vi.mock('../../../rhino/hooks/owner', () => ({
+vi.mock('../../hooks/owner', () => ({
   useRoles: vi.fn()
 }));
 

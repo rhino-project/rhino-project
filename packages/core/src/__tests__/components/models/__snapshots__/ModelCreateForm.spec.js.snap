@@ -3,7 +3,7 @@
 exports[`ModelCreateForm > should allow paths to be directly overridden 1`] = `
 <DocumentFragment>
   <div
-    class="model-create-form model-create-form-undefined"
+    class="model-create-form model-create-form-blog"
   >
     <div
       class="mb-3"
@@ -11,13 +11,15 @@ exports[`ModelCreateForm > should allow paths to be directly overridden 1`] = `
       label="Title"
       path="title"
       placeholder="Title"
+      required=""
     >
       <label
-        class="form-label"
+        class="required form-label"
         for="title"
         id="fieldLabel-title"
         path="title"
         placeholder="Title"
+        required=""
       >
         Title
       </label>
@@ -30,6 +32,7 @@ exports[`ModelCreateForm > should allow paths to be directly overridden 1`] = `
         name="title"
         path="title"
         placeholder="Title"
+        required=""
         type="text"
       />
     </div>
