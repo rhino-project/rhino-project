@@ -2,7 +2,7 @@ import { Col, FormGroup } from 'reactstrap';
 
 import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import { FieldLabel } from './FieldLabel';
-import { Field } from './fields/FieldInput';
+import { FieldInput as Field } from './fields/FieldInput';
 import { FieldFeedback } from './FieldFeedback';
 import { useFieldInheritedProps } from '../../hooks/form';
 
