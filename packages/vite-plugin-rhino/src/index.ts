@@ -22,7 +22,7 @@ export function RhinoProjectVite(): Plugin {
     config: () => ({
       optimizeDeps: {
         // Don't process with esbuild so that we can use resolveId for rhino.config
-        exclude: ['@rhino-project/config']
+        exclude: ['@rhino-project/config', '@rhino-project/core']
       }
     }),
 
@@ -31,6 +31,7 @@ export function RhinoProjectVite(): Plugin {
     },
 
     resolveId(id) {
+      console.log('ID2', id);
       if (id === CONFIG_MODULE_ID) {
         // Replace 'rhino.config' with the path to the local file
         // FIXME: Allow the location to be configured
