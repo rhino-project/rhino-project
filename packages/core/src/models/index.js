@@ -1,4 +1,4 @@
-import { each } from 'lodash';
+import { each } from 'lodash-es';
 
 import staticModels from 'models/static';
 import env from '@rhino-project/config/env';

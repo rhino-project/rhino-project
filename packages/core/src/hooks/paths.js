@@ -1,4 +1,4 @@
-import { isObject, uniqBy } from 'lodash';
+import { isObject, uniqBy } from 'lodash-es';
 import { useMemo } from 'react';
 import { useRoles } from './owner';
 

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { compact } from 'lodash';
+import { compact } from 'lodash-es';
 import { useWatch } from 'react-hook-form';
 
 import { optionsFromIndexWithTitle } from '../../../utils/ui';

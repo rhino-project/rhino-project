@@ -1,4 +1,4 @@
-import { filter, find, toPath, set } from 'lodash';
+import { filter, find, toPath, set } from 'lodash-es';
 import modelLoader from '../models';
 
 /**

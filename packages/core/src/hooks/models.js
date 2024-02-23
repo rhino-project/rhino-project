@@ -1,4 +1,4 @@
-import { isObject } from 'lodash';
+import { isObject } from 'lodash-es';
 import { useContext, useMemo } from 'react';
 import { getModel, hasModule } from '../utils/models';
 import { getModelAndAttributeFromPath } from '../utils/models.js';

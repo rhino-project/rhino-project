@@ -23,7 +23,7 @@ import {
   getFilteredRowModel,
   useReactTable
 } from '@tanstack/react-table';
-import { isString } from 'lodash';
+import { isString } from 'lodash-es';
 import { ModelHeader } from '../ModelHeader';
 import { ModelFooter } from '../ModelFooter';
 import { Table } from '../../table/Table';

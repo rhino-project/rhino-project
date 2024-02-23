@@ -8,7 +8,7 @@ import {
   keys,
   merge,
   mergeWith
-} from 'lodash';
+} from 'lodash-es';
 import {
   useModel,
   useModelContext,
