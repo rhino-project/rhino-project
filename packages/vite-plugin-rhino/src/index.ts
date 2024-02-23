@@ -22,7 +22,42 @@ export function RhinoProjectVite(): Plugin {
     config: () => ({
       optimizeDeps: {
         // Don't process with esbuild so that we can use resolveId for rhino.config
-        exclude: ['@rhino-project/config', '@rhino-project/core', 'qs']
+        exclude: ['@rhino-project/config', '@rhino-project/core', 'qs'],
+        // FIXME: Horrible hack to get around the fact @rhino-project/core is very broad in its imports
+        // and we need many of them processed as they are CJS.  This is a temporary solution until
+        // we can get rid of the external deps in core
+        include: [
+          'qs',
+          'classnames',
+          'tiny-case',
+          'property-expr',
+          'toposort',
+          'hoist-non-react-statics',
+          'react-simple-animate',
+          'lodash',
+          'lodash/get',
+          'lodash/isObject',
+          'lodash/each',
+          'lodash/isUndefined',
+          'fast-deep-equal/react',
+          'js-cookie/**',
+          'copy-to-clipboard',
+          'nano-css/addon/cssom',
+          'nano-css/addon/vcssom',
+          'nano-css',
+          'nano-css/addon/vcssom/cssToTree',
+          'screenfull/dist/*.js',
+          'react-universal-interface/lib/*.js',
+          'fast-shallow-equal',
+          'ts-easing/lib/*.js',
+          'invariant/*.js',
+          'warning/*.js',
+          'fast-deep-equal',
+          'lodash.debounce',
+          'react-fast-compare',
+          'react-dom',
+          'react-phone-input-2'
+        ]
       }
     }),
 
