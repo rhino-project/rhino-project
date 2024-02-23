@@ -13,7 +13,7 @@ exports[`FieldBooleanIcon > render with disabled 1`] = `
     width="32"
   >
     <use
-      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
     />
   </svg>
 </DocumentFragment>
@@ -32,7 +32,7 @@ exports[`FieldBooleanIcon > render with place holder 1`] = `
     width="32"
   >
     <use
-      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
     />
   </svg>
 </DocumentFragment>
@@ -50,7 +50,7 @@ exports[`FieldBooleanIcon > renders inside of model context 1`] = `
     width="32"
   >
     <use
-      xlink:href="/@fs/Users/jpr/src/Rhino/opensource-construction/rhino-project/node_modules/.pnpm/bootstrap-icons@1.11.3/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
     />
   </svg>
 </DocumentFragment>

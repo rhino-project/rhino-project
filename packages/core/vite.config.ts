@@ -61,7 +61,8 @@ const config = defineConfig({
     tsconfigPaths()
   ],
   resolve: {
-    alias: [{ find: /^rhino\/(.*)/, replacement: '$1' }]
+    alias: [{ find: /^rhino\/(.*)/, replacement: '$1' }],
+    preserveSymlinks: true
   },
   test: {
     environment: 'jsdom',
