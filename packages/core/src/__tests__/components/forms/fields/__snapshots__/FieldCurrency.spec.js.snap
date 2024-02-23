@@ -1,0 +1,83 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldCurrency > render with disabled 1`] = `
+<DocumentFragment>
+  <div
+    class="input-group"
+  >
+    <span
+      class="input-group-text"
+    >
+      $
+    </span>
+    <input
+      aria-invalid="false"
+      autocomplete="off"
+      class="form-control"
+      disabled=""
+      id="dummy"
+      name="dummy"
+      path="dummy"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldCurrency > render with place holder 1`] = `
+<DocumentFragment>
+  <div
+    class="input-group"
+  >
+    <span
+      class="input-group-text"
+    >
+      $
+    </span>
+    <input
+      aria-invalid="false"
+      autocomplete="off"
+      class="form-control"
+      id="dummy"
+      name="dummy"
+      path="dummy"
+      placeholder="placeholder"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldCurrency > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="input-group"
+  >
+    <span
+      class="input-group-text"
+    >
+      $
+    </span>
+    <input
+      aria-invalid="false"
+      autocomplete="off"
+      class="form-control"
+      id="dummy"
+      name="dummy"
+      path="dummy"
+      type="text"
+      value=""
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldCurrency > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

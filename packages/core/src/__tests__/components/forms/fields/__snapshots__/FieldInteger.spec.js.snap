@@ -1,0 +1,53 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldInteger > render with disabled 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    disabled=""
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldInteger > render with place holder 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    placeholder="placeholder"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldInteger > renders inside of model context 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldInteger > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,65 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldBooleanIcon > render with disabled 1`] = `
+<DocumentFragment>
+  <svg
+    class=""
+    disabled=""
+    fill="currentColor"
+    height="32"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIcon > render with place holder 1`] = `
+<DocumentFragment>
+  <svg
+    class=""
+    fill="currentColor"
+    height="32"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    placeholder="placeholder"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIcon > renders inside of model context 1`] = `
+<DocumentFragment>
+  <svg
+    class=""
+    fill="currentColor"
+    height="32"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIcon > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,129 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldBooleanIndeterminate > render with disabled 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > render with place holder 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    placeholder="placeholder"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > renders false as Boolean 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > renders false as String 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > renders indeterminate with null 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > renders indeterminate with undefined 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > renders inside of model context 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > renders true as Boolean 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    checked=""
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > renders true as String 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    checked=""
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`FieldBooleanIndeterminate > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

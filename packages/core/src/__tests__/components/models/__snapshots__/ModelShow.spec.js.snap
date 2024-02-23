@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelShow > local overrides > should allow local overrides 1`] = `
+<DocumentFragment>
+  <div
+    class="model-show model-show-user"
+  >
+    <div>
+      Foo
+    </div>
+    <div>
+      Baz
+    </div>
+    <div>
+      Bar
+    </div>
+    <div>
+      Foz
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelShow > local overrides > should use global overrides when local are not present 1`] = `
+<DocumentFragment>
+  <div
+    class="model-show model-show-user"
+  >
+    <div
+      class="model-show-actions model-show-actions-user"
+    >
+      <div
+        class="d-flex flex-row flex-wrap justify-content-between mb-3"
+        paths="title,category"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelShow > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelShow > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

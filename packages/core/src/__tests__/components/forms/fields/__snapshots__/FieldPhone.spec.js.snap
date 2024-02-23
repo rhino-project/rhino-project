@@ -1,0 +1,127 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldPhone > render with disabled 1`] = `
+<DocumentFragment>
+  <div
+    class=" react-tel-input "
+  >
+    <div
+      class="special-label"
+    >
+      Phone
+    </div>
+    <input
+      class="form-control "
+      disabled=""
+      placeholder="1 (702) 123-4567"
+      type="tel"
+      value="+1"
+    />
+    <div
+      class="flag-dropdown "
+    >
+      <div
+        aria-haspopup="listbox"
+        class="selected-flag"
+        role="button"
+        tabindex="0"
+        title="United States: + 1"
+      >
+        <div
+          class="flag us"
+        >
+          <div
+            class="arrow"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldPhone > render with place holder 1`] = `
+<DocumentFragment>
+  <div
+    class=" react-tel-input "
+  >
+    <div
+      class="special-label"
+    >
+      Phone
+    </div>
+    <input
+      class="form-control "
+      placeholder="placeholder"
+      type="tel"
+      value="+1"
+    />
+    <div
+      class="flag-dropdown "
+    >
+      <div
+        aria-haspopup="listbox"
+        class="selected-flag"
+        role="button"
+        tabindex="0"
+        title="United States: + 1"
+      >
+        <div
+          class="flag us"
+        >
+          <div
+            class="arrow"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldPhone > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class=" react-tel-input "
+  >
+    <div
+      class="special-label"
+    >
+      Phone
+    </div>
+    <input
+      class="form-control "
+      placeholder="1 (702) 123-4567"
+      type="tel"
+      value="+1"
+    />
+    <div
+      class="flag-dropdown "
+    >
+      <div
+        aria-haspopup="listbox"
+        class="selected-flag"
+        role="button"
+        tabindex="0"
+        title="United States: + 1"
+      >
+        <div
+          class="flag us"
+        >
+          <div
+            class="arrow"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldPhone > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

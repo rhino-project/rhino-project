@@ -1,0 +1,137 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldDate > render with disabled 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        disabled=""
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDate > render with place holder 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        placeholder="placeholder"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDate > renders date string 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        type="text"
+        value="January 30, 2023"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDate > renders empty with empty string date 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDate > renders empty with null date 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDate > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldDate > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

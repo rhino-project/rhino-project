@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelCellLinkEmail > renders custom link text 1`] = `
+<DocumentFragment>
+  <a
+    href="mailto:john.doe@email.com"
+  >
+    Click here to send email
+  </a>
+</DocumentFragment>
+`;
+
+exports[`ModelCellLinkEmail > renders the email as link text 1`] = `
+<DocumentFragment>
+  <a
+    href="mailto:john.doe@email.com"
+  >
+    john.doe@email.com
+  </a>
+</DocumentFragment>
+`;
+
+exports[`ModelCellLinkEmail > should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellLinkEmail > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div>
+    -
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellLinkEmail > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div>
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellLinkEmail > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellLinkEmail > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellLinkEmail > should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

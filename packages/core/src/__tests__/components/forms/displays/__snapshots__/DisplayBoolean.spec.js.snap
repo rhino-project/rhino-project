@@ -1,0 +1,55 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DisplayBoolean > renders inside of model context 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    disabled=""
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`DisplayBoolean > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    disabled=""
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`DisplayBoolean > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    disabled=""
+    empty="baz"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    readonly=""
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`DisplayBoolean > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
