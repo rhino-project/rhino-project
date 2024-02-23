@@ -3,8 +3,6 @@ import { defineConfig, mergeConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import url from 'node:url';
 import { transformWithEsbuild } from 'vite';
-// https://stackoverflow.com/questions/68241263/absolute-path-not-working-in-vite-project-react-ts
-import tsconfigPaths from 'vite-tsconfig-paths';
 import { externalizeDeps } from 'vite-plugin-externalize-deps';
 import { resolve } from 'node:path';
 
