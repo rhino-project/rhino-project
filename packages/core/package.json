@@ -31,7 +31,7 @@
         "default": "./dist/esm/contexts/index.js"
       },
       "require": {
-        "types": "./dist/cjs/contexts/index.d.ts",
+        "types": "./dist/cjs/contexts/index.d.cts",
         "default": "./dist/cjs/contexts/index.cjs"
       }
     },
@@ -41,7 +41,7 @@
         "default": "./dist/esm/queries/index.js"
       },
       "require": {
-        "types": "./dist/cjs/queries/index.d.ts",
+        "types": "./dist/cjs/queries/index.d.cts",
         "default": "./dist/cjs/queries/index.cjs"
       }
     },
@@ -51,7 +51,7 @@
         "default": "./dist/esm/utils/index.js"
       },
       "require": {
-        "types": "./dist/cjs/utils/index.d.ts",
+        "types": "./dist/cjs/utils/index.d.cts",
         "default": "./dist/cjs/utils/index.cjs"
       }
     },
@@ -61,7 +61,7 @@
         "default": "./dist/esm/models/index.js"
       },
       "require": {
-        "types": "./dist/cjs/models/index.d.ts",
+        "types": "./dist/cjs/models/index.d.cts",
         "default": "./dist/cjs/models/index.cjs"
       }
     },
@@ -71,7 +71,7 @@
         "default": "./dist/esm/components/settings/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/settings/index.d.ts",
+        "types": "./dist/cjs/components/settings/index.d.cts",
         "default": "./dist/cjs/components/settings/index.cjs"
       }
     },
@@ -81,7 +81,7 @@
         "default": "./dist/esm/components/pagination/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/pagination/index.d.ts",
+        "types": "./dist/cjs/components/pagination/index.d.cts",
         "default": "./dist/cjs/components/pagination/index.cjs"
       }
     },
@@ -91,7 +91,7 @@
         "default": "./dist/esm/components/forms/filters/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/forms/filters/index.d.ts",
+        "types": "./dist/cjs/components/forms/filters/index.d.cts",
         "default": "./dist/cjs/components/forms/filters/index.cjs"
       }
     },
@@ -101,7 +101,7 @@
         "default": "./dist/esm/components/forms/displays/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/forms/displays/index.d.ts",
+        "types": "./dist/cjs/components/forms/displays/index.d.cts",
         "default": "./dist/cjs/components/forms/displays/index.cjs"
       }
     },
@@ -111,7 +111,7 @@
         "default": "./dist/esm/components/forms/fieldGroups/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/forms/fieldGroups/index.d.ts",
+        "types": "./dist/cjs/components/forms/fieldGroups/index.d.cts",
         "default": "./dist/cjs/components/forms/fieldGroups/index.cjs"
       }
     },
@@ -121,7 +121,7 @@
         "default": "./dist/esm/components/forms/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/forms/index.d.ts",
+        "types": "./dist/cjs/components/forms/index.d.cts",
         "default": "./dist/cjs/components/forms/index.cjs"
       }
     },
@@ -131,7 +131,7 @@
         "default": "./dist/esm/components/forms/displayGroups/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/forms/displayGroups/index.d.ts",
+        "types": "./dist/cjs/components/forms/displayGroups/index.d.cts",
         "default": "./dist/cjs/components/forms/displayGroups/index.cjs"
       }
     },
@@ -141,7 +141,7 @@
         "default": "./dist/esm/components/forms/filterGroups/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/forms/filterGroups/index.d.ts",
+        "types": "./dist/cjs/components/forms/filterGroups/index.d.cts",
         "default": "./dist/cjs/components/forms/filterGroups/index.cjs"
       }
     },
@@ -151,7 +151,7 @@
         "default": "./dist/esm/components/forms/fields/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/forms/fields/index.d.ts",
+        "types": "./dist/cjs/components/forms/fields/index.d.cts",
         "default": "./dist/cjs/components/forms/fields/index.cjs"
       }
     },
@@ -161,7 +161,7 @@
         "default": "./dist/esm/components/empties/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/empties/index.d.ts",
+        "types": "./dist/cjs/components/empties/index.d.cts",
         "default": "./dist/cjs/components/empties/index.cjs"
       }
     },
@@ -171,7 +171,7 @@
         "default": "./dist/esm/components/buttons/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/buttons/index.d.ts",
+        "types": "./dist/cjs/components/buttons/index.d.cts",
         "default": "./dist/cjs/components/buttons/index.cjs"
       }
     },
@@ -181,7 +181,7 @@
         "default": "./dist/esm/components/app/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/app/index.d.ts",
+        "types": "./dist/cjs/components/app/index.d.cts",
         "default": "./dist/cjs/components/app/index.cjs"
       }
     },
@@ -191,7 +191,7 @@
         "default": "./dist/esm/components/auth/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/auth/index.d.ts",
+        "types": "./dist/cjs/components/auth/index.d.cts",
         "default": "./dist/cjs/components/auth/index.cjs"
       }
     },
@@ -201,7 +201,7 @@
         "default": "./dist/esm/components/shells/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/shells/index.d.ts",
+        "types": "./dist/cjs/components/shells/index.d.cts",
         "default": "./dist/cjs/components/shells/index.cjs"
       }
     },
@@ -211,7 +211,7 @@
         "default": "./dist/esm/components/logos/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/logos/index.d.ts",
+        "types": "./dist/cjs/components/logos/index.d.cts",
         "default": "./dist/cjs/components/logos/index.cjs"
       }
     },
@@ -221,7 +221,7 @@
         "default": "./dist/esm/components/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/index.d.ts",
+        "types": "./dist/cjs/components/index.d.cts",
         "default": "./dist/cjs/components/index.cjs"
       }
     },
@@ -231,7 +231,7 @@
         "default": "./dist/esm/components/shared/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/shared/index.d.ts",
+        "types": "./dist/cjs/components/shared/index.d.cts",
         "default": "./dist/cjs/components/shared/index.cjs"
       }
     },
@@ -241,7 +241,7 @@
         "default": "./dist/esm/components/models/filters/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/models/filters/index.d.ts",
+        "types": "./dist/cjs/components/models/filters/index.d.cts",
         "default": "./dist/cjs/components/models/filters/index.cjs"
       }
     },
@@ -251,7 +251,7 @@
         "default": "./dist/esm/components/models/cells/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/models/cells/index.d.ts",
+        "types": "./dist/cjs/components/models/cells/index.d.cts",
         "default": "./dist/cjs/components/models/cells/index.cjs"
       }
     },
@@ -261,7 +261,7 @@
         "default": "./dist/esm/components/models/fieldGroups/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/models/fieldGroups/index.d.ts",
+        "types": "./dist/cjs/components/models/fieldGroups/index.d.cts",
         "default": "./dist/cjs/components/models/fieldGroups/index.cjs"
       }
     },
@@ -271,7 +271,7 @@
         "default": "./dist/esm/components/models/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/models/index.d.ts",
+        "types": "./dist/cjs/components/models/index.d.cts",
         "default": "./dist/cjs/components/models/index.cjs"
       }
     },
@@ -281,7 +281,7 @@
         "default": "./dist/esm/components/models/displayGroups/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/models/displayGroups/index.d.ts",
+        "types": "./dist/cjs/components/models/displayGroups/index.d.cts",
         "default": "./dist/cjs/components/models/displayGroups/index.cjs"
       }
     },
@@ -291,7 +291,7 @@
         "default": "./dist/esm/components/models/fields/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/models/fields/index.d.ts",
+        "types": "./dist/cjs/components/models/fields/index.d.cts",
         "default": "./dist/cjs/components/models/fields/index.cjs"
       }
     },
@@ -311,7 +311,7 @@
         "default": "./dist/esm/components/alerts/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/alerts/index.d.ts",
+        "types": "./dist/cjs/components/alerts/index.d.cts",
         "default": "./dist/cjs/components/alerts/index.cjs"
       }
     },
@@ -321,7 +321,7 @@
         "default": "./dist/esm/components/checkboxes/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/checkboxes/index.d.ts",
+        "types": "./dist/cjs/components/checkboxes/index.d.cts",
         "default": "./dist/cjs/components/checkboxes/index.cjs"
       }
     },
@@ -331,7 +331,7 @@
         "default": "./dist/esm/components/null/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/null/index.d.ts",
+        "types": "./dist/cjs/components/null/index.d.cts",
         "default": "./dist/cjs/components/null/index.cjs"
       }
     },
@@ -341,7 +341,7 @@
         "default": "./dist/esm/components/layouts/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/layouts/index.d.ts",
+        "types": "./dist/cjs/components/layouts/index.d.cts",
         "default": "./dist/cjs/components/layouts/index.cjs"
       }
     },
@@ -351,7 +351,7 @@
         "default": "./dist/esm/components/table/cells/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/table/cells/index.d.ts",
+        "types": "./dist/cjs/components/table/cells/index.d.cts",
         "default": "./dist/cjs/components/table/cells/index.cjs"
       }
     },
@@ -361,7 +361,7 @@
         "default": "./dist/esm/components/table/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/table/index.d.ts",
+        "types": "./dist/cjs/components/table/index.d.cts",
         "default": "./dist/cjs/components/table/index.cjs"
       }
     },
@@ -371,7 +371,7 @@
         "default": "./dist/esm/components/icons/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/icons/index.d.ts",
+        "types": "./dist/cjs/components/icons/index.d.cts",
         "default": "./dist/cjs/components/icons/index.cjs"
       }
     },
@@ -381,7 +381,7 @@
         "default": "./dist/esm/components/devtool/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/devtool/index.d.ts",
+        "types": "./dist/cjs/components/devtool/index.d.cts",
         "default": "./dist/cjs/components/devtool/index.cjs"
       }
     },
@@ -391,7 +391,7 @@
         "default": "./dist/esm/components/nav/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/nav/index.d.ts",
+        "types": "./dist/cjs/components/nav/index.d.cts",
         "default": "./dist/cjs/components/nav/index.cjs"
       }
     },
@@ -401,7 +401,7 @@
         "default": "./dist/esm/components/errors/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/errors/index.d.ts",
+        "types": "./dist/cjs/components/errors/index.d.cts",
         "default": "./dist/cjs/components/errors/index.cjs"
       }
     },
@@ -411,7 +411,7 @@
         "default": "./dist/esm/components/breadcrumbs/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/breadcrumbs/index.d.ts",
+        "types": "./dist/cjs/components/breadcrumbs/index.d.cts",
         "default": "./dist/cjs/components/breadcrumbs/index.cjs"
       }
     },
@@ -421,7 +421,7 @@
         "default": "./dist/esm/components/analytics/index.js"
       },
       "require": {
-        "types": "./dist/cjs/components/analytics/index.d.ts",
+        "types": "./dist/cjs/components/analytics/index.d.cts",
         "default": "./dist/cjs/components/analytics/index.cjs"
       }
     },
@@ -431,7 +431,7 @@
         "default": "./dist/esm/hooks/index.js"
       },
       "require": {
-        "types": "./dist/cjs/hooks/index.d.ts",
+        "types": "./dist/cjs/hooks/index.d.cts",
         "default": "./dist/cjs/hooks/index.cjs"
       }
     },
@@ -441,7 +441,7 @@
         "default": "./dist/esm/lib/index.js"
       },
       "require": {
-        "types": "./dist/cjs/lib/index.d.ts",
+        "types": "./dist/cjs/lib/index.d.cts",
         "default": "./dist/cjs/lib/index.cjs"
       }
     },
@@ -451,7 +451,7 @@
         "default": "./dist/esm/pages/settings/index.js"
       },
       "require": {
-        "types": "./dist/cjs/pages/settings/index.d.ts",
+        "types": "./dist/cjs/pages/settings/index.d.cts",
         "default": "./dist/cjs/pages/settings/index.cjs"
       }
     },
@@ -461,7 +461,7 @@
         "default": "./dist/esm/pages/auth/index.js"
       },
       "require": {
-        "types": "./dist/cjs/pages/auth/index.d.ts",
+        "types": "./dist/cjs/pages/auth/index.d.cts",
         "default": "./dist/cjs/pages/auth/index.cjs"
       }
     },
@@ -471,7 +471,7 @@
         "default": "./dist/esm/pages/index.js"
       },
       "require": {
-        "types": "./dist/cjs/pages/index.d.ts",
+        "types": "./dist/cjs/pages/index.d.cts",
         "default": "./dist/cjs/pages/index.cjs"
       }
     },
@@ -481,7 +481,7 @@
         "default": "./dist/esm/pages/model/Index.js"
       },
       "require": {
-        "types": "./dist/cjs/pages/model/Index.d.ts",
+        "types": "./dist/cjs/pages/model/index.d.cts",
         "default": "./dist/cjs/pages/model/Index.cjs"
       }
     },
@@ -491,7 +491,7 @@
         "default": "./dist/esm/routes/index.js"
       },
       "require": {
-        "types": "./dist/cjs/routes/index.d.ts",
+        "types": "./dist/cjs/routes/index.d.cts",
         "default": "./dist/cjs/routes/index.cjs"
       }
     },
