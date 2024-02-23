@@ -1,4 +1,4 @@
-import qs from 'qs';
+import * as qs from 'qs';
 import { useQuery } from '@tanstack/react-query';
 
 import { loadStripe as Stripe } from '@stripe/stripe-js';
