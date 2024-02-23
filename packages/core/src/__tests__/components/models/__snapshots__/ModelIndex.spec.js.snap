@@ -1,0 +1,36 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelIndex > should allow local overrides 1`] = `
+<DocumentFragment>
+  <div
+    class="model-index model-index-user"
+  >
+    <div>
+      Foo
+    </div>
+    <hr />
+    <div>
+      Bar
+    </div>
+    <div>
+      Baz
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelIndex > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelIndex > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

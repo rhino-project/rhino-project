@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelEditForm > should allow paths to be directly overridden 1`] = `
+<DocumentFragment>
+  <div
+    class="model-edit-form model-edit-form-blog"
+  >
+    <div
+      class="mb-3"
+      id="FieldLayout-title"
+      label="Title"
+      path="title"
+      placeholder="Title"
+      required=""
+    >
+      <label
+        class="required form-label"
+        for="title"
+        id="fieldLabel-title"
+        path="title"
+        placeholder="Title"
+        required=""
+      >
+        Title
+      </label>
+      <input
+        aria-invalid="false"
+        autocomplete="off"
+        class="form-control"
+        id="title"
+        label="Title"
+        name="title"
+        path="title"
+        placeholder="Title"
+        required=""
+        type="text"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelEditForm > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelEditForm > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

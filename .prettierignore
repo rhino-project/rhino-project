@@ -5,6 +5,7 @@
 **/dist
 **/codemods/**/__testfixtures__
 pnpm-lock.yaml
+gems/**
 
 // Ignore temporary vite files when building in parallel with nx
 vite.config.ts.timestamp-*.mjs

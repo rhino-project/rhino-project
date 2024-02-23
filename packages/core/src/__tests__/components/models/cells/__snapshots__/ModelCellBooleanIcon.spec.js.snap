@@ -1,0 +1,125 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelCellBooleanIcon > renders custom class 1`] = `
+<DocumentFragment>
+  <svg
+    class="customClass"
+    fill="currentColor"
+    height="32"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#check"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > renders empty icon 1`] = `
+<DocumentFragment>
+  <svg
+    fill="currentColor"
+    height="32"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#dash"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > renders false icon 1`] = `
+<DocumentFragment>
+  <svg
+    fill="currentColor"
+    height="32"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > renders true icon 1`] = `
+<DocumentFragment>
+  <svg
+    fill="currentColor"
+    height="32"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#check"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <svg
+    class="dummy-class"
+    fill="currentColor"
+    height="32"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#baz"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <svg
+    fill="currentColor"
+    height="32"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#dash"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <svg
+    fill="currentColor"
+    height="32"
+    width="32"
+  >
+    <use
+      xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#baz"
+    />
+  </svg>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellBooleanIcon > should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,134 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`CellLinkEmail > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="model-index-table model-index-table-user"
+  >
+    <table
+      class="table table-striped table-hover"
+    >
+      <thead>
+        <tr>
+          <th
+            class=""
+          >
+            <div
+              class="d-flex flex-row gap-1"
+            >
+              <div />
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <div>
+              -
+            </div>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>
+            <div />
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CellLinkEmail > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
