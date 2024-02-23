@@ -131,7 +131,7 @@ export default mergeConfig(
       './src/components/breadcrumbs/index.js',
       './src/components/analytics/index.js',
       './src/hooks/index.js',
-      './src/lib/index.js',
+      // './src/lib/index.js',
       './src/pages/settings/index.js',
       './src/pages/auth/index.js',
       './src/pages/index.js',
