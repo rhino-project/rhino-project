@@ -1,11 +1,8 @@
 import PropTypes from 'prop-types';
 
-import {
-  useGlobalComponentForModel,
-  useOverrides
-} from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
 
-import ModelIndexHeader from 'rhino/components/models/ModelIndexHeader';
+import ModelIndexHeader from './ModelIndexHeader';
 import ModelIndexTable from './ModelIndexTable';
 import ModelIndexActions from './ModelIndexActions';
 import ModelIndexSimple from './ModelIndexSimple';

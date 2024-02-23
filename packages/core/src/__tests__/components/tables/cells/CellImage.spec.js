@@ -1,4 +1,4 @@
-import CellImage from 'rhino/components/table/cells/CellImage';
+import CellImage from '../../../../components/table/cells/CellImage';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('CellImage', () => {

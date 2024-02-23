@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelAndAttributeFromPath } from '../../../hooks/models';
 import { useCallback, useId, useMemo } from 'react';
 import { useController } from 'react-hook-form';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import { getModelFromRef, getReferenceAttributes } from 'rhino/utils/models';
-import { useModelIndex } from 'rhino/hooks/queries';
-import { useModelFieldGroup } from 'rhino/hooks/form';
-import { FieldLayoutVerticalBase } from 'rhino/components/forms/FieldLayoutVertical';
-import { FieldLayoutHorizontalBase } from 'rhino/components/forms/FieldLayoutHorizontal';
-import FieldLayoutFloating from 'rhino/components/forms/FieldLayoutFloating';
+import { getModelFromRef, getReferenceAttributes } from '../../../utils/models';
+import { useModelIndex } from '../../../hooks/queries';
+import { useModelFieldGroup } from '../../../hooks/form';
+import { FieldLayoutVerticalBase } from '../../forms/FieldLayoutVertical';
+import { FieldLayoutHorizontalBase } from '../../forms/FieldLayoutHorizontal';
+import FieldLayoutFloating from '../../forms/FieldLayoutFloating';
 
 // FIXME: This might need to be refactored to use the useModelFieldGroup and/or have a generic typeahead component
 export const ModelFieldJoinSimpleBaseInput = ({ model, ...props }) => {
@@ -129,11 +129,11 @@ const ModelFieldGroupJoinSimpleVertical = (props) => {
   // FIXME: Merged overrides?
   return (
     // FIXME: Hack for ModelFieldReferenceBaseInput to do the query
-    <FieldLayoutVerticalBase
+    (<FieldLayoutVerticalBase
       overrides={BASE_OVERRIDES}
       model={model}
       {...fieldGroupProps}
-    />
+    />)
   );
 };
 
@@ -163,11 +163,11 @@ export const ModelFieldGroupFloatingJoinSimple = (props) => {
   // FIXME: Merged overrides?
   return (
     // FIXME: Hack for ModelFieldReferenceBaseInput to do the query
-    <FieldLayoutFloating
+    (<FieldLayoutFloating
       overrides={BASE_OVERRIDES}
       model={model}
       {...fieldGroupProps}
-    />
+    />)
   );
 };
 

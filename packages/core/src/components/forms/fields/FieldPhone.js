@@ -3,9 +3,9 @@ import classnames from 'classnames';
 import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
 
-import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { useFieldInheritedProps } from '../../../hooks/form';
 import PhoneInput from 'react-phone-input-2';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const FieldPhoneBase = (props) => {
   const { path } = props;

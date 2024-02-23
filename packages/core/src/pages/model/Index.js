@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import ModelIndex from 'rhino/components/models/ModelIndex';
+import ModelIndex from '../../components/models/ModelIndex';
 import ModelPage from './ModelPage';
 
 const Index = (props) => {

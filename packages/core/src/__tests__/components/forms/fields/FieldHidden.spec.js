@@ -1,4 +1,4 @@
-import FieldHidden from 'rhino/components/forms/fields/FieldHidden';
+import FieldHidden from '../../../../components/forms/fields/FieldHidden';
 import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldHidden', () => {

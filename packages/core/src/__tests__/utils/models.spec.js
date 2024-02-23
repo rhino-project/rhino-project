@@ -1,4 +1,4 @@
-import * as utils from 'rhino/utils/models';
+import * as utils from '../../utils/models';
 
 describe('utils > models.js', () => {
   const userModel = utils.getModel('user');

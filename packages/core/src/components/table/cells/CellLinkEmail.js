@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
-import { useTableInheritedProps } from 'rhino/hooks/table';
-import CellLink from 'rhino/components/table/cells/CellLink';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
+import CellLink from './CellLink';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const CellLinkEmailBase = ({ children, empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);

@@ -1,9 +1,9 @@
 import { renderHook } from '@testing-library/react';
 import { useContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import routePaths from 'rhino/routes';
-import BaseOwnerProvider from 'rhino/contexts/BaseOwnerContext';
-import { BaseOwnerContext } from 'rhino/hooks/owner';
+import routePaths from '../../routes';
+import BaseOwnerProvider from '../../contexts/BaseOwnerContext';
+import { BaseOwnerContext } from '../../hooks/owner';
 
 let mockUser;
 vi.mock('rhino/hooks/auth', () => ({

@@ -7,8 +7,8 @@ import {
   useBaseOwnerId,
   useHasRoleOf,
   useRoles,
-  useUserRoles
-} from 'rhino/hooks/owner';
+  useUserRoles,
+} from '../../hooks/owner';
 
 const Wrapper = ({ children, ...props }) => (
   <BaseOwnerContext.Provider {...props}>{children}</BaseOwnerContext.Provider>

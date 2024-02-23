@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import CellLink from 'rhino/components/table/cells/CellLink';
-import { useModelShowPath } from 'rhino/hooks/routes';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import CellLink from '../../table/cells/CellLink';
+import { useModelShowPath } from '../../../hooks/routes';
+import { useModelIndexContext } from '../../../hooks/controllers';
 
 export const ModelCellIdentifierBase = ({ children, getValue, ...props }) => {
   const { model } = useModelIndexContext();

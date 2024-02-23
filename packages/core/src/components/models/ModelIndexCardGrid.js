@@ -4,10 +4,7 @@ import classnames from 'classnames';
 
 import { ModelIndexTableBase } from './ModelIndexTable';
 import { flexRender } from '@tanstack/react-table';
-import {
-  useGlobalComponentForModel,
-  useOverrides
-} from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
 
 export const ModelIndexCard = ({ row, onRowClick }) => {
   const titleCell = row.getVisibleCells()?.[0];

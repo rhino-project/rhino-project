@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useEffect, useMemo } from 'react';
-import { useModelFilterField } from 'rhino/hooks/form';
+import { useModelFilterField } from '../../../hooks/form';
 import FilterInteger from '../../forms/filters/FilterInteger';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
 const ModelFilterInteger = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);

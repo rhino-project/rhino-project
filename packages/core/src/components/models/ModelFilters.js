@@ -1,10 +1,6 @@
-import { IconButton } from 'rhino/components/buttons';
-import {
-  useModelFiltersContext,
-  useModelFiltersController,
-  useModelIndexContext
-} from 'rhino/hooks/controllers';
-import { useRenderPaths } from 'rhino/hooks/renderPaths';
+import { IconButton } from '../buttons';
+import { useModelFiltersContext, useModelFiltersController, useModelIndexContext } from '../../hooks/controllers';
+import { useRenderPaths } from '../../hooks/renderPaths';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
 import ModelFilterGroup from './ModelFilterGroup';
 import ModelFiltersProvider from './ModelFiltersProvider';

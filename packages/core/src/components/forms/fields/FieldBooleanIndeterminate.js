@@ -3,8 +3,8 @@ import { Input } from 'reactstrap';
 
 import { useController } from 'react-hook-form';
 import { useCallback, useEffect, useMemo, useRef } from 'react';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useFieldInheritedProps } from '../../../hooks/form';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 // FIXME: This is duplicated from in ModelFilterBoolean
 // Ensure that if the value is a string coming from the url, it is either 'true' or 'false'

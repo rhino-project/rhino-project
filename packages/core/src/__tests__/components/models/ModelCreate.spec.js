@@ -1,8 +1,8 @@
-import ModelCreate from 'rhino/components/models/ModelCreate';
+import ModelCreate from '../../../components/models/ModelCreate';
 import { sharedModelTests } from './sharedModelTests';
 import { render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import * as modelUtils from 'rhino/utils/models';
+import * as modelUtils from '../../../utils/models';
 
 // Create controller looks for a valid parent model
 vi.spyOn(modelUtils, 'getParentModel').mockReturnValue({ model: 'another' });

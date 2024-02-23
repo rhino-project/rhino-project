@@ -1,6 +1,6 @@
-import { useModelShowContext } from 'rhino/hooks/controllers';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
-import { useRenderPaths } from 'rhino/hooks/renderPaths';
+import { useModelShowContext } from '../../hooks/controllers';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
+import { useRenderPaths } from '../../hooks/renderPaths';
 import ModelDisplayGroup from './ModelDisplayGroup';
 import ModelSection from './ModelSection';
 import FormErrors from '../forms/FormErrors';

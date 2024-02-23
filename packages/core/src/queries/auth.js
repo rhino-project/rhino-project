@@ -1,5 +1,5 @@
 import { useQueryClient, useMutation } from '@tanstack/react-query';
-import { networkApiCall } from 'rhino/lib/networking';
+import { networkApiCall } from '../lib/networking';
 
 import {
   AUTH_ACCEPT_PATH,
@@ -7,11 +7,11 @@ import {
   AUTH_CREATE_END_POINT,
   AUTH_DESTROY_END_POINT,
   AUTH_PASSWORD_END_POINT,
-  NetworkUnauthorizedError
-} from 'rhino/lib/networking';
-import { useAuth } from 'rhino/hooks/auth';
+  NetworkUnauthorizedError,
+} from '../lib/networking';
+import { useAuth } from '../hooks/auth';
 import { useMemo } from 'react';
-import { getModuleInfo } from 'rhino/utils/models';
+import { getModuleInfo } from '../utils/models';
 
 export const useSignInAction = () => {
   const { logIn } = useAuth();

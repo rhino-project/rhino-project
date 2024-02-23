@@ -1,6 +1,6 @@
-import { Pager } from 'rhino/components/pagination';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
+import { Pager } from '../pagination';
+import { useModelIndexContext } from '../../hooks/controllers';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
 
 export const ModelPagerBase = (props) => {
   const {

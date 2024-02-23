@@ -1,4 +1,4 @@
-import { networkApiCall } from 'rhino/lib/networking';
+import { networkApiCall } from '../lib/networking';
 import PropTypes from 'prop-types';
 import React, {
   createContext,
@@ -8,10 +8,7 @@ import React, {
   useState
 } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import {
-  AUTH_SESSION_KEY,
-  AUTH_VALIDATE_TOKEN_END_POINT
-} from 'rhino/lib/networking';
+import { AUTH_SESSION_KEY, AUTH_VALIDATE_TOKEN_END_POINT } from '../lib/networking';
 import { useRollbarPerson } from '@rollbar/react';
 
 const useSession = () => {

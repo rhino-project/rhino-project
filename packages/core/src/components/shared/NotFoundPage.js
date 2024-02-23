@@ -1,6 +1,6 @@
-import { useBaseOwnerPath } from 'rhino/hooks/history';
+import { useBaseOwnerPath } from '../../hooks/history';
 import { Link } from 'react-router-dom';
-import { useRootPath } from 'rhino/hooks/routes';
+import { useRootPath } from '../../hooks/routes';
 
 const NotFoundPage = () => {
   const { build } = useBaseOwnerPath();

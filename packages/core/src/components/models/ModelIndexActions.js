@@ -1,8 +1,8 @@
 import { Children, useCallback, useMemo, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { getModelCreatePath } from 'rhino/utils/routes';
+import { useModelIndexContext } from '../../hooks/controllers';
+import { getModelCreatePath } from '../../utils/routes';
 import { useBaseOwnerNavigation } from '../../hooks/history';
 import {
   useGlobalComponentForModel,

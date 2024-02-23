@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import { useParsedSearch } from 'rhino/hooks/history';
-import ModelCreate from 'rhino/components/models/ModelCreate';
+import { useParsedSearch } from '../../hooks/history';
+import ModelCreate from '../../components/models/ModelCreate';
 import ModelPage from './ModelPage';
 
 const Create = ({ model }) => {

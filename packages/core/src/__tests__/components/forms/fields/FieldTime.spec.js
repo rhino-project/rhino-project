@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import FieldTime from 'rhino/components/forms/fields/FieldTime';
+import FieldTime from '../../../../components/forms/fields/FieldTime';
 import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldTime', () => {

@@ -1,11 +1,11 @@
-import ModelFilters from 'rhino/components/models/ModelFilters';
+import ModelFilters from '../../../components/models/ModelFilters';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import { createWrapper } from '__tests__/shared/helpers';
-import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
+import ModelIndexSimple from '../../../components/models/ModelIndexSimple';
 
 describe('ModelFilters', () => {
   const Wrapper = ({ children, ...props }) => {

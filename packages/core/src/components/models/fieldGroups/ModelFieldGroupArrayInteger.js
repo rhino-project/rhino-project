@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useCallback, useId } from 'react';
 import { useController } from 'react-hook-form';
 import { Typeahead } from 'react-bootstrap-typeahead';
-import { useModelFieldGroup } from 'rhino/hooks/form';
-import { FieldLayoutVerticalBase } from 'rhino/components/forms/FieldLayoutVertical';
-import { FieldLayoutFloatingBase } from 'rhino/components/forms/FieldLayoutFloating';
-import { FieldLayoutHorizontalBase } from 'rhino/components/forms/FieldLayoutHorizontal';
+import { useModelFieldGroup } from '../../../hooks/form';
+import { FieldLayoutVerticalBase } from '../../forms/FieldLayoutVertical';
+import { FieldLayoutFloatingBase } from '../../forms/FieldLayoutFloating';
+import { FieldLayoutHorizontalBase } from '../../forms/FieldLayoutHorizontal';
 
 // FIXME: This might need to be refactored to use the useModelFieldGroup and/or have a generic typeahead component
 export const ModelFieldArrayIntegerBaseInput = ({ nullable, ...props }) => {

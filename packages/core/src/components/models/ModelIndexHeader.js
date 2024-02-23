@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ModelFilters from 'rhino/components/models/ModelFilters';
-import ModelPager from 'rhino/components/models/ModelPager';
-import ModelSearch from 'rhino/components/models/ModelSearch';
-import {
-  useGlobalComponentForModel,
-  useOverrides
-} from 'rhino/hooks/overrides';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
+import ModelFilters from './ModelFilters';
+import ModelPager from './ModelPager';
+import ModelSearch from './ModelSearch';
+import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
+import { useModelIndexContext } from '../../hooks/controllers';
 
 const defaultComponents = {
   ModelSearch,

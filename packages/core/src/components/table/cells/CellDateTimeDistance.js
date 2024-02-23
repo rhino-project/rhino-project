@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { formatDistance, parseISO } from 'date-fns';
-import { useTableInheritedProps } from 'rhino/hooks/table';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const CellDateTimeDistanceBase = ({
   baseDate,

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import CellString from 'rhino/components/table/cells/CellString';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import CellString from '../../table/cells/CellString';
 
 export const ModelCellAttachmentsBase = ({ getValue, ...props }) => {
   const syntheticGetValue = useCallback(

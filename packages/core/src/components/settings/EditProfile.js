@@ -2,10 +2,10 @@ import { useCallback, useEffect, useMemo } from 'react';
 import { Form } from 'reactstrap';
 import * as yup from 'yup';
 
-import { DangerAlert, SuccessAlert } from 'rhino/components/alerts';
-import { SubmitButton } from 'rhino/components/buttons';
-import { useModelShow, useModelUpdate } from 'rhino/hooks/queries';
-import { useFieldSetErrors, useResolver } from 'rhino/hooks/form';
+import { DangerAlert, SuccessAlert } from '../alerts';
+import { SubmitButton } from '../buttons';
+import { useModelShow, useModelUpdate } from '../../hooks/queries';
+import { useFieldSetErrors, useResolver } from '../../hooks/form';
 import { useForm } from 'react-hook-form';
 import FormProvider from '../forms/FormProvider';
 import FieldGroupString from '../forms/fieldGroups/FieldGroupString';

@@ -1,4 +1,4 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
 import FieldLayoutVertical from '../FieldLayoutVertical';
 import FieldYear from '../fields/FieldYear';
 import FieldLayoutFloating from '../FieldLayoutFloating';

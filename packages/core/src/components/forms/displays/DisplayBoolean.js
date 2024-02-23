@@ -1,4 +1,4 @@
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 import FieldBooleanIndeterminate from '../fields/FieldBooleanIndeterminate';
 
 export const DisplayBooleanBase = (props) => (

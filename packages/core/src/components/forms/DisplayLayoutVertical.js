@@ -1,8 +1,8 @@
 import { FormGroup } from 'reactstrap';
 
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
 import Field from './fields/FieldInput';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { useFieldInheritedProps } from '../../hooks/form';
 import DisplayLabel from './DisplayLabel';
 
 const INHERITED_PROP_OPTIONS = { prefix: 'DisplayLayout' };

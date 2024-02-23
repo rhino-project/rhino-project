@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  useGlobalComponentForModel,
-  useOverrides
-} from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
 import ModelEditHeader from './ModelEditHeader';
 import ModelEditForm from './ModelEditForm';
 import ModelEditActions from './ModelEditActions';

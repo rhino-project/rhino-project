@@ -1,11 +1,5 @@
-import {
-  useGlobalComponentForAttribute,
-  useOverrides
-} from 'rhino/hooks/overrides';
-import {
-  useModelAndAttributeFromPath,
-  useModelContext
-} from 'rhino/hooks/models';
+import { useGlobalComponentForAttribute, useOverrides } from '../../hooks/overrides';
+import { useModelAndAttributeFromPath, useModelContext } from '../../hooks/models';
 
 import ModelDisplayGroupArray from './displayGroups/ModelDisplayGroupArray';
 import ModelDisplayGroupArrayReference from './displayGroups/ModelDisplayGroupArrayReference';

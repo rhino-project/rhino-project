@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import BaseAuthedPage from 'rhino/pages/BaseAuthedPage';
-import { MaxWidth } from 'rhino/components/layouts';
+import BaseAuthedPage from '../BaseAuthedPage';
+import { MaxWidth } from '../../components/layouts';
 
 const ModelPage = ({ children, ...props }) => {
   return (

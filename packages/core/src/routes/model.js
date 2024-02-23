@@ -1,12 +1,12 @@
 import { each, map } from 'lodash';
 import { Route } from 'react-router-dom';
 
-import modelLoader from 'rhino/models';
+import modelLoader from '../models';
 
-import CreateModel from 'rhino/pages/model/Create';
-import EditModel from 'rhino/pages/model/Edit';
-import ModelIndex from 'rhino/pages/model/Index';
-import ShowModel from 'rhino/pages/model/Show';
+import CreateModel from '../pages/model/Create';
+import EditModel from '../pages/model/Edit';
+import ModelIndex from '../pages/model/Index';
+import ShowModel from '../pages/model/Show';
 
 const generateModelRoutePaths = () => {
   const routes = {};

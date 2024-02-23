@@ -1,4 +1,4 @@
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 import { FieldInputBase } from './FieldInput';
 
 // We want it to be blank if it's not a number

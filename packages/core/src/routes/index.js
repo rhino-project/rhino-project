@@ -3,16 +3,16 @@ import { Route } from 'react-router-dom';
 import customRoutePaths from 'routes/custom';
 import modelRoutePaths from './model';
 
-import OrganizationSettingsPage from 'rhino/pages/settings/OrganizationSettingsPage';
-import SettingsPage from 'rhino/pages/settings/SettingsPage';
-import { hasOrganizationsModule } from 'rhino/utils/models';
+import OrganizationSettingsPage from '../pages/settings/OrganizationSettingsPage';
+import SettingsPage from '../pages/settings/SettingsPage';
+import { hasOrganizationsModule } from '../utils/models';
 import {
   getAccountSettingsPath,
   getForgotPasswordPath,
   getSessionCreatePath,
   getSettingsPath,
-  getUserCreatePath
-} from 'rhino/utils/routes';
+  getUserCreatePath,
+} from '../utils/routes';
 
 const routePaths = {
   ...modelRoutePaths,

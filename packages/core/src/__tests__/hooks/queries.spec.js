@@ -11,8 +11,8 @@ import {
   useModelKeyIndex,
   useModelKeyShow,
   useModelShow,
-  useModelUpdate
-} from 'rhino/hooks/queries';
+  useModelUpdate,
+} from '../../hooks/queries';
 import * as network from '../../../rhino/lib/networking';
 
 const testQueryClient = () =>

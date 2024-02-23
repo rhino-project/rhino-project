@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink as RRNavLink } from 'react-router-dom';
 import { NavLink, NavItem as RSNavItem } from 'reactstrap';
 
-import { NavIcon } from 'rhino/components/icons';
+import { NavIcon } from '../icons';
 
 export const NavSection = ({
   title,

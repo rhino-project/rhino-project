@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { Input } from 'reactstrap';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelIndex } from 'rhino/hooks/queries';
-import { useTableInheritedProps } from 'rhino/hooks/table';
-import { getModelFromRef } from 'rhino/utils/models';
+import { useModelIndexContext } from '../../../hooks/controllers';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelIndex } from '../../../hooks/queries';
+import { useTableInheritedProps } from '../../../hooks/table';
+import { getModelFromRef } from '../../../utils/models';
 import { useModelAndAttributeFromPath } from '../../../hooks/models';
 
 export const ModelEditableCellReferenceBase = ({ model, ...props }) => {

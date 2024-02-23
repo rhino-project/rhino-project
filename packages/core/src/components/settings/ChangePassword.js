@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { useUserUpdateAction } from 'rhino/queries/auth';
-import AuthForm from 'rhino/components/auth/AuthForm';
-import { SuccessAlert } from 'rhino/components/alerts';
+import { useUserUpdateAction } from '../../queries/auth';
+import AuthForm from '../auth/AuthForm';
+import { SuccessAlert } from '../alerts';
 
 const ChangePassword = () => {
   const {

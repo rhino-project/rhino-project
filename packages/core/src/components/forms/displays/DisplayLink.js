@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useController } from 'react-hook-form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const DisplayLinkBase = ({
   accessor,

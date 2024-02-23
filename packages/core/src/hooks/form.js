@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { assign, cloneDeep, compact, get, isString, toPath } from 'lodash';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { getModelAndAttributeFromPath } from 'rhino/utils/models';
+import { getModelAndAttributeFromPath } from '../utils/models';
 import { useModel, useModelAndAttributeFromPath } from './models';
 import { object } from 'yup';
 import { yupValidatorsFromAttribute } from '../utils/yup';

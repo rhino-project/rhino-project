@@ -13,16 +13,13 @@ import {
   useState
 } from 'react';
 
-import {
-  useGlobalComponentForModel,
-  useOverrides
-} from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
 
 import { filter, isString } from 'lodash';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { useBaseOwnerNavigation } from 'rhino/hooks/history';
-import { usePaths } from 'rhino/hooks/paths';
-import { getModelShowPath } from 'rhino/utils/routes';
+import { useModelIndexContext } from '../../hooks/controllers';
+import { useBaseOwnerNavigation } from '../../hooks/history';
+import { usePaths } from '../../hooks/paths';
+import { getModelShowPath } from '../../utils/routes';
 import Table from '../table/Table';
 import ModelCell from './ModelCell';
 import ModelFooter from './ModelFooter';

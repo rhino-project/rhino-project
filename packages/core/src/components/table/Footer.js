@@ -1,4 +1,4 @@
-import { useTableInheritedProps } from 'rhino/hooks/table';
+import { useTableInheritedProps } from '../../hooks/table';
 
 const Footer = ({ children, ...props }) => {
   const { inheritedProps } = useTableInheritedProps(props);

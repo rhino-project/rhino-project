@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import RhinoLogo from './rhinoRedLogo.png';
 import styles from './RhinoDevTool.module.css';
 import { CloseButton } from '../buttons';
-import { useModelContext } from 'rhino/hooks/models';
+import { useModelContext } from '../../hooks/models';
 import { ModelIndexContext } from '../models/ModelIndexProvider';
 import { ModelShowContext } from '../models/ModelShowProvider';
 import { ModelEditContext } from '../models/ModelEditProvider';

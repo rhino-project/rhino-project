@@ -2,8 +2,8 @@ import { render } from '@testing-library/react';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router-dom';
-import ModelIndexCardGrid from 'rhino/components/models/ModelIndexCardGrid';
-import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
+import ModelIndexCardGrid from '../../../components/models/ModelIndexCardGrid';
+import ModelIndexSimple from '../../../components/models/ModelIndexSimple';
 import rhinoConfig from '../../../../rhino.config';
 
 describe('ModelIndexCardGrid', () => {

@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 
-import {
-  useGlobalComponentForModel,
-  useOverrides
-} from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
 import ModelCreateHeader from './ModelCreateHeader';
 import ModelCreateForm from './ModelCreateForm';
 import ModelCreateActions from './ModelCreateActions';

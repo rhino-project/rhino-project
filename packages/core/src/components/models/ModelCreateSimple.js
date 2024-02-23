@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ModelCreateProvider from './ModelCreateProvider';
 import { useMemo } from 'react';
 import { Spinner } from 'reactstrap';
-import { useModelCreateController } from 'rhino/hooks/controllers';
+import { useModelCreateController } from '../../hooks/controllers';
 
 export const ModelCreateSimple = ({ children, fallback = true, ...props }) => {
   const controller = useModelCreateController(props);

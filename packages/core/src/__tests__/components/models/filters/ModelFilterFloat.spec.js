@@ -1,9 +1,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import ModelFiltersSimple from 'rhino/components/models/ModelFiltersSimple';
-import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
-import ModelFilterFloat from 'rhino/components/models/filters/ModelFilterFloat';
+import ModelFiltersSimple from '../../../../components/models/ModelFiltersSimple';
+import ModelIndexSimple from '../../../../components/models/ModelIndexSimple';
+import ModelFilterFloat from '../../../../components/models/filters/ModelFilterFloat';
 
 describe('ModelFilterFloat', () => {
   const Wrapper = ({ children, ...props }) => {

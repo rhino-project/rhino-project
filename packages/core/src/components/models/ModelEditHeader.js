@@ -1,6 +1,6 @@
-import { breadcrumbFor } from 'rhino/utils/ui';
-import { useModelEditContext } from 'rhino/hooks/controllers';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
+import { breadcrumbFor } from '../../utils/ui';
+import { useModelEditContext } from '../../hooks/controllers';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
 import ModelSection from './ModelSection';
 
 export const ModelEditHeaderBase = () => {

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { format as dateFormat, parseISO } from 'date-fns';
 import { FieldInputControlledBase } from '../fields/FieldInputControlled';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const DisplayTimeBase = ({
   format = 'hh:mm a',

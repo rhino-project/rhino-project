@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelFieldGroupEnum } from 'rhino/hooks/form';
-import FieldGroupSelectControlled, {
-  FieldGroupFloatingSelectControlled,
-  FieldGroupHorizontalSelectControlled
-} from 'rhino/components/forms/fieldGroups/FieldGroupSelectControlled';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelFieldGroupEnum } from '../../../hooks/form';
+import FieldGroupSelectControlled, { FieldGroupFloatingSelectControlled, FieldGroupHorizontalSelectControlled } from '../../forms/fieldGroups/FieldGroupSelectControlled';
 
 export const ModelFieldGroupEnumVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroupEnum(props);

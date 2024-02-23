@@ -7,12 +7,8 @@ import {
   UncontrolledDropdown
 } from 'reactstrap';
 
-import { NavIcon } from 'rhino/components/icons';
-import {
-  useNotifications,
-  useNotificationsOpen,
-  useNotificationsOpenAll
-} from 'rhino/queries/notifications';
+import { NavIcon } from '../icons';
+import { useNotifications, useNotificationsOpen, useNotificationsOpenAll } from '../../queries/notifications';
 
 const NotificationMenu = () => {
   const { data: { data: notifications } = {}, refetch } = useNotifications();

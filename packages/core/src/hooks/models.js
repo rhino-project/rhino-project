@@ -1,8 +1,8 @@
 import { isObject } from 'lodash';
 import { useContext, useMemo } from 'react';
-import { getModel, hasModule } from 'rhino/utils/models';
+import { getModel, hasModule } from '../utils/models';
 import { getModelAndAttributeFromPath } from '../utils/models.js';
-import { ModelContext } from 'rhino/components/models/ModelProvider.js';
+import { ModelContext } from '../components/models/ModelProvider.js';
 
 /**
  * @typedef {import('../utils/models.js').Model} Model

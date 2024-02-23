@@ -2,10 +2,10 @@ import CustomPrimaryNavigation from 'components/app/CustomPrimaryNavigation';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
-import { NavItem, NavSection } from 'rhino/components/nav';
+import { NavItem, NavSection } from '../nav';
 import { useRhinoConfig } from '@rhino-project/config';
-import { getBaseOwnedModels } from 'rhino/utils/models';
-import { getModelIndexPath } from 'rhino/utils/routes';
+import { getBaseOwnedModels } from '../../utils/models';
+import { getModelIndexPath } from '../../utils/routes';
 
 const modelsRoute = (model) => getModelIndexPath(model);
 

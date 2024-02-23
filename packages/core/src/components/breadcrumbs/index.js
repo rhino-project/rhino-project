@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { BreadcrumbItem } from 'reactstrap';
-import { useBaseOwnerPath } from 'rhino/hooks/history';
+import { useBaseOwnerPath } from '../../hooks/history';
 
 const BreadcrumbItemWrapper = ({ tag, to, children, ...props }) => {
   const baseOwnerPath = useBaseOwnerPath();

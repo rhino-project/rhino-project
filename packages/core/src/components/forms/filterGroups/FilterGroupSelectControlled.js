@@ -1,4 +1,4 @@
-import { useMergedOverrides } from 'rhino/hooks/overrides';
+import { useMergedOverrides } from '../../../hooks/overrides';
 import FilterGroup from '../FilterGroup';
 import FilterSelectControlled from '../filters/FilterSelectControlled';
 

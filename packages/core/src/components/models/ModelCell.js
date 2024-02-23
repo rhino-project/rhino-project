@@ -1,5 +1,5 @@
-import { useModel } from 'rhino/hooks/models';
-import { getModelAndAttributeFromPath } from 'rhino/utils/models';
+import { useModel } from '../../hooks/models';
+import { getModelAndAttributeFromPath } from '../../utils/models';
 import ModelCellArray from './cells/ModelCellArray';
 import ModelCellArrayReference from './cells/ModelCellArrayReference';
 import ModelCellAttachmentDownload from './cells/ModelCellAttachmentDownload';
@@ -16,7 +16,7 @@ import ModelCellInteger from './cells/ModelCellInteger';
 import ModelCellReference from './cells/ModelCellReference';
 import ModelCellString from './cells/ModelCellString';
 import ModelCellTime from './cells/ModelCellTime';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
+import { useGlobalComponentForAttribute } from '../../hooks/overrides';
 import ModelCellIdentifier from './cells/ModellCellIdentifier';
 
 export const ModelCellBase = (props) => {

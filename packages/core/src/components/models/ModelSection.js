@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { useModelClassNames } from 'rhino/utils/ui';
-import { useModelContext } from 'rhino/hooks/models';
+import { useModelClassNames } from '../../utils/ui';
+import { useModelContext } from '../../hooks/models';
 
 const ModelSection = (props) => {
   const { baseClassName, children } = props;

@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
 import FieldLabel from '../forms/FieldLabel';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import { useModelAndAttributeFromPath } from '../../hooks/models';
 
 export const ModelFieldLabelBase = ({ label, model, ...props }) => {
   const { path } = props;

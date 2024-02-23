@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 import { Button as RSButton } from 'reactstrap';
 
-import { Icon } from 'rhino/components/icons';
+import { Icon } from '../icons';
 
 export const Button = ({ loading = false, children, ...props }) => {
   if (!loading) return <RSButton {...props}>{children}</RSButton>;

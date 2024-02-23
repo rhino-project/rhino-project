@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import rhinoConfig from 'rhino.config';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ModelShowSimple from 'rhino/components/models/ModelShowSimple';
+import ModelShowSimple from '../../../../components/models/ModelShowSimple';
 
 const getBarValue = () => 'bar';
 

@@ -1,12 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
 
-import { useBaseOwnerId } from 'rhino/hooks/owner';
-import { useModel } from 'rhino/hooks/models';
+import { useBaseOwnerId } from '../../hooks/owner';
+import { useModel } from '../../hooks/models';
 import ModelEditableCellReference from '../models/cells/ModelEditableCellReference';
 import ModelIndexHeader from '../models/ModelIndexHeader';
 import ModelIndexTable from '../models/ModelIndexTable';
 import { IconButton } from '../buttons';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
+import { useModelIndexContext } from '../../hooks/controllers';
 import ModelCreateModal from '../models/ModelCreateModal';
 import ModelIndexActions, {
   ModelIndexActionCreate

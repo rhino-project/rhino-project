@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
 import rhinoConfig from 'rhino.config';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
+import ModelIndexSimple from '../../../../components/models/ModelIndexSimple';
 import { MemoryRouter } from 'react-router-dom';
-import ModelIndexTable from 'rhino/components/models/ModelIndexTable';
+import ModelIndexTable from '../../../../components/models/ModelIndexTable';
 import { Children } from 'react';
 
 const getBarValue = () => 'bar';

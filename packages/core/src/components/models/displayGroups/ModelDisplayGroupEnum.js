@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelDisplayGroup } from 'rhino/hooks/form';
-import DisplayGroupEnum, {
-  DisplayGroupFloatingEnum,
-  DisplayGroupHorizontalEnum
-} from 'rhino/components/forms/displayGroups/DisplayGroupEnum';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelDisplayGroup } from '../../../hooks/form';
+import DisplayGroupEnum, { DisplayGroupFloatingEnum, DisplayGroupHorizontalEnum } from '../../forms/displayGroups/DisplayGroupEnum';
 
 export const ModelDisplayGroupVerticalEnum = (props) => {
   // FIXME - displayGroupProps instead?

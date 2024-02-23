@@ -1,6 +1,6 @@
-import { DangerAlert } from 'rhino/components/alerts';
-import { LinkButton } from 'rhino/components/buttons';
-import { useForgotPasswordPath } from 'rhino/hooks/routes';
+import { DangerAlert } from '../../components/alerts';
+import { LinkButton } from '../../components/buttons';
+import { useForgotPasswordPath } from '../../hooks/routes';
 import AuthPage from './AuthPage';
 import PropTypes from 'prop-types';
 

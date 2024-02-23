@@ -11,24 +11,20 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { filter, isEqual, isPlainObject, isString, merge, omit } from 'lodash';
 import { useForm } from 'react-hook-form';
-import { ModelCreateContext } from 'rhino/components/models/ModelCreateProvider';
-import { ModelEditContext } from 'rhino/components/models/ModelEditProvider';
-import { ModelIndexContext } from 'rhino/components/models/ModelIndexProvider';
-import { ModelShowContext } from 'rhino/components/models/ModelShowProvider';
-import { useModel } from 'rhino/hooks/models';
+import { ModelCreateContext } from '../components/models/ModelCreateProvider';
+import { ModelEditContext } from '../components/models/ModelEditProvider';
+import { ModelIndexContext } from '../components/models/ModelIndexProvider';
+import { ModelShowContext } from '../components/models/ModelShowProvider';
+import { useModel } from './models';
 import {
   useModelCreate,
   useModelDelete,
   useModelIndex,
   useModelShow,
-  useModelUpdate
-} from 'rhino/hooks/queries';
-import withParams from 'rhino/routes/withParams';
-import {
-  getBaseOwnerFilters,
-  getParentModel,
-  getReferenceAttributes
-} from 'rhino/utils/models';
+  useModelUpdate,
+} from './queries';
+import withParams from '../routes/withParams';
+import { getBaseOwnerFilters, getParentModel, getReferenceAttributes } from '../utils/models';
 import { useDebouncedCallback } from 'use-debounce';
 import {
   getCreatableAttributes,
@@ -37,8 +33,8 @@ import {
 import { useDefaultValues, useResolver, useSchema } from './form';
 import { usePaths } from './paths';
 import { useBaseOwnerId } from './owner';
-import { ModelFiltersContext } from 'rhino/components/models/ModelFiltersProvider';
-import { yupFiltersFromAttribute } from 'rhino/utils/yup';
+import { ModelFiltersContext } from '../components/models/ModelFiltersProvider';
+import { yupFiltersFromAttribute } from '../utils/yup';
 
 export const DEFAULT_LIMIT = 10;
 

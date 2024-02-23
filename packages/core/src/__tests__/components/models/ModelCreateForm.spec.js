@@ -1,5 +1,5 @@
-import ModelCreateForm from 'rhino/components/models/ModelCreateForm';
-import ModelCreateSimple from 'rhino/components/models/ModelCreateSimple';
+import ModelCreateForm from '../../../components/models/ModelCreateForm';
+import ModelCreateSimple from '../../../components/models/ModelCreateSimple';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
