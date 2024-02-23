@@ -31,7 +31,6 @@ export function RhinoProjectVite(): Plugin {
     },
 
     resolveId(id) {
-      console.log('ID2', id);
       if (id === CONFIG_MODULE_ID) {
         // Replace 'rhino.config' with the path to the local file
         // FIXME: Allow the location to be configured
