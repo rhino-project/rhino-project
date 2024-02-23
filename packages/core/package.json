@@ -425,16 +425,6 @@
         "default": "./dist/cjs/hooks/index.cjs"
       }
     },
-    "./lib": {
-      "import": {
-        "types": "./dist/esm/lib/index.d.ts",
-        "default": "./dist/esm/lib/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/lib/index.d.cts",
-        "default": "./dist/cjs/lib/index.cjs"
-      }
-    },
     "./pages/settings": {
       "import": {
         "types": "./dist/esm/pages/settings/index.d.ts",
