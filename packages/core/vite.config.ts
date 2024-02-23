@@ -46,8 +46,7 @@ const config = defineConfig({
       ]
     }),
     vitePlugin(true),
-    react(),
-    tsconfigPaths()
+    react()
   ],
   resolve: {
     alias: [{ find: /^rhino\/(.*)/, replacement: '$1' }],
