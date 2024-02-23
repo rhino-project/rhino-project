@@ -45,7 +45,7 @@ const config = defineConfig({
         'models/static'
       ]
     }),
-    vitePlugin(true),
+    vitePlugin(mode === 'production'),
     react()
   ],
   resolve: {
