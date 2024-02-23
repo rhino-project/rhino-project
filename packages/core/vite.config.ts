@@ -136,6 +136,7 @@ export default mergeConfig(
       './src/pages/model/Index.js',
       './src/routes/index.js'
     ],
+    exclude: ['./src/__tests__'],
     srcDir: './src'
   }),
   config
