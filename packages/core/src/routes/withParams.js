@@ -1,4 +1,4 @@
-import qs from 'qs';
+import * as qs from 'qs';
 
 export const withParams = (route, params) => {
   if (Object.keys(params).length > 0) {
