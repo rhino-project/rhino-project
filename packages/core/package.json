@@ -295,16 +295,6 @@
         "default": "./dist/cjs/components/models/fields/index.cjs"
       }
     },
-    "./components/models/ModelIndex": {
-      "import": {
-        "types": "./dist/esm/components/models/ModelIndex.d.ts",
-        "default": "./dist/esm/components/models/ModelIndex.js"
-      },
-      "require": {
-        "types": "./dist/cjs/components/models/ModelIndex.d.ts",
-        "default": "./dist/cjs/components/models/ModelIndex.cjs"
-      }
-    },
     "./components/alerts": {
       "import": {
         "types": "./dist/esm/components/alerts/index.d.ts",
@@ -473,16 +463,6 @@
       "require": {
         "types": "./dist/cjs/pages/index.d.cts",
         "default": "./dist/cjs/pages/index.cjs"
-      }
-    },
-    "./pages/model/Index": {
-      "import": {
-        "types": "./dist/esm/pages/model/Index.d.ts",
-        "default": "./dist/esm/pages/model/Index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/pages/model/index.d.cts",
-        "default": "./dist/cjs/pages/model/Index.cjs"
       }
     },
     "./routes": {
