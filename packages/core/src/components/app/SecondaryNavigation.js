@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 import { useMemo } from 'react';
 
-import CustomSecondaryNavigation from 'components/app/CustomSecondaryNavigation';
+import CustomSecondaryNavigation from '@rhino-project/config';
 import { hasNotificationsModule } from '../../utils/models';
 import { AccountMenu } from './AccountMenu';
 import { BaseOwnerSwitcher } from './BaseOwnerSwitcher';

@@ -1,9 +1,8 @@
-import CustomPrimaryNavigation from 'components/app/CustomPrimaryNavigation';
 import { map } from 'lodash-es';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
 import { NavItem, NavSection } from '../nav';
-import { useRhinoConfig } from '@rhino-project/config';
+import { useRhinoConfig, CustomPrimaryNavigation } from '@rhino-project/config';
 import { getBaseOwnedModels } from '../../utils/models';
 import { getModelIndexPath } from '../../utils/routes';
 

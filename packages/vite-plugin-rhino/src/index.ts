@@ -22,7 +22,7 @@ export function RhinoProjectVite(): Plugin {
     config: () => ({
       optimizeDeps: {
         // Don't process with esbuild so that we can use resolveId for rhino.config
-        exclude: ['@rhino-project/config', '@rhino-project/core', 'qs']
+        exclude: ['@rhino-project/config']
       }
     }),
 

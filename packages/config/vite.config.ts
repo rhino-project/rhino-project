@@ -6,7 +6,16 @@ import { externalizeDeps } from 'vite-plugin-externalize-deps';
 const config = defineConfig({
   plugins: [
     externalizeDeps({
-      include: ['rhino.config', 'virtual:@rhino-project/config/env']
+      include: [
+        'rhino.config',
+        'virtual:@rhino-project/config/env',
+        'components/app/CustomPrimaryNavigation',
+        'components/app/CustomSecondaryNavigation',
+        'assets/images/logo-dark.svg',
+        'assets/images/logo-light.svg',
+        'routes/custom',
+        'models/static'
+      ]
     }),
     react()
   ],
