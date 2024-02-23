@@ -18,18 +18,18 @@ const initializingState = {
 };
 
 let mockAuth;
-vi.mock('rhino/hooks/auth', () => ({
+vi.mock('../../hooks/auth', () => ({
   useAuth: vi.fn(() => mockAuth) //() => authMock
 }));
 
-vi.mock('rhino/components/logos', () => ({
+vi.mock('../../components/logos', () => ({
   SplashScreen: () => <div>__mockSplashScreen__</div>
 }));
 
 let mockPrevPath;
 let mockUnsetPrevPathFn;
 let mockSetPrevPathFn;
-vi.mock('rhino/utils/storage', () => ({
+vi.mock('../../utils/storage', () => ({
   getPrevPathSession: () => mockPrevPath,
   unsetPrevPathSession: () => mockUnsetPrevPathFn(),
   setPrevPathSession: () => mockSetPrevPathFn()
