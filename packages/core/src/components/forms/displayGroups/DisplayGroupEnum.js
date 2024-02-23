@@ -1,8 +1,11 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayEnum from '../displays/DisplayEnum';
-import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';
-import DisplayLayoutFloating from '../DisplayLayoutFloating';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayEnum } from '../displays/DisplayEnum';
+import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
+import { DisplayLayoutFloating } from '../DisplayLayoutFloating';
 
 const BASE_OVERRIDES = {
   Display: DisplayEnum
@@ -26,7 +29,5 @@ export const DisplayGroupFloatingEnum = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupEnum = (props) =>
+export const DisplayGroupEnum = (props) =>
   useGlobalComponent('DisplayGroupEnum', DisplayGroupVerticalEnum, props);
-
-export default DisplayGroupEnum;

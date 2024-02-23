@@ -1,11 +1,11 @@
-import { SuccessAlert } from 'rhino/components/alerts';
-import AuthForm from 'rhino/components/auth/AuthForm';
-import { useSessionCreatePath } from 'rhino/hooks/routes';
-import { useForgotPasswordAction } from 'rhino/queries/auth';
-import AuthPage from './AuthPage';
+import { SuccessAlert } from '../../components/alerts';
+import { AuthForm } from '../../components/auth/AuthForm';
+import { useSessionCreatePath } from '../../hooks/routes';
+import { useForgotPasswordAction } from '../../queries/auth';
+import { AuthPage } from './AuthPage';
 import PropTypes from 'prop-types';
 
-const ForgotPasswordPage = (props) => {
+export const ForgotPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: forgotPasswordAction,
@@ -52,5 +52,3 @@ ForgotPasswordPage.propTypes = {
   primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
-
-export default ForgotPasswordPage;

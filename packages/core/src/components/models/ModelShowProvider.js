@@ -1,12 +1,12 @@
 import { createContext } from 'react';
 import env from '@rhino-project/config/env';
-import FormProvider from '../forms/FormProvider';
+import { FormProvider } from '../forms/FormProvider';
 import { ModelContext } from './ModelProvider';
-import RhinoDevTool from '../devtool/RhinoDevTool';
+import { RhinoDevTool } from '../devtool/RhinoDevTool';
 
 export const ModelShowContext = createContext();
 
-const ModelShowProvider = ({ children, ...props }) => {
+export const ModelShowProvider = ({ children, ...props }) => {
   const { methods, model } = props;
 
   return (
@@ -18,5 +18,3 @@ const ModelShowProvider = ({ children, ...props }) => {
     </ModelContext.Provider>
   );
 };
-
-export default ModelShowProvider;

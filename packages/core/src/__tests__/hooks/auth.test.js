@@ -1,13 +1,13 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react';
-import { AuthContext } from 'rhino/contexts/AuthContext';
+import { AuthContext } from '../../contexts/AuthContext';
 import {
   useAuth,
   useAuthenticated,
   useUser,
   useUserId
-} from 'rhino/hooks/auth';
-import { createWrapper } from '__tests__/shared/helpers';
+} from '../../hooks/auth';
+import { createWrapper } from '../shared/helpers';
 
 const Wrapper = ({ children, ...props }) => (
   <AuthContext.Provider {...props}>{children}</AuthContext.Provider>

@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import ModelFieldGroupReference, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import {
+  ModelFieldGroupReference,
   ModelFieldGroupFloatingReference,
   ModelFieldGroupHorizontalReference
 } from './ModelFieldGroupReference';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import { useModelAndAttributeFromPath } from '../../../hooks/models';
 import { useMemo } from 'react';
-import { useBaseOwnerFilters } from 'rhino/hooks/owner';
-import { getModelFromRef } from 'rhino/utils/models';
+import { useBaseOwnerFilters } from '../../../hooks/owner';
+import { getModelFromRef } from '../../../utils/models';
 
 const ModelFieldGroupOwnerReferenceVertical = ({
   filter: extraFilters,
@@ -54,11 +55,9 @@ export const ModelFieldGroupFloatingOwnerReference = ({
   return <ModelFieldGroupFloatingReference filter={filter} {...props} />;
 };
 
-const ModelFieldGroupOwnerReference = (props) =>
+export const ModelFieldGroupOwnerReference = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupOwnerReference',
     ModelFieldGroupOwnerReferenceVertical,
     props
   );
-
-export default ModelFieldGroupOwnerReference;

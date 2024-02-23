@@ -1,9 +1,9 @@
-import { useModelEditContext } from 'rhino/hooks/controllers';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
-import { useRenderPaths } from 'rhino/hooks/renderPaths';
-import ModelFieldGroup from './ModelFieldGroup';
-import ModelSection from './ModelSection';
-import FormErrors from '../forms/FormErrors';
+import { useModelEditContext } from '../../hooks/controllers';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
+import { useRenderPaths } from '../../hooks/renderPaths';
+import { ModelFieldGroup } from './ModelFieldGroup';
+import { ModelSection } from './ModelSection';
+import { FormErrors } from '../forms/FormErrors';
 
 export const ModelEditFormBase = (props) => {
   const { model, paths } = useModelEditContext();
@@ -22,7 +22,5 @@ export const ModelEditFormBase = (props) => {
 
 ModelEditFormBase.propTypes = {};
 
-const ModelEditForm = (props) =>
+export const ModelEditForm = (props) =>
   useGlobalComponentForModel('ModelEditForm', ModelEditFormBase, props);
-
-export default ModelEditForm;

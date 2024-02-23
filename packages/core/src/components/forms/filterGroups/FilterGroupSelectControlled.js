@@ -1,6 +1,6 @@
-import { useMergedOverrides } from 'rhino/hooks/overrides';
-import FilterGroup from '../FilterGroup';
-import FilterSelectControlled from '../filters/FilterSelectControlled';
+import { useMergedOverrides } from '../../../hooks/overrides';
+import { FilterGroup } from '../FilterGroup';
+import { FilterSelectControlled } from '../filters/FilterSelectControlled';
 
 const BASE_OVERRIDES = { FilterLayout: { Field: FilterSelectControlled } };
 
@@ -9,5 +9,3 @@ export const FilterGroupSelectControlled = ({ overrides, ...props }) => {
 
   return <FilterGroup overrides={mergedOverrides} {...props} />;
 };
-
-export default FilterGroupSelectControlled;

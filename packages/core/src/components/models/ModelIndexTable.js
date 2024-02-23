@@ -16,18 +16,18 @@ import {
 import {
   useGlobalComponentForModel,
   useOverrides
-} from 'rhino/hooks/overrides';
+} from '../../hooks/overrides';
 
 import { filter, isString } from 'lodash';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
-import { useBaseOwnerNavigation } from 'rhino/hooks/history';
-import { usePaths } from 'rhino/hooks/paths';
-import { getModelShowPath } from 'rhino/utils/routes';
-import Table from '../table/Table';
-import ModelCell from './ModelCell';
-import ModelFooter from './ModelFooter';
-import ModelHeader from './ModelHeader';
-import ModelSection from './ModelSection';
+import { useModelIndexContext } from '../../hooks/controllers';
+import { useBaseOwnerNavigation } from '../../hooks/history';
+import { usePaths } from '../../hooks/paths';
+import { getModelShowPath } from '../../utils/routes';
+import { Table } from '../table/Table';
+import { ModelCell } from './ModelCell';
+import { ModelFooter } from './ModelFooter';
+import { ModelHeader } from './ModelHeader';
+import { ModelSection } from './ModelSection';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -233,5 +233,3 @@ const columnHelper = createColumnHelper();
 
 export const ModelIndexTable = (props) =>
   useGlobalComponentForModel('ModelIndexTable', ModelIndexTableBase, props);
-
-export default ModelIndexTable;

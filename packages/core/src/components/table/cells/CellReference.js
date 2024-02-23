@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import { useTableInheritedProps } from 'rhino/hooks/table';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
 
 export const CellReferenceBase = ({ empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
@@ -13,7 +13,5 @@ export const CellReferenceBase = ({ empty = '-', ...props }) => {
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellReference = (props) =>
+export const CellReference = (props) =>
   useGlobalComponent('CellReference', CellReferenceBase, props);
-
-export default CellReference;

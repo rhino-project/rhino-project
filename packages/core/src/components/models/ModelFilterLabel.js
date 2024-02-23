@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
-import { useModelFilterField } from 'rhino/hooks/form';
-import FilterLabel from '../forms/FilterLabel';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
+import { useModelFilterField } from '../../hooks/form';
+import { FilterLabel } from '../forms/FilterLabel';
 
 const isDateRelated = (format) => ['date', 'time', 'datetime'].includes(format);
 
@@ -54,7 +54,5 @@ export const ModelFilterLabelBase = ({ label, model, ...props }) => {
   return <FilterLabel label={modelLabel} {...props} />;
 };
 
-const ModelFilterLabel = (props) =>
+export const ModelFilterLabel = (props) =>
   useGlobalComponentForModel('ModelFilterLabel', ModelFilterLabelBase, props);
-
-export default ModelFilterLabel;

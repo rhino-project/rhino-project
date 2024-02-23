@@ -1,8 +1,7 @@
-/* eslint react-refresh/only-export-components: 0 */
 import { merge } from 'lodash';
 import { createContext, useContext, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { getBaseOwnerFilters } from 'rhino/utils/models';
+import { getBaseOwnerFilters } from '../utils/models';
 import { useModel } from './models';
 
 export const BaseOwnerContext = createContext({

@@ -1,6 +1,9 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayBoolean from '../displays/DisplayBoolean';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayBoolean } from '../displays/DisplayBoolean';
 
 const BASE_OVERRIDES = {
   FormGroup: { props: { check: true } },
@@ -21,7 +24,5 @@ export { DisplayGroupHorizontalBoolean };
 const DisplayGroupFloatingBoolean = DisplayGroupBooleanBase;
 export { DisplayGroupFloatingBoolean };
 
-const DisplayGroupBoolean = (props) =>
+export const DisplayGroupBoolean = (props) =>
   useGlobalComponent('DisplayGroupBoolean', DisplayGroupBooleanBase, props);
-
-export default DisplayGroupBoolean;

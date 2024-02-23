@@ -1,13 +1,13 @@
-import { IconButton } from 'rhino/components/buttons';
+import { IconButton } from '../buttons';
 import {
   useModelFiltersContext,
   useModelFiltersController,
   useModelIndexContext
-} from 'rhino/hooks/controllers';
-import { useRenderPaths } from 'rhino/hooks/renderPaths';
+} from '../../hooks/controllers';
+import { useRenderPaths } from '../../hooks/renderPaths';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
-import ModelFilterGroup from './ModelFilterGroup';
-import ModelFiltersProvider from './ModelFiltersProvider';
+import { ModelFilterGroup } from './ModelFilterGroup';
+import { ModelFiltersProvider } from './ModelFiltersProvider';
 
 export const ModelFiltersPill = ({ path }) => {
   const {
@@ -99,7 +99,5 @@ export const ModelFiltersBase = (props) => {
   );
 };
 
-const ModelFilters = (props) =>
+export const ModelFilters = (props) =>
   useGlobalComponentForModel('ModelFilters', ModelFiltersBase, props);
-
-export default ModelFilters;

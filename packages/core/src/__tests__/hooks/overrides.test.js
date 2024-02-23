@@ -5,7 +5,7 @@ import {
   useGlobalComponentForModel,
   useMergedOverrides,
   useOverrides
-} from 'rhino/hooks/overrides';
+} from '../../hooks/overrides';
 import rhinoConfig from 'rhino.config';
 
 describe('useOverrides', () => {

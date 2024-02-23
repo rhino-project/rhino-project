@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import { useWatch } from 'react-hook-form';
 
 import { useEffect } from 'react';
-import FilterSelectControlled from 'rhino/components/forms/filters/FilterSelectControlled';
-import { useModelFilterField } from 'rhino/hooks/form';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { FilterSelectControlled } from '../../forms/filters/FilterSelectControlled';
+import { useModelFilterField } from '../../../hooks/form';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
-// FIXME: Nothing tests this yet
-const ModelFilterIntegerSelect = ({ model, path, ...props }) => {
+export const ModelFilterIntegerSelect = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   // FIXME: Exclusive min/max support
   const integers = Array.from(
@@ -40,5 +39,3 @@ ModelFilterIntegerSelect.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterIntegerSelect;

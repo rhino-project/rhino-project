@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Navigate, Route, Routes } from 'react-router-dom';
-import NonAuthenticatedRoute from 'rhino/routes/NonAuthenticatedRoute';
-import * as routes from 'rhino/utils/routes';
+import { NonAuthenticatedRoute } from '../../routes/NonAuthenticatedRoute';
+import * as routes from '../../utils/routes';
 
 const authenticatedState = {
   initializing: false,
@@ -18,11 +18,11 @@ const initializingState = {
 };
 
 let mockAuth;
-vi.mock('rhino/hooks/auth', () => ({
+vi.mock('../../hooks/auth', () => ({
   useAuth: vi.fn(() => mockAuth) //() => authMock
 }));
 
-vi.mock('rhino/components/logos', () => ({
+vi.mock('../../components/logos', () => ({
   SplashScreen: () => <div>__mockSplashScreen__</div>
 }));
 

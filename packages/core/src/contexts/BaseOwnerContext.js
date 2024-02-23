@@ -1,14 +1,14 @@
-import { useUser } from 'rhino/hooks/auth';
-import { useModelShow } from 'rhino/hooks/queries';
+import { useUser } from '../hooks/auth';
+import { useModelShow } from '../hooks/queries';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { hasOrganizationsModule } from 'rhino/utils/models';
-import { SplashScreen } from 'rhino/components/logos';
-import { useBaseOwnerNavigation } from 'rhino/hooks/history';
-import { useRootPath } from 'rhino/hooks/routes';
+import { hasOrganizationsModule } from '../utils/models';
+import { SplashScreen } from '../components/logos';
+import { useBaseOwnerNavigation } from '../hooks/history';
+import { useRootPath } from '../hooks/routes';
 import { BaseOwnerContext, useBaseOwnerId } from '../hooks/owner';
 
-const BaseOwnerProvider = ({ children }) => {
+export const BaseOwnerProvider = ({ children }) => {
   const user = useUser();
   const baseOwnerId = useBaseOwnerId();
   const baseOwnerNavigation = useBaseOwnerNavigation();
@@ -77,5 +77,3 @@ const BaseOwnerProvider = ({ children }) => {
 BaseOwnerProvider.propTypes = {
   children: PropTypes.node
 };
-
-export default BaseOwnerProvider;

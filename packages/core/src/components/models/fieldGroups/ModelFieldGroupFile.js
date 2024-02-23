@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import FieldGroupFile, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import {
+  FieldGroupFile,
   FieldGroupFloatingFile,
   FieldGroupHorizontalFile
-} from 'rhino/components/forms/fieldGroups/FieldGroupFile';
-import { useModelFieldGroup } from 'rhino/hooks/form';
+} from '../../forms/fieldGroups/FieldGroupFile';
+import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupFileVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroup(props);
@@ -31,11 +32,9 @@ export const ModelFieldGroupFloatingFile = (props) => {
   return <FieldGroupFloatingFile {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupFile = (props) =>
+export const ModelFieldGroupFile = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupFile',
     ModelFieldGroupFileVertical,
     props
   );
-
-export default ModelFieldGroupFile;

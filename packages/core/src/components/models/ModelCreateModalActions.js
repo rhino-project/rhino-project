@@ -5,14 +5,15 @@ import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import ModelCreateActions, {
+import {
+  ModelCreateActions,
   ModelCreateActionCancel,
   ModelCreateActionSave,
   ModelCreateActionSaveAnother,
   ModelCreateActionSaveShow
 } from './ModelCreateActions';
 import { useCallback, useMemo } from 'react';
-import ModelSection from './ModelSection';
+import { ModelSection } from './ModelSection';
 
 export const ModelCreateModalActionSave = ({ onModalClose, onSave }) => {
   const handleSave = useCallback(
@@ -107,11 +108,9 @@ export const ModelCreateModalActionsSaveShow = (props) => (
   />
 );
 
-const ModelCreateModalActions = (props) =>
+export const ModelCreateModalActions = (props) =>
   useGlobalComponentForModel(
     'ModelCreateModalActions',
     ModelCreateModalActionsBase,
     props
   );
-
-export default ModelCreateModalActions;

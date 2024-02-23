@@ -1,9 +1,9 @@
 import { FormGroup } from 'reactstrap';
 
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
-import Field from './fields/FieldInput';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
-import FilterLabel from './FilterLabel';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import { FieldInput as Field } from './fields/FieldInput';
+import { useFieldInheritedProps } from '../../hooks/form';
+import { FilterLabel } from './FilterLabel';
 
 const INHERITED_PROP_OPTIONS = {
   prefix: 'FilterLayoutVertical',
@@ -31,7 +31,5 @@ export const FilterLayoutVerticalBase = ({ overrides, ...props }) => {
   );
 };
 
-const FilterLayoutVertical = (props) =>
+export const FilterLayoutVertical = (props) =>
   useGlobalComponent('FilterLayoutVertical', FilterLayoutVerticalBase, props);
-
-export default FilterLayoutVertical;

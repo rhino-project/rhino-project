@@ -1,7 +1,7 @@
 import { useQuery, useMutation } from '@tanstack/react-query';
 
-import { networkApiCall } from 'rhino/lib/networking';
-import { useUserId } from 'rhino/hooks/auth';
+import { networkApiCall } from '../lib/networking';
+import { useUserId } from '../hooks/auth';
 
 const basePath = (userId) => `api/users/${userId}/notifications`;
 const fullPath = (userId, queryPath) => `${basePath(userId)}/${queryPath}`;

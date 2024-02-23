@@ -1,8 +1,11 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldPhone from '../fields/FieldPhone';
-import FieldLayoutFloating from '../FieldLayoutFloating';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldPhone } from '../fields/FieldPhone';
+import { FieldLayoutFloating } from '../FieldLayoutFloating';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 
 const BASE_OVERRIDES = {
   Field: FieldPhone
@@ -26,7 +29,5 @@ export const FieldGroupFloatingPhone = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupPhone = (props) =>
+export const FieldGroupPhone = (props) =>
   useGlobalComponent('FieldGroupPhone', FieldGroupPhoneBase, props);
-
-export default FieldGroupPhone;

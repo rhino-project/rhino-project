@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import { useWatch } from 'react-hook-form';
 
 import { useEffect } from 'react';
-import { useModelFilterField } from 'rhino/hooks/form';
-import FilterBoolean from '../../forms/filters/FilterBoolean';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { useModelFilterField } from '../../../hooks/form';
+import { FilterBoolean } from '../../forms/filters/FilterBoolean';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
 // FIXME: This is duplicated from FieldBooleanIndeterminate
 // Ensure that if the value is a string coming from the url, it is either 'true' or 'false'
@@ -28,7 +28,7 @@ const buildBooleanPill = (attribute, value) => {
   return `${state}${attribute.readableName}`;
 };
 
-const ModelFilterBoolean = ({ model, path, ...props }) => {
+export const ModelFilterBoolean = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
 
   const watch = useWatch({ name: operatorPath });
@@ -47,5 +47,3 @@ ModelFilterBoolean.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterBoolean;

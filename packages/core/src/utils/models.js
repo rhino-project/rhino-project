@@ -1,5 +1,5 @@
 import { filter, find, toPath, set } from 'lodash';
-import modelLoader from 'rhino/models';
+import modelLoader from '../models';
 
 /**
  * @typedef {object} Model

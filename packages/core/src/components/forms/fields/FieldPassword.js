@@ -3,8 +3,8 @@ import classnames from 'classnames';
 import { IconButton } from '../../buttons';
 import { useState } from 'react';
 import { InputGroup } from 'reactstrap';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import { useFieldError } from 'rhino/hooks/form';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import { useFieldError } from '../../../hooks/form';
 
 export const FieldPasswordBaseInput = ({ showPassword, ...props }) => {
   return (
@@ -35,7 +35,5 @@ export const FieldPasswordBase = (props) => {
   );
 };
 
-const FieldPassword = (props) =>
+export const FieldPassword = (props) =>
   useGlobalComponent('FieldPassword', FieldPasswordBase, props);
-
-export default FieldPassword;

@@ -1,10 +1,10 @@
-import { DangerAlert } from 'rhino/components/alerts';
-import { LinkButton } from 'rhino/components/buttons';
-import { useForgotPasswordPath } from 'rhino/hooks/routes';
-import AuthPage from './AuthPage';
+import { DangerAlert } from '../../components/alerts';
+import { LinkButton } from '../../components/buttons';
+import { useForgotPasswordPath } from '../../hooks/routes';
+import { AuthPage } from './AuthPage';
 import PropTypes from 'prop-types';
 
-const ResetPasswordExpiredPage = (props) => {
+export const ResetPasswordExpiredPage = (props) => {
   const forgotPasswordPath = useForgotPasswordPath();
   const authDesc = (
     <p>Enter new password and confirmation to change your password</p>
@@ -38,5 +38,3 @@ ResetPasswordExpiredPage.propTypes = {
   primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
-
-export default ResetPasswordExpiredPage;

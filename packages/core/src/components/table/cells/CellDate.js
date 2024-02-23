@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { format as dateFormat, parseISO } from 'date-fns';
-import { useTableInheritedProps } from 'rhino/hooks/table';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const CellDateBase = ({
   format = 'MMMM d, yyyy',
@@ -18,6 +18,5 @@ export const CellDateBase = ({
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellDate = (props) => useGlobalComponent('CellDate', CellDateBase, props);
-
-export default CellDate;
+export const CellDate = (props) =>
+  useGlobalComponent('CellDate', CellDateBase, props);

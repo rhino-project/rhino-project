@@ -1,15 +1,15 @@
 import { Navigate, NavLink } from 'react-router-dom';
 
-import AuthForm from 'rhino/components/auth/AuthForm';
-import { useAuthenticated } from 'rhino/hooks/auth';
-import { useRootPath, useSessionCreatePath } from 'rhino/hooks/routes';
-import { useSignUpAction } from 'rhino/queries/auth';
-import { hasOrganizationsModule } from 'rhino/utils/models';
-import AuthPage from './AuthPage';
+import { AuthForm } from '../../components/auth/AuthForm';
+import { useAuthenticated } from '../../hooks/auth';
+import { useRootPath, useSessionCreatePath } from '../../hooks/routes';
+import { useSignUpAction } from '../../queries/auth';
+import { hasOrganizationsModule } from '../../utils/models';
+import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/config';
 import PropTypes from 'prop-types';
 
-const SignUpPage = (props) => {
+export const SignUpPage = (props) => {
   const { appName } = useRhinoConfig();
   const rootPath = useRootPath();
   const sessionCreatePath = useSessionCreatePath();
@@ -64,5 +64,3 @@ SignUpPage.propTypes = {
   primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
-
-export default SignUpPage;

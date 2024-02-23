@@ -1,4 +1,4 @@
-import ModelCellArrayReference from 'rhino/components/models/cells/ModelCellArrayReference';
+import { ModelCellArrayReference } from '../../../../components/models/cells/ModelCellArrayReference';
 import { sharedCellTests } from './sharedCellTests';
 import { render } from '@testing-library/react';
 

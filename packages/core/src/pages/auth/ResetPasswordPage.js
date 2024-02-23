@@ -1,13 +1,13 @@
-import { SuccessAlert } from 'rhino/components/alerts';
-import AuthForm from 'rhino/components/auth/AuthForm';
-import { LinkButton } from 'rhino/components/buttons';
-import { useParsedSearch } from 'rhino/hooks/history';
-import { useSessionCreatePath } from 'rhino/hooks/routes';
-import { useResetPasswordAction } from 'rhino/queries/auth';
-import AuthPage from './AuthPage';
+import { SuccessAlert } from '../../components/alerts';
+import { AuthForm } from '../../components/auth/AuthForm';
+import { LinkButton } from '../../components/buttons';
+import { useParsedSearch } from '../../hooks/history';
+import { useSessionCreatePath } from '../../hooks/routes';
+import { useResetPasswordAction } from '../../queries/auth';
+import { AuthPage } from './AuthPage';
 import PropTypes from 'prop-types';
 
-const ResetPasswordPage = (props) => {
+export const ResetPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: resetPasswordAction,
@@ -61,5 +61,3 @@ ResetPasswordPage.propTypes = {
   primaryAction: PropTypes.string,
   secondaryAction: PropTypes.object
 };
-
-export default ResetPasswordPage;

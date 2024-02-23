@@ -1,8 +1,8 @@
 import classnames from 'classnames';
 import { useMemo } from 'react';
 import { Label } from 'reactstrap';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useFieldInheritedProps } from '../../hooks/form';
+import { useGlobalComponent } from '../../hooks/overrides';
 
 const INHERITED_PROP_PREFIX = 'displayLabel';
 
@@ -28,7 +28,5 @@ export const DisplayLabelBase = ({ label, ...props }) => {
   );
 };
 
-const DisplayLabel = (props) =>
+export const DisplayLabel = (props) =>
   useGlobalComponent('DisplayLabel', DisplayLabelBase, props);
-
-export default DisplayLabel;

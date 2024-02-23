@@ -7,14 +7,14 @@ import {
   UncontrolledDropdown
 } from 'reactstrap';
 
-import { NavIcon } from 'rhino/components/icons';
+import { NavIcon } from '../icons';
 import {
   useNotifications,
   useNotificationsOpen,
   useNotificationsOpenAll
-} from 'rhino/queries/notifications';
+} from '../../queries/notifications';
 
-const NotificationMenu = () => {
+export const NotificationMenu = () => {
   const { data: { data: notifications } = {}, refetch } = useNotifications();
   const { mutate: openAll } = useNotificationsOpenAll();
   const { mutate: openOne } = useNotificationsOpen();
@@ -69,5 +69,3 @@ const NotificationMenu = () => {
     </UncontrolledDropdown>
   );
 };
-
-export default NotificationMenu;

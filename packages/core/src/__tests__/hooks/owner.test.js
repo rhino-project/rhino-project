@@ -1,5 +1,5 @@
 import { renderHook } from '@testing-library/react';
-import { createWrapper } from '__tests__/shared/helpers';
+import { createWrapper } from '../shared/helpers';
 import {
   BaseOwnerContext,
   useBaseOwner,
@@ -8,7 +8,7 @@ import {
   useHasRoleOf,
   useRoles,
   useUserRoles
-} from 'rhino/hooks/owner';
+} from '../../hooks/owner';
 
 const Wrapper = ({ children, ...props }) => (
   <BaseOwnerContext.Provider {...props}>{children}</BaseOwnerContext.Provider>

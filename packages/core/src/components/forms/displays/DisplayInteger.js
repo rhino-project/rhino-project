@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { FieldInputControlledBase } from '../fields/FieldInputControlled';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const DisplayIntegerBase = ({ empty = '-', ...props }) => {
   const accessor = useCallback(
@@ -22,7 +22,5 @@ export const DisplayIntegerBase = ({ empty = '-', ...props }) => {
   );
 };
 
-const DisplayInteger = (props) =>
+export const DisplayInteger = (props) =>
   useGlobalComponent('DisplayInteger', DisplayIntegerBase, props);
-
-export default DisplayInteger;

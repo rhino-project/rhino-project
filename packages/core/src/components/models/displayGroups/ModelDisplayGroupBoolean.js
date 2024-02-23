@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelDisplayGroup } from 'rhino/hooks/form';
-import DisplayGroupBoolean, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelDisplayGroup } from '../../../hooks/form';
+import {
+  DisplayGroupBoolean,
   DisplayGroupFloatingBoolean,
   DisplayGroupHorizontalBoolean
-} from 'rhino/components/forms/displayGroups/DisplayGroupBoolean';
+} from '../../forms/displayGroups/DisplayGroupBoolean';
 
 export const ModelDisplayGroupVerticalBoolean = (props) => {
   // FIXME - displayGroupProps instead?
@@ -34,11 +35,9 @@ export const ModelDisplayGroupFloatingBoolean = (props) => {
   return <DisplayGroupFloatingBoolean {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupBoolean = (props) =>
+export const ModelDisplayGroupBoolean = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupBoolean',
     ModelDisplayGroupVerticalBoolean,
     props
   );
-
-export default ModelDisplayGroupBoolean;

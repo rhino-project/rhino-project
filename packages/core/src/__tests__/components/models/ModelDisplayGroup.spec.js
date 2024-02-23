@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import ModelDisplayGroup from 'rhino/components/models/ModelDisplayGroup';
+import { ModelDisplayGroup } from '../../../components/models/ModelDisplayGroup';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ModelShowSimple from 'rhino/components/models/ModelShowSimple';
-import * as network from 'rhino/lib/networking';
+import { ModelShowSimple } from '../../../components/models/ModelShowSimple';
+import * as network from '../../../lib/networking';
 import rhinoConfig from 'rhino.config';
 
 vi.spyOn(network, 'networkApiCall').mockReturnValue({

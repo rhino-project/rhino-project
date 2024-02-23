@@ -1,3 +1,3 @@
-import BasePage from './BasePage';
+import { BasePage } from './BasePage';
 
-export default BasePage;
+export const BaseAuthedPage = BasePage;

@@ -13,10 +13,10 @@ import {
   UncontrolledDropdown
 } from 'reactstrap';
 
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { getModelFromRef, getUpdatableAttributes } from 'rhino/utils/models';
-import { useComputedPaths, useDefaultValues } from 'rhino/hooks/form';
-import { IconButton } from 'rhino/components/buttons';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { getModelFromRef, getUpdatableAttributes } from '../../../utils/models';
+import { useComputedPaths, useDefaultValues } from '../../../hooks/form';
+import { IconButton } from '../../buttons';
 import {
   createColumnHelper,
   getCoreRowModel,
@@ -24,16 +24,16 @@ import {
   useReactTable
 } from '@tanstack/react-table';
 import { isString } from 'lodash';
-import ModelHeader from '../ModelHeader';
-import ModelFooter from '../ModelFooter';
-import Table from 'rhino/components/table/Table';
-import { Icon } from 'rhino/components/icons';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import { ModelHeader } from '../ModelHeader';
+import { ModelFooter } from '../ModelFooter';
+import { Table } from '../../table/Table';
+import { Icon } from '../../icons';
+import { useModelAndAttributeFromPath } from '../../../hooks/models';
 import { useFieldArray } from 'react-hook-form';
-import FieldHidden from 'rhino/components/forms/fields/FieldHidden';
-import { useTableInheritedProps } from 'rhino/hooks/table';
-import FieldFeedback from 'rhino/components/forms/FieldFeedback';
-import ModelSection from '../ModelSection';
+import { FieldHidden } from '../../forms/fields/FieldHidden';
+import { useTableInheritedProps } from '../../../hooks/table';
+import { FieldFeedback } from '../../forms/FieldFeedback';
+import { ModelSection } from '../ModelSection';
 import { ModelFieldGroupBase } from '../ModelFieldGroup';
 import { ModelDisplayGroupBase } from '../ModelDisplayGroup';
 
@@ -277,11 +277,9 @@ ModelFieldNestedBase.propTypes = {
   errors: PropTypes.object
 };
 
-const ModelFieldNested = (props) =>
+export const ModelFieldNested = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldNested',
     ModelFieldNestedBase,
     props
   );
-
-export default ModelFieldNested;

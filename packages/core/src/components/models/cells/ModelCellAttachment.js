@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import CellLink from 'rhino/components/table/cells/CellLink';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { CellLink } from '../../table/cells/CellLink';
 
 export const ModelCellAttachmentBase = ({ children, getValue, ...props }) => {
   const syntheticGetValue = useCallback(() => getValue()?.url, [getValue]);
@@ -16,11 +16,9 @@ export const ModelCellAttachmentBase = ({ children, getValue, ...props }) => {
   );
 };
 
-const ModelCellAttachment = (props) =>
+export const ModelCellAttachment = (props) =>
   useGlobalComponentForAttribute(
     'ModelCellAttachment',
     ModelCellAttachmentBase,
     props
   );
-
-export default ModelCellAttachment;

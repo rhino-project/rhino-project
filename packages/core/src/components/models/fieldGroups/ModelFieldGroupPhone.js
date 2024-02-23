@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import FieldGroupPhone, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import {
+  FieldGroupPhone,
   FieldGroupFloatingPhone,
   FieldGroupHorizontalPhone
-} from 'rhino/components/forms/fieldGroups/FieldGroupPhone';
-import { useModelFieldGroup } from 'rhino/hooks/form';
+} from '../../forms/fieldGroups/FieldGroupPhone';
+import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupPhoneVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroup(props);
@@ -31,11 +32,9 @@ export const ModelFieldGroupFloatingPhone = (props) => {
   return <FieldGroupFloatingPhone {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupPhone = (props) =>
+export const ModelFieldGroupPhone = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupPhone',
     ModelFieldGroupPhoneVertical,
     props
   );
-
-export default ModelFieldGroupPhone;

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {
   useGlobalComponentForModel,
   useOverrides
-} from 'rhino/hooks/overrides';
-import ModelShowDescription from 'rhino/components/models/ModelShowDescription';
-import ModelShowRelated from 'rhino/components/models/ModelShowRelated';
-import ModelShowActions from 'rhino/components/models/ModelShowActions';
-import ModelShowSimple from './ModelShowSimple';
-import ModelShowHeader from './ModelShowHeader';
-import ModelSection from './ModelSection';
+} from '../../hooks/overrides';
+import { ModelShowDescription } from './ModelShowDescription';
+import { ModelShowRelated } from './ModelShowRelated';
+import { ModelShowActions } from './ModelShowActions';
+import { ModelShowSimple } from './ModelShowSimple';
+import { ModelShowHeader } from './ModelShowHeader';
+import { ModelSection } from './ModelSection';
 
 const defaultComponents = {
   ModelShowHeader,
@@ -47,7 +47,5 @@ ModelShowBase.propTypes = {
   overrides: PropTypes.object
 };
 
-const ModelShow = (props) =>
+export const ModelShow = (props) =>
   useGlobalComponentForModel('ModelShow', ModelShowBase, props);
-
-export default ModelShow;

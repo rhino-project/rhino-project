@@ -1,7 +1,4 @@
-import {
-  applyCurrencyMask,
-  applyCurrencyMaskFromInput
-} from '../../../rhino/utils/ui';
+import { applyCurrencyMask, applyCurrencyMaskFromInput } from '../../utils/ui';
 
 describe('applyCurrencyMaskFromInput', () => {
   it('returns empty value and zero selection when value is empty or ".00"', () => {

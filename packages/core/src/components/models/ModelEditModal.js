@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
-import { useRenderPaths } from 'rhino/hooks/renderPaths';
+import { useRenderPaths } from '../../hooks/renderPaths';
 import { useModelEditContext } from '../../hooks/controllers';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import ModelEditModalActions from './ModelEditModalActions';
-import ModelEditSimple from './ModelEditSimple';
-import ModelFieldGroup from './ModelFieldGroup';
-import ModelSection from './ModelSection';
+import { ModelEditModalActions } from './ModelEditModalActions';
+import { ModelEditSimple } from './ModelEditSimple';
+import { ModelFieldGroup } from './ModelFieldGroup';
+import { ModelSection } from './ModelSection';
 
 export const ModelEditModalHeader = (props) => {
   const { model } = useModelEditContext();
@@ -78,7 +78,5 @@ ModelEditModalBase.defaultProps = {
   isOpen: false
 };
 
-const ModelEditModal = (props) =>
+export const ModelEditModal = (props) =>
   useGlobalComponentForModel('ModelEditModal', ModelEditModalBase, props);
-
-export default ModelEditModal;

@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelDisplayGroup } from 'rhino/hooks/form';
-import DisplayGroupArray, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelDisplayGroup } from '../../../hooks/form';
+import {
+  DisplayGroupArray,
   DisplayGroupFloatingArray,
   DisplayGroupHorizontalArray
-} from 'rhino/components/forms/displayGroups/DisplayGroupArray';
+} from '../../forms/displayGroups/DisplayGroupArray';
 
 export const ModelDisplayGroupVerticalArray = (props) => {
   // FIXME - displayGroupProps instead?
@@ -34,11 +35,9 @@ export const ModelDisplayGroupFloatingArray = (props) => {
   return <DisplayGroupFloatingArray {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupArray = (props) =>
+export const ModelDisplayGroupArray = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupArray',
     ModelDisplayGroupVerticalArray,
     props
   );
-
-export default ModelDisplayGroupArray;

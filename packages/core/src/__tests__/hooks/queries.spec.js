@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { createWrapper } from '__tests__/shared/helpers';
+import { createWrapper } from '../shared/helpers';
 import {
   useModelCreate,
   useModelDelete,
@@ -12,8 +12,8 @@ import {
   useModelKeyShow,
   useModelShow,
   useModelUpdate
-} from 'rhino/hooks/queries';
-import * as network from '../../../rhino/lib/networking';
+} from '../../hooks/queries';
+import * as network from '../../lib/networking';
 
 const testQueryClient = () =>
   new QueryClient({

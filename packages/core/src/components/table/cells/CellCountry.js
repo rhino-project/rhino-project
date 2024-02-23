@@ -1,6 +1,6 @@
-import { Flag } from 'rhino/components/forms/fields/FieldCountry';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import { useTableInheritedProps } from 'rhino/hooks/table';
+import { Flag } from '../../forms/fields/FieldCountry';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
 
 export const CellCountryBase = ({ empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
@@ -9,7 +9,5 @@ export const CellCountryBase = ({ empty = '-', ...props }) => {
   return <Flag country={getValue()} {...inheritedProps} />;
 };
 
-const CellCountry = (props) =>
+export const CellCountry = (props) =>
   useGlobalComponent('CellCountry', CellCountryBase, props);
-
-export default CellCountry;

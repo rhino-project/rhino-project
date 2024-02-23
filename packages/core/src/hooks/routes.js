@@ -10,7 +10,7 @@ import {
   getSessionCreatePath,
   getSettingsPath,
   getUserCreatePath
-} from 'rhino/utils/routes';
+} from '../utils/routes';
 import { getModelCreatePath, getModelShowPath } from '../utils/routes';
 import { useModel } from './models';
 

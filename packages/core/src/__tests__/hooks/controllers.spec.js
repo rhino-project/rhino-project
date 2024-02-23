@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
-import { createWrapper } from '__tests__/shared/helpers';
+import { createWrapper } from '../shared/helpers';
 import {
   DEFAULT_LIMIT,
   DEFAULT_SORT,
@@ -11,7 +11,7 @@ import {
   useModelIndexContext,
   useModelIndexController,
   useModelShowContext
-} from 'rhino/hooks/controllers';
+} from '../../hooks/controllers';
 
 // https://dev.to/alexclaes/test-a-hook-throwing-errors-in-react-18-with-renderhook-from-testing-library-20g8
 describe('useModelIndexContext', () => {

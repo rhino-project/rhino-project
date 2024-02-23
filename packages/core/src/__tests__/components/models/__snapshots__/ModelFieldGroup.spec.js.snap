@@ -24,13 +24,15 @@ exports[`ModelFieldGroup > should render without prop 1`] = `
     label="Title"
     path="title"
     placeholder="Title"
+    required=""
   >
     <label
-      class="form-label"
+      class="required form-label"
       for="title"
       id="fieldLabel-title"
       path="title"
       placeholder="Title"
+      required=""
     >
       Title
     </label>
@@ -43,6 +45,7 @@ exports[`ModelFieldGroup > should render without prop 1`] = `
       name="title"
       path="title"
       placeholder="Title"
+      required=""
       type="text"
     />
   </div>

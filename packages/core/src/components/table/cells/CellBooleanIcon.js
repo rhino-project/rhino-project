@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { Icon } from 'rhino/components/icons';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import { useTableInheritedProps } from 'rhino/hooks/table';
+import { Icon } from '../../icons';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
 
 export const CellBooleanIconBase = ({
   trueIcon = 'check',
@@ -18,7 +18,5 @@ export const CellBooleanIconBase = ({
   return <Icon icon={value} {...inheritedProps} />;
 };
 
-const CellBooleanIcon = (props) =>
+export const CellBooleanIcon = (props) =>
   useGlobalComponent('CellBooleanIcon', CellBooleanIconBase, props);
-
-export default CellBooleanIcon;

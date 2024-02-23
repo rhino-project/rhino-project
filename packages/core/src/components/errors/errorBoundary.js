@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { DangerAlert } from '../alerts';
 
-class ErrorBoundary extends React.Component {
+export class ErrorBoundary extends React.Component {
   static contextType = Context;
 
   constructor(props) {
@@ -41,5 +41,3 @@ class ErrorBoundary extends React.Component {
 ErrorBoundary.propTypes = {
   children: PropTypes.object
 };
-
-export default ErrorBoundary;

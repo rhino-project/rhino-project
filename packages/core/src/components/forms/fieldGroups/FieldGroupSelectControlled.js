@@ -1,8 +1,11 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldSelectControlled from '../fields/FieldSelectControlled';
-import FieldLayoutFloating from '../FieldLayoutFloating';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldSelectControlled } from '../fields/FieldSelectControlled';
+import { FieldLayoutFloating } from '../FieldLayoutFloating';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 
 const BASE_OVERRIDES = {
   Field: FieldSelectControlled
@@ -29,11 +32,9 @@ export const FieldGroupFloatingSelectControlled = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupSelectControlled = (props) =>
+export const FieldGroupSelectControlled = (props) =>
   useGlobalComponent(
     'FieldGroupSelectControlled',
     FieldGroupSelectControlledBase,
     props
   );
-
-export default FieldGroupSelectControlled;

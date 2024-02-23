@@ -1,4 +1,4 @@
-import { networkApiCallOnlyData } from 'rhino/lib/networking';
+import { networkApiCallOnlyData } from '../lib/networking';
 import { useCallback, useMemo } from 'react';
 import {
   useModelCreate,

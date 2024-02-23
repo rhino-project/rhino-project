@@ -1,8 +1,11 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldTime from '../fields/FieldTime';
-import FieldLayoutFloating from '../FieldLayoutFloating';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldTime } from '../fields/FieldTime';
+import { FieldLayoutFloating } from '../FieldLayoutFloating';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 
 const BASE_OVERRIDES = {
   Field: FieldTime
@@ -26,7 +29,5 @@ export const FieldGroupFloatingTime = ({ overrides, ...props }) => {
   return <FieldLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const FieldGroupTime = (props) =>
+export const FieldGroupTime = (props) =>
   useGlobalComponent('FieldGroupTime', FieldGroupTimeBase, props);
-
-export default FieldGroupTime;

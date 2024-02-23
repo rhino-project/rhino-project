@@ -2,15 +2,15 @@ import {
   useGlobalComponent,
   useMergedOverrides,
   useOverrides
-} from 'rhino/hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldCurrency from '../fields/FieldCurrency';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+} from '../../../hooks/overrides';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldCurrency } from '../fields/FieldCurrency';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 import classnames from 'classnames';
 import { FormGroup, InputGroup } from 'reactstrap';
-import { useFieldError, useFieldInheritedProps } from 'rhino/hooks/form';
-import FieldLabel from '../FieldLabel';
-import FieldFeedback from '../FieldFeedback';
+import { useFieldError, useFieldInheritedProps } from '../../../hooks/form';
+import { FieldLabel } from '../FieldLabel';
+import { FieldFeedback } from '../FieldFeedback';
 import { FieldCurrencyBaseInput } from '../fields/FieldCurrency';
 
 const BASE_OVERRIDES = {
@@ -72,7 +72,5 @@ export const FieldGroupFloatingCurrency = ({ overrides, ...props }) => {
   );
 };
 
-const FieldGroupCurrency = (props) =>
+export const FieldGroupCurrency = (props) =>
   useGlobalComponent('FieldGroupCurrency', FieldGroupCurrencyBase, props);
-
-export default FieldGroupCurrency;

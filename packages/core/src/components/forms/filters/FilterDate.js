@@ -1,5 +1,3 @@
-import FieldDate from '../fields/FieldDate';
+import { FieldDate } from '../fields/FieldDate';
 
-const FilterDate = (props) => <FieldDate {...props} />;
-
-export default FilterDate;
+export const FilterDate = (props) => <FieldDate {...props} />;

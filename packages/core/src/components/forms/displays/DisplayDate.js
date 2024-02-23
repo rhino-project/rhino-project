@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { format as dateFormat, parseISO } from 'date-fns';
 import { FieldInputControlledBase } from '../fields/FieldInputControlled';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const DisplayDateBase = ({
   format = 'MMMM d, yyyy',
@@ -27,7 +27,5 @@ export const DisplayDateBase = ({
   );
 };
 
-const DisplayDate = (props) =>
+export const DisplayDate = (props) =>
   useGlobalComponent('DisplayDate', DisplayDateBase, props);
-
-export default DisplayDate;

@@ -1,13 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import FilterYear from 'rhino/components/forms/filters/FilterYear';
-import ModelFiltersSimple from 'rhino/components/models/ModelFiltersSimple';
-import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
-import ModelFilterYear from 'rhino/components/models/filters/ModelFilterYear';
+import { FilterYear } from '../../../../components/forms/filters/FilterYear';
+import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSimple';
+import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
+import { ModelFilterYear } from '../../../../components/models/filters/ModelFilterYear';
 
-vi.mock('rhino/components/forms/filters/FilterYear', () => ({
-  default: vi.fn(() => null)
+vi.mock('../../../../components/forms/filters/FilterYear', () => ({
+  FilterYear: vi.fn(() => null)
 }));
 
 describe('ModelFilterYear', () => {

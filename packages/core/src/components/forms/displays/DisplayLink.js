@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useController } from 'react-hook-form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const DisplayLinkBase = ({
   accessor,
@@ -21,7 +21,5 @@ export const DisplayLinkBase = ({
   return <div>{value ? <a href={value}>{children || value}</a> : empty}</div>;
 };
 
-const DisplayLink = (props) =>
+export const DisplayLink = (props) =>
   useGlobalComponent('DisplayLink', DisplayLinkBase, props);
-
-export default DisplayLink;

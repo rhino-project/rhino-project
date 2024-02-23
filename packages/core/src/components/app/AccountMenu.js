@@ -7,12 +7,12 @@ import {
   UncontrolledDropdown
 } from 'reactstrap';
 
-import { NavIcon } from 'rhino/components/icons';
-import { useUser } from 'rhino/hooks/auth';
-import { useBaseOwner, useHasRoleOf } from 'rhino/hooks/owner';
-import { useAccountSettingsPath, useSettingsPath } from 'rhino/hooks/routes';
-import { useSignOutAction } from 'rhino/queries/auth';
-import { hasOrganizationsModule } from 'rhino/utils/models';
+import { NavIcon } from '../icons';
+import { useUser } from '../../hooks/auth';
+import { useBaseOwner, useHasRoleOf } from '../../hooks/owner';
+import { useAccountSettingsPath, useSettingsPath } from '../../hooks/routes';
+import { useSignOutAction } from '../../queries/auth';
+import { hasOrganizationsModule } from '../../utils/models';
 
 const OrganizationSettings = () => {
   const baseOwner = useBaseOwner();
@@ -28,7 +28,7 @@ const OrganizationSettings = () => {
   );
 };
 
-const AccountMenu = () => {
+export const AccountMenu = () => {
   const { mutate: signOutAction } = useSignOutAction();
   const user = useUser();
   const accountSettingsPath = useAccountSettingsPath();
@@ -69,5 +69,3 @@ const AccountMenu = () => {
     </UncontrolledDropdown>
   );
 };
-
-export default AccountMenu;

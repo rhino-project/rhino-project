@@ -1,9 +1,9 @@
 import { render, renderHook, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
-import AuthProvider, { AuthContext } from 'rhino/contexts/AuthContext';
+import { AuthProvider, AuthContext } from '../../contexts/AuthContext';
 import { useContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { NetworkingMock } from '__tests__/shared/mock';
+import { NetworkingMock } from '../shared/mock';
 
 vi.mock('axios');
 const networkingMock = new NetworkingMock();

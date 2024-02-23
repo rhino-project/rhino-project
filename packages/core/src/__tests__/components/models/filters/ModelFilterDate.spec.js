@@ -1,13 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import ModelFiltersSimple from 'rhino/components/models/ModelFiltersSimple';
-import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
-import FilterDate from 'rhino/components/forms/filters/FilterDate';
-import ModelFilterDate from 'rhino/components/models/filters/ModelFilterDate';
+import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSimple';
+import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
+import { FilterDate } from '../../../../components/forms/filters/FilterDate';
+import { ModelFilterDate } from '../../../../components/models/filters/ModelFilterDate';
 
-vi.mock('rhino/components/forms/filters/FilterDate', () => ({
-  default: vi.fn(() => null)
+vi.mock('../../../../components/forms/filters/FilterDate', () => ({
+  FilterDate: vi.fn(() => null)
 }));
 
 describe('ModelFilterDate', () => {

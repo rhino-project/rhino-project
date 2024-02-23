@@ -1,12 +1,12 @@
 import { each, map } from 'lodash';
 import { Route } from 'react-router-dom';
 
-import modelLoader from 'rhino/models';
+import modelLoader from '../models';
 
-import CreateModel from 'rhino/pages/model/Create';
-import EditModel from 'rhino/pages/model/Edit';
-import ModelIndex from 'rhino/pages/model/Index';
-import ShowModel from 'rhino/pages/model/Show';
+import { Create as CreateModel } from '../pages/model/Create';
+import { Edit as EditModel } from '../pages/model/Edit';
+import { Index as ModelIndex } from '../pages/model/Index';
+import { Show as ShowModel } from '../pages/model/Show';
 
 const generateModelRoutePaths = () => {
   const routes = {};
@@ -23,7 +23,7 @@ const generateModelRoutePaths = () => {
   return routes;
 };
 
-const modelRoutePaths = {
+export const modelRoutePaths = {
   ...generateModelRoutePaths()
 };
 
@@ -98,4 +98,3 @@ export const modelCrudRoutes = (model) => {
 
 export const modelRoutes = () =>
   map(modelLoader.api.components.schemas, (m) => modelCrudRoutes(m));
-export default modelRoutePaths;

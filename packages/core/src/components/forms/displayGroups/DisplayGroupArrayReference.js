@@ -1,8 +1,11 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayArrayReference from '../displays/DisplayArrayReference';
-import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';
-import DisplayLayoutFloating from '../DisplayLayoutFloating';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayArrayReference } from '../displays/DisplayArrayReference';
+import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
+import { DisplayLayoutFloating } from '../DisplayLayoutFloating';
 
 const BASE_OVERRIDES = {
   Display: DisplayArrayReference
@@ -29,11 +32,9 @@ export const DisplayGroupFloatingArrayReference = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupArrayReference = (props) =>
+export const DisplayGroupArrayReference = (props) =>
   useGlobalComponent(
     'DisplayGroupArrayReference',
     DisplayGroupVerticalArrayReference,
     props
   );
-
-export default DisplayGroupArrayReference;

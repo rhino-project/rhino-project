@@ -2,17 +2,17 @@ import {
   useGlobalComponent,
   useMergedOverrides,
   useOverrides
-} from 'rhino/hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldPassword from '../fields/FieldPassword';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+} from '../../../hooks/overrides';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldPassword } from '../fields/FieldPassword';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 import classnames from 'classnames';
 import { FormGroup, InputGroup } from 'reactstrap';
-import { useFieldError, useFieldInheritedProps } from 'rhino/hooks/form';
-import FieldLabel from '../FieldLabel';
-import FieldFeedback from '../FieldFeedback';
+import { useFieldError, useFieldInheritedProps } from '../../../hooks/form';
+import { FieldLabel } from '../FieldLabel';
+import { FieldFeedback } from '../FieldFeedback';
 import { FieldPasswordBaseInput } from '../fields/FieldPassword';
-import { IconButton } from 'rhino/components/buttons';
+import { IconButton } from '../../buttons';
 import { useState } from 'react';
 
 const BASE_OVERRIDES = {
@@ -78,7 +78,5 @@ export const FieldGroupFloatingPassword = ({ overrides, ...props }) => {
   );
 };
 
-const FieldGroupPassword = (props) =>
+export const FieldGroupPassword = (props) =>
   useGlobalComponent('FieldGroupPassword', FieldGroupPasswordBase, props);
-
-export default FieldGroupPassword;

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import {
   useGlobalComponentForModel,
   useOverrides
-} from 'rhino/hooks/overrides';
+} from '../../hooks/overrides';
 
-import ModelIndexHeader from 'rhino/components/models/ModelIndexHeader';
-import ModelIndexTable from './ModelIndexTable';
-import ModelIndexActions from './ModelIndexActions';
-import ModelIndexSimple from './ModelIndexSimple';
-import ModelSection from './ModelSection';
+import { ModelIndexHeader } from './ModelIndexHeader';
+import { ModelIndexTable } from './ModelIndexTable';
+import { ModelIndexActions } from './ModelIndexActions';
+import { ModelIndexSimple } from './ModelIndexSimple';
+import { ModelSection } from './ModelSection';
 
 const defaultComponents = {
   ModelIndexHeader,
@@ -50,7 +50,5 @@ ModelIndexBase.propTypes = {
   parent: PropTypes.object
 };
 
-const ModelIndex = (props) =>
+export const ModelIndex = (props) =>
   useGlobalComponentForModel('ModelIndex', ModelIndexBase, props);
-
-export default ModelIndex;

@@ -1,34 +1,34 @@
 import {
   useGlobalComponentForAttribute,
   useOverrides
-} from 'rhino/hooks/overrides';
-import { useModelContext } from 'rhino/hooks/models';
+} from '../../hooks/overrides';
+import { useModelContext } from '../../hooks/models';
 import {
   getModelAndAttributeFromPath,
   getModelFromRef,
   isOwnerGlobal
-} from 'rhino/utils/models';
-import ModelFieldGroupArrayInteger from './fieldGroups/ModelFieldGroupArrayInteger';
-import ModelFieldGroupArrayString from './fieldGroups/ModelFieldGroupArrayString';
-import ModelFieldGroupBoolean from './fieldGroups/ModelFieldGroupBoolean';
-import ModelFieldGroupCountry from './fieldGroups/ModelFieldGroupCountry';
-import ModelFieldGroupCurrency from './fieldGroups/ModelFieldGroupCurrency';
-import ModelFieldGroupDate from './fieldGroups/ModelFieldGroupDate';
-import ModelFieldGroupDateTime from './fieldGroups/ModelFieldGroupDateTime';
-import ModelFieldGroupEnum from './fieldGroups/ModelFieldGroupEnum';
-import ModelFieldGroupFile from './fieldGroups/ModelFieldGroupFile';
-import ModelFieldGroupFloat from './fieldGroups/ModelFieldGroupFloat';
-import ModelFieldGroupInteger from './fieldGroups/ModelFieldGroupInteger';
-import ModelFieldGroupIntegerSelect from './fieldGroups/ModelFieldGroupIntegerSelect';
-import ModelFieldGroupJoinSimple from './fieldGroups/ModelFieldGroupJoinSimple';
-import ModelFieldGroupOwnerReference from './fieldGroups/ModelFieldGroupOwnerReference';
-import ModelFieldGroupPhone from './fieldGroups/ModelFieldGroupPhone';
-import ModelFieldGroupReference from './fieldGroups/ModelFieldGroupReference';
-import ModelFieldGroupString from './fieldGroups/ModelFieldGroupString';
-import ModelFieldGroupText from './fieldGroups/ModelFieldGroupText';
-import ModelFieldGroupTime from './fieldGroups/ModelFieldGroupTime';
-import ModelFieldGroupYear from './fieldGroups/ModelFieldGroupYear';
-import ModelFieldGroupNested from './fieldGroups/ModelFieldGroupNested';
+} from '../../utils/models';
+import { ModelFieldGroupArrayInteger } from './fieldGroups/ModelFieldGroupArrayInteger';
+import { ModelFieldGroupArrayString } from './fieldGroups/ModelFieldGroupArrayString';
+import { ModelFieldGroupBoolean } from './fieldGroups/ModelFieldGroupBoolean';
+import { ModelFieldGroupCountry } from './fieldGroups/ModelFieldGroupCountry';
+import { ModelFieldGroupCurrency } from './fieldGroups/ModelFieldGroupCurrency';
+import { ModelFieldGroupDate } from './fieldGroups/ModelFieldGroupDate';
+import { ModelFieldGroupDateTime } from './fieldGroups/ModelFieldGroupDateTime';
+import { ModelFieldGroupEnum } from './fieldGroups/ModelFieldGroupEnum';
+import { ModelFieldGroupFile } from './fieldGroups/ModelFieldGroupFile';
+import { ModelFieldGroupFloat } from './fieldGroups/ModelFieldGroupFloat';
+import { ModelFieldGroupInteger } from './fieldGroups/ModelFieldGroupInteger';
+import { ModelFieldGroupIntegerSelect } from './fieldGroups/ModelFieldGroupIntegerSelect';
+import { ModelFieldGroupJoinSimple } from './fieldGroups/ModelFieldGroupJoinSimple';
+import { ModelFieldGroupOwnerReference } from './fieldGroups/ModelFieldGroupOwnerReference';
+import { ModelFieldGroupPhone } from './fieldGroups/ModelFieldGroupPhone';
+import { ModelFieldGroupReference } from './fieldGroups/ModelFieldGroupReference';
+import { ModelFieldGroupString } from './fieldGroups/ModelFieldGroupString';
+import { ModelFieldGroupText } from './fieldGroups/ModelFieldGroupText';
+import { ModelFieldGroupTime } from './fieldGroups/ModelFieldGroupTime';
+import { ModelFieldGroupYear } from './fieldGroups/ModelFieldGroupYear';
+import { ModelFieldGroupNested } from './fieldGroups/ModelFieldGroupNested';
 
 const defaultComponents = {
   ModelFieldGroupArrayInteger,
@@ -159,7 +159,5 @@ export const ModelFieldGroupBase = ({ overrides, ...originalProps }) => {
   return 'No field for this attribute type';
 };
 
-const ModelFieldGroup = (props) =>
+export const ModelFieldGroup = (props) =>
   useGlobalComponentForAttribute('ModelFieldGroup', ModelFieldGroupBase, props);
-
-export default ModelFieldGroup;

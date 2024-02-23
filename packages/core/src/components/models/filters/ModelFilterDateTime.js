@@ -3,10 +3,10 @@ import { useWatch } from 'react-hook-form';
 import { format, parseISO } from 'date-fns';
 
 import { useEffect, useMemo } from 'react';
-import { useModelFilterField } from 'rhino/hooks/form';
-import FilterDateTime from '../../forms/filters/FilterDateTime';
-import { getDateTimeFormat } from 'rhino/utils/ui';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { useModelFilterField } from '../../../hooks/form';
+import { FilterDateTime } from '../../forms/filters/FilterDateTime';
+import { getDateTimeFormat } from '../../../utils/ui';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
 // FIXME: Replicated in ModelFilterDate, ModelFilterDateTime, ModelFilterTime
 const operatorToLabel = (format, operator) => {
@@ -37,7 +37,7 @@ const buildDateTimePill = (attribute, operator, newValue) => {
   )} ${format(date, getDateTimeFormat(attribute))}`;
 };
 
-const ModelFilterDateTime = ({ model, path, ...props }) => {
+export const ModelFilterDateTime = ({ model, path, ...props }) => {
   const { attribute, operator, operatorPath } = useModelFilterField(
     model,
     path
@@ -83,5 +83,3 @@ ModelFilterDateTime.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterDateTime;

@@ -5,8 +5,8 @@ import {
   useFieldError,
   useFieldRegister,
   useFieldInheritedProps
-} from 'rhino/hooks/form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+} from '../../../hooks/form';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 // FIXME: Is there a better way to handle setValueAs?
 export const FieldInputBase = ({ setValueAs, ...props }) => {
@@ -35,7 +35,5 @@ FieldInputBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldInput = (props) =>
+export const FieldInput = (props) =>
   useGlobalComponent('FieldInput', FieldInputBase, props);
-
-export default FieldInput;

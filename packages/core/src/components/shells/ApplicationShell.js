@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand } from 'reactstrap';
-import PrimaryNavigation from 'rhino/components/app/PrimaryNavigation';
-import SecondaryNavigation from 'rhino/components/app/SecondaryNavigation';
+import { PrimaryNavigation } from '../app/PrimaryNavigation';
+import { SecondaryNavigation } from '../app/SecondaryNavigation';
 import { Icon } from '../icons';
 import { LightLogo } from '../logos';
-import Sidebar from './Sidebar';
+import { Sidebar } from './Sidebar';
 
 const SidebarLayout = () => (
   <>
@@ -18,7 +18,7 @@ const SidebarLayout = () => (
   </>
 );
 
-const ApplicationShell = ({ children }) => {
+export const ApplicationShell = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
   const openSidebar = () => {
@@ -87,8 +87,6 @@ const ApplicationShell = ({ children }) => {
     </>
   );
 };
-
-export default ApplicationShell;
 
 ApplicationShell.propTypes = {
   children: PropTypes.node

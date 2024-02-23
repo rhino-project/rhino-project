@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelFieldGroup } from 'rhino/hooks/form';
-import ModelFieldNested from '../fields/ModelFieldNested';
-import FieldLayoutVertical from 'rhino/components/forms/FieldLayoutVertical';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelFieldGroup } from '../../../hooks/form';
+import { ModelFieldNested } from '../fields/ModelFieldNested';
+import { FieldLayoutVertical } from '../../forms/FieldLayoutVertical';
 
 const BASE_OVERRIDES = {
   Field: ModelFieldNested
@@ -30,11 +30,9 @@ ModelFieldGroupNestedVertical.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const ModelFieldGroupNested = (props) =>
+export const ModelFieldGroupNested = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupNested',
     ModelFieldGroupNestedVertical,
     props
   );
-
-export default ModelFieldGroupNested;

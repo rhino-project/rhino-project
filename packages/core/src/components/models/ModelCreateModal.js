@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 
-import { useRenderPaths } from 'rhino/hooks/renderPaths';
+import { useRenderPaths } from '../../hooks/renderPaths';
 import { useModelCreateContext } from '../../hooks/controllers';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import ModelCreateModalActions from './ModelCreateModalActions';
-import ModelCreateSimple from './ModelCreateSimple';
-import ModelFieldGroup from './ModelFieldGroup';
-import ModelSection from './ModelSection';
+import { ModelCreateModalActions } from './ModelCreateModalActions';
+import { ModelCreateSimple } from './ModelCreateSimple';
+import { ModelFieldGroup } from './ModelFieldGroup';
+import { ModelSection } from './ModelSection';
 
 export const ModelCreateModalHeader = (props) => {
   const { model } = useModelCreateContext();
@@ -78,7 +78,5 @@ ModelCreateModalBase.defaultProps = {
   isOpen: false
 };
 
-const ModelCreateModal = (props) =>
+export const ModelCreateModal = (props) =>
   useGlobalComponentForModel('ModelCreateModal', ModelCreateModalBase, props);
-
-export default ModelCreateModal;

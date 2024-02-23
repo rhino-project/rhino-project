@@ -1,15 +1,15 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import React from 'react';
 import { QueryClientProvider } from '@tanstack/react-query';
-import AuthProvider from 'rhino/contexts/AuthContext';
-import { useAuth } from 'rhino/hooks/auth';
+import { AuthProvider } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/auth';
 import {
   AUTH_BASE_PATH,
   AUTH_CREATE_END_POINT,
   AUTH_DESTROY_END_POINT,
   AUTH_VALIDATE_TOKEN_END_POINT,
   constructPath
-} from 'rhino/lib/networking';
+} from '../../lib/networking';
 
 const defaultUser = {
   id: 1,

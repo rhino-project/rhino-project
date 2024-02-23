@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelDisplayFieldGroupAttachmentImage } from 'rhino/hooks/form';
-import DisplayGroupAttachmentImage, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelDisplayFieldGroupAttachmentImage } from '../../../hooks/form';
+import {
+  DisplayGroupAttachmentImage,
   DisplayGroupFloatingAttachmentImage,
   DisplayGroupHorizontalAttachmentImage
-} from 'rhino/components/forms/displayGroups/DisplayGroupAttachmentImage';
+} from '../../forms/displayGroups/DisplayGroupAttachmentImage';
 
 export const ModelDisplayGroupVerticalAttachmentImage = (props) => {
   // FIXME - displayGroupProps instead?
@@ -34,11 +35,9 @@ export const ModelDisplayGroupFloatingAttachmentImage = (props) => {
   return <DisplayGroupFloatingAttachmentImage {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupAttachmentImage = (props) =>
+export const ModelDisplayGroupAttachmentImage = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupAttachmentImage',
     ModelDisplayGroupVerticalAttachmentImage,
     props
   );
-
-export default ModelDisplayGroupAttachmentImage;

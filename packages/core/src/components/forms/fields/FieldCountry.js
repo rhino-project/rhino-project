@@ -3,8 +3,8 @@ import classnames from 'classnames';
 
 import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import { CloseButton } from 'rhino/components/buttons';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import { CloseButton } from '../../buttons';
 import PhoneInput from 'react-phone-input-2';
 
 export const Flag = ({ country }) => {
@@ -65,7 +65,5 @@ FieldCountryBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldCountry = (props) =>
+export const FieldCountry = (props) =>
   useGlobalComponent('FieldCountry', FieldCountryBase, props);
-
-export default FieldCountry;

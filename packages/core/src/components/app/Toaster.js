@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Toast, ToastHeader, ToastBody } from 'reactstrap';
 
-import { useToast } from 'rhino/queries/toast';
-import { CloseButton } from 'rhino/components/buttons';
+import { useToast } from '../../queries/toast';
+import { CloseButton } from '../buttons';
 
 const Toasted = ({ title, description, icon = 'primary', onClick }) => (
   <Toast className="mx-auto">
@@ -21,7 +21,7 @@ Toasted.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-const Toaster = () => {
+export const Toaster = () => {
   const [toast, , removeToast] = useToast();
 
   const handleClose = (id) => removeToast(id);
@@ -50,5 +50,3 @@ const Toaster = () => {
 Toaster.propTypes = {};
 
 Toaster.defaultProps = {};
-
-export default Toaster;

@@ -1,4 +1,4 @@
-import CellInteger from 'rhino/components/table/cells/CellInteger';
+import { CellInteger } from '../../../../components/table/cells/CellInteger';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('CellInteger', () => {

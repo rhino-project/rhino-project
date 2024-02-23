@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import DisplayString from './DisplayString';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import { DisplayString } from './DisplayString';
 
 export const DisplayArrayReferenceBase = (props) => {
   const accessor = useCallback(
@@ -11,7 +11,5 @@ export const DisplayArrayReferenceBase = (props) => {
   return <DisplayString {...props} accessor={accessor} />;
 };
 
-const DisplayArrayReference = (props) =>
+export const DisplayArrayReference = (props) =>
   useGlobalComponent('DisplayArrayReference', DisplayArrayReferenceBase, props);
-
-export default DisplayArrayReference;

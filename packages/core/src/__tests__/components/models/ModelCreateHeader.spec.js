@@ -1,4 +1,4 @@
-import ModelCreateHeader from 'rhino/components/models/ModelCreateHeader';
+import { ModelCreateHeader } from '../../../components/models/ModelCreateHeader';
 import { sharedModelTests } from './sharedModelTests';
 
 describe('ModelCreateHeader', () => {

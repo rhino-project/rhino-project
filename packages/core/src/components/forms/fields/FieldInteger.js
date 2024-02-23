@@ -1,4 +1,4 @@
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 import { FieldInputBase } from './FieldInput';
 
 // We want it to be blank if it's not a number
@@ -13,7 +13,5 @@ export const FieldIntegerBase = (props) => (
   <FieldInputBase type="number" setValueAs={setValueAs} {...props} />
 );
 
-const FieldInteger = (props) =>
+export const FieldInteger = (props) =>
   useGlobalComponent('FieldInteger', FieldIntegerBase, props);
-
-export default FieldInteger;

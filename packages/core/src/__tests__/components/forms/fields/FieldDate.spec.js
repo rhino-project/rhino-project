@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import FieldDate from 'rhino/components/forms/fields/FieldDate';
+import { FieldDate } from '../../../../components/forms/fields/FieldDate';
 import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldDate', () => {

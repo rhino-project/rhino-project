@@ -2,10 +2,10 @@ import CustomPrimaryNavigation from 'components/app/CustomPrimaryNavigation';
 import { map } from 'lodash';
 import PropTypes from 'prop-types';
 import { useMemo } from 'react';
-import { NavItem, NavSection } from 'rhino/components/nav';
+import { NavItem, NavSection } from '../nav';
 import { useRhinoConfig } from '@rhino-project/config';
-import { getBaseOwnedModels } from 'rhino/utils/models';
-import { getModelIndexPath } from 'rhino/utils/routes';
+import { getBaseOwnedModels } from '../../utils/models';
+import { getModelIndexPath } from '../../utils/routes';
 
 const modelsRoute = (model) => getModelIndexPath(model);
 
@@ -14,7 +14,11 @@ const useNavModels = () => {
   return useMemo(() => models, [models]);
 };
 
-const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
+export const PrimaryNavigation = ({
+  title = 'Resources',
+  className,
+  itemClass
+}) => {
   const { enableModelRoutes } = useRhinoConfig();
   const models = useNavModels().filter(
     (e) => e.model !== 'users_role' && e.model !== 'users_role_invite'
@@ -40,8 +44,6 @@ const PrimaryNavigation = ({ title = 'Resources', className, itemClass }) => {
     </>
   );
 };
-
-export default PrimaryNavigation;
 
 PrimaryNavigation.propTypes = {
   title: PropTypes.string,

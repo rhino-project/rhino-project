@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import ModelCellAttachment from 'rhino/components/models/cells/ModelCellAttachment';
+import { ModelCellAttachment } from '../../../../components/models/cells/ModelCellAttachment';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellAttachment', () => {

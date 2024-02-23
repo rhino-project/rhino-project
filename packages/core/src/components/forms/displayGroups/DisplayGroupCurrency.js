@@ -1,10 +1,14 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayCurrency, {
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import {
+  DisplayCurrency,
   DisplayCurrencyBaseInput
 } from '../displays/DisplayCurrency';
-import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';
-import DisplayLayoutFloating from '../DisplayLayoutFloating';
+import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
+import { DisplayLayoutFloating } from '../DisplayLayoutFloating';
 
 const BASE_OVERRIDES = {
   Display: DisplayCurrency
@@ -37,11 +41,9 @@ export const DisplayGroupFloatingCurrency = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupCurrency = (props) =>
+export const DisplayGroupCurrency = (props) =>
   useGlobalComponent(
     'DisplayGroupCurrency',
     DisplayGroupVerticalCurrency,
     props
   );
-
-export default DisplayGroupCurrency;

@@ -1,18 +1,18 @@
 import { Children, useCallback, useMemo, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useModelShowContext } from 'rhino/hooks/controllers';
-import { getModelShowPath } from 'rhino/utils/routes';
+import { useModelShowContext } from '../../hooks/controllers';
+import { getModelShowPath } from '../../utils/routes';
 import { useBaseOwnerNavigation } from '../../hooks/history';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import withParams from '../../routes/withParams';
+import { withParams } from '../../routes/withParams';
 import { getParentModel, isBaseOwned } from '../../utils/models';
 import { IconButton } from '../buttons';
-import ModelEditModal from './ModelEditModal';
-import ModelSection from './ModelSection';
+import { ModelEditModal } from './ModelEditModal';
+import { ModelSection } from './ModelSection';
 
 export const ModelShowActionEdit = ({ children, ...props }) => {
   const navigate = useNavigate();
@@ -153,7 +153,5 @@ export const ModelShowActionsModalEdit = (props) => (
   <ModelShowActionsBase overrides={MODAL_EDIT_OVERRIDES} {...props} />
 );
 
-const ModelShowActions = (props) =>
+export const ModelShowActions = (props) =>
   useGlobalComponentForModel('ModelShowActions', ModelShowActionsBase, props);
-
-export default ModelShowActions;

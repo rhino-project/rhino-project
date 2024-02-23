@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import ModelIndexProvider from './ModelIndexProvider';
-import { useModelIndexController } from 'rhino/hooks/controllers';
+import { ModelIndexProvider } from './ModelIndexProvider';
+import { useModelIndexController } from '../../hooks/controllers';
 import { Spinner } from 'reactstrap';
 import { useMemo } from 'react';
 
@@ -31,5 +31,3 @@ ModelIndexSimple.propTypes = {
     PropTypes.node
   ])
 };
-
-export default ModelIndexSimple;

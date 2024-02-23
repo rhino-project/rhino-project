@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelFieldGroup } from 'rhino/hooks/form';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
-import { getIdentifierAttribute, getModelFromRef } from 'rhino/utils/models';
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelFieldGroup } from '../../../hooks/form';
+import { useModelAndAttributeFromPath } from '../../../hooks/models';
+import { getIdentifierAttribute, getModelFromRef } from '../../../utils/models';
 import { useId, useMemo, useState } from 'react';
 import { useController } from 'react-hook-form';
-import { useModelIndex } from 'rhino/hooks/queries';
+import { useModelIndex } from '../../../hooks/queries';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import { FieldLayoutVerticalBase } from 'rhino/components/forms/FieldLayoutVertical';
-import { FieldLayoutHorizontalBase } from 'rhino/components/forms/FieldLayoutHorizontal';
-import { FieldLayoutFloatingBase } from 'rhino/components/forms/FieldLayoutFloating';
+import { FieldLayoutVerticalBase } from '../../forms/FieldLayoutVertical';
+import { FieldLayoutHorizontalBase } from '../../forms/FieldLayoutHorizontal';
+import { FieldLayoutFloatingBase } from '../../forms/FieldLayoutFloating';
 
 // FIXME: This might need to be refactored to use the useModelFieldGroup and/or have a generic typeahead component
 export const ModelFieldReferenceBaseInput = ({ model, ...props }) => {
@@ -142,11 +142,9 @@ export const ModelFieldGroupFloatingReference = (props) => {
   );
 };
 
-const ModelFieldGroupReference = (props) =>
+export const ModelFieldGroupReference = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupReference',
     ModelFieldGroupReferenceVertical,
     props
   );
-
-export default ModelFieldGroupReference;

@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
 import { useController } from 'react-hook-form';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useFieldInheritedProps } from '../../../hooks/form';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const FieldBooleanBase = (props) => {
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
@@ -33,7 +33,5 @@ FieldBooleanBase.propTypes = {
   path: PropTypes.string.isRequired
 };
 
-const FieldBoolean = (props) =>
+export const FieldBoolean = (props) =>
   useGlobalComponent('FieldBoolean', FieldBooleanBase, props);
-
-export default FieldBoolean;

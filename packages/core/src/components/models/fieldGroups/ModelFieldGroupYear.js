@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import FieldGroupYear, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import {
+  FieldGroupYear,
   FieldGroupFloatingYear,
   FieldGroupHorizontalYear
-} from 'rhino/components/forms/fieldGroups/FieldGroupYear';
-import { useModelFieldGroup } from 'rhino/hooks/form';
+} from '../../forms/fieldGroups/FieldGroupYear';
+import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupYearVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroup(props);
@@ -31,11 +32,9 @@ export const ModelFieldGroupFloatingYear = (props) => {
   return <FieldGroupFloatingYear {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupYear = (props) =>
+export const ModelFieldGroupYear = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupYear',
     ModelFieldGroupYearVertical,
     props
   );
-
-export default ModelFieldGroupYear;

@@ -1,10 +1,10 @@
 import { FormGroup } from 'reactstrap';
 
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
-import FieldLabel from './FieldLabel';
-import Field from './fields/FieldInput';
-import FieldFeedback from './FieldFeedback';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import { FieldLabel } from './FieldLabel';
+import { FieldInput as Field } from './fields/FieldInput';
+import { FieldFeedback } from './FieldFeedback';
+import { useFieldInheritedProps } from '../../hooks/form';
 
 const INHERITED_PROP_OPTIONS = { prefix: 'FieldLayoutFloating' };
 
@@ -35,7 +35,5 @@ export const FieldLayoutFloatingBase = ({ overrides, ...props }) => {
   );
 };
 
-const FieldLayoutFloating = (props) =>
+export const FieldLayoutFloating = (props) =>
   useGlobalComponent('FieldLayoutFloating', FieldLayoutFloatingBase, props);
-
-export default FieldLayoutFloating;

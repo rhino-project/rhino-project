@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import {
   useGlobalComponentForModel,
   useOverrides
-} from 'rhino/hooks/overrides';
-import ModelEditHeader from './ModelEditHeader';
-import ModelEditForm from './ModelEditForm';
-import ModelEditActions from './ModelEditActions';
-import ModelEditSimple from './ModelEditSimple';
-import ModelSection from './ModelSection';
+} from '../../hooks/overrides';
+import { ModelEditHeader } from './ModelEditHeader';
+import { ModelEditForm } from './ModelEditForm';
+import { ModelEditActions } from './ModelEditActions';
+import { ModelEditSimple } from './ModelEditSimple';
+import { ModelSection } from './ModelSection';
 
 const defaultComponents = {
   ModelEditHeader,
@@ -45,7 +45,5 @@ ModelEditBase.propTypes = {
   onActionError: PropTypes.func
 };
 
-const ModelEdit = (props) =>
+export const ModelEdit = (props) =>
   useGlobalComponentForModel('ModelEdit', ModelEditBase, props);
-
-export default ModelEdit;

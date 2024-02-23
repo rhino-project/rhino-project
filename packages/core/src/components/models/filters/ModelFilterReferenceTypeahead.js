@@ -6,9 +6,9 @@ import { getIdentifierAttribute, getModelFromRef } from '../../../utils/models';
 import { useModelIndex } from '../../../hooks/queries';
 import { compact } from 'lodash';
 import PropTypes from 'prop-types';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
-const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
+export const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
   const { filter, limit = 10, offset, order, search } = props;
   const { attribute, operator, plainPath } = useModelFilterField(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
@@ -98,5 +98,3 @@ const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
 ModelFilterReferenceTypeahead.propTypes = {
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterReferenceTypeahead;

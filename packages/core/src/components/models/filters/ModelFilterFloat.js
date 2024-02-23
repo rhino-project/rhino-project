@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useEffect, useMemo } from 'react';
-import { useModelFilterField } from 'rhino/hooks/form';
-import FilterFloat from 'rhino/components/forms/filters/FilterFloat';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { useModelFilterField } from '../../../hooks/form';
+import { FilterFloat } from '../../forms/filters/FilterFloat';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
 const FLOAT_INCREMENT = 0.000000000000001;
 
-const ModelFilterFloat = ({ model, path, ...props }) => {
+export const ModelFilterFloat = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   const { resetField } = useFormContext();
 
@@ -39,5 +39,3 @@ ModelFilterFloat.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterFloat;

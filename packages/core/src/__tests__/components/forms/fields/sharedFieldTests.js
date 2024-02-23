@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import rhinoConfig from 'rhino.config';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ModelEditSimple from 'rhino/components/models/ModelEditSimple';
-import { createWrapper } from '__tests__/shared/helpers';
+import { ModelEditSimple } from '../../../../components/models/ModelEditSimple';
+import { createWrapper } from '../../../shared/helpers';
 
 const getBarValue = () => 'bar';
 

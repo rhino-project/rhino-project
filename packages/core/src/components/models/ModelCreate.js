@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {
   useGlobalComponentForModel,
   useOverrides
-} from 'rhino/hooks/overrides';
-import ModelCreateHeader from './ModelCreateHeader';
-import ModelCreateForm from './ModelCreateForm';
-import ModelCreateActions from './ModelCreateActions';
-import ModelCreateSimple from './ModelCreateSimple';
-import ModelSection from './ModelSection';
+} from '../../hooks/overrides';
+import { ModelCreateHeader } from './ModelCreateHeader';
+import { ModelCreateForm } from './ModelCreateForm';
+import { ModelCreateActions } from './ModelCreateActions';
+import { ModelCreateSimple } from './ModelCreateSimple';
+import { ModelSection } from './ModelSection';
 
 const defaultComponents = {
   ModelCreateHeader,
@@ -39,7 +39,5 @@ ModelCreateBase.propTypes = {
   overrides: PropTypes.object
 };
 
-const ModelCreate = (props) =>
+export const ModelCreate = (props) =>
   useGlobalComponentForModel('ModelCreate', ModelCreateBase, props);
-
-export default ModelCreate;

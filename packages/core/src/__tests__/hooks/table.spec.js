@@ -1,11 +1,11 @@
 import { render } from '@testing-library/react';
-import { useTableInheritedProps } from 'rhino/hooks/table';
+import { useTableInheritedProps } from '../../hooks/table';
 import {
   createColumnHelper,
   getCoreRowModel,
   useReactTable
 } from '@tanstack/react-table';
-import Table from 'rhino/components/table/Table';
+import { Table } from '../../components/table/Table';
 
 const columnHelper = createColumnHelper();
 

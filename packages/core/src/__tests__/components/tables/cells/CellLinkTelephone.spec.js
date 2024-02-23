@@ -1,4 +1,4 @@
-import CellLinkTelephone from 'rhino/components/table/cells/CellLinkTelephone';
+import { CellLinkTelephone } from '../../../../components/table/cells/CellLinkTelephone';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('CellLinkTelephone', () => {

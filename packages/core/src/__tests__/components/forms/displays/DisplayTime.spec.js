@@ -1,5 +1,5 @@
 import { sharedDisplayTests } from './sharedDisplayTests';
-import DisplayTime from 'rhino/components/forms/displays/DisplayTime';
+import { DisplayTime } from '../../../../components/forms/displays/DisplayTime';
 
 describe('DisplayTime', () => {
   sharedDisplayTests(DisplayTime);

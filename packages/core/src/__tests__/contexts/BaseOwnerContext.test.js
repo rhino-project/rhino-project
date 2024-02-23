@@ -1,20 +1,20 @@
 import { renderHook } from '@testing-library/react';
 import { useContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import routePaths from 'rhino/routes';
-import BaseOwnerProvider from 'rhino/contexts/BaseOwnerContext';
-import { BaseOwnerContext } from 'rhino/hooks/owner';
+import { routePaths } from '../../routes';
+import { BaseOwnerProvider } from '../../contexts/BaseOwnerContext';
+import { BaseOwnerContext } from '../../hooks/owner';
 
 let mockUser;
-vi.mock('rhino/hooks/auth', () => ({
+vi.mock('../../hooks/auth', () => ({
   useUser: vi.fn(() => mockUser)
 }));
 
 let mockBaseOwnerId;
 
 const mockUseBaseOwnerId = vi.fn(() => mockBaseOwnerId);
-vi.mock('rhino/hooks/owner', async () => {
-  const actual = await vi.importActual('rhino/hooks/owner');
+vi.mock('../../hooks/owner', async () => {
+  const actual = await vi.importActual('../../hooks/owner');
   return {
     ...actual,
     useBaseOwnerId: vi.fn(() => mockUseBaseOwnerId())
@@ -22,7 +22,7 @@ vi.mock('rhino/hooks/owner', async () => {
 });
 
 const mockUseBaseOwnerNavigationPushFn = vi.fn(() => {});
-vi.mock('rhino/hooks/history', () => ({
+vi.mock('../../hooks/history', () => ({
   useBaseOwnerNavigation: () => ({
     push: mockUseBaseOwnerNavigationPushFn
   })
@@ -30,12 +30,12 @@ vi.mock('rhino/hooks/history', () => ({
 
 const mockUseModelShowResult = vi.fn();
 const mockUseModelShowFn = vi.fn(() => mockUseModelShowResult());
-vi.mock('rhino/hooks/queries', () => ({
+vi.mock('../../hooks/queries', () => ({
   useModelShow: vi.fn(() => mockUseModelShowFn())
 }));
 
 let mockHasOrganizationsModule;
-vi.mock('rhino/utils/models', () => ({
+vi.mock('../../utils/models', () => ({
   hasOrganizationsModule: vi.fn(() => mockHasOrganizationsModule),
   getModel: () => ({})
 }));

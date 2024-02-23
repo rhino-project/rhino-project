@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import FieldGroupCountry, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import {
+  FieldGroupCountry,
   FieldGroupFloatingCountry,
   FieldGroupHorizontalCountry
-} from 'rhino/components/forms/fieldGroups/FieldGroupCountry';
-import { useModelFieldGroup } from 'rhino/hooks/form';
+} from '../../forms/fieldGroups/FieldGroupCountry';
+import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupCountryVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroup(props);
@@ -31,11 +32,9 @@ export const ModelFieldGroupFloatingCountry = (props) => {
   return <FieldGroupFloatingCountry {...fieldGroupProps} />;
 };
 
-const ModelFieldGroupCountry = (props) =>
+export const ModelFieldGroupCountry = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldGroupCountry',
     ModelFieldGroupCountryVertical,
     props
   );
-
-export default ModelFieldGroupCountry;

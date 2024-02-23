@@ -3,7 +3,7 @@
 exports[`ModelShowDescription > should allow paths to be directly overridden 1`] = `
 <DocumentFragment>
   <div
-    class="model-show-description model-show-description-undefined"
+    class="model-show-description model-show-description-blog"
   >
     <div
       class="mb-3"
@@ -11,13 +11,15 @@ exports[`ModelShowDescription > should allow paths to be directly overridden 1`]
       label="Title"
       path="title"
       placeholder="Title"
+      required=""
     >
       <label
-        class="form-label"
+        class="required form-label"
         for="title"
         id="displayLabel-title"
         path="title"
         placeholder="Title"
+        required=""
       >
         Title
       </label>
@@ -31,6 +33,7 @@ exports[`ModelShowDescription > should allow paths to be directly overridden 1`]
         path="title"
         placeholder="Title"
         readonly=""
+        required=""
         type="text"
         value="-"
       />

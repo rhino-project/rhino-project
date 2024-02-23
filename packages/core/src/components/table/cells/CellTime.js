@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { format as dateFormat, parseISO } from 'date-fns';
-import { useTableInheritedProps } from 'rhino/hooks/table';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const CellTimeBase = ({ format = 'h:mm aa', empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
@@ -14,6 +14,5 @@ export const CellTimeBase = ({ format = 'h:mm aa', empty = '-', ...props }) => {
   return <div {...inheritedProps}>{value}</div>;
 };
 
-const CellTime = (props) => useGlobalComponent('CellTime', CellTimeBase, props);
-
-export default CellTime;
+export const CellTime = (props) =>
+  useGlobalComponent('CellTime', CellTimeBase, props);

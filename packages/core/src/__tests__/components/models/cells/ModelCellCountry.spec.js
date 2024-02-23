@@ -1,4 +1,4 @@
-import ModelCellCountry from 'rhino/components/models/cells/ModelCellCountry';
+import { ModelCellCountry } from '../../../../components/models/cells/ModelCellCountry';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellCountry', () => {

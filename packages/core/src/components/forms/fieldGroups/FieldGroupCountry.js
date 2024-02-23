@@ -1,7 +1,10 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldCountry from '../fields/FieldCountry';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldCountry } from '../fields/FieldCountry';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 
 const BASE_OVERRIDES = {
   Field: FieldCountry
@@ -27,7 +30,5 @@ export const FieldGroupFloatingCountry = ({ overrides, ...props }) => {
   );
 };
 
-const FieldGroupCountry = (props) =>
+export const FieldGroupCountry = (props) =>
   useGlobalComponent('FieldGroupCountry', FieldGroupCountryBase, props);
-
-export default FieldGroupCountry;

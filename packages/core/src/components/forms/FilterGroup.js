@@ -1,5 +1,5 @@
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
-import FilterLayoutVertical from './FilterLayoutVertical';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import { FilterLayoutVertical } from './FilterLayoutVertical';
 
 const defaultComponents = {
   FilterLayout: FilterLayoutVertical
@@ -11,7 +11,5 @@ export const FilterGroupBase = ({ overrides, ...props }) => {
   return <FilterLayout {...props} />;
 };
 
-const FilterGroup = (props) =>
+export const FilterGroup = (props) =>
   useGlobalComponent('FilterGroup', FilterGroupBase, props);
-
-export default FilterGroup;

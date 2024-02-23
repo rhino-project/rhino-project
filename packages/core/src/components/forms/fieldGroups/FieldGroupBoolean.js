@@ -1,6 +1,9 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldBoolean from '../fields/FieldBoolean';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldBoolean } from '../fields/FieldBoolean';
 
 const BASE_OVERRIDES = {
   FormGroup: { props: { check: true } },
@@ -21,7 +24,5 @@ export { FieldGroupHorizontalBoolean };
 const FieldGroupFloatingBoolean = FieldGroupBooleanBase;
 export { FieldGroupFloatingBoolean };
 
-const FieldGroupBoolean = (props) =>
+export const FieldGroupBoolean = (props) =>
   useGlobalComponent('FieldGroupBoolean', FieldGroupBooleanBase, props);
-
-export default FieldGroupBoolean;

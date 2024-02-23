@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useController } from 'react-hook-form';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const DisplayImageBase = ({
   accessor,
@@ -31,7 +31,5 @@ export const DisplayImageBase = ({
   );
 };
 
-const DisplayImage = (props) =>
+export const DisplayImage = (props) =>
   useGlobalComponent('DisplayImage', DisplayImageBase, props);
-
-export default DisplayImage;

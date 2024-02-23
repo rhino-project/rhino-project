@@ -38,5 +38,3 @@ const defaultComponents = {
 export const ModelDisplayGroupFloating = (props) => {
   return <ModelDisplayGroupBase overrides={defaultComponents} {...props} />;
 };
-
-export default ModelDisplayGroupFloating;

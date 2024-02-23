@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import FieldInputControlled from './FieldInputControlled';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { FieldInputControlled } from './FieldInputControlled';
+import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const FieldSelectControlledBase = ({ children, title, ...props }) => {
   const options = useMemo(() => {
@@ -23,7 +23,5 @@ export const FieldSelectControlledBase = ({ children, title, ...props }) => {
   );
 };
 
-const FieldSelectControlled = (props) =>
+export const FieldSelectControlled = (props) =>
   useGlobalComponent('FieldSelectControlled', FieldSelectControlledBase, props);
-
-export default FieldSelectControlled;

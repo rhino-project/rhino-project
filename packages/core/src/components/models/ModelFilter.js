@@ -1,22 +1,22 @@
-import { useModel } from 'rhino/hooks/models';
+import { useModel } from '../../hooks/models';
 import {
   getModelAndAttributeFromPath,
   getModelFromRef,
   isOwnerGlobal
-} from 'rhino/utils/models';
-import ModelFilterBoolean from './filters/ModelFilterBoolean';
-import ModelFilterDate from './filters/ModelFilterDate';
-import ModelFilterDateTime from './filters/ModelFilterDateTime';
-import ModelFilterEnum from './filters/ModelFilterEnum';
-import ModelFilterFloat from './filters/ModelFilterFloat';
-import ModelFilterInteger from './filters/ModelFilterInteger';
-import ModelFilterIntegerSelect from './filters/ModelFilterIntegerSelect';
-import ModelFilterOwnerReference from './filters/ModelFilterOwnerReference';
-import ModelFilterReference from './filters/ModelFilterReference';
-import ModelFilterString from './filters/ModelFilterString';
-import ModelFilterTime from './filters/ModelFilterTime';
-import ModelFilterYear from './filters/ModelFilterYear';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
+} from '../../utils/models';
+import { ModelFilterBoolean } from './filters/ModelFilterBoolean';
+import { ModelFilterDate } from './filters/ModelFilterDate';
+import { ModelFilterDateTime } from './filters/ModelFilterDateTime';
+import { ModelFilterEnum } from './filters/ModelFilterEnum';
+import { ModelFilterFloat } from './filters/ModelFilterFloat';
+import { ModelFilterInteger } from './filters/ModelFilterInteger';
+import { ModelFilterIntegerSelect } from './filters/ModelFilterIntegerSelect';
+import { ModelFilterOwnerReference } from './filters/ModelFilterOwnerReference';
+import { ModelFilterReference } from './filters/ModelFilterReference';
+import { ModelFilterString } from './filters/ModelFilterString';
+import { ModelFilterTime } from './filters/ModelFilterTime';
+import { ModelFilterYear } from './filters/ModelFilterYear';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
 
 export const ModelFilterBase = (props) => {
   const model = useModel(props.model);
@@ -67,7 +67,5 @@ export const ModelFilterBase = (props) => {
   return 'No filter for this attribute type';
 };
 
-const ModelFilter = (props) =>
+export const ModelFilter = (props) =>
   useGlobalComponentForModel('ModelFilter', ModelFilterBase, props);
-
-export default ModelFilter;

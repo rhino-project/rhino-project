@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import rhinoConfig from 'rhino.config';
-import ModelIndexSimple from 'rhino/components/models/ModelIndexSimple';
+import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 
 const getBarValue = () => 'bar';
 

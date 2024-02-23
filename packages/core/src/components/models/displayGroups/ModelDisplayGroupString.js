@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelDisplayGroup } from 'rhino/hooks/form';
-import DisplayGroupString, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelDisplayGroup } from '../../../hooks/form';
+import {
+  DisplayGroupString,
   DisplayGroupFloatingString,
   DisplayGroupHorizontalString
-} from 'rhino/components/forms/displayGroups/DisplayGroupString';
+} from '../../forms/displayGroups/DisplayGroupString';
 
 export const ModelDisplayGroupVerticalString = (props) => {
   // FIXME - displayGroupProps instead?
@@ -34,11 +35,9 @@ export const ModelDisplayGroupFloatingString = (props) => {
   return <DisplayGroupFloatingString {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupString = (props) =>
+export const ModelDisplayGroupString = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupString',
     ModelDisplayGroupVerticalString,
     props
   );
-
-export default ModelDisplayGroupString;

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
-import ModelFiltersProvider from './ModelFiltersProvider';
-import { useModelFiltersController } from 'rhino/hooks/controllers';
+import { ModelFiltersProvider } from './ModelFiltersProvider';
+import { useModelFiltersController } from '../../hooks/controllers';
 
 export const ModelFiltersSimple = ({ children, ...props }) => {
   const controller = useModelFiltersController(props);
@@ -17,5 +17,3 @@ ModelFiltersSimple.propTypes = {
     PropTypes.node
   ])
 };
-
-export default ModelFiltersSimple;

@@ -1,6 +1,6 @@
 import { Badge } from 'reactstrap';
-import { useGlobalComponent } from 'rhino/hooks/overrides';
-import { useTableInheritedProps } from 'rhino/hooks/table';
+import { useGlobalComponent } from '../../../hooks/overrides';
+import { useTableInheritedProps } from '../../../hooks/table';
 
 export const CellBadgeBase = ({ empty = '-', ...props }) => {
   const { getValue, inheritedProps } = useTableInheritedProps(props);
@@ -10,7 +10,5 @@ export const CellBadgeBase = ({ empty = '-', ...props }) => {
   return <Badge {...inheritedProps}>{getValue()}</Badge>;
 };
 
-const CellBadge = (props) =>
+export const CellBadge = (props) =>
   useGlobalComponent('CellBadge', CellBadgeBase, props);
-
-export default CellBadge;

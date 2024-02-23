@@ -1,5 +1,5 @@
-import FieldBooleanIndeterminate from '../fields/FieldBooleanIndeterminate';
+import { FieldBooleanIndeterminate } from '../fields/FieldBooleanIndeterminate';
 
-const FilterBoolean = (props) => <FieldBooleanIndeterminate {...props} />;
-
-export default FilterBoolean;
+export const FilterBoolean = (props) => (
+  <FieldBooleanIndeterminate {...props} />
+);

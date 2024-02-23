@@ -1,23 +1,23 @@
 import { useMemo } from 'react';
 import { TabContent, TabPane, Nav } from 'reactstrap';
 
-import BaseAuthedPage from 'rhino/pages/BaseAuthedPage';
-import ChangePassword from 'rhino/components/settings/ChangePassword';
-import EditProfile from 'rhino/components/settings/EditProfile';
-import Subscription from 'rhino/components/settings/Subscription';
-import { useBaseOwnerPath, useParsedSearch } from 'rhino/hooks/history';
+import { BaseAuthedPage } from '../BaseAuthedPage';
+import { ChangePassword } from '../../components/settings/ChangePassword';
+import { EditProfile } from '../../components/settings/EditProfile';
+import { Subscription } from '../../components/settings/Subscription';
+import { useBaseOwnerPath, useParsedSearch } from '../../hooks/history';
 import {
   hasOrganizationsModule,
   hasSubscriptionsModule
-} from 'rhino/utils/models';
-import { NavItem } from 'rhino/components/nav';
+} from '../../utils/models';
+import { NavItem } from '../../components/nav';
 import { useParams } from 'react-router-dom';
-import { getAccountSettingsPath } from 'rhino/utils/routes';
+import { getAccountSettingsPath } from '../../utils/routes';
 
 const tabTo = (baseOwnerPath, tabId) =>
   baseOwnerPath.build(`${getAccountSettingsPath()}/${tabId}`);
 
-const SettingsPage = () => {
+export const SettingsPage = () => {
   //Checking subscription payment related status
   const { status, session_id } = useParsedSearch(); //FIXME use session_id for checking later
   const baseOwnerPath = useBaseOwnerPath();
@@ -60,5 +60,3 @@ const SettingsPage = () => {
     </BaseAuthedPage>
   );
 };
-
-export default SettingsPage;

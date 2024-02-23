@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ModelFilters from 'rhino/components/models/ModelFilters';
-import ModelPager from 'rhino/components/models/ModelPager';
-import ModelSearch from 'rhino/components/models/ModelSearch';
+import { ModelFilters } from './ModelFilters';
+import { ModelPager } from './ModelPager';
+import { ModelSearch } from './ModelSearch';
 import {
   useGlobalComponentForModel,
   useOverrides
-} from 'rhino/hooks/overrides';
-import { useModelIndexContext } from 'rhino/hooks/controllers';
+} from '../../hooks/overrides';
+import { useModelIndexContext } from '../../hooks/controllers';
 
 const defaultComponents = {
   ModelSearch,
@@ -43,7 +43,5 @@ ModelIndexHeaderBase.propTypes = {
   overrides: PropTypes.object
 };
 
-const ModelIndexHeader = (props) =>
+export const ModelIndexHeader = (props) =>
   useGlobalComponentForModel('ModelIndexHeader', ModelIndexHeaderBase, props);
-
-export default ModelIndexHeader;

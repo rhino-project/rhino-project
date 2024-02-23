@@ -1,4 +1,4 @@
-import FieldInteger from 'rhino/components/forms/fields/FieldFloat';
+import { FieldInteger } from '../../../../components/forms/fields/FieldInteger';
 import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldInteger', () => {

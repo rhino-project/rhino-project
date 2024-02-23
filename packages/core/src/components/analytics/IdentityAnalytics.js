@@ -1,4 +1,4 @@
-import { useIdentifyAnalytics, useGroupAnalytics } from 'rhino/hooks/analytics';
+import { useIdentifyAnalytics, useGroupAnalytics } from '../../hooks/analytics';
 
 export const IdentityAnalytics = ({ children }) => {
   useIdentifyAnalytics();
@@ -6,5 +6,3 @@ export const IdentityAnalytics = ({ children }) => {
 
   return children;
 };
-
-export default IdentityAnalytics;

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import rhinoConfig from 'rhino.config';
-import ModelHeader from 'rhino/components/models/ModelHeader';
+import { ModelHeader } from '../../../components/models/ModelHeader';
 
 describe('ModelHeader', () => {
   const Bar = () => <div>Bar</div>;

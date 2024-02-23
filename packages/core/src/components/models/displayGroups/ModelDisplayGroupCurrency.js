@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useGlobalComponentForAttribute } from 'rhino/hooks/overrides';
-import { useModelDisplayGroup } from 'rhino/hooks/form';
-import DisplayGroupCurrency, {
+import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
+import { useModelDisplayGroup } from '../../../hooks/form';
+import {
+  DisplayGroupCurrency,
   DisplayGroupFloatingCurrency,
   DisplayGroupHorizontalCurrency
-} from 'rhino/components/forms/displayGroups/DisplayGroupCurrency';
+} from '../../forms/displayGroups/DisplayGroupCurrency';
 
 export const ModelDisplayGroupVerticalCurrency = (props) => {
   // FIXME - displayGroupProps instead?
@@ -34,11 +35,9 @@ export const ModelDisplayGroupFloatingCurrency = (props) => {
   return <DisplayGroupFloatingCurrency {...fieldGroupProps} />;
 };
 
-const ModelDisplayGroupCurrency = (props) =>
+export const ModelDisplayGroupCurrency = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayGroupCurrency',
     ModelDisplayGroupVerticalCurrency,
     props
   );
-
-export default ModelDisplayGroupCurrency;

@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { DangerAlert } from '../alerts';
 
-const FormErrors = () => {
+export const FormErrors = () => {
   const {
     formState: { errors }
   } = useFormContext();
@@ -10,5 +10,3 @@ const FormErrors = () => {
 
   return <DangerAlert>{errors.root.message}</DangerAlert>;
 };
-
-export default FormErrors;

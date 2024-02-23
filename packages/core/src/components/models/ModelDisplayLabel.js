@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
-import { useGlobalComponentForModel } from 'rhino/hooks/overrides';
-import DisplayLabel from '../forms/DisplayLabel';
-import { useModelAndAttributeFromPath } from 'rhino/hooks/models';
+import { useGlobalComponentForModel } from '../../hooks/overrides';
+import { DisplayLabel } from '../forms/DisplayLabel';
+import { useModelAndAttributeFromPath } from '../../hooks/models';
 
 export const ModelDisplayLabelBase = ({ label, model, ...props }) => {
   const { attribute } = useModelAndAttributeFromPath(model, props.path);
@@ -14,7 +14,5 @@ export const ModelDisplayLabelBase = ({ label, model, ...props }) => {
   return <DisplayLabel label={modelLabel} {...props} />;
 };
 
-const ModelDisplayLabel = (props) =>
+export const ModelDisplayLabel = (props) =>
   useGlobalComponentForModel('ModelDisplayLabel', ModelDisplayLabelBase, props);
-
-export default ModelDisplayLabel;

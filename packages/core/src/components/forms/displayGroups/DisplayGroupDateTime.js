@@ -1,8 +1,11 @@
-import { useGlobalComponent, useMergedOverrides } from 'rhino/hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayDateTime from '../displays/DisplayDateTime';
-import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';
-import DisplayLayoutFloating from '../DisplayLayoutFloating';
+import {
+  useGlobalComponent,
+  useMergedOverrides
+} from '../../../hooks/overrides';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayDateTime } from '../displays/DisplayDateTime';
+import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
+import { DisplayLayoutFloating } from '../DisplayLayoutFloating';
 
 const BASE_OVERRIDES = {
   Display: DisplayDateTime
@@ -26,11 +29,9 @@ export const DisplayGroupFloatingDateTime = ({ overrides, ...props }) => {
   return <DisplayLayoutFloating overrides={mergedOverrides} {...props} />;
 };
 
-const DisplayGroupDateTime = (props) =>
+export const DisplayGroupDateTime = (props) =>
   useGlobalComponent(
     'DisplayGroupDateTime',
     DisplayGroupVerticalDateTime,
     props
   );
-
-export default DisplayGroupDateTime;

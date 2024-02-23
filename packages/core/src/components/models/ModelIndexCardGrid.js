@@ -7,7 +7,7 @@ import { flexRender } from '@tanstack/react-table';
 import {
   useGlobalComponentForModel,
   useOverrides
-} from 'rhino/hooks/overrides';
+} from '../../hooks/overrides';
 
 export const ModelIndexCard = ({ row, onRowClick }) => {
   const titleCell = row.getVisibleCells()?.[0];
@@ -89,5 +89,3 @@ export const ModelIndexCardGrid = (props) =>
     ModelIndexCardGridBase,
     props
   );
-
-export default ModelIndexCardGrid;

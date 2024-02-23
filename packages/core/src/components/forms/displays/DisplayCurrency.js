@@ -1,7 +1,7 @@
-import { useGlobalComponent } from 'rhino/hooks/overrides';
+import { useGlobalComponent } from '../../../hooks/overrides';
 import { InputGroup } from 'reactstrap';
-import { applyCurrencyMask } from 'rhino/utils/ui';
-import DisplayString from './DisplayString';
+import { applyCurrencyMask } from '../../../utils/ui';
+import { DisplayString } from './DisplayString';
 
 export const DisplayCurrencyBaseInput = (props) => {
   return (
@@ -23,7 +23,5 @@ export const DisplayCurrencyBase = (props) => {
   );
 };
 
-const DisplayCurrency = (props) =>
+export const DisplayCurrency = (props) =>
   useGlobalComponent('DisplayCurrency', DisplayCurrencyBase, props);
-
-export default DisplayCurrency;

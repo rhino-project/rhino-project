@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { useEffect, useMemo } from 'react';
-import { useModelFilterField } from 'rhino/hooks/form';
-import FilterInteger from '../../forms/filters/FilterInteger';
-import { useModelFiltersContext } from 'rhino/hooks/controllers';
+import { useModelFilterField } from '../../../hooks/form';
+import { FilterInteger } from '../../forms/filters/FilterInteger';
+import { useModelFiltersContext } from '../../../hooks/controllers';
 
-const ModelFilterInteger = ({ model, path, ...props }) => {
+export const ModelFilterInteger = ({ model, path, ...props }) => {
   const { attribute, operatorPath } = useModelFilterField(model, path);
   const { resetField } = useFormContext();
 
@@ -36,5 +36,3 @@ ModelFilterInteger.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
-
-export default ModelFilterInteger;

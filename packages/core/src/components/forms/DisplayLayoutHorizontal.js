@@ -1,9 +1,9 @@
 import { Col, FormGroup } from 'reactstrap';
 
-import { useGlobalComponent, useOverrides } from 'rhino/hooks/overrides';
-import Field from './fields/FieldInput';
-import { useFieldInheritedProps } from 'rhino/hooks/form';
-import DisplayLabel from './DisplayLabel';
+import { useGlobalComponent, useOverrides } from '../../hooks/overrides';
+import { FieldInput as Field } from './fields/FieldInput';
+import { useFieldInheritedProps } from '../../hooks/form';
+import { DisplayLabel } from './DisplayLabel';
 
 const INHERITED_PROP_OPTIONS = { prefix: 'DisplayLayoutHorizontal' };
 
@@ -35,11 +35,9 @@ export const DisplayLayoutHorizontalBase = ({ overrides, ...props }) => {
   );
 };
 
-const DisplayLayoutHorizontal = (props) =>
+export const DisplayLayoutHorizontal = (props) =>
   useGlobalComponent(
     'DisplayLayoutHorizontal',
     DisplayLayoutHorizontalBase,
     props
   );
-
-export default DisplayLayoutHorizontal;

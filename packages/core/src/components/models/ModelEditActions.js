@@ -3,14 +3,14 @@ import { Children, useCallback, useMemo } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { useModelEditContext } from 'rhino/hooks/controllers';
+import { useModelEditContext } from '../../hooks/controllers';
 import { useBackHistory } from '../../hooks/history';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
 import { IconButton } from '../buttons';
-import ModelSection from './ModelSection';
+import { ModelSection } from './ModelSection';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
   const { mutate, isLoading } = useModelEditContext();
@@ -142,7 +142,5 @@ ModelEditActionsBase.defaultProps = {
   hasCancel: false
 };
 
-const ModelEditActions = (props) =>
+export const ModelEditActions = (props) =>
   useGlobalComponentForModel('ModelEditActions', ModelEditActionsBase, props);
-
-export default ModelEditActions;
