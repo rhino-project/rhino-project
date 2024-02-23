@@ -49,7 +49,7 @@ const config = defineConfig({
     react()
   ],
   resolve: {
-    alias: [{ find: /^rhino\/(.*)/, replacement: '$1' }],
+    // This prevents pnpm symlink paths from being used in the build for icons
     preserveSymlinks: true
   },
   test: {
