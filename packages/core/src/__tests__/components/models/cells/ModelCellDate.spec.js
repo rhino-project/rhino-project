@@ -1,4 +1,4 @@
-import ModelCellDate from '../../../../components/models/cells/ModelCellDate';
+import { ModelCellDate } from '../../../../components/models/cells/ModelCellDate';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellDate', () => {

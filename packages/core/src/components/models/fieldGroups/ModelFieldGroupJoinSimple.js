@@ -9,7 +9,7 @@ import { useModelIndex } from '../../../hooks/queries';
 import { useModelFieldGroup } from '../../../hooks/form';
 import { FieldLayoutVerticalBase } from '../../forms/FieldLayoutVertical';
 import { FieldLayoutHorizontalBase } from '../../forms/FieldLayoutHorizontal';
-import FieldLayoutFloating from '../../forms/FieldLayoutFloating';
+import { FieldLayoutFloating } from '../../forms/FieldLayoutFloating';
 
 // FIXME: This might need to be refactored to use the useModelFieldGroup and/or have a generic typeahead component
 export const ModelFieldJoinSimpleBaseInput = ({ model, ...props }) => {

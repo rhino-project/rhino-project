@@ -1,12 +1,12 @@
 import { useGlobalComponent, useMergedOverrides, useOverrides } from '../../../hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldPassword from '../fields/FieldPassword';
-import FieldLayoutHorizontal from '../FieldLayoutHorizontal';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldPassword } from '../fields/FieldPassword';
+import { FieldLayoutHorizontal } from '../FieldLayoutHorizontal';
 import classnames from 'classnames';
 import { FormGroup, InputGroup } from 'reactstrap';
 import { useFieldError, useFieldInheritedProps } from '../../../hooks/form';
-import FieldLabel from '../FieldLabel';
-import FieldFeedback from '../FieldFeedback';
+import { FieldLabel } from '../FieldLabel';
+import { FieldFeedback } from '../FieldFeedback';
 import { FieldPasswordBaseInput } from '../fields/FieldPassword';
 import { IconButton } from '../../buttons';
 import { useState } from 'react';

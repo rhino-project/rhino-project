@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useModelShowController } from '../../hooks/controllers';
-import ModelShowProvider from './ModelShowProvider';
+import { ModelShowProvider } from './ModelShowProvider';
 import { useMemo } from 'react';
 import { Spinner } from 'reactstrap';
 

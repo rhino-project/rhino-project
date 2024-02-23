@@ -1,4 +1,4 @@
-import ModelShow from '../../../components/models/ModelShow';
+import { ModelShow } from '../../../components/models/ModelShow';
 import { sharedModelTests } from './sharedModelTests';
 import { render } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';

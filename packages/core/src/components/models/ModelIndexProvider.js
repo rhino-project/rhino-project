@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import env from '@rhino-project/config/env';
 import { ModelContext } from './ModelProvider';
-import RhinoDevTool from '../devtool/RhinoDevTool';
+import { RhinoDevTool } from '../devtool/RhinoDevTool';
 
 export const ModelIndexContext = createContext();
 

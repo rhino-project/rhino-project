@@ -1,8 +1,8 @@
 import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayInteger from '../displays/DisplayInteger';
-import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';
-import DisplayLayoutFloating from '../DisplayLayoutFloating';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayInteger } from '../displays/DisplayInteger';
+import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
+import { DisplayLayoutFloating } from '../DisplayLayoutFloating';
 
 const BASE_OVERRIDES = {
   Display: DisplayInteger

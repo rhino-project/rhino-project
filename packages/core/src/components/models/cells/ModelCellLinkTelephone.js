@@ -1,5 +1,5 @@
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellLinkTelephone from '../../table/cells/CellLinkTelephone';
+import { CellLinkTelephone } from '../../table/cells/CellLinkTelephone';
 
 export const ModelCellLinkTelephoneBase = (props) => (
   <CellLinkTelephone {...props} />

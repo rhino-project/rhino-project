@@ -10,7 +10,7 @@ import {
   useOverrides
 } from '../../hooks/overrides';
 import { getModelShowPath } from '../../utils/routes';
-import ModelSection from './ModelSection';
+import { ModelSection } from './ModelSection';
 
 export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
   const { isLoading, mutate, parentId, parentModel } = useModelCreateContext();

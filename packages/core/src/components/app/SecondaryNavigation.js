@@ -3,9 +3,9 @@ import { useMemo } from 'react';
 
 import CustomSecondaryNavigation from 'components/app/CustomSecondaryNavigation';
 import { hasNotificationsModule } from '../../utils/models';
-import AccountMenu from './AccountMenu';
-import BaseOwnerSwitcher from './BaseOwnerSwitcher';
-import NotificationMenu from './NotificationMenu';
+import { AccountMenu } from './AccountMenu';
+import { BaseOwnerSwitcher } from './BaseOwnerSwitcher';
+import { NotificationMenu } from './NotificationMenu';
 
 export const SecondaryNavigation = ({ className }) => {
   const showNotifications = useMemo(() => hasNotificationsModule(), []);

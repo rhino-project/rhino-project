@@ -1,9 +1,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import ModelFiltersSimple from '../../../../components/models/ModelFiltersSimple';
-import ModelIndexSimple from '../../../../components/models/ModelIndexSimple';
-import ModelFilterInteger from '../../../../components/models/filters/ModelFilterInteger';
+import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSimple';
+import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
+import { ModelFilterInteger } from '../../../../components/models/filters/ModelFilterInteger';
 
 describe('ModelFilterInteger', () => {
   const Wrapper = ({ children, ...props }) => {

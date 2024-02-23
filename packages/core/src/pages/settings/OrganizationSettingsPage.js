@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { TabContent, TabPane, Nav } from 'reactstrap';
 
-import BaseAuthedPage from '../BaseAuthedPage';
-import EditOrganizationProfile from '../../components/settings/EditOrganizationProfile';
-import EditOrganizationAccess from '../../components/settings/EditOrganizationAccess';
-import Subscription from '../../components/settings/Subscription';
+import { BaseAuthedPage } from '../BaseAuthedPage';
+import { EditOrganizationProfile } from '../../components/settings/EditOrganizationProfile';
+import { EditOrganizationAccess } from '../../components/settings/EditOrganizationAccess';
+import { Subscription } from '../../components/settings/Subscription';
 import { useBaseOwnerPath, useParsedSearch } from '../../hooks/history';
 import { hasOrganizationsModule, hasSubscriptionsModule } from '../../utils/models';
 import { NavItem } from '../../components/nav';

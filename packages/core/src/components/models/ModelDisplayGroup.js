@@ -1,22 +1,22 @@
 import { useGlobalComponentForAttribute, useOverrides } from '../../hooks/overrides';
 import { useModelAndAttributeFromPath, useModelContext } from '../../hooks/models';
 
-import ModelDisplayGroupArray from './displayGroups/ModelDisplayGroupArray';
-import ModelDisplayGroupArrayReference from './displayGroups/ModelDisplayGroupArrayReference';
-import ModelDisplayGroupAttachment from './displayGroups/ModelDisplayGroupAttachment';
-import ModelDisplayGroupAttachmentImage from './displayGroups/ModelDisplayGroupAttachmentImage';
-import ModelDisplayGroupAttachments from './displayGroups/ModelDisplayGroupAttachments';
-import ModelDisplayGroupBoolean from './displayGroups/ModelDisplayGroupBoolean';
-import ModelDisplayGroupCurrency from './displayGroups/ModelDisplayGroupCurrency';
-import ModelDisplayGroupDate from './displayGroups/ModelDisplayGroupDate';
-import ModelDisplayGroupDateTime from './displayGroups/ModelDisplayGroupDateTime';
-import ModelDisplayGroupEnum from './displayGroups/ModelDisplayGroupEnum';
-import ModelDisplayGroupFloat from './displayGroups/ModelDisplayGroupFloat';
-import ModelDisplayGroupInteger from './displayGroups/ModelDisplayGroupInteger';
-import ModelDisplayGroupReference from './displayGroups/ModelDisplayGroupReference';
-import ModelDisplayGroupString from './displayGroups/ModelDisplayGroupString';
-import ModelDisplayGroupText from './displayGroups/ModelDisplayGroupText';
-import ModelDisplayGroupTime from './displayGroups/ModelDisplayGroupTime';
+import { ModelDisplayGroupArray } from './displayGroups/ModelDisplayGroupArray';
+import { ModelDisplayGroupArrayReference } from './displayGroups/ModelDisplayGroupArrayReference';
+import { ModelDisplayGroupAttachment } from './displayGroups/ModelDisplayGroupAttachment';
+import { ModelDisplayGroupAttachmentImage } from './displayGroups/ModelDisplayGroupAttachmentImage';
+import { ModelDisplayGroupAttachments } from './displayGroups/ModelDisplayGroupAttachments';
+import { ModelDisplayGroupBoolean } from './displayGroups/ModelDisplayGroupBoolean';
+import { ModelDisplayGroupCurrency } from './displayGroups/ModelDisplayGroupCurrency';
+import { ModelDisplayGroupDate } from './displayGroups/ModelDisplayGroupDate';
+import { ModelDisplayGroupDateTime } from './displayGroups/ModelDisplayGroupDateTime';
+import { ModelDisplayGroupEnum } from './displayGroups/ModelDisplayGroupEnum';
+import { ModelDisplayGroupFloat } from './displayGroups/ModelDisplayGroupFloat';
+import { ModelDisplayGroupInteger } from './displayGroups/ModelDisplayGroupInteger';
+import { ModelDisplayGroupReference } from './displayGroups/ModelDisplayGroupReference';
+import { ModelDisplayGroupString } from './displayGroups/ModelDisplayGroupString';
+import { ModelDisplayGroupText } from './displayGroups/ModelDisplayGroupText';
+import { ModelDisplayGroupTime } from './displayGroups/ModelDisplayGroupTime';
 
 const defaultComponents = {
   ModelDisplayGroupArray,

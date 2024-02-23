@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
-import FieldLabel from '../forms/FieldLabel';
+import { FieldLabel } from '../forms/FieldLabel';
 import { useModelAndAttributeFromPath } from '../../hooks/models';
 
 export const ModelFieldLabelBase = ({ label, model, ...props }) => {

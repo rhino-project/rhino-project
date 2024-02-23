@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useGlobalComponent } from '../../../hooks/overrides';
-import DisplayString from './DisplayString';
+import { DisplayString } from './DisplayString';
 
 export const DisplayArrayBase = (props) => {
   const accessor = useCallback((value) => {

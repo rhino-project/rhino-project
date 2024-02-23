@@ -23,7 +23,7 @@ import {
   useModelShow,
   useModelUpdate,
 } from './queries';
-import withParams from '../routes/withParams';
+import { withParams } from '../routes/withParams';
 import { getBaseOwnerFilters, getParentModel, getReferenceAttributes } from '../utils/models';
 import { useDebouncedCallback } from 'use-debounce';
 import {

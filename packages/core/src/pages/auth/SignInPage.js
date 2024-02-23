@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import { SuccessAlert } from '../../components/alerts';
-import AuthForm from '../../components/auth/AuthForm';
-import OmniAuthButton from '../../components/buttons/omniauth';
+import { AuthForm } from '../../components/auth/AuthForm';
+import { OmniAuthButton } from '../../components/buttons/omniauth';
 import { useParsedSearch } from '../../hooks/history';
 import { useForgotPasswordPath, useUserCreatePath } from '../../hooks/routes';
 import { useSignInAction, useSignupAllowed } from '../../queries/auth';
 import { oauthProviders } from '../../utils/models';
-import AuthPage from './AuthPage';
+import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/config';
 import PropTypes from 'prop-types';
 

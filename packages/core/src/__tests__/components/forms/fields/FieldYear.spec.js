@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import FieldYear from '../../../../components/forms/fields/FieldYear';
+import { FieldYear } from '../../../../components/forms/fields/FieldYear';
 import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldYear', () => {

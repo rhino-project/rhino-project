@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import ModelCellBooleanIcon from '../../../../components/models/cells/ModelCellBooleanIcon';
+import { ModelCellBooleanIcon } from '../../../../components/models/cells/ModelCellBooleanIcon';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellBooleanIcon', () => {

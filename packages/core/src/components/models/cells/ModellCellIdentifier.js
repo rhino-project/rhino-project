@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellLink from '../../table/cells/CellLink';
+import { CellLink } from '../../table/cells/CellLink';
 import { useModelShowPath } from '../../../hooks/routes';
 import { useModelIndexContext } from '../../../hooks/controllers';
 

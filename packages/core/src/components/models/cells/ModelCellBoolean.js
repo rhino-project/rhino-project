@@ -1,4 +1,4 @@
-import CellBoolean from '../../table/cells/CellBoolean';
+import { CellBoolean } from '../../table/cells/CellBoolean';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 
 export const ModelCellBooleanBase = (props) => <CellBoolean {...props} />;

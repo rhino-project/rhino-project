@@ -1,5 +1,5 @@
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellDateTimeDistance from '../../table/cells/CellDateTimeDistance';
+import { CellDateTimeDistance } from '../../table/cells/CellDateTimeDistance';
 
 export const ModelCellDateTimeDistanceBase = (props) => (
   <CellDateTimeDistance {...props} />

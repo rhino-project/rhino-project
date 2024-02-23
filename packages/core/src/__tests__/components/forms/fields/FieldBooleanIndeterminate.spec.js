@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import FieldBooleanIndeterminate from '../../../../components/forms/fields/FieldBooleanIndeterminate';
+import { FieldBooleanIndeterminate } from '../../../../components/forms/fields/FieldBooleanIndeterminate';
 import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldBooleanIndeterminate', () => {

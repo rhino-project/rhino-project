@@ -1,4 +1,4 @@
-import CellBooleanIcon from '../../table/cells/CellBooleanIcon';
+import { CellBooleanIcon } from '../../table/cells/CellBooleanIcon';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 
 export const ModelCellBooleanIconBase = (props) => (

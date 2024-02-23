@@ -1,4 +1,4 @@
-import routePaths from '../../routes';
+import { routePaths } from '../../routes';
 
 describe('routePaths', () => {
   test.each([

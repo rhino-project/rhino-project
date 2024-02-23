@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom';
-import AuthForm from '../../components/auth/AuthForm';
+import { AuthForm } from '../../components/auth/AuthForm';
 import { useAuthenticated } from '../../hooks/auth';
 import { useParsedSearch } from '../../hooks/history';
 import { useRootPath } from '../../hooks/routes';
 import { useAcceptInvitationAction } from '../../queries/auth';
-import AuthPage from './AuthPage';
+import { AuthPage } from './AuthPage';
 import { DangerAlert } from '../../components/alerts';
 import PropTypes from 'prop-types';
 

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
-import FieldDateTime from '../../../../components/forms/fields/FieldDateTime';
+import { FieldDateTime } from '../../../../components/forms/fields/FieldDateTime';
 import { sharedFieldTests } from './sharedFieldTests';
 
 describe('FieldDateTime', () => {

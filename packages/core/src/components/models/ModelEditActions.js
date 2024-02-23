@@ -10,7 +10,7 @@ import {
   useOverrides
 } from '../../hooks/overrides';
 import { IconButton } from '../buttons';
-import ModelSection from './ModelSection';
+import { ModelSection } from './ModelSection';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
   const { mutate, isLoading } = useModelEditContext();

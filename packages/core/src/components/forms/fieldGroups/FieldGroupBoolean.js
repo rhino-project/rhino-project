@@ -1,6 +1,6 @@
 import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
-import FieldLayoutVertical from '../FieldLayoutVertical';
-import FieldBoolean from '../fields/FieldBoolean';
+import { FieldLayoutVertical } from '../FieldLayoutVertical';
+import { FieldBoolean } from '../fields/FieldBoolean';
 
 const BASE_OVERRIDES = {
   FormGroup: { props: { check: true } },

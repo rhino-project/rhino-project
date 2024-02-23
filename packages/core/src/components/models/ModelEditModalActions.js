@@ -5,14 +5,15 @@ import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import ModelEditActions, {
+import {
+  ModelEditActions,
   ModelEditActionCancel,
   ModelEditActionSave,
   ModelEditActionSaveShow,
-  ModelEditActionsBase
+  ModelEditActionsBase,
 } from './ModelEditActions';
 import { useCallback, useMemo } from 'react';
-import ModelSection from './ModelSection';
+import { ModelSection } from './ModelSection';
 
 export const ModelEditModalActionSave = ({ onModalClose, onSave }) => {
   const handleSave = useCallback(

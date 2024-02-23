@@ -6,7 +6,7 @@ import { optionsFromIndexWithTitle } from '../../../utils/ui';
 import { useCallback, useEffect, useMemo } from 'react';
 import { getIdentifierAttribute, getModelFromRef } from '../../../utils/models';
 import { useModelIndex } from '../../../hooks/queries';
-import FilterSelectControlled from '../../forms/filters/FilterSelectControlled';
+import { FilterSelectControlled } from '../../forms/filters/FilterSelectControlled';
 import { useModelFilterField } from '../../../hooks/form';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 

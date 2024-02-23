@@ -1,5 +1,5 @@
-import ModelShowDescription from '../../../components/models/ModelShowDescription';
-import ModelShowSimple from '../../../components/models/ModelShowSimple';
+import { ModelShowDescription } from '../../../components/models/ModelShowDescription';
+import { ModelShowSimple } from '../../../components/models/ModelShowSimple';
 import { sharedModelTests } from './sharedModelTests';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';

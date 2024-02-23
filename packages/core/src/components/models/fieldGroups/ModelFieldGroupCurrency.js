@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import FieldGroupCurrency, { FieldGroupFloatingCurrency, FieldGroupHorizontalCurrency } from '../../forms/fieldGroups/FieldGroupCurrency';
+import {
+  FieldGroupCurrency,
+  FieldGroupFloatingCurrency,
+  FieldGroupHorizontalCurrency,
+} from '../../forms/fieldGroups/FieldGroupCurrency';
 import { useModelFieldGroup } from '../../../hooks/form';
 
 export const ModelFieldGroupCurrencyVertical = (props) => {

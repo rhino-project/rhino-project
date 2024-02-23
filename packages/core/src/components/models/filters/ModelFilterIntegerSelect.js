@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useWatch } from 'react-hook-form';
 
 import { useEffect } from 'react';
-import FilterSelectControlled from '../../forms/filters/FilterSelectControlled';
+import { FilterSelectControlled } from '../../forms/filters/FilterSelectControlled';
 import { useModelFilterField } from '../../../hooks/form';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 

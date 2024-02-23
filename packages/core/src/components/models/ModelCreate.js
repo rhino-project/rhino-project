@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 
 import { useGlobalComponentForModel, useOverrides } from '../../hooks/overrides';
-import ModelCreateHeader from './ModelCreateHeader';
-import ModelCreateForm from './ModelCreateForm';
-import ModelCreateActions from './ModelCreateActions';
-import ModelCreateSimple from './ModelCreateSimple';
-import ModelSection from './ModelSection';
+import { ModelCreateHeader } from './ModelCreateHeader';
+import { ModelCreateForm } from './ModelCreateForm';
+import { ModelCreateActions } from './ModelCreateActions';
+import { ModelCreateSimple } from './ModelCreateSimple';
+import { ModelSection } from './ModelSection';
 
 const defaultComponents = {
   ModelCreateHeader,

@@ -1,3 +1,3 @@
-import FieldYear from '../fields/FieldYear';
+import { FieldYear } from '../fields/FieldYear';
 
 export const FilterYear = (props) => <FieldYear {...props} />;

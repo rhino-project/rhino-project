@@ -1,9 +1,9 @@
 import { useModelCreateContext } from '../../hooks/controllers';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
 import { useRenderPaths } from '../../hooks/renderPaths';
-import ModelFieldGroup from './ModelFieldGroup';
-import ModelSection from './ModelSection';
-import FormErrors from '../forms/FormErrors';
+import { ModelFieldGroup } from './ModelFieldGroup';
+import { ModelSection } from './ModelSection';
+import { FormErrors } from '../forms/FormErrors';
 
 export const ModelCreateFormBase = (props) => {
   const { model, paths } = useModelCreateContext();

@@ -2,8 +2,8 @@ import { IconButton } from '../buttons';
 import { useModelFiltersContext, useModelFiltersController, useModelIndexContext } from '../../hooks/controllers';
 import { useRenderPaths } from '../../hooks/renderPaths';
 import { useGlobalComponentForModel } from '../../hooks/overrides';
-import ModelFilterGroup from './ModelFilterGroup';
-import ModelFiltersProvider from './ModelFiltersProvider';
+import { ModelFilterGroup } from './ModelFilterGroup';
+import { ModelFiltersProvider } from './ModelFiltersProvider';
 
 export const ModelFiltersPill = ({ path }) => {
   const {

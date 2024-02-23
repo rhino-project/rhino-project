@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useModelFieldGroupEnum } from '../../../hooks/form';
-import FieldGroupSelectControlled, { FieldGroupFloatingSelectControlled, FieldGroupHorizontalSelectControlled } from '../../forms/fieldGroups/FieldGroupSelectControlled';
+import {
+  FieldGroupSelectControlled,
+  FieldGroupFloatingSelectControlled,
+  FieldGroupHorizontalSelectControlled,
+} from '../../forms/fieldGroups/FieldGroupSelectControlled';
 
 export const ModelFieldGroupEnumVertical = (props) => {
   const { fieldGroupProps } = useModelFieldGroupEnum(props);

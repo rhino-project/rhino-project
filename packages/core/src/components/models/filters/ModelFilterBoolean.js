@@ -3,7 +3,7 @@ import { useWatch } from 'react-hook-form';
 
 import { useEffect } from 'react';
 import { useModelFilterField } from '../../../hooks/form';
-import FilterBoolean from '../../forms/filters/FilterBoolean';
+import { FilterBoolean } from '../../forms/filters/FilterBoolean';
 import { useModelFiltersContext } from '../../../hooks/controllers';
 
 // FIXME: This is duplicated from FieldBooleanIndeterminate

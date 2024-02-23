@@ -1,7 +1,7 @@
 import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';
-import DisplayImage from '../displays/DisplayImage';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
+import { DisplayImage } from '../displays/DisplayImage';
 
 const BASE_OVERRIDES = {
   Display: DisplayImage

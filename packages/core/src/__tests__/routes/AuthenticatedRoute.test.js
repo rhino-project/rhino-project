@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import AuthenticatedRoute from '../../routes/AuthenticatedRoute';
+import { AuthenticatedRoute } from '../../routes/AuthenticatedRoute';
 import * as routes from '../../utils/routes';
 
 const authenticatedState = {

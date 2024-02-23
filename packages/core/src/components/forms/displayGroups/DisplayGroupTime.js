@@ -1,8 +1,8 @@
 import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayTime from '../displays/DisplayTime';
-import DisplayLayoutHorizontal from '../DisplayLayoutHorizontal';
-import DisplayLayoutFloating from '../DisplayLayoutFloating';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayTime } from '../displays/DisplayTime';
+import { DisplayLayoutHorizontal } from '../DisplayLayoutHorizontal';
+import { DisplayLayoutFloating } from '../DisplayLayoutFloating';
 
 const BASE_OVERRIDES = {
   Display: DisplayTime

@@ -1,7 +1,11 @@
 import PropTypes from 'prop-types';
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
 import { useModelDisplayGroup } from '../../../hooks/form';
-import DisplayGroupArrayReference, { DisplayGroupFloatingArrayReference, DisplayGroupHorizontalArrayReference } from '../../forms/displayGroups/DisplayGroupArrayReference';
+import {
+  DisplayGroupArrayReference,
+  DisplayGroupFloatingArrayReference,
+  DisplayGroupHorizontalArrayReference,
+} from '../../forms/displayGroups/DisplayGroupArrayReference';
 
 export const ModelDisplayGroupVerticalArrayReference = (props) => {
   // FIXME - displayGroupProps instead?

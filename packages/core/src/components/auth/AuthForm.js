@@ -5,12 +5,12 @@ import * as yup from 'yup';
 
 import { useParsedSearch } from '../../hooks/history';
 import { Button, LinkButton } from '../buttons';
-import FormProvider from '../forms/FormProvider';
+import { FormProvider } from '../forms/FormProvider';
 import { useForm } from 'react-hook-form';
-import FieldGroupPassword from '../forms/fieldGroups/FieldGroupPassword';
+import { FieldGroupPassword } from '../forms/fieldGroups/FieldGroupPassword';
 import { useResolver } from '../../hooks/form';
 import { DangerAlert } from '../alerts';
-import FieldGroupString from '../forms/fieldGroups/FieldGroupString';
+import { FieldGroupString } from '../forms/fieldGroups/FieldGroupString';
 
 const AuthField = (props) => (
   <FieldGroupString placeholder="Email" {...props} />

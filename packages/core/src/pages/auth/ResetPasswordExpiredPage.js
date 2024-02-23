@@ -1,7 +1,7 @@
 import { DangerAlert } from '../../components/alerts';
 import { LinkButton } from '../../components/buttons';
 import { useForgotPasswordPath } from '../../hooks/routes';
-import AuthPage from './AuthPage';
+import { AuthPage } from './AuthPage';
 import PropTypes from 'prop-types';
 
 export const ResetPasswordExpiredPage = (props) => {

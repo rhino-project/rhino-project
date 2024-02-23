@@ -1,6 +1,6 @@
 import { useGlobalComponent, useMergedOverrides } from '../../../hooks/overrides';
-import DisplayLayoutVertical from '../DisplayLayoutVertical';
-import DisplayBoolean from '../displays/DisplayBoolean';
+import { DisplayLayoutVertical } from '../DisplayLayoutVertical';
+import { DisplayBoolean } from '../displays/DisplayBoolean';
 
 const BASE_OVERRIDES = {
   FormGroup: { props: { check: true } },

@@ -1,5 +1,5 @@
 import { useGlobalComponentForAttribute } from '../../../hooks/overrides';
-import CellCurrency from '../../table/cells/CellCurrency';
+import { CellCurrency } from '../../table/cells/CellCurrency';
 
 export const ModelCellCurrencyBase = (props) => <CellCurrency {...props} />;
 

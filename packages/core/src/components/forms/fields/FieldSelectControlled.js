@@ -1,5 +1,5 @@
 import { useCallback, useMemo } from 'react';
-import FieldInputControlled from './FieldInputControlled';
+import { FieldInputControlled } from './FieldInputControlled';
 import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const FieldSelectControlledBase = ({ children, title, ...props }) => {

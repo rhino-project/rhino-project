@@ -1,10 +1,10 @@
 import { SuccessAlert } from '../../components/alerts';
-import AuthForm from '../../components/auth/AuthForm';
+import { AuthForm } from '../../components/auth/AuthForm';
 import { LinkButton } from '../../components/buttons';
 import { useParsedSearch } from '../../hooks/history';
 import { useSessionCreatePath } from '../../hooks/routes';
 import { useResetPasswordAction } from '../../queries/auth';
-import AuthPage from './AuthPage';
+import { AuthPage } from './AuthPage';
 import PropTypes from 'prop-types';
 
 export const ResetPasswordPage = (props) => {

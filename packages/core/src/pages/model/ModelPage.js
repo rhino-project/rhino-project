@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import BaseAuthedPage from '../BaseAuthedPage';
+import { BaseAuthedPage } from '../BaseAuthedPage';
 import { MaxWidth } from '../../components/layouts';
 
 export const ModelPage = ({ children, ...props }) => {

@@ -1,4 +1,4 @@
-import ModelCellDateTimeDistance from '../../../../components/models/cells/ModelCellDateTimeDistance';
+import { ModelCellDateTimeDistance } from '../../../../components/models/cells/ModelCellDateTimeDistance';
 import { sharedCellTests } from './sharedCellTests';
 import { render } from '@testing-library/react';
 

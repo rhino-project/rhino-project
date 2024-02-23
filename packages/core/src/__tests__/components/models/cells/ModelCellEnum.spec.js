@@ -1,5 +1,5 @@
 import { render } from '@testing-library/react';
-import ModelCellEnum from '../../../../components/models/cells/ModelCellEnum';
+import { ModelCellEnum } from '../../../../components/models/cells/ModelCellEnum';
 import { sharedCellTests } from './sharedCellTests';
 
 describe('ModelCellEnum', () => {

@@ -8,11 +8,11 @@ import {
   useGlobalComponentForModel,
   useOverrides
 } from '../../hooks/overrides';
-import withParams from '../../routes/withParams';
+import { withParams } from '../../routes/withParams';
 import { getParentModel, isBaseOwned } from '../../utils/models';
 import { IconButton } from '../buttons';
-import ModelEditModal from './ModelEditModal';
-import ModelSection from './ModelSection';
+import { ModelEditModal } from './ModelEditModal';
+import { ModelSection } from './ModelSection';
 
 export const ModelShowActionEdit = ({ children, ...props }) => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import FormProvider from '../forms/FormProvider';
+import { FormProvider } from '../forms/FormProvider';
 
 export const ModelFiltersContext = createContext();
 
