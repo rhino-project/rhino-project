@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { Plugin, ResolvedConfig } from 'vite';
 
 const CONFIG_MODULE_ID = 'rhino.config';
@@ -27,19 +27,21 @@ const esbuildRhinoPlugin = {
   name: 'esbuild-rhino-plugin',
   // @ts-ignore
   setup(build) {
+    // We use the Vite technique of marking them as external so that they are not pre-bundled
+    //https://github.com/vitejs/vite/blob/42fd11c1c6d37402bd15ba816fbf65dbed3abe55/packages/vite/src/node/optimizer/esbuildDepPlugin.ts#L166
+
     // @ts-ignore
     build.onResolve({ filter: jsPattern }, async (args) => {
       return {
-        path: path.resolve(__dirname, 'src', `${args.path}.js`)
+        path: path.resolve(process.cwd(), 'src', `${args.path}.js`),
+        external: true
       };
     });
 
-    // ESBuild doesn't support SVG imports, so we use the Vite technique of marking them as external
-    //https://github.com/vitejs/vite/blob/42fd11c1c6d37402bd15ba816fbf65dbed3abe55/packages/vite/src/node/optimizer/esbuildDepPlugin.ts#L166
     // @ts-ignore
     build.onResolve({ filter: svgPattern }, async (args) => {
       return {
-        path: path.resolve(__dirname, 'src', args.path),
+        path: path.resolve(process.cwd(), 'src', args.path),
         external: true
       };
     });
@@ -67,7 +69,6 @@ export function RhinoProjectVite(): Plugin {
     },
 
     resolveId(id) {
-      console.log('resolveId', id);
       if (id === CONFIG_MODULE_ID) {
         // Replace 'rhino.config' with the path to the local file
         // FIXME: Allow the location to be configured
