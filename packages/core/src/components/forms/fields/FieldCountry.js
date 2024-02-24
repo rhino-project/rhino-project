@@ -5,7 +5,13 @@ import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
 import { useGlobalComponent } from '../../../hooks/overrides';
 import { CloseButton } from '../../buttons';
-import PhoneInput from 'react-phone-input-2/lib/lib';
+import P from 'react-phone-input-2';
+
+// Different behavior in Vite (rollup vs esbuild) causes the need for this check
+// https://github.com/bl00mber/react-phone-input-2/issues/599
+// https://github.com/vitejs/vite/issues/4704
+// https://github.com/vitejs/vite/issues/2139#issuecomment-824557740
+const PhoneInput = P.default ? P.default : P;
 
 export const Flag = ({ country }) => {
   const lowerValue = useMemo(() => country?.toLowerCase(), [country]);
