@@ -25,7 +25,9 @@ const svgPattern =
 // in @rhino-project/core - at some point we should support @rhino-project/config as well
 const esbuildRhinoPlugin = {
   name: 'esbuild-rhino-plugin',
+  // @ts-ignore
   setup(build) {
+    // @ts-ignore
     build.onResolve({ filter: jsPattern }, async (args) => {
       return {
         path: path.resolve(__dirname, 'src', `${args.path}.js`)
@@ -34,6 +36,7 @@ const esbuildRhinoPlugin = {
 
     // ESBuild doesn't support SVG imports, so we use the Vite technique of marking them as external
     //https://github.com/vitejs/vite/blob/42fd11c1c6d37402bd15ba816fbf65dbed3abe55/packages/vite/src/node/optimizer/esbuildDepPlugin.ts#L166
+    // @ts-ignore
     build.onResolve({ filter: svgPattern }, async (args) => {
       return {
         path: path.resolve(__dirname, 'src', args.path),
