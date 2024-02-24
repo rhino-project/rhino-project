@@ -5,7 +5,7 @@ import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
 import { useGlobalComponent } from '../../../hooks/overrides';
 import { CloseButton } from '../../buttons';
-import PhoneInput from 'react-phone-input-2';
+import PhoneInput from 'react-phone-input-2/lib/lib';
 
 export const Flag = ({ country }) => {
   const lowerValue = useMemo(() => country?.toLowerCase(), [country]);

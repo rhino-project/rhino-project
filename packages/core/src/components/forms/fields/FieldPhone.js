@@ -4,7 +4,7 @@ import { useController } from 'react-hook-form';
 import { useMemo } from 'react';
 
 import { useFieldInheritedProps } from '../../../hooks/form';
-import PhoneInput from 'react-phone-input-2';
+import PhoneInput from 'react-phone-input-2/lib/lib';
 import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const FieldPhoneBase = (props) => {
