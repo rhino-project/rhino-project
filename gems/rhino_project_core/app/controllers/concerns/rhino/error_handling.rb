@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_record/associations"
+
 module Rhino
   module ErrorHandling
     extend ActiveSupport::Concern

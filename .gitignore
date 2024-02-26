@@ -42,3 +42,6 @@ stats.html
 .idea
 
 .nx/cache
+
+# gems
+gems/pkg

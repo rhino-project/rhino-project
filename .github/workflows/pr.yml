@@ -12,11 +12,35 @@ concurrency:
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+  FRONT_END_URL: http://localhost:3001
+  ROOT_URL: http://localhost:3000
+  DB_NAME: rhino_project
+  DB_USERNAME: rhino_project
+  DB_PASSWORD: rhino_project
 
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: rhino_project
+          POSTGRES_DB: rhino_project
+          POSTGRES_PASSWORD: rhino_project
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,6 +55,11 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          working-directory: 'gems'
+          bundler-cache: true
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
       - name: Get base and head commits for `nx affected`
@@ -39,3 +68,9 @@ jobs:
           main-branch-name: 'main'
       - name: Run Checks
         run: pnpm run test:pr
+      - name: Run DB Setup
+        run: bundle exec bin/rails db:setup
+        working-directory: 'gems/rhino_project_core/test/dummy'
+      - name: Run Gem Checks
+        run: BUNDLE_GEMFILE=../Gemfile bundle exec bin/rails t
+        working-directory: 'gems/rhino_project_core'
