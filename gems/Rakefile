@@ -1,0 +1,46 @@
+# frozen_string_literal: true
+
+require "net/http"
+
+$:.unshift __dir__
+require "tasks/release"
+
+desc "Build gem files for all projects"
+task build: "all:build"
+
+desc "Build, install and verify the gem files in a generated Rails app."
+task verify: "all:verify"
+
+desc "Prepare the release"
+task prep_release: "all:prep_release"
+
+desc "Release all gems to rubygems and create a tag"
+task release: "all:release"
+
+desc "Run all tests by default"
+task default: %w(test test:isolated)
+
+%w(test test:isolated package gem).each do |task_name|
+  desc "Run #{task_name} task for all projects"
+  task task_name do
+    errors = []
+    FRAMEWORKS.each do |project|
+      system(%(cd #{project} && #{$0} #{task_name} --trace)) || errors << project
+    end
+    fail("Errors in #{errors.join(', ')}") unless errors.empty?
+  end
+end
+
+desc "Smoke-test all projects"
+task :smoke do
+  (FRAMEWORKS - %w(activerecord)).each do |project|
+    system %(cd #{project} && #{$0} test:isolated --trace)
+  end
+  system %(cd activerecord && #{$0} sqlite3:isolated_test --trace)
+end
+
+desc "Install gems for all projects."
+task install: "all:install"
+
+desc "Bump all versions to match RHINO_PROJECT_VERSION"
+task update_versions: "all:update_versions"
