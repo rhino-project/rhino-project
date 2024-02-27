@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = ''
   spec.summary     = ''
   spec.description = ''
-  spec.license = "MIT"
+  spec.license     = "MIT"
 
   spec.files = Dir['{app,config,db,lib}/**/*', 'Rakefile', 'README.md', 'LICENSE']
 

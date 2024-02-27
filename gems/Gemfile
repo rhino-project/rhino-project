@@ -61,7 +61,7 @@ end
 gem "activeadmin", "~> 2.14.0"
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth.git'
+gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth.git', ref: '5b1a5e19450f3755ce5ebe2f631b40c876ffc22d'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-github'
@@ -79,11 +79,24 @@ gem 'ancestry'
 gem 'js_regex'
 gem 'countries'
 
+# Organizations
+gem 'devise_invitable', '2.0.6'
+
+# Jobs
+gem 'resque', '2.6.0'
+gem 'resque-scheduler', '4.10.2'
+gem 'resque-heroku-signals', '2.6.0'
+gem 'active_scheduler', '0.7.0'
+
+# Notifications
+gem 'activity_notification', '2.2.3'
+
 group :development, :test do
   gem 'factory_bot'
   gem 'factory_bot_rails'
   gem 'ffaker'
   gem 'openapi3_parser'
+  gem 'webmock', require: false
 end
 
 gem "useragent", require: false

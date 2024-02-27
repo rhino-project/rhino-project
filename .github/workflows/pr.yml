@@ -17,6 +17,7 @@ env:
   DB_NAME: rhino_project
   DB_USERNAME: rhino_project
   DB_PASSWORD: rhino_project
+  STRIPE_SECRET_KEY: 'FOR_TESTS'
 
 jobs:
   test:
@@ -30,7 +31,7 @@ jobs:
         # Provide the password for postgres
         env:
           POSTGRES_USER: rhino_project
-          POSTGRES_DB: rhino_project
+          POSTGRES_DB: rhino_project_test
           POSTGRES_PASSWORD: rhino_project
         # Set health checks to wait until postgres has started
         options: >-
@@ -68,9 +69,15 @@ jobs:
           main-branch-name: 'main'
       - name: Run Checks
         run: pnpm run test:pr
-      - name: Run DB Setup
-        run: bundle exec bin/rails db:setup
-        working-directory: 'gems/rhino_project_core/test/dummy'
+      # - name: Run DB Setup
+      #   run: bundle exec bin/rails db:setup
+      #   working-directory: 'gems/rhino_project_core/test/dummy'
+      # - name: Run Gem Checks
+      #   run: BUNDLE_GEMFILE=../Gemfile bundle exec bin/rails t
+      #   working-directory: 'gems/rhino_project_core'
+      # - name: Run DB Setup
+      #   run: bundle exec bin/rails db:setup
+      #   working-directory: 'gems/rhino_project_organizations/test/dummy'
       - name: Run Gem Checks
-        run: BUNDLE_GEMFILE=../Gemfile bundle exec bin/rails t
-        working-directory: 'gems/rhino_project_core'
+        run: bundle exec rake test
+        working-directory: 'gems'

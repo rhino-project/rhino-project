@@ -24,10 +24,9 @@ Gem::Specification.new do |s|
   }
 
   s.add_dependency "rhino_project_core", version
-  # s.add_dependency "rhino_jobs",    version
-  # s.add_dependency "rhino_notifications",    version
-  # s.add_dependency "rhino_organizations",  version
-  # s.add_dependency "rhino_subscriptions",  version
-
+  s.add_dependency "rhino_project_organizations", version
+  s.add_dependency "rhino_project_jobs", version
+  s.add_dependency "rhino_project_notifications",    version
+  s.add_dependency "rhino_project_subscriptions",  version
   s.add_dependency "bundler", ">= 1.15.0"
 end
