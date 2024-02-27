@@ -8,7 +8,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-require "rhino"
+require "rhino_project_core"
 
 module Dummy
   class Application < Rails::Application

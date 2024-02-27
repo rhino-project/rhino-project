@@ -1,12 +1,12 @@
 # frozen_string_literal: true
-
+require "rhino/version"
 module Rhino
   class Engine < ::Rails::Engine
     config.before_configuration do
       # When running the dummy apps through rails commands the .env file won't exist in the root
       # but the DB_NAME variable will have been set by rhino_command; the rake task name will be
       # set for rhino:dev:setup
-      if Rails.env.development? && (!File.exist?(Rails.root.join(".env")) && (!run_from_dummy? && !run_from_dev_setup?))
+      if Rails.env.development? && (!File.exist?(Rails.root.join(".env")) && (!run_from_dummy? && !run_from_dev_setup? && !run_from_package?))
         raise ".env file must exist in development - see README.md"
       end
     end
@@ -61,7 +61,7 @@ module Rhino
 
       config.after_initialize do
         Rhino.registered_modules[:rhino] = {
-          version: Rhino::VERSION,
+          version: Rhino::VERSION::STRING,
           authOwner: Rhino.auth_owner.model_name.singular,
           baseOwner: Rhino.base_owner.model_name.singular,
           oauth: Rhino::OmniauthHelper.strategies_metadata,
@@ -131,6 +131,10 @@ module Rhino
 
     def self.run_from_dev_setup?
       Rake.application.top_level_tasks == ["rhino:dev:setup"]
+    end
+
+    def self.run_from_package?
+      Rake.application.top_level_tasks == ["package"]
     end
   end
 end

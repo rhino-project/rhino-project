@@ -3,7 +3,7 @@
 # https://stackoverflow.com/questions/4470108/when-monkey-patching-an-instance-method-can-you-call-the-overridden-method-from/4471202
 # Mixin Prepending
 module DeviseTokenAuth::RegistrationsController::Extensions
-  include RhinoOrganizations::Concerns::CreateOrganization
+  include RhinoOrganizations::Concerns::CreateOrganization if Rhino.resources.include?("Organization")
 
   def create
     return render_error(401, "signup is not allowed") unless Rhino.allow_signup
