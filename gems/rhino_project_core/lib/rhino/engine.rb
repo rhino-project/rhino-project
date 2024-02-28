@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require "rhino/version"
 module Rhino
   class Engine < ::Rails::Engine
