@@ -3,6 +3,10 @@
 # Order dependent. E.g. rhino_notifications depends on rhino_jobs.
 FRAMEWORKS = %w(
 rhino_project_core
+rhino_project_organizations
+rhino_project_jobs
+rhino_project_notifications
+rhino_project_subscriptions
 )
 
 root    = File.expand_path("..", __dir__)

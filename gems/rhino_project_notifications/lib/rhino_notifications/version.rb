@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Rhino
-  # Returns the currently loaded version of \Rails as a +Gem::Version+.
+module RhinoNotifications
+  # Returns the currently loaded version of Rhino core as a +Gem::Version+.
   def self.gem_version
     Gem::Version.new VERSION::STRING
   end
