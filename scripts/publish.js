@@ -258,9 +258,10 @@ export const publishRubyHack = async (options) => {
   if (changedPackages.length > 0) {
     const gemDir = path.join(rootDir, 'gems');
 
-    const cmd = `cd ${gemDir} && SKIP_TAG=1 rake release`;
+    const cmd = `SKIP_TAG=1 rake release`;
     console.info(`  Publishing gems to rubygems with ${cmd}...`);
     execSync(cmd, {
+      cwd: gemDir,
       stdio: [process.stdin, process.stdout, process.stderr]
     });
   }
