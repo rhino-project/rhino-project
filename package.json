@@ -35,6 +35,7 @@
   },
   "namespace": "@rhino-project",
   "devDependencies": {
+    "@commitlint/parse": "^18.6.1",
     "@tanstack/config": "^0.4.4",
     "@types/current-git-branch": "^1.1.6",
     "@tanstack/eslint-plugin-query": "4.32.5",
