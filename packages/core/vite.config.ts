@@ -37,10 +37,9 @@ const config = defineConfig({
         'react',
         'rhino.config',
         'virtual:@rhino-project/config/env',
+        'virtual:@rhino-project/config/assets',
         'components/app/CustomPrimaryNavigation',
         'components/app/CustomSecondaryNavigation',
-        'assets/images/logo-dark.svg',
-        'assets/images/logo-light.svg',
         'routes/custom',
         'models/static'
       ]
@@ -62,14 +61,11 @@ const config = defineConfig({
       'virtual:@rhino-project/config/env': resolve(
         'src/__tests__/shared/env.js'
       ),
-      'models/static': resolve('src/__tests__/shared/modelFixtures.js'),
-      'routes/custom': resolve('src/__tests__/shared/customRoutes.js'),
-      'assets/images/logo-dark.svg': resolve(
-        'src/__tests__/shared/logo-dark.svg'
+      'virtual:@rhino-project/config/assets': resolve(
+        'src/__tests__/shared/assets.js'
       ),
-      'assets/images/logo-light.svg': resolve(
-        'src/__tests__/shared/logo-light.svg'
-      )
+      'models/static': resolve('src/__tests__/shared/modelFixtures.js'),
+      'routes/custom': resolve('src/__tests__/shared/customRoutes.js')
     }
   }
 });

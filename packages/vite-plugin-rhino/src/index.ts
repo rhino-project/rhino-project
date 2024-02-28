@@ -8,17 +8,14 @@ const CUSTOM_SECONDARY_NAVIGATION_MODULE_ID =
   'components/app/CustomSecondaryNavigation';
 const MODELS_STATIC_MODULE_ID = 'models/static';
 const CUSTOM_ROUTES_MODULE_ID = 'routes/custom';
-const DARK_LOGO_MODULE_ID = 'assets/images/logo-dark.svg';
-const LIGHT_LOGO_MODULE_ID = 'assets/images/logo-light.svg';
 
 const ENV_MODULE_ID = 'virtual:@rhino-project/config/env';
 const RESOLVED_ENV_MODULE_ID = '\0' + ENV_MODULE_ID;
+const ASSETS_MODULE_ID = 'virtual:@rhino-project/config/assets';
+const RESOLVED_ASSETS_MODULE_ID = '\0' + RESOLVED_ENV_MODULE_ID;
 
 const jsPattern =
   /components\/app\/CustomPrimaryNavigation|components\/app\/CustomSecondaryNavigation|models\/static|routes\/custom/;
-
-const svgPattern =
-  /assets\/images\/logo-dark.svg|assets\/images\/logo-light.svg/;
 
 // ESBuild is used to pre-bundle modules in dev mode
 // This plugin is used to resolve the virtual/local import paths for Rhino
@@ -34,14 +31,6 @@ const esbuildRhinoPlugin = {
     build.onResolve({ filter: jsPattern }, async (args) => {
       return {
         path: path.resolve(process.cwd(), 'src', `${args.path}.js`),
-        external: true
-      };
-    });
-
-    // @ts-ignore
-    build.onResolve({ filter: svgPattern }, async (args) => {
-      return {
-        path: path.resolve(process.cwd(), 'src', args.path),
         external: true
       };
     });
@@ -91,15 +80,12 @@ export function RhinoProjectVite(): Plugin {
       } else if (id === CUSTOM_ROUTES_MODULE_ID) {
         // Replace 'routes/custom' with the path to the local file
         return path.join(CONFIG.root, 'src/routes/custom.js');
-      } else if (id === DARK_LOGO_MODULE_ID) {
-        // Replace 'assets/images/logo-dark.svg' with the path to the local file
-        return path.join(CONFIG.root, 'src/assets/images/logo-dark.svg');
-      } else if (id === LIGHT_LOGO_MODULE_ID) {
-        // Replace 'assets/images/logo-light.svg' with the path to the local file
-        return path.join(CONFIG.root, 'src/assets/images/logo-light.svg');
       } else if (id === ENV_MODULE_ID) {
         // Map the import to a virtual module ID
         return RESOLVED_ENV_MODULE_ID;
+      } else if (id === ASSETS_MODULE_ID) {
+        // Map the import to a virtual module ID
+        return RESOLVED_ASSETS_MODULE_ID;
       }
 
       return null; // Other imports are handled as usual
@@ -116,6 +102,8 @@ export function RhinoProjectVite(): Plugin {
         envExports = envExports + `}`;
 
         return envExports;
+      } else if (id === RESOLVED_ASSETS_MODULE_ID) {
+        return 'export default import.meta.glob("/src/assets/**/*", { eager: true })';
       }
 
       return null;
