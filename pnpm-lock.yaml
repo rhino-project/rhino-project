@@ -14,9 +14,15 @@ importers:
       '@tanstack/eslint-plugin-query':
         specifier: 4.32.5
         version: 4.32.5
+      '@types/current-git-branch':
+        specifier: ^1.1.6
+        version: 1.1.6
       '@types/eslint':
         specifier: ^8.56.2
         version: 8.56.2
+      '@types/git-log-parser':
+        specifier: ^1.2.3
+        version: 1.2.3
       '@types/node':
         specifier: ^20.10.7
         version: 20.11.5
@@ -26,6 +32,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.18
         version: 18.2.18
+      '@types/stream-to-array':
+        specifier: ^2.3.3
+        version: 2.3.3
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.20.0
         version: 6.21.0(@typescript-eslint/parser@6.21.0)(eslint@8.56.0)(typescript@5.3.3)
@@ -38,6 +47,12 @@ importers:
       axios:
         specifier: ^1.6.5
         version: 1.6.5
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
+      current-git-branch:
+        specifier: ^1.1.0
+        version: 1.1.0
       esbuild-plugin-file-path-extensions:
         specifier: ^2.0.0
         version: 2.0.0
@@ -74,6 +89,9 @@ importers:
       eslint-plugin-vitest:
         specifier: 0.3.20
         version: 0.3.20(@typescript-eslint/eslint-plugin@6.21.0)(eslint@8.56.0)(typescript@5.3.3)(vitest@1.2.2)
+      git-log-parser:
+        specifier: ^1.2.0
+        version: 1.2.0
       glob:
         specifier: ^10.3.10
         version: 10.3.10
@@ -95,6 +113,9 @@ importers:
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
+      stream-to-array:
+        specifier: ^2.3.0
+        version: 2.3.0
       tsup:
         specifier: ^8.0.1
         version: 8.0.1(typescript@5.3.3)
@@ -2090,6 +2111,10 @@ packages:
       '@babel/types': 7.23.6
     dev: true
 
+  /@types/current-git-branch@1.1.6:
+    resolution: {integrity: sha512-zXG02ZIQ98r/+ARpow/yx54GYie7yeDKPJUJq5eFe6FwiYjR3TK5To08zuZgcF90QjG0Z5sdD5hxHBVB93b5Kg==}
+    dev: true
+
   /@types/eslint@8.56.2:
     resolution: {integrity: sha512-uQDwm1wFHmbBbCZCqAlq6Do9LYwByNZHWzXppSnay9SuwJ+VRbjkbLABer54kcPnMSlG6Fdiy2yaFXm/z9Z5gw==}
     dependencies:
@@ -2103,6 +2128,12 @@ packages:
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
+    dev: true
+
+  /@types/git-log-parser@1.2.3:
+    resolution: {integrity: sha512-T+qpPYiSfsDhldenqLNL17bNluhAJr+3zgXeuGHys1XYeKja/sr33TRNXhfoQDLL3DbWxXLe5F/Uj2ViLjp5Lw==}
+    dependencies:
+      '@types/node': 20.11.5
     dev: true
 
   /@types/js-cookie@2.2.7:
@@ -2163,6 +2194,12 @@ packages:
 
   /@types/semver@7.5.6:
     resolution: {integrity: sha512-dn1l8LaMea/IjDoHNd9J52uBbInB796CDffS6VdIxvqYCPSG0V0DzHp76GpaWnlhg88uYyPbXCDIowa86ybd5A==}
+
+  /@types/stream-to-array@2.3.3:
+    resolution: {integrity: sha512-fWXKc6enNlT2l0nXZcxHNQvNSg9IIBgHQR1bHfAVjcJD+zlx9F0o6W+qGWerB1eGBszV4+dsge3id4PEp6SptA==}
+    dependencies:
+      '@types/node': 20.11.5
+    dev: true
 
   /@types/warning@3.0.3:
     resolution: {integrity: sha512-D1XC7WK8K+zZEveUPY+cf4+kgauk8N4eHr/XIHXGlGYkHLud6hK9lYfZk1ry1TNh798cZUCgb6MqGEG8DkJt6Q==}
