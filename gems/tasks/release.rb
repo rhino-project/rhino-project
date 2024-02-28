@@ -88,8 +88,9 @@ namespace :all do
   task push: FRAMEWORKS.map { |f| "#{f}:push"            } + ["rhino_project:push"]
 
   task :ensure_clean_state do
-    unless `git status -s | grep -v 'RHINO_PROJECT_VERSION\\|CHANGELOG\\|Gemfile.lock\\|package.json\\|version.rb\\|tasks/release.rb'`.strip.empty?
-      abort "[ABORTING] `git status` reports a dirty tree. Make sure all changes are committed"
+    files = `git status -s | grep -v 'RHINO_PROJECT_VERSION\\|CHANGELOG\\|Gemfile.lock\\|package.json\\|version.rb\\|tasks/release.rb'`
+    unless files.strip.empty?
+      abort "[ABORTING] `git status` reports a dirty tree. Make sure all changes are committed #{files}"
     end
 
     unless ENV["SKIP_TAG"] || `git tag | grep '^#{tag}$'`.strip.empty?

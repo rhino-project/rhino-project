@@ -36,8 +36,17 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          working-directory: 'gems'
+          bundler-cache: false
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
+      - name: Install Ruby dependencies
+        working-directory: 'gems'
+        # Separate so we don't lock the bundler with deployment true
+        run: bundle install
       - name: Run Tests
         run: pnpm run test:ci
       - name: Publish
@@ -47,6 +56,7 @@ jobs:
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
           pnpm run cipublish
         env:
+          GEM_HOST_API_KEY: ${{ secrets.GEM_HOST_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
