@@ -69,15 +69,9 @@ jobs:
           main-branch-name: 'main'
       - name: Run Checks
         run: pnpm run test:pr
-      # - name: Run DB Setup
-      #   run: bundle exec bin/rails db:setup
-      #   working-directory: 'gems/rhino_project_core/test/dummy'
-      # - name: Run Gem Checks
-      #   run: BUNDLE_GEMFILE=../Gemfile bundle exec bin/rails t
-      #   working-directory: 'gems/rhino_project_core'
-      # - name: Run DB Setup
-      #   run: bundle exec bin/rails db:setup
-      #   working-directory: 'gems/rhino_project_organizations/test/dummy'
+      - name: Run Rubocop
+        run: bundle exec rubocop
+        working-directory: 'gems'
       - name: Run Gem Checks
         run: bundle exec rake test
         working-directory: 'gems'
