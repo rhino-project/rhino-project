@@ -55,7 +55,7 @@ directory "pkg"
     end
 
     task gem => %w(update_versions pkg) do
-      sh "echo git diff"
+      sh "git diff"
       cmd = ""
       cmd += "cd #{framework} && " unless framework == "rhino_project"
       cmd += "bundle exec rake package && " unless framework == "rhino_project"
