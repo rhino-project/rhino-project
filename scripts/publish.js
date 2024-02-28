@@ -258,7 +258,7 @@ export const publishRubyHack = async (options) => {
   changedPackages.forEach((pkg) => {
     const gemDir = path.join(rootDir, 'gems');
 
-    const cmd = `cd ${gemDir} && rake release`;
+    const cmd = `cd ${gemDir} && SKIP_TAG=1 rake release`;
     console.info(`  Publishing ${pkg.name}@${version} to rubygems...`);
     execSync(cmd, {
       stdio: [process.stdin, process.stdout, process.stderr]
