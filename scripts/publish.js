@@ -13,7 +13,6 @@ import currentGitBranch from 'current-git-branch';
 import { parse as parseCommit } from '@commitlint/parse';
 import log from 'git-log-parser';
 import streamToArray from 'stream-to-array';
-import { DateTime } from 'luxon';
 import { branchConfigs, packages, rootDir } from './config.js';
 import { releaseCommitMsg } from './utils.js';
 
