@@ -36,6 +36,11 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          working-directory: 'gems'
+          bundler-cache: true
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
       - name: Run Tests
