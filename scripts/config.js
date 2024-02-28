@@ -37,6 +37,9 @@ export const branchConfigs = {
   next: {
     prerelease: true
   },
+  'chore/auto-release-gems': {
+    prerelease: true
+  },
   beta: {
     prerelease: true
   },
