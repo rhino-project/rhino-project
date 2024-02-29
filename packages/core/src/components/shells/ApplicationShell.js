@@ -62,7 +62,7 @@ export const ApplicationShell = ({ children }) => {
                 container={false}
               >
                 <NavbarBrand>
-                  <LightLogo />
+                  <LightLogo height={36} />
                 </NavbarBrand>
                 <Icon
                   className="text-light"
