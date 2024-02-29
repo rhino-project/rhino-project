@@ -25,6 +25,16 @@
         "default": "./dist/cjs/index.cjs"
       }
     },
+    "./assets": {
+      "import": {
+        "types": "./dist/esm/assets.d.ts",
+        "default": "./dist/esm/assets.js"
+      },
+      "require": {
+        "types": "./dist/cjs/assets.d.cts",
+        "default": "./dist/cjs/assets.cjs"
+      }
+    },
     "./env": {
       "import": {
         "types": "./dist/esm/env.d.ts",

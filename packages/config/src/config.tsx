@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import assets from './assets';
 import env from './env';
 import {
   RhinoConfigAttributeComponentMap,
@@ -25,6 +26,11 @@ export interface RhinoConfig {
   version: number;
   appName: string;
   enableModelRoutes: boolean;
+  darkLogo: string;
+  lightLogo: string;
+
+  // Config for assets
+  assets: typeof assets;
 
   // Config for env variables
   env: typeof env;
@@ -40,6 +46,10 @@ export const defaultConfig: RhinoConfig = {
   version: 1,
   appName: 'BoilerPlate',
   enableModelRoutes: true,
+  darkLogo: 'images/logo-dark.svg',
+  lightLogo: 'images/logo-light.svg',
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  assets,
   env,
   components: {}
 };
@@ -53,3 +63,11 @@ export const getRhinoConfig = (): RhinoConfig => {
 
 export const useRhinoConfig = (): RhinoConfig =>
   useMemo(() => getRhinoConfig(), []);
+
+export const useRhinoAsset = (asset: string): string | undefined => {
+  const { assets } = useRhinoConfig();
+  const assetPath = `/src/assets/${asset}`;
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+  return assets[assetPath]?.default;
+};

@@ -6,7 +6,11 @@ import { externalizeDeps } from 'vite-plugin-externalize-deps';
 const config = defineConfig({
   plugins: [
     externalizeDeps({
-      include: ['rhino.config', 'virtual:@rhino-project/config/env']
+      include: [
+        'rhino.config',
+        'virtual:@rhino-project/config/env',
+        'virtual:@rhino-project/config/assets'
+      ]
     }),
     react()
   ],
@@ -17,7 +21,7 @@ const config = defineConfig({
 
 export default mergeConfig(
   tanstackBuildConfig({
-    entry: ['./src/index.ts', './src/env.ts'],
+    entry: ['./src/index.ts', './src/env.ts', './src/assets.ts'],
     srcDir: './src'
   }),
   config

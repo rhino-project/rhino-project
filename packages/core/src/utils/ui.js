@@ -21,6 +21,19 @@ export const useModelClassNames = (baseName, model, attribute = null) => {
   }, [baseName, memoModel, attribute]);
 };
 
+// www.reddit.com/r/vuejs/comments/y9xz5h/not_able_to_use_dynamic_images_in_the_vite_build/
+export const useAsset = (asset) => {
+  const assets = import.meta.glob('/src/assets/*/*/*', { eager: true });
+  console.log('assets', assets);
+  const getAssetUrl = () => {
+    if (assets[asset]) {
+      return assets[asset].default;
+    }
+  };
+
+  return getAssetUrl();
+};
+
 export const getDateTimeFormat = (attribute) => {
   const dateTimeFormat = {
     datetime: 'MMMM d, yyyy h:mm aa',
