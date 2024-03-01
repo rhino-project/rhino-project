@@ -6,11 +6,11 @@ import { NavItem, NavSection } from '../nav';
 import { useRhinoConfig } from '@rhino-project/config';
 import { getBaseOwnedModels, getModel } from '../../utils/models';
 import { getModelIndexPath } from '../../utils/routes';
-import { useRoles } from '../../hooks';
+import { useGlobalComponent, useRoles } from '../../hooks';
 
 const modelsRoute = (model) => getModelIndexPath(model);
 
-export const PrimaryNavigation = ({
+export const PrimaryNavigationBase = ({
   title = 'Resources',
   className,
   itemClass,
@@ -69,8 +69,11 @@ export const PrimaryNavigation = ({
   );
 };
 
-PrimaryNavigation.propTypes = {
+PrimaryNavigationBase.propTypes = {
   title: PropTypes.string,
   className: PropTypes.string,
   itemClass: PropTypes.string
 };
+
+export const PrimaryNavigation = (props) =>
+  useGlobalComponent('PrimaryNavigation', PrimaryNavigationBase, props);
