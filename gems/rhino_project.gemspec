@@ -28,5 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency "rhino_project_jobs", version
   s.add_dependency "rhino_project_notifications",    version
   s.add_dependency "rhino_project_subscriptions",  version
+  s.add_dependency "ruby-openai", "~> 6.3.1"
   s.add_dependency "bundler", ">= 1.15.0"
 end

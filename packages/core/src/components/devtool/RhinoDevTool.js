@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import classnames from 'classnames';
 
 import RhinoLogo from './rhinoRedLogo.png';
@@ -12,6 +12,62 @@ import { ModelCreateContext } from '../models/ModelCreateProvider';
 import { useLocalStorage } from 'react-use';
 import { pick } from 'lodash-es';
 import env from '@rhino-project/config/env';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { networkApiCallOnlyData } from '../../lib';
+import { Button, Input } from 'reactstrap';
+
+const useDevAi = () => {
+  const mutationFn = useCallback((data) => {
+    const endpoint = '/api/dev/ai';
+
+    return networkApiCallOnlyData(endpoint, { method: 'post', data });
+  }, []);
+
+  const mutation = useMutation({
+    mutationFn
+  });
+
+  return mutation;
+};
+
+const useDevAiEnabled = () => {
+  const queryFn = useCallback(() => {
+    const endpoint = '/api/dev/ai';
+
+    return networkApiCallOnlyData(endpoint, { data });
+  }, [data]);
+
+  const { data } = useQuery({
+    queryFn,
+    queryKey: ['dev-ai-enabled']
+  });
+
+  return data?.enabled || false;
+};
+
+const RhinoDevToolAI = () => {
+  const [content, setContent] = useState('');
+  const { mutate, isLoading } = useDevAi();
+
+  const handleClick = useCallback(() => {
+    mutate({ content });
+  }, [mutate, content]);
+
+  return (
+    <div className="d-flex flex-column">
+      <Input
+        type="textarea"
+        disabled={isLoading}
+        value={content}
+        onChange={({ target: { value } }) => setContent(value)}
+      />
+
+      <Button disabled={isLoading} loading={isLoading} onClick={handleClick}>
+        AI
+      </Button>
+    </div>
+  );
+};
 
 const RhinoDevToolModelIndex = () => {
   const context = useContext(ModelIndexContext);
@@ -99,6 +155,7 @@ const RhinoDevToolModelEdit = () => {
 export const RhinoDevTool = () => {
   const { model } = useModelContext();
   const [isCollapsed, setIsCollapsed] = useLocalStorage('rhinoDevTool', true);
+  const aiEnabled = useDevAiEnabled();
 
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
@@ -120,6 +177,7 @@ export const RhinoDevTool = () => {
               <h5>Rhino</h5>
               <CloseButton onClick={toggleCollapse} />
             </div>
+            {aiEnabled && <RhinoDevToolAI />}
             <details>
               <summary>Env</summary>
               <pre>{JSON.stringify(env, null, 2)}</pre>
