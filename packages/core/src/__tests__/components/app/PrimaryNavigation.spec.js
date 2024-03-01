@@ -5,9 +5,13 @@ import { PrimaryNavigation } from '../../../components/app';
 import { createWrapper } from '../../shared/helpers';
 import rhinoConfig from 'rhino.config';
 
-vi.mock('../../../hooks', () => ({
-  useRoles: vi.fn().mockReturnValue(['admin'])
-}));
+vi.mock('../../../hooks', async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    useRoles: vi.fn().mockReturnValue(['admin'])
+  };
+});
 
 describe('PrimaryNavigation', () => {
   const Wrapper = ({ children, ...props }) => {
