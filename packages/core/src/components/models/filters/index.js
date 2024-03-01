@@ -6,6 +6,7 @@ export * from './ModelFilterFloat';
 export * from './ModelFilterInteger';
 export * from './ModelFilterIntegerSelect';
 export * from './ModelFilterOwnerReference';
+export * from './ModelFilterOwnerReferenceTypeahead';
 export * from './ModelFilterReference';
 export * from './ModelFilterReferenceTypeahead';
 export * from './ModelFilterString';
