@@ -2,6 +2,7 @@
 
 module Rhino
   module TestCase
+    # rubocop:disable Metrics/ClassLength
     class ControllerTest < ActionDispatch::IntegrationTest
       def setup
         DeviseTokenAuth.cookie_attributes[:secure] = false
@@ -35,8 +36,8 @@ module Rhino
           post path, params:, xhr: true, as: :json
         end
 
-        def patch_api(path, params: {})
-          patch path, params:, xhr: true, as: :json
+        def patch_api(path, params: {}, headers: {})
+          patch path, params:, xhr: true, as: :json, headers:
         end
 
         def put_api(path, params: {})
@@ -96,6 +97,10 @@ module Rhino
           assert response.cookies[DeviseTokenAuth.cookie_name], "Auth cookie #{DeviseTokenAuth.cookie_name} not present"
         end
 
+        def parsed_response_ids
+          parsed_response.fetch("results", []).map { |result| result["id"] }
+        end
+
         def parsed_response
           JSON.parse response.body
         end
@@ -130,5 +135,6 @@ module Rhino
           }
         end
     end
+    # rubocop:enable Metrics/ClassLength
   end
 end
