@@ -65,7 +65,13 @@ const config = defineConfig({
         'src/__tests__/shared/assets.js'
       ),
       'models/static': resolve('src/__tests__/shared/modelFixtures.js'),
-      'routes/custom': resolve('src/__tests__/shared/customRoutes.js')
+      'routes/custom': resolve('src/__tests__/shared/customRoutes.js'),
+      'components/app/CustomPrimaryNavigation': resolve(
+        'src/__tests__/shared/CustomPrimaryNavigation.js'
+      ),
+      'components/app/CustomSecondaryNavigation': resolve(
+        'src/__tests__/shared/CustomSecondaryNavigation.js'
+      )
     }
   }
 });
