@@ -9,8 +9,9 @@ import { useModelIndex } from '../../../hooks/queries';
 import { FilterSelectControlled } from '../../forms/filters/FilterSelectControlled';
 import { useModelFilterField } from '../../../hooks/form';
 import { useModelFiltersContext } from '../../../hooks/controllers';
+import { useGlobalComponent } from '../../../hooks';
 
-export const ModelFilterReference = ({ model, path, ...props }) => {
+export const ModelFilterReferenceBase = ({ model, path, ...props }) => {
   const { filter, limit = 100, offset, order, search } = props;
   const { attribute, operator, plainPath } = useModelFilterField(model, path);
 
@@ -75,7 +76,10 @@ export const ModelFilterReference = ({ model, path, ...props }) => {
   );
 };
 
-ModelFilterReference.propTypes = {
+ModelFilterReferenceBase.propTypes = {
   operator: PropTypes.string,
   path: PropTypes.string.isRequired
 };
+
+export const ModelFilterReference = (props) =>
+  useGlobalComponent('ModelFilterReference', ModelFilterReferenceBase, props);
