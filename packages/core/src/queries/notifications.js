@@ -13,7 +13,7 @@ export const useNotifications = () => {
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: ['notifications-index'],
     queryFn: ({ signal }) =>
-      networkApiCall(fullPath(userId, '?filter=unopened'), { signal }),
+      networkApiCall(fullPath(userId, '?filter=unopened&limit=10'), { signal }),
     enabled: !!userId
   });
 };
