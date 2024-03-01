@@ -20,7 +20,9 @@ module.exports = (file, api) => {
       // Define the new hook special cases
       const isHookSpecialCase =
         match[0].endsWith('rhino/hooks/auth') ||
+        match[0].endsWith('rhino/hooks/controllers') ||
         match[0].endsWith('rhino/hooks/owner') ||
+        match[0].endsWith('rhino/hooks/queries') ||
         match[0].endsWith('rhino/hooks/history');
 
       // Existing special cases
@@ -33,13 +35,15 @@ module.exports = (file, api) => {
       const isRoutesSpecialCase = match[0].endsWith('rhino/utils/routes');
       const isModelsSpecialCase = match[0].endsWith('rhino/utils/models');
       const isModelRoutesSpecialCase = match[0].endsWith('rhino/routes/model');
+      const isLibSpecialCase = match[0].endsWith('rhino/lib/networking');
 
       if (
         !isModelLoaderSpecialCase &&
         !isRoutesSpecialCase &&
         !isModelsSpecialCase &&
         !isModelRoutesSpecialCase &&
-        !isHookSpecialCase
+        !isHookSpecialCase &&
+        !isLibSpecialCase
       ) {
         // Convert all specifiers to named imports for general cases
         const newSpecifiers = path.node.specifiers.map((specifier) => {
@@ -62,6 +66,8 @@ module.exports = (file, api) => {
         path.node.source.value = `@rhino-project/core/routes`;
       } else if (isHookSpecialCase) {
         path.node.source.value = `@rhino-project/core/hooks`;
+      } else if (isLibSpecialCase) {
+        path.node.source.value = `@rhino-project/core/lib`;
       } else {
         path.node.source.value = `@rhino-project/core${additionalPath}`;
       }
