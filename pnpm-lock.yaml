@@ -12,8 +12,8 @@ importers:
         specifier: ^18.6.1
         version: 18.6.1
       '@tanstack/config':
-        specifier: ^0.4.4
-        version: 0.4.4(@types/node@20.11.5)(esbuild@0.20.0)(rollup@4.12.0)(typescript@5.3.3)(vite@5.1.3)
+        specifier: ^0.5.2
+        version: 0.5.2(@types/node@20.11.5)(esbuild@0.20.0)(rollup@4.12.0)(typescript@5.3.3)(vite@5.1.3)
       '@tanstack/eslint-plugin-query':
         specifier: 4.32.5
         version: 4.32.5
@@ -165,9 +165,6 @@ importers:
       react-dom:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
-      vite-plugin-externalize-deps:
-        specifier: ^0.8.0
-        version: 0.8.0(vite@5.1.3)
 
   packages/core:
     dependencies:
@@ -280,9 +277,6 @@ importers:
       jsdom:
         specifier: 22.1.0
         version: 22.1.0
-      vite-plugin-externalize-deps:
-        specifier: ^0.8.0
-        version: 0.8.0(vite@5.1.3)
 
   packages/eslint-plugin-rhino:
     dependencies:
@@ -1948,14 +1942,15 @@ packages:
     resolution: {integrity: sha512-Ja2VlaTf3kM5tN4Y0sC8T3ibZAnfGUU/QzMAlk/G+Adz2fF1ycTabtSkdSuVP4/adXox8NkPPV4Xndx/EP4fMg==}
     dev: false
 
-  /@tanstack/config@0.4.4(@types/node@20.11.5)(esbuild@0.20.0)(rollup@4.12.0)(typescript@5.3.3)(vite@5.1.3):
-    resolution: {integrity: sha512-8WBvww2SHhN2YAQvvlmL7wwaspFnEwWVeyO7nWYXEp6Ho1WAkvRgzwofz7iGTmRVAAFsM8jAn4oawkHqvZBxeA==}
+  /@tanstack/config@0.5.2(@types/node@20.11.5)(esbuild@0.20.0)(rollup@4.12.0)(typescript@5.3.3)(vite@5.1.3):
+    resolution: {integrity: sha512-1YiyHLqrfevPcGSnQ5tbMj9J7jIR0/rEfW0RhnumKwQPmCaoYvNLiE7LxKUMs6WFVKOTevC9aTaZdC1/bWD41g==}
     engines: {node: '>=18'}
     hasBin: true
+    requiresBuild: true
     dependencies:
       '@commitlint/parse': 18.6.1
       chalk: 5.3.0
-      commander: 11.1.0
+      commander: 12.0.0
       current-git-branch: 1.1.0
       esbuild-register: 3.5.0(esbuild@0.20.0)
       git-log-parser: 1.2.0
@@ -1964,7 +1959,7 @@ packages:
       liftoff: 4.0.0
       luxon: 3.4.4
       minimist: 1.2.8
-      rollup-plugin-preserve-directives: 0.3.1(rollup@4.12.0)
+      rollup-plugin-preserve-directives: 0.4.0(rollup@4.12.0)
       semver: 7.6.0
       stream-to-array: 2.3.0
       v8flags: 4.0.1
@@ -3089,9 +3084,9 @@ packages:
     dependencies:
       delayed-stream: 1.0.0
 
-  /commander@11.1.0:
-    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
-    engines: {node: '>=16'}
+  /commander@12.0.0:
+    resolution: {integrity: sha512-MwVNWlYjDTtOjX5PiD7o5pK0UrFU/OYgcJfjjK4RaHZETNtjJqrZa9Y9ds88+A+f+d5lv+561eZ+yCKoS3gbAA==}
+    engines: {node: '>=18'}
     dev: true
 
   /commander@4.1.1:
@@ -6629,11 +6624,12 @@ packages:
       decache: 3.1.0
     dev: false
 
-  /rollup-plugin-preserve-directives@0.3.1(rollup@4.12.0):
-    resolution: {integrity: sha512-Jn1gWU7G55A1sU6eFpXmwknfBasF0XbBzRqsE6nqrb/gun+mGV7nx++CwOSGPJQpFzFqvKm5U4XNKo3LTLi4Hg==}
+  /rollup-plugin-preserve-directives@0.4.0(rollup@4.12.0):
+    resolution: {integrity: sha512-gx4nBxYm5BysmEQS+e2tAMrtFxrGvk+Pe5ppafRibQi0zlW7VYAbEGk6IKDw9sJGPdFWgVTE0o4BU4cdG0Fylg==}
     peerDependencies:
       rollup: 2.x || 3.x || 4.x
     dependencies:
+      '@rollup/pluginutils': 5.1.0(rollup@4.12.0)
       magic-string: 0.30.7
       rollup: 4.12.0
     dev: true
