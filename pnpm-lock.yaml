@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  fsevents@2.3.3:
+    hash: bzr7m3vujgtcprwwbyghj7rvju
+    path: patches/fsevents@2.3.3.patch
+
 importers:
 
   .:
@@ -3019,7 +3024,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.3
+      fsevents: 2.3.3(patch_hash=bzr7m3vujgtcprwwbyghj7rvju)
     dev: true
 
   /classnames@2.3.1:
@@ -4294,13 +4299,14 @@ packages:
   /fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
 
-  /fsevents@2.3.3:
+  /fsevents@2.3.3(patch_hash=bzr7m3vujgtcprwwbyghj7rvju):
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
+    patched: true
 
   /function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
@@ -6654,7 +6660,7 @@ packages:
       '@rollup/rollup-win32-arm64-msvc': 4.12.0
       '@rollup/rollup-win32-ia32-msvc': 4.12.0
       '@rollup/rollup-win32-x64-msvc': 4.12.0
-      fsevents: 2.3.3
+      fsevents: 2.3.3(patch_hash=bzr7m3vujgtcprwwbyghj7rvju)
     dev: true
 
   /rollup@4.6.0:
@@ -6674,7 +6680,7 @@ packages:
       '@rollup/rollup-win32-arm64-msvc': 4.6.0
       '@rollup/rollup-win32-ia32-msvc': 4.6.0
       '@rollup/rollup-win32-x64-msvc': 4.6.0
-      fsevents: 2.3.3
+      fsevents: 2.3.3(patch_hash=bzr7m3vujgtcprwwbyghj7rvju)
     dev: true
 
   /rrweb-cssom@0.6.0:
@@ -7698,7 +7704,7 @@ packages:
       postcss: 8.4.35
       rollup: 4.6.0
     optionalDependencies:
-      fsevents: 2.3.3
+      fsevents: 2.3.3(patch_hash=bzr7m3vujgtcprwwbyghj7rvju)
     dev: true
 
   /vitest@1.2.2(@types/node@20.11.5):

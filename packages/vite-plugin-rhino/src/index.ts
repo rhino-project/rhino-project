@@ -1,5 +1,7 @@
 import path from 'node:path';
-import { Plugin, ResolvedConfig } from 'vite';
+import { readFile } from 'node:fs/promises';
+import { transformWithEsbuild } from 'vite';
+import type { Plugin, ResolvedConfig } from 'vite';
 
 const CONFIG_MODULE_ID = 'rhino.config';
 const CUSTOM_PRIMARY_NAVIGATION_MODULE_ID =
@@ -14,11 +16,13 @@ const RESOLVED_ENV_MODULE_ID = '\0' + ENV_MODULE_ID;
 const ASSETS_MODULE_ID = 'virtual:@rhino-project/config/assets';
 const RESOLVED_ASSETS_MODULE_ID = '\0' + RESOLVED_ENV_MODULE_ID;
 
-const jsPattern =
-  /components\/app\/CustomPrimaryNavigation|components\/app\/CustomSecondaryNavigation|models\/static|routes\/custom/;
+// Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+// $& means the whole matched string
+const escapeRegExp = (string: string) =>
+  string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // ESBuild is used to pre-bundle modules in dev mode
-// This plugin is used to resolve the virtual/local import paths for Rhino
+// This plugin is used to resolve the virtual/local import paths for Rhino and to handle jsx in js
 // in @rhino-project/core - at some point we should support @rhino-project/config as well
 const esbuildRhinoPlugin = {
   name: 'esbuild-rhino-plugin',
@@ -26,13 +30,29 @@ const esbuildRhinoPlugin = {
   setup(build) {
     // We use the Vite technique of marking them as external so that they are not pre-bundled
     //https://github.com/vitejs/vite/blob/42fd11c1c6d37402bd15ba816fbf65dbed3abe55/packages/vite/src/node/optimizer/esbuildDepPlugin.ts#L166
-
     // @ts-ignore
     build.onResolve({ filter: jsPattern }, async (args) => {
       return {
         path: path.resolve(process.cwd(), 'src', `${args.path}.js`),
         external: true
       };
+    });
+
+    // Handle js in jsx
+    // See: https://github.com/vitejs/vite/discussions/3448#discussioncomment-749919
+    // NOTE: Since ESBuild evaluates this regex using Go's engine, it is not
+    // clear whether the JS-specific regex escape logic is sound.
+    const jsFilter = new RegExp(`^${escapeRegExp(process.cwd())}.*[.]js$`);
+    // @ts-ignore
+    build.onLoad({ filter: jsFilter }, async (args) => {
+      if (args.path.endsWith('.js')) {
+        return {
+          contents: await readFile(args.path),
+          loader: 'jsx'
+        };
+      }
+
+      return undefined;
     });
   }
 };
@@ -44,6 +64,9 @@ export function RhinoProjectVite(): Plugin {
     name: 'vite-plugin-rhino',
     enforce: 'pre',
     config: () => ({
+      // Backwards compatibility with create-react-app
+      envPrefix: ['REACT_APP_', 'VITE_'],
+
       optimizeDeps: {
         esbuildOptions: {
           plugins: [esbuildRhinoPlugin]
@@ -53,8 +76,36 @@ export function RhinoProjectVite(): Plugin {
       }
     }),
 
-    configResolved(vite) {
-      CONFIG = vite;
+    configResolved(config) {
+      CONFIG = config;
+
+      // Check for deprecated environment variables
+      Object.keys(config.env).forEach((key) => {
+        if (key.startsWith('REACT_APP_')) {
+          const viteKey = key.replace(/^REACT_APP_/, 'VITE_');
+          if (!config.env[viteKey]) {
+            throw new Error(
+              `Environment variable ${key} should be converted to ${viteKey}`
+            );
+          } else {
+            console.warn(
+              `Environment variable ${key} can be removed in favor of ${viteKey}`
+            );
+          }
+        }
+      });
+
+      // Check for required environment variables
+      const requiredEnv = ['VITE_API_ROOT_PATH'];
+      requiredEnv.forEach((key) => {
+        if (!config.env[key]) {
+          throw new Error(
+            `Environment variable ${key} is required${
+              config.env['DEV'] ? ' does .env exist?' : ''
+            }`
+          );
+        }
+      });
     },
 
     resolveId(id) {
@@ -107,6 +158,29 @@ export function RhinoProjectVite(): Plugin {
       }
 
       return null;
+    },
+
+    // Handle js in jsx for builds
+    async transform(code, id) {
+      // Ignore Rollup virtual modules.
+      if (id.startsWith('\0')) {
+        return;
+      }
+
+      // Strip off any "proxy id" component before testing against path.
+      // See: https://github.com/vitejs/vite-plugin-react-swc/blob/a1bfc313612a8143a153ce87f52925059459aeb2/src/index.ts#L89
+      // See: https://rollupjs.org/plugin-development/#inter-plugin-communication
+      // @ts-ignore
+      [id] = id.split('?');
+      if (id.startsWith(CONFIG.root) && id.endsWith('.js')) {
+        return await transformWithEsbuild(code, id, {
+          loader: 'jsx',
+          jsx: 'automatic',
+          jsxDev: !(CONFIG.env.mode === 'production')
+        });
+      }
+
+      return undefined;
     }
   };
 }
