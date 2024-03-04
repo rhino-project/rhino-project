@@ -22,6 +22,7 @@ import { releaseCommitMsg } from './utils.js';
  * @returns {Promise<void>}
  */
 export const publishRubyHack = async (options) => {
+  // eslint-disable-next-line no-shadow
   const { branchConfigs, packages, rootDir, branch, tag, ghToken } = options;
 
   const branchName = /** @type {string} */ (branch ?? currentGitBranch());

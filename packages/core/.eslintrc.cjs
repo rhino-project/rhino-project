@@ -8,10 +8,9 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:prettier/recommended',
-    'plugin:@tanstack/eslint-plugin-query/recommended',
-    'plugin:@rhino-project/rhino/recommended'
+    'plugin:@tanstack/eslint-plugin-query/recommended'
   ],
-  plugins: ['react', 'react-hooks', '@rhino-project/rhino'],
+  plugins: ['react', 'react-hooks'],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
