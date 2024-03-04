@@ -34,8 +34,8 @@ const useDevAiEnabled = () => {
   const queryFn = useCallback(() => {
     const endpoint = '/api/dev/ai';
 
-    return networkApiCallOnlyData(endpoint, { data });
-  }, [data]);
+    return networkApiCallOnlyData(endpoint);
+  }, []);
 
   const { data } = useQuery({
     queryFn,
