@@ -3,7 +3,6 @@ import { defineConfig, mergeConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import url from 'node:url';
 import { transformWithEsbuild } from 'vite';
-import { externalizeDeps } from 'vite-plugin-externalize-deps';
 import { resolve } from 'node:path';
 
 // NOTE: Keep trailing slash to use resulting path in prefix matching.
@@ -31,22 +30,7 @@ const vitePlugin = (isProd) => ({
   }
 });
 const config = defineConfig({
-  plugins: [
-    externalizeDeps({
-      include: [
-        'react',
-        'rhino.config',
-        'virtual:@rhino-project/config/env',
-        'virtual:@rhino-project/config/assets',
-        'components/app/CustomPrimaryNavigation',
-        'components/app/CustomSecondaryNavigation',
-        'routes/custom',
-        'models/static'
-      ]
-    }),
-    vitePlugin(true),
-    react()
-  ],
+  plugins: [vitePlugin(true), react()],
   resolve: {
     // This prevents pnpm symlink paths from being used in the build for icons
     preserveSymlinks: true
@@ -129,7 +113,17 @@ export default mergeConfig(
       './src/routes/index.js'
     ],
     exclude: ['./src/__tests__'],
-    srcDir: './src'
+    srcDir: './src',
+    externalDeps: [
+      'react',
+      'rhino.config',
+      'virtual:@rhino-project/config/env',
+      'virtual:@rhino-project/config/assets',
+      'components/app/CustomPrimaryNavigation',
+      'components/app/CustomSecondaryNavigation',
+      'routes/custom',
+      'models/static'
+    ]
   }),
   config
 );
