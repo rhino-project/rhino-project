@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "openai"
-
 module Rhino
   class DevAi
     include Rhino::Resource
