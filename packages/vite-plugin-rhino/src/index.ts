@@ -178,7 +178,7 @@ export function RhinoProjectVite(): Plugin {
         return await transformWithEsbuild(code, id, {
           loader: 'jsx',
           jsx: 'automatic',
-          jsxDev: !(CONFIG.env.mode === 'production')
+          jsxDev: !(CONFIG.env.MODE === 'production')
         });
       }
 
