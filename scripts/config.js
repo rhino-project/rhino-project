@@ -17,6 +17,10 @@ export const packages = [
     packageDir: 'packages/vite-plugin-rhino'
   },
   {
+    name: 'create-rhino-app',
+    packageDir: 'packages/create-rhino-app'
+  },
+  {
     name: '@rhino-project/config',
     packageDir: 'packages/config'
   },
