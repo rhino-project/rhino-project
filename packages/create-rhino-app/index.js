@@ -14,34 +14,56 @@ async function main() {
       name: 'projectName',
       message: 'What is your project name?',
       default: 'My Rhino Project'
+    },
+    {
+      type: 'checkbox',
+      name: 'modules',
+      message: 'Which additional modules would you like to install?',
+      choices: [
+        { name: 'Organizations', value: 'organizations' },
+        { name: 'Jobs', value: 'jobs' },
+        { name: 'Notifications', value: 'notifications' },
+        { name: 'Subscriptions', value: 'subscriptions' }
+      ]
     }
   ]);
 
   const projectName = kebabCase(answers.projectName);
   const projectDir = projectName
-    .trim() // Remove leading and trailing spaces
-    .replace(/[^a-zA-Z0-9]+/g, '-') // Replace spaces and special chars with -
-    .replace(/^-+|-+$/g, '') // Remove leading and trailing -
-    .toLowerCase(); // Convert to lower case
+    .trim()
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
   console.log(chalk.blue(`Creating project: ${projectName} in ${projectDir}`));
 
-  // Clone your template repo (replace with your actual template repository URL)
   shell.exec(
     `git clone git@github.com:nubinary/boilerplate_mono.git ${projectDir}`
   );
 
-  // Navigate into the project directory
-  shell.cd(projectDir);
+  // Navigate into the project directory's 'client' subdirectory
+  shell.cd(`${projectDir}/client`);
 
-  // Initialize a new git repository
-  shell.exec('git init');
+  console.log(chalk.blue('Installing client dependencies...'));
+  shell.exec('npm install --silent');
 
-  // Install dependencies
-  shell.exec('pnpm install');
+  // Navigate to the 'server' subdirectory to install modules
+  shell.cd('../server');
+
+  console.log(chalk.blue('Installing server dependencies...'));
+  shell.exec('bundle install --quiet');
+
+  console.log(chalk.blue('Installing environment variables...'));
+  shell.exec('bundle exec rails rhino:dev:setup -- --no-prompt');
+
+  answers.modules.forEach((module) => {
+    console.log(chalk.blue(`Installing ${module} module...`));
+    shell.exec(`bundle exec rails rhino_${module}:install --quiet`);
+  });
 
   console.log(chalk.green('Project setup complete!'));
   console.log(
-    chalk.green(`cd ${projectDir} && pnpm run dev to start development!`)
+    chalk.green(`cd ${projectDir}/server && rails s to start development!`),
+    chalk.green(`cd ${projectDir}/client && npm start to start development!`)
   );
 }
 
