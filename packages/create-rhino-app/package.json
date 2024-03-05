@@ -1,0 +1,27 @@
+{
+  "name": "create-rhino-app",
+  "version": "0.20.0-beta.39",
+  "description": "",
+  "author": "JP Rosevear",
+  "license": "MIT",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "create-rhino-app": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "clean": "rimraf ./dist && rimraf ./coverage",
+    "test:build": "publint --strict",
+    "test:eslint": "eslint ./index.js"
+  },
+  "keywords": [],
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "inquirer": "^9.2.15",
+    "kebab-case": "^1.0.2",
+    "shelljs": "^0.8.5"
+  }
+}
