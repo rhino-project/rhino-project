@@ -23,19 +23,49 @@ export type RhinoConfigModelComponent =
 export type RhinoConfigAttributeComponent = RhinoConfigAttributeComponentMap;
 
 export interface RhinoConfig {
+  /**
+   * Version number of the config file format
+   * @default 1.0
+   */
   version: number;
+
+  /**
+   * The app name, displayed in places like the title bar
+   * @default 'RhinoProject'
+   */
   appName: string;
+
+  /**
+   * Whether or not to enable the default model routes
+   * @default true
+   */
   enableModelRoutes: boolean;
+
+  /**
+   * The path relative to assets for the dark logo
+   * @default 'images/logo-dark.svg'
+   */
   darkLogo: string;
+
+  /**
+   * The path relative to assets for the light logo
+   * @default 'images/logo-light.svg'
+   */
   lightLogo: string;
 
-  // Config for assets
+  /**
+   * All assets available under assets.  Use `useRhinoAsset` to access the urls
+   */
   assets: typeof assets;
 
-  // Config for env variables
+  /**
+   * All available environment variables
+   */
   env: typeof env;
 
-  // Config for global, model and attribute components
+  /**
+   * Configure global, model and attribute components
+   */
   components:
     | RhinoConfigGlobalComponent
     | Record<string, RhinoConfigModelComponent>
@@ -44,7 +74,7 @@ export interface RhinoConfig {
 
 export const defaultConfig: RhinoConfig = {
   version: 1,
-  appName: 'BoilerPlate',
+  appName: 'RhinoProject',
   enableModelRoutes: true,
   darkLogo: 'images/logo-dark.svg',
   lightLogo: 'images/logo-light.svg',
@@ -54,6 +84,10 @@ export const defaultConfig: RhinoConfig = {
   components: {}
 };
 
+/**
+ * Retrieves the Rhino configuration.
+ * * @returns {RhinoConfig} The Rhino configuration object.
+ */
 export const getRhinoConfig = (): RhinoConfig => {
   // FIXME: Is there a better way to get rhinoConfig as RhinoConfig?
   const mergedConfig = merge({}, defaultConfig, rhinoConfig as RhinoConfig);
@@ -61,9 +95,18 @@ export const getRhinoConfig = (): RhinoConfig => {
   return mergedConfig;
 };
 
+/**
+ * Hook to retrieve the Rhino configuration.
+ * @returns {RhinoConfig} The Rhino configuration object.
+ */
 export const useRhinoConfig = (): RhinoConfig =>
   useMemo(() => getRhinoConfig(), []);
 
+/**
+ * Retrieves the url of a Rhino asset.
+ * @param asset - The name of the asset relative to `assets`.
+ * @returns The path of the asset, or undefined if the asset is not found.
+ */
 export const useRhinoAsset = (asset: string): string | undefined => {
   const { assets } = useRhinoConfig();
   const assetPath = `/src/assets/${asset}`;
