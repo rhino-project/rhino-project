@@ -60,6 +60,11 @@ async function main() {
     shell.exec(`bundle exec rails rhino_${module}:install --quiet`);
   });
 
+  console.log(chalk.blue('Setting up database...'));
+  shell.exec('bundle exec rails db:setup');
+  shell.exec('bundle exec rails db:migrate');
+  shell.exec('bundle exec rails db:reset');
+
   console.log(chalk.green('Project setup complete!'));
   console.log(
     chalk.green(`cd ${projectDir}/server && rails s to start development!`),

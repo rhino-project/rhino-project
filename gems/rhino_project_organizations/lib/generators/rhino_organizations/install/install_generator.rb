@@ -42,6 +42,12 @@ module RhinoOrganizations
         inject_into_file 'config/initializers/rhino.rb', optimize_indentation(data, 2), after: /^\s*config\.resources.+\n/
       end
 
+      def install_seeds
+        say 'Copying seed files'
+        copy_file "#{__dir__}/templates/seeds/organizations.rb", 'db/seeds/development/organizations.rb'
+        copy_file "#{__dir__}/templates/seeds/organizations.rb", 'db/seeds/test/organizations.rb'
+      end
+
       def install_active_admin # rubocop:disable Metrics/MethodLength
         say 'Copying rhino_organization ActiveAdmin files and configurations'
         copy_file "#{__dir__}/templates/admin/users_roles.rb", 'app/admin/users_roles.rb'
