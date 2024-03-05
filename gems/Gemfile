@@ -27,7 +27,7 @@ gem 'js_regex'
 gem 'countries'
 
 # Organizations
-gem 'devise_invitable', '2.0.6'
+gem 'devise_invitable', '2.0.9'
 
 # Jobs
 gem 'resque', '2.6.0'

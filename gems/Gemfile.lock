@@ -37,7 +37,7 @@ PATH
       rhino_project_core (= 0.20.0.beta.45)
       rhino_project_jobs (= 0.20.0.beta.45)
     rhino_project_organizations (0.20.0.beta.45)
-      devise_invitable (= 2.0.6)
+      devise_invitable (= 2.0.9)
       rails (~> 7.0.0, >= 7.0.0)
       rhino_project_core (= 0.20.0.beta.45)
     rhino_project_subscriptions (0.20.0.beta.45)
@@ -187,7 +187,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
-    devise_invitable (2.0.6)
+    devise_invitable (2.0.9)
       actionmailer (>= 5.0)
       devise (>= 4.6)
     erubi (1.12.0)
@@ -519,7 +519,7 @@ GEM
       prettier_print (>= 1.2.0)
     terser (1.2.0)
       execjs (>= 0.3.0, < 3)
-    thor (1.3.0)
+    thor (1.3.1)
     tilt (2.3.0)
     timeout (0.4.1)
     tomlrb (2.0.3)
@@ -567,7 +567,7 @@ DEPENDENCIES
   cssbundling-rails
   dartsass-rails
   debug (>= 1.1.0)
-  devise_invitable (= 2.0.6)
+  devise_invitable (= 2.0.9)
   devise_token_auth!
   factory_bot
   factory_bot_rails
