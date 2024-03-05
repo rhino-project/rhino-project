@@ -2,13 +2,13 @@ import { tanstackBuildConfig } from '@tanstack/config/build';
 import { defineConfig, mergeConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import url from 'node:url';
-import { transformWithEsbuild } from 'vite';
+import { Plugin, transformWithEsbuild } from 'vite';
 import { resolve } from 'node:path';
 
 // NOTE: Keep trailing slash to use resulting path in prefix matching.
 const srcDir = url.fileURLToPath(new URL('./src/', import.meta.url));
 
-const vitePlugin = (isProd) => ({
+const vitePlugin = (isProd: boolean): Plugin => ({
   name: 'js-in-jsx',
   enforce: 'pre',
   async transform(code, id) {
@@ -19,6 +19,7 @@ const vitePlugin = (isProd) => ({
     // Strip off any "proxy id" component before testing against path.
     // See: https://github.com/vitejs/vite-plugin-react-swc/blob/a1bfc313612a8143a153ce87f52925059459aeb2/src/index.ts#L89
     // See: https://rollupjs.org/plugin-development/#inter-plugin-communication
+    // @ts-expect-error Legacy code
     [id] = id.split('?');
     if (id.startsWith(srcDir) && id.endsWith('.js')) {
       return await transformWithEsbuild(code, id, {
@@ -27,6 +28,8 @@ const vitePlugin = (isProd) => ({
         jsxDev: !isProd
       });
     }
+
+    return undefined;
   }
 });
 const config = defineConfig({
