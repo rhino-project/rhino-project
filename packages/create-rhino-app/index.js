@@ -18,6 +18,54 @@ program.parse(process.argv);
 
 const options = program.opts();
 
+async function docker(modules) {
+  console.log(chalk.blue(`Setting up Docker Compose environment...`));
+  shell.exec(`docker-compose up --wait`);
+
+  modules.forEach((module) => {
+    console.log(chalk.blue(`Installing ${module} module...`));
+    shell.exec(
+      `docker-compose run backend "bundle exec rails rhino_${module}:install --quiet"`
+    );
+  });
+
+  if (modules.length > 0) {
+    shell.exec('docker-compose run backend "bundle exec rails db:migrate"');
+    shell.exec('docker-compose run backend "bundle exec rails db:reset"');
+  }
+
+  console.log(chalk.blue(`Opening browser...`));
+  shell.exec(`open http://localhost:3001`);
+}
+
+async function local(modules) {
+  // Navigate into the project directory's 'client' subdirectory
+  shell.cd(`client`);
+
+  console.log(chalk.blue('Installing client dependencies...'));
+  shell.exec('npm install --silent');
+
+  // Navigate to the 'server' subdirectory to install modules
+  shell.cd('../server');
+  console.log(chalk.blue('Installing server dependencies...'));
+  shell.exec('bundle install --quiet');
+
+  console.log(chalk.blue('Installing environment variables...'));
+  shell.exec(
+    'bundle exec rails rhino:dev:setup -- --no-prompt --db-name=postgres --db-user=postgres --db-password=postgres'
+  );
+
+  modules.forEach((module) => {
+    console.log(chalk.blue(`Installing ${module} module...`));
+    shell.exec(`bundle exec rails rhino_${module}:install --quiet`);
+  });
+
+  console.log(chalk.blue('Setting up database...'));
+  shell.exec('bundle exec rails db:setup');
+  shell.exec('bundle exec rails db:migrate');
+  shell.exec('bundle exec rails db:reset');
+}
+
 async function main() {
   console.log(chalk.green('Welcome to Create Rhino App'));
 
@@ -52,49 +100,18 @@ async function main() {
   // Use the repo and branch options from commander
   shell.exec(`git clone -b ${options.branch} ${options.repo} ${projectDir}`);
 
-  const devcontainerName = `${projectDir}_devcontainer`;
-  console.log(
-    chalk.blue(`Building devcontainer: ${projectName} in ${projectDir}`)
-  );
   shell.cd(`${projectDir}`);
-  shell.exec(`devcontainer up --help`);
-  shell.exec(
-    `devcontainer build --workspace-folder . --config ./.devcontainer-local/devcontainer.json --image-name ${devcontainerName}`
-  );
-  shell.exec(
-    `devcontainer up --workspace-folder . --config ./.devcontainer-local/devcontainer.json`
-  );
 
-  // Navigate into the project directory's 'client' subdirectory
-  shell.cd(`client`);
-
-  console.log(chalk.blue('Installing client dependencies...'));
-  shell.exec('npm install --silent');
-
-  // Navigate to the 'server' subdirectory to install modules
-  shell.cd('../server');
-
-  console.log(chalk.blue('Installing server dependencies...'));
-  shell.exec('bundle install --quiet');
-
-  console.log(chalk.blue('Installing environment variables...'));
-  shell.exec('bundle exec rails rhino:dev:setup -- --no-prompt');
-
-  answers.modules.forEach((module) => {
-    console.log(chalk.blue(`Installing ${module} module...`));
-    shell.exec(`bundle exec rails rhino_${module}:install --quiet`);
-  });
-
-  console.log(chalk.blue('Setting up database...'));
-  shell.exec('bundle exec rails db:setup');
-  shell.exec('bundle exec rails db:migrate');
-  shell.exec('bundle exec rails db:reset');
+  docker(answers.modules);
+  local(answers.modules);
 
   console.log(chalk.green('Project setup complete!'));
   console.log(
     chalk.green(`cd ${projectDir}/server && rails s to start development!`),
     chalk.green(`cd ${projectDir}/client && npm start to start development!`)
   );
+
+  chalk.green(`cd ${projectDir} and launch editor!`);
 }
 
 main().catch((error) => console.error(chalk.red(error)));
