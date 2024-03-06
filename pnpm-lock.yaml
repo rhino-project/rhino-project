@@ -291,6 +291,9 @@ importers:
 
   packages/create-rhino-app:
     dependencies:
+      '@devcontainers/cli':
+        specifier: ^0.57.0
+        version: 0.57.0
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -800,6 +803,12 @@ packages:
     dependencies:
       chalk: 4.1.2
     dev: true
+
+  /@devcontainers/cli@0.57.0:
+    resolution: {integrity: sha512-e1aA0ANjCvRZ1b8S9oc+qZCme18WiIMXon1xl3mdn/HNgCg05mnE4cYBeA+ooHw47E2rd+e/ZN4IQGQD4WPpVA==}
+    engines: {node: ^16.13.0 || >=18.0.0}
+    hasBin: true
+    dev: false
 
   /@emotion/babel-plugin@11.11.0:
     resolution: {integrity: sha512-m4HEDZleaaCH+XgDDsPF15Ht6wTLsgDTeR3WYj9Q/k76JtWhrJjcP4+/XlG8LGT/Rol9qUfOIztXeA84ATpqPQ==}

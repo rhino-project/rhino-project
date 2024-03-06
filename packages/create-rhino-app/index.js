@@ -52,8 +52,21 @@ async function main() {
   // Use the repo and branch options from commander
   shell.exec(`git clone -b ${options.branch} ${options.repo} ${projectDir}`);
 
+  const devcontainerName = `${projectDir}_devcontainer`;
+  console.log(
+    chalk.blue(`Building devcontainer: ${projectName} in ${projectDir}`)
+  );
+  shell.cd(`${projectDir}`);
+  shell.exec(`devcontainer up --help`);
+  shell.exec(
+    `devcontainer build --workspace-folder . --config ./.devcontainer-local/devcontainer.json --image-name ${devcontainerName}`
+  );
+  shell.exec(
+    `devcontainer up --workspace-folder . --config ./.devcontainer-local/devcontainer.json`
+  );
+
   // Navigate into the project directory's 'client' subdirectory
-  shell.cd(`${projectDir}/client`);
+  shell.cd(`client`);
 
   console.log(chalk.blue('Installing client dependencies...'));
   shell.exec('npm install --silent');
