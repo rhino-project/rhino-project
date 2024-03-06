@@ -4,6 +4,19 @@ import inquirer from 'inquirer';
 import chalk from 'chalk';
 import shell from 'shelljs';
 import kebabCase from 'kebab-case';
+import { program } from 'commander'; // Import commander
+
+program
+  .option(
+    '-r, --repo <type>',
+    'Git repository URL',
+    'git@github.com:nubinary/boilerplate_mono.git'
+  )
+  .option('-b, --branch <type>', 'Git branch name', 'main');
+
+program.parse(process.argv);
+
+const options = program.opts();
 
 async function main() {
   console.log(chalk.green('Welcome to Create Rhino App'));
@@ -36,9 +49,8 @@ async function main() {
     .toLowerCase();
   console.log(chalk.blue(`Creating project: ${projectName} in ${projectDir}`));
 
-  shell.exec(
-    `git clone git@github.com:nubinary/boilerplate_mono.git ${projectDir}`
-  );
+  // Use the repo and branch options from commander
+  shell.exec(`git clone -b ${options.branch} ${options.repo} ${projectDir}`);
 
   // Navigate into the project directory's 'client' subdirectory
   shell.cd(`${projectDir}/client`);
