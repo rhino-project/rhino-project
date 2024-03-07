@@ -84,11 +84,11 @@ module Rhino
           end
 
           def db_user_default
-            options[:db_user] || ENV["DB_USERNAME"] || (dockerized ? "postgres" : "")
+            options[:db_user] || ENV["DB_USERNAME"] || `whoami`
           end
 
           def db_password_default
-            options[:db_password] || ENV["DB_PASSWORD"] || (dockerized ? "password" : "")
+            options[:db_password] || ENV["DB_PASSWORD"] || ""
           end
 
           def redis_host_default
@@ -123,24 +123,27 @@ module Rhino
             return unless dockerized
 
             @db_host = "db"
+            @db_user = "postgres"
+            @db_password = "password"
             @redis_host = "redis"
             @redis_port = 6379
 
             puts <<~HERE
               The following docker configuration has been automatically set for you:
               Database host: #{db_host}
+              Database user: #{db_user}
+              Database password: #{db_password}
               Redis host: #{redis_host}
               Redis port: #{redis_port}
             HERE
           end
 
-          def collect_database_info # rubocop:todo Metrics/AbcSize
+          def collect_database_info
             @db_name = ask_prompt("Database?", db_name_default)
-            @db_host = ask_prompt("Database host?", db_host_default) unless dockerized
+            @db_host = ask_prompt("Database host?", db_host_default)
             @db_port = ask_prompt("Database port?", db_port_default)
-            @db_user = ask_prompt("Database User?", db_user_default) until !dockerized || db_user.present?
-            @db_password = ask_prompt("Database Password?", db_password_default) until !dockerized || db_password.present?
-          end
+            @db_user = ask_prompt("Database User?", db_user_default)
+            @db_password = ask_prompt("Database Password?", db_password_default)
 
           def collect_redis_info
             unless dockerized

@@ -12,7 +12,8 @@ program
     'Git repository URL',
     'https://github.com/rhino-project/rhino-project-template.git'
   )
-  .option('-b, --branch <type>', 'Git branch name', 'main');
+  .option('-b, --branch <type>', 'Git branch name', 'main')
+  .option('-l, --local', 'Setup project for local development');
 
 program.parse(process.argv);
 
@@ -30,8 +31,7 @@ async function docker(modules) {
   });
 
   if (modules.length > 0) {
-    shell.exec('docker-compose run backend "bundle exec rails db:migrate"');
-    shell.exec('docker-compose run backend "bundle exec rails db:reset"');
+    shell.exec('docker-compose restart backend');
   }
 
   console.log(chalk.blue(`Opening browser...`));
@@ -103,7 +103,11 @@ async function main() {
   shell.cd(`${projectDir}`);
 
   docker(answers.modules);
-  local(answers.modules);
+  if (options.local) {
+    local(answers.modules);
+  } else {
+    docker(answers.modules);
+  }
 
   console.log(chalk.green('Project setup complete!'));
   console.log(
