@@ -10,6 +10,7 @@ describe('configs', () => {
             "@rhino-project/eslint-plugin-rhino",
           ],
           "rules": {
+            "@rhino-project/rhino/no-empty-actions": "warn",
             "@rhino-project/rhino/no-hooks-get-model": "warn",
           },
         },
