@@ -5,7 +5,7 @@ gemspec
 eval_gemfile('../Gemfile')
 
 # Core
-gem "activeadmin", "~> 2.14.0"
+gem "activeadmin", "~> 3.2.0"
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth.git', ref: '5b1a5e19450f3755ce5ebe2f631b40c876ffc22d'
