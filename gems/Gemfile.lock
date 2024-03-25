@@ -421,7 +421,7 @@ GEM
       activesupport (>= 6.1.5)
       i18n
     rbtree (0.4.6)
-    rdoc (6.6.2)
+    rdoc (6.6.3.1)
       psych (>= 4.0.0)
     redis (5.1.0)
       redis-client (>= 0.17.0)
