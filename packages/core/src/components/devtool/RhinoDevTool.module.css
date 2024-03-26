@@ -1,4 +1,5 @@
 .rhinoTool {
+  font-family: var(--bs-font-monospace);
   position: fixed;
   right: 0;
   top: 0;

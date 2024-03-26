@@ -22,7 +22,7 @@ module Rhino
   mattr_accessor :resources, default: if Rails.env.production?
                                         ['ActiveStorage::Attachment']
                                       else
-                                        ['ActiveStorage::Attachment', 'Rhino::OpenApiInfo', 'Rhino::InfoGraph']
+                                        ['ActiveStorage::Attachment', 'Rhino::OpenApiInfo', 'Rhino::InfoGraph', 'Rhino::DevAi']
                                       end
 
   mattr_accessor :resource_classes

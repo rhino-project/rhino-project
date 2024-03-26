@@ -5,7 +5,9 @@ module Rhino
     def action_missing(action)
       authorize klass, "#{action}?".to_sym
 
-      render json: klass.send(action)
+      method = klass.method(action)
+
+      render json: method.parameters.any? ? klass.send(action, params) : klass.send(action)
     end
   end
 end

@@ -74,7 +74,7 @@ module Rhino
       new_path
     end
 
-    PATH_IGNORES = ["Rhino::OpenApiInfo", "Rhino::InfoGraph"].freeze
+    PATH_IGNORES = ["Rhino::OpenApiInfo", "Rhino::InfoGraph", "Rhino::DevAi"].freeze
     def self.describe_paths # rubocop:todo Metrics/AbcSize
       routes = Rails.application.routes.routes
 
