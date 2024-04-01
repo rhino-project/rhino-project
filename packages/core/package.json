@@ -495,7 +495,9 @@
     "test:build": "publint --strict",
     "test:eslint": "eslint ./src",
     "build": "vite build",
-    "extract:components": "node ./extractComponents.js"
+    "extract:components": "node ./extractComponents.js",
+    "copy:fields": "node ./copyAndReplace.js",
+    "copy:displays": "node ./copyAndReplaceDisplay.js"
   },
   "keywords": [],
   "engines": {
