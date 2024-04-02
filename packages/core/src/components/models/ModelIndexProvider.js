@@ -1,18 +1,47 @@
 import { createContext } from 'react';
-import env from '@rhino-project/config/env';
 import { ModelContext } from './ModelProvider';
-import { RhinoDevTool } from '../devtool/RhinoDevTool';
+import { useRhinoDevBroadcastSend } from '../../hooks/dev';
 
 export const ModelIndexContext = createContext();
+
+const include = [
+  'model',
+  'parentId',
+  'defaultState',
+  'initialState',
+  'order',
+  'search',
+  'filter',
+  'totalFilters',
+  'fullFilter',
+  'totalFullFilters',
+  'setDefaultFilter',
+  'limit',
+  'setLimit',
+  'offset',
+  'totalPages',
+  'page',
+  'hasPrevPage',
+  'hasNextPage',
+  'firstPage',
+  'lastPage',
+  'total'
+];
 
 export const ModelIndexProvider = ({ children, ...props }) => {
   const { model } = props;
 
+  useRhinoDevBroadcastSend(
+    {
+      type: 'ModelIndexContext',
+      context: props
+    },
+    { include }
+  );
+
   return (
     <ModelContext.Provider value={{ model }}>
       <ModelIndexContext.Provider value={{ ...props }}>
-        {/* Don't show dev tool if we're in a nested index */}
-        {env.MODE === 'development' && !props.parentId && <RhinoDevTool />}
         {children}
       </ModelIndexContext.Provider>
     </ModelContext.Provider>

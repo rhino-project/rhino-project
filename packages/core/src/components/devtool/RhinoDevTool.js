@@ -1,104 +1,70 @@
-import { useContext } from 'react';
+import { useEffect, useState } from 'react';
 import classnames from 'classnames';
+import { omit } from 'lodash-es';
 
 import RhinoLogo from './rhinoRedLogo.png';
 import styles from './RhinoDevTool.module.css';
 import { CloseButton } from '../buttons';
-import { useModelContext } from '../../hooks/models';
-import { ModelIndexContext } from '../models/ModelIndexProvider';
-import { ModelShowContext } from '../models/ModelShowProvider';
-import { ModelEditContext } from '../models/ModelEditProvider';
-import { ModelCreateContext } from '../models/ModelCreateProvider';
 import { useLocalStorage } from 'react-use';
-import { pick } from 'lodash-es';
 import env from '@rhino-project/config/env';
+import { RHINO_DEV_BROADCAST_CHANNEL } from '../../hooks/dev';
 
-const RhinoDevToolModelIndex = () => {
-  const context = useContext(ModelIndexContext);
-
-  if (!context) return null;
-
-  return (
-    <details>
-      <summary>Context: Index</summary>
-      <pre>
-        {JSON.stringify(
-          pick(context, [
-            'parentId',
-            'defaultState',
-            'initialState',
-            'order',
-            'setOrder',
-            'search',
-            'setSearch',
-            'filter',
-            'setFilter',
-            'totalFilters',
-            'fullFilter',
-            'totalFullFilters',
-            'setDefaultFilter',
-            'limit',
-            'setLimit',
-            'offset',
-            'setOffset',
-            'totalPages',
-            'page',
-            'hasPrevPage',
-            'hasNextPage',
-            'firstPage',
-            'lastPage',
-            'setPage'
-          ]),
-          null,
-          2
-        )}
-      </pre>
-    </details>
-  );
-};
-
-const RhinoDevToolModelShow = () => {
-  const context = useContext(ModelShowContext);
-
-  if (!context) return null;
+const ContextDetails = ({ context: { id, type, context } }) => {
+  const model = JSON.parse(context)?.model;
 
   return (
-    <details>
-      <summary>Context: Show</summary>
-      <pre>{JSON.stringify(pick(context, ['modelId', 'paths']), null, 2)}</pre>
-    </details>
-  );
-};
-
-const RhinoDevToolModelCreate = () => {
-  const context = useContext(ModelCreateContext);
-
-  if (!context) return null;
-
-  return (
-    <details>
-      <summary>Context: Create</summary>
-      <pre>{JSON.stringify(pick(context, ['parentId', 'paths']), null, 2)}</pre>
-    </details>
-  );
-};
-
-const RhinoDevToolModelEdit = () => {
-  const context = useContext(ModelEditContext);
-
-  if (!context) return null;
-
-  return (
-    <details>
-      <summary>Context: Edit</summary>
-      <pre>{JSON.stringify(pick(context, ['modelId', 'paths']), null, 2)}</pre>
-    </details>
+    <div>
+      {model && (
+        <details>
+          <summary>Model: {model.readableName}</summary>
+          <pre>
+            {JSON.stringify(
+              model,
+              // These are hoisted to the top of the model object
+              (key, value) =>
+                ['x-rhino-attribute', 'x-rhino-model'].includes(key)
+                  ? undefined
+                  : value,
+              2
+            )}
+          </pre>
+        </details>
+      )}
+      <details>
+        <summary>
+          Context: {type} ({id})
+        </summary>
+        <pre>{context}</pre>
+      </details>
+    </div>
   );
 };
 
 export const RhinoDevTool = () => {
-  const { model } = useModelContext();
   const [isCollapsed, setIsCollapsed] = useLocalStorage('rhinoDevTool', true);
+  const [contexts, setContexts] = useState({});
+
+  useEffect(() => {
+    const bc = new BroadcastChannel(RHINO_DEV_BROADCAST_CHANNEL);
+
+    bc.onmessage = ({ data }) => {
+      const { id, action } = data;
+
+      setContexts((current) => {
+        if (action === 'remove') {
+          return omit(current, [id]);
+        }
+
+        return {
+          ...current,
+          [id]: data
+        };
+      });
+    };
+
+    // Close on unmount
+    return () => bc.close();
+  }, []);
 
   const toggleCollapse = () => setIsCollapsed(!isCollapsed);
 
@@ -124,24 +90,10 @@ export const RhinoDevTool = () => {
               <summary>Env</summary>
               <pre>{JSON.stringify(env, null, 2)}</pre>
             </details>
-            <details>
-              <summary>Model: {model.readableName}</summary>
-              <pre>
-                {JSON.stringify(
-                  model,
-                  // These are hoisted to the top of the model object
-                  (key, value) =>
-                    ['x-rhino-attribute', 'x-rhino-model'].includes(key)
-                      ? undefined
-                      : value,
-                  2
-                )}
-              </pre>
-            </details>
-            <RhinoDevToolModelShow />
-            <RhinoDevToolModelIndex />
-            <RhinoDevToolModelCreate />
-            <RhinoDevToolModelEdit />
+
+            {Object.keys(contexts).map((id) => (
+              <ContextDetails key={id} context={contexts[id]} />
+            ))}
           </div>
         )}
       </div>
