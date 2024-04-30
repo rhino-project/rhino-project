@@ -43,6 +43,11 @@ const config = defineConfig({
     globals: true,
     watch: false,
     setupFiles: ['src/__tests__/shared/setupTests.js'],
+    server: {
+      deps: {
+        inline: ['@rhino-project/config']
+      }
+    },
     alias: {
       'rhino.config': resolve('src/__tests__/shared/rhino.config.js'),
       'virtual:@rhino-project/config/env': resolve(
