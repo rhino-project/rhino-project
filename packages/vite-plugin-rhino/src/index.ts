@@ -14,7 +14,7 @@ const CUSTOM_ROUTES_MODULE_ID = 'routes/custom';
 const ENV_MODULE_ID = 'virtual:@rhino-project/config/env';
 const RESOLVED_ENV_MODULE_ID = '\0' + ENV_MODULE_ID;
 const ASSETS_MODULE_ID = 'virtual:@rhino-project/config/assets';
-const RESOLVED_ASSETS_MODULE_ID = '\0' + RESOLVED_ENV_MODULE_ID;
+const RESOLVED_ASSETS_MODULE_ID = '\0' + ASSETS_MODULE_ID;
 
 // Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 // $& means the whole matched string
