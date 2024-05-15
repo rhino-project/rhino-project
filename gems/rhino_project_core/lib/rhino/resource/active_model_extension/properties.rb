@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "js_regex"
+
 module Rhino
   module Resource
     module ActiveModelExtension
