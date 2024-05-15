@@ -21,4 +21,5 @@ Rhino.setup do |config|
 
   # The list of resources exposed in the API
   config.resources += ['User', 'Account']
+  config.resources += ['User', 'Account', 'Blog', 'BlogPost', "Category"]
 end
