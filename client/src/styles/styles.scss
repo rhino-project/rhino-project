@@ -1,0 +1,156 @@
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/utilities';
+@import '_modal.scss';
+@import 'auth.scss';
+@import 'model.scss';
+@import 'country.scss';
+@import './bootstrap_overrides.scss';
+@import '@rhino-project/core/style';
+
+$breadcrumb-padding-y: 0.75rem;
+$breadcrumb-padding-x: 1rem;
+$breadcrumb-border-radius: 0.25rem;
+$breadcrumb-bg: $gray-200;
+
+html,
+body {
+  height: 100%;
+}
+
+.nav-sidebar {
+  .nav-link {
+    cursor: pointer;
+
+    color: $light;
+
+    &:hover,
+    &:focus {
+      color: $light;
+    }
+  }
+
+  &-section {
+    font-size: $font-size-base;
+  }
+
+  .nav-item {
+    .nav-link.active {
+      background-color: $primary;
+    }
+
+    .nav-link.active,
+    &:hover {
+      border-radius: $nav-tabs-border-radius;
+    }
+
+    .active:hover,
+    &:hover {
+      background-color: $gray-700;
+    }
+  }
+
+  &.sidebar {
+    width: 17.5rem;
+  }
+}
+
+.nav-icon {
+  height: $font-size-base;
+  width: $font-size-base;
+}
+
+.table-row-clickable,
+.table-header-clickable {
+  cursor: pointer;
+}
+
+input[type='checkbox'] {
+  display: block;
+}
+
+.input-group {
+  .btn-close {
+    border: $input-border-width solid darken($border-color, 20%);
+    border-left: 0;
+    border-top-right-radius: $input-border-radius;
+    border-bottom-right-radius: $input-border-radius;
+    height: calc($input-height - $input-border-width * 2);
+    background-color: $input-bg;
+    padding: 0 8px;
+  }
+
+  .input-file-label {
+    position: absolute;
+    background-color: $white;
+    z-index: 1;
+    height: calc($input-height - $input-padding-y * 2);
+    margin-top: $input-padding-y;
+    left: 120px;
+    max-width: 210px;
+    width: 40%;
+    text-wrap: avoid;
+    display: block;
+    @extend .text-truncate;
+    padding-left: 10px;
+  }
+}
+
+.react-tel-input {
+  .form-control {
+    padding: 7px 14px 7px 60px !important;
+  }
+}
+
+.dropdown {
+  .dropdown-toggle.no-arrow::after {
+    display: none;
+  }
+}
+
+// Layout & components
+@import 'bootstrap/scss/root';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/images';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/tables';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/transitions';
+@import 'bootstrap/scss/dropdown';
+@import 'bootstrap/scss/button-group';
+@import 'bootstrap/scss/nav';
+@import 'bootstrap/scss/navbar';
+@import 'bootstrap/scss/card';
+@import 'bootstrap/scss/accordion';
+@import 'bootstrap/scss/breadcrumb';
+@import 'bootstrap/scss/pagination';
+@import 'bootstrap/scss/badge';
+@import 'bootstrap/scss/alert';
+@import 'bootstrap/scss/progress';
+@import 'bootstrap/scss/list-group';
+@import 'bootstrap/scss/close';
+@import 'bootstrap/scss/toasts';
+@import 'bootstrap/scss/modal';
+@import 'bootstrap/scss/tooltip';
+@import 'bootstrap/scss/popover';
+@import 'bootstrap/scss/carousel';
+@import 'bootstrap/scss/spinners';
+@import 'bootstrap/scss/offcanvas';
+@import 'bootstrap/scss/placeholders';
+
+// Helpers
+@import 'bootstrap/scss/helpers';
+
+// Utilities
+@import 'bootstrap/scss/utilities/api';
+// scss-docs-end import-stack
+
+@import '_reactdatepicker.scss';
+@import 'reactbootstraptypeahead.scss';
+@import '_reactphoneinput.scss';
