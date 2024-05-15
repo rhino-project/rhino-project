@@ -1,0 +1,119 @@
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '3.1.4'
+
+# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+gem 'rails', '~> 7.0.0'
+
+# Use the Puma web server [https://github.com/puma/puma]
+gem 'puma', '~> 5.6'
+
+# Use Sass to process CSS
+gem "sassc-rails"
+
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+
+# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# gem "bcrypt", "~> 3.1.7"
+
+# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+gem "image_processing", "~> 1.2"
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
+
+gem 'sdoc'
+
+gem 'dalli'
+
+gem 'pg_search'
+
+gem 'acts-as-taggable-on', '~> 9.0'
+
+gem 'resque'
+gem 'resque-scheduler'
+gem 'resque-heroku-signals'
+gem 'active_scheduler'
+
+gem 'sendgrid-ruby'
+gem 'sendgrid-actionmailer'
+
+gem 'activity_notification'
+
+
+gem 'google_drive'
+
+gem 'rgl'
+
+gem 'arel-helpers'
+
+group :development, :test do
+  gem 'debug'
+  gem 'openapi3_parser'
+end
+
+group :development do
+  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
+  gem 'web-console', '>= 3.3.0'
+  gem 'brakeman'
+  gem 'railroady'
+end
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'dotenv-rails'
+gem 'pg'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-azure-activedirectory-v2'
+gem 'omniauth-auth0'
+gem "omniauth-rails_csrf_protection"
+gem 'devise_token_auth', git: 'https://github.com/lynndylanhurley/devise_token_auth.git'
+gem 'devise_invitable', '~> 2.0.0'
+gem 'pundit'
+gem 'letter_opener', :group => :development
+gem 'rack-cors', :require => 'rack/cors'
+group :development, :test do
+  gem 'factory_bot'
+  gem 'factory_bot_rails'
+
+  # These are aligned with rails 7.0
+  gem 'rubocop', '1.24.1', require: false
+  gem 'rubocop-packaging', '0.5.1', require: false
+  gem 'rubocop-performance', '1.13.1', require: false
+  gem 'rubocop-minitest', '0.17.0', require: false
+  gem 'rubocop-rails', '2.13.0', require: false
+
+  gem 'ffaker'
+  gem 'simplecov', require: false
+  gem 'webmock', require: false
+end
+
+gem 'friendly_id'
+gem 'ancestry'
+gem 'phonelib'
+gem 'countries'
+
+gem 'activeadmin'
+gem 'arctic_admin'
+gem 'activeadmin_addons'
+
+gem 'rollbar'
+
+gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'
+
+gem "rhino_project", "~> 0.20.0.beta.51"
+
+gem "rhino_project_core", "~> 0.20.0.beta.51"
+
+gem "rhino_project_organizations", "~> 0.20.0.beta.51"
+
+gem "rhino_project_notifications", "~> 0.20.0.beta.51"
+
+gem "rhino_project_subscriptions", "~> 0.20.0.beta.51"
+
+gem "rhino_project_jobs", "~> 0.20.0.beta.51"

@@ -1,0 +1,60 @@
+# Loosely based on https://betterprogramming.pub/rails-6-development-with-docker-55437314a1ad
+version: '3'
+networks:
+  development:
+volumes:
+  db_data:
+  redis_data:
+  gem_cache:
+  shared_data:
+services:
+  backend:
+    container_name: backend
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    volumes:
+      - .:/var/app
+      - shared_data:/var/shared
+      - gem_cache:/usr/local/bundle/gems
+    networks:
+      - development
+    ports:
+      - ${PORT}:${PORT}
+    stdin_open: true
+    tty: true
+    entrypoint: dev-entrypoint.sh
+    # Just keep the backend open
+    command: ['rails', 'server', '-b', '0.0.0.0', '-p', $PORT]
+    environment:
+      RAILS_ENV: development
+      DB_HOST: db
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      REDIS_URL: redis://redis:${REDIS_PORT}/${REDIS_DATABASE}
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:12.5-alpine
+    container_name: db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - development
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      PGPORT: ${DB_PORT}
+    ports:
+      - ${DB_PORT}:${DB_PORT}
+  redis:
+    image: redis:6.2-alpine
+    container_name: redis
+    volumes:
+      - redis_data:/data
+    networks:
+      - development
+    ports:
+      - ${REDIS_PORT}:6379
+

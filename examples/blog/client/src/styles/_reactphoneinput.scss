@@ -1,0 +1,97 @@
+@import 'react-phone-input-2/lib/bootstrap.css';
+
+// Outside because also used for country (which does not use floating)
+.react-tel-input {
+  .flag-dropdown {
+    &.open {
+      z-index: 3;
+    }
+  }
+}
+
+.form-floating {
+  .react-tel-input {
+    .selected-flag {
+      z-index: 3;
+    }
+
+    ~ label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      height: 100%; // allow textareas
+      padding: $form-floating-padding-y 67px;
+      overflow: hidden;
+      text-align: start;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      pointer-events: none;
+      border: $input-border-width solid transparent; // Required for aligning label's text with the input as it affects inner box model
+      transform-origin: 0 0;
+      @include transition($form-floating-transition);
+    }
+
+    .form-control {
+      padding-top: $form-floating-input-padding-t !important;
+      padding-bottom: $form-floating-input-padding-b !important;
+
+      &::placeholder {
+        color: transparent;
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-top: $form-floating-input-padding-t !important;
+        padding-bottom: $form-floating-input-padding-b !important;
+      }
+      // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
+      &:-webkit-autofill {
+        padding-top: $form-floating-input-padding-t !important;
+        padding-bottom: $form-floating-input-padding-b !important;
+      }
+    }
+
+    // Duplicated because `:-webkit-autofill` invalidates other selectors when grouped
+    .form-control:-webkit-autofill {
+      ~ label {
+        color: rgba(
+          var(--#{$prefix}body-color-rgb),
+          #{$form-floating-label-opacity}
+        );
+        transform: $form-floating-label-transform;
+      }
+    }
+
+    :disabled ~ label,
+    .form-control:disabled ~ label {
+      // Required for `.form-control`s because of specificity
+      color: $form-floating-label-disabled-color;
+
+      &::after {
+        background-color: $input-disabled-bg;
+      }
+    }
+  }
+
+  .react-tel-input:focus-within,
+  .react-tel-input:has(.form-control:not(:placeholder-shown)) {
+    ~ label {
+      color: rgba(
+        var(--#{$prefix}body-color-rgb),
+        #{$form-floating-label-opacity}
+      );
+      transform: $form-floating-label-transform;
+
+      &::after {
+        position: absolute;
+        inset: $form-floating-padding-y ($form-floating-padding-x * 0.5);
+        z-index: -1;
+        height: $form-floating-label-height;
+        content: '';
+        background-color: $input-bg;
+        @include border-radius($input-border-radius);
+      }
+    }
+  }
+}

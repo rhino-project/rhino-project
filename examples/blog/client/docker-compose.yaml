@@ -1,0 +1,24 @@
+version: '3'
+networks:
+  development:
+volumes:
+  npm_cache:
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    volumes:
+      - .:/var/app
+      - npm_cache:/usr/local/npm
+    networks:
+      - development
+    ports:
+      - ${PORT}:${PORT}
+    tty: true
+    entrypoint: dev-entrypoint.sh
+    # Start serving
+    command: 'start'
+    environment:
+      VITE_API_ROOT_PATH: ${VITE_API_ROOT_PATH}
