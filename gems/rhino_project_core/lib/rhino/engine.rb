@@ -131,11 +131,11 @@ module Rhino
     end
 
     def self.run_from_dev_setup?
-      Rake.application.top_level_tasks == ["rhino:dev:setup"]
+      defined?(Rake.application) && Rake.application.top_level_tasks == ["rhino:dev:setup"]
     end
 
     def self.run_from_package?
-      Rake.application.top_level_tasks == ["package"]
+      defined?(Rake.application) && Rake.application.top_level_tasks == ["package"]
     end
   end
 end
