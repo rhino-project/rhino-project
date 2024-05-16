@@ -10,7 +10,7 @@ program
   .option(
     '-r, --repo <type>',
     'Git repository URL',
-    'git@github.com:nubinary/boilerplate_mono.git'
+    'https://github.com/rhino-project/rhino-project-template.git'
   )
   .option('-b, --branch <type>', 'Git branch name', 'main');
 
