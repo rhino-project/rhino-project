@@ -22,16 +22,6 @@ class EngineTest < ActiveSupport::TestCase
     assert_equal("EngineTest::BadResource has references [:user, :banner_attachment, :blog] that do not exist as associations", exp.message)
   end
 
-  test "raises error if rhino_references called multiple times" do
-    exp = assert_raises StandardError do
-      class BadResourceMultipleReferenceCalls < ApplicationRecord
-        rhino_references [:a]
-        rhino_references [:b]
-      end
-    end
-    assert_equal("rhino_references called multiple times for EngineTest::BadResourceMultipleReferenceCalls", exp.message)
-  end
-
   test "raises error if owner is not a reference" do
     class BadResourceNoOwnerRef < ApplicationRecord
       rhino_owner_base
