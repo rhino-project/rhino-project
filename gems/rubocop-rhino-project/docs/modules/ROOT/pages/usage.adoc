@@ -1,0 +1,32 @@
+= Usage
+
+You need to tell RuboCop to load the RhinoProject extension. There are three
+ways to do this:
+
+== RuboCop configuration file
+
+Put this into your `.rubocop.yml`.
+
+[source,yaml]
+----
+require: rubocop-rhino-project
+----
+
+Now you can run `rubocop` and it will automatically load the RuboCop RhinoProject
+cops together with the standard cops.
+
+== Command line
+
+[source,sh]
+----
+$ rubocop --require rubocop-rhino-project
+----
+
+== Rake task
+
+[source,ruby]
+----
+RuboCop::RakeTask.new do |task|
+  task.requires << 'rubocop-rhino-project'
+end
+----

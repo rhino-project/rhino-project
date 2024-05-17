@@ -57,6 +57,7 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.5.1)
     erubi (1.12.0)
     execjs (2.9.1)
     factory_bot (6.4.6)
@@ -164,6 +165,19 @@ GEM
     reline (0.5.0)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.1)
     rubocop (1.24.1)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
@@ -229,6 +243,7 @@ GEM
     websocket (1.2.10)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yard (0.9.36)
     zeitwerk (2.6.13)
 
 PLATFORMS
@@ -262,6 +277,7 @@ DEPENDENCIES
   racc (>= 1.4.6)
   rack-cache (~> 1.2)
   rake (>= 13)
+  rspec
   rubocop (= 1.24.1)
   rubocop-minitest (= 0.17.0)
   rubocop-packaging (= 0.5.1)
@@ -278,6 +294,7 @@ DEPENDENCIES
   useragent
   wdm (>= 0.1.0)
   webmock
+  yard
 
 BUNDLED WITH
    2.3.26
