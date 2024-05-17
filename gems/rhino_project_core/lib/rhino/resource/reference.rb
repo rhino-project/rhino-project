@@ -17,8 +17,6 @@ module Rhino
 
       class_methods do
         def rhino_references(references)
-          raise "rhino_references called multiple times for #{model_name}" if self._references.present? # rubocop:disable Style/RedundantSelf
-
           self._references = references
         end
 
