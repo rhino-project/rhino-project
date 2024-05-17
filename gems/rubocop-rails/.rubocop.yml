@@ -1,0 +1,149 @@
+# This is the configuration used to check the rubocop source code.
+
+inherit_from: .rubocop_todo.yml
+require:
+  - rubocop/cop/internal_affairs
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+  TargetRubyVersion: 2.7
+  SuggestExtensions: false
+
+InternalAffairs/NodeMatcherDirective:
+  Enabled: false
+
+# FIXME: Workaround for a false positive caused by this cop when using `bundle exec rake`.
+InternalAffairs/UndefinedConfig:
+  Enabled: false
+
+Naming/InclusiveLanguage:
+  Enabled: true
+  CheckStrings: true
+  FlaggedTerms:
+    ' a offense':
+      Suggestions:
+        - an offense
+    auto-correct:
+      Suggestions:
+        - autocorrect
+    auto_correct:
+      Suggestions:
+        - autocorrect
+    behaviour:
+      Suggestions:
+        - behavior
+    offence:
+      Suggestions:
+        - offense
+  # These are excluded for compatible API names. RuboCop Rails 3.0 will fix it.
+  Exclude:
+    - lib/rubocop/cop/rails/dynamic_find_by.rb
+    - lib/rubocop/cop/rails/skips_model_validations.rb
+    - spec/rubocop/cop/rails/dynamic_find_by_spec.rb
+    - spec/rubocop/cop/rails/skips_model_validations_spec.rb
+
+Naming/PredicateName:
+  # Method define macros for dynamically generated method.
+  MethodDefinitionMacros:
+    - define_method
+    - define_singleton_method
+    - def_node_matcher
+    - def_node_search
+
+Rails:
+  Enabled: false
+
+Style/FormatStringToken:
+  # Because we parse a lot of source codes from strings. Percent arrays
+  # look like unannotated format string tokens to this cop.
+  Exclude:
+    - spec/**/*
+
+Layout/HashAlignment:
+  EnforcedHashRocketStyle:
+    - key
+    - table
+  EnforcedColonStyle:
+    - key
+    - table
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+  ExpectedOrder:
+    - module_inclusion
+    - constants
+    - public_class_methods
+    - initializer
+    - instance_methods
+    - protected_methods
+    - private_methods
+
+Layout/RedundantLineBreak:
+  Enabled: true
+
+# Trailing white space is meaningful in code examples
+Layout/TrailingWhitespace:
+  AllowInHeredoc: true
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Lint/InterpolationCheck:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Lint/UselessAccessModifier:
+  MethodCreatingMethods:
+    - 'def_matcher'
+    - 'def_node_matcher'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+    - '*.gemspec'
+
+Naming/FileName:
+  Exclude:
+    - lib/rubocop-rails.rb
+
+Metrics/ModuleLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Performance/DeletePrefix:
+  SafeMultiline: false
+
+Performance/DeleteSuffix:
+  SafeMultiline: false
+
+RSpec:
+  Language:
+    Expectations:
+      - expect_correction
+      - expect_no_offenses
+      - expect_offense
+      - expect_offense_if_model_file
+
+RSpec/PredicateMatcher:
+  EnforcedStyle: explicit
+
+RSpec/NestedGroups:
+  Max: 7
