@@ -49,4 +49,6 @@ task :new_cop, [:cop] do |_task, args|
   puts generator.todo
 end
 
+task :package
+
 task default: :spec
