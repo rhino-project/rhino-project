@@ -59,6 +59,8 @@ group :development, :test do
   gem 'ffaker'
   gem 'openapi3_parser'
   gem 'webmock', require: false
+
+  gem 'yard'
 end
 
 gem "useragent", require: false
@@ -71,6 +73,8 @@ group :test do
   gem "minitest-bisect", require: false
   gem "minitest-ci", require: false
   gem "minitest-retry"
+
+  gem "rspec"
 
   platforms :mri do
     gem "stackprof"

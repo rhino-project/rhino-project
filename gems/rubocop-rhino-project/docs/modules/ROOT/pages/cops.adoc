@@ -1,0 +1,20 @@
+= Cops
+
+In RuboCop lingo the various checks performed on the code are called cops.
+Each cop is responsible for detecting one particular offense.
+RuboCop RhinoProject has only one RhinoProject department.
+
+Some of the RhinoProject cops have configuration options, allowing them to
+enforce different coding conventions.
+
+== RhinoProject
+
+RhinoProject cops check for RhinoProject best practices and coding conventions.
+
+// START_COP_LIST
+
+=== Department xref:cops_rhino_project.adoc[RhinoProject]
+
+* xref:cops_rhino_project.adoc#rhinoprojectduplicaterhinoreferences[RhinoProject/DuplicateRhinoReferences]
+
+// END_COP_LIST

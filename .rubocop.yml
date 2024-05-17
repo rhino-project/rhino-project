@@ -53,6 +53,10 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 12
 
+Naming/FileName:
+  Exclude:
+    - gems/rubocop-rhino-project/lib/rubocop-rhino-project.rb
+
 Style/ClassAndModuleChildren:
   Exclude:
     - gems/*/test/**/*.rb

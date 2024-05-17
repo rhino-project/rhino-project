@@ -7,6 +7,7 @@ rhino_project_organizations
 rhino_project_jobs
 rhino_project_notifications
 rhino_project_subscriptions
+rubocop-rhino-project
 )
 
 root    = File.expand_path("..", __dir__)
@@ -29,7 +30,7 @@ directory "pkg"
       if framework == "rhino_project"
         glob << "/version.rb"
       else
-        glob << "/#{framework}/lib/*"
+        glob << "/#{framework}/lib/**"
         glob << "/version.rb"
       end
 
