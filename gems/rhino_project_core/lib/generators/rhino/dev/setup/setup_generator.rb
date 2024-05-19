@@ -5,16 +5,21 @@ module Rhino
     module Dev
       # rubocop:disable Metrics/ClassLength
       class SetupGenerator < ::Rails::Generators::Base
-        class_option :prompt, type: :boolean, default: true
-        class_option :server_port, type: :numeric
-        class_option :client_port, type: :numeric
-        class_option :db_host, type: :string
-        class_option :db_name, type: :string
-        class_option :db_port, type: :numeric
-        class_option :db_user, type: :string
-        class_option :db_password, type: :string
-        class_option :redis_port, type: :numeric
-        class_option :redis_database, type: :numeric
+        DEFAULT_SERVER_PORT = 3000
+        DEFAULT_CLIENT_PORT = DEFAULT_SERVER_PORT + 1
+
+        class_option :prompt, type: :boolean, default: true, desc: "Prompt user for configuration options"
+        class_option :defaults, type: :string, enum: %w[local docker], default: "local", desc: "Use configuration defaults of type DEFAULTS"
+        class_option :skip_existing, type: :boolean, default: false, desc: "Skip existing env files"
+        class_option :server_port, type: :numeric, default: DEFAULT_SERVER_PORT, group: :server, desc: "Server port"
+        class_option :client_port, type: :numeric, default: DEFAULT_CLIENT_PORT, group: :client, desc: "Client port"
+        class_option :db_host, type: :string, group: :database
+        class_option :db_name, type: :string, group: :database
+        class_option :db_port, type: :numeric, default: 5432, group: :database
+        class_option :db_user, type: :string, group: :database
+        class_option :db_password, type: :string, group: :database
+        class_option :redis_port, type: :numeric, default: 6379, group: :redis
+        class_option :redis_database, type: :numeric, default: 0, group: :redis
 
         attr_reader :server_port,
                     :client_port,
@@ -30,11 +35,19 @@ module Rhino
 
         source_root File.expand_path("templates", __dir__)
 
+        def check_existing
+          return unless options[:skip_existing] && File.exist?(server_file(".env"))
+
+          say "Skipping existing .env files"
+          exit(0)
+        end
+
         def setup_env
           say "Setting up local .env files"
 
           collect_env_info
 
+          template "env.root", project_file(".env")
           template "env.server", server_file(".env")
           template "env.client", client_file(".env")
         end
@@ -58,17 +71,19 @@ module Rhino
           end
 
           def server_port_default
-            options[:server_port] || ENV["PORT"] || 3000
+            options[:server_port] || ENV["PORT"]
           end
 
           def client_port_default
             @server_port.to_i + 1
           end
 
+          def project_name
+            @project_name ||= File.basename(project_dir).sub(/[-_]?mono/, "")
+          end
+
           def db_name_default
-            db_name =
-              options[:db_name] || ENV["DB_NAME"] ||
-              File.basename(project_dir).sub(/[-_]?mono/, "")
+            db_name = options[:db_name] || ENV["DB_NAME"] || project_name
 
             return db_name if db_name.present?
 
@@ -80,15 +95,15 @@ module Rhino
           end
 
           def db_port_default
-            options[:db_port] || ENV["DB_PORT"] || 5432
+            options[:db_port] || ENV["DB_PORT"]
           end
 
           def db_user_default
-            options[:db_user] || ENV["DB_USERNAME"] || (dockerized ? "postgres" : "")
+            options[:db_user] || ENV["DB_USERNAME"] || `whoami`
           end
 
           def db_password_default
-            options[:db_password] || ENV["DB_PASSWORD"] || (dockerized ? "password" : "")
+            options[:db_password] || ENV["DB_PASSWORD"] || ""
           end
 
           def redis_host_default
@@ -96,15 +111,15 @@ module Rhino
           end
 
           def redis_port_default
-            options[:redis_port] || ENV["REDIS_PORT"] || 6379
+            options[:redis_port] || ENV["REDIS_PORT"]
           end
 
           def redis_database_default
-            options[:redis_database] || ENV["REDIS_DATABASE"] || 0
+            options[:redis_database] || ENV["REDIS_DATABASE"]
           end
 
           def dockerized_default
-            "yN"
+            options[:defaults] == "docker" ? "Y" : "N"
           end
 
           def collect_env_info
@@ -118,37 +133,46 @@ module Rhino
           end
 
           def collect_docker_info
-            @dockerized = %w[y Y].include?(ask_prompt("Run server on docker?", dockerized_default))
+            @dockerized = %w[y Y].include?(ask_prompt("Run with docker?", dockerized_default))
 
             return unless dockerized
 
             @db_host = "db"
+            @db_user = "postgres"
+            @db_password = "password"
+            @db_port = 5432
             @redis_host = "redis"
             @redis_port = 6379
+            @redis_database = 0
 
             puts <<~HERE
               The following docker configuration has been automatically set for you:
               Database host: #{db_host}
+              Database port: #{db_port}
+              Database user: #{db_user}
+              Database password: #{db_password}
               Redis host: #{redis_host}
               Redis port: #{redis_port}
+              Redis database: #{redis_database}
             HERE
           end
 
-          def collect_database_info # rubocop:todo Metrics/AbcSize
+          def collect_database_info
             @db_name = ask_prompt("Database?", db_name_default)
-            @db_host = ask_prompt("Database host?", db_host_default) unless dockerized
-            @db_port = ask_prompt("Database port?", db_port_default)
-            @db_user = ask_prompt("Database User?", db_user_default) until !dockerized || db_user.present?
-            @db_password = ask_prompt("Database Password?", db_password_default) until !dockerized || db_password.present?
+            @db_host ||= ask_prompt("Database host?", db_host_default)
+            @db_port ||= ask_prompt("Database port?", db_port_default)
+            @db_user ||= ask_prompt("Database User?", db_user_default)
+            @db_password ||= ask_prompt("Database Password?", db_password_default)
+
+            nil
           end
 
           def collect_redis_info
-            unless dockerized
-              @redis_host = ask_prompt("Redis host?", redis_host_default)
-              @redis_port = ask_prompt("Redis port?", redis_port_default)
-            end
+            @redis_host ||= ask_prompt("Redis host?", redis_host_default)
+            @redis_port ||= ask_prompt("Redis port?", redis_port_default)
+            @redis_database ||= ask_prompt("Redis database?", redis_database_default)
 
-            @redis_database = ask_prompt("Redis database?", redis_database_default)
+            nil
           end
 
           def project_file(file)

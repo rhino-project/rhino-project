@@ -3,8 +3,8 @@
 import inquirer from 'inquirer';
 import chalk from 'chalk';
 import shell from 'shelljs';
-import kebabCase from 'kebab-case';
-import { program } from 'commander'; // Import commander
+import { program } from 'commander';
+import fs from 'fs';
 
 program
   .option(
@@ -21,12 +21,36 @@ const options = program.opts();
 async function main() {
   console.log(chalk.green('Welcome to Create Rhino App'));
 
+  const environments = [
+    {
+      name: 'asdf',
+      value: 'asdf',
+      disabled: !shell.which('asdf') ? 'asdf not available' : false
+    },
+    {
+      name: 'Docker',
+      value: 'docker',
+      disabled: !shell.which('docker') ? 'Docker not available' : false
+    },
+    {
+      name: 'NixOS',
+      value: 'nixos',
+      disabled: !shell.which('nix-shell') ? 'NixOS not available' : false
+    }
+  ];
+
   const answers = await inquirer.prompt([
     {
       type: 'input',
       name: 'projectName',
       message: 'What is your project name?',
       default: 'My Rhino Project'
+    },
+    {
+      type: 'list',
+      name: 'devEnv',
+      message: 'Which development environment would you like to use?',
+      choices: environments
     },
     {
       type: 'checkbox',
@@ -41,33 +65,112 @@ async function main() {
     }
   ]);
 
-  const projectName = kebabCase(answers.projectName);
+  const projectName = answers.projectName;
   const projectDir = projectName
     .trim()
     .replace(/[^a-zA-Z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .toLowerCase();
+
+  if (fs.existsSync(projectDir)) {
+    console.error(chalk.red(`Error: Directory ${projectDir} already exists.`));
+    process.exit(1);
+  }
+
   console.log(chalk.blue(`Creating project: ${projectName} in ${projectDir}`));
 
   // Use the repo and branch options from commander
-  shell.exec(`git clone -b ${options.branch} ${options.repo} ${projectDir}`);
+  if (
+    shell.exec(`git clone -b ${options.branch} ${options.repo} ${projectDir}`)
+      .code !== 0
+  ) {
+    console.error(chalk.red('Error cloning repository'));
+    process.exit(1);
+  }
 
-  // Navigate into the project directory's 'client' subdirectory
-  shell.cd(`${projectDir}/client`);
+  // Assume start in the project directory and end in the project directory
+  shell.cd(projectDir);
+  if (answers.devEnv === 'asdf') {
+    setupAsdfEnvironment();
+    setupModulesAndDatabase(answers.modules);
+  } else if (answers.devEnv === 'docker') {
+    setupDockerEnvironment(projectDir, answers.modules);
+  } else if (answers.devEnv === 'nixos') {
+    setupNixOSEnvironment();
+    setupModulesAndDatabase(answers.modules);
+  }
 
+  console.log(chalk.green('Project setup complete!'));
+  console.log(
+    chalk.green(`cd ${projectDir}/server && rails s to start development!`),
+    chalk.green(`cd ${projectDir}/client && npm start to start development!`)
+  );
+}
+
+function setupAsdfEnvironment() {
+  console.log(chalk.blue('Setting up asdf environment...'));
+  shell.exec('asdf install');
+
+  if (shell.cd('client').code !== 0) {
+    console.error(chalk.red('Error navigating to client directory'));
+    process.exit(1);
+  }
   console.log(chalk.blue('Installing client dependencies...'));
   shell.exec('npm install --silent');
 
-  // Navigate to the 'server' subdirectory to install modules
-  shell.cd('../server');
-
+  shell.cd('..');
+  if (shell.cd('server').code !== 0) {
+    console.error(chalk.red('Error navigating to server directory'));
+    process.exit(1);
+  }
   console.log(chalk.blue('Installing server dependencies...'));
   shell.exec('bundle install --quiet');
+
+  shell.cd('..');
+}
+
+function setupDockerEnvironment(projectName) {
+  console.log(chalk.blue('Setting up Docker environment...'));
+
+  const envContent = `COMPOSE_PROJECT_NAME=${projectName}`;
+  fs.writeFileSync('.env', envContent);
+  console.log(chalk.blue('Created .env file with COMPOSE_PROJECT_NAME'));
+
+  shell.exec('docker-compose up');
+}
+
+function setupNixOSEnvironment() {
+  console.log(chalk.blue('Setting up NixOS environment...'));
+  shell.exec('nix-shell');
+
+  if (shell.cd('client').code !== 0) {
+    console.error(chalk.red('Error navigating to client directory'));
+    process.exit(1);
+  }
+  console.log(chalk.blue('Installing client dependencies...'));
+  shell.exec('npm install --silent');
+
+  shell.cd('..');
+  if (shell.cd('server').code !== 0) {
+    console.error(chalk.red('Error navigating to server directory'));
+    process.exit(1);
+  }
+  console.log(chalk.blue('Installing server dependencies...'));
+  shell.exec('bundle install --quiet');
+
+  shell.cd('..');
+}
+
+function setupModulesAndDatabase(modules) {
+  if (shell.cd('server').code !== 0) {
+    console.error(chalk.red('Error navigating to server directory'));
+    process.exit(1);
+  }
 
   console.log(chalk.blue('Installing environment variables...'));
   shell.exec('bundle exec rails rhino:dev:setup -- --no-prompt');
 
-  answers.modules.forEach((module) => {
+  modules.forEach((module) => {
     console.log(chalk.blue(`Installing ${module} module...`));
     shell.exec(`bundle exec rails rhino_${module}:install --quiet`);
   });
@@ -77,11 +180,7 @@ async function main() {
   shell.exec('bundle exec rails db:migrate');
   shell.exec('bundle exec rails db:reset');
 
-  console.log(chalk.green('Project setup complete!'));
-  console.log(
-    chalk.green(`cd ${projectDir}/server && rails s to start development!`),
-    chalk.green(`cd ${projectDir}/client && npm start to start development!`)
-  );
+  shell.cd('..');
 }
 
 main().catch((error) => console.error(chalk.red(error)));
