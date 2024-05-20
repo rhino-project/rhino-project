@@ -23,14 +23,14 @@ async function main() {
 
   const environments = [
     {
-      name: 'asdf',
-      value: 'asdf',
-      disabled: !shell.which('asdf') ? 'asdf not available' : false
-    },
-    {
       name: 'Docker',
       value: 'docker',
       disabled: !shell.which('docker') ? 'Docker not available' : false
+    },
+    {
+      name: 'asdf',
+      value: 'asdf',
+      disabled: !shell.which('asdf') ? 'asdf not available' : false
     },
     {
       name: 'NixOS',
