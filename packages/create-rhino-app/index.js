@@ -100,7 +100,6 @@ async function main() {
     setupModulesAndDatabase(answers.modules);
   }
 
-  console.log(chalk.green('Project setup complete!'));
   if (answers.devEnv !== 'docker') {
     console.log(
       chalk.green(`cd ${projectDir}/server && rails s to start development!`),
@@ -109,6 +108,11 @@ async function main() {
   } else {
     shell.exec('open http://localhost:3001');
   }
+  console.log(
+    chalk.green(
+      'Project setup complete! Login with test@example.com / password'
+    )
+  );
 }
 
 function setupAsdfEnvironment() {
@@ -133,14 +137,27 @@ function setupAsdfEnvironment() {
   shell.cd('..');
 }
 
-function setupDockerEnvironment(projectName) {
+function setupDockerEnvironment(projectName, modules) {
   console.log(chalk.blue('Setting up Docker environment...'));
 
   const envContent = `COMPOSE_PROJECT_NAME=${projectName}`;
   fs.writeFileSync('.env', envContent);
   console.log(chalk.blue('Created .env file with COMPOSE_PROJECT_NAME'));
 
-  shell.exec('docker-compose up --wait');
+  shell.exec('docker-compose up --wait --quiet-pull');
+
+  modules.forEach((module) => {
+    console.log(chalk.blue(`Installing ${module} module...`));
+    shell.exec(
+      `docker-compose exec backend bundle exec rails rhino_${module}:install --quiet`
+    );
+  });
+
+  if (modules.length > 0) {
+    shell.exec('docker-compose exec backend bundle exec rails db:migrate');
+    shell.exec('docker-compose exec backend bundle exec rails db:seed');
+    shell.exec('docker-compose restart backend');
+  }
 }
 
 function setupNixOSEnvironment() {
