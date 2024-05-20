@@ -35,7 +35,7 @@ async function main() {
     {
       name: 'NixOS',
       value: 'nixos',
-      disabled: !shell.which('nix-shell') ? 'NixOS not available' : false
+      disabled: true // !shell.which('nix-shell') ? 'NixOS not available' : false
     }
   ];
 
@@ -101,10 +101,14 @@ async function main() {
   }
 
   console.log(chalk.green('Project setup complete!'));
-  console.log(
-    chalk.green(`cd ${projectDir}/server && rails s to start development!`),
-    chalk.green(`cd ${projectDir}/client && npm start to start development!`)
-  );
+  if (answers.devEnv !== 'docker') {
+    console.log(
+      chalk.green(`cd ${projectDir}/server && rails s to start development!`),
+      chalk.green(`cd ${projectDir}/client && npm start to start development!`)
+    );
+  } else {
+    shell.exec('open http://localhost:3001');
+  }
 }
 
 function setupAsdfEnvironment() {
@@ -136,7 +140,7 @@ function setupDockerEnvironment(projectName) {
   fs.writeFileSync('.env', envContent);
   console.log(chalk.blue('Created .env file with COMPOSE_PROJECT_NAME'));
 
-  shell.exec('docker-compose up');
+  shell.exec('docker-compose up --wait');
 }
 
 function setupNixOSEnvironment() {
