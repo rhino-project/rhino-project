@@ -5,6 +5,7 @@ import chalk from 'chalk';
 import shell from 'shelljs';
 import { program } from 'commander';
 import fs from 'fs';
+import semver from 'semver';
 
 program
   .option(
@@ -21,11 +22,21 @@ const options = program.opts();
 async function main() {
   console.log(chalk.green('Welcome to Create Rhino App'));
 
+  const dockerComposeVersion = shell.exec('docker-compose --version', {
+    silent: true
+  }).stdout;
+  const dockerComposeMatch = dockerComposeVersion.match(/(\d+\.\d+\.\d+)/);
+  const dockerComposeValid = dockerComposeMatch
+    ? semver.gte(dockerComposeMatch[1], '2.20.3')
+    : false;
+
   const environments = [
     {
-      name: 'Docker',
+      name: 'Docker (2.20.3 or greater)',
       value: 'docker',
-      disabled: !shell.which('docker') ? 'Docker not available' : false
+      disabled: !dockerComposeValid
+        ? 'Docker Compose 2.20.3 or greater not available'
+        : false
     },
     {
       name: 'asdf',
