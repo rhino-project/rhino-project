@@ -13,10 +13,10 @@ module RhinoJobs
 
       def update_procfile
         inject_into_file 'Procfile' do
-          "worker: COUNT=1 QUEUE=* bundle exec rails resque:workers\n"
+          "worker: COUNT=1 QUEUE=* bin/rails resque:workers\n"
         end
         inject_into_file 'Procfile' do
-          "scheduler: bundle exec rails resque:scheduler\n"
+          "scheduler: bin/rails resque:scheduler\n"
         end
       end
 
@@ -26,11 +26,11 @@ module RhinoJobs
           worker:
             image: web
             command:
-              - COUNT=1 QUEUE=* bundle exec rails resque:workers
+              - COUNT=1 QUEUE=* bin/rails resque:workers
           scheduler:
             image: web
             command:
-              - bundle exec rails resque:scheduler
+              - bin/rails resque:scheduler
         RUBY
         inject_into_file 'heroku.yml', optimize_indentation(data, 0)
       end
