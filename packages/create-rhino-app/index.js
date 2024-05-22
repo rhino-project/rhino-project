@@ -155,19 +155,19 @@ function setupDockerEnvironment(projectName, modules) {
   fs.writeFileSync('.env', envContent);
   console.log(chalk.blue('Created .env file with COMPOSE_PROJECT_NAME'));
 
-  shell.exec('docker-compose up --wait --quiet-pull');
+  shell.exec('docker compose up --wait --quiet-pull');
 
   modules.forEach((module) => {
     console.log(chalk.blue(`Installing ${module} module...`));
     shell.exec(
-      `docker-compose exec backend bundle exec rails rhino_${module}:install --quiet`
+      `docker compose exec backend bundle exec rails rhino_${module}:install --quiet`
     );
   });
 
   if (modules.length > 0) {
-    shell.exec('docker-compose exec backend bundle exec rails db:migrate');
-    shell.exec('docker-compose exec backend bundle exec rails db:seed');
-    shell.exec('docker-compose restart backend');
+    shell.exec('docker compose exec backend bundle exec rails db:migrate');
+    shell.exec('docker compose exec backend bundle exec rails db:seed');
+    shell.exec('docker compose restart backend');
   }
 }
 
