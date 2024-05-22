@@ -22,7 +22,7 @@ const options = program.opts();
 async function main() {
   console.log(chalk.green('Welcome to Create Rhino App'));
 
-  const dockerComposeVersion = shell.exec('docker-compose --version', {
+  const dockerComposeVersion = shell.exec('docker compose version', {
     silent: true
   }).stdout;
   const dockerComposeMatch = dockerComposeVersion.match(/(\d+\.\d+\.\d+)/);
