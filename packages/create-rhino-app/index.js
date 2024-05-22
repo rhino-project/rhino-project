@@ -168,6 +168,7 @@ function setupDockerEnvironment(projectName, modules) {
     shell.exec('docker compose exec backend bundle exec rails db:migrate');
     shell.exec('docker compose exec backend bundle exec rails db:seed');
     shell.exec('docker compose restart backend');
+    shell.exec('docker compose up --wait');
   }
 }
 
