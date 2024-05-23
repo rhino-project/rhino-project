@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
+  '@tanstack/config@0.5.2':
+    hash: 5qtemzuhsnrkz5keh5v3rldate
+    path: patches/@tanstack__config@0.5.2.patch
   fsevents@2.3.3:
     hash: bzr7m3vujgtcprwwbyghj7rvju
     path: patches/fsevents@2.3.3.patch
@@ -18,7 +21,7 @@ importers:
         version: 18.6.1
       '@tanstack/config':
         specifier: ^0.5.2
-        version: 0.5.2(@types/node@20.11.5)(esbuild@0.20.2)(rollup@4.17.1)(typescript@5.3.3)(vite@5.2.10)
+        version: 0.5.2(patch_hash=5qtemzuhsnrkz5keh5v3rldate)(@types/node@20.11.5)(esbuild@0.20.2)(rollup@4.17.1)(typescript@5.3.3)(vite@5.2.10)
       '@tanstack/eslint-plugin-query':
         specifier: 4.32.5
         version: 4.32.5
@@ -1989,7 +1992,7 @@ packages:
     resolution: {integrity: sha512-Ja2VlaTf3kM5tN4Y0sC8T3ibZAnfGUU/QzMAlk/G+Adz2fF1ycTabtSkdSuVP4/adXox8NkPPV4Xndx/EP4fMg==}
     dev: false
 
-  /@tanstack/config@0.5.2(@types/node@20.11.5)(esbuild@0.20.2)(rollup@4.17.1)(typescript@5.3.3)(vite@5.2.10):
+  /@tanstack/config@0.5.2(patch_hash=5qtemzuhsnrkz5keh5v3rldate)(@types/node@20.11.5)(esbuild@0.20.2)(rollup@4.17.1)(typescript@5.3.3)(vite@5.2.10):
     resolution: {integrity: sha512-1YiyHLqrfevPcGSnQ5tbMj9J7jIR0/rEfW0RhnumKwQPmCaoYvNLiE7LxKUMs6WFVKOTevC9aTaZdC1/bWD41g==}
     engines: {node: '>=18'}
     hasBin: true
@@ -2020,6 +2023,7 @@ packages:
       - typescript
       - vite
     dev: true
+    patched: true
 
   /@tanstack/eslint-plugin-query@4.32.5:
     resolution: {integrity: sha512-lXgOi5jWsCx8szS4bgKPEBZiCnsxIeVlW5VpJo9JwlEhq7fiUWcTR8IJ+66sAFFfV7dpLj3R6MQjjnDGjlU9xg==}
