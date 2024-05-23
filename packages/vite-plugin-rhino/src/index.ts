@@ -75,6 +75,14 @@ export function RhinoProjectVite(): Plugin {
         },
         // Don't process with esbuild so that we can use resolveId for rhino.config
         exclude: ['@rhino-project/config']
+      },
+
+      test: {
+        server: {
+          deps: {
+            inline: ['@rhino-project/config', '@rhino-project/core']
+          }
+        }
       }
     }),
 
