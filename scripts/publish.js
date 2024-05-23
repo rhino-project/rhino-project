@@ -65,7 +65,7 @@ export const publishRubyHack = async (options) => {
 
   // If RELEASE_ALL is set via a commit subject or body, all packages will be
   // released regardless if they have changed files matching the package srcDir.
-  let RELEASE_ALL = true;
+  let RELEASE_ALL = false;
 
   if (!latestTag || tag) {
     if (tag) {
@@ -280,7 +280,7 @@ const publishConfig = {
   branch: process.env.BRANCH,
   tag: process.env.TAG,
   ghToken: process.env.GH_TOKEN,
-  releaseAll: true
+  releaseTogether: true
 };
 
 const rubyTag = await publishRubyHack({
