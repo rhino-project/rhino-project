@@ -19,7 +19,7 @@ import { releaseCommitMsg } from './utils.js';
 /**
  * Execute a script being published
  * @param {import('./types.js').RunOptions} options
- * @returns {Promise<void>}
+ * @returns {Promise<string | undefined>}
  */
 export const publishRubyHack = async (options) => {
   // eslint-disable-next-line no-shadow
@@ -65,7 +65,7 @@ export const publishRubyHack = async (options) => {
 
   // If RELEASE_ALL is set via a commit subject or body, all packages will be
   // released regardless if they have changed files matching the package srcDir.
-  let RELEASE_ALL = false;
+  let RELEASE_ALL = true;
 
   if (!latestTag || tag) {
     if (tag) {
@@ -176,6 +176,7 @@ export const publishRubyHack = async (options) => {
         .filter(Boolean);
 
   /** Uses packages and changedFiles to determine which packages have changed */
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   const changedPackages = RELEASE_ALL
     ? packages
     : packages.filter((pkg) => {
@@ -268,7 +269,8 @@ export const publishRubyHack = async (options) => {
   }
 
   console.info('All done!');
-  return;
+
+  return changedPackages.length > 0 ? npmVersion : undefined;
 };
 
 const publishConfig = {
@@ -277,10 +279,11 @@ const publishConfig = {
   rootDir,
   branch: process.env.BRANCH,
   tag: process.env.TAG,
-  ghToken: process.env.GH_TOKEN
+  ghToken: process.env.GH_TOKEN,
+  releaseAll: true
 };
 
-await publishRubyHack({
+const rubyTag = await publishRubyHack({
   ...publishConfig,
   packages: [
     {
@@ -306,6 +309,10 @@ await publishRubyHack({
   ]
 });
 
-await publish(publishConfig);
+await publish({
+  ...publishConfig,
+  // Use the tag from the ruby publish if it exists to ensure its tagged
+  tag: process.env.TAG || rubyTag
+});
 
 process.exit(0);
