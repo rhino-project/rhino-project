@@ -302,6 +302,10 @@ await publishRubyHack({
     {
       name: 'rhino_project_subscriptions',
       packageDir: 'gems/rhino_project_subscriptions'
+    },
+    {
+      name: 'rubocop-rhino-project',
+      packageDir: 'gems/rubocop-rhino-project'
     }
   ]
 });
