@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Rhino
+module RubocopRhinoProject
   # Returns the currently loaded version of Rhino core as a +Gem::Version+.
   def self.gem_version
     Gem::Version.new VERSION::STRING
