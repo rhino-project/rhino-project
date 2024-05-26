@@ -270,7 +270,7 @@ export const publishRubyHack = async (options) => {
 
   console.info('All done!');
 
-  return changedPackages.length > 0 ? npmVersion : undefined;
+  return changedPackages.length > 0 ? `v${npmVersion}` : undefined;
 };
 
 const publishConfig = {
