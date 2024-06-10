@@ -24,8 +24,14 @@ async function main() {
 
   const dockerComposeVersion = shell.exec('docker compose version', {
     silent: true
-  }).stdout;
-  const dockerComposeMatch = dockerComposeVersion.match(/(\d+\.\d+\.\d+)/);
+  });
+  if (dockerComposeVersion.code !== 0) {
+    console.error(chalk.red('Error checking Docker Compose version.'));
+    process.exit(1);
+  }
+
+  const dockerComposeMatch =
+    dockerComposeVersion.stdout.match(/(\d+\.\d+\.\d+)/);
   const dockerComposeValid = dockerComposeMatch
     ? semver.gte(dockerComposeMatch[1], '2.20.3')
     : false;
@@ -113,7 +119,9 @@ async function main() {
 
   if (answers.devEnv !== 'docker') {
     console.log(
-      chalk.green(`cd ${projectDir}/server && rails s to start development!`),
+      chalk.green(`cd ${projectDir}/server && rails s to start development!`)
+    );
+    console.log(
       chalk.green(`cd ${projectDir}/client && npm start to start development!`)
     );
   } else {
@@ -126,24 +134,31 @@ async function main() {
   );
 }
 
+function execWithCheck(command, errorMessage) {
+  const result = shell.exec(command);
+  if (result.code !== 0) {
+    console.error(chalk.red(errorMessage));
+    process.exit(1);
+  }
+}
+
 function setupAsdfEnvironment() {
   console.log(chalk.blue('Setting up asdf environment...'));
-  shell.exec('asdf install');
+  execWithCheck('asdf install', 'Error installing asdf versions.');
 
-  if (shell.cd('client').code !== 0) {
-    console.error(chalk.red('Error navigating to client directory'));
-    process.exit(1);
-  }
+  execWithCheck('cd client', 'Error navigating to client directory');
   console.log(chalk.blue('Installing client dependencies...'));
-  shell.exec('npm install --silent');
+  execWithCheck(
+    'npm install --silent',
+    'Error installing client dependencies.'
+  );
 
-  shell.cd('..');
-  if (shell.cd('server').code !== 0) {
-    console.error(chalk.red('Error navigating to server directory'));
-    process.exit(1);
-  }
+  execWithCheck('cd ../server', 'Error navigating to server directory');
   console.log(chalk.blue('Installing server dependencies...'));
-  shell.exec('bundle install --quiet');
+  execWithCheck(
+    'bundle install --quiet',
+    'Error installing server dependencies.'
+  );
 
   shell.cd('..');
 }
@@ -155,63 +170,74 @@ function setupDockerEnvironment(projectName, modules) {
   fs.writeFileSync('.env', envContent);
   console.log(chalk.blue('Created .env file with COMPOSE_PROJECT_NAME'));
 
-  shell.exec('docker compose up --wait --quiet-pull');
+  execWithCheck(
+    'docker compose up --wait --quiet-pull',
+    'Error starting Docker Compose.'
+  );
 
   modules.forEach((module) => {
     console.log(chalk.blue(`Installing ${module} module...`));
-    shell.exec(
-      `docker compose exec backend bundle exec rails rhino_${module}:install --quiet`
+    execWithCheck(
+      `docker compose exec backend bundle exec rails rhino_${module}:install --quiet`,
+      `Error installing ${module} module.`
     );
   });
 
   if (modules.length > 0) {
-    shell.exec('docker compose exec backend bundle exec rails db:migrate');
-    shell.exec('docker compose exec backend bundle exec rails db:seed');
-    shell.exec('docker compose restart backend');
-    shell.exec('docker compose up --wait');
+    execWithCheck(
+      'docker compose restart backend',
+      'Error restarting backend.'
+    );
+    execWithCheck('docker compose up --wait', 'Error starting Docker Compose.');
+    execWithCheck(
+      'docker compose exec backend bundle exec rails db:seed:replant',
+      'Error seeding database.'
+    );
   }
 }
 
 function setupNixOSEnvironment() {
   console.log(chalk.blue('Setting up NixOS environment...'));
-  shell.exec('nix-shell');
+  execWithCheck('nix-shell', 'Error starting NixOS shell.');
 
-  if (shell.cd('client').code !== 0) {
-    console.error(chalk.red('Error navigating to client directory'));
-    process.exit(1);
-  }
+  execWithCheck('cd client', 'Error navigating to client directory');
   console.log(chalk.blue('Installing client dependencies...'));
-  shell.exec('npm install --silent');
+  execWithCheck(
+    'npm install --silent',
+    'Error installing client dependencies.'
+  );
 
-  shell.cd('..');
-  if (shell.cd('server').code !== 0) {
-    console.error(chalk.red('Error navigating to server directory'));
-    process.exit(1);
-  }
+  execWithCheck('cd ../server', 'Error navigating to server directory');
   console.log(chalk.blue('Installing server dependencies...'));
-  shell.exec('bundle install --quiet');
+  execWithCheck(
+    'bundle install --quiet',
+    'Error installing server dependencies.'
+  );
 
   shell.cd('..');
 }
 
 function setupModulesAndDatabase(modules) {
-  if (shell.cd('server').code !== 0) {
-    console.error(chalk.red('Error navigating to server directory'));
-    process.exit(1);
-  }
+  execWithCheck('cd server', 'Error navigating to server directory');
 
   console.log(chalk.blue('Installing environment variables...'));
-  shell.exec('bundle exec rails rhino:dev:setup -- --no-prompt');
+  execWithCheck(
+    'bundle exec rails rhino:dev:setup -- --no-prompt',
+    'Error setting up environment variables.'
+  );
 
   modules.forEach((module) => {
     console.log(chalk.blue(`Installing ${module} module...`));
-    shell.exec(`bundle exec rails rhino_${module}:install --quiet`);
+    execWithCheck(
+      `bundle exec rails rhino_${module}:install --quiet`,
+      `Error installing ${module} module.`
+    );
   });
 
   console.log(chalk.blue('Setting up database...'));
-  shell.exec('bundle exec rails db:setup');
-  shell.exec('bundle exec rails db:migrate');
-  shell.exec('bundle exec rails db:reset');
+  execWithCheck('bundle exec rails db:setup', 'Error setting up database.');
+  execWithCheck('bundle exec rails db:migrate', 'Error migrating database.');
+  execWithCheck('bundle exec rails db:reset', 'Error resetting database.');
 
   shell.cd('..');
 }
