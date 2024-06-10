@@ -450,7 +450,8 @@ GEM
       redis (>= 3.3)
       resque (>= 1.27)
       rufus-scheduler (~> 3.2, != 3.3)
-    rexml (3.2.6)
+    rexml (3.2.9)
+      strscan
     rgl (0.5.7)
       lazy_priority_queue (~> 0.1.0)
       stream (~> 0.5.3)
@@ -529,6 +530,7 @@ GEM
       generator
     stringio (3.1.0)
     stripe (5.28.0)
+    strscan (3.1.0)
     swagger-blocks (3.0.0)
     syntax_tree (6.1.1)
       prettier_print (>= 1.2.0)
