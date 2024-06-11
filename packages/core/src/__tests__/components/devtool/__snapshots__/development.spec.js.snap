@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RhinoDevTool development > should return devtool 1`] = `
+<DocumentFragment>
+  <button
+    class="_toggleButton_bb2097"
+  >
+    <img
+      alt="Toggle"
+      height="40"
+      src="/src/components/devtool/rhinoRedLogo.png"
+      width="40"
+    />
+  </button>
+  <div
+    class="_rhinoTool_bb2097 _collapsed_bb2097"
+  />
+</DocumentFragment>
+`;
