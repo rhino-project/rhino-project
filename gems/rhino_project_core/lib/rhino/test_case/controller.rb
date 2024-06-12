@@ -94,7 +94,9 @@ module Rhino
             password: @current_user.password
           }, as: :json
           assert_response_ok
-          assert response.cookies[DeviseTokenAuth.cookie_name], "Auth cookie #{DeviseTokenAuth.cookie_name} not present"
+          headers = response.headers
+          # Use the configured header names
+          assert headers[DeviseTokenAuth.headers_names[:"access-token"]]
         end
 
         def parsed_response_ids
