@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative "test_case/controller"
+require_relative "test_case/model"
 require_relative "test_case/override"
 require_relative "test_case/policy"
 

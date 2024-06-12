@@ -29,6 +29,11 @@ FactoryBot.define do
     name { FFaker::Book.genre }
   end
 
+  factory :blogs_categories do
+    blog
+    category
+  end
+
   factory :user, aliases: [:author] do
     approved { true }
     confirmed_at { FFaker::Time.date }
