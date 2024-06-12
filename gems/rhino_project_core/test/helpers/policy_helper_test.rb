@@ -27,7 +27,13 @@ class PolicyHelperTest < ActiveSupport::TestCase
     assert_equal HippoBlogPostPolicy, Rhino::PolicyHelper.find_policy(:hippo, BlogPost.new)
   end
 
-  # Same as above except for Scope
+  test "finds local policy before rhino user policy" do
+    assert_equal LocalPolicy, Rhino::PolicyHelper.find_policy(:local, Blog)
+  end
+end
+
+# Same as above except for Scope
+class PolicyScopeHelperTest < ActiveSupport::TestCase
   test "finds admin policy scope with role as string" do
     assert_equal Rhino::AdminPolicy::Scope, Rhino::PolicyHelper.find_policy_scope("admin", Blog)
   end
@@ -50,5 +56,9 @@ class PolicyHelperTest < ActiveSupport::TestCase
 
   test "finds hippo policy scope for BlogPost instance" do
     assert_equal HippoBlogPostPolicy::Scope, Rhino::PolicyHelper.find_policy_scope(:hippo, BlogPost.new)
+  end
+
+  test "finds local policy scope before rhino user policy" do
+    assert_equal LocalPolicy::Scope, Rhino::PolicyHelper.find_policy_scope(:local, Blog)
   end
 end

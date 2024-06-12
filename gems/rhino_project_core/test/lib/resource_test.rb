@@ -22,6 +22,15 @@ class ResourceTest < ActiveSupport::TestCase
     assert_equal(GoodPolicy.policy_class, HippoPolicy)
   end
 
+  test "Finds non-rhino name spaced policy before rhino poloicy" do
+    class GoodPolicy < ApplicationRecord
+      rhino_owner_global
+      rhino_policy :local
+    end
+
+    assert_equal(GoodPolicy.policy_class, LocalPolicy)
+  end
+
   test "Finds rhino name spaced policy" do
     assert_equal(BlogDummy.policy_class, Rhino::BlogDummyPolicy)
   end

@@ -45,7 +45,8 @@ module Rhino
       end
 
       def rhino_policy(policy)
-        self._policy_class = "rhino/#{policy}_policy".classify.safe_constantize || "#{policy}_policy".classify.safe_constantize
+        # Look for local policy first, then look in the rhino namespace
+        self._policy_class = "#{policy}_policy".classify.safe_constantize || "rhino/#{policy}_policy".classify.safe_constantize
 
         raise "Policy #{policy} not found for #{name}" unless _policy_class
       end
