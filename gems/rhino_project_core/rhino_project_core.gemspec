@@ -42,6 +42,9 @@ Gem::Specification.new do |spec|
   # Friendly id slugs
   spec.add_dependency "friendly_id", "5.3.0"
 
+  # Friendly id slugs
+  spec.add_dependency "geocoder", "1.8.2"
+
   # Generate patterns for OpenAPI schemas
   spec.add_dependency "js_regex", "3.11.1"
 

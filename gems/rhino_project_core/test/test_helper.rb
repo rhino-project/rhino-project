@@ -27,6 +27,21 @@ end
 # But we are in an engine so use that root - Rails.root would point to dummy
 Dir[Rhino::Engine.root.join("test", "test_helpers", "**", "*.rb")].each { |file| require file }
 
+# Set the geocoder to test mode and give it a default stub
+Geocoder.configure(lookup: :test, ip_lookup: :test)
+Geocoder::Lookup::Test.set_default_stub(
+  [
+    {
+      "coordinates" => [41.2565, -95.9345],
+      "address" => "Omaha, NE, US",
+      "state" => "Nebraska",
+      "state_code" => "NE",
+      "country" => "United States",
+      "country_code" => "US"
+    }
+  ]
+)
+
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)

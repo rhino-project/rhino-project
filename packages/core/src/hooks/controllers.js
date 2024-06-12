@@ -167,7 +167,8 @@ export const useModelIndexController = (options) => {
     limit: options?.defaultLimit ?? DEFAULT_LIMIT,
     offset: options?.defaultOffset ?? 0,
     order: options?.defaultOrder ?? DEFAULT_SORT,
-    search: options?.defaultSearch ?? ''
+    search: options?.defaultSearch ?? '',
+    geospatial: options?.defaultGeospatial ?? {}
   });
 
   const initialState = useRef(null);
@@ -196,7 +197,16 @@ export const useModelIndexController = (options) => {
       // Merge the filters from the URL with the filters from the baseFilters, the latter having precedence
       // This handles cases such as project.client.id in the filters and project.id in the baseFilters
       // If we did not merge, the project.client.id would be lost
-      filter: merge({}, queryFromUrl.filter ?? {}, defaultState.current?.filter)
+      filter: merge(
+        {},
+        queryFromUrl.filter ?? {},
+        defaultState.current?.filter
+      ),
+      geospatial: merge(
+        {},
+        queryFromUrl.geospatial ?? {},
+        defaultState.current?.geospatial
+      )
     };
   }
 
@@ -204,6 +214,15 @@ export const useModelIndexController = (options) => {
     findDeepDifference(defaultState.current.filter, initialState.current.filter)
   );
   const [fullFilter, setFullFilter] = useState(initialState.current.filter);
+  const [geospatial, internalSetGeospatial] = useState(
+    findDeepDifference(
+      defaultState.current.geospatial,
+      initialState.current.geospatial
+    )
+  );
+  const [fullGeospatial, setFullGeospatial] = useState(
+    initialState.current.geospatial
+  );
   const [limit, setLimit] = useState(initialState.current.limit);
   const [offset, setOffset] = useState(initialState.current.offset);
   const [order, setOrder] = useState(initialState.current.order);
@@ -233,8 +252,40 @@ export const useModelIndexController = (options) => {
     [baseOwnerId, defaultFiltersBaseOwner, filter, model]
   );
 
+  const setGeospatial = useCallback((geospatial) => {
+    internalSetGeospatial(
+      findDeepDifference(defaultState.current.geospatial, geospatial)
+    );
+    setFullGeospatial(
+      merge({}, geospatial ?? {}, defaultState.current?.geospatial)
+    );
+  }, []);
+
+  const setDefaultGeospatial = useCallback(
+    (defaultGeospatial) => {
+      defaultState.current.geospatial = defaultGeospatial ?? {};
+
+      const newGeospatial = findDeepDifference(
+        defaultState.current.geospatial,
+        geospatial
+      );
+      const newFullGeospatial = merge(
+        {},
+        newGeospatial,
+        defaultState.current?.geospatial
+      );
+
+      initialState.current.geospatial = newFullGeospatial;
+
+      internalSetGeospatial(newGeospatial);
+      setFullGeospatial(newFullGeospatial);
+    },
+    [geospatial]
+  );
+
   const query = useModelIndex(model, {
     filter: fullFilter,
+    geospatial: fullGeospatial,
     limit,
     offset,
     order,
@@ -283,7 +334,14 @@ export const useModelIndexController = (options) => {
 
     if (
       isEqual(
-        { filter: fullFilter, limit, offset, order, search },
+        {
+          filter: fullFilter,
+          geospatial: fullGeospatial,
+          limit,
+          offset,
+          order,
+          search
+        },
         defaultState.current
       )
     ) {
@@ -293,6 +351,7 @@ export const useModelIndexController = (options) => {
       navigate(
         withParams(location.pathname, {
           filter,
+          geospatial,
           limit,
           offset,
           order,
@@ -303,11 +362,11 @@ export const useModelIndexController = (options) => {
 
     // https://github.com/facebook/react/issues/22305#issuecomment-1113508762
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [syncUrl, filter, fullFilter, search, limit, offset, order]);
+  }, [syncUrl, filter, geospatial, fullFilter, search, limit, offset, order]);
 
   useEffect(
     () => setOffset(initialState.current.offset),
-    [filter, search, limit]
+    [filter, geospatial, search, limit]
   );
 
   return {
@@ -325,6 +384,10 @@ export const useModelIndexController = (options) => {
     fullFilter,
     totalFullFilters,
     setDefaultFilter,
+    geospatial,
+    setGeospatial,
+    fullGeospatial,
+    setDefaultGeospatial,
     limit,
     setLimit,
     offset,
