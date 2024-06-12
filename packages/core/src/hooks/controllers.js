@@ -589,21 +589,27 @@ export const useModelFiltersContext = () => {
   return context;
 };
 
-const createFilteredObject = (obj) => {
+export const createFilteredObject = (obj) => {
   const result = {};
   // iterate through all keys in the object
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
       // if the value is not undefined, add it to the new object
       if (obj[key] !== undefined) {
-        // if the value is an object, recursively call the function
-        if (typeof obj[key] === 'object') {
+        // Check if the value is an array for "in" style filters
+        if (Array.isArray(obj[key])) {
+          // Directly copy the array
+          result[key] = obj[key];
+        }
+        // if the value is an object (but not an array), recursively call the function
+        else if (typeof obj[key] === 'object') {
           result[key] = createFilteredObject(obj[key]);
           // if the object is now empty, don't add it to the new object
           if (Object.keys(result[key]).length === 0) {
             delete result[key];
           }
         } else {
+          // If it's not an array or object, copy the value
           result[key] = obj[key];
         }
       }
