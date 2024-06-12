@@ -15,6 +15,10 @@ class Rhino::RoleTest < ActiveSupport::TestCase
     assert_not Role.new(name: "test name").valid?
   end
 
+  test "allow underscore in name" do
+    assert Role.new(name: "test_name").valid?
+  end
+
   test "not allow duplicate names" do
     role = create :role
     assert_not Role.new(name: role.name).valid?
