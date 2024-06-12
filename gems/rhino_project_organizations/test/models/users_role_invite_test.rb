@@ -10,6 +10,11 @@ class UsersRoleInviteTest < ActiveSupport::TestCase
     @role = create :role, name: "regular"
   end
 
+  test "should normalize email" do
+    users_role_invite = UsersRoleInvite.create(organization: @organization, role: @role, email: "My@Example.Com")
+    assert_equal "my@example.com", users_role_invite.email
+  end
+
   test "should track 'Invite Sent' when creating a UserRoleInvite" do
     mock = MiniTest::Mock.new
     mock.expect :call, nil
