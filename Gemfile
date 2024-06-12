@@ -64,7 +64,7 @@ group :test do
 
   platforms :mri do
     gem "stackprof"
-    gem "debug", ">= 1.1.0", require: false
+    gem "debug", ">= 1.1.0"
   end
 
   # Needed for Railties tests because it is included in generated apps.
