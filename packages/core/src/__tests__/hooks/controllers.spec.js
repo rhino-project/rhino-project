@@ -6,6 +6,7 @@ import { createWrapper } from '../shared/helpers';
 import {
   DEFAULT_LIMIT,
   DEFAULT_SORT,
+  createFilteredObject,
   useModelCreateContext,
   useModelEditContext,
   useModelIndexContext,
@@ -366,5 +367,25 @@ describe('useModelEditContext', () => {
     expect(() => renderHook(() => useModelEditContext())).toThrow(
       'useModelEditContext must be used within a ModelEditProvider'
     );
+  });
+});
+
+describe('createFilteredObject', () => {
+  it('preserves defined properties', async () => {
+    expect(createFilteredObject({ foo: 'bar' })).toEqual({ foo: 'bar' });
+  });
+
+  it('preserves array properties', async () => {
+    expect(createFilteredObject({ foo: ['a', 'b'] })).toEqual({
+      foo: ['a', 'b']
+    });
+  });
+
+  it('remove null properties', async () => {
+    expect(createFilteredObject({ foo: null })).toEqual({});
+  });
+
+  it('remove undefined properties', async () => {
+    expect(createFilteredObject({ foo: undefined })).toEqual({});
   });
 });
