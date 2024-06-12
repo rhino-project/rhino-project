@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_25_214542) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_24_115156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -198,6 +198,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_214542) do
     t.index ["every_field_id"], name: "index_every_manies_on_every_field_id"
   end
 
+  create_table "geospatials", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.decimal "latitude"
+    t.decimal "longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_geospatials_on_user_id"
+  end
+
   create_table "grand_child_manies", force: :cascade do |t|
     t.bigint "child_many_id", null: false
     t.string "name"
@@ -309,6 +318,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_25_214542) do
   add_foreign_key "every_field_dummies", "users"
   add_foreign_key "every_fields", "users"
   add_foreign_key "every_manies", "every_fields"
+  add_foreign_key "geospatials", "users"
   add_foreign_key "grand_child_manies", "child_manies"
   add_foreign_key "grand_child_ones", "child_ones"
   add_foreign_key "og_meta_tags", "blog_posts"

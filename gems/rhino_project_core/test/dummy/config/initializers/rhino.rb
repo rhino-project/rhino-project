@@ -25,4 +25,5 @@ Rhino.setup do |config|
   config.resources += ['EveryField', 'EveryFieldDummy', 'EveryMany']
   config.resources += ['Parent', 'ChildOne', 'ChildMany', 'GrandChildOne', 'GrandChildMany']
   config.resources += ['DelegatedTypeEntry', 'DelegatedTypeMessage', 'DelegatedTypeComment']
+  config.resources += ['Geospatial']
 end

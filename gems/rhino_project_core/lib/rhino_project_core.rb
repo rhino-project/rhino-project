@@ -65,6 +65,8 @@ module Rhino
   self.sieves = Rhino::SieveStack.new do |sieve|
     sieve.use Rhino::Sieve::Filter
 
+    sieve.use Rhino::Sieve::Geospatial
+
     sieve.use Rhino::Sieve::Search
 
     sieve.use Rhino::Sieve::Order

@@ -569,7 +569,8 @@ const ALLOWED_INDEX_QUERY_OPTIONS = [
   'filter',
   'order',
   'limit',
-  'offset'
+  'offset',
+  'geospatial'
 ];
 
 export const useModelIndex = (model, options = {}, ...legacyOptions) => {
