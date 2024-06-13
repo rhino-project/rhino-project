@@ -20,8 +20,34 @@ env:
   STRIPE_SECRET_KEY: 'FOR_TESTS'
 
 jobs:
-  test:
-    name: Test
+  test-client:
+    name: Test Client
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --prefer-offline
+      - name: Get base and head commits for `nx affected`
+        uses: nrwl/nx-set-shas@v3
+        with:
+          main-branch-name: 'main'
+      - name: Run Checks
+        run: pnpm run test:pr
+  test-server:
+    name: Test Server
     runs-on: ubuntu-latest
     services:
       # Label used to access the service container
@@ -47,28 +73,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: pnpm
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           working-directory: 'gems'
           bundler-cache: true
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile --prefer-offline
-      - name: Get base and head commits for `nx affected`
-        uses: nrwl/nx-set-shas@v3
-        with:
-          main-branch-name: 'main'
-      - name: Run Checks
-        run: pnpm run test:pr
       - name: Run Rubocop
         run: bundle exec rubocop
         working-directory: 'gems'
