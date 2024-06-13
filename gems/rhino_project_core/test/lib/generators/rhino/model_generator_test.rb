@@ -8,6 +8,10 @@ class ModelGeneratorTest < Rails::Generators::TestCase
   destination Rails.root.join("tmp/generators")
   setup :prepare_destination
 
+  def setup
+    write_rhino_rb
+  end
+
   def test_model_without_owner_option
     content = capture(:stderr) { run_generator ["device_group", "name:string", "user:references"] }
     assert_one_owner_defined content
@@ -24,14 +28,12 @@ class ModelGeneratorTest < Rails::Generators::TestCase
   end
 
   def test_model_with_owner_option
-    write_rhino_rb
     run_generator ["device", "name:string", "device_group:references", "--owner=device_group"]
     assert_file Rails.root.join("tmp/generators/app/models/device.rb"), /rhino_owner :device_group/
     assert_file Rails.root.join("tmp/generators/app/models/device.rb"), /rhino_references %i\[device_group\]/
   end
 
   def test_model_with_base_owner_as_owner_option
-    write_rhino_rb
     run_generator ["device_group", "name:string", "user:references", "--owner=user"]
     assert_file Rails.root.join("tmp/generators/app/models/device_group.rb"), /rhino_owner_base/
     assert_file Rails.root.join("tmp/generators/app/models/device_group.rb"), /rhino_references %i\[user\]/
