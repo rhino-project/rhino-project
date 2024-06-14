@@ -17,6 +17,8 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  # https://github.com/ged/ruby-pg/issues/311#issuecomment-1615084569
+  gssencmode: disable
   database: <%= ENV["DB_NAME"] %>_test
 
 production:
