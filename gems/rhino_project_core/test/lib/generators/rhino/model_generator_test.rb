@@ -6,11 +6,7 @@ require "generators/rhino/model/model_generator"
 class ModelGeneratorTest < Rails::Generators::TestCase
   tests Rhino::ModelGenerator
   destination Rails.root.join("tmp/generators")
-  setup :prepare_destination
-
-  def setup
-    write_rhino_rb
-  end
+  setup :prepare_destination, :write_rhino_rb
 
   def test_model_without_owner_option
     content = capture(:stderr) { run_generator ["device_group", "name:string", "user:references"] }
