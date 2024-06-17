@@ -68,6 +68,7 @@ GEM
     ffaker (2.14.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    google-protobuf (3.25.3)
     google-protobuf (3.25.3-arm64-darwin)
     google-protobuf (3.25.3-x86_64-linux)
     hashdiff (1.1.0)
@@ -100,6 +101,7 @@ GEM
       mixlib-shellout
     method_source (1.0.0)
     mini_mime (1.1.5)
+    mini_portile2 (2.8.7)
     minitest (5.21.2)
     minitest-bisect (1.7.0)
       minitest-server (~> 1.0)
@@ -115,6 +117,9 @@ GEM
       tomlrb
     mixlib-shellout (3.2.7)
       chef-utils
+    nokogiri (1.16.5)
+      mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
     nokogiri (1.16.5-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.16.5-x86_64-linux)
@@ -202,6 +207,9 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
+    sass-embedded (1.71.1)
+      google-protobuf (~> 3.25)
+      rake (>= 13.0.0)
     sass-embedded (1.71.1-arm64-darwin)
       google-protobuf (~> 3.25)
     sass-embedded (1.71.1-x86_64-linux-gnu)
@@ -247,7 +255,8 @@ GEM
     zeitwerk (2.6.13)
 
 PLATFORMS
-  arm64-darwin
+  arm64-darwin-23
+  ruby
   x86_64-linux
 
 DEPENDENCIES
@@ -296,5 +305,8 @@ DEPENDENCIES
   webmock
   yard
 
+RUBY VERSION
+   ruby 3.1.6p260
+
 BUNDLED WITH
-   2.3.26
+   2.5.13

@@ -4,6 +4,8 @@ gemspec
 
 eval_gemfile('../Gemfile')
 
+ruby '3.1.6'
+
 # Core
 gem "activeadmin", "~> 2.14.0"
 gem 'analytics-ruby', '~> 2.0.0', :require => 'segment/analytics'

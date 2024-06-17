@@ -2,6 +2,8 @@
 
 source "https://rubygems.org"
 
+ruby '3.1.6'
+
 gem "minitest", ">= 5.15.0", "< 5.22.0"
 
 # We need a newish Rake since Active Job sets its test tasks' descriptions.
