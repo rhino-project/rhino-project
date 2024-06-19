@@ -1,0 +1,13 @@
+# frozen_string_literal: true
+
+namespace :<%= namespaced_name %> do
+  # Prevent migration installation task from showing up twice.
+  Rake::Task["<%= namespaced_name %>_engine:install:migrations"].clear_comments if Rake::Task.task_defined?("<%= namespaced_name %>_engine:install:migrations")
+
+  desc "Install <%= namespaced_name %>"
+  task install: :environment do
+    Rake::Task["<%= namespaced_name %>_engine:install:migrations"].invoke if Rake::Task.task_defined?("<%= namespaced_name %>_engine:install:migrations")
+
+    Rails::Command.invoke :generate, ["<%= namespaced_name %>:install"]
+  end
+end

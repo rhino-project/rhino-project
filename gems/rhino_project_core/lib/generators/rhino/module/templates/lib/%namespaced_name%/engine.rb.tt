@@ -1,0 +1,17 @@
+# frozen_string_literal: true
+
+require "rhino/engine"
+
+module <%= camelized_modules %>
+  class Engine < ::Rails::Engine
+    config.autoload_paths << File.expand_path("../../lib", __dir__)
+
+    initializer "<%= namespaced_name %>.register_module" do
+      config.after_initialize do
+        Rhino.registered_modules[:<%= namespaced_name %>] = {
+          version: <%= camelized_modules %>::VERSION
+        }
+      end
+    end
+  end
+end

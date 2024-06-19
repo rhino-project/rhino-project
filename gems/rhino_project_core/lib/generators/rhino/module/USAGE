@@ -1,0 +1,6 @@
+Description:
+    The 'rails rhino:module' command creates a skeleton for developing Rhino modules.
+
+Example:
+    rails rhino:module:new rhino_my_module
+
