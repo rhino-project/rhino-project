@@ -1,32 +1,27 @@
-inherit_from: .rubocop_todo.yml
-
 require:
   - rubocop-packaging
   - rubocop-performance
   - rubocop-rails
   - rubocop-minitest
+  - rubocop-rhino-project
 
 AllCops:
   TargetRubyVersion: 3.1
   NewCops: enable
   Exclude:
-    - "gems/vendor/**/*"
-    - "**/Gemfile"
-    - "**/Rakefile"
-    - "**/config.ru"
-    - "**/*.gemspec"
-    - "gems/*/.simplecov"
-    - "gems/*/bin/**"
-    - "gems/*/config/**"
-    - "gems/*/db/**/*"
-    - "gems/*/test/dummy/bin/*"
-    - "gems/*/test/dummy/config/**/*"
-    - "gems/*/test/dummy/db/**/*"
-    - "gems/*/**/templates/*"
-    - "gems/tasks/*"
-    # Preserve upstream formatting
-    - "gems/rhino_project_core/lib/generators/rhino/module/templates/test/dummy/config/initializers/devise.rb"
-    - "gems/rhino_project_core/lib/generators/rhino/module/templates/test/dummy/config/initializers/devise_token_auth.rb"
+    - "vendor/**/*"
+    - "Gemfile"
+    - "Rakefile"
+    - "config.ru"
+    - "*.gemspec"
+    - ".simplecov"
+    - "bin/**"
+    - "config/**"
+    - "db/**/*"
+    - "test/dummy/bin/*"
+    - "test/dummy/config/**/*"
+    - "test/dummy/db/**/*"
+    - "lib/generators/templates/*"
 
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
@@ -46,9 +41,13 @@ Layout/EndAlignment:
 Layout/SpaceInsideBlockBraces:
   EnforcedStyleForEmptyBraces: space
 
-Lint/ConstantDefinitionInBlock:
+Lint/EmptyBlock:
   Exclude:
-    - gems/*/test/**/*.rb
+    - config/routes.rb
+
+Metrics/BlockLength:
+  Exclude:
+    - "app/admin/**"
 
 Metrics/ClassLength:
   Max: 102
@@ -56,14 +55,10 @@ Metrics/ClassLength:
 Metrics/MethodLength:
   Max: 12
 
-Naming/FileName:
-  Exclude:
-    - gems/rubocop-rhino-project/lib/rubocop-rhino-project.rb
-
 Style/ClassAndModuleChildren:
   Exclude:
-    - gems/*/test/**/*.rb
-    - gems/*/app/overrides/**/*.rb
+    - test/test_helper.rb
+    - test/channels/application_cable/connection_test.rb
 
 Style/Documentation:
   Enabled: false
@@ -77,15 +72,15 @@ Style/EmptyElse:
 Style/EmptyMethod:
   Enabled: false
 
+Style/MutableConstant:
+  Exclude:
+    - lib/*/version.rb
+
 Style/RedundantReturn:
   AllowMultipleReturnValues: true
 
 Style/Semicolon:
   AllowAsExpressionSeparator: true
-
-Style/StringConcatenation:
-  Exclude:
-    - "gems/*/test/test_helper.rb"
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes

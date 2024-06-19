@@ -39,7 +39,6 @@ Style/StringLiterals:
     - "gems/rhino_project_core/app/helpers/rhino/policy_helper.rb"
     - "gems/rhino_project_core/app/resources/rhino/open_api_info.rb"
     - "gems/rhino_project_core/lib/generators/rhino/install/install_generator.rb"
-    - "gems/rhino_project_core/lib/generators/rhino/module/module_generator.rb"
     - "gems/rhino_project_core/lib/rhino_project_core.rb"
     - "gems/rhino_project_core/lib/rhino/engine.rb"
     - "gems/rhino_project_core/lib/rhino/resource.rb"

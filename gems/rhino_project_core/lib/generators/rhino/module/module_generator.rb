@@ -1,91 +1,78 @@
 # frozen_string_literal: true
 
+require "rails/generators"
+require "rails/generators/rails/plugin/plugin_generator"
+require "rhino/version"
+
 module Rhino
   module Generators
-    class ModuleGenerator < ::Rails::Generators::Base
-      attr_reader :module_name, :module_path
+    class ModuleBuilder < ::Rails::PluginBuilder
+      def lib
+        template "lib/%namespaced_name%.rb"
+        template "lib/%namespaced_name%/version.rb"
 
-      class_option :full, type: :boolean, default: false,
-                          desc: 'Full plugin generation'
+        template "lib/%namespaced_name%/engine.rb"
 
-      class_option :skip_plugin, type: :boolean, default: false,
-                                 desc: 'Skip plugin generation'
-
-      source_root File.expand_path('templates', __dir__)
-
-      def create_module
-        @module_name = ask('Module name?')
-        @module_name = "rhino_#{module_name}" unless module_name.starts_with?('rhino_')
-        @module_path = "rhino/#{module_name}"
-
-        return if options[:skip_plugin]
-
-        say "Creating #{module_name}"
-
-        plugin_command = "plugin new #{module_path} --skip-git"
-        plugin_command = "#{plugin_command} --full" if options[:full]
-        rails_command(plugin_command)
+        # The install generator
+        empty_directory_with_keep_file "lib/generators/#{namespaced_name}/install/templates"
+        template "lib/generators/%namespaced_name%/install/install_generator.rb"
+        template "lib/tasks/%namespaced_name%_tasks.rake"
       end
 
-      def remove_license
-        remove_file "#{module_path}/MIT-LICENSE"
+      # FIXME: Hack because the engine.rb file is over aggressive in its checks
+      def rhino_hack
+        template "test/dummy/config/initializers/devise.rb"
+        template "test/dummy/config/initializers/devise_token_auth.rb"
+        template "test/dummy/app/models/user.rb"
+        remove_file "test/dummy/config/database.yml"
+        template "test/dummy/config/database.yml"
+      end
+    end
+
+    class ModuleGenerator < ::Rails::Generators::PluginGenerator
+      source_root File.expand_path("templates", __dir__)
+
+      class_option :database, type: :string, aliases: "-d", default: "postgresql"
+      remove_class_option :template
+
+      def self.banner
+        "rails rhino:module #{arguments.map(&:usage).join(' ')} [options]"
       end
 
-      def engine_registration
-        engine_file = "#{module_path}/lib/#{module_name}/engine.rb"
-
-        remove_file engine_file
-        template 'engine.rb', engine_file
+      # Parent source paths
+      def source_paths
+        [
+          File.expand_path("templates", __dir__),
+          Rails::Generators::PluginGenerator.source_root
+        ]
       end
 
-      def create_install_generator
-        generator_path = "#{module_path}/lib/generators/#{module_name}/install"
-        tasks_path = "#{module_path}/lib/tasks"
-
-        empty_directory "#{generator_path}/templates"
-        create_file("#{generator_path}/templates/.keep")
-
-        template 'install_generator.rb', "#{generator_path}/install_generator.rb"
-        template 'module_tasks.rake', "#{tasks_path}/#{module_name}.rake"
-
-        remove_file "#{tasks_path}/#{module_name}_tasks.rake"
+      # Has to be named this way as it overrides the default
+      def get_builder_class # rubocop:disable Naming/AccessorMethodName
+        ModuleBuilder
       end
 
-      def fix_gemspec
-        gemspec_file = "#{module_path}/#{module_name}.gemspec"
-
-        gsub_file gemspec_file, /spec.homepage.*/, 'spec.homepage    = ""'
-        gsub_file gemspec_file, /spec.summary.*/, 'spec.summary     = ""'
-        gsub_file gemspec_file, /spec.description.*/, 'spec.description = ""'
-        gsub_file gemspec_file, /spec.license.*/, 'spec.license      = ""'
-        gsub_file gemspec_file, 'spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]', 'spec.files = Dir["{app,config,db,lib}/**/*", "Rakefile", "README.md"]' # rubocop:disable Layout/LineLength
+      def rhino_version
+        ::Rhino::VERSION::STRING
       end
 
-      # Gross hack for now
-      DUMMY_SETUP_FILES = [
-        'config/database.yml',
-        'config/initializers/devise_token_auth.rb',
-        'config/initializers/devise.rb',
-        'app/models/user.rb',
-        'db/migrate/20210111014230_devise_token_auth_create_users.rhino_engine.rb'
-      ].freeze
+      def rhino_setup
+        return unless with_dummy_app?
 
-      def dummy_setup
-        return unless options[:full]
+        build(:rhino_hack)
 
-        rhino_dummy = Rails.root.join('rhino/rhino/test/dummy')
-        module_dummy = Rails.root.join("#{module_path}/test/dummy")
-
-        remove_file "#{module_dummy}/config/database.yml"
-
-        DUMMY_SETUP_FILES.each do |file|
-          copy_file "#{rhino_dummy}/#{file}", "#{module_dummy}/#{file}"
+        inside(rails_app_path) do
+          run "rails rhino:module:dummy #{namespaced_name} rhino:install"
+          run "rails rhino:module:dummy #{namespaced_name} db:create"
+          run "rails rhino:module:dummy #{namespaced_name} db:migrate"
         end
       end
 
       def rubocop
-        inside(module_path) do
-          run 'bundle exec rubocop -a', capture: true
+        template ".rubocop.yml"
+
+        inside(File.join(rails_app_path, namespaced_name)) do
+          run "bundle exec rubocop -A ", capture: true
         end
       end
     end
