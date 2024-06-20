@@ -35,13 +35,9 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           working-directory: 'gems'
-          bundler-cache: false
+          bundler-cache: true
       - name: Install dependencies
         run: pnpm install --frozen-lockfile --prefer-offline
-      - name: Install Ruby dependencies
-        working-directory: 'gems'
-        # Separate so we don't lock the bundler with deployment true
-        run: bundle install
       - name: Run Tests
         run: pnpm run test:ci
       - name: Publish
