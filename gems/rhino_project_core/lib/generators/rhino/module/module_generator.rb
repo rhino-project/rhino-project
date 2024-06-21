@@ -32,7 +32,8 @@ module Rhino
     class ModuleGenerator < ::Rails::Generators::PluginGenerator
       source_root File.expand_path("templates", __dir__)
 
-      class_option :database, type: :string, aliases: "-d", default: "postgresql"
+      class_option :database, type: :string, aliases: "-d", default: "postgresql", hide: true
+      class_option :full, type: :boolean, default: true, hide: true
       remove_class_option :template
 
       def self.banner
@@ -50,6 +51,17 @@ module Rhino
       # Has to be named this way as it overrides the default
       def get_builder_class # rubocop:disable Naming/AccessorMethodName
         ModuleBuilder
+      end
+
+      def engine_config
+        content = []
+
+        content << "isolate_namespace #{camelized_modules}\n" if mountable?
+        content << "config.generators.api_only = true" if api?
+
+        return optimize_indentation(content.join("\n"), 4) if content.any?
+
+        nil
       end
 
       def rhino_version
