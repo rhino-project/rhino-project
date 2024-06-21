@@ -36,7 +36,7 @@
   "namespace": "@rhino-project",
   "devDependencies": {
     "@commitlint/parse": "^18.6.1",
-    "@tanstack/config": "^0.5.2",
+    "@tanstack/config": "0.7.11",
     "@tanstack/eslint-plugin-query": "4.32.5",
     "@types/current-git-branch": "^1.1.6",
     "@types/eslint": "^8.56.2",
@@ -82,7 +82,7 @@
   "pnpm": {
     "patchedDependencies": {
       "fsevents@2.3.3": "patches/fsevents@2.3.3.patch",
-      "@tanstack/config@0.5.2": "patches/@tanstack__config@0.5.2.patch"
+      "@tanstack/config@0.7.11": "patches/@tanstack__config@0.7.11.patch"
     }
   }
 }

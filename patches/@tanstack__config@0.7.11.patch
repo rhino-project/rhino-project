@@ -1,8 +1,8 @@
 diff --git a/src/publish/index.js b/src/publish/index.js
-index 3f19167432b0c4fcc48afa4ba538ab054a4783c0..ca72b19870f25df9161a9bbbbd7b02c3cdad0f31 100644
+index 8e0e0328222ab8f30b0b18662579cadd2facfb1e..1702d8c804b98240e8bd4a239b007847c90cf2d6 100644
 --- a/src/publish/index.js
 +++ b/src/publish/index.js
-@@ -25,7 +25,15 @@ import {
+@@ -23,7 +23,15 @@ import {
   * @returns {Promise<void>}
   */
  export const publish = async (options) => {
@@ -19,43 +19,44 @@ index 3f19167432b0c4fcc48afa4ba538ab054a4783c0..ca72b19870f25df9161a9bbbbd7b02c3
  
    const branchName = /** @type {string} */ (branch ?? currentGitBranch())
    const isMainBranch = branchName === 'main'
-@@ -178,16 +186,19 @@ export const publish = async (options) => {
-         .filter(Boolean)
+@@ -215,16 +223,21 @@ export const publish = async (options) => {
+       .filter(Boolean)
  
    /** Uses packages and changedFiles to determine which packages have changed */
 -  const changedPackages = RELEASE_ALL
--    ? packages
--    : packages.filter((pkg) => {
--        const changed = changedFiles.some(
--          (file) =>
--            file.startsWith(path.join(pkg.packageDir, 'src')) ||
--            file.startsWith(path.join(pkg.packageDir, 'package.json')),
--        )
--        return changed
--      })
 +  const packagesWithChanges = packages.filter((pkg) => {
 +    const changed = changedFiles.some(
 +      (file) =>
-+        file.startsWith(path.join(pkg.packageDir, 'src')) ||
-+        file.startsWith(path.join(pkg.packageDir, 'package.json')),
++        file.startsWith(path.join(pkg.packageDir, 'src'))
++        || file.startsWith(path.join(pkg.packageDir, 'package.json')),
 +    )
 +    return changed
 +  })
++
 +  // If RELEASE_ALL is set, release all packages
 +  // If releaseTogether is set, release all packages if any package has changed
 +  // Otherwise, only release packages that have changed
-+  const changedPackages = RELEASE_ALL || (releaseTogether && packagesWithChanges.length > 0) 
-+    ? packages : packagesWithChanges
++  const changedPackages = RELEASE_ALL || (releaseTogether && packagesWithChanges.length > 0)
+     ? packages
+-    : packages.filter((pkg) => {
+-      const changed = changedFiles.some(
+-        (file) =>
+-          file.startsWith(path.join(pkg.packageDir, 'src'))
+-          || file.startsWith(path.join(pkg.packageDir, 'package.json')),
+-      )
+-      return changed
+-    })
++    : packagesWithChanges
  
    // If a package has a dependency that has been updated, we need to update the
    // package that depends on it as well.
 diff --git a/src/publish/types.d.ts b/src/publish/types.d.ts
-index c241761cae5eb38e6c22c4ba3b9b87df1ce74c1c..08b6b1e1a408d8eed299482fbcfbb99a7faab04a 100644
+index 9128a96a9d3b61adbb68b5d694026ae66239e3c0..38b505a42f8dee1babcb35514a90eac1585e76bf 100644
 --- a/src/publish/types.d.ts
 +++ b/src/publish/types.d.ts
-@@ -56,4 +56,6 @@ export type RunOptions = {
+@@ -57,4 +57,6 @@ export type RunOptions = {
    tag?: string
-   // The GitHub token used to search for user metadata and make a GitHub release.
+   /** The GitHub token used to search for user metadata and make a GitHub release. */
    ghToken?: string
 +  /** If releasing any package, release all packages together.  Defaults to false */
 +  releaseTogether?: boolean
