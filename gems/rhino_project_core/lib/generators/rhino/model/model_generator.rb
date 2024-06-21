@@ -5,14 +5,19 @@ require "rails/generators/active_record/model/model_generator"
 
 module Rhino
   class ModelGenerator < ::ActiveRecord::Generators::ModelGenerator
-    # This is the path to the templates used by the original model generator
-    # I think this can be removed in Rails 7.1 https://github.com/rails/rails/pull/47181
-    source_root File.join(File.dirname(::ActiveRecord::Generators::ModelGenerator.instance_method(:create_migration_file).source_location.first),
-                          "templates")
+    source_root File.expand_path("templates", __dir__)
 
     class_option :owner, type: :string, desc: "The model is owned by the reference attribute", group: :owner
     class_option :base_owner, type: :boolean, default: false, desc: "The model is owned by the base owner", group: :owner
     class_option :global_owner, type: :boolean, default: false, desc: "The model is globally owned", group: :owner
+
+    # Parent source paths
+    def source_paths
+      [
+        File.expand_path("templates", __dir__),
+        ::ActiveRecord::Generators::ModelGenerator.source_root
+      ]
+    end
 
     def create_migration_file
       # We check the ownership of the reference attributes before creating the migration
