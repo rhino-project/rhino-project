@@ -2,7 +2,12 @@
 
 require "rhino/version"
 
+# https://guides.rubyonrails.org/engines.html#other-gem-dependencies
+require "devise"
+require "devise_invitable"
 require "devise_token_auth"
+require "pundit"
+
 module Rhino
   class Engine < ::Rails::Engine
     config.before_configuration do

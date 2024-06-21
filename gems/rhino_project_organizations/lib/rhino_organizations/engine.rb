@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 
-require 'rhino/engine'
-require 'rhino_organizations/version'
+require "rhino/engine"
+require "rhino_organizations/version"
+
+# https://guides.rubyonrails.org/engines.html#other-gem-dependencies
+require "devise_invitable"
 
 module RhinoOrganizations
   class Engine < ::Rails::Engine
-    config.autoload_paths << File.expand_path('../../lib', __dir__)
+    config.autoload_paths << File.expand_path("../../lib", __dir__)
 
-    initializer 'rhino_organizations.register_module' do
+    initializer "rhino_organizations.register_module" do
       config.after_initialize do
-        if Rhino.resources.include?('Organization')
+        if Rhino.resources.include?("Organization")
           Rhino.registered_modules[:rhino_organizations] = {
             version: RhinoOrganizations::VERSION::STRING
           }
@@ -19,13 +22,13 @@ module RhinoOrganizations
 
     # https://guides.rubyonrails.org/engines.html#overriding-models-and-controllers
     # Use root instead of Rails.root to scope for this engine
-    initializer 'rhino_organizations.overrides' do
+    initializer "rhino_organizations.overrides" do
       overrides = "#{root}/app/overrides"
       Rails.autoloaders.main.ignore(overrides)
 
       config.to_prepare do
         # FIXME: Only necessary because this module is in tree NUB-682
-        if Rhino.resources.include?('Organization')
+        if Rhino.resources.include?("Organization")
           Dir.glob("#{overrides}/**/*_override.rb").each do |override|
             load override
           end
