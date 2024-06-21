@@ -17,22 +17,9 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-azure-activedirectory-v2'
 gem 'omniauth-auth0'
 gem "omniauth-rails_csrf_protection"
-gem 'pundit'
 gem 'arel-helpers'
 gem 'pg_search'
 gem 'acts-as-taggable-on', '~> 9.0'
 gem 'phonelib'
 gem 'ancestry'
 gem 'countries'
-
-# Organizations
-gem 'devise_invitable', '2.0.9'
-
-# Jobs
-gem 'resque', '2.6.0'
-gem 'resque-scheduler', '4.10.2'
-gem 'resque-heroku-signals', '2.6.0'
-gem 'active_scheduler', '0.7.0'
-
-# Notifications
-gem 'activity_notification', '2.2.3'

@@ -1,15 +1,19 @@
 # frozen_string_literal: true
 
-require 'active_support'
-require 'rhino/engine'
-require 'rhino_subscriptions/version'
+require "active_support"
+require "rhino/engine"
+require "rhino_subscriptions/version"
+
+# https://guides.rubyonrails.org/engines.html#other-gem-dependencies
+require "stripe"
+
 module RhinoSubscriptions
   class Engine < ::Rails::Engine
-    config.autoload_paths << File.expand_path('../../lib', __dir__)
+    config.autoload_paths << File.expand_path("../../lib", __dir__)
 
-    initializer 'rhino_subscriptions.register_module' do
+    initializer "rhino_subscriptions.register_module" do
       config.after_initialize do
-        if ENV['STRIPE_SECRET_KEY']
+        if ENV["STRIPE_SECRET_KEY"]
           Rhino.registered_modules[:rhino_subscriptions] = {
             version: RhinoSubscriptions::VERSION::STRING
           }

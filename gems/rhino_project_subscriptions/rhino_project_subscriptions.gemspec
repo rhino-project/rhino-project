@@ -17,5 +17,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", "~> 7.0.0", ">= 7.0.0"
   spec.add_dependency "rhino_project_core", version
-  spec.add_dependency 'stripe', '~> 5.28.0'
+  spec.add_dependency 'stripe', "5.28.0"
 end
