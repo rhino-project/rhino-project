@@ -5,7 +5,7 @@ require "generators/rhino/model/model_generator"
 
 class ModelGeneratorTest < Rails::Generators::TestCase
   tests Rhino::ModelGenerator
-  destination Rails.root.join("tmp/generators")
+  destination File.expand_path("../tmp", __dir__)
   setup :prepare_destination, :write_rhino_rb
 
   def test_model_without_owner_option
@@ -25,19 +25,24 @@ class ModelGeneratorTest < Rails::Generators::TestCase
 
   def test_model_with_owner_option
     run_generator ["device", "name:string", "device_group:references", "--owner=device_group"]
-    assert_file Rails.root.join("tmp/generators/app/models/device.rb"), /rhino_owner :device_group/
-    assert_file Rails.root.join("tmp/generators/app/models/device.rb"), /rhino_references %i\[device_group\]/
+    assert_file File.join(destination_root, "app/models/device.rb"), /rhino_owner :device_group/
+    assert_file File.join(destination_root, "app/models/device.rb"), /rhino_references %i\[device_group\]/
   end
 
   def test_model_with_base_owner_as_owner_option
     run_generator ["device_group", "name:string", "user:references", "--owner=user"]
-    assert_file Rails.root.join("tmp/generators/app/models/device_group.rb"), /rhino_owner_base/
-    assert_file Rails.root.join("tmp/generators/app/models/device_group.rb"), /rhino_references %i\[user\]/
+    assert_file File.join(destination_root, "app/models/device_group.rb"), /rhino_owner_base/
+    assert_file File.join(destination_root, "app/models/device_group.rb"), /rhino_references %i\[user\]/
   end
 
   private
+    def prepare_destination
+      self.destination_root = File.expand_path("../tmp", __dir__) + "-#{Process.pid}"
+      super
+    end
+
     def write_rhino_rb
-      rhino_path = Rails.root.join("tmp/generators/config/initializers")
+      rhino_path = File.join(destination_root, "config/initializers")
       FileUtils.mkdir_p(rhino_path)
       File.open("#{rhino_path}/rhino.rb", "w") do |file|
         # Write some content to the file
