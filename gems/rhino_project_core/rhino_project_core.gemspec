@@ -20,15 +20,51 @@ Gem::Specification.new do |spec|
   # Super Admin
   spec.add_dependency "activeadmin", "2.14.0"
 
+  # Tagging
+  spec.add_dependency "acts-as-taggable-on", "9.0.1"
+
+  # Analytics
+  spec.add_dependency "analytics-ruby", "2.0.13"
+
+  # Tree structure
+  spec.add_dependency "ancestry", "4.0.0"
+
+  # Owner hierarchy joins
+  spec.add_dependency "arel-helpers", "2.14.0"
+
+  # Country field support
+  spec.add_dependency "countries", "6.0.0"
+
   # Authentication
   spec.add_dependency "devise", "4.9.4"
   spec.add_dependency "devise_token_auth", "1.2.3"
 
+  # Friendly id slugs
+  spec.add_dependency "friendly_id", "5.3.0"
+
   # Generate patterns for OpenAPI schemas
   spec.add_dependency "js_regex", "3.11.1"
 
+  # OmniAuth and extensions
+  spec.add_dependency "omniauth", "2.1.2"
+  spec.add_dependency "omniauth-azure-activedirectory-v2", "2.0.1"
+  spec.add_dependency "omniauth-auth0", "3.1.1"
+  spec.add_dependency "omniauth-facebook", "9.0.0"
+  spec.add_dependency "omniauth-github", "2.0.1"
+  spec.add_dependency "omniauth-google-oauth2", "1.1.1"
+  spec.add_dependency "omniauth-rails_csrf_protection", "1.0.1"
+
+  # Full text search
+  spec.add_dependency "pg_search", "2.3.6"
+
+  # Phone field support
+  spec.add_dependency "phonelib", "0.6.51"
+
    # Authorization
   spec.add_dependency "pundit", "2.1.0"
+
+  # CORS support
+  spec.add_dependency "rack-cors", "1.1.1"
 
   spec.add_dependency "rake", "~> 13.1"
 

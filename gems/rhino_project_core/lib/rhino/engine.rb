@@ -3,10 +3,27 @@
 require "rhino/version"
 
 # https://guides.rubyonrails.org/engines.html#other-gem-dependencies
+require "activeadmin"
+require "acts-as-taggable-on"
+require "ancestry"
+require "arel-helpers"
+require "countries"
 require "devise"
 require "devise_invitable"
 require "devise_token_auth"
+require "friendly_id"
+require "omniauth"
+require "omniauth-azure-activedirectory-v2"
+require "omniauth-auth0"
+require "omniauth-facebook"
+require "omniauth-github"
+require "omniauth-google-oauth2"
+require "omniauth/rails_csrf_protection"
+require "rack/cors"
+require "pg_search"
+require "phonelib"
 require "pundit"
+require "segment/analytics"
 
 module Rhino
   class Engine < ::Rails::Engine
