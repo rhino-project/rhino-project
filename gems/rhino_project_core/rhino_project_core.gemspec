@@ -21,4 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "js_regex", "~> 3.11.1"
   spec.add_dependency "pundit", "~> 2.1.0", "<= 2.1.0"
   spec.add_dependency "rake", "~> 13.1"
+
+  # Used to build ownership graph in development http://localhost:3000/api/info/graph
+  spec.add_dependency "rgl", "0.6.6"
 end
