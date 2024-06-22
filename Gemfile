@@ -11,8 +11,6 @@ gem "rake", ">= 13"
 
 gem "sprockets-rails", ">= 2.0.0"
 gem "propshaft", ">= 0.1.7"
-gem "capybara", ">= 3.39"
-gem "selenium-webdriver", ">= 4.11.0"
 
 gem "rack-cache", "~> 1.2"
 gem "stimulus-rails"
@@ -38,10 +36,6 @@ gem "cgi", ">= 0.3.6", require: false
 
 gem "prism"
 
-group :lint do
-  gem "syntax_tree", "6.1.1", require: false
-end
-
 group :rubocop do
   # These are aligned with rails 7.0
   gem 'rubocop', '1.24.1', require: false
@@ -49,10 +43,6 @@ group :rubocop do
   gem 'rubocop-performance', '1.13.1', require: false
   gem 'rubocop-minitest', '0.17.0', require: false
   gem 'rubocop-rails', '2.13.0', require: false
-end
-
-group :mdl do
-  gem "mdl", "!= 0.13.0", require: false
 end
 
 group :development, :test do
@@ -64,12 +54,6 @@ group :development, :test do
 
   gem 'yard'
 end
-
-gem "useragent", require: false
-
-# Add your own local bundler stuff.
-local_gemfile = File.expand_path(".Gemfile", __dir__)
-instance_eval File.read local_gemfile if File.exist? local_gemfile
 
 group :test do
   gem "minitest-bisect", require: false
@@ -89,9 +73,6 @@ end
 
 platforms :ruby, :windows do
   gem "nokogiri", ">= 1.8.1", "!= 1.11.0"
-
-  # Needed for compiling the ActionDispatch::Journey parser.
-  gem "racc", ">=1.4.6", require: false
 
   # Active Record.
   group :db do
