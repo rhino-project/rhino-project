@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "rhino/version"
+
+require "devise_token_auth"
 module Rhino
   class Engine < ::Rails::Engine
     config.before_configuration do
@@ -12,19 +14,19 @@ module Rhino
       end
     end
 
-    initializer 'rhino.active_record_extension' do
+    initializer "rhino.active_record_extension" do
       ActiveSupport.on_load(:active_record) do
-        require_relative 'resource/active_record_extension'
-        require_relative 'resource/active_record_tree'
-        require_relative 'resource/active_model_extension'
+        require_relative "resource/active_record_extension"
+        require_relative "resource/active_record_tree"
+        require_relative "resource/active_model_extension"
 
         include Rhino::Resource::ActiveRecordExtension if Rhino.auto_include_active_record
       end
     end
 
-    initializer 'rhino.active_storage_extension' do
+    initializer "rhino.active_storage_extension" do
       ActiveSupport.on_load(:active_storage_attachment) do
-        require_relative 'resource/active_storage_extension'
+        require_relative "resource/active_storage_extension"
 
         include Rhino::Resource::ActiveStorageExtension
       end
@@ -32,7 +34,7 @@ module Rhino
 
     # https://guides.rubyonrails.org/engines.html#overriding-models-and-controllers
     # Use root instead of Rails.root to scope for this engine
-    initializer 'rhino.overrides' do
+    initializer "rhino.overrides" do
       overrides = "#{root}/app/overrides"
       Rails.autoloaders.main.ignore(overrides)
 
@@ -43,13 +45,13 @@ module Rhino
       end
     end
 
-    initializer 'rhino.check_resources' do
+    initializer "rhino.check_resources" do
       config.after_initialize do
         check_resources
       end
     end
 
-    initializer 'rhino.resource_reloader' do
+    initializer "rhino.resource_reloader" do
       config.after_initialize do
         Rails.application.reloader.to_prepare do
           Rhino.resource_classes = nil
@@ -57,8 +59,8 @@ module Rhino
       end
     end
 
-    initializer 'rhino.register_module' do
-      require 'rhino/omniauth/strategies/azure_o_auth2'
+    initializer "rhino.register_module" do
+      require "rhino/omniauth/strategies/azure_o_auth2"
 
       config.after_initialize do
         Rhino.registered_modules[:rhino] = {

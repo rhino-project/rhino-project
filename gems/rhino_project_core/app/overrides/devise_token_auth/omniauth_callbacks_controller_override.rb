@@ -30,7 +30,7 @@ module DeviseTokenAuth::OmniauthCallbacksController::Extensions
 
     # set a server cookie if configured
     if DeviseTokenAuth.cookie_enabled
-      auth_header = @resource.build_auth_header(@token.token, @token.client)
+      auth_header = @resource.build_auth_headers(@token.token, @token.client)
       cookies[DeviseTokenAuth.cookie_name] = DeviseTokenAuth.cookie_attributes.merge(value: auth_header.to_json)
     end
   rescue ActiveRecord::RecordInvalid
