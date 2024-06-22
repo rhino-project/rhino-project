@@ -8,6 +8,7 @@ require_relative 'active_record_extension/routing'
 require_relative 'active_record_extension/params'
 require_relative 'active_record_extension/serialization'
 require_relative 'active_record_extension/search'
+require_relative 'active_record_extension/super_admin'
 
 module Rhino
   module Resource
@@ -25,6 +26,7 @@ module Rhino
       include Rhino::Resource::ActiveRecordExtension::Params
       include Rhino::Resource::ActiveRecordExtension::Serialization
       include Rhino::Resource::ActiveRecordExtension::Search
+      include Rhino::Resource::ActiveRecordExtension::SuperAdmin
     end
   end
 end
