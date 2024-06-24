@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import { PrimaryNavigation } from '../../../components/app';
 import { createWrapper } from '../../shared/helpers';
 import rhinoConfig from 'rhino.config';
+import { sharedGlobalTests } from '../../shared/sharedGlobalTests';
 
 vi.mock('../../../hooks', async (importOriginal) => {
   const actual = await importOriginal();
@@ -27,6 +28,8 @@ describe('PrimaryNavigation', () => {
       </MemoryRouter>
     );
   };
+
+  sharedGlobalTests(PrimaryNavigation);
 
   it('renders without crashing', () => {
     const { asFragment } = render(<PrimaryNavigation />, {

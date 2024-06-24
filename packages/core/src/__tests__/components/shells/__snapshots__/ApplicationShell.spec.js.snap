@@ -1,0 +1,355 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ApplicationShell > renders without crashing 1`] = `
+<DocumentFragment>
+  <div
+    class="px-0 w-100 h-100 container-fluid"
+  >
+    <div
+      class="position-fixed z-fixed d-md-none h-100 collapse-horizontal collapse"
+    >
+      <div
+        class="d-flex vw-100 h-100"
+      >
+        <ul
+          class="nav-sidebar navbar-dark d-md-block bg-dark sidebar top-0 bottom-0 left-0 p-3 h-100 nav flex-column"
+          id="sidebarMenuCollapsed"
+        >
+          <div
+            class="d-flex flex-column w-100 h-100"
+          >
+            <a
+              class="flex-shrink-1 navbar-brand"
+            >
+              <img
+                alt="Light Logo"
+                height="36"
+              />
+            </a>
+            <hr
+              class="border-top border-gray-700 flex-shrink-1"
+            />
+            <div
+              class="nav-sidebar sticky-top overflow-y-auto overflow-x-hidden d-flex flex-column flex-grow-1 w-100"
+            >
+              <div
+                class="flex-grow-1"
+              >
+                <div>
+                  <div
+                    class="nav-sidebar-section d-flex justify-content-between align-items-center px-0 mt-3 mb-1 text-capitalize text-gray-400"
+                  >
+                    <span
+                      class="fw-medium"
+                    >
+                      Resources
+                    </span>
+                  </div>
+                  <ul
+                    class="nav flex-column"
+                  >
+                    <li
+                      class="nav-item"
+                    >
+                      <a
+                        class="px-3 nav-link"
+                        href="/1/blogs"
+                      >
+                        <div
+                          class="d-flex align-items-center"
+                        >
+                          <svg
+                            class="nav-icon me-1"
+                            fill="currentColor"
+                          >
+                            <use
+                              xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#list"
+                            />
+                          </svg>
+                          <div
+                            class="ms-2"
+                          >
+                            Blogs
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="flex-shrink-1"
+              >
+                <div>
+                  <li
+                    class="dropdown dropup nav-item"
+                  >
+                    <a
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="d-flex align-items-center text-light no-arrow dropdown-toggle nav-link"
+                      href="#"
+                      id="account-menu"
+                    >
+                      <svg
+                        class="nav-icon me-1 flex-shrink-0"
+                        fill="currentColor"
+                      >
+                        <use
+                          xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#person-circle"
+                        />
+                      </svg>
+                      <span
+                        class="d-block mx-2 text-truncate flex-grow-1"
+                      />
+                      <svg
+                        class="nav-icon me-1 flex-shrink-0"
+                        fill="currentColor"
+                      >
+                        <use
+                          xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-down"
+                        />
+                      </svg>
+                    </a>
+                    <div
+                      aria-hidden="true"
+                      class="dropdown-menu dropdown-menu-dark dropdown-menu-end"
+                      data-bs-popper="static"
+                      role="menu"
+                      tabindex="-1"
+                    >
+                      <a
+                        class="dropdown-item"
+                        href="/1/account/settings/profile"
+                        id="account-settings"
+                        role="menuitem"
+                        tabindex="0"
+                      >
+                        Account Settings
+                      </a>
+                      <div
+                        class="dropdown-divider"
+                        tabindex="-1"
+                      />
+                      <button
+                        class="dropdown-item"
+                        id="account-signout"
+                        role="menuitem"
+                        tabindex="0"
+                        type="button"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+        <div
+          class="text-light bg-secondary flex-grow-1 opacity-75 d-flex py-3 justify-content-center"
+          style="opacity: 60;"
+        >
+          <svg
+            fill="currentColor"
+            height="40"
+            role="button"
+            width="40"
+          >
+            <use
+              xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#x"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="d-flex flex-column h-100"
+    >
+      <div
+        class="align-self-start sticky-top w-100 d-md-none"
+      >
+        <nav
+          class="px-4 navbar navbar-dark bg-dark"
+        >
+          <a
+            class="navbar-brand"
+          >
+            <img
+              alt="Light Logo"
+              height="36"
+            />
+          </a>
+          <svg
+            class="text-light"
+            fill="currentColor"
+            height="32"
+            width="32"
+          >
+            <use
+              xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#list"
+            />
+          </svg>
+        </nav>
+      </div>
+      <div
+        class="d-md-flex flex-grow-1 h-100"
+      >
+        <ul
+          class="nav-sidebar navbar-dark d-md-block bg-dark sidebar top-0 bottom-0 left-0 p-3 h-100 d-none flex-shrink-0 nav flex-column"
+          id="sidebarMenu"
+        >
+          <div
+            class="d-flex flex-column w-100 h-100"
+          >
+            <a
+              class="flex-shrink-1 navbar-brand"
+            >
+              <img
+                alt="Light Logo"
+                height="36"
+              />
+            </a>
+            <hr
+              class="border-top border-gray-700 flex-shrink-1"
+            />
+            <div
+              class="nav-sidebar sticky-top overflow-y-auto overflow-x-hidden d-flex flex-column flex-grow-1 w-100"
+            >
+              <div
+                class="flex-grow-1"
+              >
+                <div>
+                  <div
+                    class="nav-sidebar-section d-flex justify-content-between align-items-center px-0 mt-3 mb-1 text-capitalize text-gray-400"
+                  >
+                    <span
+                      class="fw-medium"
+                    >
+                      Resources
+                    </span>
+                  </div>
+                  <ul
+                    class="nav flex-column"
+                  >
+                    <li
+                      class="nav-item"
+                    >
+                      <a
+                        class="px-3 nav-link"
+                        href="/1/blogs"
+                      >
+                        <div
+                          class="d-flex align-items-center"
+                        >
+                          <svg
+                            class="nav-icon me-1"
+                            fill="currentColor"
+                          >
+                            <use
+                              xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#list"
+                            />
+                          </svg>
+                          <div
+                            class="ms-2"
+                          >
+                            Blogs
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                class="flex-shrink-1"
+              >
+                <div>
+                  <li
+                    class="dropdown dropup nav-item"
+                  >
+                    <a
+                      aria-expanded="false"
+                      aria-haspopup="true"
+                      class="d-flex align-items-center text-light no-arrow dropdown-toggle nav-link"
+                      href="#"
+                      id="account-menu"
+                    >
+                      <svg
+                        class="nav-icon me-1 flex-shrink-0"
+                        fill="currentColor"
+                      >
+                        <use
+                          xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#person-circle"
+                        />
+                      </svg>
+                      <span
+                        class="d-block mx-2 text-truncate flex-grow-1"
+                      />
+                      <svg
+                        class="nav-icon me-1 flex-shrink-0"
+                        fill="currentColor"
+                      >
+                        <use
+                          xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#chevron-down"
+                        />
+                      </svg>
+                    </a>
+                    <div
+                      aria-hidden="true"
+                      class="dropdown-menu dropdown-menu-dark dropdown-menu-end"
+                      data-bs-popper="static"
+                      role="menu"
+                      tabindex="-1"
+                    >
+                      <a
+                        class="dropdown-item"
+                        href="/1/account/settings/profile"
+                        id="account-settings"
+                        role="menuitem"
+                        tabindex="0"
+                      >
+                        Account Settings
+                      </a>
+                      <div
+                        class="dropdown-divider"
+                        tabindex="-1"
+                      />
+                      <button
+                        class="dropdown-item"
+                        id="account-signout"
+                        role="menuitem"
+                        tabindex="0"
+                        type="button"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  </li>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ul>
+        <main
+          class="flex-grow-1 overflow-hidden h-100"
+          role="main"
+        >
+          <div
+            class="h-100 overflow-y-auto container-fluid"
+          />
+        </main>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ApplicationShell > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

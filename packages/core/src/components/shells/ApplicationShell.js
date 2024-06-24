@@ -6,6 +6,7 @@ import { SecondaryNavigation } from '../app/SecondaryNavigation';
 import { Icon } from '../icons';
 import { LightLogo } from '../logos';
 import { Sidebar } from './Sidebar';
+import { useGlobalComponent } from '../../hooks';
 
 const SidebarLayout = () => (
   <>
@@ -18,7 +19,7 @@ const SidebarLayout = () => (
   </>
 );
 
-export const ApplicationShell = ({ children }) => {
+export const ApplicationShellBase = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
   const openSidebar = () => {
@@ -88,6 +89,9 @@ export const ApplicationShell = ({ children }) => {
   );
 };
 
-ApplicationShell.propTypes = {
+ApplicationShellBase.propTypes = {
   children: PropTypes.node
 };
+
+export const ApplicationShell = (props) =>
+  useGlobalComponent('ApplicationShell', ApplicationShellBase, props);
