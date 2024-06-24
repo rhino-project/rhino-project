@@ -71,3 +71,12 @@ export const useHasRoleIn = (roleList) => {
     [roles, roleList]
   );
 };
+
+export const useUsersRoleWithRole = (role) => {
+  const usersRoles = useUserRoles();
+
+  return useMemo(
+    () => usersRoles.find((el) => el.role?.name === role),
+    [usersRoles, role]
+  );
+};
