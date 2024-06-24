@@ -7,7 +7,8 @@ import {
   useBaseOwnerId,
   useHasRoleOf,
   useRoles,
-  useUserRoles
+  useUserRoles,
+  useUsersRoleWithRole
 } from '../../hooks/owner';
 
 const Wrapper = ({ children, ...props }) => (
@@ -292,5 +293,26 @@ describe('useHasRoleOf', () => {
       wrapper: createWrapper(Wrapper, { value: context })
     });
     expect(result.current).toBe(false);
+  });
+});
+
+describe('useUsersRoleWithRole', () => {
+  test('returns matching user role', () => {
+    const context = {
+      ...validContext,
+      baseOwner: { ...validContext.baseOwner },
+      usersRoles: [
+        { role: { name: 'aa' }, organization: validContext.baseOwner },
+        { role: { name: 'bb' }, organization: validContext.baseOwner },
+        { role: { name: 'cc' }, organization: validContext.baseOwner }
+      ]
+    };
+    const { result } = renderHook(() => useUsersRoleWithRole('aa'), {
+      wrapper: createWrapper(Wrapper, { value: context })
+    });
+    expect(result.current).toEqual({
+      role: { name: 'aa' },
+      organization: validContext.baseOwner
+    });
   });
 });
