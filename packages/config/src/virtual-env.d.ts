@@ -1,5 +1,5 @@
 declare module 'virtual:@rhino-project/config/env' {
-  interface RhinoEnv extends ImportMetaEnv {
+  interface RhinoVirtualEnv extends ImportMetaEnv {
     readonly API_ROOT_PATH: string;
     readonly DESIGN_SYSTEM_ENABLED: string;
     readonly ROLLBAR_ACCESS_TOKEN: string;
@@ -8,6 +8,6 @@ declare module 'virtual:@rhino-project/config/env' {
     readonly STRIPE_PUBLISHABLE_KEY: string;
   }
 
-  declare const _default: RhinoEnv;
+  declare const _default: RhinoVirtualEnv;
   export default _default;
 }
