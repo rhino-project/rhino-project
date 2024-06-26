@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "rails", "~> 7.0.0", ">= 7.0.0"
 
   # Super Admin
-  spec.add_dependency "activeadmin", "2.14.0"
+  spec.add_dependency "activeadmin", "3.2.2"
 
   # Tagging
   spec.add_dependency "acts-as-taggable-on", "9.0.1"
