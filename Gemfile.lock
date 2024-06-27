@@ -88,6 +88,7 @@ GEM
       minitest (>= 5.0)
     minitest-server (1.0.7)
       minitest (~> 5.16)
+    nio4r (2.7.3)
     nokogiri (1.16.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -112,6 +113,8 @@ GEM
     psych (5.1.2)
       stringio
     public_suffix (5.0.4)
+    puma (5.6.8)
+      nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.8.1)
     rack-cache (1.15.0)
@@ -240,6 +243,7 @@ DEPENDENCIES
   pg (~> 1.3)
   prism
   propshaft (>= 0.1.7)
+  puma (~> 5.6)
   rack-cache (~> 1.2)
   rake (>= 13)
   rspec
