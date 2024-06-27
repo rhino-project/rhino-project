@@ -3,18 +3,27 @@ import DatePicker from 'react-datepicker';
 import classnames from 'classnames';
 
 import { useController } from 'react-hook-form';
-import { useMemo } from 'react';
+import { useImperativeHandle, useMemo, useRef } from 'react';
 import { useFieldInheritedProps } from '../../../hooks/form';
 import { useGlobalComponent } from '../../../hooks/overrides';
 
 export const FieldDateBase = ({ min, max, ...props }) => {
   const { placeholder, path } = props;
   const {
-    field: { value, onChange, ...fieldProps },
+    field: { value, onChange, ref, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
   });
+
+  // Workaround for making the input focusable by rhf.
+  // Inspired by https://github.com/Hacker0x01/react-datepicker/issues/4834
+  const innerRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      innerRef.current?.input?.focus();
+    }
+  }));
 
   // The date will be interpreted as UTC unless we break it apart
   const date = useMemo(() => {
@@ -50,6 +59,7 @@ export const FieldDateBase = ({ min, max, ...props }) => {
     <DatePicker
       {...extractedProps}
       {...fieldProps}
+      ref={innerRef}
       wrapperClassName={wrapperClassName}
       selected={date}
       onChange={handleChange}

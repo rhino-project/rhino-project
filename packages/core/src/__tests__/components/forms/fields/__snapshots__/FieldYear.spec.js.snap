@@ -86,6 +86,27 @@ exports[`FieldYear > renders empty with null date 1`] = `
 </DocumentFragment>
 `;
 
+exports[`FieldYear > renders error 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block is-invalid"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control is-invalid"
+        id="dummy"
+        name="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`FieldYear > renders inside of model context 1`] = `
 <DocumentFragment>
   <div
