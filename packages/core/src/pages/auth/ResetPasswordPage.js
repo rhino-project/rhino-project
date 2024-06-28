@@ -17,10 +17,10 @@ export const ResetPasswordPage = (props) => {
     error
   } = useResetPasswordAction();
 
-  const queryParams = useParsedSearch();
+  const { reset_password_token } = useParsedSearch();
 
   const handleSubmit = (formValues) => {
-    resetPasswordAction({ data: formValues, headers: queryParams });
+    resetPasswordAction({ data: { ...formValues, reset_password_token } });
   };
 
   const authDesc = (
