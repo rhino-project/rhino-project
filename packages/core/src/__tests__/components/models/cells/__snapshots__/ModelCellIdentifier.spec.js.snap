@@ -1,5 +1,59 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`ModelCellIdentifier > renders absolute link 1`] = `
+<DocumentFragment>
+  <div
+    class="model-index-table model-index-table-blog"
+  >
+    <table
+      class="table table-striped table-hover"
+    >
+      <thead>
+        <tr>
+          <th
+            class=""
+          >
+            <div
+              class="d-flex flex-row gap-1"
+            >
+              <div
+                header="[object Object]"
+              >
+                Id
+              </div>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          class="table-row-clickable"
+        >
+          <td>
+            <a
+              href="/1/blogs/1"
+            >
+              1
+            </a>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>
+            <div
+              header="[object Object]"
+            >
+              Id
+            </div>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`ModelCellIdentifier > should render the component with className from inherited props 1`] = `
 <DocumentFragment>
   <div
