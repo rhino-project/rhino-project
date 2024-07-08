@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { assign, cloneDeep, compact, get, isString, toPath } from 'lodash-es';
+import { useCallback, useMemo } from 'react';
+import { compact, get, isString, toPath } from 'lodash-es';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getModelAndAttributeFromPath } from '../utils/models';
@@ -41,22 +41,6 @@ export const useSchema = (model, paths, options = {}) => {
   }, [model, paths, yupSchemaFromAttribute]);
 
   return schema;
-};
-
-export const useControlledForm = (resource) => {
-  const [values, setValues] = useState(resource);
-  const [errors, setErrors] = useState(null);
-
-  const handleChange = useCallback(
-    (formValues) =>
-      setValues((values) => assign(cloneDeep(values), formValues)),
-    []
-  );
-
-  // Merge in the resource values
-  useEffect(() => handleChange(resource), [resource, handleChange]);
-
-  return [values, setValues, errors, setErrors, handleChange];
 };
 
 export const useComputedPaths = (model, paths, getDefaultAttributes) => {
