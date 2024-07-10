@@ -42,6 +42,16 @@ exports[`useGlobalComponent > for model > should not render with global override
 </DocumentFragment>
 `;
 
+exports[`useGlobalComponent > should allow local props 1`] = `
+<DocumentFragment>
+  <div
+    label="localLabel"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
 exports[`useGlobalComponent > should be empty with null 1`] = `<DocumentFragment />`;
 
 exports[`useGlobalComponent > should render with global override 1`] = `
@@ -74,6 +84,86 @@ exports[`useGlobalComponent > should render without overrides 1`] = `
 <DocumentFragment>
   <div>
     FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should merge global and attribute props 1`] = `
+<DocumentFragment>
+  <div
+    barprop="bar"
+    fooprop="foo"
+    model="user"
+    path="name"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should merge model and attribute props 1`] = `
+<DocumentFragment>
+  <div
+    barprop="bar"
+    fooprop="foo"
+    model="user"
+    path="name"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should overwrite global props with attribute props 1`] = `
+<DocumentFragment>
+  <div
+    fooprop="foo"
+    model="user"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should overwrite model array props with attribute array props 1`] = `
+<DocumentFragment>
+  <div
+    fooprop="arrayFoo"
+    model="user"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should overwrite model props with attribute props 1`] = `
+<DocumentFragment>
+  <div
+    fooprop="foo"
+    model="user"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should render with attribute override instead of global override 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+  >
+    Baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForAttribute > for attribute > should render with attribute override instead of model override 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+    path="name"
+  >
+    Bar
   </div>
 </DocumentFragment>
 `;
@@ -178,6 +268,40 @@ exports[`useGlobalComponentForModel > for attribute > should not render with glo
 </DocumentFragment>
 `;
 
+exports[`useGlobalComponentForModel > for model > should merge global and model props 1`] = `
+<DocumentFragment>
+  <div
+    barprop="bar"
+    fooprop="foo"
+    model="user"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > for model > should overwrite global array props with model array props 1`] = `
+<DocumentFragment>
+  <div
+    fooprop="modelArrayFoo"
+    model="user"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > for model > should overwrite global props with model props 1`] = `
+<DocumentFragment>
+  <div
+    fooprop="modelFoo"
+    model="user"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
 exports[`useGlobalComponentForModel > for model > should render with global override 1`] = `
 <DocumentFragment>
   <div
@@ -189,6 +313,16 @@ exports[`useGlobalComponentForModel > for model > should render with global over
 `;
 
 exports[`useGlobalComponentForModel > for model > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div
+    model="user"
+  >
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`useGlobalComponentForModel > for model > should render with model override instead of global override 1`] = `
 <DocumentFragment>
   <div
     model="user"
