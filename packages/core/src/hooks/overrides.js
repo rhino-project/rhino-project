@@ -188,11 +188,12 @@ export const useGlobalComponentForModel = (
   const { model } = useModelContext();
   const propModel = useModel(props?.model);
 
-  // FIXME: The top level model is not always available right now
+  // The top level model is not always available right now
   // ModelIndex, ModelShow, ModelCreate, ModelEdit have model as a prop still
-
+  // So we need to check if the model is available in the props
+  // FIXME: This is a temporary solution, we should always use the model from the context
   const modelScope = useMemo(
-    () => (model ? { model, ...scope } : { model: propModel, ...scope }),
+    () => (propModel ? { model: propModel, ...scope } : { model, ...scope }),
     [model, propModel, scope]
   );
 
