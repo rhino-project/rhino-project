@@ -1,12 +1,12 @@
 import { render, renderHook } from '@testing-library/react';
+import rhinoConfig from 'rhino.config';
 import {
   useGlobalComponent,
   useGlobalComponentForAttribute,
   useGlobalComponentForModel,
   useMergedOverrides,
   useOverrides
-} from '../../hooks/overrides';
-import rhinoConfig from 'rhino.config';
+} from '../../hooks';
 
 describe('useOverrides', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
@@ -237,6 +237,15 @@ describe('useGlobalComponent', () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
+  it('should allow local props', () => {
+    configSpy = vi
+      .spyOn(rhinoConfig, 'components', 'get')
+      .mockReturnValue({ Foo: { props: { label: 'overrideLabel' } } });
+
+    const { asFragment } = render(<Foo label="localLabel" />);
+    expect(asFragment()).toMatchSnapshot();
+  });
+
   describe('for model', () => {
     it('should not render with global override shorthand', () => {
       configSpy = vi
@@ -280,6 +289,7 @@ describe('useGlobalComponent', () => {
 
 describe('useGlobalComponentForModel', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
+  const Baz = (props) => <div {...props}>Baz</div>;
 
   const FooBase = (props) => {
     return <div {...props}>FooBase</div>;
@@ -354,6 +364,45 @@ describe('useGlobalComponentForModel', () => {
       const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
+
+    it('should render with model override instead of global override', () => {
+      configSpy = vi
+        .spyOn(rhinoConfig, 'components', 'get')
+        .mockReturnValue({ Foo: Baz, user: { Foo: { component: Bar } } });
+
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should merge global and model props', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        Foo: { props: { fooProp: 'foo' } },
+        user: { Foo: { props: { barProp: 'bar' } } }
+      });
+
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should overwrite global props with model props', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        Foo: { props: { fooProp: 'foo' } },
+        user: { Foo: { props: { fooProp: 'modelFoo' } } }
+      });
+
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should overwrite global array props with model array props', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        Foo: { props: { fooProp: ['arrayFoo'] } },
+        user: { Foo: { props: { fooProp: ['modelArrayFoo'] } } }
+      });
+
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
   });
 
   describe('for attribute', () => {
@@ -379,6 +428,7 @@ describe('useGlobalComponentForModel', () => {
 
 describe('useGlobalComponentForAttribute', () => {
   const Bar = (props) => <div {...props}>Bar</div>;
+  const Baz = (props) => <div {...props}>Baz</div>;
 
   const FooBase = (props) => {
     return <div {...props}>FooBase</div>;
@@ -471,6 +521,81 @@ describe('useGlobalComponentForAttribute', () => {
         .mockReturnValue({ user: { name: { Foo: { component: Bar } } } });
 
       const { asFragment } = render(<Foo model="user" path="name" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should render with attribute override instead of global override', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        Foo: Baz,
+        user: { name: { Foo: { component: Bar } } }
+      });
+
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should render with attribute override instead of model override', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        user: { Foo: Baz, name: { Foo: { component: Bar } } }
+      });
+
+      const { asFragment } = render(<Foo model="user" path="name" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should merge global and attribute props', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        Foo: { props: { fooProp: 'foo' } },
+        user: { name: { Foo: { props: { barProp: 'bar' } } } }
+      });
+
+      const { asFragment } = render(<Foo model="user" path="name" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should merge model and attribute props', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        user: {
+          Foo: { props: { fooProp: 'foo' } },
+          name: { Foo: { props: { barProp: 'bar' } } }
+        }
+      });
+
+      const { asFragment } = render(<Foo model="user" path="name" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should overwrite global props with attribute props', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        Foo: { props: { fooProp: 'foo' } },
+        user: { name: { Foo: { props: { fooProp: 'modelFoo' } } } }
+      });
+
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should overwrite model props with attribute props', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        user: {
+          Foo: { props: { fooProp: 'foo' } },
+          name: { Foo: { props: { fooProp: 'modelFoo' } } }
+        }
+      });
+
+      const { asFragment } = render(<Foo model="user" />);
+      expect(asFragment()).toMatchSnapshot();
+    });
+
+    it('should overwrite model array props with attribute array props', () => {
+      configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({
+        user: {
+          Foo: { props: { fooProp: ['arrayFoo'] } },
+          name: { Foo: { props: { fooProp: ['modelArrayFoo'] } } }
+        }
+      });
+
+      const { asFragment } = render(<Foo model="user" />);
       expect(asFragment()).toMatchSnapshot();
     });
   });

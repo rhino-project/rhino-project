@@ -149,18 +149,34 @@ export const useGlobalComponent = (
       // So we shallow clone the globals and merge the overrides on top
 
       const overrideComponent = [
-        // Attribute and attribute model overrides
-        components?.[attributeModel?.model]?.[attribute?.name]?.[key],
-        components?.[attributeModel?.model]?.[key],
+        // Order from least specific to most specific so that the most specific wins
+        // Global overrides
+        components[key],
         // Model overrides
         components?.[model?.model]?.[key],
-        // Global overrides
-        components[key]
-        // Legacy overrides
-      ].find((override) => override !== undefined);
+        // Attribute and attribute model overrides
+        components?.[attributeModel?.model]?.[key],
+        components?.[attributeModel?.model]?.[attribute?.name]?.[key]
+      ].filter((override) => override !== undefined);
 
-      if (overrideComponent !== undefined) {
-        scopedOverrides[key] = cloneDeep(expandOverride(overrideComponent));
+      if (overrideComponent.length > 0) {
+        const expandedOverrides = overrideComponent.map((override) =>
+          cloneDeep(expandOverride(override))
+        );
+
+        // If null is the last override, then we want to null out the component
+        if (expandedOverrides[expandOverrides.length - 1] === null) {
+          scopedOverrides[key] = null;
+        } else {
+          // Merge from least specific to most specific so that the most specific wins
+          scopedOverrides[key] = mergeWith(
+            {},
+            ...expandedOverrides,
+            // The props passed for the component takes precedence over the global overrides
+            { props: cloneDeep(expandOverride(props)) },
+            arrayOverride
+          );
+        }
       }
     });
 
@@ -206,14 +222,26 @@ export const useGlobalComponentForAttribute = (
   props,
   scope
 ) => {
+  const { model } = useModelContext();
+  const propModel = useModel(props?.model);
+
+  // The top level model is not always available right now
+  // ModelIndex, ModelShow, ModelCreate, ModelEdit have model as a prop still
+  // So we need to check if the model is available in the props
+  // FIXME: This is a temporary solution, we should always use the model from the context
+  const modelScope = useMemo(
+    () => (propModel ? { model: propModel, ...scope } : { model, ...scope }),
+    [model, propModel, scope]
+  );
+
   const { model: attributeModel, attribute } = useModelAndAttributeFromPath(
-    props?.model,
+    propModel || model,
     props?.path
   );
 
   const attributeScope = useMemo(
-    () => ({ attributeModel, attribute, ...scope }),
-    [attribute, attributeModel, scope]
+    () => ({ attributeModel, attribute, ...modelScope }),
+    [attribute, attributeModel, modelScope]
   );
 
   return useGlobalComponentForModel(

@@ -6,6 +6,8 @@ import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple
 
 const getBarValue = () => 'bar';
 
+// FIXME: We are using fields here that are neccessarily valid for the component under test
+// FIXME: We should probably take a model/path as an argument and use that to determine the fields
 export const sharedCellTests = (Component) => {
   const overrideName = Component.displayName || Component.name;
   const nullGetValue = () => null;
@@ -78,7 +80,7 @@ export const sharedCellTests = (Component) => {
     configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
 
     const { asFragment } = render(
-      <Component getValue={nullGetValue} path="dummy" />,
+      <Component getValue={nullGetValue} path="id" />,
       { wrapper: Wrapper }
     );
     expect(asFragment()).toMatchSnapshot();
@@ -88,7 +90,7 @@ export const sharedCellTests = (Component) => {
     configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
 
     const { asFragment } = render(
-      <Component empty="baz" getValue={nullGetValue} path="dummy" />,
+      <Component empty="baz" getValue={nullGetValue} path="id" />,
       { wrapper: Wrapper }
     );
     expect(asFragment()).toMatchSnapshot();
@@ -101,7 +103,7 @@ export const sharedCellTests = (Component) => {
       <Component
         empty="baz"
         getValue={nullGetValue}
-        path="dummy"
+        path="id"
         className="dummy-class"
       />,
       { wrapper: Wrapper }
