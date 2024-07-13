@@ -12,7 +12,7 @@ module Rhino
           end
 
           def ransackable_associations(_auth_object = nil)
-            authorizable_ransackable_associations & references
+            authorizable_ransackable_associations & references.map(&:to_s)
           end
 
           def ransackable_filters(auth_object = nil)
