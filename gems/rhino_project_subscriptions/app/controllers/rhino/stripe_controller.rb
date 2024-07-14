@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require "stripe"
-require "rhino/stripe_customer"
 
 ::Stripe.api_key = ENV["STRIPE_SECRET_KEY"]
 

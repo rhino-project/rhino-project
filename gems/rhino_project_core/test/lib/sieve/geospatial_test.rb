@@ -33,7 +33,7 @@ class RhinoSieveGeospatialTestHelper < Rhino::TestCase::ControllerTest
       params = { "geospatial" => @params }
       params["filter"] = filter if filter
       params["search"] = search if search
-      get url, params: params, headers: @headers
+      get url, params:, headers: @headers
       assert_response :ok
       @json = JSON.parse(@response.body)
     end
