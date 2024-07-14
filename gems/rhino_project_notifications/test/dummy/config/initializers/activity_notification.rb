@@ -24,7 +24,7 @@ ActivityNotification.configure do |config|
   # Note that this parameter must be true when you want use subscription management.
   # However, you can also configure them for each model by acts_as roles.
   # Set true when you want to turn on subscription management as default.
-  config.subscription_enabled = false
+  config.subscription_enabled = true
 
   # Configure default subscription value to use when the subscription record does not configured.
   # Note that you can configure them for each method calling as default argument.
