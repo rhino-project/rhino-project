@@ -44,7 +44,7 @@ module Rhino
             end
 
             def virtual_properties
-              columns.select(&:virtual?).map(&:name)
+              columns.select(&:virtual?).map(&:name) # rubocop:todo Performance/SelectMap
             end
 
             def foreign_key_properties

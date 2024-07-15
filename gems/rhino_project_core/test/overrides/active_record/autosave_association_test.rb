@@ -13,7 +13,7 @@ module ActiveRecord
       og_meta_tag1 = OgMetaTag.new(tag_name: "tag1", value: "val1")
       og_meta_tags = [og_meta_tag0, og_meta_tag1]
 
-      create :blog_post, title: "blog_post_title", body: "blog_post_body", blog: @blog, og_meta_tags: og_meta_tags
+      create(:blog_post, title: "blog_post_title", body: "blog_post_body", blog: @blog, og_meta_tags:)
 
       assert_equal 2, og_meta_tags.size
     end
