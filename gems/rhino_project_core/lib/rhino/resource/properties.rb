@@ -182,8 +182,8 @@ module Rhino
           all_properties.include?(property)
         end
 
-        def describe_property
-          raise NotImplementedError, '#describe_property is not implemented'
+        def describe_property(property)
+          raise NotImplementedError, "#describe_property is not implemented for #{property}"
         end
       end
       # rubocop:enable Style/RedundantSelf
