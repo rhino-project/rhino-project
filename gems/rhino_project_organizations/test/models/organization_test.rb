@@ -21,7 +21,7 @@ module OrganizationTest
     test "should track 'Account Removed' when deleting organization" do
       mock = MiniTest::Mock.new
       mock.expect :call, nil
-      organization = Organization.new(name: "Org")
+      organization = create :organization
 
       organization.stub :track_account_deleted, mock do
         organization.destroy!
