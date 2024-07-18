@@ -1,0 +1,15 @@
+# IDEA/Webstorm project files
+.idea
+*.iml
+
+#VSCode metadata
+.vscode
+.vs
+
+# Mac files
+.DS_Store
+
+# dotenv
+# TODO Comment out this rule if environment variables can be committed
+.env
+.env*

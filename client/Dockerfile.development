@@ -1,0 +1,14 @@
+FROM node:20.14.0
+
+ENV APP_PATH=/var/client \
+    NODE_ENV=development
+
+# copy entrypoint scripts and grant execution permissions
+COPY ./docker/dev-docker-entrypoint.sh /usr/local/bin/dev-entrypoint.sh
+RUN chmod +x /usr/local/bin/dev-entrypoint.sh
+
+# navigate to app directory
+WORKDIR $APP_PATH
+
+EXPOSE 3001
+

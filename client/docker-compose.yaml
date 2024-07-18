@@ -1,0 +1,31 @@
+networks:
+  development:
+volumes:
+  npm_cache:
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.development
+    volumes:
+      - .:/var/client
+      - ../server:/var/server
+      - npm_cache:/usr/local/npm
+    networks:
+      - development
+    ports:
+      - ${PORT:-3001}:${PORT:-3001}
+    tty: true
+    init: true
+    entrypoint: dev-entrypoint.sh
+    # Start serving
+    command: 'start'
+    environment:
+      VITE_API_ROOT_PATH: ${VITE_API_ROOT_PATH:-http://localhost:3000}
+    healthcheck:
+      test: 'curl -f http://localhost:${PORT:-3001}/ || exit 1'
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+      start_interval: 5s
