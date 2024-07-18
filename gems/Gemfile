@@ -5,3 +5,5 @@ gemspec
 eval_gemfile('../Gemfile')
 
 ruby '3.3.4'
+
+gem 'activity_notification', git: 'https://github.com/codalio/activity_notification.git', branch: 'fix-serialize-options'
