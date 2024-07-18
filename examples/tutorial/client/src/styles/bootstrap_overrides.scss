@@ -1,0 +1,91 @@
+// Grab gray values from bootstrap to add to existing utilities for color, background color, and border.
+$gray-colors: ();
+@each $name, $value in $grays {
+  $gray-colors: map-merge(
+    $gray-colors,
+    (
+      'gray-#{$name}': $value
+    )
+  );
+}
+
+// Adds gray colors to the text-* utility classes.
+// This utility ships with bootstrap but does not have all necessary values for our app.
+$utilities: map-merge(
+  $utilities,
+  (
+    'color':
+      map-merge(
+        map-get($utilities, 'color'),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'color'), 'values'),
+              $gray-colors
+            )
+        )
+      )
+  )
+);
+
+// Adds gray colors to the 'border-*' utility classes.
+// This utility ships with bootstrap but does not have all necessary values for our app.
+$utilities: map-merge(
+  $utilities,
+  (
+    'border-color':
+      map-merge(
+        map-get($utilities, 'border-color'),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'border-color'), 'values'),
+              $gray-colors
+            )
+        )
+      )
+  )
+);
+
+// Adds gray colors to the 'bg-*' utility classes.
+// This utility ships with bootstrap but does not have all necessary values for our app.
+$utilities: map-merge(
+  $utilities,
+  (
+    'background-color':
+      map-merge(
+        map-get($utilities, 'background-color'),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'background-color'), 'values'),
+              $gray-colors
+            )
+        )
+      )
+  )
+);
+
+// Adds 'z-fixed' to the list of values for the 'z-index' utility.
+// This utility ships with bootstrap but does not have all necessary values for our app.
+// Bootstrap only provides z-0, z-1, z-2 and z-3 as utilities, but it does use other values
+// internally, such as $zindex-fixed (defaults to 130) for some elements with position: fixed,
+// such as the navbar. This allows us to build our own fixed position elements with a high z-index.
+$utilities: map-merge(
+  $utilities,
+  (
+    'z-index':
+      map-merge(
+        map-get($utilities, 'z-index'),
+        (
+          values:
+            map-merge(
+              map-get(map-get($utilities, 'z-index'), 'values'),
+              (
+                'fixed': $zindex-fixed
+              )
+            )
+        )
+      )
+  )
+);

@@ -1,0 +1,177 @@
+version: 2.1
+orbs:
+  cypress: cypress-io/cypress@3.1.4
+  node: circleci/node@5.1.0
+  ruby: circleci/ruby@2.1.0
+jobs:
+  server:
+    parallelism: 1
+    working_directory: ~/project/server
+    docker:
+      - image: cimg/ruby:3.1.6-node
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          BUNDLER_VERSION: 2.5.13
+          PGHOST: 127.0.0.1
+          PGUSER: circleci-demo-ruby
+          RAILS_ENV: test
+          ROOT_URL: http://localhost:3000
+          FRONT_END_URL: http://localhost:3001
+          DB_NAME: rails_blog
+          DB_USERNAME: circleci-demo-ruby
+          DB_PASSWORD: ""
+          STRIPE_SECRET_KEY: "FOR_TESTS"
+      - image: cimg/postgres:12.10
+        environment:
+          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_DB: rails_blog_test
+          POSTGRES_PASSWORD: ""
+      - image: cimg/redis:6.2.6
+    steps:
+      - checkout:
+          path: ~/project
+      - ruby/install-deps
+      - ruby/rubocop-check
+      - run:
+          name: Brakeman Checks
+          command: bundle exec brakeman
+
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: bin/rails db:schema:load --trace
+
+      - run:
+          name: Run app tests
+          command: bin/rails test
+
+      # Save test results for timing analysis
+      - store_test_results:
+          path: test_results
+      - store_artifacts:
+          path: coverage
+          destination: app-coverage
+
+  server_docker:
+    docker:
+      - image: cimg/ruby:3.1.6-node
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker build server -f server/Dockerfile.development
+  client:
+    working_directory: ~/project/client
+    parallelism: 1
+    environment:
+      NODE_ENV: test
+      VITE_API_ROOT_PATH: https://api.example.com
+    docker:
+      - image: cimg/node:20.14.0
+    steps:
+      - checkout:
+          path: ~/project
+      - node/install-packages
+      - run: npm run lint
+      - run: npm run prettier-check
+      - run:
+          name: Run tests with coverage
+          command: CI=true npm test -- --coverage --reporter=default --reporter=junit --outputFile.junit=./test-results/report.xml
+      - run: CI=true npm run build
+      - store_test_results:
+          path: ./test-results/
+      - store_artifacts:
+          path: coverage
+  cypress:
+    docker:
+      - image: cimg/ruby:3.1.6-browsers
+        environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
+          BUNDLER_VERSION: 2.5.13
+          PGHOST: 127.0.0.1
+          PGUSER: circleci-demo-ruby
+          RAILS_ENV: test
+          ROOT_URL: http://localhost:3000
+          FRONT_END_URL: http://localhost:3001
+          DB_NAME: rails_blog
+          DB_USERNAME: circleci-demo-ruby
+          DB_PASSWORD: ""
+          STRIPE_SECRET_KEY: "FOR_TESTS"
+          VITE_API_ROOT_PATH: "http://localhost:3000"
+          RAILS_SERVE_STATIC_FILES: 1
+          DISABLE_SSL: 1
+      - image: cimg/postgres:12.10
+        environment:
+          POSTGRES_USER: circleci-demo-ruby
+          POSTGRES_DB: rails_blog_test
+          POSTGRES_PASSWORD: ""
+      - image: cimg/redis:6.2.6
+    steps:
+      - checkout:
+          path: ~/project
+
+      - ruby/install-deps:
+          app-dir: ~/project/server
+
+      - node/install:
+          node-version: 20.14.0
+      - node/install-packages:
+          app-dir: ~/project/client
+
+      - run:
+          name: Reset database
+          working_directory: ~/project/server
+          command: bin/rails db:reset
+
+      - run:
+          name: Build frontend
+          working_directory: ~/project/client
+          command: npm run build
+
+      - run:
+          name: run server
+          working_directory: ~/project/server
+          command: bin/rails server
+          background: true
+
+      - run:
+          name: run client
+          working_directory: ~/project/client
+          command: npm run preview -- --port 3001
+          background: true
+
+      - run:
+          name: Wait for server
+          command: |
+            curl -I http://localhost:3000 --retry 5 --retry-all-errors --retry-delay 10 --max-time 60 --connect-timeout 10
+
+      - run:
+          name: Wait for client
+          command: |
+            curl -I http://localhost:3001 --retry 5 --retry-all-errors --retry-delay 10 --max-time 60 --connect-timeout 10
+
+      - cypress/run-tests:
+          cypress-command: '[ -z "$CYPRESS_PROJECT_ID" ] || [ -z "$CYPRESS_RECORD_KEY" ] && npx cypress run --record false || npx cypress run --record'
+          working-directory: ~/project/client
+workflows:
+  commit:
+    jobs:
+      - server
+      - client
+      - cypress
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - main
+    jobs:
+      - server_docker
