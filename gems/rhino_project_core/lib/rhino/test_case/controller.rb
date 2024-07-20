@@ -20,7 +20,7 @@ module Rhino
 
         def sign_out_with_empty_auth_cookie
           params = {}
-          headers = { "Cookie" => "auth_cookie=;" }
+          headers = { "Cookie" => "#{DeviseTokenAuth.cookie_name}=;" }
           delete "/api/auth/sign_out", params:, headers:
         end
 
@@ -112,7 +112,7 @@ module Rhino
         end
 
         def empty_auth_cookie_header
-          { "Cookie" => "auth_cookie=;" }
+          { "Cookie" => "#{DeviseTokenAuth.cookie_name}=;" }
         end
 
         def current_access_token
