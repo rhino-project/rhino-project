@@ -19,21 +19,5 @@ module RhinoNotifications
         end
       end
     end
-
-    # https://guides.rubyonrails.org/engines.html#overriding-models-and-controllers
-    # Use root instead of Rails.root to scope for this engine
-    initializer "rhino_notifications.overrides" do
-      overrides = "#{root}/app/overrides"
-      Rails.autoloaders.main.ignore(overrides)
-
-      config.to_prepare do
-        # FIXME: Only necessary because this module is in tree NUB-682
-        if Rhino.resources.include?("Organization")
-          Dir.glob("#{overrides}/**/*_override.rb").each do |override|
-            load override
-          end
-        end
-      end
-    end
   end
 end
