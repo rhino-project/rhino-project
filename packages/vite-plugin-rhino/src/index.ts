@@ -74,7 +74,11 @@ export function RhinoProjectVite(): Plugin {
           plugins: [esbuildRhinoPlugin]
         },
         // Don't process with esbuild so that we can use resolveId for rhino.config
-        exclude: ['@rhino-project/config']
+        exclude: [
+          'virtual:@rhino-project/config/assets',
+          'rhino.config',
+          'virtual:@rhino-project/config/env'
+        ]
       },
 
       test: {
