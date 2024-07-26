@@ -28,18 +28,6 @@ const esbuildRhinoPlugin = {
   name: 'esbuild-rhino-plugin',
   // @ts-ignore
   setup(build) {
-    // We use the Vite technique of marking them as external so that they are not pre-bundled
-    //https://github.com/vitejs/vite/blob/42fd11c1c6d37402bd15ba816fbf65dbed3abe55/packages/vite/src/node/optimizer/esbuildDepPlugin.ts#L166
-    const jsPattern =
-      /components\/app\/CustomPrimaryNavigation|components\/app\/CustomSecondaryNavigation|models\/static|routes\/custom/;
-    // @ts-ignore
-    build.onResolve({ filter: jsPattern }, async (args) => {
-      return {
-        path: path.resolve(process.cwd(), 'src', `${args.path}.js`),
-        external: true
-      };
-    });
-
     // Handle js in jsx
     // See: https://github.com/vitejs/vite/discussions/3448#discussioncomment-749919
     // NOTE: Since ESBuild evaluates this regex using Go's engine, it is not
@@ -77,7 +65,11 @@ export function RhinoProjectVite(): Plugin {
         exclude: [
           'virtual:@rhino-project/config/assets',
           'rhino.config',
-          'virtual:@rhino-project/config/env'
+          'virtual:@rhino-project/config/env',
+          'models/static',
+          'routes/custom',
+          'components/app/CustomPrimaryNavigation',
+          'components/app/CustomSecondaryNavigation'
         ]
       },
 
