@@ -43,6 +43,8 @@ jobs:
       - name: Run Checks
         run: pnpm run test:pr
       - uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          working-directory: 'packages/eslint-plugin-rhino'
   test-server:
     name: Test Server
     runs-on: ubuntu-latest
