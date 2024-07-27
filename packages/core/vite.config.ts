@@ -64,6 +64,11 @@ const config = defineConfig({
       'components/app/CustomSecondaryNavigation': resolve(
         'src/__tests__/shared/CustomSecondaryNavigation.js'
       )
+    },
+    coverage: {
+      enabled: true,
+      include: ['src/**/*'],
+      reporter: ['text', 'json-summary', 'json']
     }
   }
 });
