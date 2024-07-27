@@ -48,6 +48,7 @@ jobs:
       - uses: davelosert/vitest-coverage-report-action@v2
         with:
           working-directory: 'packages/core'
+          file-coverage-mode: 'all'
   test-server:
     name: Test Server
     runs-on: ubuntu-latest
