@@ -6,6 +6,9 @@
 **/codemods/**/__testfixtures__
 pnpm-lock.yaml
 gems/**
+examples/*/server/**
+examples/*/*
+examples/*/.*
 *.rubocop*
 
 // Ignore temporary vite files when building in parallel with nx
