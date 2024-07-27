@@ -6,7 +6,11 @@ export default defineConfig({
     dir: './src',
     watch: false,
     globals: true,
-    coverage: { enabled: true, include: ['src/**/*'] },
+    coverage: {
+      enabled: true,
+      include: ['src/**/*'],
+      reporter: ['text', 'json-summary', 'json']
+    },
     typecheck: { enabled: true }
   }
 });
