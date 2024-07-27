@@ -21,6 +21,9 @@ env:
 
 jobs:
   test-client:
+    strategy:
+      matrix:
+        packages: ['codemods', 'core']
     name: Test Client
     runs-on: ubuntu-latest
     steps:
@@ -44,11 +47,7 @@ jobs:
         run: pnpm run test:pr
       - uses: davelosert/vitest-coverage-report-action@v2
         with:
-          working-directory: 'packages/codemods'
-      - uses: davelosert/vitest-coverage-report-action@v2
-        with:
-          working-directory: 'packages/core'
-          file-coverage-mode: 'all'
+          working-directory: 'packages/${{ matrix.packages }}'
   test-server:
     name: Test Server
     runs-on: ubuntu-latest
