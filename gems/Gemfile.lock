@@ -449,7 +449,7 @@ GEM
       redis (>= 3.3)
       resque (>= 1.27)
       rufus-scheduler (~> 3.2, != 3.3)
-    rexml (3.2.9)
+    rexml (3.3.2)
       strscan
     rgl (0.6.6)
       pairing_heap (>= 0.3, < 4.0)
