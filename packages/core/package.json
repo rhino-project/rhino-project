@@ -545,7 +545,7 @@
     "@testing-library/react": "14.0.0",
     "@types/lodash-es": "^4.17.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "jsdom": "22.1.0"
+    "jsdom": "24.1.1"
   },
   "peerDependencies": {
     "react": "^18.2.0",
