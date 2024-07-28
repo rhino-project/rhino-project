@@ -1,11 +1,8 @@
-import { ESLintUtils } from '@typescript-eslint/utils';
+import { RuleTester } from '@typescript-eslint/rule-tester';
 import { normalizeIndent } from '../../utils/test-utils';
 import { rule } from './no-empty-actions.rule';
 
-const ruleTester = new ESLintUtils.RuleTester({
-  parser: '@typescript-eslint/parser',
-  settings: {}
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run('no-empty-actions', rule, {
   valid: [],

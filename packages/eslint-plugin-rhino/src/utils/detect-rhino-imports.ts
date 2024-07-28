@@ -27,7 +27,7 @@ export function detectRhinoImports(create: EnhancedCreate): Create {
         return !!rhinoImportSpecifiers.find((specifier) => {
           if (
             specifier.type === TSESTree.AST_NODE_TYPES.ImportSpecifier &&
-            specifier.parent?.type ===
+            specifier.parent.type ===
               TSESTree.AST_NODE_TYPES.ImportDeclaration &&
             specifier.parent.source.value === source
           ) {

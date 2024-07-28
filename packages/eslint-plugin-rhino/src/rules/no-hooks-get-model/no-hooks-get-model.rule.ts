@@ -18,7 +18,7 @@ export const rule = createRule({
     docs: {
       description:
         "suggest replacing `getModel('...')` with `'...'` for hooks.",
-      recommended: 'warn'
+      recommended: 'recommended'
     },
     messages: {
       replaceGetModel:
@@ -35,7 +35,7 @@ export const rule = createRule({
       CallExpression(node) {
         if (
           !ASTUtils.isIdentifierWithOneOfNames(node.callee, queryHooks) ||
-          node.parent?.type !== AST_NODE_TYPES.VariableDeclarator
+          node.parent.type !== AST_NODE_TYPES.VariableDeclarator
         ) {
           return;
         }
