@@ -62,7 +62,7 @@
     "test:lib": "vitest",
     "test:lib:dev": "pnpm run test:lib --watch",
     "test:build": "publint --strict",
-    "test:eslint": "eslint --ext .ts,.tsx ./src",
+    "test:eslint": "eslint --ext .ts,.tsx --max-warnings 0 ./src ",
     "build": "vite build"
   },
   "keywords": [],
