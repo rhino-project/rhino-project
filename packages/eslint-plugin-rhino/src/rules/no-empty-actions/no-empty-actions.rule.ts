@@ -2,17 +2,17 @@
 import { ESLintUtils } from '@typescript-eslint/utils';
 import type { TSESTree } from '@typescript-eslint/utils';
 
-const RuleCreator = ESLintUtils.RuleCreator(
+const createRule = ESLintUtils.RuleCreator(
   (name) => `https://yourdomain.com/rules/${name}`
 );
 
-export const rule = RuleCreator({
+export const rule = createRule({
   name: 'no-empty-actions',
   meta: {
     type: 'suggestion',
     docs: {
       description: 'Disallow empty actions array for model configurations',
-      recommended: 'warn'
+      recommended: 'recommended'
     },
     fixable: 'code',
     schema: [],
