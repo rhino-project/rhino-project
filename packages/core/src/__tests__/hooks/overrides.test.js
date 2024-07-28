@@ -242,7 +242,9 @@ describe('useGlobalComponent', () => {
       .spyOn(rhinoConfig, 'components', 'get')
       .mockReturnValue({ Foo: { props: { label: 'overrideLabel' } } });
 
-    const { asFragment } = render(<Foo label="localLabel" />);
+    const { asFragment, rerender } = render(<Foo label="localLabel" />);
+    expect(asFragment()).toMatchSnapshot();
+    rerender(<Foo label="localLabel2" />);
     expect(asFragment()).toMatchSnapshot();
   });
 

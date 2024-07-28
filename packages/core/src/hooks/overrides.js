@@ -186,7 +186,7 @@ export const useGlobalComponent = (
       // paths we want to replace
       arrayOverride
     );
-  }, [components, defaultComponents, model, attributeModel, attribute]);
+  }, [components, defaultComponents, model, attributeModel, attribute, props]);
 
   const globalOverride = useOverrides(defaultComponents, computedOverrides);
   const GlobalOverrideComponent = globalOverride[overrideName];

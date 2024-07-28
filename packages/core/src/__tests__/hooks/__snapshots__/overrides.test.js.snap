@@ -52,6 +52,16 @@ exports[`useGlobalComponent > should allow local props 1`] = `
 </DocumentFragment>
 `;
 
+exports[`useGlobalComponent > should allow local props 2`] = `
+<DocumentFragment>
+  <div
+    label="localLabel2"
+  >
+    FooBase
+  </div>
+</DocumentFragment>
+`;
+
 exports[`useGlobalComponent > should be empty with null 1`] = `<DocumentFragment />`;
 
 exports[`useGlobalComponent > should render with global override 1`] = `
