@@ -59,7 +59,7 @@ group :development, :test do
   gem 'rubocop-performance', '1.13.1', require: false
   gem 'rubocop-minitest', '0.17.0', require: false
   gem 'rubocop-rails', '2.13.0', require: false
-  gem 'rubocop-rhino-project', '~> 0.20.0.beta.102', require: false
+  gem 'rubocop-rhino-project', '~> 0.20.0.beta.108', require: false
 
   gem 'ffaker'
   gem 'simplecov', require: false
@@ -71,14 +71,14 @@ gem 'activeadmin_addons'
 
 gem 'rollbar'
 
-gem "rhino_project", "~> 0.20.0.beta.102"
+gem "rhino_project", "~> 0.20.0.beta.108"
 
-gem "rhino_project_core", "~> 0.20.0.beta.102"
+gem "rhino_project_core", "~> 0.20.0.beta.108"
 
-gem "rhino_project_organizations", "~> 0.20.0.beta.102"
+gem "rhino_project_organizations", "~> 0.20.0.beta.108"
 
-gem "rhino_project_notifications", "~> 0.20.0.beta.102"
+gem "rhino_project_notifications", "~> 0.20.0.beta.108"
 
-gem "rhino_project_subscriptions", "~> 0.20.0.beta.102"
+gem "rhino_project_subscriptions", "~> 0.20.0.beta.108"
 
-gem "rhino_project_jobs", "~> 0.20.0.beta.102"
+gem "rhino_project_jobs", "~> 0.20.0.beta.108"
