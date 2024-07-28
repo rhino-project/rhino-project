@@ -532,7 +532,7 @@
     "react-hook-form": "7.49.2",
     "react-phone-input-2": "2.15.1",
     "react-router-dom": "6.16.0",
-    "react-use": "17.4.2",
+    "react-use": "17.5.1",
     "reactstrap": "^9.1.9",
     "rollbar": "2.26.2",
     "use-debounce": "5.2.0",
