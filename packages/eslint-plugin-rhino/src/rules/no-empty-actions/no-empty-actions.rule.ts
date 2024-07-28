@@ -16,7 +16,6 @@ export const rule = RuleCreator({
     },
     fixable: 'code',
     schema: [],
-    hasSuggestions: true,
     messages: {
       emptyActions:
         '{{ name }} should be set to null instead of an empty actions array'
@@ -76,18 +75,7 @@ export const rule = RuleCreator({
                   return node.key.type === 'Identifier'
                     ? fixer.replaceText(node, `${node.key.name}: null`)
                     : null;
-                },
-                suggest: [
-                  // Provide suggestions array
-                  {
-                    messageId: 'emptyActions',
-                    fix(fixer) {
-                      return node.key.type === 'Identifier'
-                        ? fixer.replaceText(node, `${node.key.name}: null`)
-                        : null;
-                    }
-                  }
-                ]
+                }
               });
             }
           }
