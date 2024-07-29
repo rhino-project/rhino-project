@@ -7,6 +7,7 @@ import { getIdentifierAttribute, getModelFromRef } from '../../../utils/models';
 import { useId, useMemo, useState } from 'react';
 import { useController } from 'react-hook-form';
 import { useModelIndex } from '../../../hooks/queries';
+import { useModelCreateContext } from '../../../hooks';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { FieldLayoutVerticalBase } from '../../forms/FieldLayoutVertical';
 import { FieldLayoutHorizontalBase } from '../../forms/FieldLayoutHorizontal';
@@ -27,6 +28,10 @@ export const ModelFieldReferenceBaseInput = ({ model, ...props }) => {
   } = useController({
     name: path
   });
+
+  const {
+    showParent: { model: parentModel, resource: parent }
+  } = useModelCreateContext();
 
   const valString = useMemo(
     () =>
@@ -56,12 +61,16 @@ export const ModelFieldReferenceBaseInput = ({ model, ...props }) => {
   });
 
   const selectedOption = useMemo(() => {
+    if (parent && refModel.model === parentModel.model) {
+      return results?.filter((e) => `${e.id}` === `${parent.id}`);
+    }
+
     if (!value) return [];
 
     // String compare because numbers can be come strings in and out of edits
     // Identifier in case the reference is the full object
     return results?.filter((e) => `${e.id}` === valString);
-  }, [results, value, valString]);
+  }, [value, refModel, parentModel, parent, results, valString]);
 
   const handleChange = (selected) => onChange(selected[0] || null);
   const id = useId();
