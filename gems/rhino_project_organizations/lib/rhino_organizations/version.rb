@@ -10,7 +10,7 @@ module RhinoOrganizations
     MAJOR = 0
     MINOR = 20
     TINY  = 0
-    PRE   = "beta.108"
+    PRE   = "beta.110"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
