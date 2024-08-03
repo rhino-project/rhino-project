@@ -63,7 +63,7 @@ module Rhino
 
     private
       def global_owner?
-        @global_owner = options[:global_owner]
+        @global_owner = options[:global_owner] || options[:owner] == "global"
       end
 
       def base_owner?
