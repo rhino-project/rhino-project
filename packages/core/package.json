@@ -513,7 +513,6 @@
     "@rails/actioncable": "7.0.3",
     "@rails/activestorage": "7.0.3",
     "@rhino-project/config": "workspace:*",
-    "@rollbar/react": "0.11.2",
     "@stripe/react-stripe-js": "2.1.0",
     "@stripe/stripe-js": "1.52.0",
     "@tanstack/react-table": "8.10.3",
@@ -532,7 +531,6 @@
     "react-router-dom": "6.16.0",
     "react-use": "17.5.1",
     "reactstrap": "^9.1.9",
-    "rollbar": "2.26.2",
     "use-debounce": "5.2.0",
     "uuid": "8.3.2",
     "yup": "1.3.3"
@@ -546,8 +544,10 @@
     "jsdom": "24.1.1"
   },
   "peerDependencies": {
+    "@rollbar/react": "0.11.2",
+    "@tanstack/react-query": "^4.32.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "@tanstack/react-query": "^4.32.6"
+    "rollbar": "2.26.2"
   }
 }
