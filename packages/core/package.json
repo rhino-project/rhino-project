@@ -537,6 +537,7 @@
   "devDependencies": {
     "@babel/parser": "^7.17.0",
     "@babel/traverse": "^7.17.0",
+    "@tanstack/react-query-devtools": "4.32.6",
     "@testing-library/react": "14.0.0",
     "@types/lodash-es": "^4.17.0",
     "@vitejs/plugin-react": "^4.2.1",
@@ -545,6 +546,7 @@
   "peerDependencies": {
     "@rollbar/react": "0.11.2",
     "@tanstack/react-query": "^4.32.6",
+    "@tanstack/react-query-devtools": "4.32.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "6.16.0",
