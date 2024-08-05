@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/rhino-project/rhino-project.git"
   },
-  "packageManager": "pnpm@8.12.1",
+  "packageManager": "pnpm@9.6.0",
   "type": "module",
   "scripts": {
     "clean": "pnpm --filter \"./packages/**\" run clean",
