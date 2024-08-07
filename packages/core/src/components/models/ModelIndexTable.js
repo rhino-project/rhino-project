@@ -80,16 +80,8 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
   const [sorting, setSorting] = useState([]);
 
   const pathsOrDefault = useMemo(() => {
-    if (props.overrides?.ModelTable?.props?.paths)
-      console.warn('ModelTable pass legacy paths prop');
-
-    return (
-      paths ||
-      // Legacy
-      props.overrides?.ModelTable?.props?.paths ||
-      getViewablePaths(model)
-    );
-  }, [paths, props.overrides?.ModelTable?.props?.paths, model]);
+    return paths || getViewablePaths(model);
+  }, [paths, model]);
 
   const computedPaths = usePaths(pathsOrDefault, resources);
 
