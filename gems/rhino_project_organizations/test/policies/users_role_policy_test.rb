@@ -3,20 +3,23 @@
 require "test_helper"
 
 class Rhino::UsersRolePolicyTest < Rhino::TestCase::Policy
-  def setup
-    @organization = create :organization
-    @another_organization = create :organization
+  setup :setup_regular_role
 
-    @regular_role = create :role, name: "regular"
+  private
+    def setup_regular_role
+      @organization = create :organization
+      @another_organization = create :organization
 
-    @regular_user = create :user
-    @another_regular_user = create :user
+      @regular_role = create :role, name: "regular"
 
-    @org_regular_user = create :users_role, user: @regular_user, organization: @organization, role: @regular_role
-    @org_another_regular_user = create :users_role, user: @another_regular_user, organization: @organization, role: @regular_role
+      @regular_user = create :user
+      @another_regular_user = create :user
 
-    @another_org_regular_user = create :users_role, user: @regular_user, organization: @another_organization, role: @regular_role
-  end
+      @org_regular_user = create :users_role, user: @regular_user, organization: @organization, role: @regular_role
+      @org_another_regular_user = create :users_role, user: @another_regular_user, organization: @organization, role: @regular_role
+
+      @another_org_regular_user = create :users_role, user: @regular_user, organization: @another_organization, role: @regular_role
+    end
 end
 
 class Rhino::RegularUserUsersRolePolicy < Rhino::UsersRolePolicyTest
@@ -56,7 +59,6 @@ end
 
 class Rhino::AdminUserUsersRolePolicy < Rhino::UsersRolePolicyTest
   def setup
-    super
     @admin_role = create :role, name: "admin"
 
     @admin_user = create :user

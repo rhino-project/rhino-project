@@ -4,10 +4,7 @@ module Rhino
   module TestCase
     # rubocop:disable Metrics/ClassLength
     class ControllerTest < ActionDispatch::IntegrationTest
-      def setup
-        DeviseTokenAuth.cookie_attributes[:secure] = false
-        DeviseTokenAuth.cookie_attributes[:domain] = :all
-      end
+      setup :set_cookie_attributes
 
       protected
         def users_index(params: {}, headers: {})
@@ -135,6 +132,12 @@ module Rhino
             "allow_password_change" => false,
             "approved" => true
           }
+        end
+
+      private
+        def set_cookie_attributes
+          DeviseTokenAuth.cookie_attributes[:secure] = false
+          DeviseTokenAuth.cookie_attributes[:domain] = :all
         end
     end
     # rubocop:enable Metrics/ClassLength

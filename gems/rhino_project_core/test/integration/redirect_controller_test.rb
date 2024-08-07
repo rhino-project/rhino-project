@@ -4,8 +4,6 @@ require "test_helper"
 
 class RedirectControllerTest < Rhino::TestCase::ControllerTest
   def setup
-    super
-
     @blog = create :blog
   end
 

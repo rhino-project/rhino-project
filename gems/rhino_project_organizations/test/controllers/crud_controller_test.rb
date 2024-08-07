@@ -4,8 +4,6 @@ require "test_helper"
 
 class OrganizationsCrudControllerTest < Rhino::TestCase::OrganizationControllerTest
   def setup
-    super
-
     sign_in_with_organization
     @blog = create :blog, author: @current_user, organization: @current_organization
   end
@@ -60,8 +58,6 @@ end
 
 class CrudControllerUnauthorizedTest < Rhino::TestCase::OrganizationControllerTest
   def setup
-    super
-
     sign_in_with_organization
 
     @another_user = create(:user)
@@ -111,8 +107,6 @@ end
 
 class OrganizationsCrudControllerTestUnauthenticatedTest < Rhino::TestCase::OrganizationControllerTest
   def setup
-    super
-
     sign_in_with_organization
     sign_out
 

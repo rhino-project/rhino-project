@@ -4,8 +4,6 @@ require "test_helper"
 
 class CrudControllerViewerPolicyTest < Rhino::TestCase::OrganizationControllerPolicyTest
   def setup
-    super
-
     sign_in_org_users_and_resource("viewer")
   end
 
@@ -50,8 +48,6 @@ end
 
 class CrudControllerAdminPolicyTest < Rhino::TestCase::OrganizationControllerPolicyTest
   def setup
-    super
-
     sign_in_org_users_and_resource
   end
 
@@ -96,8 +92,6 @@ end
 
 class CrudControllerEditorPolicyTest < Rhino::TestCase::OrganizationControllerPolicyTest
   def setup
-    super
-
     sign_in_org_users_and_resource("editor")
   end
 
