@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name        = "rhino_project_organizations"
   spec.version     = version
   spec.authors     = ['JP Rosevear']
-  spec.email       = ['jprosevear@gmail.com']
+  spec.email       = ['jp@codalio.com']
   spec.homepage    = ""
   spec.summary     = ""
   spec.description = ""
