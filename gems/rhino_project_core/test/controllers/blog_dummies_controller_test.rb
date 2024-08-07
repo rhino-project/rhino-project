@@ -4,8 +4,6 @@ require "test_helper"
 
 class BlogDummiesControllerTest < Rhino::TestCase::ControllerTest
   def setup
-    super
-
     sign_in
     @blog = create :blog, user: @current_user
     @blog_dummy = create :blog_dummy, blog: @blog

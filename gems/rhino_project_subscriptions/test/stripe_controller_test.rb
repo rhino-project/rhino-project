@@ -6,7 +6,6 @@ require "webmock/minitest"
 
 class StripeControllerTest < Rhino::TestCase::ControllerTest
   def setup
-    super
     sign_in
   end
 
@@ -58,8 +57,6 @@ end
 
 class StripeControllerUnauthenticatedTest < Rhino::TestCase::ControllerTest
   def setup
-    super
-
     sign_in
     sign_out
   end

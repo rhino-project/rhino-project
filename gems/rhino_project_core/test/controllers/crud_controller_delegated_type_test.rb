@@ -4,8 +4,6 @@ require "test_helper"
 
 class CrudControllerDelegatedTypeTest < Rhino::TestCase::ControllerTest
   def setup
-    super
-
     sign_in
   end
 
