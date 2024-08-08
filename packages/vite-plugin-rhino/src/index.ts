@@ -23,8 +23,7 @@ const escapeRegExp = (string: string) =>
   string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 // ESBuild is used to pre-bundle modules in dev mode
-// This plugin is used to resolve the virtual/local import paths for Rhino and to handle jsx in js
-// in @rhino-project/core - at some point we should support @rhino-project/config as well
+// This plugin is used to handle jsx in js
 const esbuildRhinoPlugin = {
   name: 'esbuild-rhino-plugin',
   // @ts-ignore
@@ -48,8 +47,12 @@ const esbuildRhinoPlugin = {
   }
 };
 
-export function RhinoProjectVite(): Plugin {
+export function RhinoProjectVite({
+  enableJsxInJs = true
+}: { enableJsxInJs?: boolean } = {}): Plugin {
   let CONFIG: ResolvedConfig;
+
+  const esBuildPlugins = enableJsxInJs ? [esbuildRhinoPlugin] : [];
 
   return {
     name: 'vite-plugin-rhino',
@@ -60,9 +63,10 @@ export function RhinoProjectVite(): Plugin {
 
       optimizeDeps: {
         esbuildOptions: {
-          plugins: [esbuildRhinoPlugin]
+          plugins: esBuildPlugins
         },
-        // Don't process with esbuild so that we can use resolveId for rhino.config
+
+        // Exclude the modules that are replaced by local files or virtual modules
         exclude: [
           'virtual:@rhino-project/config/assets',
           'rhino.config',
@@ -178,8 +182,8 @@ export function RhinoProjectVite(): Plugin {
 
     // Handle js in jsx for builds
     async transform(code, id) {
-      // Ignore Rollup virtual modules.
-      if (id.startsWith('\0')) {
+      // Ignore Rollup virtual modules and js files if jsx in js is disabled
+      if (!enableJsxInJs || id.startsWith('\0')) {
         return;
       }
 
