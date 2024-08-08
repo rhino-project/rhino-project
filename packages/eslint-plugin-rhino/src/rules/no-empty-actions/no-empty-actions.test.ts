@@ -8,7 +8,7 @@ ruleTester.run('no-empty-actions', rule, {
   valid: [],
   invalid: [
     {
-      filename: 'rhino.config.js',
+      filename: 'rhino.config.jsx',
       code: normalizeIndent`
       /** @type {import('rhino/config').RhinoConfig} */
 

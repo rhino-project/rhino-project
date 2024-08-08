@@ -49,7 +49,7 @@ const config = defineConfig({
       }
     },
     alias: {
-      'rhino.config': resolve('src/__tests__/shared/rhino.config.js'),
+      'rhino.config': resolve('src/__tests__/shared/rhino.config.jsx'),
       'virtual:@rhino-project/config/env': resolve(
         'src/__tests__/shared/env.js'
       ),

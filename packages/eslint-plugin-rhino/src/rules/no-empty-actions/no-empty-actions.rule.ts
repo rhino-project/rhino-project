@@ -24,7 +24,7 @@ export const rule = createRule({
   defaultOptions: [],
   create(context) {
     const filename = context.getFilename();
-    if (!filename.endsWith('rhino.config.js')) {
+    if (!filename.endsWith('rhino.config.jsx')) {
       // If the filename does not match, don't apply the rule
       return {};
     }
