@@ -1,4 +1,5 @@
 import path from 'node:path';
+import fs from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { transformWithEsbuild } from 'vite';
 import type { Plugin, ResolvedConfig } from 'vite';
@@ -115,28 +116,37 @@ export function RhinoProjectVite(): Plugin {
     },
 
     resolveId(id) {
+      const checkExtensions = (basePath: string) => {
+        const extensions = ['.tsx', '.jsx', '.ts', '.js'];
+        for (const ext of extensions) {
+          const fullPath = basePath + ext;
+          if (fs.existsSync(fullPath)) {
+            return fullPath;
+          }
+        }
+        return null;
+      };
+
       if (id === CONFIG_MODULE_ID) {
         // Replace 'rhino.config' with the path to the local file
         // FIXME: Allow the location to be configured
-        return path.join(CONFIG.root, 'src/rhino.config');
+        return checkExtensions(path.join(CONFIG.root, 'src/rhino.config'));
       } else if (id === CUSTOM_PRIMARY_NAVIGATION_MODULE_ID) {
         // Replace 'components/app/CustomPrimaryNavigation' with the path to the local file
-        return path.join(
-          CONFIG.root,
-          'src/components/app/CustomPrimaryNavigation'
+        return checkExtensions(
+          path.join(CONFIG.root, 'src/components/app/CustomPrimaryNavigation')
         );
       } else if (id === CUSTOM_SECONDARY_NAVIGATION_MODULE_ID) {
         // Replace 'components/app/CustomSecondaryNavigation' with the path to the local file
-        return path.join(
-          CONFIG.root,
-          'src/components/app/CustomSecondaryNavigation'
+        return checkExtensions(
+          path.join(CONFIG.root, 'src/components/app/CustomSecondaryNavigation')
         );
       } else if (id === MODELS_STATIC_MODULE_ID) {
         // Replace 'models/static' with the path to the local file
-        return path.join(CONFIG.root, 'src/models/static');
+        return checkExtensions(path.join(CONFIG.root, 'src/models/static'));
       } else if (id === CUSTOM_ROUTES_MODULE_ID) {
         // Replace 'routes/custom' with the path to the local file
-        return path.join(CONFIG.root, 'src/routes/custom');
+        return checkExtensions(path.join(CONFIG.root, 'src/routes/custom'));
       } else if (id === ENV_MODULE_ID) {
         // Map the import to a virtual module ID
         return RESOLVED_ENV_MODULE_ID;
