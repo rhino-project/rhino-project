@@ -118,25 +118,25 @@ export function RhinoProjectVite(): Plugin {
       if (id === CONFIG_MODULE_ID) {
         // Replace 'rhino.config' with the path to the local file
         // FIXME: Allow the location to be configured
-        return path.join(CONFIG.root, 'src/rhino.config.js');
+        return path.join(CONFIG.root, 'src/rhino.config');
       } else if (id === CUSTOM_PRIMARY_NAVIGATION_MODULE_ID) {
         // Replace 'components/app/CustomPrimaryNavigation' with the path to the local file
         return path.join(
           CONFIG.root,
-          'src/components/app/CustomPrimaryNavigation.js'
+          'src/components/app/CustomPrimaryNavigation'
         );
       } else if (id === CUSTOM_SECONDARY_NAVIGATION_MODULE_ID) {
         // Replace 'components/app/CustomSecondaryNavigation' with the path to the local file
         return path.join(
           CONFIG.root,
-          'src/components/app/CustomSecondaryNavigation.js'
+          'src/components/app/CustomSecondaryNavigation'
         );
       } else if (id === MODELS_STATIC_MODULE_ID) {
         // Replace 'models/static' with the path to the local file
-        return path.join(CONFIG.root, 'src/models/static.js');
+        return path.join(CONFIG.root, 'src/models/static');
       } else if (id === CUSTOM_ROUTES_MODULE_ID) {
         // Replace 'routes/custom' with the path to the local file
-        return path.join(CONFIG.root, 'src/routes/custom.js');
+        return path.join(CONFIG.root, 'src/routes/custom');
       } else if (id === ENV_MODULE_ID) {
         // Map the import to a virtual module ID
         return RESOLVED_ENV_MODULE_ID;
