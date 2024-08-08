@@ -8,7 +8,7 @@ import {
 } from './components';
 import { merge } from 'lodash-es';
 
-// @ts-expect-error - We expect the user to create a file called rhino.config.js in the root of their project
+// @ts-expect-error - We expect the project to have a file called rhino.config.jsx in the root of their project
 import rhinoConfig from 'rhino.config';
 
 export type RhinoConfigGlobalComponent =
