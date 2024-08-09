@@ -9,6 +9,9 @@ export class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { error: null, errorInfo: null };
+    this.title =
+      props?.title ||
+      'Something went wrong. Please refresh the page to retry or use the menu to start over.';
   }
 
   componentDidCatch(error, errorInfo) {
@@ -21,23 +24,31 @@ export class ErrorBoundary extends React.Component {
   }
 
   render() {
-    if (this.state.errorInfo) {
+    const { errorInfo } = this.state;
+    const { children, title } = this.props;
+
+    if (errorInfo) {
       // Error path
       return (
         <div className="pt-3">
           <DangerAlert
             title={
-              'Something went wrong. Please refresh the page to retry or use' +
-              'the menu to start over.'
+              title ||
+              'Something went wrong. Please refresh the page to retry or use the menu to start over.'
             }
           />
         </div>
       );
     }
-    return this.props.children;
+    return children;
   }
 }
 
 ErrorBoundary.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.node.isRequired,
+  title: PropTypes.string
+};
+
+ErrorBoundary.defaultProps = {
+  title: null
 };
