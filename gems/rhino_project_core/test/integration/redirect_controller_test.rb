@@ -4,7 +4,7 @@ require "test_helper"
 
 class RedirectControllerTest < Rhino::TestCase::ControllerTest
   def setup
-    @blog = create :blog
+    @blog = create(:blog)
   end
 
   test "active storage allows authenticated redirects" do

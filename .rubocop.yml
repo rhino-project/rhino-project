@@ -5,6 +5,7 @@ require:
   - rubocop-performance
   - rubocop-rails
   - rubocop-minitest
+  - rubocop-factory_bot
 
 AllCops:
   # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
@@ -366,3 +367,26 @@ Minitest/SkipEnsure:
 Minitest/UnreachableAssertion:
   Enabled: true
 
+FactoryBot/AssociationStyle:
+  Enabled: true
+
+FactoryBot/ConsistentParenthesesStyle:
+  Enabled: true
+
+FactoryBot/ExcessiveCreateList:
+  Enabled: true
+
+FactoryBot/FactoryAssociationWithStrategy:
+  Enabled: true
+
+FactoryBot/FactoryNameStyle:
+  Enabled: true
+
+FactoryBot/IdSequence:
+  Enabled: true
+
+FactoryBot/RedundantFactoryOption:
+  Enabled: true
+
+FactoryBot/SyntaxMethods:
+  Enabled: true

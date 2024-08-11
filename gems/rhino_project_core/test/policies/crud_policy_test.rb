@@ -5,7 +5,7 @@ require "minitest/autorun"
 
 class Rhino::CrudPolicyTest < Rhino::TestCase::Policy
   def setup
-    @current_user = create :user
+    @current_user = create(:user)
   end
 
   %i[index show update create destroy].each do |action_type|

@@ -5,7 +5,7 @@ require "minitest/mock"
 
 class StripePolicyTest < Rhino::TestCase::Policy
   def setup
-    @current_user = create :user
+    @current_user = create(:user)
   end
 
   test "test create_checkout_session authentication" do

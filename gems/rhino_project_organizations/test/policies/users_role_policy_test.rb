@@ -7,18 +7,18 @@ class Rhino::UsersRolePolicyTest < Rhino::TestCase::Policy
 
   private
     def setup_regular_role
-      @organization = create :organization
-      @another_organization = create :organization
+      @organization = create(:organization)
+      @another_organization = create(:organization)
 
-      @regular_role = create :role, name: "regular"
+      @regular_role = create(:role, name: "regular")
 
-      @regular_user = create :user
-      @another_regular_user = create :user
+      @regular_user = create(:user)
+      @another_regular_user = create(:user)
 
-      @org_regular_user = create :users_role, user: @regular_user, organization: @organization, role: @regular_role
-      @org_another_regular_user = create :users_role, user: @another_regular_user, organization: @organization, role: @regular_role
+      @org_regular_user = create(:users_role, user: @regular_user, organization: @organization, role: @regular_role)
+      @org_another_regular_user = create(:users_role, user: @another_regular_user, organization: @organization, role: @regular_role)
 
-      @another_org_regular_user = create :users_role, user: @regular_user, organization: @another_organization, role: @regular_role
+      @another_org_regular_user = create(:users_role, user: @regular_user, organization: @another_organization, role: @regular_role)
     end
 end
 
@@ -59,14 +59,14 @@ end
 
 class Rhino::AdminUserUsersRolePolicy < Rhino::UsersRolePolicyTest
   def setup
-    @admin_role = create :role, name: "admin"
+    @admin_role = create(:role, name: "admin")
 
-    @admin_user = create :user
-    @another_admin_user = create :user
+    @admin_user = create(:user)
+    @another_admin_user = create(:user)
 
-    @org_admin_user = create :users_role, user: @admin_user, organization: @organization, role: @admin_role
-    @org_another_admin_user = create :users_role, user: @another_admin_user, organization: @organization, role: @admin_role
-    @another_org_admin_user = create :users_role, user: @admin_user, organization: @another_organization, role: @admin_role
+    @org_admin_user = create(:users_role, user: @admin_user, organization: @organization, role: @admin_role)
+    @org_another_admin_user = create(:users_role, user: @another_admin_user, organization: @organization, role: @admin_role)
+    @another_org_admin_user = create(:users_role, user: @admin_user, organization: @another_organization, role: @admin_role)
   end
 
   %i[create].each do |action_type|

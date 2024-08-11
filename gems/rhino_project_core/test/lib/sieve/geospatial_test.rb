@@ -20,7 +20,7 @@ class RhinoSieveGeospatialTestHelper < Rhino::TestCase::ControllerTest
     end
 
     def seed
-      @current_user = create :user
+      @current_user = create(:user)
       @omaha = Geospatial.create!(user: @current_user, latitude: 41.2565, longitude: -95.9345)
       @toronto = Geospatial.create!(user: @current_user, latitude: 43.6532, longitude: -79.3832)
     end

@@ -4,10 +4,10 @@ require "test_helper"
 
 class UsersRoleInviteTest < ActiveSupport::TestCase
   def setup
-    @organization = create :organization
+    @organization = create(:organization)
     @email = "test@test.com"
-    @user = create :user, email: @email
-    @role = create :role, name: "regular"
+    @user = create(:user, email: @email)
+    @role = create(:role, name: "regular")
   end
 
   test "should normalize email" do

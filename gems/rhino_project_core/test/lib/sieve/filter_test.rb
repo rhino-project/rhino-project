@@ -10,7 +10,7 @@ class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
   end
 
   def sign_in
-    @current_user = create :user
+    @current_user = create(:user)
     post "/api/auth/sign_in", params: {
       email: @current_user.email,
       password: @current_user.password
@@ -67,11 +67,11 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   end
 
   def create_instance
-    create :blog, user: @current_user
+    create(:blog, user: @current_user)
   end
 
   def create_nested_instance(instance)
-    create :blog_post, blog: instance
+    create(:blog_post, blog: instance)
   end
 
   def expect_results_from_blog1
@@ -192,7 +192,7 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   test "accepts combinations of operators lt and gt" do
     @instance1.update created_at: "1999-12-31"
     @instance2.update created_at: "2000-01-01"
-    create :blog, created_at: "2001-01-01"
+    create(:blog, created_at: "2001-01-01")
 
     @params = { "blog" => {
       "created_at" => {
@@ -324,13 +324,13 @@ class RhinoSieveFilterLongChainTest < RhinoSieveTestHelper
   end
 
   def seed
-    @blog1 = create :blog, user: @current_user
-    @blog_post1 = create :blog_post, blog: @blog1
-    @tag1 = create :og_meta_tag, blog_post: @blog_post1
+    @blog1 = create(:blog, user: @current_user)
+    @blog_post1 = create(:blog_post, blog: @blog1)
+    @tag1 = create(:og_meta_tag, blog_post: @blog_post1)
 
-    @blog2 = create :blog, user: @current_user
-    @blog_post2 = create :blog_post, blog: @blog2
-    @tag2 = create :og_meta_tag, blog_post: @blog_post2
+    @blog2 = create(:blog, user: @current_user)
+    @blog_post2 = create(:blog_post, blog: @blog2)
+    @tag2 = create(:og_meta_tag, blog_post: @blog_post2)
   end
 
   def expect_results_to_be_instance(instance)
@@ -421,16 +421,16 @@ class RhinoSieveFilterIsEmptyTest < RhinoSieveTestHelper
   end
 
   def seed
-    @blog1 = create :blog, user: @current_user
-    @blog_post1 = create :blog_post, blog: @blog1
-    @blog_post2 = create :blog_post, blog: @blog1
-    @blog_post_no_tags = create :blog_post, blog: @blog1
+    @blog1 = create(:blog, user: @current_user)
+    @blog_post1 = create(:blog_post, blog: @blog1)
+    @blog_post2 = create(:blog_post, blog: @blog1)
+    @blog_post_no_tags = create(:blog_post, blog: @blog1)
 
-    @blog2 = create :blog, user: @current_user
-    @blog_post_no_tags2 = create :blog_post, blog: @blog2
+    @blog2 = create(:blog, user: @current_user)
+    @blog_post_no_tags2 = create(:blog_post, blog: @blog2)
 
-    @tag1 = create :og_meta_tag, blog_post: @blog_post1
-    @tag2 = create :og_meta_tag, blog_post: @blog_post2
+    @tag1 = create(:og_meta_tag, blog_post: @blog_post1)
+    @tag2 = create(:og_meta_tag, blog_post: @blog_post2)
   end
 
   def expect_results_to_be_instance(instance)

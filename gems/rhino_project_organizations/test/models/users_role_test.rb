@@ -6,15 +6,15 @@ require "minitest/autorun"
 
 class Rhino::UsersRoleTest < ActiveSupport::TestCase
   def setup
-    @organization = create :organization
-    @admin_role = create :role, name: "admin"
-    @regular_role = create :role, name: "regular"
-    @other_role = create :role, name: "other"
+    @organization = create(:organization)
+    @admin_role = create(:role, name: "admin")
+    @regular_role = create(:role, name: "regular")
+    @other_role = create(:role, name: "other")
   end
 
   test "should allow updating role from an admin user_role when more than one admin in organization" do
-    create :users_role, user: (create :user), organization: @organization, role: @admin_role
-    admin_two = create :users_role, user: (create :user), organization: @organization, role: @admin_role
+    create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
+    admin_two = create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
 
     admin_two.update!({ role: @regular_role })
 
@@ -22,8 +22,8 @@ class Rhino::UsersRoleTest < ActiveSupport::TestCase
   end
 
   test "should allow updating role from a regular user_role when only one admin in organization" do
-    create :users_role, user: (create :user), organization: @organization, role: @admin_role
-    regular = create :users_role, user: (create :user), organization: @organization, role: @regular_role
+    create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
+    regular = create(:users_role, user: (create(:user)), organization: @organization, role: @regular_role)
 
     regular.update!({ role: @other_role })
 
@@ -31,8 +31,8 @@ class Rhino::UsersRoleTest < ActiveSupport::TestCase
   end
 
   test "should NOT allow updating role from an admin user_role when this admin is the only admin" do
-    only_admin = create :users_role, user: (create :user), organization: @organization, role: @admin_role
-    create :users_role, user: (create :user), organization: @organization, role: @regular_role
+    only_admin = create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
+    create(:users_role, user: (create(:user)), organization: @organization, role: @regular_role)
 
     exp = assert_raises ActiveRecord::RecordInvalid do
       only_admin.update!({ role: @regular_role })
@@ -43,8 +43,8 @@ class Rhino::UsersRoleTest < ActiveSupport::TestCase
   end
 
   test "should allow deleting an admin user_role when more than one admin in organization" do
-    create :users_role, user: (create :user), organization: @organization, role: @admin_role
-    admin_two = create :users_role, user: (create :user), organization: @organization, role: @admin_role
+    create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
+    admin_two = create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
 
     admin_two.destroy!
 
@@ -52,8 +52,8 @@ class Rhino::UsersRoleTest < ActiveSupport::TestCase
   end
 
   test "should allow deleting a regular user_role when only one admin in organization" do
-    create :users_role, user: (create :user), organization: @organization, role: @admin_role
-    regular = create :users_role, user: (create :user), organization: @organization, role: @regular_role
+    create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
+    regular = create(:users_role, user: (create(:user)), organization: @organization, role: @regular_role)
 
     regular.destroy!
 
@@ -62,8 +62,8 @@ class Rhino::UsersRoleTest < ActiveSupport::TestCase
   end
 
   test "should NOT allow deleting an admin user_role when this admin is the only admin" do
-    only_admin = create :users_role, user: (create :user), organization: @organization, role: @admin_role
-    create :users_role, user: (create :user), organization: @organization, role: @regular_role
+    only_admin = create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
+    create(:users_role, user: (create(:user)), organization: @organization, role: @regular_role)
 
     exp = assert_raises ActiveRecord::RecordInvalid do
       only_admin.destroy!
@@ -74,7 +74,7 @@ class Rhino::UsersRoleTest < ActiveSupport::TestCase
   end
 
   test "should allow deleting an admin user_role when this admin is the only admin and the parent org is being destroyed" do
-    only_admin = create :users_role, user: (create :user), organization: @organization, role: @admin_role
+    only_admin = create(:users_role, user: (create(:user)), organization: @organization, role: @admin_role)
 
     # Destroy the only_admin should decrease roles and orgs by 1
     assert_difference ["UsersRole.count", "Organization.count"], -1 do
@@ -85,14 +85,14 @@ end
 
 class SegmentTest < ActiveSupport::TestCase
   def setup
-    @organization = create :organization
-    @regular_role = create :role, name: "regular"
+    @organization = create(:organization)
+    @regular_role = create(:role, name: "regular")
   end
 
   test "should track 'Account Added User' when adding a new role to user" do
     mock = MiniTest::Mock.new
     mock.expect :call, nil
-    users_role = UsersRole.new(user: (create :user), organization: @organization, role: @regular_role)
+    users_role = UsersRole.new(user: (create(:user)), organization: @organization, role: @regular_role)
 
     users_role.stub :track_account_added_user, mock do
       users_role.save!
@@ -104,7 +104,7 @@ class SegmentTest < ActiveSupport::TestCase
   test "should track 'Account Removed User' when deleting a user role" do
     mock = MiniTest::Mock.new
     mock.expect :call, nil
-    users_role = create :users_role, user: (create :user), organization: @organization, role: @regular_role
+    users_role = create(:users_role, user: (create(:user)), organization: @organization, role: @regular_role)
 
     users_role.stub :track_account_removed_user, mock do
       users_role.destroy!

@@ -20,7 +20,7 @@ class Rhino::RoleTest < ActiveSupport::TestCase
   end
 
   test "not allow duplicate names" do
-    role = create :role
+    role = create(:role)
     assert_not Role.new(name: role.name).valid?
   end
 end

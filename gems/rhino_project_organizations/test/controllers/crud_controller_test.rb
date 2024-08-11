@@ -5,7 +5,7 @@ require "test_helper"
 class OrganizationsCrudControllerTest < Rhino::TestCase::OrganizationControllerTest
   def setup
     sign_in_with_organization
-    @blog = create :blog, author: @current_user, organization: @current_organization
+    @blog = create(:blog, author: @current_user, organization: @current_organization)
   end
 
   test "index returns results" do
@@ -62,7 +62,7 @@ class CrudControllerUnauthorizedTest < Rhino::TestCase::OrganizationControllerTe
 
     @another_user = create(:user)
     @another_organization = create(:organization)
-    @blog = create :blog, author: @another_user, organization: @another_organization
+    @blog = create(:blog, author: @another_user, organization: @another_organization)
   end
 
   test "index does not contain resource for another user" do
@@ -110,7 +110,7 @@ class OrganizationsCrudControllerTestUnauthenticatedTest < Rhino::TestCase::Orga
     sign_in_with_organization
     sign_out
 
-    @blog = create :blog, author: @current_user, organization: @current_organization
+    @blog = create(:blog, author: @current_user, organization: @current_organization)
   end
 
   test "index unauthorized for unauthenticated user" do

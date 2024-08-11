@@ -5,8 +5,8 @@ require "test_helper"
 class BlogDummiesControllerTest < Rhino::TestCase::ControllerTest
   def setup
     sign_in
-    @blog = create :blog, user: @current_user
-    @blog_dummy = create :blog_dummy, blog: @blog
+    @blog = create(:blog, user: @current_user)
+    @blog_dummy = create(:blog_dummy, blog: @blog)
   end
 
   test "creates and returns resource" do
