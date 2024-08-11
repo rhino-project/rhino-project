@@ -20,13 +20,13 @@ class RhinoSieveOrderTestHelper < Rhino::TestCase::ControllerTest
   end
 
   def seed # rubocop:disable Metrics/AbcSize
-    @current_user = create :user
-    @blog = create :blog, user: @current_user, published_at: Time.zone.now
-    @middle_instance = create :blog_post, blog: @blog, created_at: Time.zone.now
-    @oldest_instance = create :blog_post, blog: @blog, created_at: 1.day.ago
-    @newest_instance = create :blog_post, blog: @blog, created_at: 1.day.from_now
-    @oldest_blog = create :blog, user: @current_user, published_at: 1.day.ago
-    @null_blog = create :blog, user: @current_user, published_at: nil
+    @current_user = create(:user)
+    @blog = create(:blog, user: @current_user, published_at: Time.zone.now)
+    @middle_instance = create(:blog_post, blog: @blog, created_at: Time.zone.now)
+    @oldest_instance = create(:blog_post, blog: @blog, created_at: 1.day.ago)
+    @newest_instance = create(:blog_post, blog: @blog, created_at: 1.day.from_now)
+    @oldest_blog = create(:blog, user: @current_user, published_at: 1.day.ago)
+    @null_blog = create(:blog, user: @current_user, published_at: nil)
   end
 
   def fetch(url = self.url, filter: nil, search: nil)
@@ -72,13 +72,13 @@ class RhinoSieveOrderMultipleClausesTest < RhinoSieveOrderTestHelper
   end
 
   def seed # rubocop:disable Metrics/AbcSize
-    @current_user = create :user
-    @blog = create :blog, user: @current_user, published_at: Time.zone.now
+    @current_user = create(:user)
+    @blog = create(:blog, user: @current_user, published_at: Time.zone.now)
 
     now = Time.zone.now
-    @instance1 = create :blog_post, blog: @blog, created_at: Time.zone.now, updated_at: now
-    @instance2 = create :blog_post, blog: @blog, created_at: 1.day.ago, updated_at: now
-    @instance3 = create :blog_post, blog: @blog, created_at: 1.day.from_now, updated_at: now - 1.day
+    @instance1 = create(:blog_post, blog: @blog, created_at: Time.zone.now, updated_at: now)
+    @instance2 = create(:blog_post, blog: @blog, created_at: 1.day.ago, updated_at: now)
+    @instance3 = create(:blog_post, blog: @blog, created_at: 1.day.from_now, updated_at: now - 1.day)
   end
 
   test "ordering sieve works with two clauses" do
@@ -158,20 +158,20 @@ class RhinoSieveOrderRelatedModelsTest < RhinoSieveOrderTestHelper
 
   # rubocop:disable Metrics/AbcSize
   def seed
-    @current_user = create :user
+    @current_user = create(:user)
 
     now = Time.zone.now
-    @newest_blog1 = create :blog, user: @current_user, published_at: now
-    @newest_blog2 = create :blog, user: @current_user, published_at: now
-    @oldest_blog = create :blog, user: @current_user, published_at: now - 1.day
+    @newest_blog1 = create(:blog, user: @current_user, published_at: now)
+    @newest_blog2 = create(:blog, user: @current_user, published_at: now)
+    @oldest_blog = create(:blog, user: @current_user, published_at: now - 1.day)
 
-    @middle_blog_post = create :blog_post, blog: @oldest_blog, created_at: Time.zone.now
-    @oldest_blog_post = create :blog_post, blog: @newest_blog2, created_at: 1.day.ago
-    @newest_blog_post = create :blog_post, blog: @newest_blog1, created_at: 1.day.from_now
+    @middle_blog_post = create(:blog_post, blog: @oldest_blog, created_at: Time.zone.now)
+    @oldest_blog_post = create(:blog_post, blog: @newest_blog2, created_at: 1.day.ago)
+    @newest_blog_post = create(:blog_post, blog: @newest_blog1, created_at: 1.day.from_now)
 
-    @middle_instance = create :og_meta_tag, blog_post: @middle_blog_post
-    @oldest_instance = create :og_meta_tag, blog_post: @oldest_blog_post
-    @newest_instance = create :og_meta_tag, blog_post: @newest_blog_post
+    @middle_instance = create(:og_meta_tag, blog_post: @middle_blog_post)
+    @oldest_instance = create(:og_meta_tag, blog_post: @oldest_blog_post)
+    @newest_instance = create(:og_meta_tag, blog_post: @newest_blog_post)
   end
   # rubocop:enable Metrics/AbcSize
 
@@ -242,13 +242,13 @@ class RhinoSieveOrderRelatedModelsOuterJoinTest < RhinoSieveOrderTestHelper
   end
 
   def seed
-    @current_user = create :user
+    @current_user = create(:user)
 
-    @blog1 = create :blog, user: @current_user, title: "Aaa"
-    @blog2 = create :blog, user: @current_user, title: "Bbb"
-    @blog_dummy1 = create :blog_dummy, blog: @blog1
-    @blog_dummy2 = create :blog_dummy, blog: @blog2
-    @blog_dummy_no_blog = create :blog_dummy, blog: nil
+    @blog1 = create(:blog, user: @current_user, title: "Aaa")
+    @blog2 = create(:blog, user: @current_user, title: "Bbb")
+    @blog_dummy1 = create(:blog_dummy, blog: @blog1)
+    @blog_dummy2 = create(:blog_dummy, blog: @blog2)
+    @blog_dummy_no_blog = create(:blog_dummy, blog: nil)
   end
 
   test "ordering through related model attribute does not exclude records with no assocations" do

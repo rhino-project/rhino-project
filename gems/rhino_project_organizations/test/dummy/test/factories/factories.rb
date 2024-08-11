@@ -4,7 +4,7 @@ require "ffaker"
 
 # rubocop:disable Metrics/BlockLength
 FactoryBot.define do
-  factory :blog do
+  factory :blog, class: Blog do
     category
     published_at { FFaker::Time.date }
     title { FFaker::Book.title }

@@ -46,6 +46,7 @@ group :rubocop do
   gem 'rubocop-performance', '1.21.0', require: false
   gem 'rubocop-minitest', '0.29.0', require: false
   gem 'rubocop-rails', '2.18.0', require: false
+  gem 'rubocop-factory_bot', '2.26.1', require: false
 end
 
 group :development, :test do

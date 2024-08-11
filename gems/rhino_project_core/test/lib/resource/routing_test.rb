@@ -24,12 +24,12 @@ class RoutingTest < ActiveSupport::TestCase
   end
 
   test "Frontend instance route with base owner id for a Model with a clear single path to the base owner Model should include base owner Model id" do
-    instance = create :blog_post
+    instance = create(:blog_post)
     assert_equal "/#{instance.blog.user.id}/blogPosts/#{instance.id}", instance.route_frontend
   end
 
   test "Frontend instance route without base owner id for a Model that is the base owner Model should NOT include base owner Model id" do
-    instance = create :user
+    instance = create(:user)
     assert_equal "/users/#{instance.id}", instance.route_frontend
   end
 

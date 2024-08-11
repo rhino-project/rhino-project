@@ -4,15 +4,15 @@ require "test_helper"
 
 class Rhino::OrganizationPolicyTest < Rhino::TestCase::Policy
   def setup
-    @organization = create :organization
-    @admin_role = create :role
-    @current_user = create :user
+    @organization = create(:organization)
+    @admin_role = create(:role)
+    @current_user = create(:user)
 
-    create :users_role, user: @current_user, organization: @organization, role: @admin_role
+    create(:users_role, user: @current_user, organization: @organization, role: @admin_role)
 
-    @another_user = create :user
-    @another_organization = create :organization
-    create :users_role, user: @another_user, organization: @another_organization, role: @admin_role
+    @another_user = create(:user)
+    @another_organization = create(:organization)
+    create(:users_role, user: @another_user, organization: @another_organization, role: @admin_role)
   end
 
   # Current user

@@ -4,8 +4,8 @@ require "test_helper"
 
 class Rhino::AccountPolicyTest < Rhino::TestCase::Policy
   def setup
-    @current_user = create :user
-    @another_user = create :user
+    @current_user = create(:user)
+    @another_user = create(:user)
   end
 
   %i[index show create update destroy].each do |action_type|

@@ -5,7 +5,7 @@ require "test_helper"
 class InvitationsControllerTest < Rhino::TestCase::ControllerTest
   test "update should return status 200 and set cookie when valid token and password" do
     token = "qimARyZ2Yu2pDVgZzsJL"
-    create :user, invitation_token: Devise.token_generator.digest(self, :invitation_token, token)
+    create(:user, invitation_token: Devise.token_generator.digest(self, :invitation_token, token))
     password = "password"
 
     put user_invitation_path, params: {
@@ -20,7 +20,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
 
   test "update should return status 422 and errors when valid token but invalid password" do
     token = "qimARyZ2Yu2pDVgZzsJL"
-    create :user, invitation_token: Devise.token_generator.digest(self, :invitation_token, token)
+    create(:user, invitation_token: Devise.token_generator.digest(self, :invitation_token, token))
     password = "pass"
 
     put user_invitation_path, params: {
@@ -39,7 +39,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
 
   test "update should return status 422 and errors when valid token but passwords do not match" do
     token = "qimARyZ2Yu2pDVgZzsJL"
-    create :user, invitation_token: Devise.token_generator.digest(self, :invitation_token, token)
+    create(:user, invitation_token: Devise.token_generator.digest(self, :invitation_token, token))
     password = "password"
 
     put user_invitation_path, params: {
@@ -58,7 +58,7 @@ class InvitationsControllerTest < Rhino::TestCase::ControllerTest
 
   test "update should return status 422 and errors when invalid token" do
     token = "qimARyZ2Yu2pDVgZzsJL"
-    create :user, invitation_token: Devise.token_generator.digest(self, :invitation_token, token)
+    create(:user, invitation_token: Devise.token_generator.digest(self, :invitation_token, token))
     password = "password"
 
     put user_invitation_path, params: {

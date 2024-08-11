@@ -4,7 +4,7 @@ require "test_helper"
 
 class Rhino::BasePolicyTest < Rhino::TestCase::Policy
   def setup
-    @current_user = create :user
+    @current_user = create(:user)
   end
 
   class Rhino::BasePolicyTest::DummyModel < ApplicationRecord

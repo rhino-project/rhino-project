@@ -1,1 +1,5 @@
 inherit_from: ../.rubocop.yml
+
+FactoryBot:
+  Include:
+    - 'rhino_project_organizations/test/dummy/test/factories/factories.rb'
