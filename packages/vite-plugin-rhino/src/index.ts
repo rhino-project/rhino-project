@@ -1,6 +1,7 @@
 import path from 'node:path';
 import fs from 'node:fs';
-import { readFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
+import { execSync } from 'node:child_process';
 import { transformWithEsbuild } from 'vite';
 import type { Plugin, ResolvedConfig } from 'vite';
 
@@ -48,9 +49,18 @@ const esbuildRhinoPlugin = {
 };
 
 export function RhinoProjectVite({
-  enableJsxInJs = true
-}: { enableJsxInJs?: boolean } = {}): Plugin {
+  enableJsxInJs = true,
+  enableStaticCheck = true,
+  staticCheckInterval = 10000,
+  staticCheckExcludedBranches = ['main']
+}: {
+  enableJsxInJs?: boolean;
+  enableStaticCheck?: boolean;
+  staticCheckInterval?: number;
+  staticCheckExcludedBranches?: Array<string>;
+} = {}): Plugin {
   let CONFIG: ResolvedConfig;
+  let previousContent = '';
 
   const esBuildPlugins = enableJsxInJs ? [esbuildRhinoPlugin] : [];
 
@@ -117,6 +127,75 @@ export function RhinoProjectVite({
           );
         }
       });
+
+      if (config.command !== 'serve' || !enableStaticCheck) return;
+
+      const apiRootPath = config.env.VITE_API_ROOT_PATH;
+      const logger = config.logger;
+
+      if (!apiRootPath) {
+        logger.error('VITE_API_ROOT_PATH environment variable is not defined.');
+        return;
+      }
+
+      async function checkUrl() {
+        const url = apiRootPath + '/api/info/openapi';
+
+        try {
+          // Get the current Git branch
+          const currentBranch = execSync('git rev-parse --abbrev-ref HEAD')
+            .toString()
+            .trim();
+
+          // Check if the current branch is in the excludedBranches list
+          if (staticCheckExcludedBranches.includes(currentBranch)) {
+            logger.info(`Skipping URL check on branch: ${currentBranch}`);
+            return;
+          }
+
+          const response = await fetch(url);
+          if (!response.ok) {
+            logger.error(`Error fetching ${url}: ${response.status}`);
+            return;
+          }
+
+          const content = await response.text();
+
+          if (!previousContent) {
+            try {
+              const staticFileContent = await readFile(
+                'src/models/static.js',
+                'utf-8'
+              );
+              // Extract the content between const api = and ;
+              const match = staticFileContent.match(/const api = (\{.*\});/s);
+              if (match && match[1]) {
+                previousContent = match[1];
+              }
+            } catch (readError: any) {
+              logger.warn(
+                'Failed to read initial content from src/models/static.js:',
+                readError
+              );
+            }
+          }
+
+          // Compare only the JSON content, not the entire file
+          if (content !== previousContent) {
+            const jsContent = `const api = ${content};\n\nexport default api;\n`;
+            await writeFile('src/models/static.js', jsContent);
+            previousContent = content;
+            logger.info('Updated src/models/static.js with new OpenAPI data.', {
+              timestamp: true
+            });
+          }
+        } catch (error) {
+          logger.error(`Error fetching or writing OpenAPI data: ${error}`);
+        }
+      }
+
+      checkUrl(); // Initial fetch
+      setInterval(checkUrl, staticCheckInterval);
     },
 
     resolveId(id) {
