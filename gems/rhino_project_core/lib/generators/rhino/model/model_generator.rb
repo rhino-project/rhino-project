@@ -2,6 +2,7 @@
 
 require "rails/generators"
 require "rails/generators/active_record/model/model_generator"
+require "rails/generators/active_record/migration/migration_generator"
 
 module Rhino
   class ModelGenerator < ::ActiveRecord::Generators::ModelGenerator
@@ -15,7 +16,8 @@ module Rhino
     def source_paths
       [
         File.expand_path("templates", __dir__),
-        ::ActiveRecord::Generators::ModelGenerator.source_root
+        ::ActiveRecord::Generators::ModelGenerator.source_root,
+        ::ActiveRecord::Generators::MigrationGenerator.source_root
       ]
     end
 
