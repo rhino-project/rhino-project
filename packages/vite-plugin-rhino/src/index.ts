@@ -128,7 +128,14 @@ export function RhinoProjectVite({
         }
       });
 
-      if (config.command !== 'serve' || !enableStaticCheck) return;
+      // If we are not in development mode or the serve command, do not proceed unless static check is enabled
+      // This is to prevent the static check from running in production builds and under vitest
+      if (
+        config.command !== 'serve' ||
+        config.mode !== 'development' ||
+        !enableStaticCheck
+      )
+        return;
 
       const apiRootPath = config.env.VITE_API_ROOT_PATH;
       const logger = config.logger;
