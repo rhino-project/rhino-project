@@ -36,8 +36,8 @@ class ModelGeneratorTest < Rails::Generators::TestCase
   end
 
   def test_model_with_global_owner_as_owner_option
-    run_generator ["device_group", "name:string", "user:references", "--owner=global"]
-    assert_file File.join(destination_root, "app/models/device_group.rb"), /rhino_owner_global/
+    run_generator ["my_global_model", "name:string", "--owner=global"]
+    assert_file File.join(destination_root, "app/models/my_global_model.rb"), /rhino_owner_global/
   end
 
   private

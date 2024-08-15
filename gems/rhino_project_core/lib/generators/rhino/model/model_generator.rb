@@ -67,11 +67,11 @@ module Rhino
       end
 
       def base_owner?
-        @global_owner = options[:base_owner] || Rhino.base_owner.model_name.singular == options[:owner]
+        @base_owner = options[:base_owner] || Rhino.base_owner.model_name.singular == options[:owner]
       end
 
       def reference_owner?
-        @reference_owner = options[:owner].present? && !base_owner?
+        @reference_owner = options[:owner].present? && !base_owner? && !global_owner?
       end
 
       def owner_name
