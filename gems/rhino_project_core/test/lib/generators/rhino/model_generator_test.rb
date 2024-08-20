@@ -40,6 +40,11 @@ class ModelGeneratorTest < Rails::Generators::TestCase
     assert_file File.join(destination_root, "app/models/my_global_model.rb"), /rhino_owner_global/
   end
 
+  def test_model_with_base_owner_indirect_as_owner_option
+    run_generator ["my_base_model", "name:string", "user:references", "--owner=base"]
+    assert_file File.join(destination_root, "app/models/my_base_model.rb"), /rhino_owner_base/
+  end
+
   private
     def prepare_destination
       self.destination_root = File.expand_path("../tmp", __dir__) + "-#{Process.pid}"

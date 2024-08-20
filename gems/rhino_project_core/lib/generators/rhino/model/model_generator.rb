@@ -67,7 +67,7 @@ module Rhino
       end
 
       def base_owner?
-        @base_owner = options[:base_owner] || Rhino.base_owner.model_name.singular == options[:owner]
+        @base_owner = options[:base_owner] || options[:owner] == "base" || Rhino.base_owner.model_name.singular == options[:owner]
       end
 
       def reference_owner?
