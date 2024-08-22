@@ -48,7 +48,7 @@ module Rhino
       return if global_owner?
 
       inject_into_file model_file, after: /#{owner_call}/ do
-        "\n  rhino_references %i[#{owner_name}]"
+        "\n  rhino_references %i[#{reference_attributes.map(&:name).join(' ')}]\n"
       end
     end
 
