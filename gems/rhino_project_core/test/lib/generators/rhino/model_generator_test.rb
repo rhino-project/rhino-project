@@ -45,6 +45,12 @@ class ModelGeneratorTest < Rails::Generators::TestCase
     assert_file File.join(destination_root, "app/models/my_base_model.rb"), /rhino_owner_base/
   end
 
+  def test_model_with_multiple_references
+    run_generator ["my_multiple_reference_model", "name:string", "category:references", "blog:references", "--owner=blog"]
+    assert_file File.join(destination_root, "app/models/my_multiple_reference_model.rb"), /rhino_owner :blog/
+    assert_file File.join(destination_root, "app/models/my_multiple_reference_model.rb"), /rhino_references %i\[category blog\]/
+  end
+
   private
     def prepare_destination
       self.destination_root = File.expand_path("../tmp", __dir__) + "-#{Process.pid}"
