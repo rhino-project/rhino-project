@@ -225,7 +225,7 @@ GEM
     formtastic_i18n (0.7.0)
     friendly_id (5.3.0)
       activerecord (>= 4.0.0)
-    fugit (1.11.0)
+    fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
     geocoder (1.8.2)
