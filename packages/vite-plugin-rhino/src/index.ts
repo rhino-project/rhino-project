@@ -64,6 +64,16 @@ export function RhinoProjectVite({
 
   const esBuildPlugins = enableJsxInJs ? [esbuildRhinoPlugin] : [];
 
+  // Check if the environment variable RHINO_VITE_STATIC_CHECK_EXCLUDED_BRANCHES is set
+  const excludedBranchesFromEnv =
+    process.env.RHINO_VITE_STATIC_CHECK_EXCLUDED_BRANCHES;
+  const finalExcludedBranches =
+    excludedBranchesFromEnv !== undefined
+      ? excludedBranchesFromEnv.trim() === ''
+        ? []
+        : excludedBranchesFromEnv.split(',').map((branch) => branch.trim())
+      : staticCheckExcludedBranches;
+
   return {
     name: 'vite-plugin-rhino',
     enforce: 'pre',
@@ -155,7 +165,7 @@ export function RhinoProjectVite({
             .trim();
 
           // Check if the current branch is in the excludedBranches list
-          if (staticCheckExcludedBranches.includes(currentBranch)) {
+          if (finalExcludedBranches.includes(currentBranch)) {
             logger.info(`Skipping URL check on branch: ${currentBranch}`);
             return;
           }
