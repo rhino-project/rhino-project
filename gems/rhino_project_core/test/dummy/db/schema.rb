@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_24_115156) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_27_122714) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -238,6 +238,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_115156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_parents_on_user_id"
+  end
+
+  create_table "polymorphics", force: :cascade do |t|
+    t.string "polyable_type", null: false
+    t.bigint "polyable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["polyable_type", "polyable_id"], name: "index_polymorphics_on_polyable"
   end
 
   create_table "property_lists", force: :cascade do |t|
