@@ -176,6 +176,12 @@ module ActiveRecordExtension
       assert_equal("#/components/schemas/user", @description[:anyOf].first[:$ref])
     end
 
+    test "belongs_to polymorphic reference" do
+      assert_type("polyable", :reference, model: Polymorphic)
+      # FIXME This is incorrect but passing for now - should start failing if properties_describe is fixed
+      assert_equal("#/components/schemas/polyable", @description[:anyOf].first[:$ref])
+    end
+
     test "belongs_to reference with overridden class name" do
       assert_type("another_user", :reference)
       assert_equal("#/components/schemas/user", @description[:anyOf].first[:$ref])
@@ -192,8 +198,8 @@ module ActiveRecordExtension
     end
 
     private
-      def assert_type(property, type)
-        @description = EveryField.describe_property(property)
+      def assert_type(property, type, model: EveryField)
+        @description = model.describe_property(property)
 
         assert_equal(type, @description[:type])
       end
