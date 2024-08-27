@@ -7,7 +7,7 @@ module Rhino
         extend ActiveSupport::Concern
 
         class_methods do
-          def describe # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+          def describe
             properties = all_properties.index_with { |p| describe_property(p) }
 
             required = properties.reject { |_p, d| d[:nullable] || d[:readOnly] }.keys

@@ -5,7 +5,7 @@ require "js_regex"
 module Rhino
   module Resource
     module ActiveRecordExtension
-      module PropertiesDescribe # rubocop:disable Metrics/ModuleLength
+      module PropertiesDescribe
         extend ActiveSupport::Concern
 
         class PolymorphicModelName
@@ -22,8 +22,8 @@ module Rhino
           end
         end
 
-        class_methods do # rubocop:disable Metrics/BlockLength
-          def describe_property(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+        class_methods do
+          def describe_property(property) # rubocop:disable Metrics/AbcSize
             name = property_name(property).to_s
             raise StandardError, "#{name} is not a valid property" unless property?(name)
 
@@ -61,7 +61,7 @@ module Rhino
               }
             end
 
-            def property_type_and_format_attr(name) # rubocop:todo Metrics/MethodLength
+            def property_type_and_format_attr(name)
               atype = attribute_types[name.to_s].type
 
               # The PG array delegates type to "subtype" which is the actual type of the array elements
@@ -98,7 +98,6 @@ module Rhino
               { "x-rhino-attribute-array": array_options.merge(_properties_array[ref_sym] || {}) }
             end
 
-            # rubocop:todo Metrics/PerceivedComplexity
             # rubocop:todo Metrics/AbcSize
             def property_type_and_format_ref(name) # rubocop:todo Metrics/AbcSize
               assoc = reflections[name]
@@ -125,7 +124,7 @@ module Rhino
             # rubocop:enable Metrics/AbcSize
             # rubocop:enable Metrics/PerceivedComplexity
 
-            def property_type_and_format(name) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+            def property_type_and_format(name) # rubocop:disable Metrics/AbcSize
               # Special cases
               return { type: :identifier } if name == identifier_property
               return { type: :string } if defined_enums.key?(name)
@@ -156,7 +155,7 @@ module Rhino
               _properties_overrides[property].deep_symbolize_keys
             end
 
-            def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+            def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
               constraint_hash = {}
 
               # https://swagger.io/specification/

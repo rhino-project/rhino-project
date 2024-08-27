@@ -3,7 +3,7 @@
 require "test_helper"
 
 module ActiveRecordExtension
-  class DescribePropertiesTest < ActiveSupport::TestCase # rubocop:todo Metrics/ClassLength
+  class DescribePropertiesTest < ActiveSupport::TestCase
     test "non-existent property raises an exception" do
       assert_raises(StandardError) { EveryField.describe_property("does_not_exist") }
     end

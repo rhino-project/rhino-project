@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe "RuboCop Rails Project", type: :feature do # rubocop:todo Metrics/BlockLength
-  describe "default configuration file" do # rubocop:todo Metrics/BlockLength
+RSpec.describe "RuboCop Rails Project", type: :feature do
+  describe "default configuration file" do
     subject(:config) { RuboCop::ConfigLoader.load_file("config/default.yml") }
 
     let(:registry) { RuboCop::Cop::Registry.global }

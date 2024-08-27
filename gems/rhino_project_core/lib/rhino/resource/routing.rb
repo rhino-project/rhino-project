@@ -18,7 +18,6 @@ module Rhino
         delegate :routes, to: :class
       end
 
-      # rubocop:disable Style/RedundantSelf, Metrics/BlockLength
       class_methods do
         def route_key
           self._route_key ||= if route_singular?
@@ -50,7 +49,7 @@ module Rhino
 
         def routes
           unless self._rhino_routes
-            if global_owner? # rubocop:disable Style/ConditionalAssignment
+            if global_owner?
               self._rhino_routes = %i[index show]
             else
               self._rhino_routes = %i[index create show update destroy]
@@ -72,10 +71,9 @@ module Rhino
           self.controller_name = "rhino/#{controller}"
         end
       end
-      # rubocop:enable Style/RedundantSelf, Metrics/BlockLength
     end
 
-    def route_frontend # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    def route_frontend
       base_owner_pk = "#{Rhino.base_owner.table_name}.#{Rhino.base_owner.primary_key}"
 
       joins = joins_for_base_owner

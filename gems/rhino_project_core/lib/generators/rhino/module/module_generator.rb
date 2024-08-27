@@ -49,7 +49,7 @@ module Rhino
       end
 
       # Has to be named this way as it overrides the default
-      def get_builder_class # rubocop:disable Naming/AccessorMethodName
+      def get_builder_class
         ModuleBuilder
       end
 

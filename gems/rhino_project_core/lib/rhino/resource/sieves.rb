@@ -13,7 +13,6 @@ module Rhino
         delegate :sieves, to: :class
       end
 
-      # rubocop:disable Style/RedundantSelf
       class_methods do
         def rhino_sieves
           self._sieves = Rhino.sieves.dup unless self._sieves
@@ -30,7 +29,6 @@ module Rhino
           scope
         end
       end
-      # rubocop:enable Style/RedundantSelf
     end
   end
 end

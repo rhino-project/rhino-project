@@ -22,7 +22,7 @@ module Rhino
       end
 
       private
-        def valid?(params) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+        def valid?(params)
           @geospatial_params = params[:geospatial]
           return false unless @geospatial_params.is_a?(ActionController::Parameters)
 

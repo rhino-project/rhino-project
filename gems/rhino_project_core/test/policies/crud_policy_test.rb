@@ -14,7 +14,7 @@ class Rhino::CrudPolicyTest < Rhino::TestCase::Policy
     end
   end
 
-  %i[index show update create destroy].each do |action_type| # rubocop:todo Style/CombinableLoops
+  %i[index show update create destroy].each do |action_type|
     test "#{testing_policy} looks up role based policy and calls #{action_type}?" do
       @policy_class = Minitest::Mock.new
       @policy = Minitest::Mock.new

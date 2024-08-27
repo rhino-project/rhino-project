@@ -98,7 +98,7 @@ class SegmentTest < ActiveSupport::TestCase
       users_role.save!
     end
 
-    mock.verify
+    assert_nothing_raised { mock.verify }
   end
 
   test "should track 'Account Removed User' when deleting a user role" do
@@ -110,6 +110,6 @@ class SegmentTest < ActiveSupport::TestCase
       users_role.destroy!
     end
 
-    mock.verify
+    assert_nothing_raised { mock.verify }
   end
 end
