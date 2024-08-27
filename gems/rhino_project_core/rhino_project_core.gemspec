@@ -15,13 +15,13 @@ Gem::Specification.new do |spec|
 
   spec.files = Dir['{app,config,db,lib}/**/*', 'Rakefile', 'README.md', 'LICENSE']
 
-  spec.add_dependency "rails", "~> 7.1.0", ">= 7.1.0"
+  spec.add_dependency "rails", "~> 7.2.0", ">= 7.2.0"
 
   # Super Admin
   spec.add_dependency "activeadmin", "3.2.2"
 
   # Tagging
-  spec.add_dependency "acts-as-taggable-on", "10.0.0"
+  spec.add_dependency "acts-as-taggable-on", "11.0.0"
 
   # Analytics
   spec.add_dependency "analytics-ruby", "2.0.13"
@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
 
   # Authentication
   spec.add_dependency "devise", "4.9.4"
-  spec.add_dependency "devise_token_auth", "1.2.3"
+  spec.add_dependency "devise_token_auth"
 
   # Friendly id slugs
   spec.add_dependency "friendly_id", "5.3.0"
