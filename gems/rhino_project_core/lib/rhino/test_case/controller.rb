@@ -2,7 +2,6 @@
 
 module Rhino
   module TestCase
-    # rubocop:disable Metrics/ClassLength
     class ControllerTest < ActionDispatch::IntegrationTest
       setup :set_cookie_attributes
 
@@ -81,7 +80,7 @@ module Rhino
         def assert_not_deleted_cookie(cookie_name)
           has_cookie = response.cookies.key?(cookie_name)
           cookie_not_blank = response.cookies[cookie_name].present?
-          assert !has_cookie || cookie_not_blank, "Response should either not have the auth cookie present or it should be set to something. Current value is #{response.cookies[cookie_name]}" # rubocop:disable Layout/LineLength
+          assert !has_cookie || cookie_not_blank, "Response should either not have the auth cookie present or it should be set to something. Current value is #{response.cookies[cookie_name]}"
         end
 
         def sign_in(user = nil)

@@ -3,7 +3,7 @@
 require "test_helper"
 
 module ActiveModelExtension
-  class DescribePropertiesTest < ActiveSupport::TestCase # rubocop:todo Metrics/ClassLength
+  class DescribePropertiesTest < ActiveSupport::TestCase
     class EveryFieldModel
       include Rhino::Resource::ActiveModelExtension
       include ActiveModel::Validations

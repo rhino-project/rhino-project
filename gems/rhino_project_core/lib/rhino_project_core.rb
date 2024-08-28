@@ -82,7 +82,7 @@ module Rhino
 
   # Set the auth owner reference object to access the mailer.
   def self.auth_owner=(class_name)
-    @@auth_owner_ref = ref(class_name) # rubocop:disable Style/ClassVars
+    @@auth_owner_ref = ref(class_name)
   end
   self.auth_owner = 'User'
 
@@ -96,7 +96,7 @@ module Rhino
 
   # Set the mailer reference object to access the mailer.
   def self.base_owner=(class_name)
-    @@base_owner_ref = ref(class_name) # rubocop:disable Style/ClassVars
+    @@base_owner_ref = ref(class_name)
   end
   self.base_owner = 'User'
 

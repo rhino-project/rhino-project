@@ -29,7 +29,7 @@ class Rhino::AccountPolicyTest < Rhino::TestCase::Policy
   end
 
   # Another user
-  %i[update show].each do |action_type| # rubocop:todo Style/CombinableLoops
+  %i[update show].each do |action_type|
     test "#{testing_policy} does not allow #{action_type} for another user" do
       assert_not_permit @current_user, @another_user, action_type
     end

@@ -21,7 +21,7 @@ module Rhino
         end
 
         def references
-          self._references # rubocop:disable Style/RedundantSelf
+          self._references
         end
       end
     end

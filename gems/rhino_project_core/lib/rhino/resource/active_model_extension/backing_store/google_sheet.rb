@@ -35,7 +35,7 @@ module Rhino
             delegate :sheet, to: :class
           end
 
-          class_methods do # rubocop:todo Metrics/BlockLength
+          class_methods do
             def backing_store_index
               sheet.reload
 

@@ -56,7 +56,7 @@ module Rhino
       end
     end
 
-    def self.describe_path(path) # rubocop:todo Metrics/AbcSize
+    def self.describe_path(path)
       new_path = path.index_by { |p| p[:verb].downcase.to_sym }
       new_path.transform_values! do |verb_values|
         klass = verb_values[:rhino_resource].constantize
@@ -75,7 +75,7 @@ module Rhino
     end
 
     PATH_IGNORES = ["Rhino::OpenApiInfo", "Rhino::InfoGraph"].freeze
-    def self.describe_paths # rubocop:todo Metrics/AbcSize
+    def self.describe_paths
       routes = Rails.application.routes.routes
 
       # Extract the path information we need
