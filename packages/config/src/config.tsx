@@ -109,8 +109,8 @@ export const useRhinoConfig = (): RhinoConfig =>
  */
 export const useRhinoAsset = (asset: string): string | undefined => {
   const { assets } = useRhinoConfig();
-  const assetPath = `/src/assets/${asset}`;
+  const assetPath = `/assets/${asset}`;
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
-  return assets[assetPath]?.default;
+  return assets[assetPath]?.default || assets[`/src${assetPath}`]?.default;
 };

@@ -74,6 +74,14 @@ export function RhinoProjectVite({
         : excludedBranchesFromEnv.split(',').map((branch) => branch.trim())
       : staticCheckExcludedBranches;
 
+  const intermediatePath = () =>
+    fs.existsSync(path.join(CONFIG.root, 'src')) ? 'src' : '';
+  const resolvePath = (relativePath: string) => {
+    return path.join(
+      ...[CONFIG.root, intermediatePath(), relativePath].filter(Boolean)
+    );
+  };
+
   return {
     name: 'vite-plugin-rhino',
     enforce: 'pre',
@@ -181,7 +189,7 @@ export function RhinoProjectVite({
           if (!previousContent) {
             try {
               const staticFileContent = await readFile(
-                'src/models/static.js',
+                resolvePath('models/static.js'),
                 'utf-8'
               );
               // Extract the content between const api = and ;
@@ -191,7 +199,7 @@ export function RhinoProjectVite({
               }
             } catch (readError: any) {
               logger.warn(
-                'Failed to read initial content from src/models/static.js:',
+                'Failed to read initial content from models/static.js:',
                 readError
               );
             }
@@ -200,9 +208,9 @@ export function RhinoProjectVite({
           // Compare only the JSON content, not the entire file
           if (content !== previousContent) {
             const jsContent = `const api = ${content};\n\nexport default api;\n`;
-            await writeFile('src/models/static.js', jsContent);
+            await writeFile(resolvePath('models/static.js'), jsContent);
             previousContent = content;
-            logger.info('Updated src/models/static.js with new OpenAPI data.', {
+            logger.info('Updated models/static.js with new OpenAPI data.', {
               timestamp: true
             });
           }
@@ -230,23 +238,23 @@ export function RhinoProjectVite({
       if (id === CONFIG_MODULE_ID) {
         // Replace 'rhino.config' with the path to the local file
         // FIXME: Allow the location to be configured
-        return checkExtensions(path.join(CONFIG.root, 'src/rhino.config'));
+        return checkExtensions(resolvePath('rhino.config'));
       } else if (id === CUSTOM_PRIMARY_NAVIGATION_MODULE_ID) {
         // Replace 'components/app/CustomPrimaryNavigation' with the path to the local file
         return checkExtensions(
-          path.join(CONFIG.root, 'src/components/app/CustomPrimaryNavigation')
+          resolvePath('components/app/CustomPrimaryNavigation')
         );
       } else if (id === CUSTOM_SECONDARY_NAVIGATION_MODULE_ID) {
         // Replace 'components/app/CustomSecondaryNavigation' with the path to the local file
         return checkExtensions(
-          path.join(CONFIG.root, 'src/components/app/CustomSecondaryNavigation')
+          resolvePath('components/app/CustomSecondaryNavigation')
         );
       } else if (id === MODELS_STATIC_MODULE_ID) {
         // Replace 'models/static' with the path to the local file
-        return checkExtensions(path.join(CONFIG.root, 'src/models/static'));
+        return checkExtensions(resolvePath('models/static'));
       } else if (id === CUSTOM_ROUTES_MODULE_ID) {
         // Replace 'routes/custom' with the path to the local file
-        return checkExtensions(path.join(CONFIG.root, 'src/routes/custom'));
+        return checkExtensions(resolvePath('routes/custom'));
       } else if (id === ENV_MODULE_ID) {
         // Map the import to a virtual module ID
         return RESOLVED_ENV_MODULE_ID;
@@ -270,7 +278,7 @@ export function RhinoProjectVite({
 
         return envExports;
       } else if (id === RESOLVED_ASSETS_MODULE_ID) {
-        return 'export default import.meta.glob("/src/assets/**/*", { eager: true })';
+        return `export default import.meta.glob("${intermediatePath() ? '/' + intermediatePath() : ''}/assets/**/*", { eager: true })`;
       }
 
       return null;
