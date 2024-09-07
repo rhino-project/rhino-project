@@ -1,6 +1,6 @@
 {
   "name": "@rhino-project/vite-plugin-rhino",
-  "version": "0.21.0-beta.14",
+  "version": "0.21.0-beta.15",
   "description": "Vite plugin for Rhino Project",
   "author": "JP Rosevear",
   "license": "MIT",
