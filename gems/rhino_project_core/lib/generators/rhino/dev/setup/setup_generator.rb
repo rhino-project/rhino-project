@@ -6,13 +6,11 @@ module Rhino
       # rubocop:disable Metrics/ClassLength
       class SetupGenerator < ::Rails::Generators::Base
         DEFAULT_SERVER_PORT = 3000
-        DEFAULT_CLIENT_PORT = DEFAULT_SERVER_PORT + 1
 
         class_option :prompt, type: :boolean, default: true, desc: "Prompt user for configuration options"
         class_option :defaults, type: :string, enum: %w[local docker], default: "local", desc: "Use configuration defaults of type DEFAULTS"
         class_option :skip_existing, type: :boolean, default: false, desc: "Skip existing env files"
         class_option :server_port, type: :numeric, default: DEFAULT_SERVER_PORT, group: :server, desc: "Server port"
-        class_option :client_port, type: :numeric, default: DEFAULT_CLIENT_PORT, group: :client, desc: "Client port"
         class_option :db_host, type: :string, group: :database
         class_option :db_name, type: :string, group: :database
         class_option :db_port, type: :numeric, default: 5432, group: :database
@@ -22,7 +20,6 @@ module Rhino
         class_option :redis_database, type: :numeric, default: 0, group: :redis
 
         attr_reader :server_port,
-                    :client_port,
                     :db_name,
                     :db_host,
                     :db_port,
@@ -47,9 +44,7 @@ module Rhino
 
           collect_env_info
 
-          template "env.root", project_file(".env")
-          template "env.server", server_file(".env")
-          template "env.client", client_file(".env")
+          template "env", project_file(".env")
         end
 
         def install_hooks
@@ -63,19 +58,11 @@ module Rhino
         private
           def project_dir
             # Up one level from the server directory
-            Rails.root.parent
-          end
-
-          def server_extension
-            Rails.root.basename.to_s.match(/[-_]?server/)[0]
+            Rails.root
           end
 
           def server_port_default
             options[:server_port] || ENV["PORT"]
-          end
-
-          def client_port_default
-            @server_port.to_i + 1
           end
 
           def project_name
@@ -87,7 +74,7 @@ module Rhino
 
             return db_name if db_name.present?
 
-            File.basename(Rails.root.parent)
+            File.basename(Rails.root)
           end
 
           def db_host_default
@@ -99,7 +86,7 @@ module Rhino
           end
 
           def db_user_default
-            options[:db_user] || ENV["DB_USERNAME"] || `whoami`
+            options[:db_user] || ENV["DB_USERNAME"] || `whoami`.strip
           end
 
           def db_password_default
@@ -125,8 +112,7 @@ module Rhino
           def collect_env_info
             collect_docker_info
 
-            @server_port = ask_prompt("Server Port?", server_port_default)
-            @client_port = ask_prompt("Client Port?", client_port_default)
+            @server_port = ask_prompt("Port?", server_port_default)
 
             collect_database_info
             collect_redis_info
