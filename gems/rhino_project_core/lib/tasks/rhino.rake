@@ -9,7 +9,7 @@ namespace :rhino do
 
   desc "Export Rhino Open API information for client"
   task open_api_export: :environment do
-    static_file = Rails.root.parent.join("app", "frontend", "models", "static.js")
+    static_file = Rails.root.join("app", "frontend", "models", "static.js")
     File.open(static_file, "w") do |f|
       f.write "const api = #{Rhino::OpenApiInfo.index};\n\n"
       f.write("export default api;\n")
