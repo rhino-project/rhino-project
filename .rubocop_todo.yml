@@ -50,7 +50,6 @@ Style/StringLiterals:
     - "gems/rhino_project_core/lib/rhino/sieve/filter.rb"
     - "gems/rhino_project_core/lib/rhino/sieve/order.rb"
     - "gems/rhino_project_core/lib/rhino/sieve/search.rb"
-    - "gems/rhino_project_core/lib/tasks/rhino.rake"
     - "gems/rhino_project_jobs/lib/generators/rhino_jobs/install/install_generator.rb"
     - "gems/rhino_project_jobs/lib/tasks/rhino_jobs.rake"
     - "gems/rhino_project_notifications/lib/generators/rhino_notifications/install/install_generator.rb"
