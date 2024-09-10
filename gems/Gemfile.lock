@@ -34,7 +34,7 @@ PATH
       acts-as-taggable-on (= 11.0.0)
       analytics-ruby (= 2.0.13)
       ancestry (= 4.0.0)
-      arel-helpers (= 2.14.0)
+      arel-helpers (= 2.15.0)
       countries (= 6.0.0)
       devise (= 4.9.4)
       devise_token_auth
@@ -173,7 +173,7 @@ GEM
     arbre (1.7.0)
       activesupport (>= 3.0.0)
       ruby2_keywords (>= 0.0.2)
-    arel-helpers (2.14.0)
+    arel-helpers (2.15.0)
       activerecord (>= 3.1.0, < 8)
     ast (2.4.2)
     base64 (0.2.0)

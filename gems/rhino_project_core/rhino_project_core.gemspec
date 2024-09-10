@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "ancestry", "4.0.0"
 
   # Owner hierarchy joins
-  spec.add_dependency "arel-helpers", "2.14.0"
+  spec.add_dependency "arel-helpers", "2.15.0"
 
   # Country field support
   spec.add_dependency "countries", "6.0.0"
