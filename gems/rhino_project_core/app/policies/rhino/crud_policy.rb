@@ -70,7 +70,7 @@ module Rhino
     end
 
     class Scope < ::Rhino::BasePolicy::Scope
-      def resolve # ,
+      def resolve
         role_scopes = []
 
         # Get every role for the auth owner
