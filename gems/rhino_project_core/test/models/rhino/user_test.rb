@@ -15,7 +15,7 @@ module UserTest
         user.save!
       end
 
-      mock.verify
+      assert mock.verify
     end
   end
 end
