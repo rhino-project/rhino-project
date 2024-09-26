@@ -70,8 +70,8 @@ module Rhino
     private
       def checkout_session(customer_id, args)
         ::Stripe::Checkout::Session.create(
-          success_url: ENV["FRONT_END_URL"] + args["success_url"],
-          cancel_url: ENV["FRONT_END_URL"] + args["cancel_url"],
+          success_url: args["success_url"],
+          cancel_url: args["cancel_url"],
           payment_method_types: ["card"],
           mode: "subscription",
           line_items: [{
