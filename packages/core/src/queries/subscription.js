@@ -9,12 +9,13 @@ const GET_PRICES_API_PATH = 'api/subscription/prices';
 const CHECKOUT_API_PATH = 'api/subscription/create-checkout-session';
 const SUBSCRIPTION_API_PATH = 'api/subscription/subscriptions';
 const CHECK_SESSION_API_PATH = 'api/subscription/check_session_id?';
-const CANCEL_URL = '/settings?status=canceled';
-const SUCCESS_URL = '/settings?status=success&session_id={CHECKOUT_SESSION_ID}';
 
 // Create a Checkout Session with the selected plan ID
 export async function CreateCheckoutSession(price, base_owner_id) {
   const stripe = await Stripe(env.STRIPE_PUBLISHABLE_KEY);
+  const urlWithoutSearchParams =
+    window.location.origin + window.location.pathname;
+
   const {
     data: { sessionId }
   } = await networkApiCall(CHECKOUT_API_PATH, {
@@ -22,8 +23,8 @@ export async function CreateCheckoutSession(price, base_owner_id) {
     data: {
       base_owner_id,
       price,
-      success_url: SUCCESS_URL,
-      cancel_url: CANCEL_URL
+      success_url: `${urlWithoutSearchParams}?status=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${urlWithoutSearchParams}?status=canceled`
     }
   });
   stripe.redirectToCheckout({ sessionId: sessionId });

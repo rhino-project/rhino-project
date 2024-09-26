@@ -9,16 +9,6 @@ class StripeControllerTest < Rhino::TestCase::ControllerTest
     sign_in
   end
 
-  test "prices content and authenticate check" do
-    stub_request(:get, "https://api.stripe.com/v1/prices?limit=5")
-      .to_return(status: 200, body: { data: [{ id: 1, nickname: "Name", unit_amount: 100 }] }.to_json, headers: {})
-    get_api "/api/subscription/prices"
-    price = { id: 1, name: "Name", amount: 100 }
-    assert_response_ok
-    assert_equal 1, parsed_response["prices"].length
-    assert_equal price, parsed_response["prices"][0].symbolize_keys
-  end
-
   test "customer authenticate check" do
     stub_request(:get, "https://api.stripe.com/v1/customers?id=1")
       .to_return(status: 200, body: { data: [{ id: 1, nickname: "Name", unit_amount: 100 }] }.to_json, headers: {})

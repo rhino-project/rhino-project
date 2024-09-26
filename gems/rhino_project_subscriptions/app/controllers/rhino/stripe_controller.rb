@@ -9,11 +9,8 @@ module Rhino
     include Rhino::Authenticated
 
     def prices
-      list = ::Stripe::Price.list({ limit: 5 })
-      prices = list["data"].map do |column|
-        { id: column["id"], name: column["nickname"], amount: column["unit_amount"] }
-      end
-      render json: { prices: }
+      list = ::Stripe::Price.list({ active: true, limit: 5, expand: ["data.product"] })
+      render json: { prices: list["data"] }
     end
 
     def create_checkout_session
@@ -44,20 +41,13 @@ module Rhino
 
     def subscriptions
       stripe_customer = Rhino::StripeCustomer.find_by(base_owner_id: params["base_owner_id"])
+      return render json: {} unless stripe_customer
 
-      if stripe_customer
-        customer = ::Stripe::Customer.retrieve({
-          id: stripe_customer["customer_id"],
-          expand: ["subscriptions"]
-        })
+      subscriptions = ::Stripe::Subscription.list({ customer: stripe_customer["customer_id"], expand: ["data.plan.product"] })
 
-        render json: {
-          subscriptions: customer.subscriptions.data
-        }
-
-      else
-        render json: {}
-      end
+      render json: {
+        subscriptions: subscriptions.data
+      }
     end
 
     def check_session_id
@@ -70,8 +60,8 @@ module Rhino
     private
       def checkout_session(customer_id, args)
         ::Stripe::Checkout::Session.create(
-          success_url: ENV["FRONT_END_URL"] + args["success_url"],
-          cancel_url: ENV["FRONT_END_URL"] + args["cancel_url"],
+          success_url: args["success_url"],
+          cancel_url: args["cancel_url"],
           payment_method_types: ["card"],
           mode: "subscription",
           line_items: [{
