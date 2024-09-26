@@ -17,7 +17,6 @@ class StripeControllerTest < Rhino::TestCase::ControllerTest
     assert_response_ok
     assert_equal 1, parsed_response["prices"].length
     assert_equal price, parsed_response["prices"][0].symbolize_keys
-    assert parsed_response.key?("publishableKey")
   end
 
   test "customer authenticate check" do

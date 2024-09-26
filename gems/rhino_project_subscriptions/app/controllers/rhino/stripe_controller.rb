@@ -13,10 +13,7 @@ module Rhino
       prices = list["data"].map do |column|
         { id: column["id"], name: column["nickname"], amount: column["unit_amount"] }
       end
-      render json: {
-        publishableKey: ENV["STRIPE_PUBLISHABLE_KEY"],
-        prices:
-      }
+      render json: { prices: }
     end
 
     def create_checkout_session
