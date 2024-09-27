@@ -62,7 +62,6 @@ module Rhino
         ::Stripe::Checkout::Session.create(
           success_url: args["success_url"],
           cancel_url: args["cancel_url"],
-          payment_method_types: ["card"],
           mode: "subscription",
           line_items: [{
             quantity: 1,
