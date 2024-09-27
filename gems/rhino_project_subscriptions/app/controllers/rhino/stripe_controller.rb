@@ -63,6 +63,7 @@ module Rhino
           success_url: args["success_url"],
           cancel_url: args["cancel_url"],
           mode: "subscription",
+          allow_promotion_codes: true,
           line_items: [{
             quantity: 1,
             price: args["price"]
