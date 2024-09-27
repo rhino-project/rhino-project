@@ -11,10 +11,12 @@ import {
   CreateCheckoutSession,
   usePrices,
   useSubscription,
-  useCheckSession
+  useCheckSession,
+  createCancellation
 } from '../../queries/subscription';
 import { Button } from '../buttons';
 import { DangerAlert, SuccessAlert } from '../alerts';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const SubscriptionTab = ({ activeTab, toggle }) => {
   return (
@@ -38,6 +40,7 @@ SubscriptionTab.propTypes = {
 
 export const Subscription = ({ status, session_id }) => {
   const baseOwnerId = useBaseOwnerId();
+  const queryClient = useQueryClient();
 
   const { isInitialLoading, data: { data: prices } = {} } = usePrices();
   const { isSuccess, data: { data: subscriptions } = {} } =
@@ -57,15 +60,20 @@ export const Subscription = ({ status, session_id }) => {
     if (status === 'canceled') return 'Payment was canceled';
   };
 
-  const subscriptionsDisplay = displayCurrentSubscription(
-    subscriptions?.subscriptions
-  );
+  const hasSubscription = subscriptions?.subscriptions?.length > 0;
+  const currentSubscription = hasSubscription
+    ? subscriptions?.subscriptions?.[subscriptions?.subscriptions?.length - 1]
+    : null;
+
   const handleClick = useCallback(
-    (e) => {
-      CreateCheckoutSession(e, baseOwnerId);
-    },
+    (e) => CreateCheckoutSession(e, baseOwnerId),
     [baseOwnerId]
   );
+
+  const handleCancelClick = useCallback(async () => {
+    await createCancellation(baseOwnerId);
+    queryClient.invalidateQueries(['getSubscription']);
+  }, [baseOwnerId, queryClient]);
 
   if (isInitialLoading || !isSuccess) return null;
 
@@ -85,7 +93,7 @@ export const Subscription = ({ status, session_id }) => {
     );
   });
 
-  if (!subscriptionsDisplay) {
+  if (!hasSubscription) {
     return (
       <div>
         <h4>Choose a plan</h4>
@@ -95,9 +103,21 @@ export const Subscription = ({ status, session_id }) => {
     );
   }
 
+  currentSubscription.format = 'date';
+  const displayDate = format(
+    new Date(currentSubscription.current_period_end * 1000),
+    getDateTimeFormat(currentSubscription)
+  );
+  const planName = currentSubscription.plan.product.name;
+
   return (
     <div>
-      <h4>{subscriptionsDisplay}</h4>
+      <h4>
+        Current subscription to &quot;{planName}&quot; plan ends on{' '}
+        {displayDate}
+      </h4>
+      <Button onClick={handleCancelClick}>Cancel</Button>
+
       {!sessionCheckError() && status === 'success' && (
         <SuccessAlert
           title="Payment completed successfully"
@@ -112,23 +132,4 @@ export const Subscription = ({ status, session_id }) => {
 Subscription.propTypes = {
   status: PropTypes.oneOf(['success', 'canceled']),
   session_id: PropTypes.string
-};
-
-//Displays latest subscription end period
-const displayCurrentSubscription = (subscription) => {
-  if (subscription?.length > 0) {
-    const lastSubcription = subscription[subscription.length - 1];
-    lastSubcription.format = 'date';
-    const displayDate = format(
-      new Date(lastSubcription.current_period_end * 1000),
-      getDateTimeFormat(lastSubcription)
-    );
-    const planName = lastSubcription.plan.product.name;
-    return (
-      <div>
-        Current subscription to &quot;{planName}&quot; plan ends on{' '}
-        {displayDate}
-      </div>
-    );
-  }
 };
