@@ -25,6 +25,18 @@ module Rhino
       }
     end
 
+    def cancel
+      stripe_customer = Rhino::StripeCustomer.find_by(base_owner_id: params["base_owner_id"])
+      return render json: {} unless stripe_customer
+
+      subscriptions = ::Stripe::Subscription.list({ customer: stripe_customer["customer_id"] })
+      subscriptions.each do |subscription|
+        ::Stripe::Subscription.delete(subscription.id)
+      end
+
+      render json: {}
+    end
+
     def customer
       stripe_customer = Rhino::StripeCustomer.find_by(base_owner_id: params["base_owner_id"])
       if stripe_customer
