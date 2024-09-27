@@ -33,7 +33,7 @@ module Rhino
         source_root File.expand_path("templates", __dir__)
 
         def check_existing
-          return unless options[:skip_existing] && File.exist?(server_file(".env"))
+          return unless options[:skip_existing] && File.exist?(project_file(".env"))
 
           say "Skipping existing .env files"
           exit(0)
@@ -163,14 +163,6 @@ module Rhino
 
           def project_file(file)
             File.join(project_dir, file)
-          end
-
-          def client_file(file)
-            File.join(project_dir, "client", file)
-          end
-
-          def server_file(file)
-            File.join(project_dir, "server", file)
           end
 
           def ask_prompt(message, default)
