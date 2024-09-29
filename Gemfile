@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby '3.3.4'
+ruby '3.3.5'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.6'
