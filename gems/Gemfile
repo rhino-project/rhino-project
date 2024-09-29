@@ -4,4 +4,4 @@ gemspec
 
 eval_gemfile('../Gemfile')
 
-ruby '3.3.4'
+ruby '3.3.5'
