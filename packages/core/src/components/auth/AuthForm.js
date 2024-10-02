@@ -183,7 +183,9 @@ export const AuthForm = ({
               {secondaryAction.content}
             </LinkButton>
           )}
-          <Button loading={loading}>{primaryAction}</Button>
+          <Button color="primary" loading={loading}>
+            {primaryAction}
+          </Button>
         </div>
       </Form>
     </FormProvider>
