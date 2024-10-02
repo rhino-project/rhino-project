@@ -13,10 +13,10 @@ import { DangerAlert } from '../alerts';
 import { FieldGroupString } from '../forms/fieldGroups/FieldGroupString';
 
 const AuthField = (props) => (
-  <FieldGroupString placeholder="Email" {...props} />
+  <FieldGroupString placeholder="Email" required {...props} />
 );
 const AuthFieldPassword = (props) => (
-  <FieldGroupPassword placeholder="Password" {...props} />
+  <FieldGroupPassword placeholder="Password" required {...props} />
 );
 
 export const AuthForm = ({
@@ -166,6 +166,7 @@ export const AuthForm = ({
             label="Organization"
             placeholder="Organization"
             autoComplete="organizaton"
+            required={false}
           />
         )}
 
