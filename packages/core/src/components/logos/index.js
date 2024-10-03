@@ -9,7 +9,8 @@ export const ThemedLogo = () => {
   // Effect to check the theme and update state accordingly
   useEffect(() => {
     // Function to get the current theme from the body attribute
-    const getTheme = () => document.body.getAttribute('data-bs-theme');
+    const getTheme = () =>
+      document.documentElement.getAttribute('data-bs-theme');
 
     // Set the theme on initial load
     setTheme(getTheme());
