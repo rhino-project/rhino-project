@@ -19,6 +19,8 @@ export const Sidebar = ({ id = 'sidebarMenu', children, extraClass }) => {
         'left-0',
         'p-3',
         'h-100',
+        'border',
+        'border-secondary',
         extraClass
       )}
     >
@@ -26,7 +28,7 @@ export const Sidebar = ({ id = 'sidebarMenu', children, extraClass }) => {
         <NavbarBrand className="flex-shrink-1">
           <LightLogo height={36} />
         </NavbarBrand>
-        <hr className="border-top border-gray-700 flex-shrink-1" />
+        <hr className="border-top border-secondary flex-shrink-1" />
         <div className="nav-sidebar sticky-top overflow-y-auto overflow-x-hidden d-flex flex-column flex-grow-1 w-100">
           {children}
         </div>
