@@ -12,7 +12,7 @@ exports[`ApplicationShell > renders without crashing 1`] = `
         class="d-flex vw-100 h-100"
       >
         <ul
-          class="nav-sidebar navbar-dark d-md-block bg-dark sidebar top-0 bottom-0 left-0 p-3 h-100 nav flex-column"
+          class="nav-sidebar navbar-dark d-md-block bg-dark sidebar top-0 bottom-0 left-0 p-3 h-100 border border-secondary nav flex-column"
           id="sidebarMenuCollapsed"
         >
           <div
@@ -27,7 +27,7 @@ exports[`ApplicationShell > renders without crashing 1`] = `
               />
             </a>
             <hr
-              class="border-top border-gray-700 flex-shrink-1"
+              class="border-top border-secondary flex-shrink-1"
             />
             <div
               class="nav-sidebar sticky-top overflow-y-auto overflow-x-hidden d-flex flex-column flex-grow-1 w-100"
@@ -197,7 +197,7 @@ exports[`ApplicationShell > renders without crashing 1`] = `
         class="d-md-flex flex-grow-1 h-100"
       >
         <ul
-          class="nav-sidebar navbar-dark d-md-block bg-dark sidebar top-0 bottom-0 left-0 p-3 h-100 d-none flex-shrink-0 nav flex-column"
+          class="nav-sidebar navbar-dark d-md-block bg-dark sidebar top-0 bottom-0 left-0 p-3 h-100 border border-secondary d-none flex-shrink-0 nav flex-column"
           id="sidebarMenu"
         >
           <div
@@ -212,7 +212,7 @@ exports[`ApplicationShell > renders without crashing 1`] = `
               />
             </a>
             <hr
-              class="border-top border-gray-700 flex-shrink-1"
+              class="border-top border-secondary flex-shrink-1"
             />
             <div
               class="nav-sidebar sticky-top overflow-y-auto overflow-x-hidden d-flex flex-column flex-grow-1 w-100"
