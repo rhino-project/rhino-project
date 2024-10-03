@@ -96,5 +96,17 @@ export const modelCrudRoutes = (model) => {
   );
 };
 
-export const modelRoutes = () =>
-  map(modelLoader.api.components.schemas, (m) => modelCrudRoutes(m));
+export const modelRoutes = ({ except = [], only = [] } = {}) => {
+  if (only.length) {
+    return map(
+      modelLoader.api.components.schemas,
+      (m) =>
+        only.includes(m.name) && !except.includes(m.name) && modelCrudRoutes(m)
+    ).filter(Boolean);
+  }
+
+  return map(
+    modelLoader.api.components.schemas,
+    (m) => !except.includes(m.name) && modelCrudRoutes(m)
+  ).filter(Boolean);
+};
