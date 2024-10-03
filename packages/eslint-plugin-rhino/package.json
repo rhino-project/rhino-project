@@ -1,6 +1,6 @@
 {
   "name": "@rhino-project/eslint-plugin-rhino",
-  "version": "0.21.0-beta.31",
+  "version": "0.21.0-beta.32",
   "description": "ESLint plugin for Rhino",
   "author": "JP Rosevear",
   "license": "MIT",
