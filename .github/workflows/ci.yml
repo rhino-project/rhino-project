@@ -1,0 +1,191 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['main']
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  server:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        ports:
+          - '5432:5432'
+        env:
+          POSTGRES_USER: rails_test
+          POSTGRES_DB: rails_test
+          POSTGRES_PASSWORD: rails_test
+        options: >-
+          --health-cmd "pg_isready -U $POSTGRES_USER"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      PGHOST: 127.0.0.1
+      PGUSER: rails_test
+      RAILS_ENV: test
+      ROOT_URL: http://localhost:3000
+      FRONT_END_URL: http://localhost:3000
+      DB_NAME: rails
+      DB_USERNAME: rails_test
+      DB_PASSWORD: rails_test
+      STRIPE_SECRET_KEY: 'FOR_TESTS'
+      VITE_API_ROOT_PATH: http://localhost:3000
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: RuboCop Check
+        run: bundle exec rubocop
+
+      - name: Brakeman Checks
+        run: bundle exec brakeman
+
+      - name: Database setup
+        run: bin/rails db:schema:load --trace
+
+      - name: Run app tests
+        run: bin/rails test -v
+
+      - name: Save coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-coverage
+          path: coverage
+
+  client:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: test
+      VITE_API_ROOT_PATH: https://api.example.com
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Prettier Check
+        run: npm run prettier-check
+
+      - name: Run tests with coverage
+        run: npm run coverage -- --reporter=default --reporter=junit
+
+      - name: Build
+        run: CI=true npm run build
+
+      - name: Save coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-coverage
+          path: app/frontend/coverage
+
+  cypress:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        ports:
+          - '5432:5432'
+        env:
+          POSTGRES_USER: rails_test
+          POSTGRES_DB: rails_test
+          POSTGRES_PASSWORD: rails_test
+        options: >-
+          --health-cmd "pg_isready -U $POSTGRES_USER"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      RAILS_ENV: test
+      ROOT_URL: http://localhost:3000
+      FRONT_END_URL: http://localhost:3000
+      DB_NAME: rails
+      DB_USERNAME: rails_test
+      DB_PASSWORD: rails_test
+      STRIPE_SECRET_KEY: 'FOR_TESTS'
+      VITE_API_ROOT_PATH: 'http://localhost:3000'
+      DISABLE_SSL: 1
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Reset database
+        run: bin/rails db:reset
+
+      - name: Build frontend
+        run: npm run build
+
+      - name: Run server
+        run: bin/rails server &
+
+      - name: Wait for server
+        run: |
+          curl -I http://localhost:3000 --retry 5 --retry-all-errors --retry-delay 10 --max-time 60 --connect-timeout 10
+
+      - name: Run Cypress tests
+        run: npx cypress run --record || npx cypress run

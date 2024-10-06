@@ -1,0 +1,28 @@
+FROM ruby:3.3.5
+
+ENV APP_PATH=/app \
+  BUNDLE_VERSION=2.5.13 \
+  BUNDLE_PATH=/usr/local/bundle/gems \
+  TMP_PATH=/tmp/
+
+# Install useful packages
+# postgresql-client is for psql to run rails db
+RUN set -ex \
+  && apt-get update \
+  && apt-get -y install git imagemagick graphviz postgresql-client \
+  && mkdir -p $APP_PATH
+
+# Install JavaScript dependencies
+ARG NODE_VERSION=20.14.0
+ENV PATH=/usr/local/node/bin:$PATH
+RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
+  /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+  rm -rf /tmp/node-build-master
+
+RUN gem install bundler --version "$BUNDLE_VERSION" \
+  && rm -rf $GEM_HOME/cache/*
+
+# navigate to app directory
+WORKDIR $APP_PATH
+
+EXPOSE ${PORT:-3000}
