@@ -1,0 +1,38 @@
+test:
+  service: Disk
+  root: <%= Rails.root.join("tmp/storage") %>
+
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+#
+# amazon:
+#   service: S3
+#   access_key_id: <%= ENV['AWS_ACCESS_KEY'] %>
+#   secret_access_key: <%= ENV['AWS_SECRET_KEY'] %>
+#   region: <%= ENV['AWS_REGION'] %>
+#   bucket: <%= ENV['AWS_S3_BUCKET'] %>
+
+# google:
+#   service: GCS
+#   credentials:
+#     type: <%= ENV['GOOGLE_ACCOUNT_TYPE'] %>
+#     project_id: <%= ENV['GOOGLE_PROJECT_ID'] %>
+#     private_key_id: <%= ENV['GOOGLE_PRIVATE_KEY_ID'] %>
+#     private_key: |
+#       <%=  ENV.fetch('GOOGLE_PRIVATE_KEY', "").lines.map.with_index { |l, i| i == 0 ? l : "      #{l}" }.join %>
+#     client_email: <%= ENV['GOOGLE_CLIENT_EMAIL'] %>
+#     client_id: <%= ENV['GOOGLE_CLIENT_ID'] %>
+#   project: <%= ENV['GOOGLE_PROJECT_ID'] %>
+#   bucket: <%= ENV['GOOGLE_BUCKET'] %>
+
+# microsoft:
+#   service: AzureStorage
+#   storage_account_name: <%= ENV['AZURE_ACCOUNT_NAME'] %>
+#   storage_access_key: <%= ENV['AZURE_STORAGE_KEY'] %>
+#   container: <%= ENV['AZURE_CONTAINER'] %>
+
+# mirror:
+#   service: Mirror
+#   primary: local
+#   mirrors: [ amazon, google, microsoft ]
