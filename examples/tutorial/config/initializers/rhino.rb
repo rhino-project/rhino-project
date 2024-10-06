@@ -20,5 +20,5 @@ Rhino.setup do |config|
   # config.allow_signup = true
 
   # The list of resources exposed in the API
-  config.resources += ['User', 'Account']
+  config.resources += ['User', 'Account', 'Blog', 'BlogPost', "Category"]
 end
