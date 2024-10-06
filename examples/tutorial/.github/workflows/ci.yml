@@ -3,22 +3,19 @@ name: CI
 on:
   workflow_dispatch:
   push:
-    branches: ["main"]
+    branches: ['main']
   pull_request:
     branches:
-      - "**"
+      - '**'
 
 jobs:
   server:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: server
     services:
       postgres:
-        image: postgres:12.10
+        image: postgres:16
         ports:
-          - "5432:5432"
+          - '5432:5432'
         env:
           POSTGRES_USER: rails_test
           POSTGRES_DB: rails_test
@@ -29,7 +26,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
       redis:
-        image: redis:6.2.6
+        image: redis:7
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -44,11 +41,12 @@ jobs:
       PGUSER: rails_test
       RAILS_ENV: test
       ROOT_URL: http://localhost:3000
-      FRONT_END_URL: http://localhost:3001
+      FRONT_END_URL: http://localhost:3000
       DB_NAME: rails
       DB_USERNAME: rails_test
       DB_PASSWORD: rails_test
-      STRIPE_SECRET_KEY: "FOR_TESTS"
+      STRIPE_SECRET_KEY: 'FOR_TESTS'
+      VITE_API_ROOT_PATH: http://localhost:3000
 
     steps:
       - uses: actions/checkout@v4
@@ -56,7 +54,14 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          working-directory: server
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
 
       - name: RuboCop Check
         run: bundle exec rubocop
@@ -68,19 +73,16 @@ jobs:
         run: bin/rails db:schema:load --trace
 
       - name: Run app tests
-        run: bin/rails test
+        run: bin/rails test -v
 
       - name: Save coverage
         uses: actions/upload-artifact@v4
         with:
           name: server-coverage
-          path: server/coverage
+          path: coverage
 
   client:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: client
 
     env:
       NODE_ENV: test
@@ -89,11 +91,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
       - uses: actions/setup-node@v4
         with:
           node-version-file: .tool-versions
-          cache: "npm"
-          cache-dependency-path: client
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
@@ -105,7 +110,7 @@ jobs:
         run: npm run prettier-check
 
       - name: Run tests with coverage
-        run: CI=true npm test -- --coverage --reporter=default --reporter=junit --outputFile.junit=./test-results/report.xml
+        run: npm run coverage -- --reporter=default --reporter=junit
 
       - name: Build
         run: CI=true npm run build
@@ -113,16 +118,16 @@ jobs:
       - name: Save coverage
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
-          path: client/test-results
+          name: client-coverage
+          path: app/frontend/coverage
 
   cypress:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:12.10
+        image: postgres:16
         ports:
-          - "5432:5432"
+          - '5432:5432'
         env:
           POSTGRES_USER: rails_test
           POSTGRES_DB: rails_test
@@ -133,7 +138,7 @@ jobs:
           --health-timeout 5s
           --health-retries 5
       redis:
-        image: redis:6.2.6
+        image: redis:7
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -144,17 +149,14 @@ jobs:
       BUNDLE_JOBS: 3
       BUNDLE_RETRY: 3
       BUNDLE_PATH: vendor/bundle
-      PGHOST: 127.0.0.1
-      PGUSER: circleci-demo-ruby
       RAILS_ENV: test
       ROOT_URL: http://localhost:3000
-      FRONT_END_URL: http://localhost:3001
+      FRONT_END_URL: http://localhost:3000
       DB_NAME: rails
       DB_USERNAME: rails_test
       DB_PASSWORD: rails_test
-      STRIPE_SECRET_KEY: "FOR_TESTS"
-      VITE_API_ROOT_PATH: "http://localhost:3000"
-      RAILS_SERVE_STATIC_FILES: 1
+      STRIPE_SECRET_KEY: 'FOR_TESTS'
+      VITE_API_ROOT_PATH: 'http://localhost:3000'
       DISABLE_SSL: 1
 
     steps:
@@ -163,42 +165,27 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-          working-directory: server
 
       - uses: actions/setup-node@v4
         with:
           node-version-file: .tool-versions
-          cache: "npm"
-          cache-dependency-path: client
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
-        working-directory: client
 
       - name: Reset database
         run: bin/rails db:reset
-        working-directory: server
 
       - name: Build frontend
         run: npm run build
-        working-directory: client
 
       - name: Run server
         run: bin/rails server &
-        working-directory: server
-
-      - name: Run client
-        run: npm run preview -- --port 3001 &
-        working-directory: client
 
       - name: Wait for server
         run: |
           curl -I http://localhost:3000 --retry 5 --retry-all-errors --retry-delay 10 --max-time 60 --connect-timeout 10
 
-      - name: Wait for client
-        run: |
-          curl -I http://localhost:3001 --retry 5 --retry-all-errors --retry-delay 10 --max-time 60 --connect-timeout 10
-
       - name: Run Cypress tests
         run: npx cypress run --record || npx cypress run
-        working-directory: client

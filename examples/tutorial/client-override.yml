@@ -1,5 +1,0 @@
-services:
-  frontend:
-    depends_on:
-      backend:
-        condition: service_healthy

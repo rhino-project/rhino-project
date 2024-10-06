@@ -5,14 +5,14 @@ name: Nightly Docker
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: '0 0 * * *'
 
 jobs:
-  server_docker:
+  docker:
     runs-on: ubuntu-latest
     services:
       redis:
-        image: redis:6.2.6
+        image: redis:7
         options: >-
           --health-cmd "redis-cli ping"
           --health-interval 10s
@@ -29,14 +29,13 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           cache-from: |
-            type=gha,scope=server_docker
+            type=gha,scope=docker
           cache-to: |
-            type=gha,mode=max,scope=server_docker
-          context: server
-          tags: server:latest
+            type=gha,mode=max,scope=docker
+          tags: docker:latest
           push: false
 
-  server_development_docker:
+  development_docker:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -44,41 +43,9 @@ jobs:
       - uses: docker/build-push-action@v6
         with:
           cache-from: |
-            type=gha,scope=server_development_docker
+            type=gha,scope=development_docker
           cache-to: |
-            type=gha,mode=max,scope=server_development_docker
-          context: server
-          file: server/Dockerfile.development
-          tags: server_development:latest
-          push: false
-
-  client_docker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
-      - uses: docker/build-push-action@v6
-        with:
-          cache-from: |
-            type=gha,scope=client_docker
-          cache-to: |
-            type=gha,mode=max,scope=client_docker
-          context: client
-          tags: client:latest
-          push: false
-
-  client_development_docker:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: docker/setup-buildx-action@v3
-      - uses: docker/build-push-action@v6
-        with:
-          cache-from: |
-            type=gha,scope=client_development_docker
-          cache-to: |
-            type=gha,mode=max,scope=client_development_docker
-          context: client
-          file: client/Dockerfile.development
-          tags: client_development:latest
+            type=gha,mode=max,scope=development_docker
+          file: Dockerfile.development
+          tags: development:latest
           push: false

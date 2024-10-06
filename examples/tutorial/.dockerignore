@@ -1,0 +1,5 @@
+logs/*
+storage/*
+tmp/*
+vendor/*
+node_modules
