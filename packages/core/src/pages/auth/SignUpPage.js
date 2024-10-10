@@ -4,10 +4,11 @@ import { AuthForm } from '../../components/auth/AuthForm';
 import { useAuthenticated } from '../../hooks/auth';
 import { useRootPath, useSessionCreatePath } from '../../hooks/routes';
 import { useSignUpAction } from '../../queries/auth';
-import { hasOrganizationsModule } from '../../utils/models';
+import { hasOrganizationsModule, oauthProviders } from '../../utils/models';
 import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/config';
 import PropTypes from 'prop-types';
+import { OmniAuthButton } from '../../components/buttons/omniauth';
 
 export const SignUpPage = (props) => {
   const { appName } = useRhinoConfig();
@@ -46,6 +47,16 @@ export const SignUpPage = (props) => {
         onSubmit={handleSubmit}
         {...props}
       />
+      {oauthProviders().length > 0 && <hr />}
+      <div className="d-flex justify-content-center">
+        {oauthProviders().map((p) => (
+          <OmniAuthButton
+            key={p.name}
+            provider={p.name}
+            providerPath={p.path}
+          />
+        ))}
+      </div>
     </AuthPage>
   );
 };
