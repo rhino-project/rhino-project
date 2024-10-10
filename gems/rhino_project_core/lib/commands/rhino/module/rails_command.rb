@@ -15,7 +15,7 @@ module Rails
           end
 
           protected
-            def rhino_command(extra_path, base_command, *args) # rubocop:todo Metrics/MethodLength
+            def rhino_command(extra_path, base_command, *args)
               module_name = if Dir.exist?(args[0])
                 args.shift
               else

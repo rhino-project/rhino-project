@@ -32,7 +32,7 @@ class Rhino::UserPolicyTest < Rhino::TestCase::Policy
   ##
   # Failure/edge cases
   ##
-  %i[update].each do |action_type| # rubocop:todo Style/CombinableLoops
+  %i[update].each do |action_type|
     test "#{testing_policy} does not allow #{action_type} for nil user" do
       assert_not_permit nil, @current_user, action_type
     end

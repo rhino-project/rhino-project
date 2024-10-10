@@ -2,7 +2,7 @@
 
 module Rhino
   module Sieve
-    class Filter # rubocop:disable Metrics/ClassLength
+    class Filter
       def initialize(app)
         @app = app
       end
@@ -107,7 +107,7 @@ module Rhino
 
       BASIC_AREL_OPS = %w[eq gt lt gteq lteq].freeze
       BASIC_AREL_COALESCE_OPS = BASIC_AREL_OPS.map { |op| "#{op}_coalesce" }.freeze
-      def merge_where_clause(base, scope, column_name, value, operation = nil) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+      def merge_where_clause(base, scope, column_name, value, operation = nil)
         arel_node = base.arel_table[column_name]
         where_clause = case operation
                        when *BASIC_AREL_OPS then arel_node.send(operation, value)

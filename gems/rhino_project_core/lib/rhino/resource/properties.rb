@@ -26,7 +26,7 @@ module Rhino
     #   readable_properties
     #   creatable_properties
     #   updatable_properties
-    module Properties # rubocop:todo Metrics/ModuleLength
+    module Properties
       extend ActiveSupport::Concern
 
       included do
@@ -54,8 +54,7 @@ module Rhino
         delegate :describe_property, to: :class
       end
 
-      # rubocop:disable Style/RedundantSelf
-      class_methods do # rubocop:disable Metrics/BlockLength
+      class_methods do
         def rhino_properties_read(**options)
           self._read_properties_only = Array.wrap(options[:only]).map(&:to_s) if options.key?(:only)
           self._read_properties_except = Array.wrap(options[:except]).map(&:to_s) if options.key?(:except)
@@ -186,7 +185,6 @@ module Rhino
           raise NotImplementedError, "#describe_property is not implemented for #{property}"
         end
       end
-      # rubocop:enable Style/RedundantSelf
     end
   end
 end

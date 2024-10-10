@@ -3,7 +3,6 @@
 module Rhino
   module Generators
     module Dev
-      # rubocop:disable Metrics/ClassLength
       class SetupGenerator < ::Rails::Generators::Base
         DEFAULT_SERVER_PORT = 3000
 

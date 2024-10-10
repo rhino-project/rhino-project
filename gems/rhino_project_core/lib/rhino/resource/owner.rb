@@ -21,8 +21,7 @@ module Rhino
       end
 
       # The self is actually required to work with class_attribute properly
-      # rubocop:disable Style/RedundantSelf
-      class_methods do # rubocop:disable  Metrics/BlockLength
+      class_methods do
         # Test if rhino_owner[rdoc-ref:rhino_owner] is the auth owner
         # Also available on the instance
         def auth_owner?

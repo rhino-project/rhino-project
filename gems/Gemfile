@@ -5,3 +5,5 @@ gemspec
 eval_gemfile('../Gemfile')
 
 ruby '3.3.5'
+
+gem "devise_token_auth", git: 'https://github.com/lynndylanhurley/devise_token_auth.git', branch: 'master'

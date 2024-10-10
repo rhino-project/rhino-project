@@ -6,7 +6,7 @@ module Rhino
   module ErrorHandling
     extend ActiveSupport::Concern
 
-    included do # rubocop:disable Metrics/BlockLength
+    included do
       rescue_from Exception, with: :handle_uncaught_error
 
       # ActiveRecord::DeleteRestrictionError is for dependent: :restrict_with_exception

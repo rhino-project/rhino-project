@@ -5,13 +5,13 @@ require "test_helper"
 class ParamsTest < ActiveSupport::TestCase
   test "Blog has create_params" do
     assert_equal([
-                   "title", "published_at", "country", { "user" => ["id"] }, "user", { "blogs_categories" => ["id", { "blog" => ["id"] }, "blog", { "category" => ["id"] }, "category", "_destroy"] }, { "banner_attachment" => ["id"] }, "banner_attachment" # rubocop:disable Layout/LineLength
+                   "title", "published_at", "country", { "user" => ["id"] }, "user", { "blogs_categories" => ["id", { "blog" => ["id"] }, "blog", { "category" => ["id"] }, "category", "_destroy"] }, { "banner_attachment" => ["id"] }, "banner_attachment"
                  ], Blog.create_params)
   end
 
   test "Blog has show_params" do
     assert_equal([
-                   "id", "title", "published_at", "created_at", "updated_at", "country", { "user" => %w[id name nickname email image display_name] }, { "blogs_categories" => ["id", "created_at", "updated_at", { "blog" => %w[id title published_at created_at updated_at country display_name] }, { "category" => %w[id name created_at updated_at display_name] }, "display_name"] }, { "banner_attachment" => %w[id name record_type created_at url url_attachment signed_id display_name] }, { "blog_posts" => ["id", "title", "body", "published", "created_at", "updated_at", "status", { "tag_list" => [] }, "display_name"] }, "display_name" # rubocop:disable Layout/LineLength
+                   "id", "title", "published_at", "created_at", "updated_at", "country", { "user" => %w[id name nickname email image display_name] }, { "blogs_categories" => ["id", "created_at", "updated_at", { "blog" => %w[id title published_at created_at updated_at country display_name] }, { "category" => %w[id name created_at updated_at display_name] }, "display_name"] }, { "banner_attachment" => %w[id name record_type created_at url url_attachment signed_id display_name] }, { "blog_posts" => ["id", "title", "body", "published", "created_at", "updated_at", "status", { "tag_list" => [] }, "display_name"] }, "display_name"
                  ], Blog.show_params)
   end
 
@@ -24,7 +24,7 @@ class ParamsTest < ActiveSupport::TestCase
   end
 
   # has_many_attached checks
-  %i[create update].each do |action_type| # rubocop:todo Style/CombinableLoops
+  %i[create update].each do |action_type|
     test "BlogPost #{action_type} params include image_attachments" do
       assert_includes BlogPost.send("#{action_type}_params"), { "image_attachments" => [] }
     end
@@ -34,7 +34,7 @@ class ParamsTest < ActiveSupport::TestCase
   end
 
   %i[create update show].each do |action_type|
-    %i[json jsonb].each do |prop_type| # rubocop:todo Performance/CollectionLiteralInLoop
+    %i[json jsonb].each do |prop_type|
       test "PropertyList #{action_type} returns #{prop_type} hash" do
         assert_includes PropertyList.new.send("#{action_type}_params"), { "#{prop_type}_prop" => {} }
       end

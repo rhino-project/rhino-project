@@ -15,7 +15,7 @@ module OrganizationTest
         organization.save!
       end
 
-      mock.verify
+      assert_nothing_raised { mock.verify }
     end
 
     test "should track 'Account Removed' when deleting organization" do
@@ -27,7 +27,7 @@ module OrganizationTest
         organization.destroy!
       end
 
-      mock.verify
+      assert_nothing_raised { mock.verify }
     end
   end
 end

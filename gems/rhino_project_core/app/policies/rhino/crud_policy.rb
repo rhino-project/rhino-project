@@ -70,8 +70,7 @@ module Rhino
     end
 
     class Scope < ::Rhino::BasePolicy::Scope
-      # rubocop:todo Metrics/MethodLength
-      def resolve # rubocop:disable Metrics/AbcSize,
+      def resolve
         role_scopes = []
 
         # Get every role for the auth owner

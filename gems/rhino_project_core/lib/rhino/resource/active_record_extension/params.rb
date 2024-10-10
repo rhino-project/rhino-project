@@ -3,10 +3,10 @@
 module Rhino
   module Resource
     module ActiveRecordExtension
-      module Params # rubocop:todo Metrics/ModuleLength
+      module Params
         extend ActiveSupport::Concern
 
-        class_methods do # rubocop:todo Metrics/BlockLength
+        class_methods do
           def create_params
             writeable_params("create")
           end
@@ -43,7 +43,7 @@ module Rhino
               send("#{type}_properties").dup
             end
 
-            def readable_params(type, refs = references) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+            def readable_params(type, refs = references) # rubocop:disable Metrics/CyclomaticComplexity
               params = []
 
               refs_index = refs.index_by { |r| reference_to_sym(r) }
@@ -79,10 +79,10 @@ module Rhino
               params << "display_name"
             end
 
-            def writeable_params(type, _refs = references) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/MethodLength, Metrics/PerceivedComplexity
+            def writeable_params(type, _refs = references) # rubocop:disable Metrics/CyclomaticComplexity
               params = []
 
-              props_by_type(type).each do |prop| # rubocop:disable Metrics/BlockLength
+              props_by_type(type).each do |prop|
                 desc = describe_property(prop)
                 prop_sym = prop.to_sym
 
@@ -151,8 +151,7 @@ module Rhino
             end
 
             # Rebuild the params
-            # rubocop:todo Metrics/CyclomaticComplexity
-            def transform_params_recursive(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/PerceivedComplexity
+            def transform_params_recursive(params, parent = self)
               hash = {}
               params.each do |param_key, param_value|
                 association = parent.reflect_on_association(param_key)

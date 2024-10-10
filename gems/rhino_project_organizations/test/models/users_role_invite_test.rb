@@ -24,6 +24,6 @@ class UsersRoleInviteTest < ActiveSupport::TestCase
       users_role_invite.save!
     end
 
-    mock.verify
+    assert_nothing_raised { mock.verify }
   end
 end
