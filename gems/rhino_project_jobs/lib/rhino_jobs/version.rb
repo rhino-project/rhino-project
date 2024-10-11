@@ -10,7 +10,7 @@ module RhinoJobs
     MAJOR = 0
     MINOR = 21
     TINY  = 0
-    PRE   = "beta.35"
+    PRE   = "beta.37"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
