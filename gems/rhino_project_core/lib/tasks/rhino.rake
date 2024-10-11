@@ -7,6 +7,9 @@ namespace :rhino do
   desc "Install Rhino"
   task install: %w[environment run_installer]
 
+  desc "Update Rhino"
+  task update: %w[environment run_update]
+
   desc "Export Rhino Open API information for client"
   task open_api_export: :environment do
     static_file = Rails.root.join("app", "frontend", "models", "static.js")
@@ -20,5 +23,9 @@ namespace :rhino do
     Rake::Task["rhino_engine:install:migrations"].invoke if Rake::Task.task_defined?("rhino_engine:install:migrations")
 
     Rails::Command.invoke :generate, ["rhino:install"]
+  end
+
+  task run_update: :environment do
+    Rails::Command.invoke :generate, ["rhino:update"]
   end
 end
