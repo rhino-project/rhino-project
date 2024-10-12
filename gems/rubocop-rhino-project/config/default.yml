@@ -16,6 +16,11 @@ AllCops:
     - storage/**/*
 
 RhinoProject/DuplicateRhinoReferences:
-  Description: ''
+  Description: 'Check for duplicate rhino_reference calls in the same file.'
+  Enabled: true
+  SafeAutoCorrect: false
+
+RhinoProject/OwnerSpecified:
+  Description: 'Check for rhino_owner_global, rhino_owner_base or rhino_owner calls'
   Enabled: true
   SafeAutoCorrect: false
