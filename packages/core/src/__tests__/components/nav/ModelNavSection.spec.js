@@ -1,10 +1,9 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { render } from '@testing-library/react';
-import { PrimaryNavigation } from '../../../components/app';
 import { createWrapper } from '../../shared/helpers';
-import rhinoConfig from 'rhino.config';
 import { sharedGlobalTests } from '../../shared/sharedGlobalTests';
+import { ModelNavSection } from '../../../components/nav';
 
 vi.mock('../../../hooks', async (importOriginal) => {
   const actual = await importOriginal();
@@ -14,7 +13,7 @@ vi.mock('../../../hooks', async (importOriginal) => {
   };
 });
 
-describe('PrimaryNavigation', () => {
+describe('ModelNavSection', () => {
   const Wrapper = ({ children, ...props }) => {
     const queryClient = new QueryClient();
 
@@ -29,34 +28,19 @@ describe('PrimaryNavigation', () => {
     );
   };
 
-  sharedGlobalTests(PrimaryNavigation);
+  sharedGlobalTests(ModelNavSection);
 
   it('renders without crashing', () => {
-    const { asFragment } = render(<PrimaryNavigation />, {
+    const { asFragment } = render(<ModelNavSection />, {
       wrapper: createWrapper(Wrapper, {
         initialEntries: ['/1']
       })
     });
     expect(asFragment()).toMatchSnapshot();
-  });
-
-  it('disables model routes', () => {
-    const spy = vi
-      .spyOn(rhinoConfig, 'enableModelRoutes', 'get')
-      .mockImplementation(() => false);
-
-    const { asFragment } = render(<PrimaryNavigation />, {
-      wrapper: createWrapper(Wrapper, {
-        initialEntries: ['/1']
-      })
-    });
-    expect(asFragment()).toMatchSnapshot();
-
-    spy.mockRestore();
   });
 
   it('displays models passed as string of arrays', () => {
-    const { asFragment } = render(<PrimaryNavigation models={['user']} />, {
+    const { asFragment } = render(<ModelNavSection models={['user']} />, {
       wrapper: createWrapper(Wrapper, {
         initialEntries: ['/1']
       })
@@ -66,7 +50,7 @@ describe('PrimaryNavigation', () => {
 
   it('displays models returned from function as string of arrays', () => {
     const models = () => ['user'];
-    const { asFragment } = render(<PrimaryNavigation models={models} />, {
+    const { asFragment } = render(<ModelNavSection models={models} />, {
       wrapper: createWrapper(Wrapper, {
         initialEntries: ['/1']
       })
@@ -76,7 +60,7 @@ describe('PrimaryNavigation', () => {
 
   it('displays models passed as an object', () => {
     const { asFragment } = render(
-      <PrimaryNavigation models={{ admin: ['blog'] }} />,
+      <ModelNavSection models={{ admin: ['blog'] }} />,
       {
         wrapper: createWrapper(Wrapper, {
           initialEntries: ['/1']
@@ -87,11 +71,8 @@ describe('PrimaryNavigation', () => {
   });
 
   it('displays models returned from function as an object', () => {
-    const models = () => {
-      ['user'];
-    };
-
-    const { asFragment } = render(<PrimaryNavigation models={models} />, {
+    const models = () => ['blog'];
+    const { asFragment } = render(<ModelNavSection models={models} />, {
       wrapper: createWrapper(Wrapper, {
         initialEntries: ['/1']
       })

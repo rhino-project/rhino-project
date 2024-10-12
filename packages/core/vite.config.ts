@@ -57,13 +57,7 @@ const config = defineConfig({
         'src/__tests__/shared/assets.js'
       ),
       'models/static': resolve('src/__tests__/shared/modelFixtures.js'),
-      'routes/custom': resolve('src/__tests__/shared/customRoutes.js'),
-      'components/app/CustomPrimaryNavigation': resolve(
-        'src/__tests__/shared/CustomPrimaryNavigation.js'
-      ),
-      'components/app/CustomSecondaryNavigation': resolve(
-        'src/__tests__/shared/CustomSecondaryNavigation.js'
-      )
+      'routes/custom': resolve('src/__tests__/shared/customRoutes.js')
     }
   }
 });
@@ -127,8 +121,6 @@ export default mergeConfig(
       'rhino.config',
       'virtual:@rhino-project/config/env',
       'virtual:@rhino-project/config/assets',
-      'components/app/CustomPrimaryNavigation',
-      'components/app/CustomSecondaryNavigation',
       'routes/custom',
       'models/static'
     ]

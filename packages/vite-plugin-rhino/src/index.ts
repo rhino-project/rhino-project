@@ -6,10 +6,6 @@ import { transformWithEsbuild } from 'vite';
 import type { Plugin, ResolvedConfig } from 'vite';
 
 const CONFIG_MODULE_ID = 'rhino.config';
-const CUSTOM_PRIMARY_NAVIGATION_MODULE_ID =
-  'components/app/CustomPrimaryNavigation';
-const CUSTOM_SECONDARY_NAVIGATION_MODULE_ID =
-  'components/app/CustomSecondaryNavigation';
 const MODELS_STATIC_MODULE_ID = 'models/static';
 const CUSTOM_ROUTES_MODULE_ID = 'routes/custom';
 
@@ -86,6 +82,10 @@ export function RhinoProjectVite({
     name: 'vite-plugin-rhino',
     enforce: 'pre',
     config: () => ({
+      resolve: {
+        dedupe: ['@tanstack/react-query']
+      },
+
       // Backwards compatibility with create-react-app
       envPrefix: ['REACT_APP_', 'VITE_'],
 
@@ -100,9 +100,7 @@ export function RhinoProjectVite({
           'rhino.config',
           'virtual:@rhino-project/config/env',
           'models/static',
-          'routes/custom',
-          'components/app/CustomPrimaryNavigation',
-          'components/app/CustomSecondaryNavigation'
+          'routes/custom'
         ]
       },
 
@@ -239,16 +237,6 @@ export function RhinoProjectVite({
         // Replace 'rhino.config' with the path to the local file
         // FIXME: Allow the location to be configured
         return checkExtensions(resolvePath('rhino.config'));
-      } else if (id === CUSTOM_PRIMARY_NAVIGATION_MODULE_ID) {
-        // Replace 'components/app/CustomPrimaryNavigation' with the path to the local file
-        return checkExtensions(
-          resolvePath('components/app/CustomPrimaryNavigation')
-        );
-      } else if (id === CUSTOM_SECONDARY_NAVIGATION_MODULE_ID) {
-        // Replace 'components/app/CustomSecondaryNavigation' with the path to the local file
-        return checkExtensions(
-          resolvePath('components/app/CustomSecondaryNavigation')
-        );
       } else if (id === MODELS_STATIC_MODULE_ID) {
         // Replace 'models/static' with the path to the local file
         return checkExtensions(resolvePath('models/static'));

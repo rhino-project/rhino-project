@@ -4,6 +4,8 @@ import { render } from '@testing-library/react';
 import { createWrapper } from '../../shared/helpers';
 import { ApplicationShell } from '../../../components/shells';
 import { sharedGlobalTests } from '../../shared/sharedGlobalTests';
+import { ModelNavSection } from '../../../components/nav';
+import { AccountMenu, BaseOwnerSwitcher } from '../../../components/app';
 
 vi.mock('../../../hooks', async (importOriginal) => {
   const actual = await importOriginal();
@@ -31,11 +33,22 @@ describe('ApplicationShell', () => {
   sharedGlobalTests(ApplicationShell);
 
   it('renders without crashing', () => {
-    const { asFragment } = render(<ApplicationShell />, {
-      wrapper: createWrapper(Wrapper, {
-        initialEntries: ['/1']
-      })
-    });
+    const { asFragment } = render(
+      <ApplicationShell
+        primaryNavigationElement={<ModelNavSection />}
+        secondaryNavigationElement={
+          <div>
+            <BaseOwnerSwitcher />
+            <AccountMenu />
+          </div>
+        }
+      />,
+      {
+        wrapper: createWrapper(Wrapper, {
+          initialEntries: ['/1']
+        })
+      }
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 });
