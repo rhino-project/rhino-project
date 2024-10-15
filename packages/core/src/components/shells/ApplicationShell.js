@@ -1,25 +1,16 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Collapse, Container, Navbar, NavbarBrand } from 'reactstrap';
-import { PrimaryNavigation } from '../app/PrimaryNavigation';
-import { SecondaryNavigation } from '../app/SecondaryNavigation';
 import { Icon } from '../icons';
 import { LightLogo } from '../logos';
 import { Sidebar } from './Sidebar';
 import { useGlobalComponent } from '../../hooks';
 
-const SidebarLayout = () => (
-  <>
-    <div className="flex-grow-1">
-      <PrimaryNavigation />
-    </div>
-    <div className="flex-shrink-1">
-      <SecondaryNavigation />
-    </div>
-  </>
-);
-
-export const ApplicationShellBase = ({ children }) => {
+export const ApplicationShellBase = ({
+  children,
+  primaryNavigationElement = null,
+  secondaryNavigationElement = null
+}) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
   const openSidebar = () => {
@@ -41,7 +32,8 @@ export const ApplicationShellBase = ({ children }) => {
         >
           <div className="d-flex vw-100 h-100">
             <Sidebar id="sidebarMenuCollapsed">
-              <SidebarLayout />
+              <div className="flex-grow-1">{primaryNavigationElement}</div>
+              <div className="flex-shrink-1">{secondaryNavigationElement}</div>
             </Sidebar>
             <div
               className="text-light bg-secondary flex-grow-1 opacity-75 d-flex py-3 justify-content-center"
@@ -75,7 +67,8 @@ export const ApplicationShellBase = ({ children }) => {
           )}
           <div className="d-md-flex flex-grow-1 h-100">
             <Sidebar extraClass="d-none flex-shrink-0">
-              <SidebarLayout />
+              <div className="flex-grow-1">{primaryNavigationElement}</div>
+              <div className="flex-shrink-1">{secondaryNavigationElement}</div>
             </Sidebar>
             <main className="flex-grow-1 overflow-hidden h-100" role="main">
               <Container fluid className="h-100 overflow-y-auto">

@@ -1,8 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`PrimaryNavigation > disables model routes 1`] = `<DocumentFragment />`;
-
-exports[`PrimaryNavigation > displays models passed as an object 1`] = `
+exports[`ModelNavSection > displays models passed as an object 1`] = `
 <DocumentFragment>
   <div>
     <div
@@ -48,7 +46,7 @@ exports[`PrimaryNavigation > displays models passed as an object 1`] = `
 </DocumentFragment>
 `;
 
-exports[`PrimaryNavigation > displays models passed as string of arrays 1`] = `
+exports[`ModelNavSection > displays models passed as string of arrays 1`] = `
 <DocumentFragment>
   <div>
     <div
@@ -94,72 +92,7 @@ exports[`PrimaryNavigation > displays models passed as string of arrays 1`] = `
 </DocumentFragment>
 `;
 
-exports[`PrimaryNavigation > displays models returned from function as an object 1`] = `
-<DocumentFragment>
-  <div>
-    <div
-      class="nav-sidebar-section d-flex justify-content-between align-items-center px-0 mt-3 mb-1 text-capitalize text-gray-400"
-    >
-      <span
-        class="fw-medium"
-      >
-        Resources
-      </span>
-    </div>
-    <ul
-      class="nav flex-column"
-    />
-  </div>
-</DocumentFragment>
-`;
-
-exports[`PrimaryNavigation > displays models returned from function as string of arrays 1`] = `
-<DocumentFragment>
-  <div>
-    <div
-      class="nav-sidebar-section d-flex justify-content-between align-items-center px-0 mt-3 mb-1 text-capitalize text-gray-400"
-    >
-      <span
-        class="fw-medium"
-      >
-        Resources
-      </span>
-    </div>
-    <ul
-      class="nav flex-column"
-    >
-      <li
-        class="nav-item"
-      >
-        <a
-          class="px-3 nav-link"
-          href="/1/users"
-        >
-          <div
-            class="d-flex align-items-center"
-          >
-            <svg
-              class="nav-icon me-1"
-              fill="currentColor"
-            >
-              <use
-                xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#list"
-              />
-            </svg>
-            <div
-              class="ms-2"
-            >
-              Users
-            </div>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`PrimaryNavigation > renders without crashing 1`] = `
+exports[`ModelNavSection > displays models returned from function as an object 1`] = `
 <DocumentFragment>
   <div>
     <div
@@ -205,7 +138,99 @@ exports[`PrimaryNavigation > renders without crashing 1`] = `
 </DocumentFragment>
 `;
 
-exports[`PrimaryNavigation > should render with global override shorthand 1`] = `
+exports[`ModelNavSection > displays models returned from function as string of arrays 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="nav-sidebar-section d-flex justify-content-between align-items-center px-0 mt-3 mb-1 text-capitalize text-gray-400"
+    >
+      <span
+        class="fw-medium"
+      >
+        Resources
+      </span>
+    </div>
+    <ul
+      class="nav flex-column"
+    >
+      <li
+        class="nav-item"
+      >
+        <a
+          class="px-3 nav-link"
+          href="/1/users"
+        >
+          <div
+            class="d-flex align-items-center"
+          >
+            <svg
+              class="nav-icon me-1"
+              fill="currentColor"
+            >
+              <use
+                xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#list"
+              />
+            </svg>
+            <div
+              class="ms-2"
+            >
+              Users
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelNavSection > renders without crashing 1`] = `
+<DocumentFragment>
+  <div>
+    <div
+      class="nav-sidebar-section d-flex justify-content-between align-items-center px-0 mt-3 mb-1 text-capitalize text-gray-400"
+    >
+      <span
+        class="fw-medium"
+      >
+        Resources
+      </span>
+    </div>
+    <ul
+      class="nav flex-column"
+    >
+      <li
+        class="nav-item"
+      >
+        <a
+          class="px-3 nav-link"
+          href="/1/blogs"
+        >
+          <div
+            class="d-flex align-items-center"
+          >
+            <svg
+              class="nav-icon me-1"
+              fill="currentColor"
+            >
+              <use
+                xlink:href="/node_modules/bootstrap-icons/bootstrap-icons.svg#list"
+              />
+            </svg>
+            <div
+              class="ms-2"
+            >
+              Blogs
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelNavSection > should render with global override shorthand 1`] = `
 <DocumentFragment>
   <div>
     Bar
