@@ -20,11 +20,8 @@ export const ModelCreateBase = ({ overrides, ...props }) => {
   const { ModelCreateHeader, ModelCreateForm, ModelCreateActions } =
     useOverrides(defaultComponents, overrides);
 
-  if (ModelCreateForm().props?.paths)
-    console.warn('ModelCreateForm pass legacy paths prop');
-
   return (
-    <ModelCreateSimple paths={ModelCreateForm().props?.paths} {...props}>
+    <ModelCreateSimple {...props}>
       <ModelSection baseClassName="create">
         <ModelCreateHeader />
         <ModelCreateForm />
