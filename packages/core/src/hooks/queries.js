@@ -490,7 +490,7 @@ export const useModelDelete = (model, mutationOptions = {}) => {
  */
 export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
   const memoModel = useModel(model);
-  const queryKey = useModelKeyShow(memoModel, id, [options]);
+  const queryKey = useModelKeyShow(memoModel, id, []);
   const endpoint = useModelPathMember(model, { id });
 
   // If it has either of these and not a fourth param, its the newer options setup
