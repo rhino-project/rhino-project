@@ -107,7 +107,9 @@ export const FieldFileBase = ({ multiple, required, ...props }) => {
           {...fieldProps}
           {...props}
         />
-        {!required && value && <CloseButton onClick={handleClear} />}
+        {!required && value && (
+          <CloseButton onClick={handleClear} disabled={props?.disabled} />
+        )}
       </div>
       {!!uploadingCount && (
         <div>
