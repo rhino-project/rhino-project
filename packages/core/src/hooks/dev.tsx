@@ -17,13 +17,25 @@ export type RhinoDevBroadcastSendMessageOptions = {
   exclude?: string[];
 };
 
+type ContextWithPaths = {
+  paths?: unknown[];
+  [key: string]: unknown;
+};
+
 const reducedContext = (
   context: null | object,
   options: RhinoDevBroadcastSendMessageOptions
 ) => {
-  let reducedContext = context;
+  let reducedContext = context as ContextWithPaths;
   if (options?.include) reducedContext = pick(reducedContext, options.include);
   if (options?.exclude) reducedContext = omit(reducedContext, options.exclude);
+
+  // If reducedContext has a paths property that is an array, replace non-string values with "<element>"
+  if (reducedContext?.paths && Array.isArray(reducedContext.paths)) {
+    reducedContext.paths = reducedContext.paths.map((value) =>
+      typeof value === 'string' ? value : '<element>'
+    );
+  }
 
   return reducedContext;
 };
