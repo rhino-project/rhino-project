@@ -525,7 +525,7 @@ export const useModelCreateController = (options) => {
 
   const schema = useSchema(model, computedPaths);
   const defaultValues = useDefaultValues(model, computedPaths, {
-    extraDefaultValues
+    extraDefaultValues: { [model.ownedBy]: parentId, ...extraDefaultValues }
   });
   const resolver = useResolver(schema);
 

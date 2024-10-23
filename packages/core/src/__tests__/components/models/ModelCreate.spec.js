@@ -36,7 +36,7 @@ describe('ModelCreate', () => {
           ModelCreateForm: Bar,
           ModelCreateActions: Baz
         }}
-        model={{ model: 'user', properties: { name: {} } }}
+        model="user"
         path="name"
         fallback={false}
       />,

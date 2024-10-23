@@ -32,7 +32,7 @@ describe('ModelEdit', () => {
           ModelEditForm: Bar,
           ModelEditActions: Baz
         }}
-        model={{ model: 'user', properties: { name: {} } }}
+        model="user"
         path="name"
         fallback={false}
       />,

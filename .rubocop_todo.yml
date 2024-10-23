@@ -12,7 +12,6 @@
 Layout/IndentationWidth:
   Exclude:
     - "gems/rhino_project_core/lib/rhino/resource/active_record_extension/reference.rb"
-    - "gems/rhino_project_core/lib/rhino/resource/owner.rb"
     - "gems/rhino_project_core/lib/rhino/sieve.rb"
     - "gems/rhino_project_core/lib/rhino/sieve/filter.rb"
     - "gems/rhino_project_core/lib/rhino/sieve/order.rb"

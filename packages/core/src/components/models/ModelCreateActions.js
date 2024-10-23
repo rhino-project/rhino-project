@@ -13,7 +13,7 @@ import { getModelShowPath } from '../../utils/routes';
 import { ModelSection } from './ModelSection';
 
 export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
-  const { isLoading, mutate, parentId, parentModel } = useModelCreateContext();
+  const { isLoading, mutate } = useModelCreateContext();
   const { handleSubmit } = useFormContext();
 
   const onSuccess = useCallback(
@@ -24,11 +24,8 @@ export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
   );
 
   const handleClick = useCallback(
-    () =>
-      handleSubmit((values) =>
-        mutate({ [parentModel.model]: parentId, ...values }, { onSuccess })
-      )(),
-    [mutate, handleSubmit, onSuccess, parentId, parentModel]
+    () => handleSubmit((values) => mutate(values, { onSuccess }))(),
+    [mutate, handleSubmit, onSuccess]
   );
 
   return (
