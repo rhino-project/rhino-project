@@ -23,12 +23,8 @@ export const ModelEditBase = ({ overrides, ...props }) => {
     overrides
   );
 
-  if (ModelEditForm().props?.paths)
-    console.warn('ModelEditForm pass legacy paths prop');
-
-  // Legacy path support over old overrides
   return (
-    <ModelEditSimple paths={ModelEditForm().props?.paths} {...props}>
+    <ModelEditSimple {...props}>
       <ModelSection baseClassName="edit">
         <ModelEditHeader />
         <ModelEditForm />
