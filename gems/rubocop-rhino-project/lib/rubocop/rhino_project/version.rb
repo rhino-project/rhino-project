@@ -10,7 +10,7 @@ module RubocopRhinoProject
     MAJOR = 0
     MINOR = 21
     TINY  = 0
-    PRE   = "beta.45"
+    PRE   = "beta.46"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
