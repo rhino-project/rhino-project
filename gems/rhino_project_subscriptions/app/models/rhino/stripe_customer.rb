@@ -3,6 +3,6 @@
 module Rhino
   class StripeCustomer < ApplicationRecord
     belongs_to :base_owner, class_name: "::#{Rhino.base_owner.name}"
-    rhino_owner_base
+    rhino_owner :base_owner
   end
 end

@@ -38,7 +38,6 @@ Style/StringLiterals:
     - "gems/rhino_project_core/app/resources/rhino/open_api_info.rb"
     - "gems/rhino_project_core/lib/generators/rhino/install/install_generator.rb"
     - "gems/rhino_project_core/lib/rhino_project_core.rb"
-    - "gems/rhino_project_core/lib/rhino/resource.rb"
     - "gems/rhino_project_core/lib/rhino/resource/active_record_extension.rb"
     - "gems/rhino_project_core/lib/rhino/resource/describe.rb"
     - "gems/rhino_project_core/lib/rhino/resource/properties.rb"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_27_122714) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_24_124614) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -245,7 +245,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_27_122714) do
     t.bigint "polyable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
     t.index ["polyable_type", "polyable_id"], name: "index_polymorphics_on_polyable"
+    t.index ["user_id"], name: "index_polymorphics_on_user_id"
   end
 
   create_table "property_lists", force: :cascade do |t|
@@ -331,5 +333,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_27_122714) do
   add_foreign_key "grand_child_ones", "child_ones"
   add_foreign_key "og_meta_tags", "blog_posts"
   add_foreign_key "parents", "users"
+  add_foreign_key "polymorphics", "users"
   add_foreign_key "taggings", "tags"
 end
