@@ -24,6 +24,7 @@ module Rhino
       include Rhino::Resource::ActiveRecordExtension::Reference
       include Rhino::Resource::ActiveRecordExtension::Describe
       include Rhino::Resource::ActiveRecordExtension::Routing
+      include Rhino::Resource::ActiveRecordExtension::Owner
       include Rhino::Resource::ActiveRecordExtension::Params
       include Rhino::Resource::ActiveRecordExtension::Serialization
       include Rhino::Resource::ActiveRecordExtension::Search

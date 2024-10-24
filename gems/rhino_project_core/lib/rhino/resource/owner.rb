@@ -89,7 +89,6 @@ module Rhino
         #
         def rhino_owner(name, **_options)
           self.resource_owned_by = name
-          rhino_policy :global if global_owned?
         end
 
         # Sets rhino_owner[rdoc-ref:rhino_owner] to be the base owner

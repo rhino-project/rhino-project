@@ -13,22 +13,30 @@ class ResourceTest < ActiveSupport::TestCase
     assert_equal("Policy bad_name not found for ResourceTest::BadPolicy", exp.message)
   end
 
+  test "Defaults to global policy if global" do
+    assert_equal(Rhino::GlobalPolicy, Category.policy_class)
+  end
+
+  test "Defaults to crud policy if not global" do
+    assert_equal(Rhino::CrudPolicy, Blog.policy_class)
+  end
+
   test "Finds non-rhino name spaced policy" do
-    class GoodPolicy < ApplicationRecord
+    class NameSpacePolicy < ApplicationRecord
       rhino_owner_global
       rhino_policy :hippo
     end
 
-    assert_equal(GoodPolicy.policy_class, HippoPolicy)
+    assert_equal(NameSpacePolicy.policy_class, HippoPolicy)
   end
 
   test "Finds non-rhino name spaced policy before rhino poloicy" do
-    class GoodPolicy < ApplicationRecord
+    class NonNameSpacePolicy < ApplicationRecord
       rhino_owner_global
       rhino_policy :local
     end
 
-    assert_equal(GoodPolicy.policy_class, LocalPolicy)
+    assert_equal(NonNameSpacePolicy.policy_class, LocalPolicy)
   end
 
   test "Finds rhino name spaced policy" do
