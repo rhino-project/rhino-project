@@ -35,13 +35,13 @@ module Rhino
           self == Rhino.base_owner
         end
 
-        # Test if rhino_owner[rdoc-ref:rhino_owner] is the base owner
+        # Test if rhino_owner[rdoc-ref:rhino_owner] is the global owner
         # Also available on the instance
         def global_owner?
           self.resource_owned_by == :global
         end
 
-        # Test if rhino_owner[rdoc-ref:rhino_owner] is the base owner
+        # Test if rhino_owner[rdoc-ref:rhino_owner] is globally owned at the top of the hierarchy
         # Also available on the instance
         def global_owned?
           chained_scope = self
@@ -133,40 +133,40 @@ module Rhino
         end
 
         private
-        def simple_joins_for(parent)
-          # FIXME: There is probably a more rubyish way to do this
-          chained_scope = self
-          joins = []
+          def simple_joins_for(parent)
+            # FIXME: There is probably a more rubyish way to do this
+            chained_scope = self
+            joins = []
 
-          # The ownership could be a many, so we classify first
-          while chained_scope.resource_owned_by.to_s.classify != parent.to_s.classify
+            # The ownership could be a many, so we classify first
+            while chained_scope.resource_owned_by.to_s.classify != parent.to_s.classify
+              joins << chained_scope.resource_owned_by
+              chained_scope = chained_scope.resource_owned_by.to_s.classify.constantize
+            end
             joins << chained_scope.resource_owned_by
-            chained_scope = chained_scope.resource_owned_by.to_s.classify.constantize
+
+            joins.reverse
           end
-          joins << chained_scope.resource_owned_by
 
-          joins.reverse
-        end
-
-        def simple_joins_for_base_owner
-          simple_joins_for(Rhino.base_owner)
-        end
+          def simple_joins_for_base_owner
+            simple_joins_for(Rhino.base_owner)
+          end
       end
       # rubocop:enable Style/RedundantSelf
     end
 
     private
-    # We use the parent as the starting point because if the record is not
-    # persisted yet, we won't be able to find it
-    def owner_ids(joins)
-      bo = Rhino.base_owner
+      # We use the parent as the starting point because if the record is not
+      # persisted yet, we won't be able to find it
+      def owner_ids(joins)
+        bo = Rhino.base_owner
 
-      return [] unless owner
+        return [] unless owner
 
-      parent_klass = owner.class
-      pk = parent_klass.primary_key
+        parent_klass = owner.class
+        pk = parent_klass.primary_key
 
-      parent_klass.joins(parent_klass.send(joins)).where("#{pk}": owner[pk]).pluck("#{bo.table_name}.#{bo.primary_key}")
-    end
+        parent_klass.joins(parent_klass.send(joins)).where("#{pk}": owner[pk]).pluck("#{bo.table_name}.#{bo.primary_key}")
+      end
   end
 end

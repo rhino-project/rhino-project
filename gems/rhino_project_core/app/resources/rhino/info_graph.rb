@@ -26,7 +26,7 @@ module Rhino
         g.vertex_iterator { |c| Rhino.resource_classes.each(&c) }
 
         # If its owned by another resoource, link it
-        g.adjacent_iterator { |v, c| c.call(v.resource_owned_by.to_s.camelize.constantize) if v&.resource_owned_by && !v.global_owner? }
+        g.adjacent_iterator { |v, c| c.call(v.owner_class) if v&.resource_owned_by && !v.global_owner? }
 
         g.directed = true
       end

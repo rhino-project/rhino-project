@@ -62,7 +62,7 @@ describe('ModelShow', () => {
             ModelShowDescription: Bar,
             ModelShowRelated: Foz
           }}
-          model={{ model: 'user', properties: { name: {} } }}
+          model="user"
           modelId="1"
           path="name"
           fallback={false}
@@ -74,12 +74,7 @@ describe('ModelShow', () => {
 
     it(`should use global overrides when local are not present`, () => {
       const { asFragment } = render(
-        <ModelShow
-          model={{ model: 'user', properties: { name: {} } }}
-          modelId="1"
-          path="name"
-          fallback={false}
-        />,
+        <ModelShow model="user" modelId="1" path="name" fallback={false} />,
         { wrapper }
       );
       expect(asFragment()).toMatchSnapshot();

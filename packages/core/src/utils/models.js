@@ -8,7 +8,11 @@ import modelLoader from '../models';
  */
 
 export const getModel = (model) => modelLoader.api.components.schemas[model];
-export const getParentModel = (model) => getModel(model.ownedBy);
+export const getParentModel = (model) => {
+  if (model.ownedBy === 'global' || model.ownedBy === null) return null;
+
+  return getModelFromRef(model.properties[model.ownedBy]);
+};
 export const getModelAncestors = (model) => {
   const result = [];
   model = getParentModel(model);
@@ -61,7 +65,14 @@ export const authOwnerModel = () => getModel(authOwnerProperty());
 
 export const baseOwnerProperty = () => getModuleInfo('rhino')?.baseOwner;
 export const baseOwnerModel = () => getModel(baseOwnerProperty());
-export const isBaseOwned = (model) => model.ownedBy === baseOwnerProperty();
+export const isBaseOwned = (model) => {
+  if (model.ownedBy === 'global' || model.ownedBy === null) return false;
+
+  return (
+    getModelFromRef(model.properties[model.ownedBy]).model ===
+    baseOwnerProperty()
+  );
+};
 export const getBaseOwnedModels = () =>
   filter(modelLoader.api.components.schemas, isBaseOwned);
 

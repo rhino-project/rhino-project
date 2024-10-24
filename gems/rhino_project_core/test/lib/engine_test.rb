@@ -24,6 +24,8 @@ class EngineTest < ActiveSupport::TestCase
 
   test "raises error if owner is not a reference" do
     class BadResourceNoOwnerRef < ApplicationRecord
+      belongs_to :user
+
       rhino_owner_base
     end
     exp = assert_raises StandardError do
