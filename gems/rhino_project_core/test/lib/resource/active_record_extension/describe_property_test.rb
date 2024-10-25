@@ -197,6 +197,11 @@ module ActiveRecordExtension
       assert_equal("#/components/schemas/every_many", @description[:items][:anyOf].first[:$ref])
     end
 
+    test "name spaced property has name space in ref" do
+      assert_type("namespaced_manies", :array, model: Parent)
+      assert_equal("#/components/schemas/namespace_namespaced_many", @description[:items][:anyOf].first[:$ref])
+    end
+
     private
       def assert_type(property, type, model: EveryField)
         @description = model.describe_property(property)

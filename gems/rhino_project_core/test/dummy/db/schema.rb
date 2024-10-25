@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_24_124614) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_25_114859) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -223,6 +223,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_24_124614) do
     t.index ["child_one_id"], name: "index_grand_child_ones_on_child_one_id"
   end
 
+  create_table "namespace_namespaced_manies", force: :cascade do |t|
+    t.bigint "parent_id", null: false
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_namespace_namespaced_manies_on_parent_id"
+  end
+
   create_table "og_meta_tags", force: :cascade do |t|
     t.bigint "blog_post_id", null: false
     t.string "tag_name"
@@ -331,6 +339,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_24_124614) do
   add_foreign_key "geospatials", "users"
   add_foreign_key "grand_child_manies", "child_manies"
   add_foreign_key "grand_child_ones", "child_ones"
+  add_foreign_key "namespace_namespaced_manies", "parents"
   add_foreign_key "og_meta_tags", "blog_posts"
   add_foreign_key "parents", "users"
   add_foreign_key "polymorphics", "users"
