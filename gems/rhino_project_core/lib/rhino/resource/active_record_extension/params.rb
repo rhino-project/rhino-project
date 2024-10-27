@@ -154,7 +154,7 @@ module Rhino
             # rubocop:todo Metrics/CyclomaticComplexity
             def transform_params_recursive(params, parent = self) # rubocop:disable Metrics/MethodLength, Metrics/AbcSize, Metrics/PerceivedComplexity
               hash = {}
-              params.each do |param_key, param_value|
+              params.each do |param_key, param_value| # rubocop:todo Metrics/BlockLength
                 association = parent.reflect_on_association(param_key)
 
                 # Its a regular attribute
@@ -187,7 +187,11 @@ module Rhino
                   # if its a cardinal though, such as blog: 1 instead of blog: {name : 'my blog' }
                   # fallback to transforming to the foreign key
                   if param_value.is_a?(ActionController::Parameters)
+                    assoc = parent.reflections[param_key]
                     klasses = assoc_from_sym(param_key, parent)
+
+                    # We only want to transform the params for the klass that matches the foreign_type
+                    klasses.select! { |k| k.name == params[assoc.foreign_type] } if assoc.polymorphic?
 
                     next hash[attr_key] = klasses.map { |klass| parent.transform_params_recursive(param_value, klass) }.reduce(:merge)
                   end
@@ -195,11 +199,12 @@ module Rhino
 
                 # Map association name to foreign key, ie blog => blog_id
                 # or blog: { id: } => blog_id
-                if param_value.is_a?(ActionController::Parameters)
+                if param_value.is_a?(ActionController::Parameters) && !association.has_one?
                   next hash[association.foreign_key] = param_value[association.klass.identifier_property]
                 end
 
-                hash[association.foreign_key] = param_value
+                # If its a has_one, there is no foreign key on this model
+                hash[association.foreign_key] = param_value unless association.has_one?
               end
 
               # Force permit since we should have already been permitted at this point

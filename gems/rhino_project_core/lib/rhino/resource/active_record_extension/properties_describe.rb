@@ -8,6 +8,20 @@ module Rhino
       module PropertiesDescribe # rubocop:disable Metrics/ModuleLength
         extend ActiveSupport::Concern
 
+        class PolymorphicModelName
+          include ActiveSupport::Inflector
+
+          attr_reader :name
+
+          def initialize(name)
+            @name = name.to_s
+          end
+
+          def singular
+            underscore(name).tr("/", "_").singularize
+          end
+        end
+
         class_methods do # rubocop:disable Metrics/BlockLength
           def describe_property(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
             name = property_name(property).to_s
@@ -43,7 +57,7 @@ module Rhino
             def ref_descriptor(names)
               {
                 type: :reference,
-                anyOf: names.map { |name| { :$ref => "#/components/schemas/#{name.singularize}" } }
+                anyOf: names.map { |name| { :$ref => "#/components/schemas/#{name.singular}" } }
               }
             end
 
@@ -86,19 +100,19 @@ module Rhino
 
             # rubocop:todo Metrics/PerceivedComplexity
             # rubocop:todo Metrics/AbcSize
-            def property_type_and_format_ref(name) # rubocop:todo Metrics/CyclomaticComplexity, Metrics/AbcSize, Metrics/PerceivedComplexity
+            def property_type_and_format_ref(name) # rubocop:todo Metrics/AbcSize
               assoc = reflections[name]
-              klasses = if assoc.options[:polymorphic]
-                # If its a delgated type it will have type introspection
+              klasses = if assoc.polymorphic?
+                # Delegated type
                 if assoc.active_record.respond_to?("#{assoc.name}_types")
-                  assoc.active_record.send("#{assoc.name}_types").map(&:constantize).map { |m| m.model_name.singular }
+                  assoc.active_record.send(:"#{assoc.name}_types").map { |x| x.constantize.model_name }
                 else
                   # FIXME: This is wrong, but there is no good way to introspect general polymorphic models
-                  [name]
+                  # FIXME: This should be an OpenAPI discriminator with all possible types (all models)
+                  [PolymorphicModelName.new(name)]
                 end
               else
-                # FIXME: The tr hack is to match how model_name in rails handles modularized classes
-                [assoc.options[:class_name]&.underscore&.tr("/", "_") || name]
+                [assoc.klass.model_name]
               end
 
               return ref_descriptor(klasses) unless reflections[name].macro == :has_many

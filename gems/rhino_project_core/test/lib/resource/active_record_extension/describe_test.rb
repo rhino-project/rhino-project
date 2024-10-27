@@ -32,6 +32,10 @@ class DescribeTestDummyModelNotSearchable < ApplicationRecord
 end
 
 class DescribeTest < ActiveSupport::TestCase
+  test "name spaced model has name space in model name" do
+    assert Namespace::NamespacedMany.describe[:model] = "namespace_namespaced_many"
+  end
+
   test "x-rhino-model searchable is true if there is at least one element in rhino_search list" do
     # Blog has rhino_search [:title]
     assert Blog.describe[:"x-rhino-model"][:searchable]
