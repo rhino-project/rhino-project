@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { execSync } from 'node:child_process';
 import { transformWithEsbuild } from 'vite';
-import type { Plugin, ResolvedConfig } from 'vite';
+import type { Plugin, ResolvedConfig, ViteDevServer } from 'vite';
 
 const CONFIG_MODULE_ID = 'rhino.config';
 const MODELS_STATIC_MODULE_ID = 'models/static';
@@ -47,7 +47,6 @@ const esbuildRhinoPlugin = {
 export function RhinoProjectVite({
   enableJsxInJs = true,
   enableStaticCheck = true,
-  staticCheckInterval = 10000,
   staticCheckExcludedBranches = ['main']
 }: {
   enableJsxInJs?: boolean;
@@ -143,18 +142,13 @@ export function RhinoProjectVite({
           );
         }
       });
+    },
 
-      // If we are not in development mode or the serve command, do not proceed unless static check is enabled
-      // This is to prevent the static check from running in production builds and under vitest
-      if (
-        config.command !== 'serve' ||
-        config.mode !== 'development' ||
-        !enableStaticCheck
-      )
-        return;
+    configureServer(server: ViteDevServer) {
+      if (!enableStaticCheck) return;
 
-      const apiRootPath = config.env.VITE_API_ROOT_PATH;
-      const logger = config.logger;
+      const apiRootPath = CONFIG.env.VITE_API_ROOT_PATH;
+      const logger = server.config.logger;
 
       if (!apiRootPath) {
         logger.error('VITE_API_ROOT_PATH environment variable is not defined.');
@@ -172,7 +166,12 @@ export function RhinoProjectVite({
 
           // Check if the current branch is in the excludedBranches list
           if (finalExcludedBranches.includes(currentBranch)) {
-            logger.info(`Skipping URL check on branch: ${currentBranch}`);
+            logger.info(
+              `Skipping static.js update on branch: ${currentBranch}`,
+              {
+                timestamp: true
+              }
+            );
             return;
           }
 
@@ -217,8 +216,24 @@ export function RhinoProjectVite({
         }
       }
 
-      checkUrl(); // Initial fetch
-      setInterval(checkUrl, staticCheckInterval);
+      // Initial API check on startup
+      checkUrl();
+
+      // Watch app/models directory for changes
+      const modelsPath = path.join(process.cwd(), 'app', 'models');
+      if (fs.existsSync(modelsPath)) {
+        server.watcher.add(modelsPath);
+        server.watcher.on('change', (changedPath: string) => {
+          if (changedPath.startsWith(modelsPath)) {
+            logger.info(`Model file changed: ${changedPath}`, {
+              timestamp: true
+            });
+            checkUrl();
+          }
+        });
+      } else {
+        logger.warn('app/models directory not found for watching');
+      }
     },
 
     resolveId(id) {
