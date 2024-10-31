@@ -1,0 +1,128 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelFieldGroupEnum > should render a multiple child options 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
+    id="FieldLayout-name"
+    label="Name"
+    path="name"
+    placeholder="Name"
+    required=""
+    title="Name..."
+  >
+    <label
+      class="required form-label"
+      for="name"
+      id="fieldLabel-name"
+      path="name"
+      placeholder="Name"
+      required=""
+      title="Name..."
+    >
+      Name
+    </label>
+    <select
+      aria-invalid="false"
+      autocomplete="off"
+      class="form-select"
+      id="name"
+      label="Name"
+      name="name"
+      path="name"
+      placeholder="Name"
+      required=""
+    >
+      <option
+        disabled=""
+        value="-1"
+      >
+        Name...
+      </option>
+      <option
+        value="1"
+      >
+        test option 1
+      </option>
+      <option
+        value="2"
+      >
+        test option 2
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFieldGroupEnum > should render a single child option 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-3"
+    id="FieldLayout-name"
+    label="Name"
+    path="name"
+    placeholder="Name"
+    required=""
+    title="Name..."
+  >
+    <label
+      class="required form-label"
+      for="name"
+      id="fieldLabel-name"
+      path="name"
+      placeholder="Name"
+      required=""
+      title="Name..."
+    >
+      Name
+    </label>
+    <select
+      aria-invalid="false"
+      autocomplete="off"
+      class="form-select"
+      id="name"
+      label="Name"
+      name="name"
+      path="name"
+      placeholder="Name"
+      required=""
+    >
+      <option
+        disabled=""
+        value="-1"
+      >
+        Name...
+      </option>
+      <option
+        value="1"
+      >
+        test option 1
+      </option>
+    </select>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFieldGroupEnum > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFieldGroupEnum > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFieldGroupEnum > should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
