@@ -150,19 +150,24 @@ export const useModelFieldGroup = ({ model, ...props }) => {
 
 export const useModelDisplayGroup = useModelFieldGroup;
 
-export const useModelFieldGroupEnum = (props) => {
+export const useModelFieldGroupEnum = ({
+  children: propsChildren,
+  ...props
+}) => {
   const inputProps = useModelFieldGroup(props);
   const { attribute } = inputProps;
 
-  const children = useMemo(
-    () =>
-      attribute.enum.map((e) => (
-        <option key={e} value={e}>
-          {e}
-        </option>
-      )),
-    [attribute]
-  );
+  const children = useMemo(() => {
+    // children can be a single element or an array
+    if (propsChildren)
+      return Array.isArray(propsChildren) ? propsChildren : [propsChildren];
+
+    return attribute.enum.map((e) => (
+      <option key={e} value={e}>
+        {e}
+      </option>
+    ));
+  }, [attribute.enum, propsChildren]);
 
   const accessor = useCallback((value) => value || -1, []);
   const title = `${attribute.readableName}...`;
