@@ -23,7 +23,7 @@ export const FieldBooleanBase = (props) => {
       type="checkbox"
       invalid={!!error}
       checked={value}
-      disabled={readOnly}
+      disabled={fieldProps.disabled || readOnly}
       {...inheritedProps}
     />
   );
