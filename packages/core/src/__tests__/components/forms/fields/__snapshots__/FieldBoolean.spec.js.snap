@@ -5,6 +5,7 @@ exports[`FieldBoolean > render with disabled 1`] = `
   <input
     aria-invalid="false"
     class="form-check-input"
+    disabled=""
     id="dummy"
     name="dummy"
     path="dummy"

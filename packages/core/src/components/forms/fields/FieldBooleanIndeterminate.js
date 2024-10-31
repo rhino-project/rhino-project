@@ -58,7 +58,7 @@ export const FieldBooleanIndeterminateBase = (props) => {
       innerRef={innerRef}
       invalid={!!error}
       checked={parsedValue === true}
-      disabled={readOnly}
+      disabled={fieldProps.disabled || readOnly}
       {...inheritedProps}
     />
   );
