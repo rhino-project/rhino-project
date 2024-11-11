@@ -50,7 +50,8 @@ module Rhino
       [
         client_id: ENV["AUTH_AZURE_OAUTH2_CLIENT_ID"],
         client_secret: ENV["AUTH_AZURE_OAUTH2_SECRET_KEY"],
-        tenant_id: ENV["AUTH_AZURE_OAUTH2_TENANT_ID"]
+        # common is the default for multi-tenant applications
+        tenant_id: ENV.fetch("AUTH_AZURE_OAUTH2_TENANT_ID", "common"),
       ]
     end
 
