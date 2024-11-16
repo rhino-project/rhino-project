@@ -8,9 +8,9 @@ module RhinoOrganizations
 
   module VERSION
     MAJOR = 0
-    MINOR = 21
+    MINOR = 22
     TINY  = 0
-    PRE   = "beta.52"
+    PRE   = "alpha.2"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
