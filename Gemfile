@@ -12,14 +12,8 @@ gem "minitest", ">= 5.15.0", "< 5.22.0"
 # We need a newish Rake since Active Job sets its test tasks' descriptions.
 gem "rake", ">= 13"
 
-gem "sprockets-rails", ">= 2.0.0"
-
 gem "rack-cache", "~> 1.2"
-gem "stimulus-rails"
-gem "turbo-rails"
-gem "jsbundling-rails"
-gem "cssbundling-rails"
-gem "dartsass-rails"
+
 # require: false so bcrypt is loaded only when has_secure_password is used.
 # This is to avoid Active Model (and by extension the entire framework)
 # being dependent on a binary library.
