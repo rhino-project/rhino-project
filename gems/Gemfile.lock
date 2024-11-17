@@ -364,7 +364,7 @@ GEM
     orm_adapter (0.5.0)
     pairing_heap (3.1.0)
     parallel (1.26.3)
-    parser (3.3.4.0)
+    parser (3.3.6.0)
       ast (~> 2.4.1)
       racc
     path_expander (1.1.1)
