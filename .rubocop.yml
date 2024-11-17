@@ -55,10 +55,6 @@ Rails/IndexWith:
 Style/AndOr:
   Enabled: true
 
-# Align `when` with `case`.
-Layout/CaseIndentation:
-  Enabled: true
-
 Layout/ClosingHeredocIndentation:
   Enabled: true
 
@@ -67,6 +63,9 @@ Layout/ClosingParenthesisIndentation:
 
 # Align comments with method definitions.
 Layout/CommentIndentation:
+  Enabled: true
+
+Layout/DefEndAlignment:
   Enabled: true
 
 Layout/ElseAlignment:
@@ -107,6 +106,7 @@ Layout/EmptyLinesAroundModuleBody:
 # Use Ruby >= 1.9 syntax for hashes. Prefer { a: :b } over { :a => :b }.
 Style/HashSyntax:
   Enabled: true
+  EnforcedShorthandSyntax: either
 
 # Method definitions after `private` or `protected` isolated calls need one
 # extra level of indentation.
@@ -223,6 +223,11 @@ Lint/AmbiguousOperator:
 Lint/AmbiguousRegexpLiteral:
   Enabled: true
 
+Lint/Debugger:
+  Enabled: true
+  DebuggerRequires:
+    - debug
+
 Lint/DuplicateRequire:
   Enabled: true
 
@@ -238,11 +243,23 @@ Lint/ErbNewArguments:
 Lint/EnsureReturn:
   Enabled: true
 
+Lint/MissingCopEnableDirective:
+  Enabled: true
+
 # Use my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
 Lint/RequireParentheses:
   Enabled: true
 
+Lint/RedundantCopDisableDirective:
+  Enabled: true
+
+Lint/RedundantCopEnableDirective:
+  Enabled: true
+
 Lint/RedundantStringCoercion:
+  Enabled: true
+
+Lint/RedundantSafeNavigation:
   Enabled: true
 
 Lint/UriEscapeUnescape:
@@ -258,6 +275,9 @@ Lint/InterpolationCheck:
   Enabled: true
   Exclude:
     - '**/test/**/*'
+
+Lint/SafeNavigationChain:
+  Enabled: true
 
 Style/EvalWithLocation:
   Enabled: true
@@ -298,7 +318,13 @@ Style/TrivialAccessors:
 Style/RedundantCondition:
   Enabled: true
 
+Style/RedundantDoubleSplatHashBraces:
+  Enabled: true
+
 Style/OpenStructUse:
+  Enabled: true
+
+Style/ArrayIntersect:
   Enabled: true
 
 Performance/BindCall:
@@ -331,9 +357,6 @@ Performance/ReverseEach:
 Performance/StringReplacement:
   Enabled: true
 
-Performance/UnfreezeString:
-  Enabled: true
-
 Performance/DeletePrefix:
   Enabled: true
 
@@ -352,6 +375,9 @@ Performance/RedundantStringChars:
 Performance/StringInclude:
   Enabled: true
 
+Minitest/AssertPredicate:
+  Enabled: true
+
 Minitest/AssertRaisesWithRegexpArgument:
   Enabled: true
 
@@ -359,6 +385,9 @@ Minitest/AssertWithExpectedArgument:
   Enabled: true
 
 Minitest/LiteralAsActualArgument:
+  Enabled: true
+
+Minitest/NonExecutableTestMethod:
   Enabled: true
 
 Minitest/SkipEnsure:

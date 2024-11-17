@@ -4,7 +4,7 @@ module Rhino
   class UserPolicy < ::Rhino::ViewerPolicy
     class Scope < ::Rhino::ViewerPolicy::Scope
       # We allow other users in the org to view the user
-      def resolve # rubocop:disable Metrics/AbcSize
+      def resolve
         return scope.none unless auth_owner
 
         base_owner_pk = "#{Rhino.base_owner.table_name}.#{Rhino.base_owner.primary_key}"

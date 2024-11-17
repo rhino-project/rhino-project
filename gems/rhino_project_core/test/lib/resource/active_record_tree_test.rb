@@ -14,7 +14,7 @@ class ActiveRecordTreeTest < ActiveSupport::TestCase
   end
 
   test "describes children" do
-    assert_equal "{\"x-rhino-attribute\":{\"name\":\"children\",\"readableName\":\"Children\",\"readable\":true,\"creatable\":false,\"updatable\":false},\"readOnly\":true,\"nullable\":true,\"type\":\"array\",\"items\":{\"type\":\"reference\",\"anyOf\":[{\"$ref\":\"#/components/schemas/active_record_tree_dummy\"}]}}", # rubocop:disable  Layout/LineLength
+    assert_equal "{\"x-rhino-attribute\":{\"name\":\"children\",\"readableName\":\"Children\",\"readable\":true,\"creatable\":false,\"updatable\":false},\"readOnly\":true,\"nullable\":true,\"type\":\"array\",\"items\":{\"type\":\"reference\",\"anyOf\":[{\"$ref\":\"#/components/schemas/active_record_tree_dummy\"}]}}",
                  ActiveRecordTreeDummy.describe_property("children").to_json
   end
 end

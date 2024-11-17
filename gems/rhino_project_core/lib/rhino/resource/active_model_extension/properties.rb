@@ -5,10 +5,10 @@ require "js_regex"
 module Rhino
   module Resource
     module ActiveModelExtension
-      module Properties # rubocop:disable Metrics/ModuleLength
+      module Properties
         extend ActiveSupport::Concern
 
-        class_methods do # rubocop:disable Metrics/BlockLength
+        class_methods do
           def identifier_property
             "id"
           end
@@ -29,7 +29,7 @@ module Rhino
             writeable_properties
           end
 
-          def describe_property(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+          def describe_property(property)
             name = property_name(property).to_s
             {
               "x-rhino-attribute": {
@@ -64,7 +64,7 @@ module Rhino
               []
             end
 
-            def reference_properties(read = true) # rubocop:todo Style/OptionalBooleanParameter
+            def reference_properties(read = true)
               references.filter_map do |r|
                 sym = reference_to_sym(r)
 
@@ -73,7 +73,6 @@ module Rhino
 
                 # Writeable if a one type or accepting nested
                 association = reflect_on_association(sym)
-                # rubocop:todo Performance/CollectionLiteralInLoop
                 sym if %i[has_one belongs_to].include?(association.macro) || nested_attributes_options.key?(sym)
                 # rubocop:enable Performance/CollectionLiteralInLoop
               end
@@ -143,8 +142,7 @@ module Rhino
               { type: property_type_raw(property) }
             end
 
-            # rubocop:todo Metrics/PerceivedComplexity
-            def property_validations(property) # rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/CyclomaticComplexity
+            def property_validations(property)
               constraint_hash = {}
 
               # https://swagger.io/specification/

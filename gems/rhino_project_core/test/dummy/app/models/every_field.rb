@@ -3,8 +3,8 @@
 class EveryField < ApplicationRecord
   attr_readonly :string_readonly
 
-  enum enum: { test: 0, example: 1 }
-  enum enum_required: %i[test_required example_required]
+  enum :enum, { test: 0, example: 1 }
+  enum :enum_required, %i[test_required example_required]
 
   belongs_to :user
   belongs_to :another_user, class_name: "User", foreign_key: :user_id
