@@ -31,7 +31,7 @@ module Rhino
     def inject_into_rhino_initializer
       # FIXME: Can we do better on indentation?
       inject_into_file "config/initializers/rhino.rb", before: /^end\s*$/ do
-        "  config.resources += ['#{class_name}']\n"
+        "  config.resources += [ \"#{class_name}\" ]\n"
       end
     end
 
