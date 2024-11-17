@@ -20,7 +20,6 @@ gem "stimulus-rails"
 gem "turbo-rails"
 gem "jsbundling-rails"
 gem "cssbundling-rails"
-gem "importmap-rails", ">= 1.2.3"
 gem "dartsass-rails"
 # require: false so bcrypt is loaded only when has_secure_password is used.
 # This is to avoid Active Model (and by extension the entire framework)
