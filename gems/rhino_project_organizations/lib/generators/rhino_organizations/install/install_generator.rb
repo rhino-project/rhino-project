@@ -5,7 +5,7 @@ module RhinoOrganizations
     class InstallGenerator < ::Rails::Generators::Base
       source_root File.expand_path('templates', __dir__)
 
-      def install_models # rubocop:todo Metrics/MethodLength
+      def install_models
         say 'Copying rhino_organizations models to app/models'
         copy_file "#{__dir__}/templates/models/organization.rb", 'app/models/organization.rb'
         copy_file "#{__dir__}/templates/models/role.rb", 'app/models/role.rb'
@@ -48,7 +48,7 @@ module RhinoOrganizations
         copy_file "#{__dir__}/templates/seeds/organizations.rb", 'db/seeds/test/organizations.rb'
       end
 
-      def install_active_admin # rubocop:disable Metrics/MethodLength
+      def install_active_admin
         say 'Copying rhino_organization ActiveAdmin files and configurations'
         copy_file "#{__dir__}/templates/admin/users_roles.rb", 'app/admin/users_roles.rb'
         data = <<-'RUBY'

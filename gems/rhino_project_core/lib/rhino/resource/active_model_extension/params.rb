@@ -6,7 +6,7 @@ module Rhino
       module Params
         extend ActiveSupport::Concern
 
-        class_methods do # rubocop:todo Metrics/BlockLength
+        class_methods do
           def create_params
             writeable_params("create")
           end

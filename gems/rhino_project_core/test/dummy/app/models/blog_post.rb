@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class BlogPost < ApplicationRecord
-  enum status: { draft: 0, active: 10, archived: 20 }, _prefix: :status
+  enum :status, { draft: 0, active: 10, archived: 20 }, prefix: :status
 
   belongs_to :blog
   has_many :og_meta_tags, dependent: :destroy

@@ -14,12 +14,12 @@ require "rhino_project_subscriptions"
 module Dummy
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.1
+    config.load_defaults 7.2
 
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w(assets tasks))
+    config.autoload_lib(ignore: %w[assets tasks])
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -32,8 +32,8 @@ module Dummy
     config.action_controller.allow_forgery_protection = false
 
     # Error indexes for nested attribute errors
-    # https://blog.bigbinary.com/2016/07/07/errors-can-be-indexed-with-nested-attrbutes-in-rails-5.html
-    config.active_record.index_nested_attribute_errors = true
+    # https://github.com/rails/rails/pull/48727
+    config.active_record.index_nested_attribute_errors = :nested_attributes_order
 
     # Necessary for ActiveStorage integration
     # Rhino::Resource::ActiveStorageExtension#url needs this to be set

@@ -19,7 +19,7 @@ class RhinoSieveOrderTestHelper < Rhino::TestCase::ControllerTest
                  "client" => @response.headers["client"] }
   end
 
-  def seed # rubocop:disable Metrics/AbcSize
+  def seed
     @current_user = create(:user)
     @blog = create(:blog, user: @current_user, published_at: Time.zone.now)
     @middle_instance = create(:blog_post, blog: @blog, created_at: Time.zone.now)
@@ -71,7 +71,7 @@ class RhinoSieveOrderMultipleClausesTest < RhinoSieveOrderTestHelper
     "/api/blog_posts"
   end
 
-  def seed # rubocop:disable Metrics/AbcSize
+  def seed
     @current_user = create(:user)
     @blog = create(:blog, user: @current_user, published_at: Time.zone.now)
 
@@ -156,7 +156,6 @@ class RhinoSieveOrderRelatedModelsTest < RhinoSieveOrderTestHelper
     "/api/og_meta_tags"
   end
 
-  # rubocop:disable Metrics/AbcSize
   def seed
     @current_user = create(:user)
 
@@ -173,7 +172,6 @@ class RhinoSieveOrderRelatedModelsTest < RhinoSieveOrderTestHelper
     @oldest_instance = create(:og_meta_tag, blog_post: @oldest_blog_post)
     @newest_instance = create(:og_meta_tag, blog_post: @newest_blog_post)
   end
-  # rubocop:enable Metrics/AbcSize
 
   test "ignores order clauses with invalid nested models" do
     @params = "blog_post.created_at"

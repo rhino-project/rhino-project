@@ -10,7 +10,7 @@ module Rhino
 
         include Rhino::Resource::ActiveRecordExtension::PropertiesDescribe
 
-        class_methods do # rubocop:disable Metrics/BlockLength
+        class_methods do
           def identifier_property
             primary_key
           end
@@ -51,7 +51,6 @@ module Rhino
               reflect_on_all_associations(:belongs_to).map(&:foreign_key).map(&:to_s)
             end
 
-            # rubocop:todo Style/OptionalBooleanParameter
             def reference_properties(read = true)
               references.filter_map do |r|
                 sym = reference_to_sym(r)
@@ -61,7 +60,6 @@ module Rhino
 
                 # Writeable if a one type or accepting nested
                 association = reflect_on_association(sym)
-                # rubocop:todo Performance/CollectionLiteralInLoop, Layout/LineLength
                 if %i[has_one belongs_to].include?(association.macro) || nested_attributes_options.key?(sym) || association.class_name == "ActiveStorage::Attachment"
                   sym
                 end

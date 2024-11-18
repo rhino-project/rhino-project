@@ -56,7 +56,6 @@ class RhinoSieveTestHelper < ActionDispatch::IntegrationTest
   end
 end
 
-# rubocop:disable Metrics/ClassLength
 class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
   def url
     "/api/blog_posts"
@@ -106,7 +105,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
     assert_equal [@nested_instance3.id].sort, nested_ids
   end
 
-  # rubocop:disable Metrics/AbcSize
   def expect_results_from_all
     fetch
     assert_equal 3, @json["total"]
@@ -121,7 +119,7 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
     assert_equal expected_instances, response_ids_from_key(instance_name)
     assert_equal expected_nested, response_ids
   end
-  # rubocop:enable Metrics/AbcSize
+
 
   test "should work with the name of the relationship as key and id as value e.g. '?filter[blog]=1'" do
     @params = { "blog" => @instance1.id }
@@ -316,7 +314,6 @@ class RhinoSieveFilterOneToManyTest < RhinoSieveTestHelper
     expect_results_from_blog2
   end
 end
-# rubocop:enable Metrics/ClassLength
 
 class RhinoSieveFilterLongChainTest < RhinoSieveTestHelper
   def url

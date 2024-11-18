@@ -2,7 +2,6 @@
 
 require "ffaker"
 
-# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :blog do
     published_at { FFaker::Time.date }
