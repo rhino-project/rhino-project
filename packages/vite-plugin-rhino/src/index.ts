@@ -219,21 +219,28 @@ export function RhinoProjectVite({
       // Initial API check on startup
       checkUrl();
 
-      // Watch app/models directory for changes
-      const modelsPath = path.join(process.cwd(), 'app', 'models');
-      if (fs.existsSync(modelsPath)) {
-        server.watcher.add(modelsPath);
-        server.watcher.on('change', (changedPath: string) => {
-          if (changedPath.startsWith(modelsPath)) {
-            logger.info(`Model file changed: ${changedPath}`, {
-              timestamp: true
-            });
-            checkUrl();
-          }
-        });
-      } else {
-        logger.warn('app/models directory not found for watching');
-      }
+      // Watch both app/models and db directories for changes
+      const watchPaths = [
+        path.join(process.cwd(), 'app', 'models'),
+        path.join(process.cwd(), 'db')
+      ];
+
+      watchPaths.forEach((watchPath) => {
+        if (fs.existsSync(watchPath)) {
+          server.watcher.add(watchPath);
+        } else {
+          logger.warn(`${watchPath} directory not found for watching`);
+        }
+      });
+
+      server.watcher.on('change', (changedPath: string) => {
+        if (watchPaths.some((watchPath) => changedPath.startsWith(watchPath))) {
+          logger.info(`File changed: ${changedPath}`, {
+            timestamp: true
+          });
+          checkUrl();
+        }
+      });
     },
 
     resolveId(id) {
