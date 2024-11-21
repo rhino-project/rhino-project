@@ -13,7 +13,7 @@ module RhinoJobs
 
       def update_procfile
         inject_into_file 'Procfile' do
-          "worker: COUNT=1 QUEUE=* bin/rails resque:workers\n"
+          "worker: INTERVAL=1.0 QUEUE=* bin/rails resque:work\n"
         end
         inject_into_file 'Procfile' do
           "scheduler: bin/rails resque:scheduler\n"
