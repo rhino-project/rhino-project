@@ -25,7 +25,7 @@ module RuboCop
       #     rhino_references %i[user category]
       #   end
       #
-      class OwnerSpecified < Cop
+      class OwnerSpecified < Base
         MSG = "ActiveRecord models listed in rhino.rb must specify exactly one ownership method (rhino_owner_global, rhino_owner_reference, or rhino_owner :symbol)."
 
         REQUIRED_METHODS = [:rhino_owner_global, :rhino_owner_base, :rhino_owner].freeze
