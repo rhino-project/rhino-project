@@ -13,7 +13,7 @@ module Rhino
         @param = params[:order]
 
         # Always append id to the end of the order clause to ensure a stable sort for pagination
-        result = apply_order.order(:id)
+        result = apply_order.order(scope.primary_key)
         @app.resolve(result, params)
       end
 

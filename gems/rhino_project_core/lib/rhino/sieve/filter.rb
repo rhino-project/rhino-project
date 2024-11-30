@@ -13,7 +13,7 @@ module Rhino
 
         filter = params[:filter].permit!.to_h
         scope = scope.joins(get_joins(scope.klass, filter))
-        query = apply_filters(scope, scope.klass, filter).distinct(:id)
+        query = apply_filters(scope, scope.klass, filter).distinct(scope.klass.primary_key)
         @app.resolve(query, params)
       end
 
