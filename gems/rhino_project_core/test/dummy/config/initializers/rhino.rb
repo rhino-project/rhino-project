@@ -27,4 +27,5 @@ Rhino.setup do |config|
   config.resources += ['DelegatedTypeEntry', 'DelegatedTypeMessage', 'DelegatedTypeComment']
   config.resources += ['Namespace::NamespacedMany']
   config.resources += ['Geospatial']
+  config.resources += ['AlternatePrimaryKey']
 end

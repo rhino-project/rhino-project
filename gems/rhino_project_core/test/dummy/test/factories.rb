@@ -53,5 +53,10 @@ FactoryBot.define do
     name { FFaker::Name.name }
     blog
   end
+
+  factory :alternate_primary_key do
+    name { FFaker::Name.name }
+    user
+  end
 end
 # rubocop:enable Metrics/BlockLength

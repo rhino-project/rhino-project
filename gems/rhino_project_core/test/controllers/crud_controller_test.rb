@@ -6,6 +6,7 @@ class CrudControllerTest < Rhino::TestCase::ControllerTest
   def setup
     sign_in
     @blog = create(:blog, user: @current_user)
+    @alternate_primary_key = create(:alternate_primary_key, user: @current_user)
   end
 
   test "index returns results" do
@@ -14,6 +15,14 @@ class CrudControllerTest < Rhino::TestCase::ControllerTest
     assert_response_ok
     assert_equal 1, parsed_response["total"]
     assert_equal @blog.title, parsed_response["results"][0]["title"]
+  end
+
+  test "index returns results for non-id primary key" do
+    get_api alternate_primary_keys_path
+
+    assert_response_ok
+    assert_equal 1, parsed_response["total"]
+    assert_equal @alternate_primary_key.name, parsed_response["results"][0]["name"]
   end
 
   test "show returns resource" do
