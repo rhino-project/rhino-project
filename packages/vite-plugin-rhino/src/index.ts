@@ -219,10 +219,11 @@ export function RhinoProjectVite({
       // Initial API check on startup
       checkUrl();
 
-      // Watch both app/models and db directories for changes
+      // Watch app/models, db directories, and config/routes.rb for changes
       const watchPaths = [
         path.join(process.cwd(), 'app', 'models'),
-        path.join(process.cwd(), 'db')
+        path.join(process.cwd(), 'db'),
+        path.join(process.cwd(), 'config', 'routes.rb')
       ];
 
       watchPaths.forEach((watchPath) => {
