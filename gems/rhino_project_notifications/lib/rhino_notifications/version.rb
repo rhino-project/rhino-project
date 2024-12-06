@@ -10,7 +10,7 @@ module RhinoNotifications
     MAJOR = 0
     MINOR = 22
     TINY  = 0
-    PRE   = "beta.5"
+    PRE   = "beta.6"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
