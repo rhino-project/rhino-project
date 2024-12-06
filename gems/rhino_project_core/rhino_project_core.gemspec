@@ -67,7 +67,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "pundit", "2.1.0"
 
   # CORS support
-  spec.add_dependency "rack-cors", "1.1.1"
+  spec.add_dependency "rack-cors", "2.0.2"
 
   spec.add_dependency "rake", "~> 13.1"
 
