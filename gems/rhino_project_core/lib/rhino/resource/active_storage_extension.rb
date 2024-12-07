@@ -11,15 +11,30 @@ module Rhino
       included do
         attribute :url
         attribute :url_attachment
+        attribute :variants, :json, default: {}
 
         rhino_policy :active_storage_attachment
 
-        def url
-          Rails.application.routes.url_helpers.rails_blob_url(self, only_path: false)
+        def url(attachment = self, **options)
+          Rails.application.routes.url_helpers.rails_blob_url(attachment, only_path: false, **options)
         end
 
-        def url_attachment
-          Rails.application.routes.url_helpers.rails_blob_url(self, only_path: false, disposition: :attachment)
+        def url_attachment(attachment = self)
+          url(attachment, disposition: :attachment)
+        end
+
+        def variants
+          # Not everything may be processed into a variant based on mime type
+          return unless variable?
+
+          record.attachment_reflections[self.name]&.named_variants&.keys&.index_with do |v|
+            variant = variant(v)
+
+            {
+               url: url(variant),
+               url_attachment: url_attachment(variant)
+            }
+          end
         end
 
         def display_name
@@ -29,7 +44,7 @@ module Rhino
 
       class_methods do
         def readable_properties
-          super + ["signed_id"]
+          super + [ "variants", "signed_id"]
         end
       end
 
