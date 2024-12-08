@@ -1,6 +1,6 @@
 import { omit, pick } from 'lodash-es';
 import { useEffect, useId, useMemo } from 'react';
-import env from '@rhino-project/config/env';
+import env from '../config/env';
 import { useUnmount } from 'react-use';
 
 export const RHINO_DEV_BROADCAST_CHANNEL = 'rhino_dev_channel';

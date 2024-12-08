@@ -1,4 +1,4 @@
-declare module 'virtual:@rhino-project/config/env' {
+declare module 'virtual:@rhino-project/core/config/env' {
   interface RhinoVirtualEnv extends ImportMetaEnv {
     readonly API_ROOT_PATH: string;
     readonly DESIGN_SYSTEM_ENABLED: string;

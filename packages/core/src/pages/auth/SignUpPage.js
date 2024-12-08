@@ -6,7 +6,7 @@ import { useRootPath, useSessionCreatePath } from '../../hooks/routes';
 import { useSignUpAction } from '../../queries/auth';
 import { hasOrganizationsModule, oauthProviders } from '../../utils/models';
 import { AuthPage } from './AuthPage';
-import { useRhinoConfig } from '@rhino-project/config';
+import { useRhinoConfig } from '../../config';
 import PropTypes from 'prop-types';
 import { OmniAuthButton } from '../../components/buttons/omniauth';
 

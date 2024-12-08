@@ -1,3 +1,7 @@
 packages:
-  - 'packages/*'
+  - 'packages/codemods'
+  - 'packages/core'
+  - 'packages/create-rhino-app'
+  - 'packages/eslint-plugin-rhino'
+  - 'packages/vite-plugin-rhino'
   - 'integrations/*'

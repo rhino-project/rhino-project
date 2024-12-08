@@ -1,4 +1,4 @@
-/** @type {import('@rhino-project/config').RhinoConfig} */
+/** @type {import('../../config').RhinoConfig} */
 const rhinoConfig = {
   version: 1,
   enableModelRoutes: true,

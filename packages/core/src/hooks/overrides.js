@@ -15,7 +15,7 @@ import {
   useModelAndAttributeFromPath
 } from './models';
 import { NullComponent } from '../components/null';
-import { useRhinoConfig } from '@rhino-project/config';
+import { useRhinoConfig } from '../config';
 
 // Based on:
 // https://medium.com/@dschnr/better-reusable-react-components-with-the-overrides-pattern-9eca2339f646

@@ -6,7 +6,7 @@ import RhinoLogo from './rhinoRedLogo.png';
 import styles from './RhinoDevTool.module.css';
 import { CloseButton } from '../buttons';
 import { useLocalStorage } from 'react-use';
-import env from '@rhino-project/config/env';
+import env from '../../config/env';
 import { RHINO_DEV_BROADCAST_CHANNEL } from '../../hooks/dev';
 
 const ContextDetails = ({ context: { id, type, context } }) => {
