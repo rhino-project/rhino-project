@@ -3,7 +3,6 @@ import { useModelShow } from '../hooks/queries';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { hasOrganizationsModule } from '../utils/models';
-import { SplashScreen } from '../components/logos';
 import { useBaseOwnerNavigation } from '../hooks/history';
 import { useRootPath } from '../hooks/routes';
 import { BaseOwnerContext, useBaseOwnerId } from '../hooks/owner';
@@ -69,7 +68,7 @@ export const BaseOwnerProvider = ({ children }) => {
         usersRoles
       }}
     >
-      {baseOwner ? children : <SplashScreen />}
+      {baseOwner ? children : <></>}
     </BaseOwnerContext.Provider>
   );
 };

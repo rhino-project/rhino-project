@@ -1,7 +1,6 @@
 import { renderHook } from '@testing-library/react';
 import { useContext } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { routePaths } from '../../routes';
 import { BaseOwnerProvider } from '../../contexts/BaseOwnerContext';
 import { BaseOwnerContext } from '../../hooks/owner';
 
@@ -206,7 +205,7 @@ describe('BaseOwnerContext', () => {
 
       // navigates using the firstBaseOwner id
       expect(mockUseBaseOwnerNavigationPushFn).toHaveBeenLastCalledWith(
-        routePaths.rootpath(),
+        '/',
         firstBaseOwner.id
       );
     });
@@ -312,7 +311,7 @@ describe('BaseOwnerContext', () => {
 
       // navigates using the firstBaseOwner id
       expect(mockUseBaseOwnerNavigationPushFn).toHaveBeenLastCalledWith(
-        routePaths.rootpath(),
+        '/',
         898989
       );
     });
