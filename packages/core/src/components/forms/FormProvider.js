@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { FormProvider as RHFFormProvider } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-import env from '@rhino-project/config/env';
+import env from '../../config/env';
 
 export const FormProvider = ({ children, ...props }) => {
   const { control } = props;

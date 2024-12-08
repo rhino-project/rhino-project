@@ -1,6 +1,6 @@
 import { createConsumer } from '@rails/actioncable';
 import { useMemo } from 'react';
-import env from '@rhino-project/config/env';
+import env from '../config/env';
 
 const CABLE_PATH = `${env.API_ROOT_PATH}/cable`;
 

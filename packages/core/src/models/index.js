@@ -1,7 +1,7 @@
 import { each } from 'lodash-es';
 
 import staticModels from 'models/static';
-import env from '@rhino-project/config/env';
+import env from '../config/env';
 
 const MODEL_PATH = '/api/info/openapi';
 

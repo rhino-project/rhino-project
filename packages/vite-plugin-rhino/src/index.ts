@@ -9,9 +9,9 @@ const CONFIG_MODULE_ID = 'rhino.config';
 const MODELS_STATIC_MODULE_ID = 'models/static';
 const CUSTOM_ROUTES_MODULE_ID = 'routes/custom';
 
-const ENV_MODULE_ID = 'virtual:@rhino-project/config/env';
+const ENV_MODULE_ID = 'virtual:@rhino-project/core/config/env';
 const RESOLVED_ENV_MODULE_ID = '\0' + ENV_MODULE_ID;
-const ASSETS_MODULE_ID = 'virtual:@rhino-project/config/assets';
+const ASSETS_MODULE_ID = 'virtual:@rhino-project/core/config/assets';
 const RESOLVED_ASSETS_MODULE_ID = '\0' + ASSETS_MODULE_ID;
 
 // Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
@@ -95,9 +95,9 @@ export function RhinoProjectVite({
 
         // Exclude the modules that are replaced by local files or virtual modules
         exclude: [
-          'virtual:@rhino-project/config/assets',
+          'virtual:@rhino-project/core/config/assets',
           'rhino.config',
-          'virtual:@rhino-project/config/env',
+          'virtual:@rhino-project/core/config/env',
           'models/static',
           'routes/custom'
         ]
@@ -106,7 +106,7 @@ export function RhinoProjectVite({
       test: {
         server: {
           deps: {
-            inline: ['@rhino-project/config', '@rhino-project/core']
+            inline: ['@rhino-project/core']
           }
         }
       }

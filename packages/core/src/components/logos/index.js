@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useRhinoAsset, useRhinoConfig } from '@rhino-project/config';
+import { useRhinoAsset, useRhinoConfig } from '../../config';
 
 export const ThemedLogo = () => {
   // State to track the current theme

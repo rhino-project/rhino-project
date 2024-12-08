@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
-import assets from './assets';
-import env from './env';
+import assets from './config/assets';
+import env from './config/env';
 import {
   RhinoConfigAttributeComponentMap,
   RhinoConfigGlobalComponentMap,
   RhinoConfigModelComponentMap
-} from './components';
+} from './config/components';
 import { merge } from 'lodash-es';
 
 // @ts-expect-error - We expect the project to have a file called rhino.config.jsx in the root of their project

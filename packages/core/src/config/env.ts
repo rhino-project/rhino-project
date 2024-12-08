@@ -1,4 +1,4 @@
-import env from 'virtual:@rhino-project/config/env';
+import env from 'virtual:@rhino-project/core/config/env';
 
 const RhinoRuntimeEnv: RhinoEnv = {
   ...env,

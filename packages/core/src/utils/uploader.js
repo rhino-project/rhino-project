@@ -1,5 +1,5 @@
 import { DirectUpload } from '@rails/activestorage';
-import env from '@rhino-project/config/env';
+import env from '../config/env';
 
 const END_POINT = `${env.API_ROOT_PATH}/rails/active_storage/direct_uploads`;
 
