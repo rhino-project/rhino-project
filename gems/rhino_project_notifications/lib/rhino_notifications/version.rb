@@ -8,9 +8,9 @@ module RhinoNotifications
 
   module VERSION
     MAJOR = 0
-    MINOR = 22
+    MINOR = 30
     TINY  = 0
-    PRE   = "beta.8"
+    PRE   = "alpha.1"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
