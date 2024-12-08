@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary     = ""
   s.description = ""
 
-  s.required_ruby_version     = ">= 3.1.0"
+  s.required_ruby_version     = ">= 3.3.0"
   s.required_rubygems_version = ">= 1.8.11"
 
   s.license = "MIT"
