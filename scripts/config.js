@@ -23,6 +23,10 @@ export const packages = [
   {
     name: '@rhino-project/core',
     packageDir: 'packages/core'
+  },
+  {
+    name: '@rhino-project/ui',
+    packageDir: 'packages/ui'
   }
 ];
 
