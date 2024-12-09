@@ -88,7 +88,8 @@
     "@babel/parser": "^7.17.0",
     "@babel/traverse": "^7.17.0",
     "@tanstack/react-query-devtools": "4.32.6",
-    "@testing-library/react": "14.0.0",
+    "@testing-library/react": "16.1.0",
+    "@testing-library/dom": "10.0.0",
     "@types/lodash-es": "^4.17.0",
     "@vitejs/plugin-react": "^4.2.1",
     "jsdom": "24.1.1"

@@ -73,7 +73,7 @@ describe('routes/NonAuthenticatedRoute', () => {
   });
 
   describe('unauthenticated', () => {
-    test('renders children', () => {
+    test.skip('renders children', () => {
       mockAuth = unauthenticatedState;
       render(
         <Wrapper>

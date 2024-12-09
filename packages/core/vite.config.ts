@@ -40,10 +40,16 @@ const config = defineConfig({
     copy({
       targets: [
         { src: 'src/rhino-env.d.ts', dest: 'dist/esm' },
+        { src: 'src/rhino-openapi.d.ts', dest: 'dist/esm' },
         {
           src: 'src/rhino-env.d.ts',
           dest: 'dist/cjs',
           rename: 'rhino-env.d.cts'
+        },
+        {
+          src: 'src/rhino-openapi.d.ts',
+          dest: 'dist/cjs',
+          rename: 'rhino-openapi.d.cts'
         }
       ],
       hook: 'writeBundle'
@@ -76,7 +82,7 @@ const config = defineConfig({
 export default mergeConfig(
   tanstackBuildConfig({
     entry: [
-      './src/index.js',
+      './src/index.ts',
       './src/config.tsx',
       './src/contexts/index.js',
       './src/queries/index.js',

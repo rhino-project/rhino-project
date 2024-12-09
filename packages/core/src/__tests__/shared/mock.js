@@ -1,7 +1,5 @@
 import { renderHook, waitFor } from '@testing-library/react';
 import React from 'react';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider } from '../../contexts/AuthContext';
 import { useAuth } from '../../hooks/auth';
 import {
   AUTH_BASE_PATH,
@@ -10,6 +8,7 @@ import {
   AUTH_VALIDATE_TOKEN_END_POINT,
   constructPath
 } from '../../lib/networking';
+import { RhinoProvider } from '../..';
 
 const defaultUser = {
   id: 1,
@@ -130,9 +129,7 @@ export class NetworkingMock {
   }) {
     function AuthWrapper({ children }) {
       return (
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryClientProvider>
+        <RhinoProvider queryClient={queryClient}>{children}</RhinoProvider>
       );
     }
 
@@ -147,7 +144,7 @@ export class NetworkingMock {
       }
     );
 
-    expect(view.result.current.auth.resolving).toBe(true);
+    await waitFor(() => expect(view.result.current.auth.resolving).toBe(true));
     expect(view.result.current.auth.user).toBeNull();
 
     await waitFor(() => expect(view.result.current.auth.resolving).toBe(false));
@@ -159,9 +156,7 @@ export class NetworkingMock {
   async produceUnauthenticatedState({ queryClient, hook = () => null }) {
     function AuthWrapper({ children }) {
       return (
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryClientProvider>
+        <RhinoProvider queryClient={queryClient}>{children}</RhinoProvider>
       );
     }
 
@@ -175,7 +170,8 @@ export class NetworkingMock {
         wrapper: AuthWrapper
       }
     );
-    expect(view.result.current.auth.resolving).toBe(true);
+
+    await waitFor(() => expect(view.result.current.auth.resolving).toBe(true));
     expect(view.result.current.auth.user).toBeNull();
 
     // wait for the hook to resolve
