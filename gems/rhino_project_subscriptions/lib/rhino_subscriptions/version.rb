@@ -8,9 +8,9 @@ module RhinoSubscriptions
 
   module VERSION
     MAJOR = 0
-    MINOR = 30
+    MINOR = 22
     TINY  = 0
-    PRE   = "beta.0"
+    PRE   = "beta.10"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
