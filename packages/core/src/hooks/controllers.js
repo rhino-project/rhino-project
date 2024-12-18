@@ -504,7 +504,13 @@ const getCreatablePaths = (model) =>
 
 export const useModelCreateController = (options) => {
   const model = useModel(options.model);
-  const { extraDefaultValues, parentId, paths, queryOptions } = options;
+  const {
+    extraDefaultValues,
+    autoFocus = true,
+    parentId,
+    paths,
+    queryOptions
+  } = options;
   const [errors, onError] = useFormBuildErrors();
 
   const mutation = useModelCreate(model, { onError });
@@ -540,8 +546,14 @@ export const useModelCreateController = (options) => {
   const { setFocus } = methods;
 
   useEffect(() => {
-    if (isString(computedPaths?.[0])) setFocus(computedPaths?.[0]);
-  }, [computedPaths, setFocus]);
+    // If the focus is true, set the focus to the first path if it is a string
+    if (autoFocus === true && isString(computedPaths?.[0])) {
+      setFocus(computedPaths?.[0]);
+      // If the focus is a string (not false), set the focus to that path
+    } else if (autoFocus) {
+      setFocus(autoFocus);
+    }
+  }, [computedPaths, autoFocus, setFocus]);
 
   return {
     model,
@@ -578,6 +590,7 @@ export const useModelEditController = (options) => {
   const {
     modelId,
     extraDefaultValues,
+    autoFocus = true,
     paths,
     debounceDelay = 2000,
     queryOptions
@@ -625,8 +638,14 @@ export const useModelEditController = (options) => {
   const { setFocus } = methods;
 
   useEffect(() => {
-    if (isString(computedPaths?.[0])) setFocus(computedPaths?.[0]);
-  }, [computedPaths, setFocus]);
+    // If the focus is true, set the focus to the first path if it is a string
+    if (autoFocus === true && isString(computedPaths?.[0])) {
+      setFocus(computedPaths?.[0]);
+      // If the focus is a string (not false), set the focus to that path
+    } else if (autoFocus) {
+      setFocus(autoFocus);
+    }
+  }, [computedPaths, autoFocus, setFocus]);
 
   return {
     model,
