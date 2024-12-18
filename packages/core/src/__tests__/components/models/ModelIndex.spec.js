@@ -36,7 +36,7 @@ describe('ModelIndex', () => {
           ModelIndexTable: Baz
         }}
         model="user"
-        path="name"
+        paths={['name']}
         fallback={false}
         queryOptions={{ enabled: false }}
       />,

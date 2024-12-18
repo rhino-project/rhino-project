@@ -37,7 +37,7 @@ describe('ModelCreate', () => {
           ModelCreateActions: Baz
         }}
         model="user"
-        path="name"
+        paths={['name']}
         fallback={false}
       />,
       { wrapper }

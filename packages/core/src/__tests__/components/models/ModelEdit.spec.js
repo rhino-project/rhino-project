@@ -33,7 +33,7 @@ describe('ModelEdit', () => {
           ModelEditActions: Baz
         }}
         model="user"
-        path="name"
+        paths={['name']}
         fallback={false}
       />,
       { wrapper }

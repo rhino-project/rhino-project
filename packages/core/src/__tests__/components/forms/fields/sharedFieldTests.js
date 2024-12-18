@@ -21,7 +21,7 @@ export const sharedFieldTests = (Component) => {
 
     return (
       <QueryClientProvider client={queryClient}>
-        <ModelEditSimple fallback={false} model="user" {...props}>
+        <ModelEditSimple fallback={false} model="blog" {...props}>
           {children}
         </ModelEditSimple>
       </QueryClientProvider>
