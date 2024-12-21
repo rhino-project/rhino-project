@@ -52,7 +52,6 @@ export const ModelCellBase = (props) => {
     case 'boolean':
       return <ModelCellBoolean {...props} />;
     case 'decimal':
-    case 'float':
     case 'number':
       if (attribute.format === 'currency')
         return <ModelCellCurrency {...props} />;

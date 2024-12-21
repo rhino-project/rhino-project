@@ -12,7 +12,7 @@ describe('ModelCellCurrency', () => {
       <ModelCellCurrency
         model={{
           properties: {
-            dummy: { type: 'float' }
+            dummy: { type: 'number', format: 'float' }
           }
         }}
         path="dummy"
@@ -30,7 +30,7 @@ describe('ModelCellCurrency', () => {
       <ModelCellCurrency
         model={{
           properties: {
-            dummy: { type: 'float' }
+            dummy: { type: 'number', format: 'float' }
           }
         }}
         path="dummy"

@@ -88,7 +88,6 @@ export const ModelDisplayGroupBase = ({ overrides, ...originalProps }) => {
       return <ModelDisplayGroupInteger {...props} />;
     case 'decimal':
     case 'number':
-    case 'float':
       if (attribute.format === 'currency')
         return <ModelDisplayGroupCurrency {...props} />;
       return <ModelDisplayGroupFloat {...props} />;

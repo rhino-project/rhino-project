@@ -124,7 +124,6 @@ export const ModelFieldGroupBase = ({ overrides, ...originalProps }) => {
           return <ModelFieldGroupInteger {...props} />;
       }
     case 'decimal':
-    case 'float':
     case 'number':
       if (attribute.format === 'currency')
         return <ModelFieldGroupCurrency {...props} />;

@@ -77,6 +77,12 @@ module Rhino
               # Identifier is a special format for identification on the front end
               format = :identifier if name == identifier_property
 
+              # Float is double precision in postgres by default
+              if type == :float
+                type = :number
+                format = :double
+              end
+
               # Dates and times are strings
               if DATE_FORMATS.include?(type)
                 format = type
