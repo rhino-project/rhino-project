@@ -84,7 +84,6 @@ export const ModelDisplayGroupBase = ({ overrides, ...originalProps }) => {
       }
     case 'boolean':
       return <ModelDisplayGroupBoolean {...props} />;
-    case 'identifier':
     case 'integer':
       return <ModelDisplayGroupInteger {...props} />;
     case 'decimal':

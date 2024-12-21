@@ -22,7 +22,7 @@ import {
 import { filter, isString } from 'lodash-es';
 import { useModelIndexContext } from '@rhino-project/core/hooks';
 import { useBaseOwnerNavigation } from '@rhino-project/core/hooks';
-import { getModelShowPath } from '@rhino-project/core/utils';
+import { getModelShowPath, isIdentifier } from '@rhino-project/core/utils';
 import { Table } from '../table/Table';
 import { ModelCell } from './ModelCell';
 import { ModelFooter } from './ModelFooter';
@@ -32,7 +32,7 @@ import { ModelSection } from './ModelSection';
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
     return (
-      a.type !== 'identifier' &&
+      !isIdentifier(a) &&
       a.name !== model.ownedBy &&
       a.type !== 'array' &&
       a.type !== 'jsonb' &&

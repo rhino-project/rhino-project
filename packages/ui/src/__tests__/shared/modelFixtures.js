@@ -18,7 +18,8 @@ export const api = {
             name: 'id',
             readOnly: true,
             nullable: false,
-            type: 'identifier'
+            type: 'integer',
+            format: 'identifier'
           },
           name: {
             name: 'name',
@@ -77,7 +78,8 @@ export const api = {
             name: 'id',
             readOnly: true,
             nullable: false,
-            type: 'identifier'
+            type: 'integer',
+            format: 'identifier'
           },
           org_name: {
             name: 'org_name',
@@ -110,7 +112,8 @@ export const api = {
             updatable: false,
             readOnly: true,
             nullable: false,
-            type: 'identifier'
+            type: 'integer',
+            format: 'identifier'
           },
           title: {
             name: 'title',

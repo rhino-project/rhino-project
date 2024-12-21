@@ -2,7 +2,10 @@ import {
   useModel,
   useGlobalComponentForAttribute
 } from '@rhino-project/core/hooks';
-import { getModelAndAttributeFromPath } from '@rhino-project/core/utils';
+import {
+  getModelAndAttributeFromPath,
+  isIdentifier
+} from '@rhino-project/core/utils';
 import { ModelCellArray } from './cells/ModelCellArray';
 import { ModelCellArrayReference } from './cells/ModelCellArrayReference';
 import { ModelCellAttachmentDownload } from './cells/ModelCellAttachmentDownload';
@@ -28,6 +31,9 @@ export const ModelCellBase = (props) => {
   const [, attribute] = getModelAndAttributeFromPath(model, path);
 
   // FIXME: Make this a separate function so that its easier to override
+
+  if (isIdentifier(attribute)) return <ModelCellIdentifier {...props} />;
+
   switch (attribute?.type) {
     case 'array':
       switch (attribute.items?.type) {
@@ -53,8 +59,6 @@ export const ModelCellBase = (props) => {
 
       return <ModelCellFloat {...props} />;
 
-    case 'identifier':
-      return <ModelCellIdentifier {...props} />;
     case 'integer':
       return <ModelCellInteger {...props} />;
 

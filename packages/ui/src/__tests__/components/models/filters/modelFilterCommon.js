@@ -31,7 +31,12 @@ describe('Common model filter behaviour', () => {
       const Component = module.default;
       const { asFragment } = render(
         <Component
-          model={{ properties: { id: { type: 'identifier' }, dummy: {} } }}
+          model={{
+            properties: {
+              id: { type: 'string', format: 'identifier' },
+              dummy: {}
+            }
+          }}
           path="dummy"
         />,
         {

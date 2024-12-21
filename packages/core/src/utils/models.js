@@ -53,7 +53,7 @@ export const isReference = (attribute) => attribute.type === 'reference';
 export const getReferenceAttributes = (model) =>
   filter(model.properties, (a) => isReference(a));
 
-export const isIdentifier = (attribute) => attribute.type === 'identifier';
+export const isIdentifier = (attribute) => attribute.format === 'identifier';
 export const getIdentifierAttribute = (model) =>
   find(model.properties, (a) => isIdentifier(a));
 

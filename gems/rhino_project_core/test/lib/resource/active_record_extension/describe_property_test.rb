@@ -9,7 +9,8 @@ module ActiveRecordExtension
     end
 
     test "identifier" do
-      assert_type("id", :identifier)
+      assert_type("id", :integer)
+      assert_format("id", :identifier)
     end
 
     test "string" do
@@ -140,17 +141,17 @@ module ActiveRecordExtension
     end
 
     test "date required" do
-      assert_type("date_required", "string")
+      assert_type("date_required", :string)
       assert_not @description[:nullable]
     end
 
     test "datetime required" do
-      assert_type("date_time_required", "string")
+      assert_type("date_time_required", :string)
       assert_not @description[:nullable]
     end
 
     test "time required" do
-      assert_type("time_required", "string")
+      assert_type("time_required", :string)
       assert_not @description[:nullable]
     end
 
@@ -204,9 +205,15 @@ module ActiveRecordExtension
 
     private
       def assert_type(property, type, model: EveryField)
-        @description = model.describe_property(property)
+        @description ||= model.describe_property(property)
 
         assert_equal(type, @description[:type])
+      end
+
+      def assert_format(property, format, model: EveryField)
+        @description ||= model.describe_property(property)
+
+        assert_equal(format, @description[:format])
       end
   end
 end
