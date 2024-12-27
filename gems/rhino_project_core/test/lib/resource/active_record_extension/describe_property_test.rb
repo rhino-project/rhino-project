@@ -67,31 +67,36 @@ module ActiveRecordExtension
     end
 
     test "float greater than" do
-      assert_type("float_gt", :float)
+      assert_type("float_gt", :number)
+      assert_format("flofloat_gtat_gte", :double)
       assert_equal(2, @description[:minimum])
       assert @description[:exclusiveMinimum]
     end
 
     test "float greater than or equal to" do
-      assert_type("float_gte", :float)
+      assert_type("float_gte", :number)
+      assert_format("float_gte", :double)
       assert_equal(2, @description[:minimum])
       assert_not @description[:exclusiveMinimum]
     end
 
     test "float less than" do
-      assert_type("float_lt", :float)
+      assert_type("float_lt", :number)
+      assert_format("float_lt", :double)
       assert_equal(2, @description[:maximum])
       assert @description[:exclusiveMaximum]
     end
 
     test "float less than or equal to" do
-      assert_type("float_lte", :float)
+      assert_type("float_lte", :number)
+      assert_format("float_lte", :double)
       assert_equal(2, @description[:maximum])
       assert_not @description[:exclusiveMaximum]
     end
 
     test "float in range" do
-      assert_type("float_in", :float)
+      assert_type("float_in", :number)
+      assert_format("float_in", :double)
       assert_equal(2, @description[:minimum])
       assert_equal(5, @description[:maximum])
       assert_not @description[:exclusiveMinimum]
@@ -131,7 +136,8 @@ module ActiveRecordExtension
     end
 
     test "float no nil" do
-      assert_type("float_no_nil", :float)
+      assert_type("float_no_nil", :number)
+      assert_format("float_no_nil", :double)
       assert_not @description[:nullable]
     end
 

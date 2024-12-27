@@ -14,7 +14,6 @@ export const yupTypeFromAttribute = (attribute) => {
     case 'boolean':
       return yup.boolean();
     case 'decimal':
-    case 'float':
       return yup.number();
     case 'integer':
       return yup.number().integer();
@@ -69,7 +68,6 @@ export const yupDefaultFromAttributeType = (attribute) => {
       return false;
     case 'reference':
       return null;
-    case 'float':
     case 'integer':
     case 'number':
       return '';
@@ -92,14 +90,7 @@ export const yupDefaultFromAttributeType = (attribute) => {
   }
 };
 
-const TRANSFORMABLE_TYPES = [
-  'string',
-  'text',
-  'float',
-  'integer',
-  'number',
-  'decimal'
-];
+const TRANSFORMABLE_TYPES = ['string', 'text', 'integer', 'number', 'decimal'];
 
 export const yupValidatorsFromAttribute = (attribute) => {
   let ytype = yupTypeFromAttribute(attribute);

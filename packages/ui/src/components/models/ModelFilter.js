@@ -37,7 +37,7 @@ export const ModelFilterBase = (props) => {
         default:
           return <ModelFilterInteger {...props} />;
       }
-    case 'float':
+    case 'number':
       return <ModelFilterFloat {...props} />;
 
     case 'reference':

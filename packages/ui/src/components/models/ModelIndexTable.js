@@ -57,7 +57,7 @@ const getSortableAttributes = (model) =>
     (a) =>
       a.type === 'string' ||
       a.type === 'datetime' ||
-      a.type === 'float' ||
+      a.type === 'number' ||
       a.type === 'integer'
   );
 
