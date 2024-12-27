@@ -34,7 +34,8 @@ import { withParams } from '../routes/withParams';
 import {
   getBaseOwnerFilters,
   getParentModel,
-  getReferenceAttributes
+  getReferenceAttributes,
+  isIdentifier
 } from '../utils/models';
 import { useDebouncedCallback } from 'use-debounce';
 import {
@@ -421,7 +422,7 @@ export const useModelShowContext = () => {
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
     return (
-      a.type !== 'identifier' &&
+      !isIdentifier(a) &&
       a.name !== model.ownedBy &&
       !(a.type === 'array' && a.readOnly) &&
       a.writeOnly !== true
