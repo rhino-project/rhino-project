@@ -10,7 +10,7 @@ module RhinoSubscriptions
     MAJOR = 0
     MINOR = 30
     TINY  = 0
-    PRE   = "alpha.6"
+    PRE   = "alpha.7"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
