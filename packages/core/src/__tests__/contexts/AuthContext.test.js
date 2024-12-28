@@ -1,9 +1,8 @@
 import { render, renderHook, screen, waitFor } from '@testing-library/react';
 import axios from 'axios';
-import { AuthProvider, AuthContext } from '../../contexts/AuthContext';
-import { useContext } from 'react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClient } from '@tanstack/react-query';
 import { NetworkingMock } from '../shared/mock';
+import { RhinoProvider, useRhinoContext } from '../..';
 
 vi.mock('axios');
 const networkingMock = new NetworkingMock();
@@ -16,17 +15,15 @@ describe('AuthContext', () => {
 
   function Wrapper({ children }) {
     return (
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          {children}
-          <h1>__AuthContext test__</h1>
-        </AuthProvider>
-      </QueryClientProvider>
+      <RhinoProvider queryClient={queryClient} forceStatic>
+        {children}
+        <h1>__AuthContext test__</h1>
+      </RhinoProvider>
     );
   }
 
   function Inner() {
-    const authContext = useContext(AuthContext);
+    const authContext = useRhinoContext();
     return (
       <h1>resolving: {authContext.resolving === true ? 'true' : 'false'}</h1>
     );
@@ -47,10 +44,11 @@ describe('AuthContext', () => {
 
   test('Sets user and resolving when sessionQuery is successful', async () => {
     networkingMock.mockValidateSessionSuccess(user);
-    const { result } = renderHook(() => useContext(AuthContext), {
+    const { result } = renderHook(() => useRhinoContext(), {
       wrapper: Wrapper
     });
-    expect(result.current.user).toBeNull();
+
+    await waitFor(() => expect(result.current.user).toBeNull());
     expect(result.current.resolving).toBe(true);
 
     await waitFor(() => expect(result.current.resolving).toBe(false));
@@ -59,10 +57,11 @@ describe('AuthContext', () => {
 
   test('Sets user and resolving when sessionQuery is failure', async () => {
     networkingMock.mockValidateSessionFailure(user);
-    const { result } = renderHook(() => useContext(AuthContext), {
+    const { result } = renderHook(() => useRhinoContext(), {
       wrapper: Wrapper
     });
-    expect(result.current.user).toBeNull();
+
+    await waitFor(() => expect(result.current.user).toBeNull());
     expect(result.current.resolving).toBe(true);
 
     await waitFor(() => expect(result.current.resolving).toBe(false));
@@ -111,19 +110,21 @@ describe('AuthContext', () => {
   });
 
   describe('initializing', () => {
-    test('Starts with initializing: true', () => {
-      const { result } = renderHook(() => useContext(AuthContext), {
+    test('Starts with initializing: true', async () => {
+      const { result } = renderHook(() => useRhinoContext(), {
         wrapper: Wrapper
       });
-      expect(result.current.initializing).toBe(true);
+
+      await waitFor(() => expect(result.current.initializing).toBe(true));
     });
 
     test('Sets initializing to false after success', async () => {
       networkingMock.mockValidateSessionSuccess(user);
-      const { result } = renderHook(() => useContext(AuthContext), {
+      const { result } = renderHook(() => useRhinoContext(), {
         wrapper: Wrapper
       });
-      expect(result.current.user).toBeNull();
+
+      await waitFor(() => expect(result.current.user).toBeNull());
       expect(result.current.initializing).toBe(true);
 
       await waitFor(() => expect(result.current.initializing).toBe(false));
@@ -132,10 +133,11 @@ describe('AuthContext', () => {
 
     test('Sets initializing to false after failure', async () => {
       networkingMock.mockValidateSessionFailure();
-      const { result } = renderHook(() => useContext(AuthContext), {
+      const { result } = renderHook(() => useRhinoContext(), {
         wrapper: Wrapper
       });
-      expect(result.current.user).toBeNull();
+
+      await waitFor(() => expect(result.current.user).toBeNull());
       expect(result.current.initializing).toBe(true);
 
       await waitFor(() => expect(result.current.initializing).toBe(false));
