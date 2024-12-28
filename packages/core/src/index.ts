@@ -18,4 +18,5 @@ export type RhinoResource = OpenAPIV3_1.SchemaObject & RhinoProperties;
 
 export interface Resources {}
 
-export * from './contexts/RhinoContext';
+export * from './RhinoContext';
+export * from './resources';

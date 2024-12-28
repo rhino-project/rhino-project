@@ -1,4 +1,4 @@
-import { useRhinoContext } from '../contexts/RhinoContext';
+import { useRhinoContext } from '../RhinoContext';
 
 export const useAuth = () => {
   return useRhinoContext();

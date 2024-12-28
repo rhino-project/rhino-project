@@ -7,7 +7,6 @@ export * from './dev';
 export * from './form';
 export * from './history';
 export * from './models';
-export * from './models2';
 export * from './overrides';
 export * from './owner';
 export * from './paths';

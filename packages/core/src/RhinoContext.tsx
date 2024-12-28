@@ -8,7 +8,7 @@ import React, {
   useCallback,
   useMemo
 } from 'react';
-import { OpenAPIV3_1 } from '../rhino-openapi';
+import { OpenAPIV3_1 } from './rhino-openapi';
 import { Resources, RhinoResource } from '..';
 import { cloneDeep } from 'lodash-es';
 import {
@@ -21,9 +21,9 @@ import {
   AUTH_VALIDATE_TOKEN_END_POINT,
   networkApiCall,
   networkApiCallOnlyData
-} from '../lib/networking';
+} from './lib/networking';
 // import { useRollbarPerson } from '@rollbar/react';
-import { useRhinoConfig } from '../config';
+import { useRhinoConfig } from './config';
 
 type ValidateTokenUser = {
   id: number;
