@@ -55,7 +55,7 @@ export interface RhinoContextType {
   logOut: () => void;
   refreshSession: () => Promise<unknown>;
   resolving: boolean;
-  resources: Resources;
+  resources: Record<keyof Resources, RhinoResource>;
   openApiSpec: OpenAPIV3_1.Document;
 }
 interface RhinoProviderProps {
