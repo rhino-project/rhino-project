@@ -1,0 +1,30 @@
+import PropTypes from 'prop-types';
+import { useModelShowController } from '@rhino-project/core/hooks';
+import { ModelShowProvider } from '@rhino-project/core/components/models';
+import { useMemo } from 'react';
+import { CircularProgress } from '@heroui/react';
+
+export const ModelShowSimple = ({ children, fallback = true, ...props }) => {
+  const controller = useModelShowController(props);
+  const { isInitialLoading } = controller;
+
+  // Fallback mirrors React 18 Suspense
+  const renderFallback = useMemo(() => {
+    if (!isInitialLoading || !fallback) return children;
+
+    if (fallback === true) return <CircularProgress />;
+
+    return fallback;
+  }, [children, fallback, isInitialLoading]);
+
+  return (
+    <ModelShowProvider {...controller}>{renderFallback}</ModelShowProvider>
+  );
+};
+
+ModelShowSimple.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
+};

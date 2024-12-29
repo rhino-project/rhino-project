@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelFilterGroup > should merge overrides 1`] = `
+<DocumentFragment>
+  <div
+    class="col-12 col-lg-4 d-flex flex-column mb-3"
+    id="FilterLayoutVertical-dummy"
+    model="[object Object]"
+    path="dummy"
+  >
+    <div
+      model="[object Object]"
+      path="dummy"
+    >
+      Bar
+    </div>
+    <div
+      model="[object Object]"
+      path="dummy"
+    >
+      Bar
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFilterGroup > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFilterGroup > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

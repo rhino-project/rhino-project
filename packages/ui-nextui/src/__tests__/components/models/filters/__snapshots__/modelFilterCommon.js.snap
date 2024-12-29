@@ -1,0 +1,681 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterBoolean 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterDate 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterDateTime 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterEnum 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  >
+    <option
+      disabled=""
+      value="-1"
+    >
+      undefined...
+    </option>
+  </select>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterFloat 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterFloat 2`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterInteger 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterIntegerSelect 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterTime 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should pass down arbitrary props ModelFilterYear 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterBoolean 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterDate 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterDateTime 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterEnum 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  >
+    <option
+      disabled=""
+      value="-1"
+    >
+      undefined...
+    </option>
+  </select>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterFloat 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterFloat 2`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterInteger 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterIntegerSelect 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterTime 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour > should render ModelFilterYear 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterBoolean 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterDate 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterDateTime 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterEnum 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  >
+    <option
+      disabled=""
+      value="-1"
+    >
+      undefined...
+    </option>
+  </select>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterFloat 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterFloat 2`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterInteger 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterIntegerSelect 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    data-foo="bar"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterTime 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should pass down arbitrary props ModelFilterYear 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterBoolean 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    class="form-check-input"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="checkbox"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterDate 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterDateTime 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterEnum 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  >
+    <option
+      disabled=""
+      value="-1"
+    >
+      undefined...
+    </option>
+  </select>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterFloat 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterFloat 2`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterInteger 1`] = `
+<DocumentFragment>
+  <input
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-control"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+    type="number"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterIntegerSelect 1`] = `
+<DocumentFragment>
+  <select
+    aria-invalid="false"
+    autocomplete="off"
+    class="form-select"
+    id="dummy"
+    name="dummy"
+    path="dummy"
+  />
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterTime 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Common model filter behaviour should render ModelFilterYear 1`] = `
+<DocumentFragment>
+  <div
+    class="react-datepicker-wrapper d-block"
+  >
+    <div
+      class="react-datepicker__input-container"
+    >
+      <input
+        autocomplete="off"
+        class="d-block form-control"
+        id="dummy"
+        type="text"
+        value=""
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

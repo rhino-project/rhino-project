@@ -1,0 +1,179 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelNavSection > displays models passed as an object 1`] = `
+<DocumentFragment>
+  <li
+    class="relative mb-2 w-full"
+    data-slot="base"
+    role="presentation"
+  >
+    <span
+      class="pl-1 text-tiny text-primary-foreground/80"
+      role="presentation"
+    >
+      Resources
+    </span>
+    <ul>
+      <a
+        class=""
+        href="/1/blogs"
+      >
+        <div
+          class="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40"
+        >
+          <span />
+          <span
+            class="flex-1 truncate text-small font-medium text-primary-foreground/60 group-data-[selected=true]:text-primary-foreground"
+          >
+            Blogs
+          </span>
+        </div>
+      </a>
+    </ul>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`ModelNavSection > displays models passed as string of arrays 1`] = `
+<DocumentFragment>
+  <li
+    class="relative mb-2 w-full"
+    data-slot="base"
+    role="presentation"
+  >
+    <span
+      class="pl-1 text-tiny text-primary-foreground/80"
+      role="presentation"
+    >
+      Resources
+    </span>
+    <ul>
+      <a
+        class=""
+        href="/1/users"
+      >
+        <div
+          class="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40"
+        >
+          <span />
+          <span
+            class="flex-1 truncate text-small font-medium text-primary-foreground/60 group-data-[selected=true]:text-primary-foreground"
+          >
+            Users
+          </span>
+        </div>
+      </a>
+    </ul>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`ModelNavSection > displays models returned from function as an object 1`] = `
+<DocumentFragment>
+  <li
+    class="relative mb-2 w-full"
+    data-slot="base"
+    role="presentation"
+  >
+    <span
+      class="pl-1 text-tiny text-primary-foreground/80"
+      role="presentation"
+    >
+      Resources
+    </span>
+    <ul>
+      <a
+        class=""
+        href="/1/blogs"
+      >
+        <div
+          class="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40"
+        >
+          <span />
+          <span
+            class="flex-1 truncate text-small font-medium text-primary-foreground/60 group-data-[selected=true]:text-primary-foreground"
+          >
+            Blogs
+          </span>
+        </div>
+      </a>
+    </ul>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`ModelNavSection > displays models returned from function as string of arrays 1`] = `
+<DocumentFragment>
+  <li
+    class="relative mb-2 w-full"
+    data-slot="base"
+    role="presentation"
+  >
+    <span
+      class="pl-1 text-tiny text-primary-foreground/80"
+      role="presentation"
+    >
+      Resources
+    </span>
+    <ul>
+      <a
+        class=""
+        href="/1/users"
+      >
+        <div
+          class="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40"
+        >
+          <span />
+          <span
+            class="flex-1 truncate text-small font-medium text-primary-foreground/60 group-data-[selected=true]:text-primary-foreground"
+          >
+            Users
+          </span>
+        </div>
+      </a>
+    </ul>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`ModelNavSection > renders without crashing 1`] = `
+<DocumentFragment>
+  <li
+    class="relative mb-2 w-full"
+    data-slot="base"
+    role="presentation"
+  >
+    <span
+      class="pl-1 text-tiny text-primary-foreground/80"
+      role="presentation"
+    >
+      Resources
+    </span>
+    <ul>
+      <a
+        class=""
+        href="/1/blogs"
+      >
+        <div
+          class="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40"
+        >
+          <span />
+          <span
+            class="flex-1 truncate text-small font-medium text-primary-foreground/60 group-data-[selected=true]:text-primary-foreground"
+          >
+            Blogs
+          </span>
+        </div>
+      </a>
+    </ul>
+  </li>
+</DocumentFragment>
+`;
+
+exports[`ModelNavSection > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

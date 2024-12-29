@@ -1,0 +1,54 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DisplayImage > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="relative shadow-black/5 shadow-none rounded-large"
+    style="max-width: fit-content;"
+  >
+     
+    <img
+      class="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large"
+      path="dummy"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayImage > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div
+    class="relative shadow-black/5 shadow-none rounded-large"
+    style="max-width: fit-content;"
+  >
+     
+    <img
+      class="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large"
+      path="dummy"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayImage > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div
+    class="relative shadow-black/5 shadow-none rounded-large"
+    style="max-width: fit-content;"
+  >
+     
+    <img
+      class="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large"
+      path="dummy"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayImage > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

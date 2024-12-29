@@ -1,0 +1,33 @@
+import PropTypes from 'prop-types';
+
+import { ModelEditProvider } from '@rhino-project/core/components/models';
+import { useModelEditController } from '@rhino-project/core/hooks';
+import { useMemo } from 'react';
+import { CircularProgress } from '@heroui/react';
+
+export const ModelEditSimple = ({ children, fallback = true, ...props }) => {
+  const controller = useModelEditController(props);
+  const {
+    show: { isInitialLoading }
+  } = controller;
+
+  // Fallback mirrors React 18 Suspense
+  const renderFallback = useMemo(() => {
+    if (!isInitialLoading || !fallback) return children;
+
+    if (fallback === true) return <CircularProgress />;
+
+    return fallback;
+  }, [children, fallback, isInitialLoading]);
+
+  return (
+    <ModelEditProvider {...controller}>{renderFallback}</ModelEditProvider>
+  );
+};
+
+ModelEditSimple.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ])
+};
