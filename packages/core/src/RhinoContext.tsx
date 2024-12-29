@@ -9,7 +9,7 @@ import React, {
   useMemo
 } from 'react';
 import { OpenAPIV3_1 } from './rhino-openapi';
-import { Resources, RhinoResource } from '..';
+import { Resources, RhinoResource } from './index';
 import { cloneDeep } from 'lodash-es';
 import {
   QueryClient,

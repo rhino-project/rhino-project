@@ -1,8 +1,8 @@
 import { useCallback, useMemo } from 'react';
 import { useRhinoContext } from './RhinoContext';
 import { isBaseOwned } from './utils/models';
-import { RhinoResource } from '..';
-import { Resources } from '..';
+import { RhinoResource } from './index';
+import { Resources } from './index';
 
 const identity = () => true;
 
