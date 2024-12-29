@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react';
-import { useRhinoContext } from '../contexts/RhinoContext';
-import { isBaseOwned } from '../utils';
+import { useRhinoContext } from './RhinoContext';
+import { isBaseOwned } from './utils/models';
 import { RhinoResource } from '..';
 import { Resources } from '..';
 
