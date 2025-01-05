@@ -24,29 +24,29 @@ class ModelGeneratorTest < Rails::Generators::TestCase
   end
 
   def test_model_with_owner_option
-    run_generator ["device", "name:string", "device_group:references", "--owner=device_group"]
+    run_generator ["device", "name:string", "device_group:references", "--owner=device_group", "--skip-admin"]
     assert_file File.join(destination_root, "app/models/device.rb"), /rhino_owner :device_group/
     assert_file File.join(destination_root, "app/models/device.rb"), /rhino_references %i\[ device_group \]/
   end
 
   def test_model_with_base_owner_as_owner_option
-    run_generator ["device_group", "name:string", "user:references", "--owner=user"]
+    run_generator ["device_group", "name:string", "user:references", "--owner=user", "--skip-admin"]
     assert_file File.join(destination_root, "app/models/device_group.rb"), /rhino_owner_base/
     assert_file File.join(destination_root, "app/models/device_group.rb"), /rhino_references %i\[ user \]/
   end
 
   def test_model_with_global_owner_as_owner_option
-    run_generator ["my_global_model", "name:string", "--owner=global"]
+    run_generator ["my_global_model", "name:string", "--owner=global", "--skip-admin"]
     assert_file File.join(destination_root, "app/models/my_global_model.rb"), /rhino_owner_global/
   end
 
   def test_model_with_base_owner_indirect_as_owner_option
-    run_generator ["my_base_model", "name:string", "user:references", "--owner=base"]
+    run_generator ["my_base_model", "name:string", "user:references", "--owner=base", "--skip-admin"]
     assert_file File.join(destination_root, "app/models/my_base_model.rb"), /rhino_owner_base/
   end
 
   def test_model_with_multiple_references
-    run_generator ["my_multiple_reference_model", "name:string", "category:references", "blog:references", "--owner=blog"]
+    run_generator ["my_multiple_reference_model", "name:string", "category:references", "blog:references", "--owner=blog", "--skip-admin"]
     assert_file File.join(destination_root, "app/models/my_multiple_reference_model.rb"), /rhino_owner :blog/
     assert_file File.join(destination_root, "app/models/my_multiple_reference_model.rb"), /rhino_references %i\[ category blog \]/
   end
