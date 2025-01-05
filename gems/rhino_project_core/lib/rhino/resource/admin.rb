@@ -23,7 +23,7 @@ module Rhino
 
             # Restrict to the valid create/update properties
             references.select! { |r| permitted.include?(r.to_sym) }
-            permitted += references.map { |r| m.reflections[r].foreign_key }
+            permitted += references.map { |r| resource.reflections[r].foreign_key }
 
             permitted.uniq
           end
