@@ -1,2 +1,4 @@
-Rhino::Resource::Admin.register <%= class_name %> do
+ActiveAdmin.register <%= class_name %> do
+  rhino_filters
+  rhino_permit_params
 end

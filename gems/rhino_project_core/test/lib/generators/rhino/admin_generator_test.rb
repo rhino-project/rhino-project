@@ -10,7 +10,7 @@ class AdminGeneratorTest < Rails::Generators::TestCase
 
   def test_admin
     run_generator ["device_group"]
-    assert_file File.join(destination_root, "app/admin/device_groups.rb"), "Rhino::Resource::Admin.register DeviceGroup do\nend\n"
+    assert_file File.join(destination_root, "app/admin/device_groups.rb"), "ActiveAdmin.register DeviceGroup do\n  rhino_filters\n  rhino_permit_params\nend\n"
   end
 
   private
