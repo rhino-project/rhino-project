@@ -51,6 +51,8 @@ module RhinoOrganizations
       def install_active_admin
         say 'Copying rhino_organization ActiveAdmin files and configurations'
         copy_file "#{__dir__}/templates/admin/users_roles.rb", 'app/admin/users_roles.rb'
+        copy_file "#{__dir__}/templates/admin/organizations.rb", 'app/admin/organizations.rb'
+
         data = <<-'RUBY'
         br
         br
