@@ -25,8 +25,6 @@ require "phonelib"
 require "pundit"
 require "segment/analytics"
 
-require_relative "resource/admin"
-
 module Rhino
   class Engine < ::Rails::Engine
     config.before_configuration do
