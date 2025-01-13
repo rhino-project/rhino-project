@@ -80,7 +80,8 @@ module Rhino
             quantity: 1,
             price: args["price"]
           }],
-          customer: customer_id
+          customer: customer_id,
+          payment_method_collection: "if_required"
         )
       end
 
