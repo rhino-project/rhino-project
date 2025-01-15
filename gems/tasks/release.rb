@@ -4,7 +4,6 @@
 FRAMEWORKS = %w(
 rhino_project_core
 rhino_project_organizations
-rhino_project_jobs
 rhino_project_notifications
 rhino_project_subscriptions
 rubocop-rhino-project

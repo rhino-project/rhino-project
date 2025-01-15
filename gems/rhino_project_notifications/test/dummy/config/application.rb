@@ -9,7 +9,6 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 
 require 'rhino_project_core'
-require 'rhino_project_jobs'
 require "rhino_project_notifications"
 
 module Dummy
