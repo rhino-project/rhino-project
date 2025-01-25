@@ -6,6 +6,7 @@ module RhinoSubscriptions
       source_root File.expand_path('templates', __dir__)
 
       def install
+        template "rhino_subscriptions.rb", "config//initializers/rhino_subscriptions.rb"
       end
     end
   end
