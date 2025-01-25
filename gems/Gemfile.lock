@@ -44,7 +44,7 @@ PATH
     rhino_project_subscriptions (0.23.0.beta.0)
       rails (~> 7.2.0, >= 7.2.0)
       rhino_project_core (= 0.23.0.beta.0)
-      stripe (= 5.28.0)
+      stripe (= 13.3.1)
 
 GEM
   remote: https://rubygems.org/
@@ -520,7 +520,7 @@ GEM
       railties (>= 6.0.0)
     stream (0.5.5)
     stringio (3.1.2)
-    stripe (5.28.0)
+    stripe (13.3.1)
     swagger-blocks (3.0.0)
     terser (1.2.4)
       execjs (>= 0.3.0, < 3)
