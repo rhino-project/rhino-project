@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activeadmin", "3.2.2"
 
   # Tagging
-  spec.add_dependency "acts-as-taggable-on", "11.0.0"
+  spec.add_dependency "acts-as-taggable-on", "12.0.0"
 
   # Analytics
   spec.add_dependency "analytics-ruby", "2.0.13"
