@@ -295,10 +295,6 @@ const rubyTag = await publishRubyHack({
       packageDir: 'gems/rhino_project_organizations'
     },
     {
-      name: 'rhino_project_jobs',
-      packageDir: 'gems/rhino_project_jobs'
-    },
-    {
       name: 'rhino_project_notifications',
       packageDir: 'gems/rhino_project_notifications'
     },

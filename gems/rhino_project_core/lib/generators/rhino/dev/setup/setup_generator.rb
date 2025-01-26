@@ -15,8 +15,6 @@ module Rhino
         class_option :db_port, type: :numeric, default: 5432, group: :database
         class_option :db_user, type: :string, group: :database
         class_option :db_password, type: :string, group: :database
-        class_option :redis_port, type: :numeric, default: 6379, group: :redis
-        class_option :redis_database, type: :numeric, default: 0, group: :redis
 
         attr_reader :server_port,
                     :db_name,
@@ -24,9 +22,6 @@ module Rhino
                     :db_port,
                     :db_user,
                     :db_password,
-                    :redis_host,
-                    :redis_port,
-                    :redis_database,
                     :dockerized
 
         source_root File.expand_path("templates", __dir__)
@@ -92,18 +87,6 @@ module Rhino
             options[:db_password] || ENV["DB_PASSWORD"] || ""
           end
 
-          def redis_host_default
-            options[:redis_host] || ENV["REDIS_HOST"] || "localhost"
-          end
-
-          def redis_port_default
-            options[:redis_port] || ENV["REDIS_PORT"]
-          end
-
-          def redis_database_default
-            options[:redis_database] || ENV["REDIS_DATABASE"]
-          end
-
           def dockerized_default
             options[:defaults] == "docker" ? "Y" : "N"
           end
@@ -114,7 +97,6 @@ module Rhino
             @server_port = ask_prompt("Port?", server_port_default)
 
             collect_database_info
-            collect_redis_info
           end
 
           def collect_docker_info
@@ -126,9 +108,6 @@ module Rhino
             @db_user = "postgres"
             @db_password = "password"
             @db_port = 5432
-            @redis_host = "redis"
-            @redis_port = 6379
-            @redis_database = 0
 
             puts <<~HERE
               The following docker configuration has been automatically set for you:
@@ -136,9 +115,6 @@ module Rhino
               Database port: #{db_port}
               Database user: #{db_user}
               Database password: #{db_password}
-              Redis host: #{redis_host}
-              Redis port: #{redis_port}
-              Redis database: #{redis_database}
             HERE
           end
 
@@ -148,14 +124,6 @@ module Rhino
             @db_port ||= ask_prompt("Database port?", db_port_default)
             @db_user ||= ask_prompt("Database User?", db_user_default)
             @db_password ||= ask_prompt("Database Password?", db_password_default)
-
-            nil
-          end
-
-          def collect_redis_info
-            @redis_host ||= ask_prompt("Redis host?", redis_host_default)
-            @redis_port ||= ask_prompt("Redis port?", redis_port_default)
-            @redis_database ||= ask_prompt("Redis database?", redis_database_default)
 
             nil
           end

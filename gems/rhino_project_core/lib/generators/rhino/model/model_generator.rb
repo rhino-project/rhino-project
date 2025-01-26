@@ -11,6 +11,7 @@ module Rhino
     class_option :owner, type: :string, desc: "The model is owned by the reference attribute", group: :owner
     class_option :base_owner, type: :boolean, default: false, desc: "The model is owned by the base owner", group: :owner
     class_option :global_owner, type: :boolean, default: false, desc: "The model is globally owned", group: :owner
+    class_option :skip_admin, type: :boolean, default: false, desc: "Skip generating ActiveAdmin resources", group: :admin
 
     # Parent source paths
     def source_paths
@@ -50,6 +51,10 @@ module Rhino
       inject_into_file model_file, after: /#{owner_call}/ do
         "\n  rhino_references %i[ #{reference_attributes.map(&:name).join(' ')} ]"
       end
+    end
+
+    def active_admin_resource
+      generate "rhino:admin", class_name unless options[:skip_admin]
     end
 
     protected
