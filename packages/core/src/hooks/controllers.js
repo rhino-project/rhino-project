@@ -550,7 +550,7 @@ export const useModelCreateController = (options) => {
     if (autoFocus === true && isString(computedPaths?.[0])) {
       setFocus(computedPaths?.[0]);
       // If the focus is a string (not false), set the focus to that path
-    } else if (autoFocus) {
+    } else if (isString(autoFocus)) {
       setFocus(autoFocus);
     }
   }, [computedPaths, autoFocus, setFocus]);
@@ -641,8 +641,9 @@ export const useModelEditController = (options) => {
     // If the focus is true, set the focus to the first path if it is a string
     if (autoFocus === true && isString(computedPaths?.[0])) {
       setFocus(computedPaths?.[0]);
+
       // If the focus is a string (not false), set the focus to that path
-    } else if (autoFocus) {
+    } else if (isString(autoFocus)) {
       setFocus(autoFocus);
     }
   }, [computedPaths, autoFocus, setFocus]);
