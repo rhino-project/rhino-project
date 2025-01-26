@@ -11,6 +11,8 @@ module Rhino
       included do
         attribute :url
         attribute :url_attachment
+        attribute :previews, :json, default: {}
+        attribute :representations, :json, default: {}
         attribute :variants, :json, default: {}
 
         rhino_policy :active_storage_attachment
@@ -23,18 +25,33 @@ module Rhino
           url(attachment, disposition: :attachment)
         end
 
+        def representations
+          return unless representable?
+
+          record.attachment_reflections[self.name]&.named_variants&.keys&.index_with do |v|
+            representation = representation(v)
+
+            {
+               url: url(representation),
+               url_attachment: url_attachment(representation)
+            }
+          end
+        end
+
+        # FIXME: Cache for performance
+        def previews
+          # Not everything may be processed into a preview based on mime type
+          return unless previewable?
+
+          representations
+        end
+
+        # FIXME: Cache for performance
         def variants
           # Not everything may be processed into a variant based on mime type
           return unless variable?
 
-          record.attachment_reflections[self.name]&.named_variants&.keys&.index_with do |v|
-            variant = variant(v)
-
-            {
-               url: url(variant),
-               url_attachment: url_attachment(variant)
-            }
-          end
+          representations
         end
 
         def display_name
@@ -44,7 +61,7 @@ module Rhino
 
       class_methods do
         def readable_properties
-          super + [ "variants", "signed_id"]
+          super + [ "previews", "representations", "variants", "signed_id"]
         end
       end
 

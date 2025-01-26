@@ -9,8 +9,17 @@ module Rhino
     include Rhino::Authenticated
 
     def prices
-      list = ::Stripe::Price.list({ active: true, limit: 5, expand: ["data.product"] })
-      render json: { prices: list["data"] }
+      # Unfortunately we can't use the search API here because you can't do AND and OR together
+      # And parentheses don't work either https://docs.stripe.com/search#query-structure-and-terminology
+      list = if RhinoSubscriptions.products == :all
+        ::Stripe::Price.list({ active: true, limit: 5, expand: ["data.product"] })["data"]
+      else
+        RhinoSubscriptions.products.flat_map do |product|
+          ::Stripe::Price.list({ product:, active: true, limit: 5, expand: ["data.product"] })["data"]
+        end
+      end
+
+      render json: { prices: list }
     end
 
     def create_checkout_session
@@ -80,7 +89,8 @@ module Rhino
             quantity: 1,
             price: args["price"]
           }],
-          customer: customer_id
+          customer: customer_id,
+          payment_method_collection: RhinoSubscriptions.payment_method_collection
         )
       end
 

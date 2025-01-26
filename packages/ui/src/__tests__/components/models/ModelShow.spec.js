@@ -64,7 +64,7 @@ describe('ModelShow', () => {
           }}
           model="user"
           modelId="1"
-          path="name"
+          paths={['name']}
           fallback={false}
         />,
         { wrapper }

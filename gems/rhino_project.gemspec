@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary     = ""
   s.description = ""
 
-  s.required_ruby_version     = ">= 3.1.0"
+  s.required_ruby_version     = ">= 3.3.0"
   s.required_rubygems_version = ">= 1.8.11"
 
   s.license = "MIT"
@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rhino_project_core", version
   s.add_dependency "rhino_project_organizations", version
-  s.add_dependency "rhino_project_jobs", version
   s.add_dependency "rhino_project_notifications",    version
   s.add_dependency "rhino_project_subscriptions",  version
   s.add_dependency "bundler", ">= 1.15.0"
