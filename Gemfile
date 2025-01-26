@@ -2,7 +2,7 @@
 
 source "https://rubygems.org"
 
-ruby '3.3.6'
+ruby '3.4.1'
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -40,8 +40,8 @@ gem "cgi", ">= 0.3.6", require: false
 gem "prism"
 
 group :rubocop do
-  # These are aligned with rails 7.0
-  gem 'rubocop', '1.64.1', require: false
+  # These are aligned with rails 8.0
+  gem 'rubocop', '1.67.0', require: false
   gem 'rubocop-packaging', '0.5.2', require: false
   gem 'rubocop-performance', '1.21.0', require: false
   gem 'rubocop-minitest', '0.35.0', require: false
