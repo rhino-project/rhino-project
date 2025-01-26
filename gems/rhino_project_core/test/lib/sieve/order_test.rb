@@ -122,7 +122,7 @@ class RhinoSieveOrderTest < RhinoSieveOrderTestHelper
     assert_order @json["results"], @newest_instance, @middle_instance, @oldest_instance
   end
 
-  test "ordering by non-existing columns should ignore order param and use default ordering" do
+  test "ordering by non-existing columns should ignore order param and use default scope ordering" do
     @params = "zzzcreated_atzzz"
     fetch
 
