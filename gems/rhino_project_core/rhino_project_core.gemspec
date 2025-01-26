@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
 
   # Authentication
   spec.add_dependency "devise", "4.9.4"
-  spec.add_dependency "devise_token_auth", "1.2.4"
+  spec.add_dependency "devise_token_auth", "1.2.5"
 
   # Friendly id slugs
   spec.add_dependency "friendly_id", "5.3.0"
