@@ -19,5 +19,5 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency 'activesupport', '>= 4.2.0'
   spec.add_runtime_dependency 'rubocop', '>= 1.24.1', '< 2.0'
   spec.add_runtime_dependency 'rubocop-ast', '>= 1.21.0', '< 2.0'
-  spec.add_runtime_dependency 'parser', "~> 3.3.6.0",  ">= 3.3.6.0"
+  spec.add_runtime_dependency 'parser', "~> 3.3.7.0",  ">= 3.3.7.0"
 end
