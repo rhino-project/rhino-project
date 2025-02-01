@@ -522,7 +522,7 @@
     "classnames": "2.3.1",
     "date-fns": "2.28.0",
     "lodash-es": "4.17.21",
-    "prop-types": "15.7.2",
+    "prop-types": "15.8.1",
     "qs": "6.9.7",
     "react-bootstrap-typeahead": "6.3.2",
     "react-datepicker": "4.8.0",
