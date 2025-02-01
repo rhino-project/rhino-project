@@ -515,7 +515,7 @@
     "@rhino-project/config": "workspace:*",
     "@stripe/react-stripe-js": "2.1.0",
     "@stripe/stripe-js": "1.52.0",
-    "@tanstack/react-table": "8.10.3",
+    "@tanstack/react-table": "8.20.1",
     "axios": "1.7.4",
     "bootstrap": "5.3.3",
     "bootstrap-icons": "1.11.3",
