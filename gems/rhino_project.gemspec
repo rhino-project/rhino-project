@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.email    = ""
   s.homepage = "https://rhino-project.org"
 
-  s.files = ["README.md", "LICENSE"]
+  s.files = ["LICENSE"]
 
   s.metadata = {
   }
