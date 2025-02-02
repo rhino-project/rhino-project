@@ -2,7 +2,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { execSync } from 'node:child_process';
-import { transformWithEsbuild } from 'vite';
+import { loadEnv, transformWithEsbuild } from 'vite';
 import type { Plugin, ResolvedConfig, ViteDevServer } from 'vite';
 
 const CONFIG_MODULE_ID = 'rhino.config';
@@ -147,11 +147,14 @@ export function RhinoProjectVite({
     configureServer(server: ViteDevServer) {
       if (!enableStaticCheck) return;
 
-      const apiRootPath = CONFIG.env.VITE_API_ROOT_PATH;
+      // https://main.vitejs.dev/config/#using-environment-variables-in-config
+      const env = loadEnv(CONFIG.mode, process.cwd(), '');
+
+      const apiRootPath = env.ROOT_URL;
       const logger = server.config.logger;
 
       if (!apiRootPath) {
-        logger.error('VITE_API_ROOT_PATH environment variable is not defined.');
+        logger.error('ROOT_URL environment variable is not defined.');
         return;
       }
 
