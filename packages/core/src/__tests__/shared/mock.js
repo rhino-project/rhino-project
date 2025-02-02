@@ -7,8 +7,7 @@ import {
   AUTH_BASE_PATH,
   AUTH_CREATE_END_POINT,
   AUTH_DESTROY_END_POINT,
-  AUTH_VALIDATE_TOKEN_END_POINT,
-  constructPath
+  AUTH_VALIDATE_TOKEN_END_POINT
 } from '../../lib/networking';
 
 const defaultUser = {
@@ -19,7 +18,7 @@ const defaultUser = {
 
 export class NetworkingMock {
   axiosResult = {
-    // [API_ROOT_PATH]: {
+    // [path]: {
     // 'post': () => promise with result
     // 'delete': () => promise with result
     // }
@@ -38,11 +37,10 @@ export class NetworkingMock {
   }
 
   _mockSuccess({ data, path, method }) {
-    const fullPath = constructPath(path);
-    if (this.axiosResult[fullPath] == null) {
-      this.axiosResult[fullPath] = {};
+    if (this.axiosResult[path] == null) {
+      this.axiosResult[path] = {};
     }
-    this.axiosResult[fullPath][`__${method}`] = () => {
+    this.axiosResult[path][`__${method}`] = () => {
       return new Promise((resolve) =>
         setTimeout(() => {
           resolve({
@@ -54,11 +52,10 @@ export class NetworkingMock {
   }
 
   _mockFailure({ path, method, status, errors = {} }) {
-    const fullPath = constructPath(path);
-    if (this.axiosResult[fullPath] == null) {
-      this.axiosResult[fullPath] = {};
+    if (this.axiosResult[path] == null) {
+      this.axiosResult[path] = {};
     }
-    this.axiosResult[fullPath][`__${method}`] = () =>
+    this.axiosResult[path][`__${method}`] = () =>
       new Promise((resolve, reject) =>
         setTimeout(
           () =>

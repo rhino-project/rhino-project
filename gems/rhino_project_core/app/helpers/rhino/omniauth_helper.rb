@@ -5,12 +5,10 @@ module Rhino
     module_function
 
     def strategies_metadata
-      params = { resource_class: "User" }
-
       strategies.each_with_object([]) do |strategy, array|
         array << {
           name: strategy,
-          path: "#{::OmniAuth.config.path_prefix}/#{strategy}?#{params.to_param}"
+          path: "#{::OmniAuth.config.path_prefix}/#{strategy}"
         }
       end
     end
