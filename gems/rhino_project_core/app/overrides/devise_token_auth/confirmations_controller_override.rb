@@ -5,7 +5,7 @@ module DeviseTokenAuth::ConfirmationsController::Extensions
   def show
     super
   rescue StandardError
-    redirect_to ENV["FRONT_END_URL"]
+    redirect_to ENV["ROOT_URL"]
   end
 end
 
