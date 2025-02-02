@@ -3,7 +3,7 @@ import { useQuery, useMutation } from '@tanstack/react-query';
 import { networkApiCall } from '../lib/networking';
 import { useUserId } from '../hooks/auth';
 
-const basePath = (userId) => `api/users/${userId}/notifications`;
+const basePath = (userId) => `/api/users/${userId}/notifications`;
 const fullPath = (userId, queryPath) => `${basePath(userId)}/${queryPath}`;
 
 export const useNotifications = () => {
