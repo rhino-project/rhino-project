@@ -4,7 +4,7 @@ import * as networking from './networking.js';
 import { toastStore } from '../queries/toast';
 import env from '@rhino-project/config/env';
 
-export const AUTH_BASE_PATH = 'api/auth';
+export const AUTH_BASE_PATH = '/api/auth';
 export const AUTH_ACCEPT_PATH = `${AUTH_BASE_PATH}/invitation`;
 export const AUTH_CREATE_END_POINT = AUTH_BASE_PATH + '/sign_in';
 export const AUTH_DESTROY_END_POINT = AUTH_BASE_PATH + '/sign_out';
@@ -62,8 +62,9 @@ export const networkApiCall = (path, options) => {
   }).catch((error) => {
     if (
       ((error.response.status === 401 || error.response.status === 403) &&
-        (!path.startsWith('api/auth') || path === 'api/auth/validate_token')) ||
-      (error.response.status === 404 && path === 'api/auth/sign_out')
+        (!path.startsWith(AUTH_BASE_PATH) ||
+          path === AUTH_VALIDATE_TOKEN_END_POINT)) ||
+      (error.response.status === 404 && path === AUTH_DESTROY_END_POINT)
     ) {
       // If the response is 401 or 403 (and not part of authenticating (other
       // than token validation), invalidate the session

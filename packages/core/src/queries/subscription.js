@@ -5,11 +5,11 @@ import { loadStripe as Stripe } from '@stripe/stripe-js';
 import { networkApiCall } from '../lib/networking';
 import env from '@rhino-project/config/env';
 
-const GET_PRICES_API_PATH = 'api/subscription/prices';
-const CHECKOUT_API_PATH = 'api/subscription/create-checkout-session';
-const CANCEL_API_PATH = 'api/subscription/cancel';
-const SUBSCRIPTION_API_PATH = 'api/subscription/subscriptions';
-const CHECK_SESSION_API_PATH = 'api/subscription/check_session_id?';
+const GET_PRICES_API_PATH = '/api/subscription/prices';
+const CHECKOUT_API_PATH = '/api/subscription/create-checkout-session';
+const CANCEL_API_PATH = '/api/subscription/cancel';
+const SUBSCRIPTION_API_PATH = '/api/subscription/subscriptions';
+const CHECK_SESSION_API_PATH = '/api/subscription/check_session_id?';
 
 // Create a Checkout Session with the selected plan ID
 export async function CreateCheckoutSession(price, base_owner_id) {
