@@ -23,7 +23,7 @@ module Rhino
         match[1].downcase.to_sym
       end.uniq
 
-      strategies += [:developer] if Rails.env.development? && !Rake.try(:application)
+      strategies += [:developer] if Rails.env.development?
 
       strategies
     end
