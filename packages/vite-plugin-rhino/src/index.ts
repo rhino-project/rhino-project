@@ -132,7 +132,7 @@ export function RhinoProjectVite({
       });
 
       // Check for required environment variables
-      const requiredEnv = ['VITE_API_ROOT_PATH'];
+      const requiredEnv = [] as Array<string>;
       requiredEnv.forEach((key) => {
         if (!config.env[key]) {
           throw new Error(

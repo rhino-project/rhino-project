@@ -2,7 +2,6 @@ import axios from 'axios';
 import * as qs from 'qs';
 import * as networking from './networking.js';
 import { toastStore } from '../queries/toast';
-import env from '@rhino-project/config/env';
 
 export const AUTH_BASE_PATH = '/api/auth';
 export const AUTH_ACCEPT_PATH = `${AUTH_BASE_PATH}/invitation`;
@@ -16,9 +15,6 @@ const DEFAULT_HEADERS = {
   'Content-Type': 'application/json',
   Accept: 'application/json'
 };
-
-export const constructPath = (path) =>
-  new URL(path, env.API_ROOT_PATH).toString();
 
 const _buildHeaders = (headers = {}) => {
   return { ...DEFAULT_HEADERS, ...headers };
@@ -52,7 +48,7 @@ export const networkApiCall = (path, options) => {
     ...options
   };
 
-  return axios(constructPath(path), {
+  return axios(path, {
     ...defaultOptions,
     headers: _buildHeaders(defaultOptions.headers),
     paramsSerializer: {
