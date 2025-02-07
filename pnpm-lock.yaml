@@ -407,11 +407,11 @@ importers:
         specifier: 24.1.1
         version: 24.1.1
 
-  packages/ui-nextui:
+  packages/ui-heroui:
     dependencies:
       '@heroui/react':
         specifier: 0.0.0-canary-20250205213151
-        version: 0.0.0-canary-20250205213151(@types/react@18.2.48)(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)
+        version: 0.0.0-canary-20250205213151(@types/react@18.2.48)(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)
       '@hookform/devtools':
         specifier: 4.3.1
         version: 4.3.1(@types/react@18.2.48)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1226,20 +1226,20 @@ packages:
     resolution: {integrity: sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@formatjs/ecma402-abstract@2.3.1':
-    resolution: {integrity: sha512-Ip9uV+/MpLXWRk03U/GzeJMuPeOXpJBSB5V1tjA6kJhvqssye5J5LoYLc7Z5IAHb7nR62sRoguzrFiVCP/hnzw==}
+  '@formatjs/ecma402-abstract@2.3.2':
+    resolution: {integrity: sha512-6sE5nyvDloULiyOMbOTJEEgWL32w+VHkZQs8S02Lnn8Y/O5aQhjOEXwWzvR7SsBE/exxlSpY2EsWZgqHbtLatg==}
 
-  '@formatjs/fast-memoize@2.2.5':
-    resolution: {integrity: sha512-6PoewUMrrcqxSoBXAOJDiW1m+AmkrAj0RiXnOMD59GRaswjXhm3MDhgepXPBgonc09oSirAJTsAggzAGQf6A6g==}
+  '@formatjs/fast-memoize@2.2.6':
+    resolution: {integrity: sha512-luIXeE2LJbQnnzotY1f2U2m7xuQNj2DA8Vq4ce1BY9ebRZaoPB1+8eZ6nXpLzsxuW5spQxr7LdCg+CApZwkqkw==}
 
-  '@formatjs/icu-messageformat-parser@2.9.7':
-    resolution: {integrity: sha512-cuEHyRM5VqLQobANOjtjlgU7+qmk9Q3fDQuBiRRJ3+Wp3ZoZhpUPtUfuimZXsir6SaI2TaAJ+SLo9vLnV5QcbA==}
+  '@formatjs/icu-messageformat-parser@2.11.0':
+    resolution: {integrity: sha512-Hp81uTjjdTk3FLh/dggU5NK7EIsVWc5/ZDWrIldmf2rBuPejuZ13CZ/wpVE2SToyi4EiroPTQ1XJcJuZFIxTtw==}
 
-  '@formatjs/icu-skeleton-parser@1.8.11':
-    resolution: {integrity: sha512-8LlHHE/yL/zVJZHAX3pbKaCjZKmBIO6aJY1mkVh4RMSEu/2WRZ4Ysvv3kKXJ9M8RJLBHdnk1/dUQFdod1Dt7Dw==}
+  '@formatjs/icu-skeleton-parser@1.8.12':
+    resolution: {integrity: sha512-QRAY2jC1BomFQHYDMcZtClqHR55EEnB96V7Xbk/UiBodsuFc5kujybzt87+qj1KqmJozFhk6n4KiT1HKwAkcfg==}
 
-  '@formatjs/intl-localematcher@0.5.9':
-    resolution: {integrity: sha512-8zkGu/sv5euxbjfZ/xmklqLyDGQSxsLqg8XOq88JW3cmJtzhCP8EtSJXlaKZnVO4beEaoiT9wj4eIoCQ9smwxA==}
+  '@formatjs/intl-localematcher@0.5.10':
+    resolution: {integrity: sha512-af3qATX+m4Rnd9+wHcjJ4w2ijq+rAVP3CCinJQvFv1kgSu1W6jypUmvleJxcewdxmutM8dmIRZFxO/IQBZmP2Q==}
 
   '@heroui/accordion@0.0.0-canary-20250205213151':
     resolution: {integrity: sha512-UiJivQBtsHQfxsolJtkj6iKxHNG5hOf2Az04kamxWPMsVrmKp+QwnYqPH5BTVvFaYIubD/+X30daG3j7I71dfw==}
@@ -3934,8 +3934,8 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
-  framer-motion@11.15.0:
-    resolution: {integrity: sha512-MLk8IvZntxOMg7lDBLw2qgTHHv664bYoYmnFTmE0Gm/FW67aOJk0WM3ctMcG+Xhcv+vh5uyyXwxvxhSeJzSe+w==}
+  framer-motion@12.4.1:
+    resolution: {integrity: sha512-5Ijbea3topSZjadQ0hgc/TcWj2ldMZmNREM7RvAhvsThYOA1HHOA8TT1yKvMu1YXP3jWaFwoZ6Vo9Nw+DUZrzA==}
     peerDependencies:
       '@emotion/is-prop-valid': '*'
       react: ^18.0.0 || ^19.0.0
@@ -4239,8 +4239,8 @@ packages:
     resolution: {integrity: sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ==}
     engines: {node: '>=10.13.0'}
 
-  intl-messageformat@10.7.10:
-    resolution: {integrity: sha512-hp7iejCBiJdW3zmOe18FdlJu8U/JsADSDiBPQhfdSeI8B9POtvPRvPh3nMlvhYayGMKLv6maldhR7y3Pf1vkpw==}
+  intl-messageformat@10.7.14:
+    resolution: {integrity: sha512-mMGnE4E1otdEutV5vLUdCxRJygHB5ozUBxsPB5qhitewssrS/qGruq9bmvIRkkGsNeK5ZWLfYRld18UHGTIifQ==}
 
   invariant@2.2.4:
     resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
@@ -4768,11 +4768,11 @@ packages:
     resolution: {integrity: sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==}
     engines: {node: '>=16 || 14 >=14.17'}
 
-  motion-dom@11.14.3:
-    resolution: {integrity: sha512-lW+D2wBy5vxLJi6aCP0xyxTxlTfiu+b+zcpVbGVFUxotwThqhdpPRSmX8xztAgtZMPMeU0WGVn/k1w4I+TbPqA==}
+  motion-dom@12.0.0:
+    resolution: {integrity: sha512-CvYd15OeIR6kHgMdonCc1ihsaUG4MYh/wrkz8gZ3hBX/uamyZCXN9S9qJoYF03GqfTt7thTV/dxnHYX4+55vDg==}
 
-  motion-utils@11.14.3:
-    resolution: {integrity: sha512-Xg+8xnqIJTpr0L/cidfTTBFkvRw26ZtGGuIhA94J9PQ2p4mEa06Xx7QVYZH0BP+EpMSaDlu+q0I0mmvwADPsaQ==}
+  motion-utils@12.0.0:
+    resolution: {integrity: sha512-MNFiBKbbqnmvOjkPyOKgHUp3Q6oiokLkI1bEwm5QA28cxMZrv0CbbBGDNmhF6DIXsi1pCQBSs0dX8xjeER1tmA==}
 
   mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
@@ -5271,8 +5271,8 @@ packages:
     peerDependencies:
       react-dom: ^16.8.0 || ^17 || ^18
 
-  react-textarea-autosize@8.5.6:
-    resolution: {integrity: sha512-aT3ioKXMa8f6zHYGebhbdMD2L00tKeRX1zuVuDx9YQK/JLLRSaSxq3ugECEmUB9z2kvk6bFSIoRHLkkUv0RJiw==}
+  react-textarea-autosize@8.5.7:
+    resolution: {integrity: sha512-2MqJ3p0Jh69yt9ktFIaZmORHXw4c4bxSIhCeWiFwmJ9EYKgLmuNII3e9c9b2UO+ijl4StnpZdqpxNIhTdHvqtQ==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -5751,9 +5751,6 @@ packages:
 
   tailwind-merge@2.5.4:
     resolution: {integrity: sha512-0q8cfZHMu9nuYP/b5Shb7Y7Sh1B7Nnl5GqNr1U+n2p6+mybvRtayrQ+0042Z5byvTA8ihjlP8Odo8/VnHbZu4Q==}
-
-  tailwind-merge@2.6.0:
-    resolution: {integrity: sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==}
 
   tailwind-variants@0.3.0:
     resolution: {integrity: sha512-ho2k5kn+LB1fT5XdNS3Clb96zieWxbStE9wNLK7D0AV64kdZMaYzAKo0fWl6fXLPY99ffF9oBJnIj5escEl/8A==}
@@ -7010,42 +7007,42 @@ snapshots:
 
   '@eslint/js@8.57.0': {}
 
-  '@formatjs/ecma402-abstract@2.3.1':
+  '@formatjs/ecma402-abstract@2.3.2':
     dependencies:
-      '@formatjs/fast-memoize': 2.2.5
-      '@formatjs/intl-localematcher': 0.5.9
+      '@formatjs/fast-memoize': 2.2.6
+      '@formatjs/intl-localematcher': 0.5.10
       decimal.js: 10.4.3
       tslib: 2.8.1
 
-  '@formatjs/fast-memoize@2.2.5':
+  '@formatjs/fast-memoize@2.2.6':
     dependencies:
       tslib: 2.8.1
 
-  '@formatjs/icu-messageformat-parser@2.9.7':
+  '@formatjs/icu-messageformat-parser@2.11.0':
     dependencies:
-      '@formatjs/ecma402-abstract': 2.3.1
-      '@formatjs/icu-skeleton-parser': 1.8.11
+      '@formatjs/ecma402-abstract': 2.3.2
+      '@formatjs/icu-skeleton-parser': 1.8.12
       tslib: 2.8.1
 
-  '@formatjs/icu-skeleton-parser@1.8.11':
+  '@formatjs/icu-skeleton-parser@1.8.12':
     dependencies:
-      '@formatjs/ecma402-abstract': 2.3.1
+      '@formatjs/ecma402-abstract': 2.3.2
       tslib: 2.8.1
 
-  '@formatjs/intl-localematcher@0.5.9':
+  '@formatjs/intl-localematcher@0.5.10':
     dependencies:
       tslib: 2.8.1
 
-  '@heroui/accordion@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/accordion@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/divider': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/dom-animation': 2.1.2(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/dom-animation': 2.1.2(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-accordion': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/button': 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7055,17 +7052,17 @@ snapshots:
       '@react-stately/tree': 3.8.7(react@18.3.1)
       '@react-types/accordion': 3.0.0-alpha.26(react@18.3.1)
       '@react-types/shared': 3.27.0(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/alert@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/alert@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/utils': 3.10.5(react@18.3.1)
@@ -7074,11 +7071,11 @@ snapshots:
     transitivePeerDependencies:
       - framer-motion
 
-  '@heroui/aria-utils@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/aria-utils@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-rsc-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/collections': 3.12.1(react@18.3.1)
       '@react-stately/overlays': 3.6.13(react@18.3.1)
@@ -7090,20 +7087,20 @@ snapshots:
       - '@heroui/theme'
       - framer-motion
 
-  '@heroui/autocomplete@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/autocomplete@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/input': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/listbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/input': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/listbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
-      '@heroui/scroll-shadow': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/scroll-shadow': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/spinner': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/spinner': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-button': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/use-safe-layout-effect': 0.0.0-canary-20250205213151(react@18.3.1)
@@ -7116,17 +7113,17 @@ snapshots:
       '@react-stately/combobox': 3.10.2(react@18.3.1)
       '@react-types/combobox': 3.13.2(react@18.3.1)
       '@react-types/shared': 3.27.0(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
 
-  '@heroui/avatar@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/avatar@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-image': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7135,21 +7132,21 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/badge@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/badge@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/breadcrumbs@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/breadcrumbs@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/breadcrumbs': 3.5.20(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7159,13 +7156,13 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/button@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/button@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
-      '@heroui/ripple': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/ripple': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/spinner': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/spinner': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-button': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/button': 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7174,19 +7171,19 @@ snapshots:
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-types/button': 3.10.2(react@18.3.1)
       '@react-types/shared': 3.27.0(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/calendar@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/calendar@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/dom-animation': 2.1.2(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/dom-animation': 2.1.2(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-button': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@internationalized/date': 3.7.0
@@ -7202,17 +7199,17 @@ snapshots:
       '@react-types/calendar': 3.6.0(react@18.3.1)
       '@react-types/shared': 3.27.0(react@18.3.1)
       '@types/lodash.debounce': 4.0.9
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       scroll-into-view-if-needed: 3.0.10
 
-  '@heroui/card@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/card@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
-      '@heroui/ripple': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/ripple': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-button': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/button': 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7220,16 +7217,16 @@ snapshots:
       '@react-aria/interactions': 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-types/shared': 3.27.0(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/checkbox@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/checkbox@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-callback-ref': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/use-safe-layout-effect': 0.0.0-canary-20250205213151(react@18.3.1)
@@ -7245,12 +7242,12 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/chip@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/chip@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/interactions': 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7268,12 +7265,12 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/date-input@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/date-input@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@internationalized/date': 3.7.0
       '@react-aria/datepicker': 3.13.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7285,18 +7282,18 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/date-picker@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/date-picker@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/calendar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/date-input': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/calendar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/date-input': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@internationalized/date': 3.7.0
       '@react-aria/datepicker': 3.13.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7307,7 +7304,7 @@ snapshots:
       '@react-stately/utils': 3.10.5(react@18.3.1)
       '@react-types/datepicker': 3.10.0(react@18.3.1)
       '@react-types/shared': 3.27.0(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -7321,46 +7318,46 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/dom-animation@2.1.2(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
+  '@heroui/dom-animation@2.1.2(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))':
     dependencies:
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
-  '@heroui/drawer@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/drawer@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/modal': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/modal': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
       - framer-motion
 
-  '@heroui/dropdown@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/dropdown@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/menu': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/menu': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/menu': 3.17.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/menu': 3.9.1(react@18.3.1)
       '@react-types/menu': 3.9.14(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/form@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/form@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/form': 3.1.1(react@18.3.1)
@@ -7369,33 +7366,33 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/framer-utils@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/framer-utils@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/use-measure': 0.0.0-canary-20250205213151(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
       - '@heroui/theme'
 
-  '@heroui/image@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/image@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-image': 0.0.0-canary-20250205213151(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/input-otp@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/input-otp@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/form': 3.0.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7407,13 +7404,13 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/input@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/input@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-safe-layout-effect': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7425,7 +7422,7 @@ snapshots:
       '@react-types/textfield': 3.11.0(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-textarea-autosize: 8.5.6(@types/react@18.2.48)(react@18.3.1)
+      react-textarea-autosize: 8.5.7(@types/react@18.2.48)(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
 
@@ -7439,12 +7436,12 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/link@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/link@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-link': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7454,13 +7451,13 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/listbox@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/listbox@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/divider': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-is-mobile': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7476,13 +7473,13 @@ snapshots:
     transitivePeerDependencies:
       - framer-motion
 
-  '@heroui/menu@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/menu@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/divider': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-is-mobile': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7498,14 +7495,14 @@ snapshots:
     transitivePeerDependencies:
       - framer-motion
 
-  '@heroui/modal@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/modal@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/dom-animation': 2.1.2(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/dom-animation': 2.1.2(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-button': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/use-aria-modal-overlay': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7518,17 +7515,17 @@ snapshots:
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/overlays': 3.6.13(react@18.3.1)
       '@react-types/overlays': 3.8.12(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/navbar@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/navbar@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/dom-animation': 2.1.2(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/dom-animation': 2.1.2(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-scroll-position': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/button': 3.11.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7538,16 +7535,16 @@ snapshots:
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/toggle': 3.8.1(react@18.3.1)
       '@react-stately/utils': 3.10.5(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/pagination@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/pagination@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-intersection-observer': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/use-pagination': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7559,15 +7556,15 @@ snapshots:
       react-dom: 18.3.1(react@18.3.1)
       scroll-into-view-if-needed: 3.0.10
 
-  '@heroui/popover@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/popover@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/dom-animation': 2.1.2(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/dom-animation': 2.1.2(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-button': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/use-safe-layout-effect': 0.0.0-canary-20250205213151(react@18.3.1)
@@ -7579,15 +7576,15 @@ snapshots:
       '@react-stately/overlays': 3.6.13(react@18.3.1)
       '@react-types/button': 3.10.2(react@18.3.1)
       '@react-types/overlays': 3.8.12(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/progress@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/progress@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-is-mounted': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/i18n': 3.12.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7597,12 +7594,12 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/radio@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/radio@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/interactions': 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7625,96 +7622,96 @@ snapshots:
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
       react: 18.3.1
 
-  '@heroui/react@0.0.0-canary-20250205213151(@types/react@18.2.48)(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)':
+  '@heroui/react@0.0.0-canary-20250205213151(@types/react@18.2.48)(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(tailwindcss@3.4.17)':
     dependencies:
-      '@heroui/accordion': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/alert': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/autocomplete': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/avatar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/badge': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/breadcrumbs': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/calendar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/card': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/checkbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/chip': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/accordion': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/alert': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/autocomplete': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/avatar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/badge': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/breadcrumbs': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/calendar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/card': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/checkbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/chip': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/code': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/date-input': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/date-picker': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/date-input': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/date-picker': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/divider': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/drawer': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/dropdown': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/image': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/input': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/input-otp': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/drawer': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/dropdown': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/image': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/input': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(@types/react@18.2.48)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/input-otp': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/kbd': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/link': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/listbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/menu': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/modal': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/navbar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/pagination': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/progress': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/radio': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/ripple': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/scroll-shadow': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/select': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/skeleton': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/slider': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/snippet': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/link': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/listbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/menu': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/modal': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/navbar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/pagination': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/progress': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/radio': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/ripple': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/scroll-shadow': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/select': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/skeleton': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/slider': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/snippet': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/spacer': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/spinner': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/switch': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/table': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/tabs': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/spinner': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/switch': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/table': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/tabs': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
-      '@heroui/tooltip': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/user': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/tooltip': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/user': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/visually-hidden': 3.8.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
       - '@types/react'
       - tailwindcss
 
-  '@heroui/ripple@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/ripple@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/dom-animation': 2.1.2(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@heroui/dom-animation': 2.1.2(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/scroll-shadow@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/scroll-shadow@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-data-scroll-overflow': 0.0.0-canary-20250205213151(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/select@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/select@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/listbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/form': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/listbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/popover': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
-      '@heroui/scroll-shadow': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/scroll-shadow': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/spinner': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/spinner': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-aria-button': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/use-aria-multiselect': 0.0.0-canary-20250205213151(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7726,7 +7723,7 @@ snapshots:
       '@react-aria/visually-hidden': 3.8.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-types/shared': 3.27.0(react@18.3.1)
       '@tanstack/react-virtual': 3.11.2(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -7736,22 +7733,22 @@ snapshots:
 
   '@heroui/shared-utils@0.0.0-canary-20250205213151': {}
 
-  '@heroui/skeleton@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/skeleton@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/slider@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/slider@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
-      '@heroui/tooltip': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/tooltip': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/i18n': 3.12.5(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/interactions': 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7764,19 +7761,19 @@ snapshots:
     transitivePeerDependencies:
       - framer-motion
 
-  '@heroui/snippet@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/snippet@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/button': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
-      '@heroui/tooltip': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/tooltip': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/use-clipboard': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -7789,11 +7786,11 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/spinner@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/spinner@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/system-rsc': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       react: 18.3.1
@@ -7801,11 +7798,11 @@ snapshots:
     transitivePeerDependencies:
       - framer-motion
 
-  '@heroui/switch@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/switch@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-safe-layout-effect': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7825,7 +7822,7 @@ snapshots:
       clsx: 1.2.1
       react: 18.3.1
 
-  '@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/system-rsc': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react@18.3.1)
@@ -7835,20 +7832,20 @@ snapshots:
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-stately/utils': 3.10.5(react@18.3.1)
       '@react-types/datepicker': 3.10.0(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     transitivePeerDependencies:
       - '@heroui/theme'
 
-  '@heroui/table@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/table@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/checkbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/checkbox': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-icons': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
       '@heroui/spacer': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/interactions': 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7862,13 +7859,13 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@heroui/tabs@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/tabs@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-is-mounted': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/use-update-effect': 0.0.0-canary-20250205213151(react@18.3.1)
@@ -7879,7 +7876,7 @@ snapshots:
       '@react-stately/tabs': 3.7.1(react@18.3.1)
       '@react-types/shared': 3.27.0(react@18.3.1)
       '@react-types/tabs': 3.3.12(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       scroll-into-view-if-needed: 3.0.10
@@ -7896,14 +7893,14 @@ snapshots:
       tailwind-variants: 0.3.0(tailwindcss@3.4.17)
       tailwindcss: 3.4.17
 
-  '@heroui/tooltip@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/tooltip@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@heroui/dom-animation': 2.1.2(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
-      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/aria-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/dom-animation': 2.1.2(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
+      '@heroui/framer-utils': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@heroui/use-safe-layout-effect': 0.0.0-canary-20250205213151(react@18.3.1)
       '@react-aria/interactions': 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -7913,7 +7910,7 @@ snapshots:
       '@react-stately/tooltip': 3.5.1(react@18.3.1)
       '@react-types/overlays': 3.8.12(react@18.3.1)
       '@react-types/tooltip': 3.4.14(react@18.3.1)
-      framer-motion: 11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      framer-motion: 12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -8061,12 +8058,12 @@ snapshots:
     dependencies:
       react: 18.3.1
 
-  '@heroui/user@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@heroui/user@0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@heroui/avatar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/avatar': 0.0.0-canary-20250205213151(@heroui/system@0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/react-utils': 0.0.0-canary-20250205213151(react@18.3.1)
       '@heroui/shared-utils': 0.0.0-canary-20250205213151
-      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@heroui/system': 0.0.0-canary-20250205213151(@heroui/theme@0.0.0-canary-20250205213151(tailwindcss@3.4.17))(framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@heroui/theme': 0.0.0-canary-20250205213151(tailwindcss@3.4.17)
       '@react-aria/focus': 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/utils': 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -8122,7 +8119,7 @@ snapshots:
   '@internationalized/message@3.1.6':
     dependencies:
       '@swc/helpers': 0.5.15
-      intl-messageformat: 10.7.10
+      intl-messageformat: 10.7.14
 
   '@internationalized/number@3.6.0':
     dependencies:
@@ -10824,10 +10821,10 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
-  framer-motion@11.15.0(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+  framer-motion@12.4.1(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
-      motion-dom: 11.14.3
-      motion-utils: 11.14.3
+      motion-dom: 12.0.0
+      motion-utils: 12.0.0
       tslib: 2.8.1
     optionalDependencies:
       '@emotion/is-prop-valid': 1.2.1
@@ -11164,11 +11161,11 @@ snapshots:
 
   interpret@3.1.1: {}
 
-  intl-messageformat@10.7.10:
+  intl-messageformat@10.7.14:
     dependencies:
-      '@formatjs/ecma402-abstract': 2.3.1
-      '@formatjs/fast-memoize': 2.2.5
-      '@formatjs/icu-messageformat-parser': 2.9.7
+      '@formatjs/ecma402-abstract': 2.3.2
+      '@formatjs/fast-memoize': 2.2.6
+      '@formatjs/icu-messageformat-parser': 2.11.0
       tslib: 2.8.1
 
   invariant@2.2.4:
@@ -11681,9 +11678,11 @@ snapshots:
 
   minipass@7.1.2: {}
 
-  motion-dom@11.14.3: {}
+  motion-dom@12.0.0:
+    dependencies:
+      motion-utils: 12.0.0
 
-  motion-utils@11.14.3: {}
+  motion-utils@12.0.0: {}
 
   mri@1.2.0: {}
 
@@ -12213,7 +12212,7 @@ snapshots:
     dependencies:
       react-dom: 18.3.1(react@18.3.1)
 
-  react-textarea-autosize@8.5.6(@types/react@18.2.48)(react@18.3.1):
+  react-textarea-autosize@8.5.7(@types/react@18.2.48)(react@18.3.1):
     dependencies:
       '@babel/runtime': 7.23.9
       react: 18.3.1
@@ -12778,11 +12777,9 @@ snapshots:
 
   tailwind-merge@2.5.4: {}
 
-  tailwind-merge@2.6.0: {}
-
   tailwind-variants@0.3.0(tailwindcss@3.4.17):
     dependencies:
-      tailwind-merge: 2.6.0
+      tailwind-merge: 2.5.4
       tailwindcss: 3.4.17
 
   tailwindcss@3.4.17:
