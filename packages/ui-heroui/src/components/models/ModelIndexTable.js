@@ -216,7 +216,7 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
 };
 
 ModelIndexTableBase.propTypes = {
-  baseRoute: PropTypes.string.isRequired,
+  baseRoute: PropTypes.string,
   overrides: PropTypes.object
 };
 

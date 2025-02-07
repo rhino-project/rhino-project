@@ -50,8 +50,7 @@ export const ModelFilterDateTime = ({ model, path, ...props }) => {
     const date = parseAbsoluteToLocal(attribute.minimum);
 
     // If the minimum is exclusive, we need to add a second to it so the value is not included
-    if (attribute.exclusiveMinimum)
-      return date.set({ second: date.second + 1 });
+    if (attribute.exclusiveMinimum) return date.add({ seconds: 1 });
 
     return date;
   }, [attribute]);
@@ -62,8 +61,7 @@ export const ModelFilterDateTime = ({ model, path, ...props }) => {
     const date = parseAbsoluteToLocal(attribute.maximum);
 
     // If the maximum is exclusive, we need to subtract a second to it so the value is not included
-    if (attribute.exclusiveMaximum)
-      return date.set({ second: date.second - 1 });
+    if (attribute.exclusiveMaximum) return date.subtract({ seconds: 1 });
 
     return date;
   }, [attribute]);

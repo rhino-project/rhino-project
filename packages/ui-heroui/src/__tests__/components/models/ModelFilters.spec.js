@@ -77,11 +77,11 @@ describe('ModelFilters', () => {
     });
     expect(asFragment()).toMatchSnapshot();
 
-    const authorFilter = screen.getByRole('combobox');
+    const authorFilter = screen.getByDisplayValue('other@example.com');
     expect(authorFilter.value).toBe('2');
 
     fireEvent.click(screen.getByText('Clear all filters'));
 
-    expect(authorFilter.value).toBe('-1');
+    expect(authorFilter.value).toBe('');
   });
 });

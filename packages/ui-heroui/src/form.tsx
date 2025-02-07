@@ -180,6 +180,41 @@ export const useFilterField = (path, operator) => {
   return { operatorPath };
 };
 
+const isDateRelated = (format) => ['date', 'time', 'datetime'].includes(format);
+
+const operatorToDateLabel = (operator) => {
+  switch (operator) {
+    case 'diff':
+      return 'not';
+    case 'gt':
+    case 'gteq':
+      return 'after';
+    case 'lt':
+    case 'lteq':
+      return 'before';
+    default:
+      return '';
+  }
+};
+
+const operatorToLabel = (format, operator) => {
+  if (isDateRelated(format)) return operatorToDateLabel(operator);
+
+  switch (operator) {
+    case 'diff':
+    case 'gt':
+      return '>';
+    case 'gteq':
+      return '>=';
+    case 'lt':
+      return '<';
+    case 'lteq':
+      return '<=';
+    default:
+      return '';
+  }
+};
+
 export const useModelFilterField = (model, path, options = {}) => {
   const memoModel = useModel(model);
 
@@ -190,10 +225,15 @@ export const useModelFilterField = (model, path, options = {}) => {
 
   const filterField = useFilterField(plainPath, operator, options);
 
-  const label = useMemo(
-    () => options?.label || attribute.readableName,
-    [attribute, options?.label]
-  );
+  const label = useMemo(() => {
+    if (options?.label) return options.label;
+
+    const operatorLabel = operatorToLabel(attribute.format, operator);
+
+    if (operatorLabel) return `${attribute.readableName} ${operatorLabel}`;
+
+    return attribute.readableName;
+  }, [attribute.format, attribute.readableName, operator, options?.label]);
 
   // FIXME: Memoize this?
   return {

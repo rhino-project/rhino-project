@@ -5,6 +5,7 @@ import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSi
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterDateTime } from '../../../../components/models/filters/ModelFilterDateTime';
 import { FilterDateTime } from '../../../../Filter';
+import { ZonedDateTime } from '@internationalized/date';
 
 vi.mock('../../../../Filter', () => ({
   FilterDateTime: vi.fn(() => null)
@@ -48,11 +49,11 @@ describe('ModelFilterDateTime', () => {
     );
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
-      {
-        min: new Date('1982-02-07T05:00:00.000Z'),
-        max: undefined,
+      expect.objectContaining({
+        minValue: new ZonedDateTime(1982, 2, 7, 'America/Toronto', -18000000),
+        maxValue: undefined,
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -77,11 +78,20 @@ describe('ModelFilterDateTime', () => {
       }
     );
     expect(FilterDateTime).toHaveBeenLastCalledWith(
-      {
-        min: new Date('1982-02-07T05:00:00.001Z'),
-        max: undefined,
+      expect.objectContaining({
+        minValue: new ZonedDateTime(
+          1982,
+          2,
+          7,
+          'America/Toronto',
+          -18000000,
+          0,
+          0,
+          1
+        ),
+        maxValue: undefined,
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -106,11 +116,11 @@ describe('ModelFilterDateTime', () => {
     );
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
-      {
-        min: undefined,
-        max: new Date('2030-02-07T05:00:00.000Z'),
+      expect.objectContaining({
+        minValue: undefined,
+        maxValue: new ZonedDateTime(2030, 2, 7, 'America/Toronto', -18000000),
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -136,11 +146,20 @@ describe('ModelFilterDateTime', () => {
     );
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
-      {
-        min: undefined,
-        max: new Date('2030-02-07T04:59:59.999Z'),
+      expect.objectContaining({
+        minValue: undefined,
+        maxValue: new ZonedDateTime(
+          2030,
+          2,
+          6,
+          'America/Toronto',
+          -18000000,
+          23,
+          59,
+          59
+        ),
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
