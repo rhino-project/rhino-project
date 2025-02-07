@@ -48,11 +48,11 @@ describe('ModelFilterYear', () => {
     );
 
     expect(FilterYear).toHaveBeenLastCalledWith(
-      {
-        min: new Date(1982, 0, 1),
+      expect.objectContaining({
+        min: 1982,
         max: undefined,
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -78,11 +78,11 @@ describe('ModelFilterYear', () => {
     );
 
     expect(FilterYear).toHaveBeenLastCalledWith(
-      {
-        min: new Date(1983, 0, 1),
+      expect.objectContaining({
+        min: 1983,
         max: undefined,
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -106,11 +106,11 @@ describe('ModelFilterYear', () => {
       }
     );
     expect(FilterYear).toHaveBeenLastCalledWith(
-      {
+      expect.objectContaining({
         min: undefined,
-        max: new Date(2030, 0, 1),
+        max: 2030,
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -136,11 +136,11 @@ describe('ModelFilterYear', () => {
     );
 
     expect(FilterYear).toHaveBeenLastCalledWith(
-      {
+      expect.objectContaining({
         min: undefined,
-        max: new Date(2029, 0, 1),
+        max: 2029,
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });

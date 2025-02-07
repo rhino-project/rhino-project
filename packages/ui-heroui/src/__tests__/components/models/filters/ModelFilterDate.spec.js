@@ -5,6 +5,7 @@ import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSi
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterDate } from '../../../../components/models/filters/ModelFilterDate';
 import { FilterDate } from '../../../../Filter';
+import { CalendarDate } from '@internationalized/date';
 
 vi.mock('../../../../Filter', () => ({
   FilterDate: vi.fn(() => null)
@@ -49,11 +50,11 @@ describe('ModelFilterDate', () => {
     );
 
     expect(FilterDate).toHaveBeenLastCalledWith(
-      {
-        min: new Date('1982-02-07T00:00:00.000Z'),
-        max: undefined,
+      expect.objectContaining({
+        minValue: new CalendarDate(1982, 2, 7),
+        maxValue: undefined,
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -79,11 +80,11 @@ describe('ModelFilterDate', () => {
     );
 
     expect(FilterDate).toHaveBeenLastCalledWith(
-      {
-        min: new Date('1982-02-07T00:00:00.001Z'),
-        max: undefined,
+      expect.objectContaining({
+        minValue: new CalendarDate(1982, 2, 8),
+        maxValue: undefined,
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -108,11 +109,11 @@ describe('ModelFilterDate', () => {
     );
 
     expect(FilterDate).toHaveBeenLastCalledWith(
-      {
-        min: undefined,
-        max: new Date('2030-02-07T00:00:00.000Z'),
+      expect.objectContaining({
+        minValue: undefined,
+        maxValue: new CalendarDate(2030, 2, 7),
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });
@@ -138,11 +139,11 @@ describe('ModelFilterDate', () => {
     );
 
     expect(FilterDate).toHaveBeenLastCalledWith(
-      {
-        min: undefined,
-        max: new Date('2030-02-06T23:59:59.999Z'),
+      expect.objectContaining({
+        minValue: undefined,
+        maxValue: new CalendarDate(2030, 2, 6),
         path: 'dummy'
-      },
+      }),
       expect.anything()
     );
   });

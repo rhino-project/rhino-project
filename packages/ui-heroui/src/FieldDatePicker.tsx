@@ -38,6 +38,8 @@ export const FieldDatePickerBase: React.FC<FieldDatePickerProps> = ({
   // The placeholder value controls the format of the return value when its updated
   // as well as the default date shown in the picker when the value is empty.
   const placeholderValue = useMemo(() => {
+    if (extractedProps.placeholderValue) return extractedProps.placeholderValue;
+
     const date = now(getLocalTimeZone());
 
     return date.set({ millisecond: 0 });

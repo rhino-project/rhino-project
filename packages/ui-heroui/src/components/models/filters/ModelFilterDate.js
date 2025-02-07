@@ -7,7 +7,7 @@ import { useModelFilterField } from '../../../form';
 import { getDateTimeFormat } from '../../../utils/ui';
 import { useModelFiltersContext } from '@rhino-project/core/hooks';
 import { FilterDate } from '../../../Filter';
-import { parseAbsoluteToLocal, parseDate } from '@internationalized/date';
+import { parseDate } from '@internationalized/date';
 
 // FIXME: Replicated in ModelFilterDate, ModelFilterDateTime, ModelFilterTime
 const operatorToLabel = (format, operator) => {
@@ -47,10 +47,10 @@ export const ModelFilterDate = ({ model, path, ...props }) => {
   const minValue = useMemo(() => {
     if (!attribute.minimum) return undefined;
 
-    const date = parseAbsoluteToLocal(attribute.minimum);
+    const date = parseDate(attribute.minimum);
 
     // If the minimum is exclusive, we need to add a day to it so the value is not included
-    if (attribute.exclusiveMinimum) return date.set({ day: date.day + 1 });
+    if (attribute.exclusiveMinimum) return date.add({ days: 1 });
 
     return date;
   }, [attribute]);
@@ -58,10 +58,10 @@ export const ModelFilterDate = ({ model, path, ...props }) => {
   const maxValue = useMemo(() => {
     if (!attribute.maximum) return undefined;
 
-    const date = parseAbsoluteToLocal(attribute.maximum);
+    const date = parseDate(attribute.maximum);
 
     // If the maximum is exclusive, we need to subtract a millisecond to it so the value is not included
-    if (attribute.exclusiveMaximum) return date.set({ day: date.day - 1 });
+    if (attribute.exclusiveMaximum) return date.subtract({ days: 1 });
 
     return date;
   }, [attribute]);
