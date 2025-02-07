@@ -21,7 +21,7 @@ export const FieldInputBase: React.FC<FieldInputProps> = ({
   const { path } = props;
   const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const {
-    field: { onChange, value: fieldValue, ...fieldProps },
+    field: { onChange, disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -48,6 +48,7 @@ export const FieldInputBase: React.FC<FieldInputProps> = ({
       {...fieldProps}
       autoComplete="off"
       isInvalid={!!error}
+      isDisabled={disabled}
       errorMessage={error?.message}
       onChange={handleOnChange}
       value={value || ''}

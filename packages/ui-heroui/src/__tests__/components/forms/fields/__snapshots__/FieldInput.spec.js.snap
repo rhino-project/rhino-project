@@ -3,7 +3,8 @@
 exports[`FieldInput > render with disabled 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[hidden=true]:hidden w-full relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)]"
+    class="group flex flex-col data-[hidden=true]:hidden w-full opacity-disabled pointer-events-none relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)]"
+    data-disabled="true"
     data-has-value="true"
     data-slot="base"
   >
@@ -12,7 +13,7 @@ exports[`FieldInput > render with disabled 1`] = `
       data-slot="main-wrapper"
     >
       <div
-        class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background"
+        class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium pointer-events-none transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background"
         data-slot="input-wrapper"
         style="cursor: text;"
       >
