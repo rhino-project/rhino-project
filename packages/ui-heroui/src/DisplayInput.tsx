@@ -45,14 +45,10 @@ export const DisplayInputBase = <T extends FieldValues = FieldValues>({
     disabled
   });
 
-  type FieldType = T[keyof T];
-
-  const value = useMemo(() => {
-    const processedValue = accessor
-      ? accessor(fieldValue as FieldType)
-      : (fieldValue as string | null);
-    return processedValue ?? empty;
-  }, [accessor, fieldValue, empty]);
+  const value = useMemo(
+    () => (accessor ? accessor(fieldValue) : fieldValue) ?? empty,
+    [accessor, fieldValue, empty]
+  );
 
   return (
     <Input

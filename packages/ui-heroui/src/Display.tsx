@@ -1,8 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
-import { format as dateFormat, parseISO } from 'date-fns';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 import { DisplayInput, DisplayInputProps } from './DisplayInput';
-import { DisplayTextareaBase, DisplayTextareaProps } from './DisplayTextarea';
+import { DisplayTextarea, DisplayTextareaProps } from './DisplayTextarea';
 import {
   Checkbox,
   CheckboxProps,
@@ -13,6 +12,10 @@ import {
 } from '@heroui/react';
 import { useController } from 'react-hook-form';
 import { applyCurrencyMask } from './utils';
+import { FieldTimeInput } from './FieldTimeInput';
+import { FieldTimeProps } from './Field';
+import { FieldDatePicker, FieldDatePickerProps } from './FieldDatePicker';
+import { parseDate } from '@internationalized/date';
 
 // Types
 export type DisplayAttachmentsProps = DisplayInputProps;
@@ -22,27 +25,22 @@ export type DisplayBooleanProps = CheckboxProps & {
   /**
    * The function to format the value before displaying it.
    */
-  accessor?: (value: any) => string | null | undefined;
+  accessor?: (value: unknown) => boolean | null | undefined;
   /**
    * The path inside the form object.
    */
   path: string;
 };
 export type DisplayCurrencyProps = DisplayInputProps;
-export type DisplayDateTimeProps = DisplayInputProps & {
-  /**
-   * The format to display
-   */
-  format?: string;
-};
-export type DisplayDateProps = DisplayDateTimeProps;
+export type DisplayDateTimeProps = FieldDatePickerProps;
+export type DisplayDateProps = FieldDatePickerProps;
 export type DisplayEnumProps = DisplayInputProps;
 export type DisplayFloatProps = DisplayInputProps;
 export type DisplayImageProps = ImageProps & {
   /**
    * The function to format the value before displaying it.
    */
-  accessor?: (value: any) => string | null | undefined;
+  accessor?: (value: unknown) => string | null | undefined;
   /**
    * The path inside the form object.
    */
@@ -53,19 +51,19 @@ export type DisplayLinkProps = LinkProps & {
   /**
    * The function to format the value before displaying it.
    */
-  accessor?: (value: unknown) => string | null | undefined;
-  /**
-   * The string to display when the value is empty.
-   */
-  empty?: string;
+  accessor?: (value: string | null | undefined) => string | null | undefined;
   /**
    * The path inside the form object.
    */
   path: string;
+  /**
+   * Content to display when value is empty
+   */
+  empty?: React.ReactNode;
 };
 export type DisplayReferenceProps = DisplayInputProps;
 export type DisplayStringProps = DisplayInputProps;
-export type DisplayTimeProps = DisplayDateTimeProps;
+export type DisplayTimeProps = FieldTimeProps;
 export type DisplayTextProps = DisplayTextareaProps;
 
 // Attachments
@@ -74,7 +72,10 @@ export const DisplayAttachmentsBase = React.forwardRef<
   DisplayAttachmentsProps
 >((props, ref) => {
   const accessor = useCallback(
-    (value) => (value?.length ? `${value?.length} files` : undefined),
+    (value: unknown) =>
+      Array.isArray(value) && value.length
+        ? `${value.length} files`
+        : undefined,
     []
   );
 
@@ -87,7 +88,13 @@ export const DisplayArrayBase = React.forwardRef<
   HTMLInputElement,
   DisplayArrayProps
 >((props, ref) => {
-  const accessor = useCallback((value) => value?.map((v) => v)?.join(', '), []);
+  const accessor = useCallback(
+    (value: unknown) =>
+      Array.isArray(value)
+        ? value.map((v) => String(v))?.join(', ')
+        : undefined,
+    []
+  );
 
   return <DisplayInput ref={ref} accessor={accessor} {...props} />;
 });
@@ -99,7 +106,10 @@ export const DisplayArrayReferenceBase = React.forwardRef<
   DisplayArrayReferenceProps
 >((props, ref) => {
   const accessor = useCallback(
-    (value) => value?.map((v) => v.display_name)?.join(', '),
+    (value: unknown) =>
+      Array.isArray(value)
+        ? value.map((v: { display_name: string }) => v.display_name)?.join(', ')
+        : undefined,
     []
   );
 
@@ -114,19 +124,18 @@ export const DisplayBooleanBase = React.forwardRef<
 >(({ accessor, path, ...props }, ref) => {
   const {
     field: { value: fieldValue }
-  } = useController({ name: path });
+  } = useController<{ [key: string]: boolean | string | null | undefined }>({
+    name: path
+  });
 
-  const value = useMemo(() => {
+  const value = useMemo((): boolean | null => {
     const accessedValue = accessor ? accessor(fieldValue) : fieldValue;
 
     if (typeof accessedValue === 'boolean') return accessedValue;
     if (typeof accessedValue !== 'string') return null;
 
-    const normalized = accessedValue.trim().replace(/ /g, '').toLowerCase();
-    if (normalized === 'true') return true;
-    if (normalized === 'false') return false;
-
-    return null;
+    const normalized = accessedValue.toLowerCase().trim();
+    return normalized === 'true' ? true : normalized === 'false' ? false : null;
   }, [accessor, fieldValue]);
 
   return (
@@ -164,24 +173,16 @@ DisplayCurrencyBase.displayName = 'DisplayCurrencyBase';
 export const DisplayDateTimeBase = React.forwardRef<
   HTMLInputElement,
   DisplayDateTimeProps
->(({ format = 'MMMM d, yyyy h:mm aa', ...props }, ref) => {
-  const accessor = useCallback(
-    (value) => {
-      // Null will be handled by DisplayInput as empty
-      if (!value) return null;
-
-      return dateFormat(parseISO(value), format);
-    },
-    [format]
+>((props, ref) => {
+  return (
+    <FieldDatePicker ref={ref} isReadOnly granularity="second" {...props} />
   );
-
-  return <DisplayInput ref={ref} accessor={accessor} {...props} />;
 });
 DisplayDateTimeBase.displayName = 'DisplayDateTimeBase';
 
 // Date
 export const DisplayDateBase = (props: DisplayDateProps) => (
-  <DisplayDateTimeBase format={'MMMM d, yyyy'} {...props} />
+  <FieldDatePicker isReadOnly granularity="day" parse={parseDate} {...props} />
 );
 
 // Enum
@@ -194,12 +195,12 @@ export const DisplayFloatBase = React.forwardRef<
   HTMLInputElement,
   DisplayFloatProps
 >((props, ref) => {
-  const accessor = useCallback((value) => {
+  const accessor = useCallback((value: unknown) => {
     // Null will be handled by DisplayInput as empty
     // Nullish coalescing operator will handle 0 as a valid value
     if (value == null) return null;
 
-    return value;
+    return (value as number).toString();
   }, []);
 
   return <DisplayInput ref={ref} accessor={accessor} {...props} />;
@@ -210,18 +211,23 @@ DisplayFloatBase.displayName = 'DisplayFloatBase';
 export const DisplayImageBase = React.forwardRef<
   HTMLImageElement,
   DisplayImageProps
->(({ accessor, children, empty, ...props }, ref) => {
+>(({ accessor, ...props }, ref) => {
   const { path } = props;
   const {
     field: { value: fieldValue }
-  } = useController({ name: path });
+  } = useController<{ [key: string]: unknown }>({
+    name: path
+  });
 
   const value = useMemo(
-    () => (accessor ? accessor(fieldValue) : fieldValue),
+    () =>
+      accessor
+        ? accessor(fieldValue)
+        : (fieldValue as string | null | undefined),
     [accessor, fieldValue]
   );
 
-  return <Image ref={ref} src={value} {...props} />;
+  return <Image ref={ref} src={value ?? undefined} {...props} />;
 });
 DisplayImageBase.displayName = 'DisplayImageBase';
 
@@ -238,7 +244,9 @@ export const DisplayLinkBase = React.forwardRef<
   const { path } = props;
   const {
     field: { value: fieldValue }
-  } = useController({ name: path });
+  } = useController<{ [key: string]: string | null | undefined }>({
+    name: path
+  });
 
   const value = useMemo(
     () => (accessor ? accessor(fieldValue) : fieldValue),
@@ -252,7 +260,7 @@ export const DisplayLinkBase = React.forwardRef<
           {children || value}
         </Link>
       ) : (
-        <div ref={ref}>{empty}</div>
+        <div>{empty}</div>
       )}
     </>
   );
@@ -280,18 +288,25 @@ export const DisplayStringBase = React.forwardRef<
 >((props, ref) => {
   return <DisplayInput ref={ref} {...props} />;
 });
-
 DisplayStringBase.displayName = 'DisplayStringBase';
 
 // Text
-export const DisplayTextBase = (props: DisplayTextProps) => (
-  <DisplayTextareaBase {...props} />
-);
+export const DisplayTextBase = React.forwardRef<
+  HTMLTextAreaElement,
+  DisplayTextProps
+>((props, ref) => {
+  return <DisplayTextarea ref={ref} {...props} />;
+});
+DisplayTextBase.displayName = 'DisplayTextBase';
 
 // Time
-export const DisplayTimeBase = (props: DisplayTimeProps) => (
-  <DisplayDateTimeBase format={'h:mm aa'} {...props} />
-);
+export const DisplayTimeBase = React.forwardRef<
+  HTMLTextAreaElement,
+  DisplayTimeProps
+>((props, ref) => {
+  return <FieldTimeInput ref={ref} isReadOnly {...props} />;
+});
+DisplayTimeBase.displayName = 'DisplayTimeBase';
 
 // Overrideable component exports
 export const DisplayAttachments = (props: DisplayAttachmentsProps) =>

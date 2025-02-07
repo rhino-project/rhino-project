@@ -39,6 +39,7 @@ exports[`DisplayImage > should render the overridden empty text when value is nu
      
     <img
       class="relative z-10 opacity-0 shadow-black/5 data-[loaded=true]:opacity-100 shadow-none transition-transform-opacity motion-reduce:transition-none !duration-300 rounded-large"
+      empty="baz"
       path="dummy"
     />
   </div>

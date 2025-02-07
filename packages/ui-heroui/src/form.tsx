@@ -1,12 +1,22 @@
 import { SelectItem } from '@heroui/react';
 import {
   useModel,
-  useModelAndAttributeFromPath
+  useModelAndAttributeFromPath,
+  useModelContext
 } from '@rhino-project/core/hooks';
 import { getModelAndAttributeFromPath } from '@rhino-project/core/utils';
 import { compact } from 'lodash-es';
 import { useCallback, useMemo } from 'react';
 import { useWatch } from 'react-hook-form';
+import {
+  DisplayBooleanProps,
+  DisplayDateTimeProps,
+  DisplayImageProps,
+  DisplayLinkProps,
+  DisplayTimeProps
+} from './Display';
+import { DisplayInputProps } from './DisplayInput';
+import { DisplayTextareaProps } from './DisplayTextarea';
 
 export const useModelFieldGroup = ({ model, ...props }) => {
   const { path } = props;
@@ -101,66 +111,84 @@ export const useModelFieldGroupIntegerSelect = (props) => {
   };
 };
 
-export const useModelDisplayGroup = (props) => {
-  const { isClearable, ...readOnlyProps } = useModelFieldGroup(props);
+export const useModelDisplayLabel = ({ path }: { path: string }) => {
+  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { attribute } = useModelAndAttributeFromPath(model, path) as {
+    attribute: { readableName: string };
+  };
 
-  return readOnlyProps;
+  return attribute.readableName;
 };
 
-export const useModelDisplay = ({ model, ...props }) => {
+export const useModelDisplayInputProps = <
+  T extends DisplayInputProps | DisplayTextareaProps
+>(
+  props: T
+): T => {
   const { path } = props;
-  const { attribute } = useModelAndAttributeFromPath(model, path);
+  const label = useModelDisplayLabel({ path });
 
-  const label = useMemo(
-    () => props?.label || attribute.readableName,
-    [attribute, props?.label]
-  );
+  return { label, ...props };
+};
 
-  const placeholder = useMemo(
-    () => props?.placeholder || label,
-    [label, props?.placeholder]
-  );
+export const useModelDisplayBooleanProps = <T extends DisplayBooleanProps>(
+  props: T
+): T => {
+  const { path } = props;
+  const children = useModelDisplayLabel({ path });
+
+  return { children, ...props };
+};
+
+export const useModelDisplayDateTimeProps = <T extends DisplayDateTimeProps>(
+  props: T
+): T => {
+  const { path } = props;
+  const label = useModelDisplayLabel({ path });
+
+  return { label, ...props };
+};
+
+export const useModelDisplayTimeProps = <T extends DisplayTimeProps>(
+  props: T
+): T => {
+  const { path } = props;
+  const label = useModelDisplayLabel({ path });
+
+  return { label, ...props };
+};
+
+export const useModelDisplayAttachmentProps = (
+  props: DisplayLinkProps
+): DisplayLinkProps => {
+  const accessor = useCallback((value: unknown): string | null | undefined => {
+    const typedValue = value as { url?: string } | null | undefined;
+    return typedValue?.url;
+  }, []);
 
   return {
-    attribute,
-    model,
-    label,
-    placeholder,
-    isRequired: !!attribute['x-rhino-required'],
+    accessor,
     ...props
   };
 };
 
-export const useModelDisplayAttachment = (props) => {
-  const inputProps = useModelFieldGroup(props);
+export const useModelDisplayAttachmentImageProps = (
+  props: DisplayImageProps
+): DisplayImageProps => {
+  const { path } = props;
 
-  const accessor = useCallback((value) => value?.url, []);
-  const watch = useWatch({ name: props.path });
-
-  const children = useMemo(
-    () => props.children || watch?.display_name,
-    [props.children, watch]
-  );
-
-  return {
-    ...inputProps,
-    accessor,
-    children
-  };
-};
-
-export const useModelDisplayAttachmentImage = (props) => {
-  const inputProps = useModelDisplayGroup(props);
-
-  const accessor = useCallback((value) => value?.url, []);
-  const watch = useWatch({ name: props.path });
-
-  const alt = useMemo(() => watch?.display_name, [watch]);
+  const accessor = useCallback((value: unknown): string | null | undefined => {
+    const typedValue = value as { url?: string } | null | undefined;
+    return typedValue?.url;
+  }, []);
+  const watch = useWatch<{
+    [key: string]: { display_name?: string; url?: string };
+  }>({ name: path });
 
   return {
-    ...inputProps,
     accessor,
-    alt
+    alt: watch?.display_name,
+    ...props
   };
 };
 

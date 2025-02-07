@@ -1,37 +1,49 @@
 import { Textarea, TextAreaProps } from '@heroui/react';
 
-import { useController, RegisterOptions } from 'react-hook-form';
-import { useFieldInheritedProps } from '@rhino-project/core/hooks';
-import { useMemo } from 'react';
+import {
+  useController,
+  UseControllerProps,
+  FieldValues,
+  Path
+} from 'react-hook-form';
+import React, { useMemo } from 'react';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 
-export type DisplayTextareaProps = TextAreaProps &
-  RegisterOptions & {
-    /**
-     * The function to format the value before displaying it.
-     */
-    accessor?: (value: any) => string | null | undefined;
-    /**
-     * The string to display when the value is empty.
-     */
-    empty: string;
-    /**
-     * The path inside the form object.
-     */
-    path: string;
-  };
+export type DisplayTextareaProps<T extends FieldValues = FieldValues> =
+  TextAreaProps &
+    Omit<UseControllerProps<T>, 'name' | 'control'> & {
+      /**
+       * The function to format the value before displaying it.
+       */
+      accessor?: (value: unknown) => string | null | undefined;
+      /**
+       * The string to display when the value is empty.
+       */
+      empty?: string;
+      /**
+       * The path inside the form object.
+       */
+      path: Path<T>;
+    };
 
-export const DisplayTextareaBase: React.FC<DisplayTextareaProps> = ({
+export const DisplayTextareaBase = <T extends FieldValues = FieldValues>({
   accessor,
   empty = '-',
+  path,
+  rules,
+  shouldUnregister,
+  defaultValue,
+  disabled,
   ...props
-}) => {
-  const { path } = props;
-  const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
+}: DisplayTextareaProps<T>) => {
   const {
     field: { value: fieldValue, ...fieldProps }
   } = useController({
-    name: path
+    name: path,
+    rules,
+    shouldUnregister,
+    defaultValue,
+    disabled
   });
 
   const value = useMemo(
@@ -41,15 +53,15 @@ export const DisplayTextareaBase: React.FC<DisplayTextareaProps> = ({
 
   return (
     <Textarea
-      {...extractedProps}
       {...fieldProps}
       isReadOnly
       autoComplete="off"
       value={value}
-      {...inheritedProps}
+      {...props}
     />
   );
 };
 
-export const DisplayTextarea = (props: DisplayTextareaProps) =>
-  useGlobalComponent('DisplayTextarea', DisplayTextareaBase, props);
+export const DisplayTextarea = <T extends FieldValues = FieldValues>(
+  props: DisplayTextareaProps<T>
+) => useGlobalComponent('DisplayTextarea', DisplayTextareaBase, props);

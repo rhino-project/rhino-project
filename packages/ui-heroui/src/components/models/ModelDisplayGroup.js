@@ -43,7 +43,7 @@ const defaultComponents = {
   ModelDisplayTime
 };
 
-export const ModelDisplayGroupBase = ({ overrides, ...originalProps }) => {
+export const ModelDisplayGroupBase = ({ overrides, ...props }) => {
   const {
     ModelDisplayArray,
     ModelDisplayArrayReference,
@@ -63,9 +63,7 @@ export const ModelDisplayGroupBase = ({ overrides, ...originalProps }) => {
     ModelDisplayTime
   } = useOverrides(defaultComponents, overrides);
   const { model } = useModelContext();
-  const { path } = originalProps;
-  // FIXME: This should be solved in a better way with a DisplayGroup context
-  const props = { model, ...originalProps };
+  const { path } = props;
   const { attribute } = useModelAndAttributeFromPath(model, path);
 
   // FIXME: Make this a separate function so that its easier to override
