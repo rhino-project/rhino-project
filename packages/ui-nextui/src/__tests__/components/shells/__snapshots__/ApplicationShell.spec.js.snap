@@ -1,0 +1,165 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ApplicationShell > renders without crashing 1`] = `
+<DocumentFragment>
+  <div
+    class="relative flex h-full w-full items-start overflow-x-auto overflow-y-auto transition-colors duration-200 justify-start"
+  >
+    <div
+      class="h-full sticky top-0"
+    >
+      <div
+        class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden hidden"
+      />
+      <div
+        class="relative flex h-full w-72 flex-1 flex-col bg-primary p-6 lg:translate-x-0 lg:static lg:inset-0 -translate-x-full ease-in"
+      >
+        <div
+          class="flex items-center justify-between flex-shrink-0 p-4"
+        >
+          <img
+            alt="Light Logo"
+            class="h-8"
+          />
+          <button
+            class="p-1 transition-colors duration-200 rounded-md hover:text-gray-800 hover:bg-gray-100 lg:hidden"
+          >
+            <span />
+          </button>
+        </div>
+        <div
+          class="w-full relative flex flex-col gap-1 p-1 overflow-clip list-none"
+        >
+          <nav
+            class="space-y-1 "
+          >
+            <li
+              class="relative mb-2 w-full"
+              data-slot="base"
+              role="presentation"
+            >
+              <span
+                class="pl-1 text-tiny text-primary-foreground/80"
+                role="presentation"
+              >
+                Resources
+              </span>
+              <ul>
+                <a
+                  class=""
+                  href="/1/blogs"
+                >
+                  <div
+                    class="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40"
+                  >
+                    <span />
+                    <span
+                      class="flex-1 truncate text-small font-medium text-primary-foreground/60 group-data-[selected=true]:text-primary-foreground"
+                    >
+                      Blogs
+                    </span>
+                  </div>
+                </a>
+              </ul>
+            </li>
+          </nav>
+        </div>
+        <div
+          class="w-full relative flex flex-col gap-1 p-1 overflow-clip mt-auto list-none"
+        >
+          <nav
+            class="space-y-1"
+          >
+            <div>
+              <button
+                aria-expanded="false"
+                aria-haspopup="true"
+                class="inline-flex items-center justify-center gap-2 rounded-small outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 z-10 aria-expanded:scale-[0.97] aria-expanded:opacity-70 subpixel-antialiased transition-transform"
+                data-slot="trigger"
+                id="react-aria-:r0:"
+                type="button"
+              >
+                <span
+                  class="flex relative justify-center items-center box-border overflow-hidden align-middle z-0 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 w-10 h-10 text-tiny bg-default text-default-foreground rounded-full"
+                  tabindex="-1"
+                >
+                  <span
+                    aria-label="avatar"
+                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-inherit w-full h-full"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      fill="none"
+                      height="80%"
+                      role="presentation"
+                      viewBox="0 0 24 24"
+                      width="80%"
+                    >
+                      <path
+                        d="M12 2C9.38 2 7.25 4.13 7.25 6.75C7.25 9.32 9.26 11.4 11.88 11.49C11.96 11.48 12.04 11.48 12.1 11.49C12.12 11.49 12.13 11.49 12.15 11.49C12.16 11.49 12.16 11.49 12.17 11.49C14.73 11.4 16.74 9.32 16.75 6.75C16.75 4.13 14.62 2 12 2Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M17.0809 14.1489C14.2909 12.2889 9.74094 12.2889 6.93094 14.1489C5.66094 14.9989 4.96094 16.1489 4.96094 17.3789C4.96094 18.6089 5.66094 19.7489 6.92094 20.5889C8.32094 21.5289 10.1609 21.9989 12.0009 21.9989C13.8409 21.9989 15.6809 21.5289 17.0809 20.5889C18.3409 19.7389 19.0409 18.5989 19.0409 17.3589C19.0309 16.1289 18.3409 14.9889 17.0809 14.1489Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <div
+                  class="inline-flex flex-col items-start"
+                >
+                  <span
+                    class="text-small text-inherit"
+                  />
+                  <span
+                    class="text-tiny text-foreground-400"
+                  />
+                </div>
+              </button>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div
+      class="flex flex-col flex-1 overflow-hidden"
+    >
+      <header
+        class="bg-white shadow-sm lg:hidden"
+      >
+        <div
+          class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8"
+        >
+          <div
+            class="flex items-center justify-between"
+          >
+            <button
+              class="p-2 rounded-md text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+            >
+              <span
+                class="sr-only"
+              >
+                Open sidebar
+              </span>
+              <span />
+            </button>
+          </div>
+        </div>
+      </header>
+      <main
+        class="flex-1 overflow-x-hidden overflow-y-auto p-4"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ApplicationShell > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,86 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelCellEnum > adds style as a prop based on matched enum value 1`] = `
+<DocumentFragment>
+  <div
+    class="relative max-w-fit min-w-min inline-flex items-center justify-between box-border whitespace-nowrap px-1 h-7 text-small rounded-full"
+    style="background-color: rgb(4, 120, 87);"
+  >
+    <span
+      class="flex-1 text-inherit font-normal px-2"
+    >
+      bar
+    </span>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum > should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+    color="none"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div
+    color="none"
+  >
+    -
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div
+    color="none"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum > should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellEnum > uses default style value if match is not found 1`] = `
+<DocumentFragment>
+  <div
+    class="relative max-w-fit min-w-min inline-flex items-center justify-between box-border whitespace-nowrap px-1 h-7 text-small rounded-full"
+    style="background-color: rgb(3, 105, 161);"
+  >
+    <span
+      class="flex-1 text-inherit font-normal px-2"
+    >
+      baz
+    </span>
+  </div>
+</DocumentFragment>
+`;

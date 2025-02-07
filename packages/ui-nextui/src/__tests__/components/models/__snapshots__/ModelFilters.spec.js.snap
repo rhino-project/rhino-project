@@ -1,0 +1,154 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelFilters > resets reference filter defaults 1`] = `
+<DocumentFragment>
+  <div
+    class="grid grid-cols-3 gap-2 my-2"
+  >
+    <div
+      class="group inline-flex flex-col relative w-full transition-background motion-reduce:transition-none !duration-150"
+      data-filled="true"
+      data-has-label="true"
+      data-has-value="true"
+      data-slot="base"
+    >
+      <div
+        aria-hidden="true"
+        data-a11y-ignore="aria-hidden-focus"
+        data-testid="hidden-select-container"
+        style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+      >
+        <label>
+          Author
+          <select
+            name="author.id"
+            tabindex="-1"
+            title=""
+          >
+            <option />
+            <option
+              value="2"
+            >
+              other@example.com
+            </option>
+            <option
+              value="1"
+            >
+              test
+            </option>
+          </select>
+        </label>
+      </div>
+      <div
+        class="w-full flex flex-col"
+        data-slot="mainWrapper"
+      >
+        <button
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-labelledby="react-aria-:r8: react-aria-:r4:"
+          class="relative px-3 w-full inline-flex shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 rounded-medium flex-col items-start justify-center gap-0 bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 h-14 min-h-14 py-2"
+          data-slot="trigger"
+          id="author"
+          type="button"
+        >
+          <label
+            class="block absolute z-10 flex-shrink-0 subpixel-antialiased text-foreground-500 pointer-events-none cursor-pointer will-change-auto origin-top-left rtl:origin-top-right !duration-200 !ease-out transition-[transform,color,left,opacity] motion-reduce:transition-none group-data-[filled=true]:text-default-600 group-data-[filled=true]:scale-85 text-small group-data-[filled=true]:-translate-y-[calc(50%_+_theme(fontSize.small)/2_-_6px)] pe-2 max-w-full text-ellipsis overflow-hidden"
+            data-slot="label"
+            id="react-aria-:r4:"
+          >
+            Author
+          </label>
+          <div
+            class="inline-flex h-fit w-[calc(100%_-_theme(spacing.6))] min-h-4 items-center gap-1.5 box-border group-data-[has-label=true]:pt-4"
+            data-slot="innerWrapper"
+          >
+            <span
+              class="text-foreground-500 font-normal w-full text-start text-small truncate group-data-[has-value=true]:text-default-foreground"
+              data-slot="value"
+              id="react-aria-:r8:"
+            >
+              other@example.com
+            </span>
+          </div>
+          <svg
+            aria-hidden="true"
+            class="absolute end-3 w-4 h-4 transition-transform duration-150 ease motion-reduce:transition-none data-[open=true]:rotate-180"
+            data-slot="selectorIcon"
+            fill="none"
+            focusable="false"
+            height="1em"
+            role="presentation"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.5"
+            viewBox="0 0 24 24"
+            width="1em"
+          >
+            <path
+              d="m6 9 6 6 6-6"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-row flex-wrap items-center gap-2 m-2"
+  >
+    <div
+      class="relative max-w-fit min-w-min inline-flex items-center justify-between box-border whitespace-nowrap px-1 h-7 text-small rounded-full bg-default text-default-foreground cursor-pointer"
+    >
+      <span
+        class="flex-1 text-inherit font-normal px-2 pr-1"
+      >
+        other@example.com
+      </span>
+      <span
+        aria-label="close chip"
+        class="z-10 appearance-none outline-none select-none transition-opacity opacity-70 hover:opacity-100 cursor-pointer active:opacity-disabled tap-highlight-transparent text-large"
+        role="button"
+        tabindex="0"
+      >
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          height="1em"
+          role="presentation"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="M12 2a10 10 0 1010 10A10.016 10.016 0 0012 2zm3.36 12.3a.754.754 0 010 1.06.748.748 0 01-1.06 0l-2.3-2.3-2.3 2.3a.748.748 0 01-1.06 0 .754.754 0 010-1.06l2.3-2.3-2.3-2.3A.75.75 0 019.7 8.64l2.3 2.3 2.3-2.3a.75.75 0 011.06 1.06l-2.3 2.3z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
+    </div>
+    <a
+      class="relative inline-flex items-center tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-medium text-primary no-underline hover:opacity-80 active:opacity-disabled transition-opacity cursor-pointer"
+      role="link"
+      tabindex="0"
+    >
+      Clear all filters
+    </a>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFilters > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelFilters > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

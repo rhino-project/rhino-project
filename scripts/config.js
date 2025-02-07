@@ -27,6 +27,10 @@ export const packages = [
   {
     name: '@rhino-project/ui',
     packageDir: 'packages/ui'
+  },
+  {
+    name: '@rhino-project/ui-nextui',
+    packageDir: 'packages/ui-nextui'
   }
 ];
 

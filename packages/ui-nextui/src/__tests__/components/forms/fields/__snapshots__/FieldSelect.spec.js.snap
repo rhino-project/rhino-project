@@ -1,0 +1,223 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldSelect > render with disabled 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col w-full transition-background motion-reduce:transition-none !duration-150 group relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)]"
+    data-slot="base"
+  >
+    <div
+      aria-hidden="true"
+      data-a11y-ignore="aria-hidden-focus"
+      data-testid="hidden-select-container"
+      style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+    >
+      <label>
+        <select
+          name="dummy"
+          tabindex="-1"
+          title=""
+        >
+          <option />
+        </select>
+      </label>
+    </div>
+    <div
+      class="w-full flex flex-col"
+      data-slot="mainWrapper"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="react-aria-:rq: "
+        class="relative px-3 gap-3 w-full inline-flex flex-row items-center shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 h-10 min-h-10 rounded-medium bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
+        data-slot="trigger"
+        disabled=""
+        id="dummy"
+        type="button"
+      >
+        <div
+          class="inline-flex h-fit w-[calc(100%_-_theme(spacing.6))] min-h-4 items-center gap-1.5 box-border"
+          data-slot="innerWrapper"
+        >
+          <span
+            class="text-foreground-500 font-normal w-full text-start text-small truncate group-data-[has-value=true]:text-default-foreground"
+            data-slot="value"
+            id="react-aria-:rq:"
+          />
+        </div>
+        <svg
+          aria-hidden="true"
+          class="absolute end-3 w-4 h-4 transition-transform duration-150 ease motion-reduce:transition-none data-[open=true]:rotate-180"
+          data-slot="selectorIcon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          role="presentation"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldSelect > render with place holder 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col w-full transition-background motion-reduce:transition-none !duration-150 group relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)]"
+    data-filled="true"
+    data-slot="base"
+  >
+    <div
+      aria-hidden="true"
+      data-a11y-ignore="aria-hidden-focus"
+      data-testid="hidden-select-container"
+      style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+    >
+      <label>
+        <select
+          name="dummy"
+          tabindex="-1"
+          title=""
+        >
+          <option />
+        </select>
+      </label>
+    </div>
+    <div
+      class="w-full flex flex-col"
+      data-slot="mainWrapper"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="react-aria-:rh: "
+        class="relative px-3 gap-3 w-full inline-flex flex-row items-center shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 h-10 min-h-10 rounded-medium bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
+        data-slot="trigger"
+        id="dummy"
+        type="button"
+      >
+        <div
+          class="inline-flex h-fit w-[calc(100%_-_theme(spacing.6))] min-h-4 items-center gap-1.5 box-border"
+          data-slot="innerWrapper"
+        >
+          <span
+            class="text-foreground-500 font-normal w-full text-start text-small truncate group-data-[has-value=true]:text-default-foreground"
+            data-slot="value"
+            id="react-aria-:rh:"
+          >
+            placeholder
+          </span>
+        </div>
+        <svg
+          aria-hidden="true"
+          class="absolute end-3 w-4 h-4 transition-transform duration-150 ease motion-reduce:transition-none data-[open=true]:rotate-180"
+          data-slot="selectorIcon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          role="presentation"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldSelect > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col w-full transition-background motion-reduce:transition-none !duration-150 group relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)]"
+    data-slot="base"
+  >
+    <div
+      aria-hidden="true"
+      data-a11y-ignore="aria-hidden-focus"
+      data-testid="hidden-select-container"
+      style="border: 0px; clip-path: inset(50%); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap;"
+    >
+      <label>
+        <select
+          name="dummy"
+          tabindex="-1"
+          title=""
+        >
+          <option />
+        </select>
+      </label>
+    </div>
+    <div
+      class="w-full flex flex-col"
+      data-slot="mainWrapper"
+    >
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        aria-labelledby="react-aria-:r8: "
+        class="relative px-3 gap-3 w-full inline-flex flex-row items-center shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 h-10 min-h-10 rounded-medium bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
+        data-slot="trigger"
+        id="dummy"
+        type="button"
+      >
+        <div
+          class="inline-flex h-fit w-[calc(100%_-_theme(spacing.6))] min-h-4 items-center gap-1.5 box-border"
+          data-slot="innerWrapper"
+        >
+          <span
+            class="text-foreground-500 font-normal w-full text-start text-small truncate group-data-[has-value=true]:text-default-foreground"
+            data-slot="value"
+            id="react-aria-:r8:"
+          />
+        </div>
+        <svg
+          aria-hidden="true"
+          class="absolute end-3 w-4 h-4 transition-transform duration-150 ease motion-reduce:transition-none data-[open=true]:rotate-180"
+          data-slot="selectorIcon"
+          fill="none"
+          focusable="false"
+          height="1em"
+          role="presentation"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          width="1em"
+        >
+          <path
+            d="m6 9 6 6 6-6"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldSelect > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

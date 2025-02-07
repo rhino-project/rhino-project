@@ -17,7 +17,7 @@ export const ModelSearch = () => {
     // If its a value, we debounce it, otherwise set immediately because
     // its probably a clearing of the search input
     if (value) {
-      debounced.callback(value);
+      debounced(value);
     } else {
       setSearch(value);
     }
