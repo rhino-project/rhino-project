@@ -3,40 +3,134 @@
 exports[`DisplayTime > renders inside of model context 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[hidden=true]:hidden w-full relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)] is-filled"
-    data-filled="true"
-    data-filled-within="true"
-    data-has-value="true"
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
     data-readonly="true"
     data-slot="base"
   >
     <div
-      class="h-full flex flex-col"
-      data-slot="main-wrapper"
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
     >
       <div
-        class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background is-filled"
-        data-slot="input-wrapper"
-        style="cursor: text;"
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
       >
         <div
-          class="inline-flex w-full items-center h-full box-border"
-          data-slot="inner-wrapper"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:r1:"
+          role="group"
         >
-          <input
-            aria-label=" "
+          <div
+            aria-label="hour"
             aria-readonly="true"
-            autocomplete="off"
-            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"
-            data-filled="true"
-            data-filled-within="true"
-            data-slot="input"
-            id="react-aria-:r1:"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            id="react-aria-:r6:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="minute"
+            aria-readonly="true"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            id="react-aria-:ra:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="second"
+            aria-readonly="true"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            id="react-aria-:re:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-label="AM/PM"
+            aria-readonly="true"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            id="react-aria-:ri:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            AM
+          </div>
+          <input
+            hidden=""
             name="dummy"
-            readonly=""
             title=""
             type="text"
-            value="-"
+            value=""
           />
         </div>
       </div>
@@ -48,40 +142,134 @@ exports[`DisplayTime > renders inside of model context 1`] = `
 exports[`DisplayTime > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[hidden=true]:hidden w-full relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)] is-filled"
-    data-filled="true"
-    data-filled-within="true"
-    data-has-value="true"
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
     data-readonly="true"
     data-slot="base"
   >
     <div
-      class="h-full flex flex-col"
-      data-slot="main-wrapper"
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
     >
       <div
-        class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background is-filled"
-        data-slot="input-wrapper"
-        style="cursor: text;"
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
       >
         <div
-          class="inline-flex w-full items-center h-full box-border"
-          data-slot="inner-wrapper"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:rl:"
+          role="group"
         >
-          <input
-            aria-label=" "
+          <div
+            aria-label="hour"
             aria-readonly="true"
-            autocomplete="off"
-            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"
-            data-filled="true"
-            data-filled-within="true"
-            data-slot="input"
-            id="react-aria-:r7:"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            id="react-aria-:rq:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="minute"
+            aria-readonly="true"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            id="react-aria-:ru:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="second"
+            aria-readonly="true"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            id="react-aria-:r12:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-label="AM/PM"
+            aria-readonly="true"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            id="react-aria-:r16:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            AM
+          </div>
+          <input
+            hidden=""
             name="dummy"
-            readonly=""
             title=""
             type="text"
-            value="-"
+            value=""
           />
         </div>
       </div>
@@ -93,40 +281,134 @@ exports[`DisplayTime > should render the empty text when value is nullish 1`] = 
 exports[`DisplayTime > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[hidden=true]:hidden w-full relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)] is-filled"
-    data-filled="true"
-    data-filled-within="true"
-    data-has-value="true"
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
     data-readonly="true"
     data-slot="base"
   >
     <div
-      class="h-full flex flex-col"
-      data-slot="main-wrapper"
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
     >
       <div
-        class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background is-filled"
-        data-slot="input-wrapper"
-        style="cursor: text;"
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
       >
         <div
-          class="inline-flex w-full items-center h-full box-border"
-          data-slot="inner-wrapper"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:r19:"
+          role="group"
         >
-          <input
-            aria-label=" "
+          <div
+            aria-label="hour"
             aria-readonly="true"
-            autocomplete="off"
-            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"
-            data-filled="true"
-            data-filled-within="true"
-            data-slot="input"
-            id="react-aria-:rd:"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            id="react-aria-:r1e:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="minute"
+            aria-readonly="true"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            id="react-aria-:r1i:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="second"
+            aria-readonly="true"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            id="react-aria-:r1m:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-label="AM/PM"
+            aria-readonly="true"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            id="react-aria-:r1q:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            AM
+          </div>
+          <input
+            hidden=""
             name="dummy"
-            readonly=""
             title=""
             type="text"
-            value="baz"
+            value=""
           />
         </div>
       </div>

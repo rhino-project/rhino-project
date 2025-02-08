@@ -220,7 +220,7 @@ export const useGlobalComponentForAttribute = (
   overrideName,
   BaseComponent,
   props,
-  scope
+  scope = null
 ) => {
   const { model } = useModelContext();
   const propModel = useModel(props?.model);
