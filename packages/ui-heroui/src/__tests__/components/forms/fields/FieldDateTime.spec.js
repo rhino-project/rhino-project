@@ -2,22 +2,16 @@ import { render } from '@testing-library/react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FieldDateTime } from '../../../../Field';
 import { createWrapper } from '../../../shared/helpers';
-import { ZonedDateTime } from '@internationalized/date';
+import { fromDate, getLocalTimeZone } from '@internationalized/date';
 import rhinoConfig from 'rhino.config';
 
 const getBarValue = () => 'bar';
 
 describe('FieldDateTime', () => {
   const Bar = () => <div>Bar</div>;
-  const placeholderValue = new ZonedDateTime(
-    2025,
-    2,
-    7,
-    'America/New_York',
-    -18000000,
-    5,
-    5,
-    55
+  const placeholderValue = fromDate(
+    new Date(2025, 1, 7, 5, 5, 55),
+    getLocalTimeZone()
   );
 
   const FormWrapper = ({ children, ...props }) => {
