@@ -297,13 +297,6 @@ export const useModelDisplayAttachmentImageProps = (
   };
 };
 
-export const useModelFilterGroup = (props) => {
-  const { isClearable, isRequired, ...readOnlyProps } =
-    useModelFieldGroup(props);
-
-  return readOnlyProps;
-};
-
 export const useFilterField = (path, operator) => {
   const operatorPath = useMemo(
     () => compact([path, operator]).join('.'),
