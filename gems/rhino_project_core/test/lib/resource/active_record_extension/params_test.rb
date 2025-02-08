@@ -5,7 +5,7 @@ require "test_helper"
 class ParamsTest < ActiveSupport::TestCase
   test "Blog has create_params" do
     assert_equal([
-                   "title", "published_at", "country", { "user" => ["id"] }, "user", { "blogs_categories" => ["id", { "blog" => ["id"] }, "blog", { "category" => ["id"] }, "category", "_destroy"] }, { "banner_attachment" => ["id"] }, "banner_attachment"
+                   "title", "published_at", "country", { "user" => ["id"] }, "user", { "blogs_categories" => ["id", { "blog" => ["id"] }, "blog", { "category" => ["id"] }, "category", "_destroy"] }, { "banner_attachment" => ["signed_id"] }, "banner_attachment"
                  ], Blog.create_params)
   end
 

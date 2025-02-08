@@ -1,18 +1,12 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { ReactNode, useMemo, useState } from 'react';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 import { FieldInput, FieldInputProps } from './FieldInput';
 import { FieldTextarea, FieldTextareaProps } from './FieldTextarea';
 import { parseDate } from '@internationalized/date';
 import { FieldDatePicker, FieldDatePickerProps } from './FieldDatePicker';
 import { FieldTimeInput, FieldTimeInputProps } from './FieldTimeInput';
-import {
-  Alert,
-  Checkbox,
-  CheckboxProps,
-  CircularProgress
-} from '@heroui/react';
+import { Alert, Checkbox, CheckboxProps } from '@heroui/react';
 import { useController } from 'react-hook-form';
-import { useUpdate } from 'react-use';
 import { Uploader } from '@rhino-project/core/utils';
 import {
   CountrySelector,
@@ -170,34 +164,34 @@ FieldDateTimeBase.displayName = 'FieldDateTimeBase';
 
 // File
 const FieldFileBase = ({
-  // If value/onChange aren't provided, we'll use internal state
-  value: controlledValue,
-  onChange: controlledOnChange,
+  path,
   label,
-  multiple = true,
-  accept = '.pdf',
+  description,
+  multiple,
+  accept = '*/*',
   maxSize = 5 * 1024 * 1024, // 5MB
-  maxFiles = 5,
-  className = ''
+  maxFiles = 5
+}: {
+  path: string;
+  label: ReactNode;
+  description: ReactNode;
+  multiple?: boolean;
+  accept?: string;
+  maxSize?: number;
+  maxFiles?: number;
+  value?: File | File[];
+  onChange?: (value: File | File[]) => void;
 }) => {
-  // Internal state for uncontrolled mode
-  const [internalValue, setInternalValue] = useState(null);
+  const {
+    field: { ref, value, onChange, ...fieldProps }
+    // fieldState: { error }
+  } = useController({
+    name: path
+  });
   const [error, setError] = useState('');
-  const [inputKey, setInputKey] = useState(0);
+  console.log('FieldFileBase', multiple, path, value, error);
 
-  // Determine if we're in controlled mode
-  const isControlled =
-    controlledValue !== undefined && controlledOnChange !== undefined;
-
-  // Use controlled or internal value/setter based on mode
-  const value = isControlled ? controlledValue : internalValue;
-  const setValue = isControlled ? controlledOnChange : setInternalValue;
-
-  const validateFile = (file) => {
-    if (!file.type.includes('pdf')) {
-      return 'Please select PDF files only';
-    }
-
+  const validateFile = (file: File) => {
     if (file.size > maxSize) {
       return `Files must be smaller than ${maxSize / 1024 / 1024}MB`;
     }
@@ -205,54 +199,58 @@ const FieldFileBase = ({
     return null;
   };
 
-  const handleFileChange = (event) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = event.target.files;
-    if (!fileList) {
-      setValue(multiple ? [] : null);
-      return;
-    }
+    if (!fileList) return;
 
     const selectedFiles = Array.from(fileList);
 
-    if (selectedFiles.length === 0) {
-      setValue(multiple ? [] : null);
-      return;
-    }
+    if (selectedFiles.length === 0) return;
 
     if (multiple && selectedFiles.length > maxFiles) {
       setError(`You can only upload up to ${maxFiles} files`);
-      setValue(Array.isArray(value) ? value : []);
-      setInputKey((prev) => prev + 1);
       return;
     }
 
     const errors = selectedFiles.map(validateFile).filter(Boolean);
     if (errors.length > 0) {
       setError(errors[0] || 'Invalid file');
-      setValue(multiple ? (Array.isArray(value) ? value : []) : null);
-      setInputKey((prev) => prev + 1);
       return;
     }
 
-    setError('');
-    setValue(multiple ? selectedFiles : selectedFiles[0]);
+    const newFiles = [];
+
+    const uploaders = selectedFiles.map((file, idx) => {
+      const uploader = new Uploader({ id: `${path}-${idx}` }, file, () => null);
+
+      return uploader
+        .begin()
+        .then((arg) => newFiles.push({ ...arg, display_name: arg.filename }));
+    });
+
+    Promise.all(uploaders)
+      .then(() => onChange(multiple ? [...value, ...newFiles] : newFiles[0]))
+      .catch((arg) => {
+        console.log('ARG', arg);
+        setError(arg);
+      });
   };
 
   const handleRemoveFile = (fileToRemove) => {
     if (multiple && Array.isArray(value)) {
-      const newFiles = value.filter((file) => file !== fileToRemove);
-      setValue(newFiles);
+      const newFiles = value.filter(
+        (file) => file.signed_id !== fileToRemove.signed_id
+      );
+      onChange(newFiles);
     } else {
-      setValue(null);
+      onChange(null);
     }
     setError('');
-    setInputKey((prev) => prev + 1);
   };
 
   const handleRemoveAllFiles = () => {
-    setValue(multiple ? [] : null);
+    onChange(multiple ? [] : null);
     setError('');
-    setInputKey((prev) => prev + 1);
   };
 
   const renderFileList = () => {
@@ -276,19 +274,21 @@ const FieldFileBase = ({
         )}
         {files.map((file, index) => (
           <div
-            key={`${file.name}-${index}`}
-            className="p-4 bg-gray-50 rounded-lg flex items-center justify-between"
+            key={`${file.display_name}-${index}`}
+            className="p-4 bg-default-50 rounded-lg flex items-center justify-between"
           >
             <div className="truncate flex-1">
-              <p className="text-sm font-medium text-gray-900">{file.name}</p>
-              <p className="text-sm text-gray-500">
-                {(file.size / 1024 / 1024).toFixed(2)} MB
+              <p className="text-sm font-medium text-foreground-500">
+                {file.display_name}
               </p>
+              {/* <p className="text-sm text-gray-500">
+                {(file.size / 1024 / 1024).toFixed(2)} MB
+              </p> */}
             </div>
             <button
               type="button"
               onClick={() => handleRemoveFile(file)}
-              className="ml-4 text-gray-500 hover:text-red-600"
+              className="ml-4 text-default-500 hover:text-danger-600"
             >
               <Icon className="w-5 h-5" icon="bi:x" />
             </button>
@@ -299,9 +299,9 @@ const FieldFileBase = ({
   };
 
   return (
-    <div>
+    <div className="bg-default-100 hover:bg-default-200 rounded-medium">
       <div className="flex items-center justify-center w-full">
-        <label className="flex flex-col items-center justify-center w-full p-4 h-32 rounded-medium cursor-pointer bg-default-100 hover:bg-default-200">
+        <label className="flex flex-col items-center justify-center w-full p-4 h-32 cursor-pointer">
           <div className="flex flex-col items-center justify-center pt-5 pb-6 gap-2">
             <div className="text-small">{label}</div>
             <Icon className="w-8 h-8 text-foreground-400" icon="bi:upload" />
@@ -309,20 +309,25 @@ const FieldFileBase = ({
               <span className="font-semibold">Click to upload</span> or drag and
               drop
             </p>
-            <p className="text-tiny text-foreground-400">PDF (max. 5MB)</p>
+            {description && (
+              <p className="text-tiny text-foreground-400">{description}</p>
+            )}
           </div>
           <input
             type="file"
             className="hidden"
-            // accept=".pdf"
-            // onChange={handleFileChange}
+            accept={accept}
+            multiple={multiple}
+            onChange={handleFileChange}
           />
         </label>
       </div>
 
-      {/* {error && <div className="text-sm text-red-500">{error}</div>} */}
+      <div className="p-2">
+        {error && <Alert color="danger">{error}</Alert>}
 
-      {/* {renderFileList()} */}
+        {renderFileList()}
+      </div>
     </div>
   );
 };
