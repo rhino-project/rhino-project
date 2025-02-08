@@ -8,10 +8,10 @@ exports[`FieldDate > render with disabled 1`] = `
     data-slot="base"
   >
     <div
-      aria-labelledby="react-aria-:r1k:"
+      aria-labelledby="react-aria-:rq:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
-      id="react-aria-:r1k:"
+      id="react-aria-:rq:"
       role="group"
     >
       <div
@@ -22,10 +22,10 @@ exports[`FieldDate > render with disabled 1`] = `
           aria-expanded="false"
           aria-haspopup="dialog"
           aria-label="Calendar"
-          aria-labelledby="react-aria-:r1h: react-aria-:r1k:"
+          aria-labelledby="react-aria-:rn: react-aria-:rq:"
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
-          id="react-aria-:r1h:"
+          id="react-aria-:rn:"
           type="button"
         >
           <svg
@@ -54,163 +54,7 @@ exports[`FieldDate > render with disabled 1`] = `
         <div
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input-field"
-          id="react-aria-:r1j:"
-          role="presentation"
-        >
-          <div
-            aria-label="month"
-            aria-valuemax="12"
-            aria-valuemin="1"
-            aria-valuenow="2"
-            aria-valuetext="Empty"
-            autocorrect="off"
-            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
-            data-editable="true"
-            data-placeholder="true"
-            data-slot="segment"
-            data-type="month"
-            enterkeyhint="next"
-            id="react-aria-:r1u:"
-            inputmode="numeric"
-            role="spinbutton"
-            spellcheck="false"
-            style="caret-color: transparent;"
-            tabindex="0"
-          >
-            mm
-          </div>
-          <div
-            aria-hidden="true"
-            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            data-slot="segment"
-            data-type="literal"
-          >
-            /
-          </div>
-          <div
-            aria-label="day"
-            aria-valuemax="28"
-            aria-valuemin="1"
-            aria-valuenow="7"
-            aria-valuetext="Empty"
-            autocorrect="off"
-            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
-            data-editable="true"
-            data-placeholder="true"
-            data-slot="segment"
-            data-type="day"
-            enterkeyhint="next"
-            id="react-aria-:r22:"
-            inputmode="numeric"
-            role="spinbutton"
-            spellcheck="false"
-            style="caret-color: transparent;"
-            tabindex="0"
-          >
-            dd
-          </div>
-          <div
-            aria-hidden="true"
-            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            data-slot="segment"
-            data-type="literal"
-          >
-            /
-          </div>
-          <div
-            aria-label="year"
-            aria-valuemax="9999"
-            aria-valuemin="1"
-            aria-valuenow="2025"
-            aria-valuetext="Empty"
-            autocorrect="off"
-            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
-            data-editable="true"
-            data-placeholder="true"
-            data-slot="segment"
-            data-type="year"
-            enterkeyhint="next"
-            id="react-aria-:r26:"
-            inputmode="numeric"
-            role="spinbutton"
-            spellcheck="false"
-            style="caret-color: transparent;"
-            tabindex="0"
-          >
-            yyyy
-          </div>
-          <input
-            hidden=""
-            name="dummy"
-            title=""
-            type="text"
-            value=""
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`FieldDate > render with place holder 1`] = `
-<DocumentFragment>
-  <div
-    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 group w-full"
-    data-has-start-content="true"
-    data-slot="base"
-  >
-    <div
-      aria-labelledby="react-aria-:rs:"
-      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
-      data-slot="input-wrapper"
-      id="react-aria-:rs:"
-      role="group"
-    >
-      <div
-        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
-        data-slot="inner-wrapper"
-      >
-        <button
-          aria-expanded="false"
-          aria-haspopup="dialog"
-          aria-label="Calendar"
-          aria-labelledby="react-aria-:rp: react-aria-:rs:"
-          class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
-          data-slot="selector-button"
           id="react-aria-:rp:"
-          type="button"
-        >
-          <svg
-            aria-hidden="true"
-            class="text-lg text-inherit pointer-events-none flex-shrink-0"
-            data-slot="selector-icon"
-            fill="none"
-            focusable="false"
-            height="1em"
-            role="presentation"
-            viewBox="0 0 24 24"
-            width="1em"
-          >
-            <path
-              d="M7.75 2.5a.75.75 0 0 0-1.5 0v1.58c-1.44.115-2.384.397-3.078 1.092c-.695.694-.977 1.639-1.093 3.078h19.842c-.116-1.44-.398-2.384-1.093-3.078c-.694-.695-1.639-.977-3.078-1.093V2.5a.75.75 0 0 0-1.5 0v1.513C15.585 4 14.839 4 14 4h-4c-.839 0-1.585 0-2.25.013z"
-              fill="currentColor"
-            />
-            <path
-              clip-rule="evenodd"
-              d="M2 12c0-.839 0-1.585.013-2.25h19.974C22 10.415 22 11.161 22 12v2c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14zm15 2a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2m-4-5a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-6-3a1 1 0 1 0 0-2a1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2a1 1 0 0 0 0 2"
-              fill="currentColor"
-              fill-rule="evenodd"
-            />
-          </svg>
-        </button>
-        <div
-          class="flex h-full gap-x-0.5 w-full font-normal text-small"
-          data-slot="input-field"
-          id="react-aria-:rr:"
           role="presentation"
         >
           <div
@@ -227,7 +71,7 @@ exports[`FieldDate > render with place holder 1`] = `
             data-slot="segment"
             data-type="month"
             enterkeyhint="next"
-            id="react-aria-:r16:"
+            id="react-aria-:r14:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -248,7 +92,7 @@ exports[`FieldDate > render with place holder 1`] = `
             aria-label="day"
             aria-valuemax="28"
             aria-valuemin="1"
-            aria-valuenow="7"
+            aria-valuenow="8"
             aria-valuetext="Empty"
             autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
@@ -258,7 +102,7 @@ exports[`FieldDate > render with place holder 1`] = `
             data-slot="segment"
             data-type="day"
             enterkeyhint="next"
-            id="react-aria-:r1a:"
+            id="react-aria-:r18:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -289,7 +133,7 @@ exports[`FieldDate > render with place holder 1`] = `
             data-slot="segment"
             data-type="year"
             enterkeyhint="next"
-            id="react-aria-:r1e:"
+            id="react-aria-:r1c:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -321,10 +165,10 @@ exports[`FieldDate > renders date string 1`] = `
   >
     <div
       aria-describedby="react-aria-description-0"
-      aria-labelledby="react-aria-:r3p:"
+      aria-labelledby="react-aria-:r2v:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
-      id="react-aria-:r3p:"
+      id="react-aria-:r2v:"
       role="group"
     >
       <div
@@ -336,10 +180,10 @@ exports[`FieldDate > renders date string 1`] = `
           aria-expanded="false"
           aria-haspopup="dialog"
           aria-label="Calendar"
-          aria-labelledby="react-aria-:r3m: react-aria-:r3p:"
+          aria-labelledby="react-aria-:r2s: react-aria-:r2v:"
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
-          id="react-aria-:r3m:"
+          id="react-aria-:r2s:"
           type="button"
         >
           <svg
@@ -368,7 +212,7 @@ exports[`FieldDate > renders date string 1`] = `
         <div
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input-field"
-          id="react-aria-:r3o:"
+          id="react-aria-:r2u:"
           role="presentation"
         >
           <div
@@ -385,7 +229,7 @@ exports[`FieldDate > renders date string 1`] = `
             data-slot="segment"
             data-type="month"
             enterkeyhint="next"
-            id="react-aria-:r43:"
+            id="react-aria-:r39:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -415,7 +259,7 @@ exports[`FieldDate > renders date string 1`] = `
             data-slot="segment"
             data-type="day"
             enterkeyhint="next"
-            id="react-aria-:r47:"
+            id="react-aria-:r3d:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -445,7 +289,7 @@ exports[`FieldDate > renders date string 1`] = `
             data-slot="segment"
             data-type="year"
             enterkeyhint="next"
-            id="react-aria-:r4b:"
+            id="react-aria-:r3h:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -476,10 +320,10 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
     data-slot="base"
   >
     <div
-      aria-labelledby="react-aria-:r32:"
+      aria-labelledby="react-aria-:r28:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
-      id="react-aria-:r32:"
+      id="react-aria-:r28:"
       role="group"
     >
       <div
@@ -490,10 +334,10 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
           aria-expanded="false"
           aria-haspopup="dialog"
           aria-label="Calendar"
-          aria-labelledby="react-aria-:r2v: react-aria-:r32:"
+          aria-labelledby="react-aria-:r25: react-aria-:r28:"
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
-          id="react-aria-:r2v:"
+          id="react-aria-:r25:"
           type="button"
         >
           <svg
@@ -522,7 +366,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
         <div
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input-field"
-          id="react-aria-:r31:"
+          id="react-aria-:r27:"
           role="presentation"
         >
           <div
@@ -539,7 +383,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
             data-slot="segment"
             data-type="month"
             enterkeyhint="next"
-            id="react-aria-:r3c:"
+            id="react-aria-:r2i:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -570,7 +414,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
             data-slot="segment"
             data-type="day"
             enterkeyhint="next"
-            id="react-aria-:r3g:"
+            id="react-aria-:r2m:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -601,7 +445,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
             data-slot="segment"
             data-type="year"
             enterkeyhint="next"
-            id="react-aria-:r3k:"
+            id="react-aria-:r2q:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -632,10 +476,10 @@ exports[`FieldDate > renders empty with null date 1`] = `
     data-slot="base"
   >
     <div
-      aria-labelledby="react-aria-:r2b:"
+      aria-labelledby="react-aria-:r1h:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
-      id="react-aria-:r2b:"
+      id="react-aria-:r1h:"
       role="group"
     >
       <div
@@ -646,10 +490,10 @@ exports[`FieldDate > renders empty with null date 1`] = `
           aria-expanded="false"
           aria-haspopup="dialog"
           aria-label="Calendar"
-          aria-labelledby="react-aria-:r28: react-aria-:r2b:"
+          aria-labelledby="react-aria-:r1e: react-aria-:r1h:"
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
-          id="react-aria-:r28:"
+          id="react-aria-:r1e:"
           type="button"
         >
           <svg
@@ -678,7 +522,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
         <div
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input-field"
-          id="react-aria-:r2a:"
+          id="react-aria-:r1g:"
           role="presentation"
         >
           <div
@@ -695,7 +539,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
             data-slot="segment"
             data-type="month"
             enterkeyhint="next"
-            id="react-aria-:r2l:"
+            id="react-aria-:r1r:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -726,7 +570,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
             data-slot="segment"
             data-type="day"
             enterkeyhint="next"
-            id="react-aria-:r2p:"
+            id="react-aria-:r1v:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -757,7 +601,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
             data-slot="segment"
             data-type="year"
             enterkeyhint="next"
-            id="react-aria-:r2t:"
+            id="react-aria-:r23:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -790,11 +634,11 @@ exports[`FieldDate > renders error 1`] = `
     data-slot="base"
   >
     <div
-      aria-describedby="react-aria-:r4k:"
-      aria-labelledby="react-aria-:r4g:"
+      aria-describedby="react-aria-:r3q:"
+      aria-labelledby="react-aria-:r3m:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
-      id="react-aria-:r4g:"
+      id="react-aria-:r3m:"
       role="group"
     >
       <div
@@ -802,14 +646,14 @@ exports[`FieldDate > renders error 1`] = `
         data-slot="inner-wrapper"
       >
         <button
-          aria-describedby="react-aria-:r4k:"
+          aria-describedby="react-aria-:r3q:"
           aria-expanded="false"
           aria-haspopup="dialog"
           aria-label="Calendar"
-          aria-labelledby="react-aria-:r4d: react-aria-:r4g:"
+          aria-labelledby="react-aria-:r3j: react-aria-:r3m:"
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
-          id="react-aria-:r4d:"
+          id="react-aria-:r3j:"
           type="button"
         >
           <svg
@@ -839,11 +683,11 @@ exports[`FieldDate > renders error 1`] = `
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-invalid="true"
           data-slot="input-field"
-          id="react-aria-:r4f:"
+          id="react-aria-:r3l:"
           role="presentation"
         >
           <div
-            aria-describedby="react-aria-:r4k: react-aria-:r4k:"
+            aria-describedby="react-aria-:r3q: react-aria-:r3q:"
             aria-invalid="true"
             aria-label="month"
             aria-valuemax="12"
@@ -859,7 +703,7 @@ exports[`FieldDate > renders error 1`] = `
             data-slot="segment"
             data-type="month"
             enterkeyhint="next"
-            id="react-aria-:r4q:"
+            id="react-aria-:r40:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -878,7 +722,7 @@ exports[`FieldDate > renders error 1`] = `
             /
           </div>
           <div
-            aria-describedby="react-aria-:r4k: react-aria-:r4k:"
+            aria-describedby="react-aria-:r3q: react-aria-:r3q:"
             aria-invalid="true"
             aria-label="day"
             aria-valuemax="28"
@@ -894,7 +738,7 @@ exports[`FieldDate > renders error 1`] = `
             data-slot="segment"
             data-type="day"
             enterkeyhint="next"
-            id="react-aria-:r4u:"
+            id="react-aria-:r44:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -913,7 +757,7 @@ exports[`FieldDate > renders error 1`] = `
             /
           </div>
           <div
-            aria-describedby="react-aria-:r4k: react-aria-:r4k:"
+            aria-describedby="react-aria-:r3q: react-aria-:r3q:"
             aria-invalid="true"
             aria-label="year"
             aria-valuemax="9999"
@@ -929,7 +773,7 @@ exports[`FieldDate > renders error 1`] = `
             data-slot="segment"
             data-type="year"
             enterkeyhint="next"
-            id="react-aria-:r52:"
+            id="react-aria-:r48:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -954,7 +798,7 @@ exports[`FieldDate > renders error 1`] = `
         <div
           class="text-tiny text-danger"
           data-slot="error-message"
-          id="react-aria-:r4k:"
+          id="react-aria-:r3q:"
         >
           Error
         </div>
@@ -972,10 +816,10 @@ exports[`FieldDate > renders inside of model context 1`] = `
     data-slot="base"
   >
     <div
-      aria-labelledby="react-aria-:r4:"
+      aria-labelledby="react-aria-:r3:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
-      id="react-aria-:r4:"
+      id="react-aria-:r3:"
       role="group"
     >
       <div
@@ -986,10 +830,10 @@ exports[`FieldDate > renders inside of model context 1`] = `
           aria-expanded="false"
           aria-haspopup="dialog"
           aria-label="Calendar"
-          aria-labelledby="react-aria-:r1: react-aria-:r4:"
+          aria-labelledby="react-aria-:r0: react-aria-:r3:"
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
-          id="react-aria-:r1:"
+          id="react-aria-:r0:"
           type="button"
         >
           <svg
@@ -1018,7 +862,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
         <div
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input-field"
-          id="react-aria-:r3:"
+          id="react-aria-:r2:"
           role="presentation"
         >
           <div
@@ -1035,7 +879,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
             data-slot="segment"
             data-type="month"
             enterkeyhint="next"
-            id="react-aria-:re:"
+            id="react-aria-:rd:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -1056,7 +900,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
             aria-label="day"
             aria-valuemax="28"
             aria-valuemin="1"
-            aria-valuenow="7"
+            aria-valuenow="8"
             aria-valuetext="Empty"
             autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
@@ -1066,7 +910,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
             data-slot="segment"
             data-type="day"
             enterkeyhint="next"
-            id="react-aria-:ri:"
+            id="react-aria-:rh:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -1097,7 +941,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
             data-slot="segment"
             data-type="year"
             enterkeyhint="next"
-            id="react-aria-:rm:"
+            id="react-aria-:rl:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"

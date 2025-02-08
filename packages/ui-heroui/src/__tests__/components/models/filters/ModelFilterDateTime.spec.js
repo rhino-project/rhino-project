@@ -5,7 +5,7 @@ import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSi
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterDateTime } from '../../../../components/models/filters/ModelFilterDateTime';
 import { FilterDateTime } from '../../../../Filter';
-import { ZonedDateTime } from '@internationalized/date';
+import { parseAbsoluteToLocal, ZonedDateTime } from '@internationalized/date';
 
 vi.mock('../../../../Filter', () => ({
   FilterDateTime: vi.fn(() => null)
@@ -50,7 +50,7 @@ describe('ModelFilterDateTime', () => {
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
-        minValue: new ZonedDateTime(1982, 2, 7, 'America/Toronto', -18000000),
+        minValue: parseAbsoluteToLocal('1982-02-07T05:00:00.000Z'),
         maxValue: undefined,
         path: 'dummy'
       }),
@@ -79,16 +79,7 @@ describe('ModelFilterDateTime', () => {
     );
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
-        minValue: new ZonedDateTime(
-          1982,
-          2,
-          7,
-          'America/Toronto',
-          -18000000,
-          0,
-          0,
-          1
-        ),
+        minValue: parseAbsoluteToLocal('1982-02-07T05:00:01.000Z'),
         maxValue: undefined,
         path: 'dummy'
       }),
@@ -118,7 +109,7 @@ describe('ModelFilterDateTime', () => {
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
         minValue: undefined,
-        maxValue: new ZonedDateTime(2030, 2, 7, 'America/Toronto', -18000000),
+        maxValue: parseAbsoluteToLocal('2030-02-07T05:00:00.000Z'),
         path: 'dummy'
       }),
       expect.anything()
@@ -148,16 +139,7 @@ describe('ModelFilterDateTime', () => {
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
         minValue: undefined,
-        maxValue: new ZonedDateTime(
-          2030,
-          2,
-          6,
-          'America/Toronto',
-          -18000000,
-          23,
-          59,
-          59
-        ),
+        maxValue: parseAbsoluteToLocal('2030-02-07T04:59:59.000Z'),
         path: 'dummy'
       }),
       expect.anything()
