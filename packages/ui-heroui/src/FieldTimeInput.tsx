@@ -1,26 +1,30 @@
 import React, { useCallback, useMemo } from 'react';
-import { TimeInputProps, TimeInput } from '@heroui/react';
+import { TimeInputProps, TimeInput, TimeInputValue } from '@heroui/react';
 
-import { useController, RegisterOptions } from 'react-hook-form';
-import { useFieldInheritedProps } from '@rhino-project/core/hooks';
+import {
+  FieldValues,
+  Path,
+  useController,
+  UseControllerProps
+} from 'react-hook-form';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 import { parseAbsoluteToLocal } from '@internationalized/date';
 
-export type FieldTimeInputProps = TimeInputProps &
-  RegisterOptions & {
-    parse?: (value: string) => unknown | null;
-    /**
-     * The path inside the form object.
-     */
-    path: string;
-  };
+export type FieldTimeInputProps<T extends FieldValues = FieldValues> =
+  TimeInputProps &
+    Omit<UseControllerProps<T>, 'name' | 'control'> & {
+      parse?: (value: string) => TimeInputValue | null | undefined;
+      /**
+       * The path inside the form object.
+       */
+      path: Path<T>;
+    };
 
-export const FieldTimeInputBase: React.FC<FieldTimeInputProps> = ({
+export const FieldTimeInputBase = <T extends FieldValues = FieldValues>({
   path,
   parse = parseAbsoluteToLocal,
   ...props
-}) => {
-  const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
+}: FieldTimeInputProps<T>) => {
   const {
     field: { onChange, value: fieldValue, ...fieldProps },
     fieldState: { error }
@@ -33,7 +37,7 @@ export const FieldTimeInputBase: React.FC<FieldTimeInputProps> = ({
 
   const handleOnChange = useCallback(
     // Keep it in aboslute time throughout
-    (value) => {
+    (value: TimeInputValue | null) => {
       onChange(
         value
           ? new Date(
@@ -52,7 +56,6 @@ export const FieldTimeInputBase: React.FC<FieldTimeInputProps> = ({
 
   return (
     <TimeInput
-      {...extractedProps}
       {...fieldProps}
       granularity="second"
       errorMessage={error?.message}
@@ -60,7 +63,7 @@ export const FieldTimeInputBase: React.FC<FieldTimeInputProps> = ({
       isInvalid={!!error}
       onChange={handleOnChange}
       value={value}
-      {...inheritedProps}
+      {...props}
     />
   );
 };

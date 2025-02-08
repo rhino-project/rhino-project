@@ -1,8 +1,12 @@
 import React, { useCallback, useMemo } from 'react';
 import { DatePicker, DatePickerProps } from '@heroui/react';
 
-import { useController, RegisterOptions } from 'react-hook-form';
-import { useFieldInheritedProps } from '@rhino-project/core/hooks';
+import {
+  FieldValues,
+  Path,
+  useController,
+  UseControllerProps
+} from 'react-hook-form';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 import {
   CalendarDate,
@@ -13,23 +17,23 @@ import {
   parseAbsoluteToLocal
 } from '@internationalized/date';
 
-export type FieldDatePickerProps = DatePickerProps &
-  RegisterOptions & {
-    parse?: (
-      value: string
-    ) => ZonedDateTime | CalendarDate | CalendarDateTime | null | undefined;
-    /**
-     * The path inside the form object.
-     */
-    path: string;
-  };
+export type FieldDatePickerProps<T extends FieldValues = FieldValues> =
+  DatePickerProps &
+    Omit<UseControllerProps<T>, 'name' | 'control'> & {
+      parse?: (
+        value: string
+      ) => ZonedDateTime | CalendarDate | CalendarDateTime | null | undefined;
+      /**
+       * The path inside the form object.
+       */
+      path: Path<T>;
+    };
 
-export const FieldDatePickerBase: React.FC<FieldDatePickerProps> = ({
+export const FieldDatePickerBase = <T extends FieldValues = FieldValues>({
   path,
   parse = parseAbsoluteToLocal,
   ...props
-}) => {
-  const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
+}: FieldDatePickerProps<T>) => {
   const {
     field: { onChange, value: fieldValue, ...fieldProps },
     fieldState: { error }
@@ -38,7 +42,7 @@ export const FieldDatePickerBase: React.FC<FieldDatePickerProps> = ({
   // The placeholder value controls the format of the return value when its updated
   // as well as the default date shown in the picker when the value is empty.
   const placeholderValue = useMemo(() => {
-    if (extractedProps.placeholderValue) return extractedProps.placeholderValue;
+    if (props.placeholderValue) return props.placeholderValue;
 
     const date = now(getLocalTimeZone());
 
@@ -72,7 +76,6 @@ export const FieldDatePickerBase: React.FC<FieldDatePickerProps> = ({
 
   return (
     <DatePicker
-      {...extractedProps}
       {...fieldProps}
       granularity="second"
       placeholderValue={placeholderValue}
@@ -83,7 +86,7 @@ export const FieldDatePickerBase: React.FC<FieldDatePickerProps> = ({
       selectorButtonPlacement="start"
       showMonthAndYearPickers
       value={value}
-      {...inheritedProps}
+      {...props}
     />
   );
 };

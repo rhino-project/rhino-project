@@ -33,7 +33,7 @@ exports[`FieldSelect > render with disabled 1`] = `
         class="relative px-3 gap-3 w-full inline-flex flex-row items-center shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 h-10 min-h-10 rounded-medium bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
         data-slot="trigger"
         disabled=""
-        id="dummy"
+        id="react-aria-:rl:"
         type="button"
       >
         <div
@@ -104,7 +104,7 @@ exports[`FieldSelect > render with place holder 1`] = `
         aria-labelledby="react-aria-:rh: "
         class="relative px-3 gap-3 w-full inline-flex flex-row items-center shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 h-10 min-h-10 rounded-medium bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
         data-slot="trigger"
-        id="dummy"
+        id="react-aria-:rc:"
         type="button"
       >
         <div
@@ -176,7 +176,7 @@ exports[`FieldSelect > renders inside of model context 1`] = `
         aria-labelledby="react-aria-:r8: "
         class="relative px-3 gap-3 w-full inline-flex flex-row items-center shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 h-10 min-h-10 rounded-medium bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
         data-slot="trigger"
-        id="dummy"
+        id="react-aria-:r3:"
         type="button"
       >
         <div

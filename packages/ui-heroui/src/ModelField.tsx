@@ -1,4 +1,4 @@
-import React, { useId, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   useBaseOwnerFilters,
   useGlobalComponentForAttribute,
@@ -34,9 +34,14 @@ import {
   FieldYearProps
 } from './Field';
 import {
+  useModelFieldBooleanProps,
+  useModelFieldDateTimeProps,
+  useModelFieldEnumProps,
   useModelFieldGroup,
   useModelFieldGroupEnum,
-  useModelFieldGroupIntegerSelect
+  useModelFieldGroupIntegerSelect,
+  useModelFieldInputProps,
+  useModelFieldTimeProps
 } from './form';
 import { FieldSelect, FieldSelectProps } from './FieldSelect';
 import {
@@ -49,88 +54,65 @@ import {
   AutocompleteItem,
   AutocompleteProps
 } from '@heroui/react';
+import { CountrySelectorProps } from 'react-international-phone';
 
 // Types
 export type ModelFieldProps = {
-  model: string | Record<string, any>;
+  model: string | Record<string, unknown>;
   attribute: string;
 };
-export type ModelFieldBooleanProps = FieldBooleanProps & ModelFieldProps;
 export type ModelFieldCountryProps = FieldCountryProps & ModelFieldProps;
-export type ModelFieldCurrencyProps = FieldCurrencyProps & ModelFieldProps;
-export type ModelFieldDateProps = FieldDateProps & ModelFieldProps;
-export type ModelFieldDateTimeProps = FieldDateTimeProps & ModelFieldProps;
-export type ModelFieldEnumProps = FieldSelectProps & ModelFieldProps;
 export type ModelFieldFileProps = FieldFileProps & ModelFieldProps;
-export type ModelFieldFloatProps = FieldFloatProps & ModelFieldProps;
-export type ModelFieldIntegerProps = FieldIntegerProps & ModelFieldProps;
 export type ModelFieldIntegerSelectProps = FieldSelectProps & ModelFieldProps;
 export type ModelFieldOwnerReferenceProps = ModelFieldReferenceProps;
 export type ModelFieldPhoneProps = FieldPhoneProps & ModelFieldProps;
 export type ModelFieldReferenceProps = AutocompleteProps & ModelFieldProps;
-export type ModelFieldStringProps = FieldStringProps & ModelFieldProps;
-export type ModelFieldTextProps = FieldTextProps & ModelFieldProps;
-export type ModelFieldTimeProps = FieldTimeProps & ModelFieldProps;
-export type ModelFieldYearProps = FieldYearProps & ModelFieldProps;
 
 // Boolean
-export const ModelFieldBooleanBase: React.FC<ModelFieldBooleanProps> = (
-  props
-) => {
-  // FIXME This can be cleaned up a lot
-  const { label, ...fieldGroupProps } = useModelFieldGroup(
-    props
-  ) as ModelFieldDateProps;
+export const ModelFieldBooleanBase: React.FC<FieldBooleanProps> = (props) => {
+  const fieldProps = useModelFieldBooleanProps(props);
 
-  return <FieldBoolean {...fieldGroupProps}>{label}</FieldBoolean>;
+  return <FieldBoolean {...fieldProps} />;
 };
 
 // Country
-export const ModelFieldCountryBase: React.FC<ModelFieldEnumProps> = (props) => {
+export const ModelFieldCountryBase: React.FC<CountrySelectorProps> = (
+  props
+) => {
   // FIXME This can be cleaned up a lot
   const { fieldGroupProps, ...inputProps } = useModelFieldGroupEnum(
     props
-  ) as ModelFieldEnumProps;
+  ) as ModelFieldProps;
 
   return <FieldCountry {...fieldGroupProps} {...inputProps} />;
 };
 
 // Currency
-export const ModelFieldCurrencyBase: React.FC<ModelFieldCurrencyProps> = (
-  props
-) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldCurrencyProps;
+export const ModelFieldCurrencyBase: React.FC<FieldCurrencyProps> = (props) => {
+  const fieldProps = useModelFieldInputProps(props);
 
-  return <FieldCurrency {...fieldGroupProps} />;
+  return <FieldCurrency {...fieldProps} />;
 };
 
 // Date
-export const ModelFieldDateBase: React.FC<ModelFieldDateProps> = (props) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldDateProps;
+export const ModelFieldDateBase: React.FC<FieldDateProps> = (props) => {
+  const fieldProps = useModelFieldDateTimeProps(props);
 
-  return <FieldDate {...fieldGroupProps} />;
+  return <FieldDate {...fieldProps} />;
 };
 
 // Date Time
-export const ModelFieldDateTimeBase: React.FC<ModelFieldDateTimeProps> = (
-  props
-) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldDateTimeProps;
+export const ModelFieldDateTimeBase: React.FC<FieldDateTimeProps> = (props) => {
+  const fieldProps = useModelFieldDateTimeProps(props);
 
-  return <FieldDateTime {...fieldGroupProps} />;
+  return <FieldDateTime {...fieldProps} />;
 };
 
 // Enum
-export const ModelFieldEnumBase: React.FC<ModelFieldEnumProps> = (props) => {
-  // FIXME This can be cleaned up a lot
-  const { fieldGroupProps, ...inputProps } = useModelFieldGroupEnum(
-    props
-  ) as ModelFieldEnumProps;
+export const ModelFieldEnumBase: React.FC<FieldSelectProps> = (props) => {
+  const fieldProps = useModelFieldEnumProps(props);
 
-  return <FieldSelect {...fieldGroupProps} {...inputProps} />;
+  return <FieldSelect {...fieldProps} />;
 };
 
 // File
@@ -142,21 +124,17 @@ export const ModelFieldFileBase: React.FC<ModelFieldFileProps> = (props) => {
 };
 
 // Float
-export const ModelFieldFloatBase: React.FC<ModelFieldFloatProps> = (props) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldFloatProps;
+export const ModelFieldFloatBase: React.FC<FieldFloatProps> = (props) => {
+  const fieldProps = useModelFieldInputProps(props);
 
-  return <FieldFloat {...fieldGroupProps} />;
+  return <FieldFloat {...fieldProps} />;
 };
 
 // Integer
-export const ModelFieldIntegerBase: React.FC<ModelFieldIntegerProps> = (
-  props
-) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldIntegerProps;
+export const ModelFieldIntegerBase: React.FC<FieldIntegerProps> = (props) => {
+  const fieldProps = useModelFieldInputProps(props);
 
-  return <FieldInteger {...fieldGroupProps} />;
+  return <FieldInteger {...fieldProps} />;
 };
 
 // Integer Select
@@ -265,90 +243,82 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
 };
 
 // String
-export const ModelFieldStringBase: React.FC<ModelFieldStringProps> = (
-  props
-) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldStringProps;
+export const ModelFieldStringBase: React.FC<FieldStringProps> = (props) => {
+  const fieldProps = useModelFieldInputProps(props);
 
-  return <FieldString {...fieldGroupProps} />;
+  return <FieldString {...fieldProps} />;
 };
 
 // Text
-export const ModelFieldTextBase: React.FC<ModelFieldTextProps> = (props) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldStringProps;
+export const ModelFieldTextBase: React.FC<FieldTextProps> = (props) => {
+  const fieldProps = useModelFieldInputProps(props);
 
-  return <FieldText {...fieldGroupProps} />;
+  return <FieldText {...fieldProps} />;
 };
 
 // Time
-export const ModelFieldTimeBase: React.FC<ModelFieldTimeProps> = (props) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldTimeProps;
+export const ModelFieldTimeBase: React.FC<FieldTimeProps> = (props) => {
+  const fieldProps = useModelFieldTimeProps(props);
 
-  return <FieldTime {...fieldGroupProps} />;
+  return <FieldTime {...fieldProps} />;
 };
 
 // Year
-export const ModelFieldYearBase: React.FC<ModelFieldYearProps> = (props) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldYearProps;
+export const ModelFieldYearBase: React.FC<FieldYearProps> = (props) => {
+  const fieldProps = useModelFieldInputProps(props);
 
-  return <FieldYear {...fieldGroupProps} />;
+  return <FieldYear {...fieldProps} />;
 };
 
 // Overrideable component exports
-export const ModelFieldBoolean: React.FC<ModelFieldBooleanProps> = (props) =>
+export const ModelFieldBoolean: React.FC<FieldBooleanProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldBoolean',
     ModelFieldBooleanBase,
     props
   );
 
-export const ModelFieldCountry: React.FC<ModelFieldEnumProps> = (props) =>
+export const ModelFieldCountry: React.FC<ModelFieldProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldCountry',
     ModelFieldEnumBase,
     props
   );
 
-export const ModelFieldCurrency: React.FC<ModelFieldCurrencyProps> = (props) =>
+export const ModelFieldCurrency: React.FC<FieldCurrencyProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldCurrency',
     ModelFieldCurrencyBase,
     props
   );
 
-export const ModelFieldDate: React.FC<ModelFieldDateProps> = (props) =>
+export const ModelFieldDate: React.FC<FieldDateProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldDate', ModelFieldDateBase, props);
 
-export const ModelFieldDateTime: React.FC<ModelFieldDateTimeProps> = (props) =>
+export const ModelFieldDateTime: React.FC<FieldDateTimeProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldDateTime',
     ModelFieldDateTimeBase,
     props
   );
 
-export const ModelFieldEnum: React.FC<ModelFieldEnumProps> = (props) =>
+export const ModelFieldEnum: React.FC<FieldSelectProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldEnum', ModelFieldEnumBase, props);
 
 export const ModelFieldFile: React.FC<ModelFieldFileProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldFile', ModelFieldFileBase, props);
 
-export const ModelFieldFloat: React.FC<ModelFieldFloatProps> = (props) =>
+export const ModelFieldFloat: React.FC<FieldFloatProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldFloat', ModelFieldFloatBase, props);
 
-export const ModelFieldInteger: React.FC<ModelFieldIntegerProps> = (props) =>
+export const ModelFieldInteger: React.FC<FieldIntegerProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldInteger',
     ModelFieldIntegerBase,
     props
   );
 
-export const ModelFieldIntegerSelect: React.FC<ModelFieldIntegerProps> = (
-  props
-) =>
+export const ModelFieldIntegerSelect: React.FC<FieldIntegerProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldIntegerSelect',
     ModelFieldIntegerSelectBase,
@@ -376,18 +346,18 @@ export const ModelFieldReference: React.FC<ModelFieldReferenceProps> = (
     props
   );
 
-export const ModelFieldString: React.FC<ModelFieldStringProps> = (props) =>
+export const ModelFieldString: React.FC<FieldStringProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldString',
     ModelFieldStringBase,
     props
   );
 
-export const ModelFieldText: React.FC<ModelFieldTextProps> = (props) =>
+export const ModelFieldText: React.FC<FieldTextProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldText', ModelFieldTextBase, props);
 
-export const ModelFieldTime: React.FC<ModelFieldTimeProps> = (props) =>
+export const ModelFieldTime: React.FC<FieldTimeProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldTime', ModelFieldTimeBase, props);
 
-export const ModelFieldYear: React.FC<ModelFieldYearProps> = (props) =>
+export const ModelFieldYear: React.FC<FieldYearProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldYear', ModelFieldYearBase, props);

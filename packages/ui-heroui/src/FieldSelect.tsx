@@ -1,25 +1,29 @@
-import { Select, SelectProps } from '@heroui/react';
-import { useController, RegisterOptions } from 'react-hook-form';
-import { useFieldInheritedProps } from '@rhino-project/core/hooks';
 import React, { useCallback, useMemo } from 'react';
+import { Select, SelectProps } from '@heroui/react';
+import {
+  FieldValues,
+  Path,
+  useController,
+  UseControllerProps
+} from 'react-hook-form';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 
-export type FieldSelectProps = SelectProps &
-  RegisterOptions & {
-    /**
-     * The path inside the form object.
-     */
-    path: string;
-  };
+export type FieldSelectProps<T extends FieldValues = FieldValues> =
+  SelectProps &
+    Omit<UseControllerProps<T>, 'name' | 'control'> & {
+      /**
+       * The path inside the form object.
+       */
+      path: Path<T>;
+    };
 
-export const FieldSelectBase: React.FC<FieldSelectProps> = ({
+export const FieldSelectBase = <T extends FieldValues = FieldValues>({
   accessor,
   children,
   onChangeAccessor,
   ...props
-}) => {
+}: FieldSelectProps<T>) => {
   const { path } = props;
-  const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
   const {
     field: { onChange, value: fieldValue, ...fieldProps },
     fieldState: { error }
@@ -46,13 +50,12 @@ export const FieldSelectBase: React.FC<FieldSelectProps> = ({
 
   return (
     <Select
-      {...extractedProps}
       {...fieldProps}
       isInvalid={!!error}
       errorMessage={error?.message}
       onChange={handleOnChange}
       selectedKeys={value ? [value] : []}
-      {...inheritedProps}
+      {...props}
     >
       {children}
     </Select>
