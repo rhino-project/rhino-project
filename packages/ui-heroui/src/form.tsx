@@ -1,3 +1,4 @@
+import React from 'react';
 import { SelectItem } from '@heroui/react';
 import {
   useModel,
@@ -7,7 +8,7 @@ import {
 import { getModelAndAttributeFromPath } from '@rhino-project/core/utils';
 import { compact } from 'lodash-es';
 import { useCallback, useMemo } from 'react';
-import { useWatch } from 'react-hook-form';
+import { useFormContext, useWatch } from 'react-hook-form';
 import {
   DisplayBooleanProps,
   DisplayDateTimeProps,
@@ -17,6 +18,110 @@ import {
 } from './Display';
 import { DisplayInputProps } from './DisplayInput';
 import { DisplayTextareaProps } from './DisplayTextarea';
+import { FieldInputProps } from './FieldInput';
+import { FieldTextareaProps } from './FieldTextarea';
+import { FieldBooleanProps, FieldDateTimeProps, FieldTimeProps } from './Field';
+import { FieldDatePickerProps } from './FieldDatePicker';
+import { FieldSelectProps } from './FieldSelect';
+
+export const useModelFieldLabel = ({ path }: { path: string }) => {
+  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { attribute } = useModelAndAttributeFromPath(model, path) as {
+    attribute: { readableName: string };
+  };
+
+  return attribute.readableName;
+};
+
+export const useModelFieldClearable = ({ path }: { path: string }) => {
+  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { attribute } = useModelAndAttributeFromPath(model, path) as {
+    attribute: { nullable: string | undefined };
+  };
+
+  return !!attribute.nullable;
+};
+
+export const useModelFieldRequired = ({ path }: { path: string }) => {
+  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { attribute } = useModelAndAttributeFromPath(model, path) as {
+    attribute: { 'x-rhino-required': string | undefined };
+  };
+
+  return !!attribute['x-rhino-required'];
+};
+
+export const useModelFieldInputProps = <
+  T extends FieldInputProps | FieldTextareaProps
+>(
+  props: T
+): T => {
+  const { path } = props;
+  const { setValue } = useFormContext();
+  const label = useModelFieldLabel(props);
+  const isClearable = useModelFieldClearable(props);
+  const isRequired = useModelFieldRequired(props);
+  const onClear = useCallback(() => setValue(path, null), [setValue]);
+
+  return { label, isClearable, isRequired, onClear, ...props };
+};
+
+export const useModelFieldBooleanProps = <T extends FieldBooleanProps>(
+  props: T
+): T => {
+  const children = useModelFieldLabel(props);
+  const isRequired = useModelFieldRequired(props);
+
+  return { children, isRequired, ...props };
+};
+
+export const useModelFieldDateTimeProps = <T extends FieldDatePickerProps>(
+  props: T
+): T => {
+  const label = useModelFieldLabel(props);
+  const isRequired = useModelFieldRequired(props);
+
+  return { label, isRequired, ...props };
+};
+
+export const useModelFieldEnumProps = ({
+  children: propsChildren,
+  ...props
+}: FieldSelectProps): FieldSelectProps => {
+  const { path } = props;
+  const label = useModelFieldLabel(props);
+  const isRequired = useModelFieldRequired(props);
+  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { attribute } = useModelAndAttributeFromPath(model, path) as {
+    attribute: { enum: string[] };
+  };
+
+  const children = useMemo(() => {
+    // children can be a single element or an array
+    if (propsChildren)
+      return Array.isArray(propsChildren) ? propsChildren : [propsChildren];
+
+    // FIXME: key not value might be needed here
+    return attribute.enum.map((e) => (
+      <SelectItem key={e} className="capitalize" textValue={e}>
+        {e}
+      </SelectItem>
+    ));
+  }, [attribute.enum, propsChildren]);
+
+  const accessor = useCallback((value: unknown) => value || -1, []);
+
+  return { accessor, children, label, isRequired, ...props };
+};
+
+export const useModelFieldTimeProps = <T extends FieldTimeProps>(
+  props: T
+): T => {
+  const label = useModelFieldLabel(props);
+  const isRequired = useModelFieldRequired(props);
+
+  return { label, isRequired, ...props };
+};
 
 export const useModelFieldGroup = ({ model, ...props }) => {
   const { path } = props;

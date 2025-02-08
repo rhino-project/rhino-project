@@ -1,30 +1,45 @@
+import React, { useCallback, useMemo } from 'react';
 import { Input, InputProps } from '@heroui/react';
+import {
+  FieldValues,
+  Path,
+  useController,
+  UseControllerProps
+} from 'react-hook-form';
 
-import { useController, RegisterOptions } from 'react-hook-form';
-import { useFieldInheritedProps } from '@rhino-project/core/hooks';
-import { useCallback, useMemo } from 'react';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 
-export type FieldInputProps = InputProps &
-  RegisterOptions & {
+export type FieldInputProps<T extends FieldValues = FieldValues> = InputProps &
+  Omit<UseControllerProps<T>, 'name' | 'control'> & {
+    /**
+     * The function to format the value before displaying it.
+     */
+    accessor?: (value: unknown) => string | null | undefined;
     /**
      * The path inside the form object.
      */
-    path: string;
+    path: Path<T>;
   };
 
-export const FieldInputBase: React.FC<FieldInputProps> = ({
+export const FieldInputBase = <T extends FieldValues = FieldValues>({
   accessor,
   onChangeAccessor,
+  path,
+  rules,
+  shouldUnregister,
+  defaultValue,
+  disabled: propDisabled,
   ...props
-}) => {
-  const { path } = props;
-  const { extractedProps, inheritedProps } = useFieldInheritedProps(props);
+}: FieldInputProps<T>) => {
   const {
     field: { onChange, disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
-    name: path
+    name: path,
+    rules,
+    shouldUnregister,
+    defaultValue,
+    disabled: propDisabled
   });
 
   const value = useMemo(
@@ -44,7 +59,6 @@ export const FieldInputBase: React.FC<FieldInputProps> = ({
 
   return (
     <Input
-      {...extractedProps}
       {...fieldProps}
       autoComplete="off"
       isInvalid={!!error}
@@ -52,7 +66,7 @@ export const FieldInputBase: React.FC<FieldInputProps> = ({
       errorMessage={error?.message}
       onChange={handleOnChange}
       value={value || ''}
-      {...inheritedProps}
+      {...props}
     />
   );
 };

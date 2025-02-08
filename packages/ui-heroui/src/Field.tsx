@@ -63,7 +63,7 @@ export type FieldPhoneProps = FieldInputProps;
 export type FieldStringProps = FieldInputProps;
 export type FieldTextProps = FieldTextareaProps;
 export type FieldTimeProps = FieldTimeInputProps;
-export type FieldYearProps = FieldTimeInputProps;
+export type FieldYearProps = FieldIntegerProps;
 
 // Boolean
 export const FieldBooleanBase = React.forwardRef<
@@ -132,9 +132,7 @@ FieldBooleanIconBase.displayName = 'FieldBooleanIconBase';
 export const FieldCountryBase = React.forwardRef<
   HTMLInputElement,
   FieldCountryProps
->((props, ref) => (
-  <CountrySelector ref={ref} selectedCountry="ua" {...props} />
-));
+>((props, ref) => <CountrySelector ref={ref} {...props} />);
 FieldCountryBase.displayName = 'FieldCountryBase';
 
 // Currency
@@ -467,5 +465,5 @@ export const FieldText = (props: FieldTextProps) =>
 export const FieldTime = (props: FieldTimeProps) =>
   useGlobalComponent('FieldTime', FieldTimeBase, props);
 
-export const FieldYear = (props: FieldTimeProps) =>
+export const FieldYear = (props: FieldYearProps) =>
   useGlobalComponent('FieldYear', FieldYearBase, props);
