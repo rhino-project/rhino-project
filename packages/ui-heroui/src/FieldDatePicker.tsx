@@ -35,7 +35,7 @@ export const FieldDatePickerBase = <T extends FieldValues = FieldValues>({
   ...props
 }: FieldDatePickerProps<T>) => {
   const {
-    field: { onChange, value: fieldValue, ...fieldProps },
+    field: { onChange, disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({ name: path });
 
@@ -82,6 +82,7 @@ export const FieldDatePickerBase = <T extends FieldValues = FieldValues>({
       errorMessage={error?.message}
       hideTimeZone
       isInvalid={!!error}
+      isDisabled={disabled}
       onChange={handleOnChange}
       selectorButtonPlacement="start"
       showMonthAndYearPickers

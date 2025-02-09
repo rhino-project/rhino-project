@@ -3,13 +3,15 @@
 exports[`FieldDate > render with disabled 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 group w-full"
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 opacity-disabled pointer-events-none group w-full"
+    data-disabled="true"
     data-has-start-content="true"
     data-slot="base"
   >
     <div
+      aria-disabled="true"
       aria-labelledby="react-aria-:rq:"
-      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full pointer-events-none transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
       id="react-aria-:rq:"
       role="group"
@@ -23,8 +25,10 @@ exports[`FieldDate > render with disabled 1`] = `
           aria-haspopup="dialog"
           aria-label="Calendar"
           aria-labelledby="react-aria-:rn: react-aria-:rq:"
-          class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
+          class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
+          data-disabled="true"
           data-slot="selector-button"
+          disabled=""
           id="react-aria-:rn:"
           type="button"
         >
@@ -58,25 +62,21 @@ exports[`FieldDate > render with disabled 1`] = `
           role="presentation"
         >
           <div
+            aria-disabled="true"
             aria-label="month"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="2"
             aria-valuetext="Empty"
-            autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
+            contenteditable="false"
             data-editable="true"
             data-placeholder="true"
             data-slot="segment"
             data-type="month"
-            enterkeyhint="next"
             id="react-aria-:r14:"
-            inputmode="numeric"
             role="spinbutton"
-            spellcheck="false"
             style="caret-color: transparent;"
-            tabindex="0"
           >
             mm
           </div>
@@ -89,25 +89,21 @@ exports[`FieldDate > render with disabled 1`] = `
             /
           </div>
           <div
+            aria-disabled="true"
             aria-label="day"
             aria-valuemax="28"
             aria-valuemin="1"
             aria-valuenow="7"
             aria-valuetext="Empty"
-            autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
+            contenteditable="false"
             data-editable="true"
             data-placeholder="true"
             data-slot="segment"
             data-type="day"
-            enterkeyhint="next"
             id="react-aria-:r18:"
-            inputmode="numeric"
             role="spinbutton"
-            spellcheck="false"
             style="caret-color: transparent;"
-            tabindex="0"
           >
             dd
           </div>
@@ -120,29 +116,26 @@ exports[`FieldDate > render with disabled 1`] = `
             /
           </div>
           <div
+            aria-disabled="true"
             aria-label="year"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2025"
             aria-valuetext="Empty"
-            autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
+            contenteditable="false"
             data-editable="true"
             data-placeholder="true"
             data-slot="segment"
             data-type="year"
-            enterkeyhint="next"
             id="react-aria-:r1c:"
-            inputmode="numeric"
             role="spinbutton"
-            spellcheck="false"
             style="caret-color: transparent;"
-            tabindex="0"
           >
             yyyy
           </div>
           <input
+            disabled=""
             hidden=""
             name="dummy"
             title=""
