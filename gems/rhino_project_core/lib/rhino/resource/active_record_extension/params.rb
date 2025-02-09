@@ -89,7 +89,12 @@ module Rhino
                 # An array of references
                 if desc[:type] == :array && (desc[:items].key?(:$ref) || desc[:items].key?(:anyOf))
                   # FIXME: Hack for has_many_attached
-                  next params << { prop => [] } if desc.dig(:items, :anyOf)[0]&.dig(:$ref) == "#/components/schemas/active_storage_attachment"
+                  if desc.dig(:items, :anyOf)[0]&.dig(:$ref) == "#/components/schemas/active_storage_attachment"
+                    params << { prop => [] }
+                    params << { prop => ["signed_id"] }
+
+                    next
+                  end
 
                   # We only accept if the active record accepts it
                   next unless nested_attributes_options.key?(prop_sym) || desc.dig(:items, :anyOf)[0]&.dig(:$ref)
@@ -138,7 +143,8 @@ module Rhino
 
                     { prop => assoc_params.flatten.uniq }
                   else
-                    { prop => klasses.map(&:identifier_property).uniq }
+                    # For ActiveStorage::Attachment we want to accept the signed_id
+                    { prop => klasses.map { it == ActiveStorage::Attachment ? "signed_id" : it.identifier_property }.uniq }
                   end
                 end
 
@@ -162,12 +168,25 @@ module Rhino
                 # FIXME
                 # Hack to rewrite for attachment/attachments and guard against object resubmission
                 if param_key.end_with?("_attachment")
-                  hash[param_key.remove("_attachment")] = param_value if param_value.is_a?(String) || param_value.nil?
+                  # If its a string, its the signed_id
+                  hash[param_key.remove("_attachment")] = if param_value.is_a?(String) || param_value.nil?
+                    param_value
+
+                  # Otherwise if its a hash, and we want the signed_id from it
+                  elsif param_value.is_a?(ActionController::Parameters)
+                    param_value["signed_id"]
+                  end
 
                   next
                 end
                 if param_key.end_with?("_attachments")
-                  hash[param_key.remove("_attachments")] = param_value if param_value.is_a?(Array) || param_value.nil?
+                  hash[param_key.remove("_attachments")] = if param_value.nil?
+                    param_value
+
+                  # if an element is a string, its the signed_id, if its a hash, we want the signed_id from it
+                  elsif param_value.is_a?(Array)
+                    param_value.map { it.is_a?(ActionController::Parameters) ? it["signed_id"] : it }
+                  end
 
                   next
                 end
