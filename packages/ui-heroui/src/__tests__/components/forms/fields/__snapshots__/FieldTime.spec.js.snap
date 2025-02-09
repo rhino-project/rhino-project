@@ -3,11 +3,12 @@
 exports[`FieldTime > render with disabled 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full opacity-disabled pointer-events-none"
+    data-disabled="true"
     data-slot="base"
   >
     <div
-      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full pointer-events-none transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
     >
       <div
@@ -15,31 +16,28 @@ exports[`FieldTime > render with disabled 1`] = `
         data-slot="inner-wrapper"
       >
         <div
+          aria-disabled="true"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
           id="react-aria-:r19:"
           role="group"
         >
           <div
+            aria-disabled="true"
             aria-label="hour"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="0"
             aria-valuetext="Empty"
-            autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
+            contenteditable="false"
             data-editable="true"
             data-placeholder="true"
             data-slot="segment"
             data-type="hour"
-            enterkeyhint="next"
             id="react-aria-:r1e:"
-            inputmode="numeric"
             role="spinbutton"
-            spellcheck="false"
             style="caret-color: transparent;"
-            tabindex="0"
           >
             ––
           </div>
@@ -52,25 +50,21 @@ exports[`FieldTime > render with disabled 1`] = `
             :
           </div>
           <div
+            aria-disabled="true"
             aria-label="minute"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
             aria-valuetext="Empty"
-            autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
+            contenteditable="false"
             data-editable="true"
             data-placeholder="true"
             data-slot="segment"
             data-type="minute"
-            enterkeyhint="next"
             id="react-aria-:r1i:"
-            inputmode="numeric"
             role="spinbutton"
-            spellcheck="false"
             style="caret-color: transparent;"
-            tabindex="0"
           >
             ––
           </div>
@@ -83,25 +77,21 @@ exports[`FieldTime > render with disabled 1`] = `
             :
           </div>
           <div
+            aria-disabled="true"
             aria-label="second"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
             aria-valuetext="Empty"
-            autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
+            contenteditable="false"
             data-editable="true"
             data-placeholder="true"
             data-slot="segment"
             data-type="second"
-            enterkeyhint="next"
             id="react-aria-:r1m:"
-            inputmode="numeric"
             role="spinbutton"
-            spellcheck="false"
             style="caret-color: transparent;"
-            tabindex="0"
           >
             ––
           </div>
@@ -114,28 +104,26 @@ exports[`FieldTime > render with disabled 1`] = `
              
           </div>
           <div
+            aria-disabled="true"
             aria-label="AM/PM"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"
             aria-valuetext="Empty"
-            autocorrect="off"
             class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
-            contenteditable="true"
+            contenteditable="false"
             data-editable="true"
             data-placeholder="true"
             data-slot="segment"
             data-type="dayPeriod"
-            enterkeyhint="next"
             id="react-aria-:r1q:"
             role="spinbutton"
-            spellcheck="false"
             style="caret-color: transparent;"
-            tabindex="0"
           >
             AM
           </div>
           <input
+            disabled=""
             hidden=""
             name="dummy"
             title=""

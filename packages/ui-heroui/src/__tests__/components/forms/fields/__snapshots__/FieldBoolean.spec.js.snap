@@ -3,15 +3,16 @@
 exports[`FieldBoolean > render with disabled 1`] = `
 <DocumentFragment>
   <label
-    class="group relative max-w-fit inline-flex items-center justify-start cursor-pointer tap-highlight-transparent p-2 -m-2 select-none"
+    class="group relative max-w-fit inline-flex items-center justify-start cursor-pointer tap-highlight-transparent p-2 -m-2 select-none opacity-disabled pointer-events-none"
+    data-disabled="true"
     data-indeterminate="true"
     data-selected="true"
-    disabled=""
   >
     <input
       aria-label=" "
       aria-labelledby=":r5:"
       class="font-inherit text-[100%] leading-[1.15] m-0 p-0 overflow-visible box-border absolute top-0 w-full h-full opacity-[0.0001] z-[1] cursor-pointer disabled:cursor-default"
+      disabled=""
       name="dummy"
       title=""
       type="checkbox"

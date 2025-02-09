@@ -3,12 +3,13 @@
 exports[`FieldText > render with disabled 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[hidden=true]:hidden w-full"
+    class="group flex flex-col data-[hidden=true]:hidden w-full opacity-disabled pointer-events-none"
+    data-disabled="true"
     data-has-value="true"
     data-slot="base"
   >
     <div
-      class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium !h-auto transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background py-2"
+      class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium pointer-events-none !h-auto transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background py-2"
       data-has-multiple-rows="true"
       data-slot="input-wrapper"
       style="cursor: text;"

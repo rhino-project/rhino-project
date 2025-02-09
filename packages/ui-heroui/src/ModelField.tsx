@@ -187,7 +187,7 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
     [refModel]
   );
   const {
-    field: { value, onChange, ...fieldProps },
+    field: { disabled, value, onChange, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -230,6 +230,8 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
       selectedKey={valString}
       onSelectionChange={(a) => onChange(a)}
       isInvalid={!!error}
+      errorMessage={error?.message}
+      isDisabled={disabled}
       {...fieldGroupProps}
       {...fieldProps}
     >

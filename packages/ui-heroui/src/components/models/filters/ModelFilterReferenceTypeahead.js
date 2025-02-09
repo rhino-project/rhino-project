@@ -30,7 +30,7 @@ export const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
   const fullPath = compact([idPath, operator]).join('.');
 
   const {
-    field: { onChange, value: fieldValue, ...fieldProps }
+    field: { onChange, disabled, value: fieldValue, ...fieldProps }
   } = useController({
     name: fullPath
   });
@@ -70,6 +70,7 @@ export const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
   return (
     <Autocomplete
       isLoading={isInitialLoading}
+      isDisabled={disabled}
       items={results || []}
       onInputChange={setSearch}
       onSelectionChange={(value) => onChange(value)}

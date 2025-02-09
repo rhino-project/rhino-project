@@ -28,7 +28,7 @@ export const FieldTextareaBase = <T extends FieldValues = FieldValues>({
 }: FieldTextareaProps<T>) => {
   const { path } = props;
   const {
-    field: { onChange, value: fieldValue, ...fieldProps },
+    field: { onChange, disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -54,6 +54,7 @@ export const FieldTextareaBase = <T extends FieldValues = FieldValues>({
       {...fieldProps}
       autoComplete="off"
       isInvalid={!!error}
+      isDisabled={disabled}
       errorMessage={error?.message}
       onChange={handleOnChange}
       value={value}

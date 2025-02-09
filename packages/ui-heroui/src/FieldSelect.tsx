@@ -25,7 +25,7 @@ export const FieldSelectBase = <T extends FieldValues = FieldValues>({
 }: FieldSelectProps<T>) => {
   const { path } = props;
   const {
-    field: { onChange, value: fieldValue, ...fieldProps },
+    field: { onChange, disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -52,6 +52,7 @@ export const FieldSelectBase = <T extends FieldValues = FieldValues>({
     <Select
       {...fieldProps}
       isInvalid={!!error}
+      isDisabled={disabled}
       errorMessage={error?.message}
       onChange={handleOnChange}
       selectedKeys={value ? [value] : []}

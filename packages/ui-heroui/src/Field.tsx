@@ -65,7 +65,7 @@ export const FieldBooleanBase = React.forwardRef<
   FieldBooleanProps
 >(({ accessor, path, ...props }, ref) => {
   const {
-    field: { value: fieldValue, ...fieldProps },
+    field: { disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -92,6 +92,7 @@ export const FieldBooleanBase = React.forwardRef<
       isIndeterminate={value !== true && value !== false}
       isSelected={value || false}
       isInvalid={!!error}
+      isDisabled={disabled}
       {...fieldProps}
       {...props}
     />
@@ -189,7 +190,6 @@ const FieldFileBase = ({
     name: path
   });
   const [error, setError] = useState('');
-  console.log('FieldFileBase', multiple, path, value, error);
 
   const validateFile = (file: File) => {
     if (file.size > maxSize) {
@@ -314,6 +314,7 @@ const FieldFileBase = ({
             )}
           </div>
           <input
+            {...fieldProps}
             type="file"
             className="hidden"
             accept={accept}

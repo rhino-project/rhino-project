@@ -3,7 +3,7 @@
 exports[`FieldSelect > render with disabled 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col w-full transition-background motion-reduce:transition-none !duration-150 group relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)]"
+    class="group flex flex-col w-full opacity-disabled pointer-events-none transition-background motion-reduce:transition-none !duration-150 group relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)]"
     data-slot="base"
   >
     <div
@@ -14,6 +14,7 @@ exports[`FieldSelect > render with disabled 1`] = `
     >
       <label>
         <select
+          disabled=""
           name="dummy"
           tabindex="-1"
           title=""
@@ -30,9 +31,9 @@ exports[`FieldSelect > render with disabled 1`] = `
         aria-expanded="false"
         aria-haspopup="listbox"
         aria-labelledby="react-aria-:rq: "
-        class="relative px-3 gap-3 w-full inline-flex flex-row items-center shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 h-10 min-h-10 rounded-medium bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
+        class="relative px-3 gap-3 w-full inline-flex flex-row items-center shadow-sm tap-highlight-transparent group-data-[focus=true]:bg-default-200 h-10 min-h-10 rounded-medium pointer-events-none bg-default-100 data-[hover=true]:bg-default-200 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2"
+        data-disabled="true"
         data-slot="trigger"
-        disabled=""
         id="react-aria-:rl:"
         type="button"
       >
