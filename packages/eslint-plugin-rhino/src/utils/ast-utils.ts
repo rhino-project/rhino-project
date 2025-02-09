@@ -286,6 +286,7 @@ export const ASTUtils = {
     }
 
     if ('body' in node && node.body !== undefined && node.body !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       Array.isArray(node.body)
         ? node.body.forEach((x) => {
             returnStatements.push(...ASTUtils.getNestedReturnStatements(x));
@@ -296,6 +297,7 @@ export const ASTUtils = {
     }
 
     if ('consequent' in node) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       Array.isArray(node.consequent)
         ? node.consequent.forEach((x) => {
             returnStatements.push(...ASTUtils.getNestedReturnStatements(x));
@@ -306,6 +308,7 @@ export const ASTUtils = {
     }
 
     if ('alternate' in node && node.alternate !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       Array.isArray(node.alternate)
         ? node.alternate.forEach((x) => {
             returnStatements.push(...ASTUtils.getNestedReturnStatements(x));
