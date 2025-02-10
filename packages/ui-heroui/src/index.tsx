@@ -3,7 +3,6 @@ export * from '@iconify/react';
 
 export * from './components/app/index';
 export * from './components/auth/index';
-export * from './components/breadcrumbs/index';
 export * from './components/buttons/index';
 export * from './components/devtool/index';
 export * from './components/empties/index';

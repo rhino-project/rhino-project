@@ -29,7 +29,6 @@ exports[`FieldInteger > render with disabled 1`] = `
             disabled=""
             id="react-aria-:rd:"
             name="dummy"
-            title=""
             type="number"
             value=""
           />

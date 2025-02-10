@@ -1,15 +1,5 @@
 import { format, formatDistance } from 'date-fns';
 
-import { NavLink } from 'react-router-dom';
-import {
-  getParentModel,
-  isBaseOwned,
-  getModelIndexPath,
-  getModelShowPath
-} from '@rhino-project/core/utils';
-import { BreadcrumbItemWrapper } from '../components/breadcrumbs';
-import { Breadcrumbs } from '@heroui/react';
-
 export const getDateTimeFormat = (attribute) => {
   const dateTimeFormat = {
     datetime: 'MMMM d, yyyy h:mm aa',
@@ -37,44 +27,6 @@ export const getDateTimeLongString = (attribute, value) =>
 
 export const getDateTimeDistanceString = (attribute, value) =>
   formatDistance(new Date(value), new Date(), { addSuffix: true });
-
-export const breadcrumbChildrenFor = (model, resource, individual = false) => {
-  let result = [];
-
-  if (!resource) return result;
-
-  if (isBaseOwned(model)) {
-    const path = getModelIndexPath(model);
-    result = [
-      <BreadcrumbItemWrapper key={path} tag={NavLink} to={path} end>
-        {model.pluralReadableName}
-      </BreadcrumbItemWrapper>
-    ];
-  } else {
-    const parentModel = getParentModel(model);
-    const parent = resource[parentModel?.model];
-    result = [breadcrumbChildrenFor(parentModel, parent, true)];
-  }
-
-  if (individual) {
-    const path = getModelShowPath(model, resource.id);
-    result.push(
-      <BreadcrumbItemWrapper key={path} tag={NavLink} to={path} end>
-        {resource['display_name']}
-      </BreadcrumbItemWrapper>
-    );
-  }
-
-  return result;
-};
-
-export const breadcrumbFor = (model, resource, individual = false) => {
-  return (
-    <Breadcrumbs>
-      {breadcrumbChildrenFor(model, resource, individual)}
-    </Breadcrumbs>
-  );
-};
 
 export const optionsFromIndex = (
   results,
