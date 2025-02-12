@@ -6,7 +6,7 @@ import {
   FieldValues,
   Path
 } from 'react-hook-form';
-import React, { useMemo } from 'react';
+import { useMemo } from 'react';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 
 export type DisplayTextareaProps<T extends FieldValues = FieldValues> =
