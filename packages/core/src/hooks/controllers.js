@@ -518,6 +518,7 @@ export const useModelCreateController = (options) => {
 
   // Fetch the parent model for the owner value and the breadcrumb
   const parentModel = useMemo(() => getParentModel(model), [model]);
+
   // A modal may not have a parent model yet
   const showParent = useModelShow(parentModel, parentId, {
     queryOptions: { enabled: !!parentId, ...queryOptions }

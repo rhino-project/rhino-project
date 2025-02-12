@@ -6,8 +6,8 @@ import { useModelFilterField } from '../../../form';
 import { useModelFiltersContext } from '@rhino-project/core/hooks';
 import { FilterYear } from '../../../Filter';
 
-export const ModelFilterYear = ({ model, path, ...props }) => {
-  const { attribute, operatorPath, ...rest } = useModelFilterField(model, path);
+export const ModelFilterYear = ({ path, ...props }) => {
+  const { attribute, operatorPath, ...rest } = useModelFilterField(path);
   const min = useMemo(() => {
     if (!attribute.minimum) return undefined;
 

@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 
-import { useBaseOwnerFilters } from '@rhino-project/core/hooks';
+import {
+  useBaseOwnerFilters,
+  useModelContext
+} from '@rhino-project/core/hooks';
 import { ModelFilterReferenceTypeahead } from './ModelFilterReferenceTypeahead';
 
 export const ModelFilterOwnerReferenceTypeahead = (props) => {
-  const { model } = props;
+  const { model } = useModelContext();
   const filter = useBaseOwnerFilters(model);
 
   return <ModelFilterReferenceTypeahead filter={filter} {...props} />;

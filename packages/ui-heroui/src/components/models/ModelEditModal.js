@@ -23,10 +23,9 @@ ModelEditModalHeader.propTypes = {
 };
 
 export const ModelEditModalForm = ({ ...props }) => {
-  const { model, paths } = useModelEditContext();
+  const { paths } = useModelEditContext();
   const renderPaths = useRenderPaths(props.paths || paths, {
-    Component: ModelFieldGroup,
-    props: { model }
+    Component: ModelFieldGroup
   });
 
   return <ModalBody>{renderPaths}</ModalBody>;

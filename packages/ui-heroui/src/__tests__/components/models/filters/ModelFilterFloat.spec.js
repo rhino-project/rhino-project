@@ -21,29 +21,16 @@ describe('ModelFilterFloat', () => {
   };
 
   it(`adds min as a prop`, () => {
-    const { asFragment } = render(
-      <ModelFilterFloat
-        model={{ properties: { dummy: { type: 'integer', minimum: 5 } } }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    const { asFragment } = render(<ModelFilterFloat path="score_min" />, {
+      wrapper: Wrapper
+    });
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   it(`adds min as a prop with exclusiveMinimum`, () => {
     const { asFragment } = render(
-      <ModelFilterFloat
-        model={{
-          properties: {
-            dummy: { type: 'integer', minimum: 5, exclusiveMinimum: true }
-          }
-        }}
-        path="dummy"
-      />,
+      <ModelFilterFloat path="score_min_exclusive" />,
       {
         wrapper: Wrapper
       }
@@ -53,29 +40,16 @@ describe('ModelFilterFloat', () => {
   });
 
   it(`adds max as a prop`, () => {
-    const { asFragment } = render(
-      <ModelFilterFloat
-        model={{ properties: { dummy: { type: 'integer', maximum: 5 } } }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    const { asFragment } = render(<ModelFilterFloat path="score_max" />, {
+      wrapper: Wrapper
+    });
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   it(`adds max as a prop with exclusiveMaximum`, () => {
     const { asFragment } = render(
-      <ModelFilterFloat
-        model={{
-          properties: {
-            dummy: { type: 'integer', maximum: 5, exclusiveMaximum: true }
-          }
-        }}
-        path="dummy"
-      />,
+      <ModelFilterFloat path="score_max_exclusive" />,
       {
         wrapper: Wrapper
       }

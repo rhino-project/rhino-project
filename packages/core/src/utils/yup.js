@@ -90,6 +90,7 @@ export const yupDefaultFromAttributeType = (attribute) => {
   }
 };
 
+const NUMBER_TYPES = ['integer', 'number'];
 const TRANSFORMABLE_TYPES = ['string', 'text', 'integer', 'number', 'decimal'];
 
 export const yupValidatorsFromAttribute = (attribute) => {
@@ -118,19 +119,21 @@ export const yupValidatorsFromAttribute = (attribute) => {
   if (attribute.minItems) ytype.min(attribute.minItems);
   if (attribute.maxItems) ytype.min(attribute.maxItems);
 
-  // For numbers and integers
-  if (attribute.minimum) {
-    if (attribute.exclusiveMinimum) {
-      ytype = ytype.moreThan(attribute.minimum);
-    } else {
-      ytype = ytype.min(attribute.minimum);
+  // For numbers and integers - date and time is a hack
+  if (NUMBER_TYPES.includes(attribute.type)) {
+    if (attribute.minimum) {
+      if (attribute.exclusiveMinimum) {
+        ytype = ytype.moreThan(attribute.minimum);
+      } else {
+        ytype = ytype.min(attribute.minimum);
+      }
     }
-  }
-  if (attribute.maximum) {
-    if (attribute.exclusiveMaximum) {
-      ytype = ytype.lessThan(attribute.maximum);
-    } else {
-      ytype = ytype.max(attribute.maximum);
+    if (attribute.maximum) {
+      if (attribute.exclusiveMaximum) {
+        ytype = ytype.lessThan(attribute.maximum);
+      } else {
+        ytype = ytype.max(attribute.maximum);
+      }
     }
   }
 

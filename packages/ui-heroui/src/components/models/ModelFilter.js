@@ -1,4 +1,4 @@
-import { useModel } from '@rhino-project/core/hooks';
+import { useModelContext } from '@rhino-project/core/hooks';
 import {
   getModelAndAttributeFromPath,
   getModelFromRef,
@@ -19,7 +19,7 @@ import { ModelFilterYear } from './filters/ModelFilterYear';
 import { useGlobalComponentForModel } from '@rhino-project/core/hooks';
 
 export const ModelFilterBase = (props) => {
-  const model = useModel(props.model);
+  const { model } = useModelContext();
   const { path } = props;
 
   const [, attribute] = getModelAndAttributeFromPath(model, path);

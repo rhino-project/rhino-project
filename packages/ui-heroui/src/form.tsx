@@ -1,7 +1,6 @@
 import React from 'react';
 import { SelectItem } from '@heroui/react';
 import {
-  useModel,
   useModelAndAttributeFromPath,
   useModelContext
 } from '@rhino-project/core/hooks';
@@ -20,12 +19,7 @@ import { DisplayInputProps } from './DisplayInput';
 import { DisplayTextareaProps } from './DisplayTextarea';
 import { FieldInputProps } from './FieldInput';
 import { FieldTextareaProps } from './FieldTextarea';
-import {
-  FieldBooleanProps,
-  FieldDateTimeProps,
-  FieldFileProps,
-  FieldTimeProps
-} from './Field';
+import { FieldBooleanProps, FieldFileProps, FieldTimeProps } from './Field';
 import { FieldDatePickerProps } from './FieldDatePicker';
 import { FieldSelectProps } from './FieldSelect';
 
@@ -355,12 +349,12 @@ const operatorToLabel = (format, operator) => {
   }
 };
 
-export const useModelFilterField = (model, path, options = {}) => {
-  const memoModel = useModel(model);
+export const useModelFilterField = (path, options = {}) => {
+  const { model } = useModelContext();
 
   const [attributeModel, attribute, operator, plainPath] = useMemo(
-    () => getModelAndAttributeFromPath(memoModel, path),
-    [memoModel, path]
+    () => getModelAndAttributeFromPath(model, path),
+    [model, path]
   );
 
   const filterField = useFilterField(plainPath, operator, options);

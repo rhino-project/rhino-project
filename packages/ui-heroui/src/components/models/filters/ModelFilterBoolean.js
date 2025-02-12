@@ -27,11 +27,8 @@ const buildBooleanPill = (attribute, value) => {
   return `${state}${attribute.readableName}`;
 };
 
-export const ModelFilterBoolean = ({ model, path, ...props }) => {
-  const { attribute, operatorPath, label, ...rest } = useModelFilterField(
-    model,
-    path
-  );
+export const ModelFilterBoolean = ({ path, ...props }) => {
+  const { attribute, operatorPath, label, ...rest } = useModelFilterField(path);
   const watch = useWatch({ name: operatorPath });
 
   const { setPill } = useModelFiltersContext();

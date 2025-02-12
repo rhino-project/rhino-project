@@ -6,10 +6,9 @@ import { FormErrors } from '../forms/FormErrors';
 import { Form } from '@heroui/react';
 
 export const ModelShowDescriptionBase = (props) => {
-  const { model, paths } = useModelShowContext();
+  const { paths } = useModelShowContext();
   const renderPaths = useRenderPaths(props.paths || paths, {
-    Component: ModelDisplayGroup,
-    props: { model }
+    Component: ModelDisplayGroup
   });
 
   return (

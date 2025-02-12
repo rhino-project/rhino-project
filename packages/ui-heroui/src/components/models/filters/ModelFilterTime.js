@@ -38,11 +38,9 @@ const buildDateTimePill = (attribute, operator, newValue) => {
   )} ${format(date, getDateTimeFormat(attribute))}`;
 };
 
-export const ModelFilterTime = ({ model, path, ...props }) => {
-  const { attribute, operator, operatorPath, ...rest } = useModelFilterField(
-    model,
-    path
-  );
+export const ModelFilterTime = ({ path, ...props }) => {
+  const { attribute, operator, operatorPath, ...rest } =
+    useModelFilterField(path);
 
   const minValue = useMemo(() => {
     if (!attribute.minimum) return undefined;

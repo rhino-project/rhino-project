@@ -7,8 +7,8 @@ import { FieldSelect } from '../../../FieldSelect';
 import { SelectItem } from '@heroui/react';
 import { useModelFilterField } from '../../../form';
 
-export const ModelFilterEnum = ({ model, path, ...props }) => {
-  const { attribute, operatorPath, ...rest } = useModelFilterField(model, path);
+export const ModelFilterEnum = ({ path, ...props }) => {
+  const { attribute, operatorPath, ...rest } = useModelFilterField(path);
 
   const options = useMemo(
     () =>

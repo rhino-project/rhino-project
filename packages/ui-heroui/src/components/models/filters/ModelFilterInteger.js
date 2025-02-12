@@ -6,8 +6,8 @@ import { useModelFilterField } from '../../../form';
 import { useModelFiltersContext } from '@rhino-project/core/hooks';
 import { FilterInteger } from '../../../Filter';
 
-export const ModelFilterInteger = ({ model, path, ...props }) => {
-  const { attribute, operatorPath, ...rest } = useModelFilterField(model, path);
+export const ModelFilterInteger = ({ path, ...props }) => {
+  const { attribute, operatorPath, ...rest } = useModelFilterField(path);
 
   const min = useMemo(() => {
     if (attribute.exclusiveMinimum) return attribute.minimum + 1;

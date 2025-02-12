@@ -23,10 +23,9 @@ ModelCreateModalHeader.propTypes = {
 };
 
 export const ModelCreateModalForm = ({ ...props }) => {
-  const { model, paths } = useModelCreateContext();
+  const { paths } = useModelCreateContext();
   const renderPaths = useRenderPaths(props.paths || paths, {
-    Component: ModelFieldGroup,
-    props: { model }
+    Component: ModelFieldGroup
   });
 
   return <ModalBody>{renderPaths}</ModalBody>;

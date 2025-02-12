@@ -64,10 +64,9 @@ export const ModelFiltersPills = ({ showClearAll = true }) => {
 };
 
 export const ModelFiltersForm = () => {
-  const { model, paths } = useModelFiltersContext();
+  const { paths } = useModelFiltersContext();
   const renderPaths = useRenderPaths(paths, {
-    Component: ModelFilter,
-    props: { model }
+    Component: ModelFilter
   });
 
   return <>{renderPaths}</>;
