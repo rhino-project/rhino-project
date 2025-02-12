@@ -26,14 +26,12 @@ export const ModelIndexBase = ({ overrides, ...props }) => {
   return (
     <ModelIndexSimple {...props}>
       {/* FIXME: Stop passing down props */}
-      <div className="my-3">
+      <div className="flex flex-col gap-3">
         <ModelIndexHeader {...props} />
-      </div>
-      <hr />
-      <div className="my-3">
+        <hr />
         <ModelIndexActions {...props} />
+        <ModelIndexTable {...props} />
       </div>
-      <ModelIndexTable {...props} />
     </ModelIndexSimple>
   );
 };

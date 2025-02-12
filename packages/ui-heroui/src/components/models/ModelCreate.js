@@ -24,9 +24,11 @@ export const ModelCreateBase = ({ overrides, ...props }) => {
 
   return (
     <ModelCreateSimple paths={ModelCreateForm().props?.paths} {...props}>
-      <ModelCreateHeader className="mb-3" />
-      <ModelCreateForm />
-      <ModelCreateActions />
+      <div className="flex flex-col gap-3">
+        <ModelCreateHeader />
+        <ModelCreateForm />
+        <ModelCreateActions />
+      </div>
     </ModelCreateSimple>
   );
 };

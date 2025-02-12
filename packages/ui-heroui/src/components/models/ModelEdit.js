@@ -28,10 +28,11 @@ export const ModelEditBase = ({ overrides, ...props }) => {
   // Legacy path support over old overrides
   return (
     <ModelEditSimple paths={ModelEditForm().props?.paths} {...props}>
-      <ModelEditHeader />
-      <div className="my-3" />
-      <ModelEditForm />
-      <ModelEditActions />
+      <div className="flex flex-col gap-3">
+        <ModelEditHeader />
+        <ModelEditForm />
+        <ModelEditActions />
+      </div>
     </ModelEditSimple>
   );
 };

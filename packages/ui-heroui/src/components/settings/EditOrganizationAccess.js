@@ -75,14 +75,16 @@ export const EditOrganizationAccess = () => {
   return (
     <>
       <ModelIndexSimple model={model} order="user.email">
-        <ModelIndexHeader overrides={overrides} />
-        <hr />
-        <ModelIndexActions actions={actions} />
-        <ModelIndexTable
-          paths={cellPaths}
-          sortPaths={sortPaths}
-          onRowClick={null}
-        />
+        <div className="flex flex-col gap-3">
+          <ModelIndexHeader overrides={overrides} />
+          <hr />
+          <ModelIndexActions actions={actions} />
+          <ModelIndexTable
+            paths={cellPaths}
+            sortPaths={sortPaths}
+            onRowClick={null}
+          />
+        </div>
       </ModelIndexSimple>
       <ModelCreateModal
         model="users_role_invite"
