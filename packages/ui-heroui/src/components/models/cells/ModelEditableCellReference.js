@@ -36,19 +36,18 @@ export const ModelEditableCellReferenceBase = ({ model, ...props }) => {
   const options = useMemo(
     () =>
       results?.map((result) => (
-        <SelectItem key={result.id}>{result.display_name}</SelectItem>
+        <SelectItem key={`${result.id}`}>{result.display_name}</SelectItem>
       )),
     [results]
   );
 
   return (
     <Select
-      type="select"
-      value={getValue()?.id || getValue() || ''}
-      onChange={({ target: { value } }) =>
-        mutate({ id: row.original.id, [path]: value })
-      }
-      disabled={isInitialLoading}
+      disallowEmptySelection
+      selectedKeys={[`${getValue()?.id || getValue() || ''}`]}
+      onChange={({ target }) => {
+        mutate({ id: row.original.id, [path]: target.value });
+      }}
       {...inheritedProps}
     >
       {options}
