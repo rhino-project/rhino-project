@@ -52,7 +52,11 @@ describe('DisplayDate', () => {
 
   it('renders inside of model context', () => {
     const { asFragment } = render(
-      <DisplayDate path="dummy" placeholderValue={placeholderValue} />,
+      <DisplayDate
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: FormWrapper
       }
@@ -65,7 +69,11 @@ describe('DisplayDate', () => {
     configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
 
     const { asFragment } = render(
-      <DisplayDate path="dummy" placeholderValue={placeholderValue} />,
+      <DisplayDate
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: FormWrapper
       }

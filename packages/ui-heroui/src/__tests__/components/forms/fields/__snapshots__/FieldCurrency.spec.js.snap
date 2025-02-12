@@ -33,7 +33,7 @@ exports[`FieldCurrency > render with disabled 1`] = `
             </span>
           </div>
           <input
-            aria-label=" "
+            aria-label="dummy"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-has-start-content="true"
@@ -41,6 +41,7 @@ exports[`FieldCurrency > render with disabled 1`] = `
             disabled=""
             id="react-aria-:rd:"
             name="dummy"
+            title=""
             type="number"
             value=""
           />
@@ -82,7 +83,7 @@ exports[`FieldCurrency > render with place holder 1`] = `
             </span>
           </div>
           <input
-            aria-label="placeholder"
+            aria-label="dummy"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-has-start-content="true"
@@ -133,7 +134,7 @@ exports[`FieldCurrency > renders inside of model context 1`] = `
             </span>
           </div>
           <input
-            aria-label=" "
+            aria-label="dummy"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-has-start-content="true"

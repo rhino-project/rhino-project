@@ -35,7 +35,11 @@ describe('FieldDate', () => {
 
   it('renders inside of model context', () => {
     const { asFragment } = render(
-      <FieldDate path="dummy" placeholderValue={placeholderValue} />,
+      <FieldDate
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: FormWrapper
       }
@@ -46,7 +50,11 @@ describe('FieldDate', () => {
 
   it('render with disabled', () => {
     const { asFragment } = render(
-      <FieldDate path="dummy" placeholderValue={placeholderValue} />,
+      <FieldDate
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: createWrapper(FormWrapper, {
           disabled: true
@@ -58,7 +66,11 @@ describe('FieldDate', () => {
 
   it('renders empty with null date', () => {
     const { asFragment } = render(
-      <FieldDate path="dummy" placeholderValue={placeholderValue} />,
+      <FieldDate
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: createWrapper(FormWrapper, { defaultValues: { dummy: null } })
       }
@@ -68,7 +80,11 @@ describe('FieldDate', () => {
 
   it('renders empty with empty string date', () => {
     const { asFragment } = render(
-      <FieldDate path="dummy" placeholderValue={placeholderValue} />,
+      <FieldDate
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: createWrapper(FormWrapper, { defaultValues: { dummy: '' } })
       }
@@ -78,7 +94,11 @@ describe('FieldDate', () => {
 
   it('renders date string', () => {
     const { asFragment } = render(
-      <FieldDate path="dummy" placeholderValue={placeholderValue} />,
+      <FieldDate
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: createWrapper(FormWrapper, {
           defaultValues: { dummy: '2023-01-30' }
@@ -90,7 +110,11 @@ describe('FieldDate', () => {
 
   it('renders error', () => {
     const { asFragment } = render(
-      <FieldDate path="dummy" placeholderValue={placeholderValue} />,
+      <FieldDate
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: createWrapper(FormWrapper, {
           defaultValues: { dummy: '' },

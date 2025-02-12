@@ -10,6 +10,7 @@ exports[`FieldDate > render with disabled 1`] = `
   >
     <div
       aria-disabled="true"
+      aria-label="dummy"
       aria-labelledby="react-aria-:rq:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full pointer-events-none transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
@@ -63,7 +64,7 @@ exports[`FieldDate > render with disabled 1`] = `
         >
           <div
             aria-disabled="true"
-            aria-label="month"
+            aria-label="month, dummy"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="2"
@@ -90,7 +91,7 @@ exports[`FieldDate > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="day"
+            aria-label="day, dummy"
             aria-valuemax="28"
             aria-valuemin="1"
             aria-valuenow="7"
@@ -117,7 +118,7 @@ exports[`FieldDate > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="year"
+            aria-label="year, dummy"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2025"
@@ -138,6 +139,7 @@ exports[`FieldDate > render with disabled 1`] = `
             disabled=""
             hidden=""
             name="dummy"
+            title=""
             type="text"
             value=""
           />
@@ -157,6 +159,7 @@ exports[`FieldDate > renders date string 1`] = `
   >
     <div
       aria-describedby="react-aria-description-0"
+      aria-label="dummy"
       aria-labelledby="react-aria-:r2v:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
@@ -209,7 +212,7 @@ exports[`FieldDate > renders date string 1`] = `
         >
           <div
             aria-describedby="react-aria-description-0"
-            aria-label="month"
+            aria-label="month, dummy"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="1"
@@ -239,7 +242,7 @@ exports[`FieldDate > renders date string 1`] = `
             /
           </div>
           <div
-            aria-label="day"
+            aria-label="day, dummy"
             aria-valuemax="31"
             aria-valuemin="1"
             aria-valuenow="30"
@@ -269,7 +272,7 @@ exports[`FieldDate > renders date string 1`] = `
             /
           </div>
           <div
-            aria-label="year"
+            aria-label="year, dummy"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2023"
@@ -312,6 +315,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
     data-slot="base"
   >
     <div
+      aria-label="dummy"
       aria-labelledby="react-aria-:r28:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
@@ -362,7 +366,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
           role="presentation"
         >
           <div
-            aria-label="month"
+            aria-label="month, dummy"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="2"
@@ -393,7 +397,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
             /
           </div>
           <div
-            aria-label="day"
+            aria-label="day, dummy"
             aria-valuemax="28"
             aria-valuemin="1"
             aria-valuenow="7"
@@ -424,7 +428,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
             /
           </div>
           <div
-            aria-label="year"
+            aria-label="year, dummy"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2025"
@@ -468,6 +472,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
     data-slot="base"
   >
     <div
+      aria-label="dummy"
       aria-labelledby="react-aria-:r1h:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
@@ -518,7 +523,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
           role="presentation"
         >
           <div
-            aria-label="month"
+            aria-label="month, dummy"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="2"
@@ -549,7 +554,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
             /
           </div>
           <div
-            aria-label="day"
+            aria-label="day, dummy"
             aria-valuemax="28"
             aria-valuemin="1"
             aria-valuenow="7"
@@ -580,7 +585,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
             /
           </div>
           <div
-            aria-label="year"
+            aria-label="year, dummy"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2025"
@@ -627,6 +632,7 @@ exports[`FieldDate > renders error 1`] = `
   >
     <div
       aria-describedby="react-aria-:r3q:"
+      aria-label="dummy"
       aria-labelledby="react-aria-:r3m:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
@@ -681,7 +687,7 @@ exports[`FieldDate > renders error 1`] = `
           <div
             aria-describedby="react-aria-:r3q: react-aria-:r3q:"
             aria-invalid="true"
-            aria-label="month"
+            aria-label="month, dummy"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="2"
@@ -716,7 +722,7 @@ exports[`FieldDate > renders error 1`] = `
           <div
             aria-describedby="react-aria-:r3q: react-aria-:r3q:"
             aria-invalid="true"
-            aria-label="day"
+            aria-label="day, dummy"
             aria-valuemax="28"
             aria-valuemin="1"
             aria-valuenow="7"
@@ -751,7 +757,7 @@ exports[`FieldDate > renders error 1`] = `
           <div
             aria-describedby="react-aria-:r3q: react-aria-:r3q:"
             aria-invalid="true"
-            aria-label="year"
+            aria-label="year, dummy"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2025"
@@ -808,6 +814,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
     data-slot="base"
   >
     <div
+      aria-label="dummy"
       aria-labelledby="react-aria-:r3:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
@@ -858,7 +865,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
           role="presentation"
         >
           <div
-            aria-label="month"
+            aria-label="month, dummy"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="2"
@@ -889,7 +896,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
             /
           </div>
           <div
-            aria-label="day"
+            aria-label="day, dummy"
             aria-valuemax="28"
             aria-valuemin="1"
             aria-valuenow="7"
@@ -920,7 +927,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
             /
           </div>
           <div
-            aria-label="year"
+            aria-label="year, dummy"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2025"

@@ -42,7 +42,11 @@ describe('FieldDateTime', () => {
 
   it('renders inside of model context', () => {
     const { asFragment } = render(
-      <FieldDateTime path="dummy" placeholderValue={placeholderValue} />,
+      <FieldDateTime
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: FormWrapper
       }
@@ -53,7 +57,11 @@ describe('FieldDateTime', () => {
 
   it('render with disabled', () => {
     const { asFragment } = render(
-      <FieldDateTime path="dummy" placeholderValue={placeholderValue} />,
+      <FieldDateTime
+        path="dummy"
+        aria-label="dummy"
+        placeholderValue={placeholderValue}
+      />,
       {
         wrapper: createWrapper(FormWrapper, {
           disabled: true

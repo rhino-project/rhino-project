@@ -4,6 +4,7 @@ exports[`FieldBooleanIcon > render with disabled 1`] = `
 <DocumentFragment>
   <svg
     aria-hidden="true"
+    aria-label="dummy"
     class="iconify iconify--bi"
     disabled=""
     height="1em"
@@ -26,6 +27,7 @@ exports[`FieldBooleanIcon > render with place holder 1`] = `
 <DocumentFragment>
   <svg
     aria-hidden="true"
+    aria-label="dummy"
     class="iconify iconify--bi"
     height="1em"
     name="dummy"
@@ -48,6 +50,7 @@ exports[`FieldBooleanIcon > renders inside of model context 1`] = `
 <DocumentFragment>
   <svg
     aria-hidden="true"
+    aria-label="dummy"
     class="iconify iconify--bi"
     height="1em"
     name="dummy"

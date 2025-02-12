@@ -46,16 +46,19 @@ export const sharedFieldTests = (Component) => {
   });
 
   it('renders inside of model context', () => {
-    const { asFragment } = render(<Component path="dummy" />, {
-      wrapper: FormWrapper
-    });
+    const { asFragment } = render(
+      <Component path="dummy" aria-label="dummy" />,
+      {
+        wrapper: FormWrapper
+      }
+    );
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('render with place holder', () => {
     const { asFragment } = render(
-      <Component path="dummy" placeholder="placeholder" />,
+      <Component path="dummy" aria-label="dummy" placeholder="placeholder" />,
       {
         wrapper: FormWrapper
       }
@@ -64,11 +67,14 @@ export const sharedFieldTests = (Component) => {
   });
 
   it('render with disabled', () => {
-    const { asFragment } = render(<Component path="dummy" />, {
-      wrapper: createWrapper(FormWrapper, {
-        disabled: true
-      })
-    });
+    const { asFragment } = render(
+      <Component path="dummy" aria-label="dummy" />,
+      {
+        wrapper: createWrapper(FormWrapper, {
+          disabled: true
+        })
+      }
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 };
