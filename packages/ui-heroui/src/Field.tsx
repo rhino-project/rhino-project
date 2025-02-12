@@ -6,7 +6,12 @@ import { parseDate } from '@internationalized/date';
 import { FieldDatePicker, FieldDatePickerProps } from './FieldDatePicker';
 import { FieldTimeInput, FieldTimeInputProps } from './FieldTimeInput';
 import { Alert, Checkbox, CheckboxProps } from '@heroui/react';
-import { useController } from 'react-hook-form';
+import {
+  FieldValues,
+  Path,
+  useController,
+  useFormContext
+} from 'react-hook-form';
 import { Uploader } from '@rhino-project/core/utils';
 import {
   CountrySelector,
@@ -20,6 +25,10 @@ import { Icon, IconProps } from '@iconify/react';
 
 // Types
 export type FieldBooleanProps = CheckboxProps & {
+  /**
+   * The function to format the value before displaying it.
+   */
+  accessor?: (value: unknown) => boolean | string | null | undefined;
   /**
    * The path inside the form object.
    */
@@ -48,7 +57,15 @@ export type FieldCountryProps = CountrySelectorProps & {
 export type FieldCurrencyProps = FieldInputProps;
 export type FieldDateProps = FieldDatePickerProps;
 export type FieldDateTimeProps = FieldDatePickerProps;
-export type FieldFileProps = FieldInputProps;
+export type FieldFileProps<T extends FieldValues = FieldValues> = {
+  path: Path<T>;
+  label: ReactNode;
+  description: ReactNode;
+  multiple?: boolean;
+  accept?: string;
+  maxSize?: number;
+  maxFiles?: number;
+};
 export type FieldFloatProps = FieldInputProps;
 export type FieldHiddenProps = FieldInputProps;
 export type FieldIntegerProps = FieldInputProps;
@@ -164,7 +181,7 @@ export const FieldDateTimeBase = React.forwardRef<
 FieldDateTimeBase.displayName = 'FieldDateTimeBase';
 
 // File
-const FieldFileBase = ({
+const FieldFileBase = <T extends FieldValues = FieldValues>({
   path,
   label,
   description,
@@ -172,24 +189,14 @@ const FieldFileBase = ({
   accept = '*/*',
   maxSize = 5 * 1024 * 1024, // 5MB
   maxFiles = 5
-}: {
-  path: string;
-  label: ReactNode;
-  description: ReactNode;
-  multiple?: boolean;
-  accept?: string;
-  maxSize?: number;
-  maxFiles?: number;
-  value?: File | File[];
-  onChange?: (value: File | File[]) => void;
-}) => {
+}: FieldFileProps<T>) => {
   const {
-    field: { ref, value, onChange, ...fieldProps }
-    // fieldState: { error }
+    field: { value, onChange, ...fieldProps },
+    fieldState: { error }
   } = useController({
     name: path
   });
-  const [error, setError] = useState('');
+  const { setError, clearErrors } = useFormContext();
 
   const validateFile = (file: File) => {
     if (file.size > maxSize) {
@@ -208,13 +215,19 @@ const FieldFileBase = ({
     if (selectedFiles.length === 0) return;
 
     if (multiple && selectedFiles.length > maxFiles) {
-      setError(`You can only upload up to ${maxFiles} files`);
+      setError(path, {
+        type: 'custom',
+        message: `You can only upload up to ${maxFiles} files`
+      });
       return;
     }
 
     const errors = selectedFiles.map(validateFile).filter(Boolean);
     if (errors.length > 0) {
-      setError(errors[0] || 'Invalid file');
+      setError(path, {
+        type: 'custom',
+        message: errors[0] || 'Invalid file'
+      });
       return;
     }
 
@@ -230,10 +243,12 @@ const FieldFileBase = ({
 
     Promise.all(uploaders)
       .then(() => onChange(multiple ? [...value, ...newFiles] : newFiles[0]))
-      .catch((arg) => {
-        console.log('ARG', arg);
-        setError(arg);
-      });
+      .catch((arg) =>
+        setError(path, {
+          type: 'custom',
+          message: arg
+        })
+      );
   };
 
   const handleRemoveFile = (fileToRemove) => {
@@ -245,12 +260,12 @@ const FieldFileBase = ({
     } else {
       onChange(null);
     }
-    setError('');
+    clearErrors(path);
   };
 
   const handleRemoveAllFiles = () => {
     onChange(multiple ? [] : null);
-    setError('');
+    clearErrors(path);
   };
 
   const renderFileList = () => {
@@ -325,7 +340,7 @@ const FieldFileBase = ({
       </div>
 
       <div className="p-2">
-        {error && <Alert color="danger">{error}</Alert>}
+        {error && <Alert color="danger">{error.message}</Alert>}
 
         {renderFileList()}
       </div>

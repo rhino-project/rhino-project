@@ -42,8 +42,6 @@ export const FieldDatePickerBase = <T extends FieldValues = FieldValues>({
   // The placeholder value controls the format of the return value when its updated
   // as well as the default date shown in the picker when the value is empty.
   const placeholderValue = useMemo(() => {
-    if (props.placeholderValue) return props.placeholderValue;
-
     const date = now(getLocalTimeZone());
 
     return date.set({ millisecond: 0 });
@@ -61,10 +59,10 @@ export const FieldDatePickerBase = <T extends FieldValues = FieldValues>({
 
       try {
         stringValue = newValue.toAbsoluteString();
-      } catch (err) {
+      } catch {
         try {
           stringValue = newValue.toString();
-        } catch (err) {
+        } catch {
           stringValue = null;
         }
       }

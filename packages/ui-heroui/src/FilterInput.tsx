@@ -1,6 +1,8 @@
 import { Input, InputProps } from '@heroui/react';
 
 import {
+  FieldValues,
+  Path,
   useController,
   UseControllerProps,
   useFormContext
@@ -8,23 +10,22 @@ import {
 import React, { useCallback } from 'react';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 
-export type FilterInputProps = InputProps &
-  Omit<UseControllerProps, 'name'> & {
+export type FilterInputProps<T extends FieldValues = FieldValues> = InputProps &
+  Omit<UseControllerProps<T>, 'name' | 'control'> & {
     /**
      * The path inside the form object.
      */
-    path: string;
+    path: Path<T>;
   };
 
-export const FilterInputBase: React.FC<FilterInputProps> = ({
+export const FilterInputBase = <T extends FieldValues = FieldValues>({
   path,
   rules,
   shouldUnregister,
   defaultValue,
-  control,
   disabled,
   ...props
-}) => {
+}: FilterInputProps<T>) => {
   const {
     field: { onChange, value, ...fieldProps }
   } = useController({
@@ -32,7 +33,6 @@ export const FilterInputBase: React.FC<FilterInputProps> = ({
     rules,
     shouldUnregister,
     defaultValue,
-    control,
     disabled
   });
   const { resetField } = useFormContext();
@@ -44,10 +44,11 @@ export const FilterInputBase: React.FC<FilterInputProps> = ({
   // );
 
   // null is special and means no value (empty) for filtering
-  const handleOnChange = useCallback(
-    ({ target }) => onChange(target.value === '' ? null : target.value),
-    [onChange]
-  );
+  const handleOnChange: React.ChangeEventHandler<HTMLInputElement> =
+    useCallback(
+      ({ target }) => onChange(target.value === '' ? null : target.value),
+      [onChange]
+    );
 
   return (
     <Input

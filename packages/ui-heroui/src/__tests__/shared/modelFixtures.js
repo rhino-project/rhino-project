@@ -1,5 +1,3 @@
-import { min } from 'date-fns';
-
 export const api = {
   openapi: '3.0.3',
   components: {

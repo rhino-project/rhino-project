@@ -22,6 +22,7 @@ import { FieldTextareaProps } from './FieldTextarea';
 import { FieldBooleanProps, FieldFileProps, FieldTimeProps } from './Field';
 import { FieldDatePickerProps } from './FieldDatePicker';
 import { FieldSelectProps } from './FieldSelect';
+import { ModelFieldReferenceProps } from './ModelField';
 
 export const useModelFieldLabel = ({ path }: { path: string }) => {
   const { model } = useModelContext() as { model: Record<string, unknown> };
@@ -60,7 +61,7 @@ export const useModelFieldInputProps = <
   const label = useModelFieldLabel(props);
   const isClearable = useModelFieldClearable(props);
   const isRequired = useModelFieldRequired(props);
-  const onClear = useCallback(() => setValue(path, null), [setValue]);
+  const onClear = useCallback(() => setValue(path, null), [path, setValue]);
 
   return { label, isClearable, isRequired, onClear, ...props };
 };
@@ -120,6 +121,16 @@ export const useModelFieldFileProps = <T extends FieldFileProps>(
   const isRequired = useModelFieldRequired(props);
 
   return { label, isRequired, ...props };
+};
+
+export const useModelFieldReferenceProps = <T extends ModelFieldReferenceProps>(
+  props: T
+): T => {
+  const label = useModelFieldLabel(props);
+  const isClearable = useModelFieldClearable(props);
+  const isRequired = useModelFieldRequired(props);
+
+  return { label, isClearable, isRequired, ...props };
 };
 
 export const useModelFieldTimeProps = <T extends FieldTimeProps>(
