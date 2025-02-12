@@ -37,6 +37,7 @@ import {
   useModelFieldBooleanProps,
   useModelFieldDateTimeProps,
   useModelFieldEnumProps,
+  useModelFieldFileProps,
   useModelFieldGroup,
   useModelFieldGroupEnum,
   useModelFieldGroupIntegerSelect,
@@ -62,7 +63,6 @@ export type ModelFieldProps = {
   attribute: string;
 };
 export type ModelFieldCountryProps = FieldCountryProps & ModelFieldProps;
-export type ModelFieldFileProps = FieldFileProps & ModelFieldProps;
 export type ModelFieldIntegerSelectProps = FieldSelectProps & ModelFieldProps;
 export type ModelFieldOwnerReferenceProps = ModelFieldReferenceProps;
 export type ModelFieldPhoneProps = FieldPhoneProps & ModelFieldProps;
@@ -116,11 +116,10 @@ export const ModelFieldEnumBase: React.FC<FieldSelectProps> = (props) => {
 };
 
 // File
-export const ModelFieldFileBase: React.FC<ModelFieldFileProps> = (props) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldFloatProps;
+export const ModelFieldFileBase: React.FC<FieldFileProps> = (props) => {
+  const fieldProps = useModelFieldFileProps(props);
 
-  return <FieldFile {...fieldGroupProps} />;
+  return <FieldFile {...fieldProps} />;
 };
 
 // Float
@@ -307,7 +306,7 @@ export const ModelFieldDateTime: React.FC<FieldDateTimeProps> = (props) =>
 export const ModelFieldEnum: React.FC<FieldSelectProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldEnum', ModelFieldEnumBase, props);
 
-export const ModelFieldFile: React.FC<ModelFieldFileProps> = (props) =>
+export const ModelFieldFile: React.FC<FieldFileProps> = (props) =>
   useGlobalComponentForAttribute('ModelFieldFile', ModelFieldFileBase, props);
 
 export const ModelFieldFloat: React.FC<FieldFloatProps> = (props) =>
