@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Select, SelectProps } from '@heroui/react';
 import {
   FieldValues,
@@ -12,6 +12,10 @@ export type FieldSelectProps<T extends FieldValues = FieldValues> =
   SelectProps &
     Omit<UseControllerProps<T>, 'name' | 'control'> & {
       /**
+       * The function to format the value before displaying it.
+       */
+      accessor?: (value: unknown) => string | null | undefined;
+      /**
        * The path inside the form object.
        */
       path: Path<T>;
@@ -20,12 +24,11 @@ export type FieldSelectProps<T extends FieldValues = FieldValues> =
 export const FieldSelectBase = <T extends FieldValues = FieldValues>({
   accessor,
   children,
-  onChangeAccessor,
   ...props
 }: FieldSelectProps<T>) => {
   const { path } = props;
   const {
-    field: { onChange, disabled, value: fieldValue, ...fieldProps },
+    field: { disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -36,25 +39,12 @@ export const FieldSelectBase = <T extends FieldValues = FieldValues>({
     [accessor, fieldValue]
   );
 
-  const handleOnChange = useCallback(
-    ({ target }) => {
-      const valueChanged = onChangeAccessor
-        ? onChangeAccessor(target.value)
-        : target.value === ''
-          ? null
-          : target.value;
-      onChange(valueChanged);
-    },
-    [onChange, onChangeAccessor]
-  );
-
   return (
     <Select
       {...fieldProps}
       isInvalid={!!error}
       isDisabled={disabled}
       errorMessage={error?.message}
-      onChange={handleOnChange}
       selectedKeys={value ? [value] : []}
       {...props}
     >

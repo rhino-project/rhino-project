@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Input, InputProps } from '@heroui/react';
 import {
   FieldValues,
@@ -23,7 +23,7 @@ export type FieldInputProps<T extends FieldValues = FieldValues> = InputProps &
 
 export const FieldInputBase = <T extends FieldValues = FieldValues>({
   accessor,
-  onChangeAccessor,
+
   path,
   rules,
   shouldUnregister,
@@ -32,7 +32,7 @@ export const FieldInputBase = <T extends FieldValues = FieldValues>({
   ...props
 }: FieldInputProps<T>) => {
   const {
-    field: { onChange, disabled, value: fieldValue, ...fieldProps },
+    field: { disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path,
@@ -47,16 +47,6 @@ export const FieldInputBase = <T extends FieldValues = FieldValues>({
     [accessor, fieldValue]
   );
 
-  const handleOnChange = useCallback(
-    ({ target }) => {
-      const valueChanged = onChangeAccessor
-        ? onChangeAccessor(target.value)
-        : target.value;
-      onChange(valueChanged);
-    },
-    [onChange, onChangeAccessor]
-  );
-
   return (
     <Input
       {...fieldProps}
@@ -64,7 +54,6 @@ export const FieldInputBase = <T extends FieldValues = FieldValues>({
       isInvalid={!!error}
       isDisabled={disabled}
       errorMessage={error?.message}
-      onChange={handleOnChange}
       value={value || ''}
       {...props}
     />

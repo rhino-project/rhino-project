@@ -3,6 +3,7 @@ import {
   useBaseOwnerFilters,
   useGlobalComponentForAttribute,
   useModelAndAttributeFromPath,
+  useModelContext,
   useModelIndex
 } from '@rhino-project/core/hooks';
 import {
@@ -42,6 +43,7 @@ import {
   useModelFieldGroupEnum,
   useModelFieldGroupIntegerSelect,
   useModelFieldInputProps,
+  useModelFieldReferenceProps,
   useModelFieldTimeProps
 } from './form';
 import { FieldSelect, FieldSelectProps } from './FieldSelect';
@@ -64,9 +66,16 @@ export type ModelFieldProps = {
 };
 export type ModelFieldCountryProps = FieldCountryProps & ModelFieldProps;
 export type ModelFieldIntegerSelectProps = FieldSelectProps & ModelFieldProps;
-export type ModelFieldOwnerReferenceProps = ModelFieldReferenceProps;
 export type ModelFieldPhoneProps = FieldPhoneProps & ModelFieldProps;
-export type ModelFieldReferenceProps = AutocompleteProps & ModelFieldProps;
+
+export type ModelFieldReferenceProps = AutocompleteProps & {
+  path: string;
+  filter?: object;
+  limit?: number | string;
+  offset?: number | string;
+  order?: string;
+};
+export type ModelFieldOwnerReferenceProps = ModelFieldReferenceProps;
 
 // Boolean
 export const ModelFieldBooleanBase: React.FC<FieldBooleanProps> = (props) => {
@@ -152,7 +161,8 @@ export const ModelFieldIntegerSelectBase: React.FC<ModelFieldEnumProps> = (
 export const ModelFieldOwnerReferenceBase: React.FC<
   ModelFieldOwnerReferenceProps
 > = ({ filter: extraFilters, ...props }) => {
-  const { model, path } = props;
+  const { path } = props;
+  const { model } = useModelContext();
   const { attribute } = useModelAndAttributeFromPath(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
   const filter = useBaseOwnerFilters(refModel, { extraFilters });
@@ -169,7 +179,6 @@ export const ModelFieldPhoneBase: React.FC<ModelFieldPhoneProps> = (props) => {
 };
 
 // Reference
-// FIXME: need to allow limit, offset, etc in props
 export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
   filter: propsFilter,
   limit = 10,
@@ -178,7 +187,8 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
   ...props
 }) => {
   const { path } = props;
-  const { model, ...fieldGroupProps } = useModelFieldGroup(props);
+  const { model } = useModelContext();
+  const fieldProps = useModelFieldReferenceProps(props);
   const { attribute } = useModelAndAttributeFromPath(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(
@@ -186,7 +196,7 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
     [refModel]
   );
   const {
-    field: { disabled, value, onChange, ...fieldProps },
+    field: { disabled, value, onChange, ...rhfProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -223,6 +233,7 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
 
   return (
     <Autocomplete
+      {...rhfProps}
       isLoading={isInitialLoading}
       onInputChange={setSearch}
       items={results || []}
@@ -231,7 +242,6 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
       isInvalid={!!error}
       errorMessage={error?.message}
       isDisabled={disabled}
-      {...fieldGroupProps}
       {...fieldProps}
     >
       {(item) => (

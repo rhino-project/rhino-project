@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { Textarea, TextAreaProps } from '@heroui/react';
 import {
   FieldValues,
@@ -14,7 +14,7 @@ export type FieldTextareaProps<T extends FieldValues = FieldValues> =
       /**
        * The function to format the value before displaying it.
        */
-      accessor?: (value: unknown) => string | null | undefined;
+      accessor?: (value: unknown) => string | undefined;
       /**
        * The path inside the form object.
        */
@@ -23,12 +23,11 @@ export type FieldTextareaProps<T extends FieldValues = FieldValues> =
 
 export const FieldTextareaBase = <T extends FieldValues = FieldValues>({
   accessor,
-  onChangeAccessor,
   ...props
 }: FieldTextareaProps<T>) => {
   const { path } = props;
   const {
-    field: { onChange, disabled, value: fieldValue, ...fieldProps },
+    field: { disabled, value: fieldValue, ...fieldProps },
     fieldState: { error }
   } = useController({
     name: path
@@ -39,16 +38,6 @@ export const FieldTextareaBase = <T extends FieldValues = FieldValues>({
     [accessor, fieldValue]
   );
 
-  const handleOnChange = useCallback(
-    ({ target }) => {
-      const valueChanged = onChangeAccessor
-        ? onChangeAccessor(target.value)
-        : target.value;
-      onChange(valueChanged);
-    },
-    [onChange, onChangeAccessor]
-  );
-
   return (
     <Textarea
       {...fieldProps}
@@ -56,8 +45,7 @@ export const FieldTextareaBase = <T extends FieldValues = FieldValues>({
       isInvalid={!!error}
       isDisabled={disabled}
       errorMessage={error?.message}
-      onChange={handleOnChange}
-      value={value}
+      value={value || ''}
       {...props}
     />
   );
