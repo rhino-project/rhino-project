@@ -20,7 +20,12 @@ import { DisplayInputProps } from './DisplayInput';
 import { DisplayTextareaProps } from './DisplayTextarea';
 import { FieldInputProps } from './FieldInput';
 import { FieldTextareaProps } from './FieldTextarea';
-import { FieldBooleanProps, FieldDateTimeProps, FieldTimeProps } from './Field';
+import {
+  FieldBooleanProps,
+  FieldDateTimeProps,
+  FieldFileProps,
+  FieldTimeProps
+} from './Field';
 import { FieldDatePickerProps } from './FieldDatePicker';
 import { FieldSelectProps } from './FieldSelect';
 
@@ -112,6 +117,15 @@ export const useModelFieldEnumProps = ({
   const accessor = useCallback((value: unknown) => value || -1, []);
 
   return { accessor, children, label, isRequired, ...props };
+};
+
+export const useModelFieldFileProps = <T extends FieldFileProps>(
+  props: T
+): T => {
+  const label = useModelFieldLabel(props);
+  const isRequired = useModelFieldRequired(props);
+
+  return { label, isRequired, ...props };
 };
 
 export const useModelFieldTimeProps = <T extends FieldTimeProps>(
