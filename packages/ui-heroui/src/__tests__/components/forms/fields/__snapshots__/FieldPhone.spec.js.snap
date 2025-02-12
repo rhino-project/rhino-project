@@ -22,13 +22,14 @@ exports[`FieldPhone > render with disabled 1`] = `
           data-slot="inner-wrapper"
         >
           <input
-            aria-label=" "
+            aria-label="dummy"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-slot="input"
             disabled=""
             id="react-aria-:rd:"
             name="dummy"
+            title=""
             type="text"
             value=""
           />
@@ -61,7 +62,7 @@ exports[`FieldPhone > render with place holder 1`] = `
           data-slot="inner-wrapper"
         >
           <input
-            aria-label="placeholder"
+            aria-label="dummy"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-slot="input"
@@ -100,7 +101,7 @@ exports[`FieldPhone > renders inside of model context 1`] = `
           data-slot="inner-wrapper"
         >
           <input
-            aria-label=" "
+            aria-label="dummy"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-slot="input"

@@ -33,7 +33,7 @@ exports[`DisplayCurrency > renders inside of model context 1`] = `
             </span>
           </div>
           <input
-            aria-label=" "
+            aria-label="dummy"
             aria-readonly="true"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"
@@ -88,7 +88,7 @@ exports[`DisplayCurrency > should render the empty text when value is nullish 1`
             </span>
           </div>
           <input
-            aria-label=" "
+            aria-label="dummy"
             aria-readonly="true"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"
@@ -143,7 +143,7 @@ exports[`DisplayCurrency > should render the overridden empty text when value is
             </span>
           </div>
           <input
-            aria-label=" "
+            aria-label="dummy"
             aria-readonly="true"
             autocomplete="off"
             class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"

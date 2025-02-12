@@ -17,6 +17,7 @@ exports[`FieldTime > render with disabled 1`] = `
       >
         <div
           aria-disabled="true"
+          aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
           id="react-aria-:r19:"
@@ -24,7 +25,7 @@ exports[`FieldTime > render with disabled 1`] = `
         >
           <div
             aria-disabled="true"
-            aria-label="hour"
+            aria-label="hour, dummy"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -51,7 +52,7 @@ exports[`FieldTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="minute"
+            aria-label="minute, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -78,7 +79,7 @@ exports[`FieldTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="second"
+            aria-label="second, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -105,7 +106,7 @@ exports[`FieldTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="AM/PM"
+            aria-label="AM/PM, dummy"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -126,6 +127,7 @@ exports[`FieldTime > render with disabled 1`] = `
             disabled=""
             hidden=""
             name="dummy"
+            title=""
             type="text"
             value=""
           />
@@ -151,13 +153,14 @@ exports[`FieldTime > render with place holder 1`] = `
         data-slot="inner-wrapper"
       >
         <div
+          aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
           id="react-aria-:rl:"
           role="group"
         >
           <div
-            aria-label="hour"
+            aria-label="hour, dummy"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -188,7 +191,7 @@ exports[`FieldTime > render with place holder 1`] = `
             :
           </div>
           <div
-            aria-label="minute"
+            aria-label="minute, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -219,7 +222,7 @@ exports[`FieldTime > render with place holder 1`] = `
             :
           </div>
           <div
-            aria-label="second"
+            aria-label="second, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -250,7 +253,7 @@ exports[`FieldTime > render with place holder 1`] = `
              
           </div>
           <div
-            aria-label="AM/PM"
+            aria-label="AM/PM, dummy"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -300,13 +303,14 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
         data-slot="inner-wrapper"
       >
         <div
+          aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
           id="react-aria-:r2f:"
           role="group"
         >
           <div
-            aria-label="hour"
+            aria-label="hour, dummy"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -337,7 +341,7 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
             :
           </div>
           <div
-            aria-label="minute"
+            aria-label="minute, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -368,7 +372,7 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
             :
           </div>
           <div
-            aria-label="second"
+            aria-label="second, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -399,7 +403,7 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
              
           </div>
           <div
-            aria-label="AM/PM"
+            aria-label="AM/PM, dummy"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -449,13 +453,14 @@ exports[`FieldTime > renders empty with null date 1`] = `
         data-slot="inner-wrapper"
       >
         <div
+          aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
           id="react-aria-:r1s:"
           role="group"
         >
           <div
-            aria-label="hour"
+            aria-label="hour, dummy"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -486,7 +491,7 @@ exports[`FieldTime > renders empty with null date 1`] = `
             :
           </div>
           <div
-            aria-label="minute"
+            aria-label="minute, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -517,7 +522,7 @@ exports[`FieldTime > renders empty with null date 1`] = `
             :
           </div>
           <div
-            aria-label="second"
+            aria-label="second, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -548,7 +553,7 @@ exports[`FieldTime > renders empty with null date 1`] = `
              
           </div>
           <div
-            aria-label="AM/PM"
+            aria-label="AM/PM, dummy"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -601,6 +606,7 @@ exports[`FieldTime > renders error 1`] = `
       >
         <div
           aria-describedby="react-aria-:r36:"
+          aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
           id="react-aria-:r32:"
@@ -609,7 +615,7 @@ exports[`FieldTime > renders error 1`] = `
           <div
             aria-describedby="react-aria-:r36:"
             aria-invalid="true"
-            aria-label="hour"
+            aria-label="hour, dummy"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -644,7 +650,7 @@ exports[`FieldTime > renders error 1`] = `
           <div
             aria-describedby="react-aria-:r36:"
             aria-invalid="true"
-            aria-label="minute"
+            aria-label="minute, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -679,7 +685,7 @@ exports[`FieldTime > renders error 1`] = `
           <div
             aria-describedby="react-aria-:r36:"
             aria-invalid="true"
-            aria-label="second"
+            aria-label="second, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -714,7 +720,7 @@ exports[`FieldTime > renders error 1`] = `
           <div
             aria-describedby="react-aria-:r36:"
             aria-invalid="true"
-            aria-label="AM/PM"
+            aria-label="AM/PM, dummy"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -777,13 +783,14 @@ exports[`FieldTime > renders inside of model context 1`] = `
         data-slot="inner-wrapper"
       >
         <div
+          aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
           id="react-aria-:r1:"
           role="group"
         >
           <div
-            aria-label="hour"
+            aria-label="hour, dummy"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -814,7 +821,7 @@ exports[`FieldTime > renders inside of model context 1`] = `
             :
           </div>
           <div
-            aria-label="minute"
+            aria-label="minute, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -845,7 +852,7 @@ exports[`FieldTime > renders inside of model context 1`] = `
             :
           </div>
           <div
-            aria-label="second"
+            aria-label="second, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -876,7 +883,7 @@ exports[`FieldTime > renders inside of model context 1`] = `
              
           </div>
           <div
-            aria-label="AM/PM"
+            aria-label="AM/PM, dummy"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"

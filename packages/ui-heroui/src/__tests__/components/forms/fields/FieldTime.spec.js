@@ -13,30 +13,39 @@ describe('FieldTime', () => {
   sharedFieldTests(FieldTime);
 
   it('renders empty with null date', () => {
-    const { asFragment } = render(<FieldTime path="dummy" />, {
-      wrapper: createWrapper(FormWrapper, {
-        defaultValues: { dummy: null }
-      })
-    });
+    const { asFragment } = render(
+      <FieldTime path="dummy" aria-label="dummy" />,
+      {
+        wrapper: createWrapper(FormWrapper, {
+          defaultValues: { dummy: null }
+        })
+      }
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders empty with empty string date', () => {
-    const { asFragment } = render(<FieldTime path="dummy" />, {
-      wrapper: createWrapper(FormWrapper, {
-        defaultValues: { dummy: '' }
-      })
-    });
+    const { asFragment } = render(
+      <FieldTime path="dummy" aria-label="dummy" />,
+      {
+        wrapper: createWrapper(FormWrapper, {
+          defaultValues: { dummy: '' }
+        })
+      }
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 
   it('renders error', () => {
-    const { asFragment } = render(<FieldTime path="dummy" />, {
-      wrapper: createWrapper(FormWrapper, {
-        defaultValues: { dummy: '' },
-        errors: { dummy: { message: 'Error' } }
-      })
-    });
+    const { asFragment } = render(
+      <FieldTime path="dummy" aria-label="dummy" />,
+      {
+        wrapper: createWrapper(FormWrapper, {
+          defaultValues: { dummy: '' },
+          errors: { dummy: { message: 'Error' } }
+        })
+      }
+    );
     expect(asFragment()).toMatchSnapshot();
   });
 });

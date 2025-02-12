@@ -21,7 +21,7 @@ exports[`DisplayText > renders inside of model context 1`] = `
         data-slot="inner-wrapper"
       >
         <textarea
-          aria-label=" "
+          aria-label="dummy"
           aria-readonly="true"
           autocomplete="off"
           class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small resize-none data-[hide-scroll=true]:scrollbar-hide group-data-[has-value=true]:text-default-foreground transition-height !duration-100 motion-reduce:transition-none is-filled pe-0"
@@ -63,7 +63,7 @@ exports[`DisplayText > should render the empty text when value is nullish 1`] = 
         data-slot="inner-wrapper"
       >
         <textarea
-          aria-label=" "
+          aria-label="dummy"
           aria-readonly="true"
           autocomplete="off"
           class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small resize-none data-[hide-scroll=true]:scrollbar-hide group-data-[has-value=true]:text-default-foreground transition-height !duration-100 motion-reduce:transition-none is-filled pe-0"
@@ -105,7 +105,7 @@ exports[`DisplayText > should render the overridden empty text when value is nul
         data-slot="inner-wrapper"
       >
         <textarea
-          aria-label=" "
+          aria-label="dummy"
           aria-readonly="true"
           autocomplete="off"
           class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small resize-none data-[hide-scroll=true]:scrollbar-hide group-data-[has-value=true]:text-default-foreground transition-height !duration-100 motion-reduce:transition-none is-filled pe-0"

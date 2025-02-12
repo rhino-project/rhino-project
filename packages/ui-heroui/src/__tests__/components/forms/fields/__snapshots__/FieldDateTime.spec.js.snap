@@ -10,6 +10,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
   >
     <div
       aria-disabled="true"
+      aria-label="dummy"
       aria-labelledby="react-aria-:r1a:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full pointer-events-none transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
@@ -63,7 +64,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
         >
           <div
             aria-disabled="true"
-            aria-label="month"
+            aria-label="month, dummy"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="2"
@@ -90,7 +91,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="day"
+            aria-label="day, dummy"
             aria-valuemax="28"
             aria-valuemin="1"
             aria-valuenow="7"
@@ -117,7 +118,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="year"
+            aria-label="year, dummy"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2025"
@@ -144,7 +145,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="hour"
+            aria-label="hour, dummy"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="5"
@@ -171,7 +172,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="minute"
+            aria-label="minute, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="5"
@@ -198,7 +199,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="second"
+            aria-label="second, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="55"
@@ -225,7 +226,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
           </div>
           <div
             aria-disabled="true"
-            aria-label="AM/PM"
+            aria-label="AM/PM, dummy"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"
@@ -246,6 +247,7 @@ exports[`FieldDateTime > render with disabled 1`] = `
             disabled=""
             hidden=""
             name="dummy"
+            title=""
             type="text"
             value=""
           />
@@ -1148,6 +1150,7 @@ exports[`FieldDateTime > renders inside of model context 1`] = `
     data-slot="base"
   >
     <div
+      aria-label="dummy"
       aria-labelledby="react-aria-:r3:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
@@ -1198,7 +1201,7 @@ exports[`FieldDateTime > renders inside of model context 1`] = `
           role="presentation"
         >
           <div
-            aria-label="month"
+            aria-label="month, dummy"
             aria-valuemax="12"
             aria-valuemin="1"
             aria-valuenow="2"
@@ -1229,7 +1232,7 @@ exports[`FieldDateTime > renders inside of model context 1`] = `
             /
           </div>
           <div
-            aria-label="day"
+            aria-label="day, dummy"
             aria-valuemax="28"
             aria-valuemin="1"
             aria-valuenow="7"
@@ -1260,7 +1263,7 @@ exports[`FieldDateTime > renders inside of model context 1`] = `
             /
           </div>
           <div
-            aria-label="year"
+            aria-label="year, dummy"
             aria-valuemax="9999"
             aria-valuemin="1"
             aria-valuenow="2025"
@@ -1291,7 +1294,7 @@ exports[`FieldDateTime > renders inside of model context 1`] = `
             , 
           </div>
           <div
-            aria-label="hour"
+            aria-label="hour, dummy"
             aria-valuemax="11"
             aria-valuemin="0"
             aria-valuenow="5"
@@ -1322,7 +1325,7 @@ exports[`FieldDateTime > renders inside of model context 1`] = `
             :
           </div>
           <div
-            aria-label="minute"
+            aria-label="minute, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="5"
@@ -1353,7 +1356,7 @@ exports[`FieldDateTime > renders inside of model context 1`] = `
             :
           </div>
           <div
-            aria-label="second"
+            aria-label="second, dummy"
             aria-valuemax="59"
             aria-valuemin="0"
             aria-valuenow="55"
@@ -1384,7 +1387,7 @@ exports[`FieldDateTime > renders inside of model context 1`] = `
              
           </div>
           <div
-            aria-label="AM/PM"
+            aria-label="AM/PM, dummy"
             aria-valuemax="12"
             aria-valuemin="0"
             aria-valuenow="0"
