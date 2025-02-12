@@ -24,7 +24,7 @@ export const ModelCreateBase = ({ overrides, ...props }) => {
 
   return (
     <ModelCreateSimple paths={ModelCreateForm().props?.paths} {...props}>
-      <ModelCreateHeader />
+      <ModelCreateHeader className="mb-3" />
       <ModelCreateForm />
       <ModelCreateActions />
     </ModelCreateSimple>

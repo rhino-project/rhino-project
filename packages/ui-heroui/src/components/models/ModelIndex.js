@@ -9,7 +9,6 @@ import { ModelIndexHeader } from './ModelIndexHeader';
 import { ModelIndexTable } from './ModelIndexTable';
 import { ModelIndexActions } from './ModelIndexActions';
 import { ModelIndexSimple } from './ModelIndexSimple';
-import { Divider } from '@heroui/react';
 
 const defaultComponents = {
   ModelIndexHeader,

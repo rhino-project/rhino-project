@@ -14,7 +14,6 @@ exports[`FieldBoolean > render with disabled 1`] = `
       class="font-inherit text-[100%] leading-[1.15] m-0 p-0 overflow-visible box-border absolute top-0 w-full h-full opacity-[0.0001] z-[1] cursor-pointer disabled:cursor-default"
       disabled=""
       name="dummy"
-      title=""
       type="checkbox"
       value=""
     />

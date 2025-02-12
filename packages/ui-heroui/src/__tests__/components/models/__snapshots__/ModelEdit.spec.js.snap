@@ -5,6 +5,9 @@ exports[`ModelEdit > should allow local overrides 1`] = `
   <div>
     Foo
   </div>
+  <div
+    class="my-3"
+  />
   <div>
     Bar
   </div>

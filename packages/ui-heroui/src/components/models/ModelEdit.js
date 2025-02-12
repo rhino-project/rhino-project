@@ -29,6 +29,7 @@ export const ModelEditBase = ({ overrides, ...props }) => {
   return (
     <ModelEditSimple paths={ModelEditForm().props?.paths} {...props}>
       <ModelEditHeader />
+      <div className="my-3" />
       <ModelEditForm />
       <ModelEditActions />
     </ModelEditSimple>
