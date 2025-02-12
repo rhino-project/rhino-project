@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 
 import { BaseAuthedPage } from '../BaseAuthedPage';
 import { EditOrganizationProfile } from '../../components/settings/EditOrganizationProfile';
@@ -13,17 +13,19 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import { getSettingsPath } from '@rhino-project/core/utils';
 import { Tab, Tabs } from '@heroui/react';
 
-const tabTo = (baseOwnerPath, tabId) =>
-  baseOwnerPath.build(`${getSettingsPath()}/${tabId}`);
-
 export const OrganizationSettingsPage = () => {
   //Checking subscription payment related status
   const { status, session_id } = useParsedSearch(); //FIXME use session_id for checking later
-  const baseOwnerPath = useBaseOwnerPath();
+  const { build } = useBaseOwnerPath();
 
   const showSubscriptions = useMemo(
     () => hasSubscriptionsModule() && hasOrganizationsModule(),
     []
+  );
+
+  const settingsBuild = useCallback(
+    (tabId) => build(`${getSettingsPath()}/${tabId}`),
+    [build]
   );
 
   const { pathname } = useLocation();
@@ -32,22 +34,30 @@ export const OrganizationSettingsPage = () => {
     <BaseAuthedPage>
       <Tabs selectedKey={pathname}>
         <Tab
-          id="profile"
+          key={settingsBuild('profile')}
           title="Profile"
-          href={tabTo(baseOwnerPath, 'profile')}
+          href={settingsBuild('profile')}
         />
-        <Tab id="access" title="Access" href="access" />
+        <Tab
+          key={settingsBuild('access')}
+          title="Access"
+          href={settingsBuild('access')}
+        />
         {showSubscriptions && (
-          <Tab id="subscription" title="Subscription" href="subscription" />
+          <Tab
+            key={settingsBuild('subscription')}
+            title="Subscription"
+            href={settingsBuild('subscription')}
+          />
         )}
       </Tabs>
       <div className="mt-4">
         <Routes>
-          <Route path="/profile" element={<EditOrganizationProfile />} />
-          <Route path="/access" element={<EditOrganizationAccess />} />
+          <Route path="profile" element={<EditOrganizationProfile />} />
+          <Route path="access" element={<EditOrganizationAccess />} />
           {showSubscriptions && (
             <Route
-              path="/subscription"
+              path="subscription"
               element={<Subscription status={status} session_id={session_id} />}
             />
           )}
