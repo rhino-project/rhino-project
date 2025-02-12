@@ -2,14 +2,18 @@
 
 exports[`ModelCreate > should allow local overrides 1`] = `
 <DocumentFragment>
-  <div>
-    Foo
-  </div>
-  <div>
-    Bar
-  </div>
-  <div>
-    Baz
+  <div
+    class="flex flex-col gap-3"
+  >
+    <div>
+      Foo
+    </div>
+    <div>
+      Bar
+    </div>
+    <div>
+      Baz
+    </div>
   </div>
 </DocumentFragment>
 `;
