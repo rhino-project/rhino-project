@@ -5,7 +5,7 @@ import { Button, Link } from '@heroui/react';
 import { Icon } from '@iconify/react';
 
 export const IconButton = ({ icon, ...props }) => (
-  <Button {...props} startContent={<Icon className="w-8" icon={icon} />} />
+  <Button {...props} startContent={<Icon className="s-8" icon={icon} />} />
 );
 
 export const OmniIconButton = ({ icon, endpoint, ...props }) => {
