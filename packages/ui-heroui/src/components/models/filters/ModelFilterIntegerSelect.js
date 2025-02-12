@@ -7,8 +7,8 @@ import { useModelFiltersContext } from '@rhino-project/core/hooks';
 import { FieldSelect } from '../../../FieldSelect';
 import { SelectItem } from '@heroui/react';
 
-export const ModelFilterIntegerSelect = ({ model, path, ...props }) => {
-  const { attribute, operatorPath, ...rest } = useModelFilterField(model, path); // FIXME: Exclusive min/max support
+export const ModelFilterIntegerSelect = ({ path, ...props }) => {
+  const { attribute, operatorPath, ...rest } = useModelFilterField(path); // FIXME: Exclusive min/max support
   const integers = Array.from(
     { length: attribute.maximum - attribute.minimum },
     (x, i) => ({

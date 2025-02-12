@@ -6,8 +6,8 @@ import { useModelFilterField } from '../../../form';
 import { useModelFiltersContext } from '@rhino-project/core/hooks';
 import { FilterString } from '../../../Filter';
 
-export const ModelFilterString = ({ model, path, ...props }) => {
-  const { attribute, operatorPath, ...rest } = useModelFilterField(model, path);
+export const ModelFilterString = ({ path, ...props }) => {
+  const { attribute, operatorPath, ...rest } = useModelFilterField(path);
 
   const watch = useWatch({ name: operatorPath });
   const { setPill } = useModelFiltersContext();

@@ -8,8 +8,8 @@ import { FilterFloat } from '../../../Filter';
 
 const FLOAT_INCREMENT = 0.000000000000001;
 
-export const ModelFilterFloat = ({ model, path, ...props }) => {
-  const { attribute, operatorPath, ...rest } = useModelFilterField(model, path);
+export const ModelFilterFloat = ({ path, ...props }) => {
+  const { attribute, operatorPath, ...rest } = useModelFilterField(path);
   const { resetField } = useFormContext();
 
   const min = useMemo(() => {

@@ -5,7 +5,7 @@ import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSi
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterDateTime } from '../../../../components/models/filters/ModelFilterDateTime';
 import { FilterDateTime } from '../../../../Filter';
-import { parseAbsoluteToLocal, ZonedDateTime } from '@internationalized/date';
+import { parseAbsoluteToLocal } from '@internationalized/date';
 
 vi.mock('../../../../Filter', () => ({
   FilterDateTime: vi.fn(() => null)
@@ -30,117 +30,59 @@ describe('ModelFilterDateTime', () => {
     );
   };
   it(`adds min as a prop`, () => {
-    render(
-      <ModelFilterDateTime
-        model={{
-          properties: {
-            dummy: {
-              type: 'string',
-              format: 'date',
-              minimum: '1982-02-07T05:00:00.000Z'
-            }
-          }
-        }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    render(<ModelFilterDateTime path="published_at_min" />, {
+      wrapper: Wrapper
+    });
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
         minValue: parseAbsoluteToLocal('1982-02-07T05:00:00.000Z'),
         maxValue: undefined,
-        path: 'dummy'
+        path: 'published_at_min'
       }),
       expect.anything()
     );
   });
 
   it(`adds min as a prop with exclusiveMinimum`, () => {
-    render(
-      <ModelFilterDateTime
-        model={{
-          properties: {
-            dummy: {
-              type: 'string',
-              format: 'date',
-              minimum: '1982-02-07T05:00:00.000Z',
-              exclusiveMinimum: true
-            }
-          }
-        }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    render(<ModelFilterDateTime path="published_at_min_exclusive" />, {
+      wrapper: Wrapper
+    });
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
         minValue: parseAbsoluteToLocal('1982-02-07T05:00:01.000Z'),
         maxValue: undefined,
-        path: 'dummy'
+        path: 'published_at_min_exclusive'
       }),
       expect.anything()
     );
   });
 
   it(`adds max as a prop`, () => {
-    render(
-      <ModelFilterDateTime
-        model={{
-          properties: {
-            dummy: {
-              type: 'string',
-              format: 'date',
-              maximum: '2030-02-07T05:00:00.000Z'
-            }
-          }
-        }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    render(<ModelFilterDateTime path="published_at_max" />, {
+      wrapper: Wrapper
+    });
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
         minValue: undefined,
         maxValue: parseAbsoluteToLocal('2030-02-07T05:00:00.000Z'),
-        path: 'dummy'
+        path: 'published_at_max'
       }),
       expect.anything()
     );
   });
 
   it(`adds max as a prop with exclusiveMaximum`, () => {
-    render(
-      <ModelFilterDateTime
-        model={{
-          properties: {
-            dummy: {
-              type: 'string',
-              format: 'date',
-              maximum: '2030-02-07T05:00:00.000Z',
-              exclusiveMaximum: true
-            }
-          }
-        }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    render(<ModelFilterDateTime path="published_at_max_exclusive" />, {
+      wrapper: Wrapper
+    });
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
         minValue: undefined,
         maxValue: parseAbsoluteToLocal('2030-02-07T04:59:59.000Z'),
-        path: 'dummy'
+        path: 'published_at_max_exclusive'
       }),
       expect.anything()
     );

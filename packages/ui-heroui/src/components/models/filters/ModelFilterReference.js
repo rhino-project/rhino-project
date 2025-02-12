@@ -17,7 +17,6 @@ import { FieldSelect } from '../../../FieldSelect';
 import { SelectItem } from '@heroui/react';
 
 export const ModelFilterReferenceBase = ({
-  model,
   path,
   filter,
   limit = 100,
@@ -26,10 +25,7 @@ export const ModelFilterReferenceBase = ({
   search,
   ...props
 }) => {
-  const { attribute, operator, plainPath, ...rest } = useModelFilterField(
-    model,
-    path
-  );
+  const { attribute, operator, plainPath, ...rest } = useModelFilterField(path);
 
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(

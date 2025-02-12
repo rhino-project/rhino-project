@@ -29,117 +29,59 @@ describe('ModelFilterYear', () => {
   });
 
   it(`adds min as a prop`, () => {
-    render(
-      <ModelFilterYear
-        model={{
-          properties: {
-            dummy: {
-              type: 'integer',
-              format: 'year',
-              minimum: 1982
-            }
-          }
-        }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    render(<ModelFilterYear path="published_year_min" />, {
+      wrapper: Wrapper
+    });
 
     expect(FilterYear).toHaveBeenLastCalledWith(
       expect.objectContaining({
         min: 1982,
         max: undefined,
-        path: 'dummy'
+        path: 'published_year_min'
       }),
       expect.anything()
     );
   });
 
   it(`adds min as a prop with exclusiveMinimum`, () => {
-    render(
-      <ModelFilterYear
-        model={{
-          properties: {
-            dummy: {
-              type: 'integer',
-              format: 'year',
-              minimum: 1982,
-              exclusiveMinimum: true
-            }
-          }
-        }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    render(<ModelFilterYear path="published_year_min_exclusive" />, {
+      wrapper: Wrapper
+    });
 
     expect(FilterYear).toHaveBeenLastCalledWith(
       expect.objectContaining({
         min: 1983,
         max: undefined,
-        path: 'dummy'
+        path: 'published_year_min_exclusive'
       }),
       expect.anything()
     );
   });
 
   it(`adds max as a prop`, () => {
-    render(
-      <ModelFilterYear
-        model={{
-          properties: {
-            dummy: {
-              type: 'integer',
-              format: 'year',
-              maximum: 2030
-            }
-          }
-        }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    render(<ModelFilterYear path="published_year_max" />, {
+      wrapper: Wrapper
+    });
     expect(FilterYear).toHaveBeenLastCalledWith(
       expect.objectContaining({
         min: undefined,
         max: 2030,
-        path: 'dummy'
+        path: 'published_year_max'
       }),
       expect.anything()
     );
   });
 
   it(`adds max as a prop with exclusiveMaximum`, () => {
-    render(
-      <ModelFilterYear
-        model={{
-          properties: {
-            dummy: {
-              type: 'integer',
-              format: 'year',
-              maximum: 2030,
-              exclusiveMaximum: true
-            }
-          }
-        }}
-        path="dummy"
-      />,
-      {
-        wrapper: Wrapper
-      }
-    );
+    render(<ModelFilterYear path="published_year_max_exclusive" />, {
+      wrapper: Wrapper
+    });
 
     expect(FilterYear).toHaveBeenLastCalledWith(
       expect.objectContaining({
         min: undefined,
         max: 2029,
-        path: 'dummy'
+        path: 'published_year_max_exclusive'
       }),
       expect.anything()
     );

@@ -11,12 +11,9 @@ import PropTypes from 'prop-types';
 import { useModelFiltersContext } from '@rhino-project/core/hooks';
 import { Autocomplete, AutocompleteItem } from '@heroui/react';
 
-export const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
+export const ModelFilterReferenceTypeahead = ({ path, ...props }) => {
   const { filter, limit = 10, offset, order } = props;
-  const { attribute, operator, plainPath, ...rest } = useModelFilterField(
-    model,
-    path
-  );
+  const { attribute, operator, plainPath, ...rest } = useModelFilterField(path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
   const identifier = useMemo(
     () => getIdentifierAttribute(refModel),
