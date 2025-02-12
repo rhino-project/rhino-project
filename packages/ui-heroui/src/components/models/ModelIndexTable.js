@@ -67,7 +67,7 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
   );
   const {
     isInitialLoading,
-    limit,
+    isLoading,
     model,
     order,
     resources,
@@ -147,15 +147,9 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
         }
 
         // Path is a string
-        const cell = (info) =>
-          isInitialLoading ? (
-            <div className="placeholder-glow">
-              <span className="placeholder col-6"></span>
-            </div>
-          ) : (
-            <ModelCell model={model} path={path} {...info} />
-          );
-
+        const cell = (info) => (
+          <ModelCell model={model} path={path} {...info} />
+        );
         const header = (info) => (
           <ModelHeader model={model} path={path} {...info} />
         );
@@ -196,8 +190,8 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
   }, [order, setOrder, sorting]);
 
   const data = useMemo(() => {
-    return results || Array(limit).fill({});
-  }, [limit, results]);
+    return results || [];
+  }, [results]);
 
   const table = useReactTable({
     data,
@@ -212,7 +206,14 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
     onSortingChange: setSorting
   });
 
-  return <Table table={table} onRowClick={handleRowClick} {...props} />;
+  return (
+    <Table
+      table={table}
+      isLoading={isLoading}
+      onRowClick={handleRowClick}
+      {...props}
+    />
+  );
 };
 
 ModelIndexTableBase.propTypes = {
