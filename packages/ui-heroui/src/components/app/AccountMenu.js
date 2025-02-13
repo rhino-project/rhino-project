@@ -43,17 +43,11 @@ export const AccountMenu = () => {
         />
       </DropdownTrigger>
       <DropdownMenu aria-label="User Actions">
-        <DropdownItem
-          key="settings"
-          href={build(`${accountSettingsPath}/profile`)}
-        >
+        <DropdownItem key="settings" href={build(accountSettingsPath)}>
           Settings
         </DropdownItem>
         {showOrgSettings && (
-          <DropdownItem
-            key="org_settings"
-            href={build(`${settingsPath}/profile`)}
-          >
+          <DropdownItem key="org_settings" href={build(settingsPath)}>
             {baseOwner?.name} Settings
           </DropdownItem>
         )}

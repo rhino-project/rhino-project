@@ -1,4 +1,3 @@
-import { NavLink } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import {
   useNotifications,
@@ -10,6 +9,7 @@ import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
+  DropdownSection,
   DropdownTrigger
 } from '@heroui/react';
 
@@ -45,8 +45,7 @@ export const NotificationMenu = () => {
           return (
             <DropdownItem
               key={n.id}
-              tag={NavLink}
-              to={n.notifiable_path}
+              href={n.notifiable_path}
               onClick={() => handleItemClick(n.id)}
             >
               {n.printable_notifiable_name}
@@ -55,7 +54,7 @@ export const NotificationMenu = () => {
         })}
         {hasNotifications ? (
           <>
-            <DropdownItem divider />
+            <DropdownSection showDivider />
             <DropdownItem disabled={!hasNotifications} onClick={handleClick}>
               Mark All Opened
             </DropdownItem>

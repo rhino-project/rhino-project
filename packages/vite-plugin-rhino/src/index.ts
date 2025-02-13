@@ -82,7 +82,7 @@ export function RhinoProjectVite({
     enforce: 'pre',
     config: () => ({
       resolve: {
-        dedupe: ['@tanstack/react-query']
+        dedupe: ['@tanstack/react-query', '@tanstack/react-router']
       },
 
       // Backwards compatibility with create-react-app

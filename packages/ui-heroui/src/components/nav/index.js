@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { NavLink as RRNavLink } from 'react-router-dom';
 
 import { NavIcon } from '../icons';
 import { useGlobalComponent, useRoles } from '@rhino-project/core/hooks';
@@ -10,14 +9,9 @@ import {
 } from '@rhino-project/core/utils';
 import { useMemo } from 'react';
 import { map, uniqBy } from 'lodash-es';
+import { Link } from '@tanstack/react-router';
 
-export const NavSection = ({
-  title,
-  icon,
-  onIconClick,
-  children,
-  className
-}) => {
+export const NavSection = ({ title, children }) => {
   return (
     <li data-slot="base" role="presentation" className="relative mb-2 w-full">
       {title && (
@@ -41,16 +35,16 @@ NavSection.propTypes = {
   className: PropTypes.string
 };
 
-export const NavItem = ({ title, icon, extraClass, ...props }) => {
+export const NavItem = ({ title, icon, ...props }) => {
   return (
-    <RRNavLink {...props}>
-      <div className="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40">
+    <Link className="[&.active]:text-green-500" {...props}>
+      <div className="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40 ">
         {icon && <NavIcon icon={icon} />}
         <span className="flex-1 truncate text-small font-medium text-primary-foreground/60 group-data-[selected=true]:text-primary-foreground">
           {title}
         </span>
       </div>
-    </RRNavLink>
+    </Link>
   );
 };
 
@@ -66,7 +60,6 @@ const modelsRoute = (model) => getModelIndexPath(model);
 export const ModelNavSectionBase = ({
   title = 'Resources',
   className,
-  itemClass,
   models = null
 }) => {
   const roles = useRoles();
@@ -106,9 +99,8 @@ export const ModelNavSectionBase = ({
         <NavItem
           key={m.model}
           title={m.pluralReadableName}
-          to={modelsRoute(m)}
+          to={`/1/${m.model}`}
           icon="bi:list"
-          extraClass={itemClass}
         />
       ))}
     </NavSection>
@@ -117,8 +109,7 @@ export const ModelNavSectionBase = ({
 
 ModelNavSectionBase.propTypes = {
   title: PropTypes.string,
-  className: PropTypes.string,
-  itemClass: PropTypes.string
+  className: PropTypes.string
 };
 
 export const ModelNavSection = (props) =>

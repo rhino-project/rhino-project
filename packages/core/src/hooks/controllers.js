@@ -7,7 +7,7 @@ import {
   useRef,
   useState
 } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 
 import {
   filter,
@@ -432,7 +432,6 @@ const getViewablePaths = (model) =>
 export const useModelShowController = (options) => {
   const model = useModel(options.model);
   const { extraDefaultValues, modelId, paths } = options;
-
   const [errors, onError] = useFormBuildErrors();
 
   const query = useModelShow(model, modelId, {

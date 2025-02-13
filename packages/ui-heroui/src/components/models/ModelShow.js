@@ -29,12 +29,12 @@ export const ModelShowBase = ({ overrides, ...props }) => {
 
   return (
     <ModelShowSimple paths={ModelShowDescription().props?.paths} {...props}>
-      <ModelShowHeader />
-      <div className="my-3">
+      <div className="flex flex-col gap-3">
+        <ModelShowHeader />
         <ModelShowActions />
+        <ModelShowDescription />
+        <ModelShowRelated />
       </div>
-      <ModelShowDescription />
-      <ModelShowRelated />
     </ModelShowSimple>
   );
 };

@@ -1,37 +1,40 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSimple';
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterYear } from '../../../../components/models/filters/ModelFilterYear';
 import { FilterYear } from '../../../../Filter';
+import { createWrapper, RouterWrapper } from '../../../shared/helpers';
 
 vi.mock('../../../../Filter', () => ({
   FilterYear: vi.fn(() => null)
 }));
 
 describe('ModelFilterYear', () => {
-  const Wrapper = ({ children, ...props }) => {
-    const queryClient = new QueryClient();
-
+  const IndexWrapper = ({ children }) => {
     return (
-      <MemoryRouter {...props}>
-        <QueryClientProvider client={queryClient}>
-          <ModelIndexSimple model="blog">
-            <ModelFiltersSimple>{children}</ModelFiltersSimple>
-          </ModelIndexSimple>
-        </QueryClientProvider>
-      </MemoryRouter>
+      <ModelIndexSimple model="blog">
+        <ModelFiltersSimple>{children}</ModelFiltersSimple>
+      </ModelIndexSimple>
     );
   };
+
+  const wrapper = createWrapper(RouterWrapper, {
+    initialEntries: ['/1']
+  });
+
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
   it(`adds min as a prop`, () => {
-    render(<ModelFilterYear path="published_year_min" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterYear path="published_year_min" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterYear).toHaveBeenLastCalledWith(
       expect.objectContaining({
@@ -44,9 +47,14 @@ describe('ModelFilterYear', () => {
   });
 
   it(`adds min as a prop with exclusiveMinimum`, () => {
-    render(<ModelFilterYear path="published_year_min_exclusive" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterYear path="published_year_min_exclusive" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterYear).toHaveBeenLastCalledWith(
       expect.objectContaining({
@@ -59,9 +67,14 @@ describe('ModelFilterYear', () => {
   });
 
   it(`adds max as a prop`, () => {
-    render(<ModelFilterYear path="published_year_max" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterYear path="published_year_max" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
     expect(FilterYear).toHaveBeenLastCalledWith(
       expect.objectContaining({
         min: undefined,
@@ -73,9 +86,14 @@ describe('ModelFilterYear', () => {
   });
 
   it(`adds max as a prop with exclusiveMaximum`, () => {
-    render(<ModelFilterYear path="published_year_max_exclusive" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterYear path="published_year_max_exclusive" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterYear).toHaveBeenLastCalledWith(
       expect.objectContaining({

@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { Children, useCallback, useMemo } from 'react';
 
 import { useFormContext } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import { useModelEditContext } from '@rhino-project/core/hooks';
 import { useBackHistory } from '@rhino-project/core/hooks';
 import {
@@ -10,6 +9,7 @@ import {
   useOverrides
 } from '@rhino-project/core/hooks';
 import { IconButton } from '../buttons';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
   const { mutate, isLoading } = useModelEditContext();
@@ -41,14 +41,16 @@ export const ModelEditActionSave = ({ children, onSave, ...props }) => {
 };
 
 export const ModelEditActionSaveShow = ({ onSave, ...props }) => {
+  const location = useLocation();
   const navigate = useNavigate();
+
   const handleSave = useCallback(
     (data) => {
       if (onSave) onSave(data);
 
-      navigate('..');
+      navigate({ from: location.pathname, to: '..' });
     },
-    [navigate, onSave]
+    [location.pathname, navigate, onSave]
   );
 
   return <ModelEditActionSave onSave={handleSave} {...props} />;

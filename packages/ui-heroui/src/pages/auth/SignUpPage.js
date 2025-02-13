@@ -1,11 +1,4 @@
-import { Navigate, NavLink } from 'react-router-dom';
-
 import { AuthForm } from '../../components/auth/AuthForm';
-import {
-  useRootPath,
-  useSessionCreatePath,
-  useAuthenticated
-} from '@rhino-project/core/hooks';
 import { useSignUpAction } from '@rhino-project/core/queries';
 import {
   hasOrganizationsModule,
@@ -15,17 +8,11 @@ import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/core/config';
 import PropTypes from 'prop-types';
 import { OmniAuthButton } from '../../components/buttons/omniauth';
+import { RhinoLink } from '../../RhinoLink';
 
 export const SignUpPage = (props) => {
   const { appName } = useRhinoConfig();
-  const rootPath = useRootPath();
-  const sessionCreatePath = useSessionCreatePath();
-  const isAuthenticated = useAuthenticated();
   const { mutate: signUpAction, isLoading, error } = useSignUpAction();
-
-  // If we signin successfully, redirect
-  // FIXME Redirect pattern should be an HOC
-  if (isAuthenticated) return <Navigate to={rootPath} replace />;
 
   const handleSubmit = (formValues) => signUpAction(formValues);
 
@@ -35,7 +22,7 @@ export const SignUpPage = (props) => {
       <br />
       <p>
         Already have a {appName} account?{' '}
-        <NavLink to={`../${sessionCreatePath}`}>Sign In</NavLink>
+        <RhinoLink to="/auth/signin">Sign In</RhinoLink>
       </p>
     </>
   );

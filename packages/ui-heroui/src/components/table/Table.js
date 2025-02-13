@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import {
   Table as NTable,
   TableBody,
@@ -26,14 +25,7 @@ const TableSortIndicator = ({ column }) => {
   );
 };
 
-export const Table = ({ table, onRowClick }) => {
-  const handleRowClick = useCallback(
-    (row) => {
-      if (onRowClick) onRowClick(row);
-    },
-    [onRowClick]
-  );
-
+export const Table = ({ table }) => {
   return (
     <NTable
       aria-label="Table"
@@ -65,7 +57,7 @@ export const Table = ({ table, onRowClick }) => {
           <TableRow
             key={row.id}
             className="cursor-pointer"
-            onClick={() => handleRowClick(row)}
+            {...table.options?.meta?.getRowProps(row)}
           >
             {row.getVisibleCells().map((cell) => (
               <TableCell key={cell.id}>

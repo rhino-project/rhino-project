@@ -1,38 +1,42 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSimple';
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterFloat } from '../../../../components/models/filters/ModelFilterFloat';
+import { createWrapper, RouterWrapper } from '../../../shared/helpers';
 
 describe('ModelFilterFloat', () => {
-  const Wrapper = ({ children, ...props }) => {
-    const queryClient = new QueryClient();
-
+  const IndexWrapper = ({ children }) => {
     return (
-      <MemoryRouter {...props}>
-        <QueryClientProvider client={queryClient}>
-          <ModelIndexSimple model="blog">
-            <ModelFiltersSimple>{children}</ModelFiltersSimple>
-          </ModelIndexSimple>
-        </QueryClientProvider>
-      </MemoryRouter>
+      <ModelIndexSimple model="blog">
+        <ModelFiltersSimple>{children}</ModelFiltersSimple>
+      </ModelIndexSimple>
     );
   };
 
+  const wrapper = createWrapper(RouterWrapper, {
+    initialEntries: ['/1']
+  });
+
   it(`adds min as a prop`, () => {
-    const { asFragment } = render(<ModelFilterFloat path="score_min" />, {
-      wrapper: Wrapper
-    });
+    const { asFragment } = render(
+      <IndexWrapper>
+        <ModelFilterFloat path="score_min" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   it(`adds min as a prop with exclusiveMinimum`, () => {
     const { asFragment } = render(
-      <ModelFilterFloat path="score_min_exclusive" />,
+      <IndexWrapper>
+        <ModelFilterFloat path="score_min_exclusive" />
+      </IndexWrapper>,
       {
-        wrapper: Wrapper
+        wrapper
       }
     );
 
@@ -40,18 +44,25 @@ describe('ModelFilterFloat', () => {
   });
 
   it(`adds max as a prop`, () => {
-    const { asFragment } = render(<ModelFilterFloat path="score_max" />, {
-      wrapper: Wrapper
-    });
+    const { asFragment } = render(
+      <IndexWrapper>
+        <ModelFilterFloat path="score_max" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(asFragment()).toMatchSnapshot();
   });
 
   it(`adds max as a prop with exclusiveMaximum`, () => {
     const { asFragment } = render(
-      <ModelFilterFloat path="score_max_exclusive" />,
+      <IndexWrapper>
+        <ModelFilterFloat path="score_max_exclusive" />
+      </IndexWrapper>,
       {
-        wrapper: Wrapper
+        wrapper
       }
     );
 

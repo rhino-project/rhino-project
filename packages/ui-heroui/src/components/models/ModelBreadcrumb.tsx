@@ -5,7 +5,6 @@ import {
   useModelContext
 } from '@rhino-project/core/hooks';
 import { BreadcrumbItem, Breadcrumbs, BreadcrumbsProps } from '@heroui/react';
-import { getModelIndexPath, getModelShowPath } from '@rhino-project/core/utils';
 
 export type ModelBreadcrumbProps = {
   lastItem?: ReactNode;
@@ -18,7 +17,7 @@ export const ModelBreadcrumbBase = ({
   ...props
 }: ModelBreadcrumbProps) => {
   const { model } = useModelContext() as {
-    model: { name: string; pluralReadableName: string };
+    model: { name: string; model: string; pluralReadableName: string };
   };
   const { build } = useBaseOwnerPath();
 
@@ -29,14 +28,14 @@ export const ModelBreadcrumbBase = ({
       result.unshift({
         key: `${model.name}-${String(resource.id)}`,
         children: resource?.display_name as ReactNode,
-        href: build(getModelShowPath(model, String(resource.id)))
+        href: build(`${model.model}/${resource.id}`)
       });
     }
 
     result.unshift({
       key: model.name,
       children: model.pluralReadableName,
-      href: build(getModelIndexPath(model))
+      href: build(`${model.model}`)
     });
 
     if (lastItem) {

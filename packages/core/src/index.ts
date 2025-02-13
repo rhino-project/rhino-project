@@ -1,5 +1,7 @@
 import { OpenAPIV3_1 } from './rhino-openapi';
 
+// To be overridden/declared in the consuming project
+export interface Resources {}
 export interface RhinoProperties {
   model: string;
   modelPlural: string;
@@ -15,8 +17,8 @@ export interface RhinoProperties {
 }
 
 export type RhinoResource = OpenAPIV3_1.SchemaObject & RhinoProperties;
-
-export interface Resources {}
+export type RhinoResourceName = keyof Resources;
+export type RhinoResourceSpecifier = RhinoResourceName | RhinoResource;
 
 export * from './RhinoContext';
 export * from './resources';

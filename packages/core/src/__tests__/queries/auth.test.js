@@ -65,7 +65,6 @@ describe('auth/queries', () => {
           setup: () => networkingMock.mockSignInFailure()
         });
 
-        expect(renderedHook.result.current.auth.resolving).toBe(false);
         expect(renderedHook.result.current.auth.user).toBeNull();
       });
 
@@ -81,27 +80,11 @@ describe('auth/queries', () => {
           }
         });
 
-        expect(renderedHook.result.current.auth.resolving).toBe(false);
         expect(renderedHook.result.current.auth.user).toEqual(user);
       });
     });
 
     describe('useSignUpAction', () => {
-      test('persists headers in session when successful', async () => {
-        const renderedHook = await networkingMock.produceUnauthenticatedState({
-          queryClient,
-          hook: useSignUpAction
-        });
-        await waitForSuccess(renderedHook, {
-          setup: () => {
-            networkingMock.mockSignUpSuccess(user);
-            networkingMock.mockValidateSessionSuccess(user);
-          }
-        });
-
-        expect(renderedHook.result.current.auth.resolving).toBe(false);
-      });
-
       test('sets isError and makes useAuth output user: null', async () => {
         const renderedHook = await networkingMock.produceUnauthenticatedState({
           queryClient,
@@ -111,7 +94,6 @@ describe('auth/queries', () => {
           setup: () => networkingMock.mockSignUpFailure()
         });
 
-        expect(renderedHook.result.current.auth.resolving).toBe(false);
         expect(renderedHook.result.current.auth.user).toBeNull();
       });
 
@@ -127,7 +109,6 @@ describe('auth/queries', () => {
           }
         });
 
-        expect(renderedHook.result.current.auth.resolving).toBe(false);
         expect(renderedHook.result.current.auth.user).toEqual(user);
       });
     });
@@ -149,9 +130,8 @@ describe('auth/queries', () => {
           }
         });
         await waitFor(() =>
-          expect(renderedHook.result.current.auth.resolving).toBe(false)
+          expect(renderedHook.result.current.auth.user).toBeNull()
         );
-        expect(renderedHook.result.current.auth.user).toBeNull();
       });
 
       test('interacts with auth so useAuth now continues emitting the same user after signOut failure', async () => {
@@ -161,9 +141,8 @@ describe('auth/queries', () => {
           }
         });
         await waitFor(() =>
-          expect(renderedHook.result.current.auth.resolving).toBe(false)
+          expect(renderedHook.result.current.auth.user).toEqual(user)
         );
-        expect(renderedHook.result.current.auth.user).toEqual(user);
       });
 
       test('upon a 404, interacts with auth so useAuth emits null as user after signOut', async () => {
@@ -174,9 +153,8 @@ describe('auth/queries', () => {
           }
         });
         await waitFor(() =>
-          expect(renderedHook.result.current.auth.resolving).toBe(false)
+          expect(renderedHook.result.current.auth.user).toBeNull()
         );
-        expect(renderedHook.result.current.auth.user).toBeNull();
       });
     });
   });

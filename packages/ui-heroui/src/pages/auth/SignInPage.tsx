@@ -1,110 +1,82 @@
-import { useMemo } from 'react';
-import { Button, Link, Form, Divider } from '@heroui/react';
-import { Icon } from '@iconify/react';
-import { FormProvider } from '@rhino-project/core/components/forms';
-import { useForm } from 'react-hook-form';
-import { useSignInAction } from '@rhino-project/core/queries';
-import { FieldPassword, FieldString } from '../../Field';
+import { AuthForm } from '../../components/auth/AuthForm';
+import { OmniAuthButton } from '../../components/buttons/omniauth';
+import { useParsedSearch } from '@rhino-project/core/hooks';
+import { useSignInAction, useSignupAllowed } from '@rhino-project/core/queries';
+import { oauthProviders } from '@rhino-project/core/utils';
+import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/core/config';
-import { useResolver } from '@rhino-project/core/hooks';
-import * as yup from 'yup';
+import { Alert } from '@heroui/react';
+import { RhinoLink } from '../../RhinoLink';
 
-export const SignInPage = () => {
+export const SignInPage = (props) => {
   const { appName } = useRhinoConfig();
+  const queryParams = useParsedSearch();
+  const allowSignup = useSignupAllowed();
+
   const { mutate: loginMutation, isLoading, error } = useSignInAction();
 
-  const schema = yup.object().shape({
-    email: yup.string().label('Email').email().required().ensure(),
-    password: yup.string().label('Password').required().ensure()
-  });
-  const resolver = useResolver(schema);
-  const defaultValues = useMemo(() => schema.default(), [schema]);
+  const confirmed = queryParams?.['account_confirmation_success'] === 'true';
 
-  const methods = useForm({
-    defaultValues,
-    disabled: isLoading,
-    // errors: reducedErrors,
-    mode: 'onBlur',
-    resolver
-  });
+  const handleSubmit = (formValues) => loginMutation(formValues);
 
-  const { handleSubmit } = methods;
+  const authDesc = (
+    <>
+      <p>Enter your email address and password to sign in.</p>
+      {allowSignup && (
+        <p>
+          New to {appName}? <RhinoLink to="/auth/signup">Sign Up</RhinoLink>
+        </p>
+      )}
+    </>
+  );
 
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      <div className="flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 pb-10 pt-6 shadow-small">
-        <div className="flex flex-col gap-1">
-          <h1 className="text-large font-medium">Sign in to your account</h1>
-          <p className="text-small text-default-500">
-            to continue to {appName}
-          </p>
-        </div>
-
-        <FormProvider {...methods}>
-          <Form
-            className="flex flex-col gap-3"
-            validationBehavior="native"
-            onSubmit={handleSubmit((values) => loginMutation(values))}
-          >
-            <FieldString
-              autoComplete="username"
-              autoFocus
-              isRequired
-              label="Email"
-              path="email"
-              placeholder="Enter your email"
-              type="email"
-            />
-            <FieldPassword
-              autoComplete="current-password"
-              isRequired
-              label="Password"
-              path="password"
-              placeholder="Enter your password"
-            />
-            <div className="flex w-full items-center justify-between px-1 py-2">
-              <Link
-                className="text-default-500"
-                href="/auth/forgot-password"
-                size="sm"
-              >
-                Forgot password?
-              </Link>
-            </div>
-            <Button className="w-full" color="primary" type="submit">
-              Sign In
-            </Button>
-          </Form>
-        </FormProvider>
-
-        <div className="flex items-center gap-4 py-2">
-          <Divider className="flex-1" />
-          <p className="shrink-0 text-tiny text-default-500">OR</p>
-          <Divider className="flex-1" />
-        </div>
-        <div className="flex flex-col gap-2">
-          <Button
-            startContent={<Icon icon="flat-color-icons:google" width={24} />}
-            variant="bordered"
-          >
-            Continue with Google
-          </Button>
-          <Button
-            startContent={
-              <Icon className="text-default-500" icon="fe:github" width={24} />
-            }
-            variant="bordered"
-          >
-            Continue with Github
-          </Button>
-        </div>
-        <p className="text-center text-small">
-          Need to create an account?&nbsp;
-          <Link href="#" size="sm">
-            Sign Up
-          </Link>
-        </p>
+    <AuthPage description={authDesc} {...props}>
+      <AuthForm
+        emailField
+        passwordField
+        primaryAction="Sign In"
+        secondaryAction={{
+          content: 'Forgot Password?',
+          url: '/auth/reset-password'
+        }}
+        loading={isLoading}
+        errors={error?.errors}
+        onSubmit={handleSubmit}
+        {...props}
+      />
+      {oauthProviders().length > 0 && <hr />}
+      <div className="d-flex justify-content-center">
+        {oauthProviders().map((p) => (
+          <OmniAuthButton
+            key={p.name}
+            provider={p.name}
+            providerPath={p.path}
+          />
+        ))}
       </div>
-    </div>
+      {confirmed && (
+        <Alert
+          color="success"
+          title="Account Confirmed"
+          description="Your account has been confirmed, please sign in."
+        />
+      )}
+    </AuthPage>
   );
 };
+
+// SignInPage.propTypes = {
+//   description: PropTypes.node,
+//   children: PropTypes.node,
+//   currentPasswordField: PropTypes.bool,
+//   errors: PropTypes.array,
+//   emailField: PropTypes.bool,
+//   loading: PropTypes.bool,
+//   onSubmit: PropTypes.func,
+//   organizationField: PropTypes.bool,
+//   passwordField: PropTypes.bool,
+//   passwordConfirmField: PropTypes.bool,
+//   primaryAction: PropTypes.string,
+//   secondaryAction: PropTypes.object
+// };

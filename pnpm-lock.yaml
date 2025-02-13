@@ -181,6 +181,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/react-router':
+        specifier: 1.111.3
+        version: 1.111.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       axios:
         specifier: 1.7.4
         version: 1.7.4
@@ -422,14 +425,26 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0(react@18.3.1)
       '@internationalized/date':
-        specifier: 3.6.0
-        version: 3.6.0
+        specifier: 3.7.0
+        version: 3.7.0
       '@rails/actioncable':
         specifier: 7.1.3-4
         version: 7.1.3-4
       '@rails/activestorage':
         specifier: 7.1.3-4
         version: 7.1.3-4
+      '@react-aria/focus':
+        specifier: 3.19.1
+        version: 3.19.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-aria/interactions':
+        specifier: 3.23.0
+        version: 3.23.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-aria/link':
+        specifier: 3.7.8
+        version: 3.7.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@react-aria/utils':
+        specifier: 3.27.0
+        version: 3.27.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@rhino-project/core':
         specifier: workspace:*
         version: link:../core
@@ -445,6 +460,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/react-router':
+        specifier: 1.111.3
+        version: 1.111.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-table':
         specifier: 8.10.3
         version: 8.10.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -478,9 +496,6 @@ importers:
       react-phone-input-2:
         specifier: 2.15.1
         version: 2.15.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      react-router-dom:
-        specifier: 6.16.0
-        version: 6.16.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       react-use:
         specifier: 17.5.1
         version: 17.5.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1833,9 +1848,6 @@ packages:
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
-  '@internationalized/date@3.6.0':
-    resolution: {integrity: sha512-+z6ti+CcJnRlLHok/emGEsWQhe7kfSmEW+/6qCzvKY67YPh7YOBfvc7+/+NXq+zJlbArg30tYpqLjNgcAYv2YQ==}
-
   '@internationalized/date@3.7.0':
     resolution: {integrity: sha512-VJ5WS3fcVx0bejE/YHfbDKR/yawZgKqn/if+oEeLqNwBtPzVB06olkfcnojTmEMX+gTpH+FlQ69SHNitJ8/erQ==}
 
@@ -2679,6 +2691,10 @@ packages:
   '@tanstack/eslint-plugin-query@4.32.5':
     resolution: {integrity: sha512-lXgOi5jWsCx8szS4bgKPEBZiCnsxIeVlW5VpJo9JwlEhq7fiUWcTR8IJ+66sAFFfV7dpLj3R6MQjjnDGjlU9xg==}
 
+  '@tanstack/history@1.99.13':
+    resolution: {integrity: sha512-JMd7USmnp8zV8BRGIjALqzPxazvKtQ7PGXQC7n39HpbqdsmfV2ePCzieO84IvN+mwsTrXErpbjI4BfKCa+ZNCg==}
+    engines: {node: '>=12'}
+
   '@tanstack/match-sorter-utils@8.19.4':
     resolution: {integrity: sha512-Wo1iKt2b9OT7d+YGhvEPD3DXvPv2etTusIMhMUoG7fbhmxcXCtIjJDEygy91Y2JFlwGyjqiBPRozme7UD8hoqg==}
     engines: {node: '>=12'}
@@ -2705,6 +2721,19 @@ packages:
       react-native:
         optional: true
 
+  '@tanstack/react-router@1.111.3':
+    resolution: {integrity: sha512-OsqAuExa4WF7+BbjENWlb4dHRousxU5jahJHUPyO0gaUcWwzaVloJKi8lTFTd1PWQ8waz5V7BedkV67hd8syUw==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=18.0.0 || >=19.0.0'
+      react-dom: '>=18.0.0 || >=19.0.0'
+
+  '@tanstack/react-store@0.7.0':
+    resolution: {integrity: sha512-S/Rq17HaGOk+tQHV/yrePMnG1xbsKZIl/VsNWnNXt4XW+tTY8dTlvpJH2ZQ3GRALsusG5K6Q3unAGJ2pd9W/Ng==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   '@tanstack/react-table@8.10.3':
     resolution: {integrity: sha512-Qya1cJ+91arAlW7IRDWksRDnYw28O446jJ/ljkRSc663EaftJoBCAU10M+VV1K6MpCBLrXq1BD5IQc1zj/ZEjA==}
     engines: {node: '>=12'}
@@ -2724,6 +2753,13 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@tanstack/router-core@1.111.3':
+    resolution: {integrity: sha512-q+CHuOhTgqHudVKijL89jIdLe5A00RzV8ZMMSi4qiHGnggm4nisF8eSE3dFQaic1+YFk1wR7dfFA2hvkr1hFIA==}
+    engines: {node: '>=12'}
+
+  '@tanstack/store@0.7.0':
+    resolution: {integrity: sha512-CNIhdoUsmD2NolYuaIs8VfWM467RK6oIBAW4nPEKZhg1smZ+/CwtCdpURgp7nxSqOaV9oKkzdWD80+bC66F/Jg==}
 
   '@tanstack/table-core@8.10.3':
     resolution: {integrity: sha512-hJ55YfJlWbfzRROfcyA/kC1aZr/shsLA8XNAwN8jXylhYWGLnPmiJJISrUfj4dMMWRiFi0xBlnlC7MLH+zSrcw==}
@@ -4740,6 +4776,11 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
+  jsesc@3.1.0:
+    resolution: {integrity: sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==}
+    engines: {node: '>=6'}
+    hasBin: true
+
   json-buffer@3.0.1:
     resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
 
@@ -6127,8 +6168,11 @@ packages:
   tiny-case@1.0.3:
     resolution: {integrity: sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==}
 
-  tiny-invariant@1.3.1:
-    resolution: {integrity: sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==}
+  tiny-invariant@1.3.3:
+    resolution: {integrity: sha512-+FbBPE1o9QAYvviau/qC5SE3caw21q3xkvWKBtja5vgqOWIHHJ3ioaq1VPfn/Szqctz2bU/oYeKd9/z5BL+PVg==}
+
+  tiny-warning@1.0.3:
+    resolution: {integrity: sha512-lBN9zLN/oAf68o3zNXYrdCt1kP8WsiGW8Oo2ka41b2IM5JL/S1CTyX1rW0mb/zSuJun0ZUrDxx4sqvYS2FWzPA==}
 
   tinybench@2.8.0:
     resolution: {integrity: sha512-1/eK7zUnIklz4JUUlL+658n58XO2hHLQfSk1Zf2LKieUjxidN16eKFEoDEfjHc3ohofSSqK3X5yO6VGb6iW8Lw==}
@@ -6403,6 +6447,11 @@ packages:
     resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
+
+  use-sync-external-store@1.4.0:
+    resolution: {integrity: sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -7379,26 +7428,26 @@ snapshots:
       '@formatjs/fast-memoize': 2.2.6
       '@formatjs/intl-localematcher': 0.6.0
       decimal.js: 10.4.3
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/fast-memoize@2.2.6':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/icu-messageformat-parser@2.11.1':
     dependencies:
       '@formatjs/ecma402-abstract': 2.3.3
       '@formatjs/icu-skeleton-parser': 1.8.13
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/icu-skeleton-parser@1.8.13':
     dependencies:
       '@formatjs/ecma402-abstract': 2.3.3
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/intl-localematcher@0.6.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@heroui/accordion@0.0.0-canary-20250214223404(@heroui/system@0.0.0-canary-20250214223404(@heroui/theme@0.0.0-canary-20250214223404(tailwindcss@3.4.17))(framer-motion@12.4.5(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@heroui/theme@0.0.0-canary-20250214223404(tailwindcss@3.4.17))(framer-motion@12.4.5(@emotion/is-prop-valid@1.2.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
@@ -8522,10 +8571,6 @@ snapshots:
 
   '@iconify/types@2.0.0': {}
 
-  '@internationalized/date@3.6.0':
-    dependencies:
-      '@swc/helpers': 0.5.15
-
   '@internationalized/date@3.7.0':
     dependencies:
       '@swc/helpers': 0.5.15
@@ -8644,7 +8689,7 @@ snapshots:
   '@nrwl/tao@17.2.8':
     dependencies:
       nx: 17.2.8
-      tslib: 2.6.2
+      tslib: 2.8.1
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
@@ -9502,14 +9547,14 @@ snapshots:
       prop-types: 15.7.2
       react: 18.3.1
       rollbar: 2.26.2
-      tiny-invariant: 1.3.1
+      tiny-invariant: 1.3.3
 
   '@rollbar/react@0.11.2(prop-types@15.8.1)(react@18.3.1)(rollbar@2.26.2)':
     dependencies:
       prop-types: 15.8.1
       react: 18.3.1
       rollbar: 2.26.2
-      tiny-invariant: 1.3.1
+      tiny-invariant: 1.3.3
 
   '@rollup/pluginutils@5.1.0(rollup@4.24.0)':
     dependencies:
@@ -9680,6 +9725,8 @@ snapshots:
 
   '@tanstack/eslint-plugin-query@4.32.5': {}
 
+  '@tanstack/history@1.99.13': {}
+
   '@tanstack/match-sorter-utils@8.19.4':
     dependencies:
       remove-accents: 0.5.0
@@ -9703,6 +9750,24 @@ snapshots:
     optionalDependencies:
       react-dom: 18.3.1(react@18.3.1)
 
+  '@tanstack/react-router@1.111.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tanstack/history': 1.99.13
+      '@tanstack/react-store': 0.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@tanstack/router-core': 1.111.3
+      jsesc: 3.1.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      tiny-invariant: 1.3.3
+      tiny-warning: 1.0.3
+
+  '@tanstack/react-store@0.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@tanstack/store': 0.7.0
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      use-sync-external-store: 1.4.0(react@18.3.1)
+
   '@tanstack/react-table@8.10.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/table-core': 8.10.3
@@ -9720,6 +9785,13 @@ snapshots:
       '@tanstack/virtual-core': 3.11.3
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+
+  '@tanstack/router-core@1.111.3':
+    dependencies:
+      '@tanstack/history': 1.99.13
+      '@tanstack/store': 0.7.0
+
+  '@tanstack/store@0.7.0': {}
 
   '@tanstack/table-core@8.10.3': {}
 
@@ -10065,7 +10137,7 @@ snapshots:
   '@yarnpkg/parsers@3.0.0-rc.46':
     dependencies:
       js-yaml: 3.14.1
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@zkochan/js-yaml@0.0.6':
     dependencies:
@@ -10253,7 +10325,7 @@ snapshots:
 
   ast-types@0.16.1:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   async@3.2.5: {}
 
@@ -11771,7 +11843,7 @@ snapshots:
       '@formatjs/ecma402-abstract': 2.3.3
       '@formatjs/fast-memoize': 2.2.6
       '@formatjs/icu-messageformat-parser': 2.11.1
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   invariant@2.2.4:
     dependencies:
@@ -12138,6 +12210,8 @@ snapshots:
       - utf-8-validate
 
   jsesc@2.5.2: {}
+
+  jsesc@3.1.0: {}
 
   json-buffer@3.0.1: {}
 
@@ -13189,7 +13263,7 @@ snapshots:
 
   rxjs@7.8.1:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   sade@1.8.1:
     dependencies:
@@ -13601,7 +13675,7 @@ snapshots:
   synckit@0.9.2:
     dependencies:
       '@pkgr/core': 0.1.1
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   tailwind-merge@2.5.4: {}
 
@@ -13678,7 +13752,9 @@ snapshots:
 
   tiny-case@1.0.3: {}
 
-  tiny-invariant@1.3.1: {}
+  tiny-invariant@1.3.3: {}
+
+  tiny-warning@1.0.3: {}
 
   tinybench@2.8.0: {}
 
@@ -13953,6 +14029,10 @@ snapshots:
       '@types/react': 18.2.48
 
   use-sync-external-store@1.2.0(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+
+  use-sync-external-store@1.4.0(react@18.3.1):
     dependencies:
       react: 18.3.1
 

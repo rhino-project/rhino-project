@@ -125,7 +125,9 @@ export class NetworkingMock {
   }) {
     function AuthWrapper({ children }) {
       return (
-        <RhinoProvider queryClient={queryClient}>{children}</RhinoProvider>
+        <RhinoProvider queryClient={queryClient} forceStatic>
+          {children}
+        </RhinoProvider>
       );
     }
 
@@ -140,11 +142,7 @@ export class NetworkingMock {
       }
     );
 
-    await waitFor(() => expect(view.result.current.auth.resolving).toBe(true));
-    expect(view.result.current.auth.user).toBeNull();
-
-    await waitFor(() => expect(view.result.current.auth.resolving).toBe(false));
-    expect(view.result.current.auth.user).toEqual(user);
+    await waitFor(() => expect(view.result.current.auth.user).toEqual(user));
 
     return view;
   }
@@ -167,12 +165,7 @@ export class NetworkingMock {
       }
     );
 
-    await waitFor(() => expect(view.result.current.auth.resolving).toBe(true));
-    expect(view.result.current.auth.user).toBeNull();
-
-    // wait for the hook to resolve
-    await waitFor(() => expect(view.result.current.auth.resolving).toBe(false));
-    expect(view.result.current.auth.user).toBeNull();
+    await waitFor(() => expect(view.result.current.auth.user).toEqual(null));
 
     return view;
   }

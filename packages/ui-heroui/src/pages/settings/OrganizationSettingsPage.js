@@ -9,9 +9,9 @@ import {
   hasOrganizationsModule,
   hasSubscriptionsModule
 } from '@rhino-project/core/utils';
-import { Route, Routes, useLocation } from 'react-router-dom';
 import { getSettingsPath } from '@rhino-project/core/utils';
 import { Tab, Tabs } from '@heroui/react';
+import { Outlet, useLocation } from '@tanstack/react-router';
 
 export const OrganizationSettingsPage = () => {
   //Checking subscription payment related status
@@ -24,7 +24,7 @@ export const OrganizationSettingsPage = () => {
   );
 
   const settingsBuild = useCallback(
-    (tabId) => build(`${getSettingsPath()}/${tabId}`),
+    (tabId) => build(`${getSettingsPath()}${tabId ? `/${tabId}` : ''}`),
     [build]
   );
 
@@ -33,11 +33,7 @@ export const OrganizationSettingsPage = () => {
   return (
     <BaseAuthedPage>
       <Tabs selectedKey={pathname}>
-        <Tab
-          key={settingsBuild('profile')}
-          title="Profile"
-          href={settingsBuild('profile')}
-        />
+        <Tab key={settingsBuild()} title="Profile" href={settingsBuild()} />
         <Tab
           key={settingsBuild('access')}
           title="Access"
@@ -52,16 +48,7 @@ export const OrganizationSettingsPage = () => {
         )}
       </Tabs>
       <div className="mt-4">
-        <Routes>
-          <Route path="profile" element={<EditOrganizationProfile />} />
-          <Route path="access" element={<EditOrganizationAccess />} />
-          {showSubscriptions && (
-            <Route
-              path="subscription"
-              element={<Subscription status={status} session_id={session_id} />}
-            />
-          )}
-        </Routes>
+        <Outlet />
       </div>
     </BaseAuthedPage>
   );

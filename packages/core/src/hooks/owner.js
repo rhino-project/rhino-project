@@ -1,8 +1,8 @@
 import { merge } from 'lodash-es';
-import { createContext, useContext, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { createContext, useMemo } from 'react';
 import { getBaseOwnerFilters } from '../utils/models';
 import { useModel } from './models';
+import { useRhinoContext } from '..';
 
 export const BaseOwnerContext = createContext({
   baseOwner: null,
@@ -10,20 +10,16 @@ export const BaseOwnerContext = createContext({
   usersRoles: []
 });
 
-export const useBaseOwnerContext = () => {
-  return useContext(BaseOwnerContext);
-};
-
 export const useBaseOwner = () => {
-  const { baseOwner } = useBaseOwnerContext();
+  const { baseOwner } = useRhinoContext();
 
   return baseOwner;
 };
 
 export const useBaseOwnerId = () => {
-  const { baseOwnerId } = useParams();
+  const baseOwner = useBaseOwner();
 
-  return useMemo(() => parseInt(baseOwnerId), [baseOwnerId]);
+  return useMemo(() => parseInt(baseOwner?.id), [baseOwner?.id]);
 };
 
 export const useBaseOwnerFilters = (model, options = {}) => {
@@ -38,7 +34,7 @@ export const useBaseOwnerFilters = (model, options = {}) => {
 };
 
 export const useRoles = () => {
-  const { usersRoles, baseOwner } = useBaseOwnerContext();
+  const { usersRoles, baseOwner } = useRhinoContext();
   return useMemo(() => {
     let roles = [];
     if (baseOwner && Array.isArray(usersRoles)) {
@@ -52,7 +48,7 @@ export const useRoles = () => {
 };
 
 export const useUserRoles = () => {
-  const { usersRoles } = useBaseOwnerContext();
+  const { usersRoles } = useRhinoContext();
 
   return usersRoles;
 };

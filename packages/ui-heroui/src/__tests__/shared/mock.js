@@ -1,14 +1,12 @@
 import { renderHook, waitFor } from '@testing-library/react';
-import { QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider } from '../../contexts/AuthContext';
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '@rhino-project/core/hooks';
 import {
   AUTH_BASE_PATH,
   AUTH_CREATE_END_POINT,
   AUTH_DESTROY_END_POINT,
-  AUTH_VALIDATE_TOKEN_END_POINT,
-  constructPath
-} from '../../lib/networking';
+  AUTH_VALIDATE_TOKEN_END_POINT
+} from '@rhino-project/core/lib';
+import { RhinoProvider } from '@rhino-project/core';
 
 const defaultUser = {
   id: 1,
@@ -18,7 +16,7 @@ const defaultUser = {
 
 export class NetworkingMock {
   axiosResult = {
-    // [API_ROOT_PATH]: {
+    // [path]: {
     // 'post': () => promise with result
     // 'delete': () => promise with result
     // }
@@ -37,11 +35,10 @@ export class NetworkingMock {
   }
 
   _mockSuccess({ data, path, method }) {
-    const fullPath = constructPath(path);
-    if (this.axiosResult[fullPath] == null) {
-      this.axiosResult[fullPath] = {};
+    if (this.axiosResult[path] == null) {
+      this.axiosResult[path] = {};
     }
-    this.axiosResult[fullPath][`__${method}`] = () => {
+    this.axiosResult[path][`__${method}`] = () => {
       return new Promise((resolve) =>
         setTimeout(() => {
           resolve({
@@ -53,11 +50,10 @@ export class NetworkingMock {
   }
 
   _mockFailure({ path, method, status, errors = {} }) {
-    const fullPath = constructPath(path);
-    if (this.axiosResult[fullPath] == null) {
-      this.axiosResult[fullPath] = {};
+    if (this.axiosResult[path] == null) {
+      this.axiosResult[path] = {};
     }
-    this.axiosResult[fullPath][`__${method}`] = () =>
+    this.axiosResult[path][`__${method}`] = () =>
       new Promise((resolve, reject) =>
         setTimeout(
           () =>
@@ -129,9 +125,9 @@ export class NetworkingMock {
   }) {
     function AuthWrapper({ children }) {
       return (
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryClientProvider>
+        <RhinoProvider queryClient={queryClient} forceStatic>
+          {children}
+        </RhinoProvider>
       );
     }
 
@@ -146,11 +142,7 @@ export class NetworkingMock {
       }
     );
 
-    expect(view.result.current.auth.resolving).toBe(true);
-    expect(view.result.current.auth.user).toBeNull();
-
-    await waitFor(() => expect(view.result.current.auth.resolving).toBe(false));
-    expect(view.result.current.auth.user).toEqual(user);
+    await waitFor(() => expect(view.result.current.auth.user).toEqual(user));
 
     return view;
   }
@@ -158,9 +150,7 @@ export class NetworkingMock {
   async produceUnauthenticatedState({ queryClient, hook = () => null }) {
     function AuthWrapper({ children }) {
       return (
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>{children}</AuthProvider>
-        </QueryClientProvider>
+        <RhinoProvider queryClient={queryClient}>{children}</RhinoProvider>
       );
     }
 
@@ -174,12 +164,8 @@ export class NetworkingMock {
         wrapper: AuthWrapper
       }
     );
-    expect(view.result.current.auth.resolving).toBe(true);
-    expect(view.result.current.auth.user).toBeNull();
 
-    // wait for the hook to resolve
-    await waitFor(() => expect(view.result.current.auth.resolving).toBe(false));
-    expect(view.result.current.auth.user).toBeNull();
+    await waitFor(() => expect(view.result.current.auth.user).toEqual(null));
 
     return view;
   }

@@ -44,6 +44,7 @@ import {
   useModelDisplayAttachmentProps,
   useModelDisplayNumberInputProps
 } from './form';
+import { Resources, RhinoResourceName } from '@rhino-project/core';
 
 // Attachment
 export const ModelDisplayAttachmentBase: React.FC<DisplayLinkProps> = (
@@ -89,8 +90,10 @@ export const ModelDisplayArrayReferenceBase: React.FC<
 };
 
 // Boolean
-export const ModelDisplayBooleanBase: React.FC<DisplayBooleanProps> = (
-  props
+export const ModelDisplayBooleanBase = <T extends keyof Resources>(
+  props: DisplayBooleanProps & {
+    path: keyof Resources[T];
+  }
 ) => {
   const displayProps = useModelDisplayBooleanProps(props);
 

@@ -1,11 +1,10 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSimple';
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterDateTime } from '../../../../components/models/filters/ModelFilterDateTime';
 import { FilterDateTime } from '../../../../Filter';
 import { parseAbsoluteToLocal } from '@internationalized/date';
+import { createWrapper, RouterWrapper } from '../../../shared/helpers';
 
 vi.mock('../../../../Filter', () => ({
   FilterDateTime: vi.fn(() => null)
@@ -16,23 +15,27 @@ describe('ModelFilterDateTime', () => {
     vi.clearAllMocks();
   });
 
-  const Wrapper = ({ children, ...props }) => {
-    const queryClient = new QueryClient();
-
+  const IndexWrapper = ({ children }) => {
     return (
-      <MemoryRouter {...props}>
-        <QueryClientProvider client={queryClient}>
-          <ModelIndexSimple model="blog">
-            <ModelFiltersSimple>{children}</ModelFiltersSimple>
-          </ModelIndexSimple>
-        </QueryClientProvider>
-      </MemoryRouter>
+      <ModelIndexSimple model="blog">
+        <ModelFiltersSimple>{children}</ModelFiltersSimple>
+      </ModelIndexSimple>
     );
   };
+
+  const wrapper = createWrapper(RouterWrapper, {
+    initialEntries: ['/1']
+  });
+
   it(`adds min as a prop`, () => {
-    render(<ModelFilterDateTime path="published_at_min" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterDateTime path="published_at_min" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
@@ -45,9 +48,14 @@ describe('ModelFilterDateTime', () => {
   });
 
   it(`adds min as a prop with exclusiveMinimum`, () => {
-    render(<ModelFilterDateTime path="published_at_min_exclusive" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterDateTime path="published_at_min_exclusive" />{' '}
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
         minValue: parseAbsoluteToLocal('1982-02-07T05:00:01.000Z'),
@@ -59,9 +67,14 @@ describe('ModelFilterDateTime', () => {
   });
 
   it(`adds max as a prop`, () => {
-    render(<ModelFilterDateTime path="published_at_max" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterDateTime path="published_at_max" />{' '}
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({
@@ -74,9 +87,14 @@ describe('ModelFilterDateTime', () => {
   });
 
   it(`adds max as a prop with exclusiveMaximum`, () => {
-    render(<ModelFilterDateTime path="published_at_max_exclusive" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterDateTime path="published_at_max_exclusive" />{' '}
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterDateTime).toHaveBeenLastCalledWith(
       expect.objectContaining({

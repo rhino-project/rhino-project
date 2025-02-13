@@ -75,8 +75,10 @@ exports[`ModelCellIdentifier > renders absolute link 1`] = `
             aria-labelledby="react-aria-:r4:-0-id"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-first="true"
+            data-href="/1/1"
             data-key="0"
             data-last="true"
+            href="/1/1"
             id="react-aria-:r7:"
             role="row"
             tabindex="-1"
@@ -89,7 +91,7 @@ exports[`ModelCellIdentifier > renders absolute link 1`] = `
               tabindex="-1"
             >
               <a
-                href="/1/blogs/1"
+                href="/"
               >
                 1
               </a>

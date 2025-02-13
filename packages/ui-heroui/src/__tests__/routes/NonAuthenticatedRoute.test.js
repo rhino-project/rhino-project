@@ -1,87 +1,51 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { NonAuthenticatedRoute } from '../../routes/NonAuthenticatedRoute';
-import * as routes from '@rhino-project/core/utils';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import axios from 'axios';
+import { QueryClient } from '@tanstack/react-query';
+import { NetworkingMock } from '../shared/mock';
+import { RhinoProvider, useRhinoContext } from '@rhino-project/core';
 
-const authenticatedState = {
-  initializing: false,
-  user: {}
-};
+vi.mock('axios');
+const networkingMock = new NetworkingMock();
+axios.mockImplementation(networkingMock.axiosMockImplementation());
 
-const unauthenticatedState = {
-  initializing: false,
-  user: null
-};
+describe('NonAuthenticatedRoute', () => {
+  const user = { id: 1, name: '', email: '' };
+  let queryClient;
 
-const initializingState = {
-  initializing: true
-};
+  function Wrapper({ children }) {
+    return (
+      <RhinoProvider queryClient={queryClient} forceStatic>
+        {children}
+      </RhinoProvider>
+    );
+  }
 
-let mockAuth;
-vi.mock('../../hooks/auth', () => ({
-  useAuth: vi.fn(() => mockAuth) //() => authMock
-}));
-
-vi.mock('../../components/logos', () => ({
-  SplashScreen: () => <div>__mockSplashScreen__</div>
-}));
-
-vi.spyOn(routes, 'getAuthenticatedAppPath').mockImplementation(
-  () => '/__mockRootPath__'
-);
-
-function Wrapper({ children }) {
-  return (
-    <MemoryRouter initialEntries={['/__auth__']}>
-      <Routes>
-        <Route path="/*" element={<Navigate to="/__auth__" />} />
-        <Route
-          path="/__auth__"
-          element={<NonAuthenticatedRoute>{children}</NonAuthenticatedRoute>}
-        />
-        <Route
-          path="/__mockRootPath__"
-          element={<div>__mockRootPathRoute__</div>}
-        />
-      </Routes>
-    </MemoryRouter>
-  );
-}
-
-describe('routes/NonAuthenticatedRoute', () => {
-  describe('initializing', () => {
-    test.skip('renders SplashScreen', () => {
-      mockAuth = initializingState;
-      render(<div>should not render this</div>, {
-        wrapper: Wrapper
-      });
-      expect(screen.getByText('__mockSplashScreen__')).toBeTruthy();
+  beforeEach(() => {
+    queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false
+        }
+      },
+      logger: {
+        error: () => {}
+      }
     });
   });
 
-  describe('authenticated', () => {
-    test.skip('redirects to rootPath', () => {
-      mockAuth = authenticatedState;
-      render(
-        <Wrapper>
-          <div>__should not render this__</div>
-        </Wrapper>
-      );
-
-      expect(screen.getByText('__mockRootPathRoute__')).toBeTruthy();
+  test('Invalidates router when user becomes non-null', async () => {
+    networkingMock.mockValidateSessionFailure();
+    const { result } = renderHook(() => useRhinoContext(), {
+      wrapper: Wrapper
     });
-  });
 
-  describe('unauthenticated', () => {
-    test.skip('renders children', () => {
-      mockAuth = unauthenticatedState;
-      render(
-        <Wrapper>
-          <div>__should render children__</div>
-        </Wrapper>
-      );
+    await waitFor(() => expect(result.current.user).toBeNull());
 
-      expect(screen.getByText('__should render children__')).toBeTruthy();
+    networkingMock.mockValidateSessionSuccess(user);
+    await act(async () => {
+      await queryClient.refetchQueries({ queryKey: ['session'] });
     });
+
+    await waitFor(() => expect(result.current.user).toEqual(user));
   });
 });
