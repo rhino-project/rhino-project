@@ -21,7 +21,8 @@ import {
   ModelDisplayReference,
   ModelDisplayString,
   ModelDisplayText,
-  ModelDisplayTime
+  ModelDisplayTime,
+  ModelDisplayYear
 } from '../../ModelDisplay';
 
 const defaultComponents = {
@@ -85,11 +86,17 @@ export const ModelDisplayGroupBase = ({ overrides, ...props }) => {
     case 'boolean':
       return <ModelDisplayBoolean {...props} />;
     case 'integer':
-      return <ModelDisplayInteger {...props} />;
+      switch (attribute.format) {
+        case 'year':
+          return <ModelDisplayYear {...props} />;
+        default:
+          return <ModelDisplayInteger {...props} />;
+      }
     case 'decimal':
     case 'number':
       if (attribute.format === 'currency')
         return <ModelDisplayCurrency {...props} />;
+
       return <ModelDisplayFloat {...props} />;
 
     case 'reference':

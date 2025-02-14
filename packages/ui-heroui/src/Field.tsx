@@ -22,6 +22,7 @@ import {
   usePhoneInput
 } from 'react-international-phone';
 import { Icon, IconProps } from '@iconify/react';
+import { FieldNumberInput, FieldNumberInputProps } from './FieldNumberInput';
 
 // Types
 export type FieldBooleanProps = CheckboxProps & {
@@ -54,7 +55,7 @@ export type FieldCountryProps = CountrySelectorProps & {
    */
   path: string;
 };
-export type FieldCurrencyProps = FieldInputProps;
+export type FieldCurrencyProps = FieldNumberInputProps;
 export type FieldDateProps = FieldDatePickerProps;
 export type FieldDateTimeProps = FieldDatePickerProps;
 export type FieldFileProps<T extends FieldValues = FieldValues> = {
@@ -66,9 +67,9 @@ export type FieldFileProps<T extends FieldValues = FieldValues> = {
   maxSize?: number;
   maxFiles?: number;
 };
-export type FieldFloatProps = FieldInputProps;
+export type FieldFloatProps = FieldNumberInputProps;
 export type FieldHiddenProps = FieldInputProps;
-export type FieldIntegerProps = FieldInputProps;
+export type FieldIntegerProps = FieldNumberInputProps;
 export type FieldPasswordProps = FieldInputProps;
 export type FieldPhoneProps = FieldInputProps;
 export type FieldStringProps = FieldInputProps;
@@ -152,13 +153,12 @@ export const FieldCurrencyBase = React.forwardRef<
   HTMLInputElement,
   FieldCurrencyProps
 >((props, ref) => (
-  <FieldFloat
+  <FieldNumberInput
     ref={ref}
-    startContent={
-      <div className="pointer-events-none flex items-center">
-        <span className="text-default-400 text-small">$</span>
-      </div>
-    }
+    formatOptions={{
+      style: 'currency',
+      currency: 'USD'
+    }}
     {...props}
   />
 ));
@@ -352,7 +352,7 @@ const FieldFileBase = <T extends FieldValues = FieldValues>({
 export const FieldFloatBase = React.forwardRef<
   HTMLInputElement,
   FieldFloatProps
->((props, ref) => <FieldInput ref={ref} type="number" {...props} />);
+>((props, ref) => <FieldNumberInput ref={ref} {...props} />);
 FieldFloatBase.displayName = 'FieldFloatBase';
 
 // Hidden
@@ -366,7 +366,15 @@ FieldHiddenBase.displayName = 'FieldHiddenBase';
 export const FieldIntegerBase = React.forwardRef<
   HTMLInputElement,
   FieldIntegerProps
->((props, ref) => <FieldInput ref={ref} type="number" {...props} />);
+>((props, ref) => (
+  <FieldNumberInput
+    ref={ref}
+    formatOptions={{
+      maximumFractionDigits: 0
+    }}
+    {...props}
+  />
+));
 FieldIntegerBase.displayName = 'FieldIntegerBase';
 
 // Password
@@ -436,7 +444,16 @@ FieldTimeBase.displayName = 'FieldTimeBase';
 
 // Year
 export const FieldYearBase = React.forwardRef<HTMLInputElement, FieldYearProps>(
-  (props, ref) => <FieldInteger ref={ref} {...props} />
+  (props, ref) => (
+    <FieldNumberInput
+      ref={ref}
+      formatOptions={{
+        maximumFractionDigits: 0,
+        useGrouping: false
+      }}
+      {...props}
+    />
+  )
 );
 FieldYearBase.displayName = 'FieldYearBase';
 

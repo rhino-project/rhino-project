@@ -58,7 +58,7 @@
     "src"
   ],
   "dependencies": {
-    "@heroui/react": "0.0.0-canary-20250211131058",
+    "@heroui/react": "0.0.0-canary-20250214223404",
     "@hookform/devtools": "4.3.1",
     "@hookform/resolvers": "3.3.2",
     "@iconify/react": "^5.2.0",

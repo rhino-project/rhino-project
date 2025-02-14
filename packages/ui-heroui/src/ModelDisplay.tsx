@@ -31,7 +31,9 @@ import {
   DisplayImageProps,
   DisplayString,
   DisplayStringProps,
-  DisplayTimeProps
+  DisplayTimeProps,
+  DisplayYear,
+  DisplayYearProps
 } from './Display';
 import {
   useModelDisplayAttachmentImageProps,
@@ -39,7 +41,8 @@ import {
   useModelDisplayDateTimeProps,
   useModelDisplayTimeProps,
   useModelDisplayBooleanProps,
-  useModelDisplayAttachmentProps
+  useModelDisplayAttachmentProps,
+  useModelDisplayNumberInputProps
 } from './form';
 
 // Attachment
@@ -98,7 +101,7 @@ export const ModelDisplayBooleanBase: React.FC<DisplayBooleanProps> = (
 export const ModelDisplayCurrencyBase: React.FC<DisplayCurrencyProps> = (
   props
 ) => {
-  const displayProps = useModelDisplayInputProps(props);
+  const displayProps = useModelDisplayNumberInputProps(props);
 
   return <DisplayCurrency {...displayProps} />;
 };
@@ -128,7 +131,7 @@ export const ModelDisplayEnumBase: React.FC<DisplayEnumProps> = (props) => {
 
 // Float
 export const ModelDisplayFloatBase: React.FC<DisplayFloatProps> = (props) => {
-  const displayProps = useModelDisplayInputProps(props);
+  const displayProps = useModelDisplayNumberInputProps(props);
 
   return <DisplayFloat {...displayProps} />;
 };
@@ -137,7 +140,7 @@ export const ModelDisplayFloatBase: React.FC<DisplayFloatProps> = (props) => {
 export const ModelDisplayIntegerBase: React.FC<DisplayIntegerProps> = (
   props
 ) => {
-  const displayProps = useModelDisplayInputProps(props);
+  const displayProps = useModelDisplayNumberInputProps(props);
 
   return <DisplayInteger {...displayProps} />;
 };
@@ -170,6 +173,13 @@ export const ModelDisplayTimeBase: React.FC<DisplayTimeProps> = (props) => {
   const displayProps = useModelDisplayTimeProps(props);
 
   return <DisplayTime {...displayProps} />;
+};
+
+// Year
+export const ModelDisplayYearBase: React.FC<DisplayYearProps> = (props) => {
+  const displayProps = useModelDisplayNumberInputProps(props);
+
+  return <DisplayYear {...displayProps} />;
 };
 
 // Overrideable component exports
@@ -288,5 +298,12 @@ export const ModelDisplayTime: React.FC<DisplayTimeProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelDisplayTime',
     ModelDisplayTimeBase,
+    props
+  );
+
+export const ModelDisplayYear: React.FC<DisplayTimeProps> = (props) =>
+  useGlobalComponentForAttribute(
+    'ModelDisplayYear',
+    ModelDisplayYearBase,
     props
   );

@@ -23,6 +23,7 @@ import { FieldBooleanProps, FieldFileProps, FieldTimeProps } from './Field';
 import { FieldDatePickerProps } from './FieldDatePicker';
 import { FieldSelectProps } from './FieldSelect';
 import { ModelFieldReferenceProps } from './ModelField';
+import { DisplayNumberInputProps } from './DisplayNumberInput';
 
 export const useModelFieldLabel = ({ path }: { path: string }) => {
   const { model } = useModelContext() as { model: Record<string, unknown> };
@@ -246,6 +247,17 @@ export const useModelDisplayLabel = ({ path }: { path: string }) => {
 
 export const useModelDisplayInputProps = <
   T extends DisplayInputProps | DisplayTextareaProps
+>(
+  props: T
+): T => {
+  const { path } = props;
+  const label = useModelDisplayLabel({ path });
+
+  return { label, ...props };
+};
+
+export const useModelDisplayNumberInputProps = <
+  T extends DisplayNumberInputProps
 >(
   props: T
 ): T => {

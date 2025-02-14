@@ -47,6 +47,12 @@ const transformEmptyString = (value, originalValue) => {
   return value;
 };
 
+const transformEmptyNumber = (value, originalValue) => {
+  if (isNaN(originalValue) || originalValue === '') return null;
+
+  return value;
+};
+
 const transformFilterEmptyString = (value, originalValue) => {
   if (originalValue === '') return null;
 
@@ -108,8 +114,13 @@ export const yupValidatorsFromAttribute = (attribute) => {
 
   // The defaults are an empty string, but we want to set them to null
   // for API and validation purposes
-  if (TRANSFORMABLE_TYPES.includes(attribute.type))
-    ytype = ytype.transform(transformEmptyString);
+  if (TRANSFORMABLE_TYPES.includes(attribute.type)) {
+    if (NUMBER_TYPES.includes(attribute.type)) {
+      ytype = ytype.transform(transformEmptyNumber);
+    } else {
+      ytype = ytype.transform(transformEmptyString);
+    }
+  }
 
   if (attribute['x-rhino-required']) ytype = ytype.required();
 
