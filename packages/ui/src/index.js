@@ -26,6 +26,7 @@ export * from './components/models/filters/index';
 export * from './components/nav/index';
 export * from './components/pagination/index';
 export * from './components/settings/index';
+export * from './components/shared/index';
 export * from './components/shells/index';
 export * from './components/table/index';
 export * from './components/table/cells/index';
