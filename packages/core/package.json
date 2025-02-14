@@ -115,16 +115,6 @@
         "default": "./dist/cjs/components/index.cjs"
       }
     },
-    "./components/shared": {
-      "import": {
-        "types": "./dist/esm/components/shared/index.d.ts",
-        "default": "./dist/esm/components/shared/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/components/shared/index.d.cts",
-        "default": "./dist/cjs/components/shared/index.cjs"
-      }
-    },
     "./components/models": {
       "import": {
         "types": "./dist/esm/components/models/index.d.ts",
