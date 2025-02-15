@@ -25,7 +25,6 @@ export * from './pages/index';
 export * from './pages/settings/index';
 export * from './pages/auth/index';
 export * from './routes/index';
-export * from './utils/index';
 
 export * from './Display';
 export * from './DisplayInput';
