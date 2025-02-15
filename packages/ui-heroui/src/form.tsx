@@ -90,6 +90,19 @@ export const useModelFieldBooleanProps = <T extends FieldBooleanProps>(
   return { children, isRequired, ...props };
 };
 
+export const useModelFieldCountryProps = <T extends FieldSelectProps>(
+  props: T
+): T => {
+  const { path } = props;
+  const { setValue } = useFormContext();
+  const label = useModelFieldLabel(props);
+  const isClearable = useModelFieldClearable(props);
+  const isRequired = useModelFieldRequired(props);
+  const onClear = useCallback(() => setValue(path, null), [path, setValue]);
+
+  return { label, isClearable, isRequired, onClear, ...props };
+};
+
 export const useModelFieldDateTimeProps = <T extends FieldDatePickerProps>(
   props: T
 ): T => {
@@ -179,44 +192,6 @@ export const useModelFieldGroup = ({ model, ...props }) => {
     placeholder,
     isRequired: !!attribute['x-rhino-required'],
     ...props
-  };
-};
-
-export const useModelFieldGroupEnum = ({
-  children: propsChildren,
-  ...props
-}) => {
-  const inputProps = useModelFieldGroup(props);
-  const { attribute } = inputProps;
-
-  const label = useMemo(
-    () => props?.label || attribute.readableName,
-    [attribute, props?.label]
-  );
-
-  const children = useMemo(() => {
-    // children can be a single element or an array
-    if (propsChildren)
-      return Array.isArray(propsChildren) ? propsChildren : [propsChildren];
-
-    // FIXME: key not value might be needed here
-    return attribute.enum.map((e) => (
-      <SelectItem key={e} className="capitalize" textValue={e}>
-        {e}
-      </SelectItem>
-    ));
-  }, [attribute.enum, propsChildren]);
-
-  const accessor = useCallback((value) => value || -1, []);
-
-  return {
-    ...inputProps,
-    fieldGroupProps: {
-      ...inputProps.fieldGroupProps,
-      accessor,
-      children,
-      label
-    }
   };
 };
 

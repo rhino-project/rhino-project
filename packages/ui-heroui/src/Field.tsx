@@ -5,7 +5,7 @@ import { FieldTextarea, FieldTextareaProps } from './FieldTextarea';
 import { parseDate } from '@internationalized/date';
 import { FieldDatePicker, FieldDatePickerProps } from './FieldDatePicker';
 import { FieldTimeInput, FieldTimeInputProps } from './FieldTimeInput';
-import { Alert, Checkbox, CheckboxProps } from '@heroui/react';
+import { Alert, Checkbox, CheckboxProps, SelectItem } from '@heroui/react';
 import {
   FieldValues,
   Path,
@@ -14,8 +14,6 @@ import {
 } from 'react-hook-form';
 import { Uploader } from '@rhino-project/core/utils';
 import {
-  CountrySelector,
-  CountrySelectorProps,
   defaultCountries,
   FlagImage,
   parseCountry,
@@ -23,6 +21,7 @@ import {
 } from 'react-international-phone';
 import { Icon, IconProps } from '@iconify/react';
 import { FieldNumberInput, FieldNumberInputProps } from './FieldNumberInput';
+import { FieldSelect, FieldSelectProps } from './FieldSelect';
 
 // Types
 export type FieldBooleanProps = CheckboxProps & {
@@ -49,12 +48,7 @@ export type FieldBooleanIconProps = Omit<IconProps, 'icon'> & {
    */
   path: string;
 };
-export type FieldCountryProps = CountrySelectorProps & {
-  /**
-   * The path inside the form object.
-   */
-  path: string;
-};
+export type FieldCountryProps = FieldSelectProps;
 export type FieldCurrencyProps = FieldNumberInputProps;
 export type FieldDateProps = FieldDatePickerProps;
 export type FieldDateTimeProps = FieldDatePickerProps;
@@ -143,9 +137,26 @@ FieldBooleanIconBase.displayName = 'FieldBooleanIconBase';
 
 // Country
 export const FieldCountryBase = React.forwardRef<
-  HTMLInputElement,
+  HTMLSelectElement,
   FieldCountryProps
->((props, ref) => <CountrySelector ref={ref} {...props} />);
+>((props, ref) => {
+  return (
+    <FieldSelect ref={ref} {...props}>
+      {defaultCountries.map((c) => {
+        const country = parseCountry(c);
+        return (
+          <SelectItem
+            key={country.iso2}
+            textValue={country.name}
+            startContent={<FlagImage className="size-6" iso2={country.iso2} />}
+          >
+            {country.name}
+          </SelectItem>
+        );
+      })}
+    </FieldSelect>
+  );
+});
 FieldCountryBase.displayName = 'FieldCountryBase';
 
 // Currency
@@ -406,16 +417,20 @@ export const FieldPhoneBase = React.forwardRef<
   HTMLInputElement,
   FieldPhoneProps
 >((props, ref) => {
-  const { handlePhoneValueChange } = usePhoneInput({
+  const { path } = props;
+  const { setValue } = useFormContext();
+  const { country, handlePhoneValueChange, inputValue } = usePhoneInput({
     defaultCountry: 'us',
-    countries: defaultCountries
+    countries: defaultCountries,
+    onChange: ({ phone }) => setValue(path, phone, { shouldDirty: true })
   });
 
-  // console.log('FieldPhoneBase', value);
   return (
     <FieldInput
       ref={ref}
-      onChangeAccessor={handlePhoneValueChange}
+      value={inputValue}
+      onChange={handlePhoneValueChange}
+      startContent={<FlagImage className="size-6" iso2={country.iso2} />}
       {...props}
     />
   );
