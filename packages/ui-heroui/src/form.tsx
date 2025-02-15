@@ -24,6 +24,7 @@ import { FieldDatePickerProps } from './FieldDatePicker';
 import { FieldSelectProps } from './FieldSelect';
 import { ModelFieldReferenceProps } from './ModelField';
 import { DisplayNumberInputProps } from './DisplayNumberInput';
+import { FieldNumberInputProps } from './FieldNumberInput';
 
 export const useModelFieldLabel = ({ path }: { path: string }) => {
   const { model } = useModelContext() as { model: Record<string, unknown> };
@@ -55,6 +56,19 @@ export const useModelFieldRequired = ({ path }: { path: string }) => {
 export const useModelFieldInputProps = <
   T extends FieldInputProps | FieldTextareaProps
 >(
+  props: T
+): T => {
+  const { path } = props;
+  const { setValue } = useFormContext();
+  const label = useModelFieldLabel(props);
+  const isClearable = useModelFieldClearable(props);
+  const isRequired = useModelFieldRequired(props);
+  const onClear = useCallback(() => setValue(path, null), [path, setValue]);
+
+  return { label, isClearable, isRequired, onClear, ...props };
+};
+
+export const useModelFieldNumberInputProps = <T extends FieldNumberInputProps>(
   props: T
 ): T => {
   const { path } = props;
