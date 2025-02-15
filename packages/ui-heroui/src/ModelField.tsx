@@ -36,11 +36,10 @@ import {
 } from './Field';
 import {
   useModelFieldBooleanProps,
+  useModelFieldCountryProps,
   useModelFieldDateTimeProps,
   useModelFieldEnumProps,
   useModelFieldFileProps,
-  useModelFieldGroup,
-  useModelFieldGroupEnum,
   useModelFieldGroupIntegerSelect,
   useModelFieldInputProps,
   useModelFieldNumberInputProps,
@@ -65,7 +64,6 @@ export type ModelFieldProps = {
   model: string | Record<string, unknown>;
   attribute: string;
 };
-export type ModelFieldCountryProps = FieldCountryProps & ModelFieldProps;
 export type ModelFieldIntegerSelectProps = FieldSelectProps & ModelFieldProps;
 export type ModelFieldPhoneProps = FieldPhoneProps & ModelFieldProps;
 
@@ -86,15 +84,10 @@ export const ModelFieldBooleanBase: React.FC<FieldBooleanProps> = (props) => {
 };
 
 // Country
-export const ModelFieldCountryBase: React.FC<CountrySelectorProps> = (
-  props
-) => {
-  // FIXME This can be cleaned up a lot
-  const { fieldGroupProps, ...inputProps } = useModelFieldGroupEnum(
-    props
-  ) as ModelFieldProps;
+export const ModelFieldCountryBase: React.FC<FieldCountryProps> = (props) => {
+  const fieldProp = useModelFieldCountryProps(props);
 
-  return <FieldCountry {...fieldGroupProps} {...inputProps} />;
+  return <FieldCountry {...fieldProp} />;
 };
 
 // Currency
@@ -173,10 +166,9 @@ export const ModelFieldOwnerReferenceBase: React.FC<
 
 // Phone
 export const ModelFieldPhoneBase: React.FC<ModelFieldPhoneProps> = (props) => {
-  // FIXME This can be cleaned up a lot
-  const fieldGroupProps = useModelFieldGroup(props) as ModelFieldPhoneProps;
+  const fieldProps = useModelFieldInputProps(props);
 
-  return <FieldPhone {...fieldGroupProps} />;
+  return <FieldPhone {...fieldProps} />;
 };
 
 // Reference
