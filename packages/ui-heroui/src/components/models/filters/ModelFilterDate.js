@@ -1,13 +1,10 @@
 import PropTypes from 'prop-types';
 import { useWatch } from 'react-hook-form';
-import { format, parseISO } from 'date-fns';
-
 import { useEffect, useMemo } from 'react';
 import { useModelFilterField } from '../../../form';
-import { getDateTimeFormat } from '../../../utils/ui';
 import { useModelFiltersContext } from '@rhino-project/core/hooks';
 import { FilterDate } from '../../../Filter';
-import { parseDate } from '@internationalized/date';
+import { DateFormatter, parseDate } from '@internationalized/date';
 
 // FIXME: Replicated in ModelFilterDate, ModelFilterDateTime, ModelFilterTime
 const operatorToLabel = (format, operator) => {
@@ -29,13 +26,24 @@ const operatorToLabel = (format, operator) => {
   }
 };
 
+const FORMAT_OPTIONS = {
+  month: 'short', // Short month name (e.g., Feb)
+  day: 'numeric', // Numeric day (e.g., 4)
+  year: 'numeric' // Numeric year (e.g., 2025)
+};
+
 const buildDateTimePill = (attribute, operator, newValue) => {
   if (!newValue) return null;
-  const date = typeof newValue === 'string' ? parseISO(newValue) : newValue;
+
+  const locale = new Intl.DateTimeFormat().resolvedOptions().locale;
+  const formatter = new DateFormatter(locale, FORMAT_OPTIONS);
+
+  const date = parseDate(newValue).toDate();
+
   return `${attribute.readableName} ${operatorToLabel(
     attribute.format,
     operator
-  )} ${format(date, getDateTimeFormat(attribute))}`;
+  )} ${formatter.format(date)}`;
 };
 
 export const ModelFilterDate = ({ path, ...props }) => {

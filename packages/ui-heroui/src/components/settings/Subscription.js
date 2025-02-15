@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { useBaseOwnerId } from '@rhino-project/core/hooks';
 
-import { getDateTimeFormat } from '../../utils/ui';
 import {
   displayAmount,
   CreateCheckoutSession,
@@ -97,10 +96,9 @@ export const Subscription = ({ status, session_id }) => {
     );
   }
 
-  currentSubscription.format = 'date';
   const displayDate = format(
     new Date(currentSubscription.current_period_end * 1000),
-    getDateTimeFormat(currentSubscription)
+    'MMMM d, yyyy'
   );
   const planName = currentSubscription.plan.product.name;
 
