@@ -40,8 +40,8 @@ import {
   useModelFieldDateTimeProps,
   useModelFieldEnumProps,
   useModelFieldFileProps,
-  useModelFieldGroupIntegerSelect,
   useModelFieldInputProps,
+  useModelFieldIntegerSelectProps,
   useModelFieldNumberInputProps,
   useModelFieldReferenceProps,
   useModelFieldTimeProps
@@ -57,14 +57,12 @@ import {
   AutocompleteItem,
   AutocompleteProps
 } from '@heroui/react';
-import { CountrySelectorProps } from 'react-international-phone';
 
 // Types
 export type ModelFieldProps = {
   model: string | Record<string, unknown>;
   attribute: string;
 };
-export type ModelFieldIntegerSelectProps = FieldSelectProps & ModelFieldProps;
 export type ModelFieldPhoneProps = FieldPhoneProps & ModelFieldProps;
 
 export type ModelFieldReferenceProps = AutocompleteProps & {
@@ -140,15 +138,12 @@ export const ModelFieldIntegerBase: React.FC<FieldIntegerProps> = (props) => {
 };
 
 // Integer Select
-export const ModelFieldIntegerSelectBase: React.FC<ModelFieldEnumProps> = (
+export const ModelFieldIntegerSelectBase: React.FC<FieldSelectProps> = (
   props
 ) => {
-  // FIXME This can be cleaned up a lot
-  const { fieldGroupProps, ...inputProps } = useModelFieldGroupIntegerSelect(
-    props
-  ) as ModelFieldIntegerSelectProps;
+  const fieldProps = useModelFieldIntegerSelectProps(props);
 
-  return <FieldSelect {...fieldGroupProps} {...inputProps} />;
+  return <FieldSelect {...fieldProps} />;
 };
 
 // Owner Reference

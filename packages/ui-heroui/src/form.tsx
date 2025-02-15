@@ -137,7 +137,41 @@ export const useModelFieldEnumProps = ({
     ));
   }, [attribute.enum, propsChildren]);
 
-  const accessor = useCallback((value: unknown) => value || -1, []);
+  const accessor = useCallback((value: unknown) => value || null, []);
+
+  return { accessor, children, label, isRequired, ...props };
+};
+
+export const useModelFieldIntegerSelectProps = ({
+  children: propsChildren,
+  ...props
+}: FieldSelectProps): FieldSelectProps => {
+  const { path } = props;
+  const label = useModelFieldLabel(props);
+  const isRequired = useModelFieldRequired(props);
+  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const {
+    attribute: { minimum, maximum }
+  } = useModelAndAttributeFromPath(model, path) as {
+    attribute: { minimum: number; maximum: number };
+  };
+
+  const children = useMemo(() => {
+    // children can be a single element or an array
+    if (propsChildren)
+      return Array.isArray(propsChildren) ? propsChildren : [propsChildren];
+
+    return Array.from({ length: maximum - minimum }, (x, i) => (
+      <SelectItem key={String(i + minimum)} textValue={String(i + minimum)}>
+        {i + minimum}
+      </SelectItem>
+    ));
+  }, [maximum, minimum, propsChildren]);
+
+  const accessor = useCallback(
+    (value: number | string) => (value ? String(value) : null),
+    []
+  );
 
   return { accessor, children, label, isRequired, ...props };
 };
@@ -168,61 +202,6 @@ export const useModelFieldTimeProps = <T extends FieldTimeProps>(
   const isRequired = useModelFieldRequired(props);
 
   return { label, isRequired, ...props };
-};
-
-export const useModelFieldGroup = ({ model, ...props }) => {
-  const { path } = props;
-  const { attribute } = useModelAndAttributeFromPath(model, path);
-
-  const label = useMemo(
-    () => props?.label || attribute.readableName,
-    [attribute, props?.label]
-  );
-
-  const placeholder = useMemo(
-    () => props?.placeholder || label,
-    [label, props?.placeholder]
-  );
-
-  return {
-    attribute,
-    model,
-    label,
-    isClearable: attribute.nullable,
-    placeholder,
-    isRequired: !!attribute['x-rhino-required'],
-    ...props
-  };
-};
-
-export const useModelFieldGroupIntegerSelect = (props) => {
-  const inputProps = useModelFieldGroup(props);
-  const { attribute } = inputProps;
-  // Translate to html input prop naming from the OpenAPI naming
-  const { minimum: min, maximum: max } = attribute;
-
-  const children = useMemo(
-    () =>
-      Array.from({ length: max - min }, (x, i) => (
-        <SelectItem key={i + min} textValue={`${i + min}`}>
-          {i + min}
-        </SelectItem>
-      )),
-    [min, max]
-  );
-
-  const accessor = useCallback((value) => value || -1, []);
-  const title = `${attribute.readableName}...`;
-
-  return {
-    ...inputProps,
-    fieldGroupProps: {
-      ...inputProps.fieldGroupProps,
-      accessor,
-      children,
-      title
-    }
-  };
 };
 
 export const useModelDisplayLabel = ({ path }: { path: string }) => {

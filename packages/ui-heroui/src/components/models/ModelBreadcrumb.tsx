@@ -18,7 +18,7 @@ export const ModelBreadcrumbBase = ({
   ...props
 }: ModelBreadcrumbProps) => {
   const { model } = useModelContext() as {
-    model: { pluralReadableName: string };
+    model: { name: string; pluralReadableName: string };
   };
   const { build } = useBaseOwnerPath();
 
@@ -27,18 +27,21 @@ export const ModelBreadcrumbBase = ({
 
     if (resource) {
       result.unshift({
+        key: `${model.name}-${String(resource.id)}`,
         children: resource?.display_name as ReactNode,
-        href: build(getModelShowPath(model, resource.id))
+        href: build(getModelShowPath(model, String(resource.id)))
       });
     }
 
     result.unshift({
+      key: model.name,
       children: model.pluralReadableName,
       href: build(getModelIndexPath(model))
     });
 
     if (lastItem) {
       result.push({
+        key: 'lastItem',
         children: lastItem
       });
     }
