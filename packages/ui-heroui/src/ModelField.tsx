@@ -43,6 +43,7 @@ import {
   useModelFieldGroupEnum,
   useModelFieldGroupIntegerSelect,
   useModelFieldInputProps,
+  useModelFieldNumberInputProps,
   useModelFieldReferenceProps,
   useModelFieldTimeProps
 } from './form';
@@ -98,7 +99,7 @@ export const ModelFieldCountryBase: React.FC<CountrySelectorProps> = (
 
 // Currency
 export const ModelFieldCurrencyBase: React.FC<FieldCurrencyProps> = (props) => {
-  const fieldProps = useModelFieldInputProps(props);
+  const fieldProps = useModelFieldNumberInputProps(props);
 
   return <FieldCurrency {...fieldProps} />;
 };
@@ -133,14 +134,14 @@ export const ModelFieldFileBase: React.FC<FieldFileProps> = (props) => {
 
 // Float
 export const ModelFieldFloatBase: React.FC<FieldFloatProps> = (props) => {
-  const fieldProps = useModelFieldInputProps(props);
+  const fieldProps = useModelFieldNumberInputProps(props);
 
   return <FieldFloat {...fieldProps} />;
 };
 
 // Integer
 export const ModelFieldIntegerBase: React.FC<FieldIntegerProps> = (props) => {
-  const fieldProps = useModelFieldInputProps(props);
+  const fieldProps = useModelFieldNumberInputProps(props);
 
   return <FieldInteger {...fieldProps} />;
 };
@@ -276,7 +277,7 @@ export const ModelFieldTimeBase: React.FC<FieldTimeProps> = (props) => {
 
 // Year
 export const ModelFieldYearBase: React.FC<FieldYearProps> = (props) => {
-  const fieldProps = useModelFieldInputProps(props);
+  const fieldProps = useModelFieldNumberInputProps(props);
 
   return <FieldYear {...fieldProps} />;
 };
