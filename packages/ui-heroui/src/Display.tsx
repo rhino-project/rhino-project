@@ -11,11 +11,14 @@ import {
   LinkProps
 } from '@heroui/react';
 import { useController } from 'react-hook-form';
-import { applyCurrencyMask } from './utils';
 import { FieldTimeInput } from './FieldTimeInput';
 import { FieldTimeProps } from './Field';
 import { FieldDatePicker, FieldDatePickerProps } from './FieldDatePicker';
 import { parseDate } from '@internationalized/date';
+import {
+  DisplayNumberInput,
+  DisplayNumberInputProps
+} from './DisplayNumberInput';
 
 // Types
 export type DisplayAttachmentsProps = DisplayInputProps;
@@ -31,11 +34,11 @@ export type DisplayBooleanProps = CheckboxProps & {
    */
   path: string;
 };
-export type DisplayCurrencyProps = DisplayInputProps;
+export type DisplayCurrencyProps = DisplayNumberInputProps;
 export type DisplayDateTimeProps = FieldDatePickerProps;
 export type DisplayDateProps = FieldDatePickerProps;
 export type DisplayEnumProps = DisplayInputProps;
-export type DisplayFloatProps = DisplayInputProps;
+export type DisplayFloatProps = DisplayNumberInputProps;
 export type DisplayImageProps = ImageProps & {
   /**
    * The function to format the value before displaying it.
@@ -46,7 +49,7 @@ export type DisplayImageProps = ImageProps & {
    */
   path: string;
 };
-export type DisplayIntegerProps = DisplayFloatProps;
+export type DisplayIntegerProps = DisplayNumberInputProps;
 export type DisplayLinkProps = LinkProps & {
   /**
    * The function to format the value before displaying it.
@@ -63,8 +66,9 @@ export type DisplayLinkProps = LinkProps & {
 };
 export type DisplayReferenceProps = DisplayInputProps;
 export type DisplayStringProps = DisplayInputProps;
-export type DisplayTimeProps = FieldTimeProps;
 export type DisplayTextProps = DisplayTextareaProps;
+export type DisplayTimeProps = FieldTimeProps;
+export type DisplayYearProps = DisplayNumberInputProps;
 
 // Attachments
 export const DisplayAttachmentsBase = React.forwardRef<
@@ -155,14 +159,12 @@ export const DisplayCurrencyBase = React.forwardRef<
   DisplayCurrencyProps
 >((props, ref) => {
   return (
-    <DisplayInput
+    <DisplayNumberInput
       ref={ref}
-      accessor={applyCurrencyMask}
-      startContent={
-        <div className="pointer-events-none flex items-center">
-          <span className="text-default-400 text-small">$</span>
-        </div>
-      }
+      formatOptions={{
+        style: 'currency',
+        currency: 'USD'
+      }}
       {...props}
     />
   );
@@ -194,17 +196,7 @@ export const DisplayEnumBase = (props: DisplayEnumProps) => (
 export const DisplayFloatBase = React.forwardRef<
   HTMLInputElement,
   DisplayFloatProps
->((props, ref) => {
-  const accessor = useCallback((value: unknown) => {
-    // Null will be handled by DisplayInput as empty
-    // Nullish coalescing operator will handle 0 as a valid value
-    if (value == null) return null;
-
-    return (value as number).toString();
-  }, []);
-
-  return <DisplayInput ref={ref} accessor={accessor} {...props} />;
-});
+>((props, ref) => <DisplayNumberInput ref={ref} {...props} />);
 DisplayFloatBase.displayName = 'DisplayFloatBase';
 
 // Image
@@ -301,12 +293,30 @@ DisplayTextBase.displayName = 'DisplayTextBase';
 
 // Time
 export const DisplayTimeBase = React.forwardRef<
-  HTMLTextAreaElement,
+  HTMLInputElement,
   DisplayTimeProps
 >((props, ref) => {
   return <FieldTimeInput ref={ref} isReadOnly {...props} />;
 });
 DisplayTimeBase.displayName = 'DisplayTimeBase';
+
+// Year
+export const DisplayYearBase = React.forwardRef<
+  HTMLInputElement,
+  DisplayYearProps
+>((props, ref) => {
+  return (
+    <DisplayNumberInput
+      ref={ref}
+      formatOptions={{
+        maximumFractionDigits: 0,
+        useGrouping: false
+      }}
+      {...props}
+    />
+  );
+});
+DisplayYearBase.displayName = 'DisplayYearBase';
 
 // Overrideable component exports
 export const DisplayAttachments = (props: DisplayAttachmentsProps) =>
@@ -356,3 +366,6 @@ export const DisplayText = (props: DisplayTextProps) =>
 
 export const DisplayTime = (props: DisplayTimeProps) =>
   useGlobalComponent('DisplayTime', DisplayTimeBase, props);
+
+export const DisplayYear = (props: DisplayYearProps) =>
+  useGlobalComponent('DisplayYear', DisplayYearBase, props);

@@ -3,41 +3,109 @@
 exports[`DisplayFloat > renders inside of model context 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[hidden=true]:hidden w-full relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)] is-filled"
-    data-filled="true"
-    data-filled-within="true"
+    class="group flex flex-col data-[hidden=true]:hidden w-full"
     data-has-value="true"
     data-readonly="true"
     data-slot="base"
   >
     <div
-      class="h-full flex flex-col"
+      class="h-full"
       data-slot="main-wrapper"
     >
       <div
-        class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background is-filled"
+        class="relative w-full inline-flex tap-highlight-transparent shadow-sm px-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 min-h-10 rounded-medium flex-col items-start justify-center gap-0 transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background h-14 py-2"
         data-slot="input-wrapper"
         style="cursor: text;"
       >
         <div
-          class="inline-flex w-full items-center h-full box-border"
+          class="inline-flex w-full items-center h-full box-border group-data-[has-label=true]:items-end pb-0.5"
           data-slot="inner-wrapper"
+          role="group"
         >
           <input
             aria-label="dummy"
             aria-readonly="true"
+            aria-roledescription="Number field"
             autocomplete="off"
-            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"
-            data-filled="true"
-            data-filled-within="true"
+            autocorrect="off"
+            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-slot="input"
             id="react-aria-:r1:"
+            inputmode="numeric"
             name="dummy"
             readonly=""
+            spellcheck="false"
             title=""
             type="text"
-            value="-"
+            value=""
           />
+          <input
+            data-slot="hidden-input"
+            name="dummy"
+            type="hidden"
+            value=""
+          />
+          <div
+            class="flex flex-col ps-1 h-full justify-center"
+            data-slot="stepper-wrapper"
+          >
+            <button
+              aria-controls="react-aria-:r1:"
+              aria-label="Increase dummy"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              data-disabled="true"
+              data-slot="increase-button"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                focusable="false"
+                height="1em"
+                role="presentation"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="m18 15-6-6-6 6"
+                />
+              </svg>
+            </button>
+            <button
+              aria-controls="react-aria-:r1:"
+              aria-label="Decrease dummy"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              data-disabled="true"
+              data-slot="decrease-button"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                focusable="false"
+                height="1em"
+                role="presentation"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -48,41 +116,109 @@ exports[`DisplayFloat > renders inside of model context 1`] = `
 exports[`DisplayFloat > should render the empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[hidden=true]:hidden w-full relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)] is-filled"
-    data-filled="true"
-    data-filled-within="true"
+    class="group flex flex-col data-[hidden=true]:hidden w-full"
     data-has-value="true"
     data-readonly="true"
     data-slot="base"
   >
     <div
-      class="h-full flex flex-col"
+      class="h-full"
       data-slot="main-wrapper"
     >
       <div
-        class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background is-filled"
+        class="relative w-full inline-flex tap-highlight-transparent shadow-sm px-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 min-h-10 rounded-medium flex-col items-start justify-center gap-0 transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background h-14 py-2"
         data-slot="input-wrapper"
         style="cursor: text;"
       >
         <div
-          class="inline-flex w-full items-center h-full box-border"
+          class="inline-flex w-full items-center h-full box-border group-data-[has-label=true]:items-end pb-0.5"
           data-slot="inner-wrapper"
+          role="group"
         >
           <input
             aria-label="dummy"
             aria-readonly="true"
+            aria-roledescription="Number field"
             autocomplete="off"
-            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"
-            data-filled="true"
-            data-filled-within="true"
+            autocorrect="off"
+            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-slot="input"
-            id="react-aria-:r7:"
+            id="react-aria-:ra:"
+            inputmode="numeric"
             name="dummy"
             readonly=""
+            spellcheck="false"
             title=""
             type="text"
-            value="-"
+            value=""
           />
+          <input
+            data-slot="hidden-input"
+            name="dummy"
+            type="hidden"
+            value=""
+          />
+          <div
+            class="flex flex-col ps-1 h-full justify-center"
+            data-slot="stepper-wrapper"
+          >
+            <button
+              aria-controls="react-aria-:ra:"
+              aria-label="Increase dummy"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              data-disabled="true"
+              data-slot="increase-button"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                focusable="false"
+                height="1em"
+                role="presentation"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="m18 15-6-6-6 6"
+                />
+              </svg>
+            </button>
+            <button
+              aria-controls="react-aria-:ra:"
+              aria-label="Decrease dummy"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              data-disabled="true"
+              data-slot="decrease-button"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                focusable="false"
+                height="1em"
+                role="presentation"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -93,41 +229,109 @@ exports[`DisplayFloat > should render the empty text when value is nullish 1`] =
 exports[`DisplayFloat > should render the overridden empty text when value is nullish 1`] = `
 <DocumentFragment>
   <div
-    class="group flex flex-col data-[hidden=true]:hidden w-full relative justify-end data-[has-label=true]:mt-[calc(theme(fontSize.small)_+_10px)] is-filled"
-    data-filled="true"
-    data-filled-within="true"
+    class="group flex flex-col data-[hidden=true]:hidden w-full"
     data-has-value="true"
     data-readonly="true"
     data-slot="base"
   >
     <div
-      class="h-full flex flex-col"
+      class="h-full"
       data-slot="main-wrapper"
     >
       <div
-        class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background is-filled"
+        class="relative w-full inline-flex tap-highlight-transparent shadow-sm px-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 min-h-10 rounded-medium flex-col items-start justify-center gap-0 transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background h-14 py-2"
         data-slot="input-wrapper"
         style="cursor: text;"
       >
         <div
-          class="inline-flex w-full items-center h-full box-border"
+          class="inline-flex w-full items-center h-full box-border group-data-[has-label=true]:items-end pb-0.5"
           data-slot="inner-wrapper"
+          role="group"
         >
           <input
             aria-label="dummy"
             aria-readonly="true"
+            aria-roledescription="Number field"
             autocomplete="off"
-            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground is-filled"
-            data-filled="true"
-            data-filled-within="true"
+            autocorrect="off"
+            class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 autofill:bg-transparent bg-clip-text text-small group-data-[has-value=true]:text-default-foreground"
             data-slot="input"
-            id="react-aria-:rd:"
+            id="react-aria-:rj:"
+            inputmode="numeric"
             name="dummy"
             readonly=""
+            spellcheck="false"
             title=""
             type="text"
-            value="baz"
+            value=""
           />
+          <input
+            data-slot="hidden-input"
+            name="dummy"
+            type="hidden"
+            value=""
+          />
+          <div
+            class="flex flex-col ps-1 h-full justify-center"
+            data-slot="stepper-wrapper"
+          >
+            <button
+              aria-controls="react-aria-:rj:"
+              aria-label="Increase dummy"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              data-disabled="true"
+              data-slot="increase-button"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                focusable="false"
+                height="1em"
+                role="presentation"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="m18 15-6-6-6 6"
+                />
+              </svg>
+            </button>
+            <button
+              aria-controls="react-aria-:rj:"
+              aria-label="Decrease dummy"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              data-disabled="true"
+              data-slot="decrease-button"
+              disabled=""
+              tabindex="-1"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                fill="none"
+                focusable="false"
+                height="1em"
+                role="presentation"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                viewBox="0 0 24 24"
+                width="1em"
+              >
+                <path
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
