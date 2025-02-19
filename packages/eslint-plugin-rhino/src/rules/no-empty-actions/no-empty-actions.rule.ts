@@ -11,8 +11,7 @@ export const rule = createRule({
   meta: {
     type: 'suggestion',
     docs: {
-      description: 'Disallow empty actions array for model configurations',
-      recommended: 'recommended'
+      description: 'Disallow empty actions array for model configurations'
     },
     fixable: 'code',
     schema: [],
@@ -23,7 +22,7 @@ export const rule = createRule({
   },
   defaultOptions: [],
   create(context) {
-    const filename = context.getFilename();
+    const filename = context.filename;
     if (!filename.endsWith('rhino.config.jsx')) {
       // If the filename does not match, don't apply the rule
       return {};

@@ -64,7 +64,6 @@ export const useCheckSession = (baseOwnerId, session_id) => {
 
 const useSubscriptionQuery = (queryKey, queryPath, params) => {
   return useQuery({
-    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey,
     queryFn: ({ signal }) => networkApiCall(queryPath, { ...params, signal })
   });

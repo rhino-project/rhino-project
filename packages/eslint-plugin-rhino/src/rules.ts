@@ -3,5 +3,6 @@ import * as noEmptyActions from './rules/no-empty-actions/no-empty-actions.rule'
 
 export const rules = {
   [noHooksGetModel.name]: noHooksGetModel.rule,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   ['no-empty-actions']: noEmptyActions.rule as any
 };

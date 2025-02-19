@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { NavItem, NavLink, Alert, Card, CardBody } from 'reactstrap';
 import classnames from 'classnames';
