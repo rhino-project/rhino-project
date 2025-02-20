@@ -111,7 +111,7 @@ const fetchOpenApiSpec = async (
   }
 
   return (await networkApiCallOnlyData(
-    'api/info/openapi'
+    '/api/info/openapi'
   )) as OpenAPIV3_1.Document;
 };
 
