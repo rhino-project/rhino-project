@@ -10,7 +10,6 @@ export const useNotifications = () => {
   const userId = useUserId();
 
   return useQuery({
-    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: ['notifications-index'],
     queryFn: ({ signal }) =>
       networkApiCall(fullPath(userId, '?filter=unopened&limit=10'), { signal }),

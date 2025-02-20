@@ -30,7 +30,7 @@
   "scripts": {
     "clean": "rimraf ./build && rimraf ./coverage",
     "dev": "tsup --watch --sourcemap",
-    "test:eslint": "eslint --ext .ts,.tsx ./src",
+    "test:eslint": "eslint src",
     "test:types": "tsc",
     "test:lib": "vitest",
     "test:lib:dev": "pnpm run test:lib --watch",
@@ -42,13 +42,13 @@
     "src"
   ],
   "dependencies": {
-    "@typescript-eslint/rule-tester": "7.17.0",
-    "@typescript-eslint/utils": "7.17.0"
+    "@typescript-eslint/rule-tester": "8.24.1",
+    "@typescript-eslint/utils": "8.24.1"
   },
   "devDependencies": {
-    "eslint": "8.57.0"
+    "eslint": "9.20.1"
   },
   "peerDependencies": {
-    "eslint": "^8.0.0"
+    "eslint": "^9.0.0"
   }
 }

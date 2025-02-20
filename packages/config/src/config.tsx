@@ -78,7 +78,7 @@ export const defaultConfig: RhinoConfig = {
   enableModelRoutes: true,
   darkLogo: 'images/logo-dark.svg',
   lightLogo: 'images/logo-light.svg',
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+
   assets,
   env,
   components: {}
@@ -111,6 +111,5 @@ export const useRhinoAsset = (asset: string): string | undefined => {
   const { assets } = useRhinoConfig();
   const assetPath = `/assets/${asset}`;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
   return assets[assetPath]?.default || assets[`/src${assetPath}`]?.default;
 };

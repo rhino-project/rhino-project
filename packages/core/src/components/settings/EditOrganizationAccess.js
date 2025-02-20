@@ -42,7 +42,9 @@ const RemoveButton = (props) => {
 const cellPaths = [
   'user.email',
   'user.name',
+  // eslint-disable-next-line react/jsx-key
   <ModelEditableCellReference id="role" path="role" />,
+  // eslint-disable-next-line react/jsx-key
   <RemoveButton />
 ];
 
@@ -66,6 +68,7 @@ export const EditOrganizationAccess = () => {
 
   const actions = useMemo(() => {
     return [
+      // eslint-disable-next-line react/jsx-key
       <ModelIndexActionCreate onClick={handleAction}>
         Invite User
       </ModelIndexActionCreate>

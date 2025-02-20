@@ -88,6 +88,7 @@ const handler = {
 
       return target;
     }
+    // eslint-disable-next-line prefer-rest-params
     return Reflect.get(...arguments);
   }
 };

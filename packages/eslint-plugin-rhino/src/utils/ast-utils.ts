@@ -247,12 +247,9 @@ export const ASTUtils = {
     const { node, context } = params;
 
     // we need the fallbacks for backwards compat with eslint < 8.37.0
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    const sourceCode = context.sourceCode ?? context.getSourceCode();
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    const scope = context.sourceCode.getScope(node)
-      ? sourceCode.getScope(node)
-      : context.getScope();
+    const sourceCode = context.sourceCode;
+
+    const scope = sourceCode.getScope(node);
 
     const resolvedNode = scope.references.find((ref) => ref.identifier === node)
       ?.resolved?.defs[0]?.node;
@@ -286,6 +283,7 @@ export const ASTUtils = {
     }
 
     if ('body' in node && node.body !== undefined && node.body !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       Array.isArray(node.body)
         ? node.body.forEach((x) => {
             returnStatements.push(...ASTUtils.getNestedReturnStatements(x));
@@ -296,6 +294,7 @@ export const ASTUtils = {
     }
 
     if ('consequent' in node) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       Array.isArray(node.consequent)
         ? node.consequent.forEach((x) => {
             returnStatements.push(...ASTUtils.getNestedReturnStatements(x));
@@ -306,6 +305,7 @@ export const ASTUtils = {
     }
 
     if ('alternate' in node && node.alternate !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       Array.isArray(node.alternate)
         ? node.alternate.forEach((x) => {
             returnStatements.push(...ASTUtils.getNestedReturnStatements(x));
