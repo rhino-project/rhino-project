@@ -40,7 +40,6 @@ export const useResource = <T extends keyof Resources>(
   const resources = useResources({ filter });
 
   if (resources.length === 0)
-    // eslint-disable-next-line @typescript-eslint/no-base-to-string
     console.error(`Model ${String(resource)} not found`);
 
   return resources[0];

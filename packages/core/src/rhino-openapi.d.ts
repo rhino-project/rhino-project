@@ -169,7 +169,6 @@ export namespace OpenAPIV3_1 {
       exclusiveMaximum?: boolean | number;
       contentMediaType?: string;
       $schema?: string;
-      // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
       additionalProperties?: boolean | ReferenceObject | SchemaObject;
       properties?: {
         [name: string]: ReferenceObject | SchemaObject;

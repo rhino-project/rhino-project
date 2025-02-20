@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useUserUpdateAction } from '@rhino-project/core/queries';
 import { AuthForm } from '../auth/AuthForm';
 import { SuccessAlert } from '../alerts';

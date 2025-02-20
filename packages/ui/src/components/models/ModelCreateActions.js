@@ -135,6 +135,7 @@ export const ModelCreateActionsBase = ({
     () =>
       [
         hasCancel && <ModelCreateActionCancel />,
+        // eslint-disable-next-line react/jsx-key
         <ModelCreateActionSave />
       ].filter(Boolean),
     // eslint-disable-next-line react-hooks/exhaustive-deps

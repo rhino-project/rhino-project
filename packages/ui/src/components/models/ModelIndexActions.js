@@ -107,6 +107,7 @@ export const ModelIndexActionsBase = ({
   const { ModelIndexActionCreate } = useOverrides(defaultComponents, overrides);
 
   const computedDefaultActions = useMemo(
+    // eslint-disable-next-line react/jsx-key
     () => [<ModelIndexActionCreate />],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []

@@ -515,7 +515,6 @@ export const useModelShow = (model, id, options = {}, ...legacyOptions) => {
   // End of legacy handling
 
   const query = useQuery({
-    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey,
     queryFn: ({ signal }) =>
       networkApiCallOnlyData(endpoint, { ...networkOptions, signal }),
@@ -610,7 +609,6 @@ export const useModelIndex = (model, options = {}, ...legacyOptions) => {
   // End of legacy handling
 
   const query = useQuery({
-    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey,
     queryFn: ({ signal }) =>
       networkApiCallOnlyData(endpoint, { ...networkOptions, signal }),

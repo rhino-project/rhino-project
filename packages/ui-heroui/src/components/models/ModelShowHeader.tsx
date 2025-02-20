@@ -1,4 +1,3 @@
-import React from 'react';
 import { useModelShowContext } from '@rhino-project/core/hooks';
 import { useGlobalComponentForModel } from '@rhino-project/core/hooks';
 import { ModelBreadcrumb, ModelBreadcrumbProps } from './ModelBreadcrumb';

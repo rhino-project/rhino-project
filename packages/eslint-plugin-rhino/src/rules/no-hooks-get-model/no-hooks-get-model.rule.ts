@@ -16,9 +16,7 @@ export const rule = createRule({
   meta: {
     type: 'suggestion',
     docs: {
-      description:
-        "suggest replacing `getModel('...')` with `'...'` for hooks.",
-      recommended: 'recommended'
+      description: "suggest replacing `getModel('...')` with `'...'` for hooks."
     },
     messages: {
       replaceGetModel:
@@ -72,7 +70,7 @@ export const rule = createRule({
             {
               messageId: 'replaceGetModel',
               fix(fixer) {
-                const sourceCode = context.getSourceCode();
+                const sourceCode = context.sourceCode;
                 const getModelText = sourceCode.getText(getModelArg);
                 let replacementText = `useModelIndex(${getModelText}`;
 

@@ -103,6 +103,7 @@ export const ModelEditActionsBase = ({
 
   const computedDefaultActions = useMemo(
     () =>
+      // eslint-disable-next-line react/jsx-key
       [hasCancel && <ModelEditActionCancel />, <ModelEditActionSave />].filter(
         Boolean
       ),

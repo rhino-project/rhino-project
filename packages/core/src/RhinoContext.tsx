@@ -47,7 +47,7 @@ type ValidateTokenResponse = {
 // FIXME the user and owner types need to be better defined
 export interface RhinoContextType {
   // @ts-expect-error this will be defined in the client application
-  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+
   user: Resources['user'] | null;
   baseOwner: { id: number; [key: string]: unknown } | null;
   initializing: boolean;
@@ -83,17 +83,16 @@ const hoistRhino = (
     const properties = model?.properties || {};
 
     Object.keys(properties).forEach((property) => {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const prop = properties[property] as any;
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+
       if (prop && prop['x-rhino-attribute']) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         Object.assign(prop, prop['x-rhino-attribute']);
       }
 
       // OpenAPI does required on the model level, we need it on the
       // attribute level for efficiency
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+
       prop['x-rhino-required'] = model?.required?.includes(property) ?? false;
     });
   });
@@ -107,7 +106,6 @@ const fetchOpenApiSpec = async (
   if (loadStatic) {
     // @ts-expect-error this will be defined in the client application
     return import('models/static').then(
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       (mod) => mod.default as OpenAPIV3_1.Document
     );
   }

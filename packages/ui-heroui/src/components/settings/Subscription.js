@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import { useBaseOwnerId } from '@rhino-project/core/hooks';

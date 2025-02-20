@@ -22,7 +22,6 @@ import { releaseCommitMsg } from './utils.js';
  * @returns {Promise<string | undefined>}
  */
 export const publishRubyHack = async (options) => {
-  // eslint-disable-next-line no-shadow
   const { branchConfigs, packages, rootDir, branch, tag, ghToken } = options;
 
   const branchName = /** @type {string} */ (branch ?? currentGitBranch());
@@ -176,7 +175,6 @@ export const publishRubyHack = async (options) => {
         .filter(Boolean);
 
   /** Uses packages and changedFiles to determine which packages have changed */
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   const changedPackages = RELEASE_ALL
     ? packages
     : packages.filter((pkg) => {

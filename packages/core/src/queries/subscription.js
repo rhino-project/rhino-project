@@ -5,11 +5,11 @@ import { loadStripe as Stripe } from '@stripe/stripe-js';
 import { networkApiCall } from '../lib/networking';
 import env from '../config/env';
 
-const GET_PRICES_API_PATH = 'api/subscription/prices';
-const CHECKOUT_API_PATH = 'api/subscription/create-checkout-session';
-const CANCEL_API_PATH = 'api/subscription/cancel';
-const SUBSCRIPTION_API_PATH = 'api/subscription/subscriptions';
-const CHECK_SESSION_API_PATH = 'api/subscription/check_session_id?';
+const GET_PRICES_API_PATH = '/api/subscription/prices';
+const CHECKOUT_API_PATH = '/api/subscription/create-checkout-session';
+const CANCEL_API_PATH = '/api/subscription/cancel';
+const SUBSCRIPTION_API_PATH = '/api/subscription/subscriptions';
+const CHECK_SESSION_API_PATH = '/api/subscription/check_session_id?';
 
 // Create a Checkout Session with the selected plan ID
 export async function CreateCheckoutSession(price, base_owner_id) {
@@ -64,7 +64,6 @@ export const useCheckSession = (baseOwnerId, session_id) => {
 
 const useSubscriptionQuery = (queryKey, queryPath, params) => {
   return useQuery({
-    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey,
     queryFn: ({ signal }) => networkApiCall(queryPath, { ...params, signal })
   });

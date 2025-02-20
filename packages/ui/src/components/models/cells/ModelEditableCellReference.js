@@ -36,6 +36,7 @@ export const ModelEditableCellReferenceBase = ({ model, ...props }) => {
   const options = useMemo(
     () =>
       results?.map((result) => (
+        // eslint-disable-next-line react/jsx-key
         <option value={result.id}>{result.display_name}</option>
       )),
     [results]

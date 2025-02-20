@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const defineTest = require('jscodeshift/dist/testUtils').defineTest;
 
 defineTest(

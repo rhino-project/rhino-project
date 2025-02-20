@@ -2,10 +2,7 @@ import { RuleTester } from '@typescript-eslint/rule-tester';
 import { normalizeIndent } from '../../utils/test-utils';
 import { rule } from './no-hooks-get-model.rule';
 
-const ruleTester = new RuleTester({
-  parser: '@typescript-eslint/parser',
-  settings: {}
-});
+const ruleTester = new RuleTester();
 
 ruleTester.run('no-hooks-get-model', rule, {
   valid: [
