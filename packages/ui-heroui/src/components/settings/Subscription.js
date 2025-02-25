@@ -26,7 +26,7 @@ export const Subscription = ({ status, session_id }) => {
   const baseOwnerId = useBaseOwnerId();
   const queryClient = useQueryClient();
 
-  const { isInitialLoading, data: { data: prices } = {} } = usePrices();
+  const { isLoading, data: { data: prices } = {} } = usePrices();
   const { isSuccess, data: { data: subscriptions } = {} } =
     useSubscription(baseOwnerId);
 
@@ -59,7 +59,7 @@ export const Subscription = ({ status, session_id }) => {
     queryClient.invalidateQueries(['getSubscription']);
   }, [baseOwnerId, queryClient]);
 
-  if (isInitialLoading || !isSuccess) return null;
+  if (isLoading || !isSuccess) return null;
 
   const plans = prices?.prices?.map((a) => {
     return (
@@ -76,7 +76,7 @@ export const Subscription = ({ status, session_id }) => {
         </CardBody>
         <CardFooter>
           <Button
-            onClick={() => handleClick(a.id)}
+            onPress={() => handleClick(a.id)}
             startContent={<Icon className="size-4" icon="bi:cart" />}
           >
             Checkout
@@ -108,7 +108,7 @@ export const Subscription = ({ status, session_id }) => {
         Current subscription to &quot;{planName}&quot; plan ends on{' '}
         {displayDate}
       </h4>
-      <Button onClick={handleCancelClick}>Cancel</Button>
+      <Button onPress={handleCancelClick}>Cancel</Button>
 
       {!sessionCheckError() && status === 'success' && (
         <Alert

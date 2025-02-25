@@ -1,17 +1,18 @@
-import PropTypes from 'prop-types';
-
 import { NavIcon } from '../icons';
 import { useGlobalComponent, useRoles } from '@rhino-project/core/hooks';
-import {
-  getBaseOwnedModels,
-  getModel,
-  getModelIndexPath
-} from '@rhino-project/core/utils';
-import { useMemo } from 'react';
+import { getBaseOwnedModels, getModel } from '@rhino-project/core/utils';
+import { ReactNode, useMemo } from 'react';
 import { map, uniqBy } from 'lodash-es';
-import { Link } from '@tanstack/react-router';
+import { Link, LinkProps } from '@tanstack/react-router';
+import { RhinoResourceName } from '@rhino-project/core';
 
-export const NavSection = ({ title, children }) => {
+export const NavSection = ({
+  title,
+  children
+}: {
+  title: string;
+  children: ReactNode;
+}) => {
   return (
     <li data-slot="base" role="presentation" className="relative mb-2 w-full">
       {title && (
@@ -27,15 +28,14 @@ export const NavSection = ({ title, children }) => {
   );
 };
 
-NavSection.propTypes = {
-  icon: PropTypes.string,
-  title: PropTypes.node,
-  children: PropTypes.node.isRequired,
-  onIconClick: PropTypes.func,
-  className: PropTypes.string
-};
-
-export const NavItem = ({ title, icon, ...props }) => {
+export const NavItem = ({
+  title,
+  icon,
+  ...props
+}: {
+  title: string;
+  icon: string;
+} & LinkProps) => {
   return (
     <Link className="[&.active]:text-green-500" {...props}>
       <div className="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40 ">
@@ -48,20 +48,18 @@ export const NavItem = ({ title, icon, ...props }) => {
   );
 };
 
-NavItem.propTypes = {
-  icon: PropTypes.string,
-  title: PropTypes.node.isRequired,
-  to: PropTypes.string.isRequired,
-  extraClass: PropTypes.string
+export type ModelNavSectionProps = {
+  title: string;
+  models?:
+    | RhinoResourceName[]
+    | ((roles: string[]) => RhinoResourceName[])
+    | null;
 };
-
-const modelsRoute = (model) => getModelIndexPath(model);
 
 export const ModelNavSectionBase = ({
   title = 'Resources',
-  className,
   models = null
-}) => {
+}: ModelNavSectionProps) => {
   const roles = useRoles();
 
   const fullModels = useMemo(() => {
@@ -80,8 +78,11 @@ export const ModelNavSectionBase = ({
       return generatedModels.map((m) => getModel(m));
     } else if (typeof generatedModels === 'object') {
       return uniqBy(
+        // @ts-expect-error FIXME: typing
         roles.reduce((previousValue, roleName) => {
+          // @ts-expect-error FIXME: typing
           if (models[roleName]) {
+            // @ts-expect-error FIXME: typing
             return [...previousValue, ...models[roleName]];
           }
           return previousValue;
@@ -91,10 +92,11 @@ export const ModelNavSectionBase = ({
     }
 
     console.warn('Invalid models passed to PrimaryNavigation', models);
+    return [];
   }, [models, roles]);
 
   return (
-    <NavSection title={title} className={className}>
+    <NavSection title={title}>
       {map(fullModels, (m) => (
         <NavItem
           key={m.model}
@@ -107,10 +109,5 @@ export const ModelNavSectionBase = ({
   );
 };
 
-ModelNavSectionBase.propTypes = {
-  title: PropTypes.string,
-  className: PropTypes.string
-};
-
-export const ModelNavSection = (props) =>
+export const ModelNavSection = (props: ModelNavSectionProps) =>
   useGlobalComponent('ModelNavSection', ModelNavSectionBase, props);

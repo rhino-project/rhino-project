@@ -46,7 +46,7 @@ export const NotificationMenu = () => {
             <DropdownItem
               key={n.id}
               href={n.notifiable_path}
-              onClick={() => handleItemClick(n.id)}
+              onPress={() => handleItemClick(n.id)}
             >
               {n.printable_notifiable_name}
             </DropdownItem>
@@ -55,7 +55,7 @@ export const NotificationMenu = () => {
         {hasNotifications ? (
           <>
             <DropdownSection showDivider />
-            <DropdownItem disabled={!hasNotifications} onClick={handleClick}>
+            <DropdownItem disabled={!hasNotifications} onPress={handleClick}>
               Mark All Opened
             </DropdownItem>
           </>

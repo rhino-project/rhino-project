@@ -1,7 +1,6 @@
 import { LinkButton } from '../../components/buttons';
 import { useForgotPasswordPath } from '@rhino-project/core/hooks';
 import { AuthPage } from './AuthPage';
-import PropTypes from 'prop-types';
 import { Alert } from '@heroui/react';
 
 export const ResetPasswordExpiredPage = (props) => {

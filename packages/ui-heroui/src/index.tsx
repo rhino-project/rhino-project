@@ -18,6 +18,7 @@ export * from './components/nav/index';
 export * from './components/settings/index';
 export * from './components/shared/index';
 export * from './components/shells/index';
+// @ts-expect-error FIXME: exporting properly
 export * from './components/table/index';
 export * from './components/table/cells/index';
 export * from './hooks/index';

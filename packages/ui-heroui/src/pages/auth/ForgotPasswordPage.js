@@ -9,7 +9,7 @@ export const ForgotPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: forgotPasswordAction,
-    isLoading,
+    isPending,
     isSuccess,
     data: { data: { message } = {} } = {},
     error
@@ -26,7 +26,7 @@ export const ForgotPasswordPage = (props) => {
           content: 'Sign In',
           url: `../${sessionCreatePath}`
         }}
-        loading={isLoading}
+        loading={isPending}
         errors={error?.errors}
         onSubmit={handleSubmit}
         {...props}

@@ -108,9 +108,9 @@ describe('useModelInvalidateIndex', () => {
 
     invalidate();
 
-    expect(queryClient.invalidateQueries).toHaveBeenCalledWith([
-      MODEL_INDEX_KEY
-    ]);
+    expect(queryClient.invalidateQueries).toHaveBeenCalledWith({
+      queryKey: [MODEL_INDEX_KEY]
+    });
   });
 
   test('generates invalidation function with extra keys', () => {
@@ -124,10 +124,9 @@ describe('useModelInvalidateIndex', () => {
 
     invalidate();
 
-    expect(queryClient.invalidateQueries).toHaveBeenCalledWith([
-      MODEL_INDEX_KEY,
-      ...MODEL_TEST_KEYS
-    ]);
+    expect(queryClient.invalidateQueries).toHaveBeenCalledWith({
+      queryKey: [MODEL_INDEX_KEY, ...MODEL_TEST_KEYS]
+    });
   });
 });
 
@@ -150,10 +149,9 @@ describe('useModelInvalidateShow', () => {
 
     invalidate(1);
 
-    expect(queryClient.invalidateQueries).toHaveBeenCalledWith([
-      MODEL_SHOW_KEY,
-      '1'
-    ]);
+    expect(queryClient.invalidateQueries).toHaveBeenCalledWith({
+      queryKey: [MODEL_SHOW_KEY, '1']
+    });
   });
 
   test('generates invalidation function with extra keys', () => {
@@ -167,11 +165,9 @@ describe('useModelInvalidateShow', () => {
 
     invalidate(1);
 
-    expect(queryClient.invalidateQueries).toHaveBeenCalledWith([
-      MODEL_SHOW_KEY,
-      '1',
-      ...MODEL_TEST_KEYS
-    ]);
+    expect(queryClient.invalidateQueries).toHaveBeenCalledWith({
+      queryKey: [MODEL_SHOW_KEY, '1', ...MODEL_TEST_KEYS]
+    });
   });
 });
 
@@ -186,7 +182,7 @@ describe('useModelCreate', () => {
     });
   });
 
-  test('selects axios data correctly and provides legacy support', async () => {
+  test('selects axios data correctly', async () => {
     const onSuccess = vi.fn();
 
     const { result } = renderHook(() => useModelCreate('user'), {
@@ -198,10 +194,6 @@ describe('useModelCreate', () => {
 
     // Backwards compat support
     console.warn = vi.fn();
-    expect(result.current.data.data).toEqual({ id: 10, test: 'bar' });
-    expect(console.warn).toHaveBeenCalledWith(
-      'Legacy data access used in query hooks'
-    );
 
     // Callback is called with the data from the network call
     expect(onSuccess).toHaveBeenCalledWith(
@@ -223,7 +215,7 @@ describe('useModelUpdate', () => {
     });
   });
 
-  test('selects axios data correctly and provides legacy support', async () => {
+  test('selects axios data correctly', async () => {
     const onSuccess = vi.fn();
 
     const { result } = renderHook(() => useModelUpdate('user'), {
@@ -232,13 +224,6 @@ describe('useModelUpdate', () => {
 
     act(() => result.current.mutate({ id: 6, test: 'foo' }, { onSuccess }));
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
-
-    // Backwards compat support
-    console.warn = vi.fn();
-    expect(result.current.data.data).toEqual({ id: 6, test: 'bar' });
-    expect(console.warn).toHaveBeenCalledWith(
-      'Legacy data access used in query hooks'
-    );
 
     // Callback is called with the data from the network call
     expect(onSuccess).toHaveBeenCalledWith(
@@ -260,7 +245,7 @@ describe('useModelDelete', () => {
     });
   });
 
-  test('selects axios data correctly and provides legacy support', async () => {
+  test('selects axios data correctly', async () => {
     const onSuccess = vi.fn();
 
     const { result } = renderHook(() => useModelDelete('user'), {
@@ -269,13 +254,6 @@ describe('useModelDelete', () => {
 
     result.current.mutate(6, { onSuccess });
     await waitFor(() => result.current.isSuccess);
-
-    // Backwards compat support
-    console.warn = vi.fn();
-    expect(result.current.data.data).toEqual({ test: 'test' });
-    expect(console.warn).toHaveBeenCalledWith(
-      'Legacy data access used in query hooks'
-    );
 
     // Callback is called with the data from the network call
     expect(onSuccess).toHaveBeenCalledWith({ test: 'test' }, 6, undefined);
@@ -293,26 +271,13 @@ describe('useModelShow', () => {
     });
   });
 
-  test('selects axios data correctly and provides legacy support', async () => {
-    const onSuccess = vi.fn();
-
-    const { result } = renderHook(
-      () => useModelShow('user', 1, { queryOptions: { onSuccess } }),
-      {
-        wrapper: createWrapper(Wrapper, { client: queryClient })
-      }
-    );
+  test('selects axios data correctly', async () => {
+    const { result } = renderHook(() => useModelShow('user', 1), {
+      wrapper: createWrapper(Wrapper, { client: queryClient })
+    });
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toEqual({ test: 'test' });
-
-    // Backwards compat support
-    console.warn = vi.fn();
-    expect(result.current.data.data).toEqual({ test: 'test' });
-    expect(console.warn).toHaveBeenCalledWith(
-      'Legacy data access used in query hooks'
-    );
-    expect(onSuccess).toHaveBeenCalledWith({ test: 'test' });
   });
 });
 
@@ -402,28 +367,7 @@ describe('useModelIndex', () => {
     });
   });
 
-  test('supports legacy params option', () => {
-    const options = {
-      params: {
-        search: 'test',
-        filter: { test: 'test' },
-        order: 'updated_at',
-        limit: 10,
-        offset: 10
-      }
-    };
-    renderHook(() => useModelIndex('user', options), {
-      wrapper: createWrapper(Wrapper, { client: queryClient })
-    });
-
-    expect(network.networkApiCall).toHaveBeenCalledWith('/api/users', {
-      params: {
-        ...options.params
-      }
-    });
-  });
-
-  test('selects axios data correctly and provides legacy support', async () => {
+  test('selects axios data correctly', async () => {
     const options = {
       search: 'test',
       filter: { test: 'test' },
@@ -437,12 +381,5 @@ describe('useModelIndex', () => {
 
     await waitFor(() => expect(result.current.isSuccess).toBe(true));
     expect(result.current.data).toEqual({ test: 'test' });
-
-    // Backwards compat support
-    console.warn = vi.fn();
-    expect(result.current.data.data).toEqual({ test: 'test' });
-    expect(console.warn).toHaveBeenCalledWith(
-      'Legacy data access used in query hooks'
-    );
   });
 });

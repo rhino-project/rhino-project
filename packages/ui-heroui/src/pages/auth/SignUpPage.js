@@ -12,7 +12,7 @@ import { RhinoLink } from '../../RhinoLink';
 
 export const SignUpPage = (props) => {
   const { appName } = useRhinoConfig();
-  const { mutate: signUpAction, isLoading, error } = useSignUpAction();
+  const { mutate: signUpAction, isPending, error } = useSignUpAction();
 
   const handleSubmit = (formValues) => signUpAction(formValues);
 
@@ -35,7 +35,7 @@ export const SignUpPage = (props) => {
         passwordConfirmField
         organizationField={hasOrganizationsModule()}
         primaryAction="Sign Up"
-        loading={isLoading}
+        loading={isPending}
         errors={error?.errors}
         onSubmit={handleSubmit}
         {...props}

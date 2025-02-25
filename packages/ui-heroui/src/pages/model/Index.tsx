@@ -1,12 +1,11 @@
-import { RhinoResourceSpecifier } from '@rhino-project/core';
-import { ModelIndex } from '../../components/models/ModelIndex';
+import { Resources } from '@rhino-project/core';
+import {
+  ModelIndex,
+  ModelIndexProps
+} from '../../components/models/ModelIndex';
 import { ModelPage } from './ModelPage';
 
-export type ModelIndexPageProps = {
-  model: RhinoResourceSpecifier;
-};
-
-export const Index = (props: ModelIndexPageProps) => {
+export const Index = <T extends keyof Resources>(props: ModelIndexProps<T>) => {
   return (
     <ModelPage>
       <ModelIndex {...props} />

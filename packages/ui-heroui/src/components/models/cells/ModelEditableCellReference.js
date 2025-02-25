@@ -20,7 +20,7 @@ export const ModelEditableCellReferenceBase = ({ model, ...props }) => {
   const { attribute } = useModelAndAttributeFromPath(model, path);
   const refModel = useMemo(() => getModelFromRef(attribute), [attribute]);
 
-  const { results, isInitialLoading } = useModelIndex(refModel, {
+  const { results } = useModelIndex(refModel, {
     search,
     filter,
     limit,

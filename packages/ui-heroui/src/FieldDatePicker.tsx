@@ -54,6 +54,7 @@ export const FieldDatePickerBase = <T extends FieldValues = FieldValues>({
 
   const handleOnChange = useCallback(
     // https://github.com/adobe/react-spectrum/issues/3953#issuecomment-1402914920
+    // @ts-expect-error FIXME: Type better
     (newValue) => {
       let stringValue = undefined;
 

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { LightLogo } from '../logos';
+// import { LightLogo } from '../logos';
 import { Sidebar } from './Sidebar';
 import { useGlobalComponent } from '@rhino-project/core/hooks';
 import { Icon } from '@iconify/react';

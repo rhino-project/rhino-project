@@ -11,7 +11,7 @@ export const ResetPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
   const {
     mutate: resetPasswordAction,
-    isLoading,
+    isPending,
     isSuccess,
     data: { data: { message } = {} } = {},
     error
@@ -33,7 +33,7 @@ export const ResetPasswordPage = (props) => {
         passwordField
         passwordConfirmField
         primaryAction="Change Password"
-        loading={isLoading}
+        loading={isPending}
         errors={error?.errors}
         onSubmit={handleSubmit}
         {...props}

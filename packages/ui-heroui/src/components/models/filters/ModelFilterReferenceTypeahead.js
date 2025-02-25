@@ -10,6 +10,7 @@ import { compact } from 'lodash-es';
 import PropTypes from 'prop-types';
 import { useModelFiltersContext } from '@rhino-project/core/hooks';
 import { Autocomplete, AutocompleteItem } from '@heroui/react';
+import { keepPreviousData } from '@tanstack/react-query';
 
 export const ModelFilterReferenceTypeahead = ({ path, ...props }) => {
   const { filter, limit = 10, offset, order } = props;
@@ -43,13 +44,13 @@ export const ModelFilterReferenceTypeahead = ({ path, ...props }) => {
     [fieldValue, referenceAccessor]
   );
 
-  const { isSuccess, results, isInitialLoading } = useModelIndex(refModel, {
+  const { isSuccess, results, isLoading } = useModelIndex(refModel, {
     filter,
     limit,
     offset,
     order,
     search,
-    queryOptions: { keepPreviousData: true }
+    queryOptions: { placeholderData: keepPreviousData }
   });
 
   const { setPill } = useModelFiltersContext();
@@ -66,7 +67,7 @@ export const ModelFilterReferenceTypeahead = ({ path, ...props }) => {
 
   return (
     <Autocomplete
-      isLoading={isInitialLoading}
+      isLoading={isLoading}
       isDisabled={disabled}
       items={results || []}
       onInputChange={setSearch}

@@ -1,5 +1,5 @@
-import axios from 'axios';
-import * as qs from 'qs';
+import axios, { AxiosRequestConfig } from 'axios';
+import qs from 'qs';
 import * as networking from './networking.js';
 import { toastStore } from '../queries/toast';
 
@@ -21,32 +21,34 @@ const _buildHeaders = (headers = {}) => {
 };
 
 export class NetworkUnauthorizedError extends Error {
-  constructor(...params) {
-    // Pass remaining arguments (including vendor specific ones) to parent constructor
-    super(...params);
+  constructor(message?: string) {
+    super(message);
 
     this.name = 'NetworkUnauthorizedError';
   }
 }
 
 export class NetworkParamError extends Error {
-  constructor(errors, ...params) {
+  // FIXME: more specific type
+  public errors: string[] | Record<string, string[]>;
+
+  constructor(errors: string[] | Record<string, string[]>, message?: string) {
     // Pass remaining arguments (including vendor specific ones) to parent constructor
-    super(...params);
+    super(message);
 
     this.name = 'NetworkParamError';
     this.errors = errors;
   }
 }
 
-export const networkApiCall = (path, options) => {
+export const networkApiCall = (path: string, options: AxiosRequestConfig) => {
   const defaultOptions = {
     method: 'get',
     headers: {},
     data: null,
     signal: null,
     ...options
-  };
+  } as AxiosRequestConfig;
 
   return axios(path, {
     ...defaultOptions,
@@ -80,24 +82,14 @@ export const networkApiCall = (path, options) => {
   });
 };
 
-const handler = {
-  get(target, prop) {
-    // If the data is being access data.data, its the older form, return it
-    if (prop === 'data') {
-      console.warn('Legacy data access used in query hooks');
-
-      return target;
-    }
-    // eslint-disable-next-line prefer-rest-params
-    return Reflect.get(...arguments);
-  }
-};
-
 export const networkApiCallOnlyData = async (
-  path,
-  options = { method: 'get', headers: {}, data: null, signal: null }
+  path: string,
+  options = {} as AxiosRequestConfig
 ) => {
-  const response = await networking.networkApiCall(path, options);
+  // Will have data if no error
+  const response = (await networking.networkApiCall(path, options)) as {
+    data: unknown;
+  };
 
-  return new Proxy(response.data, handler);
+  return response.data;
 };

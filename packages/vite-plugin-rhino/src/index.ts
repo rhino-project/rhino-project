@@ -1,9 +1,10 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
-import { execSync } from 'node:child_process';
+import { exec, execSync } from 'node:child_process';
 import { loadEnv, transformWithEsbuild } from 'vite';
 import type { Plugin, ResolvedConfig, ViteDevServer } from 'vite';
+import { promisify } from 'node:util';
 
 const CONFIG_MODULE_ID = 'rhino.config';
 const MODELS_STATIC_MODULE_ID = 'models/static';
@@ -43,6 +44,8 @@ const esbuildRhinoPlugin = {
     });
   }
 };
+
+const execAsync = promisify(exec);
 
 export function RhinoProjectVite({
   enableJsxInJs = true,
@@ -226,7 +229,8 @@ export function RhinoProjectVite({
       const watchPaths = [
         path.join(process.cwd(), 'app', 'models'),
         path.join(process.cwd(), 'db'),
-        path.join(process.cwd(), 'config', 'routes.rb')
+        path.join(process.cwd(), 'config', 'routes.rb'),
+        path.join(process.cwd(), 'app', 'frontend', 'models', 'static.js')
       ];
 
       watchPaths.forEach((watchPath) => {
@@ -237,8 +241,20 @@ export function RhinoProjectVite({
         }
       });
 
-      server.watcher.on('change', (changedPath: string) => {
-        if (watchPaths.some((watchPath) => changedPath.startsWith(watchPath))) {
+      server.watcher.on('change', async (changedPath: string) => {
+        if (changedPath.endsWith('app/frontend/models/static.js')) {
+          console.log('📝 Generating TypeScript definitions from OpenAPI...');
+          try {
+            await execAsync(
+              `npx openapi-typescript ${apiRootPath}/api/info/openapi -o app/frontend/models/models.d.ts`
+            );
+            console.log('✅ TypeScript definitions generated successfully');
+          } catch (error) {
+            console.error('❌ Error generating TypeScript definitions:', error);
+          }
+        } else if (
+          watchPaths.some((watchPath) => changedPath.startsWith(watchPath))
+        ) {
           logger.info(`File changed: ${changedPath}`, {
             timestamp: true
           });

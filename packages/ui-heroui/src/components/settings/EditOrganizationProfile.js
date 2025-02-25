@@ -20,7 +20,7 @@ export const EditOrganizationProfile = () => {
   const baseOwner = useBaseOwner();
   const model = baseOwnerModel();
   const baseOwnerId = useBaseOwnerId();
-  const { mutate, isLoading, isSuccess, error } = useModelUpdate(model);
+  const { mutate, isPending, isSuccess, error } = useModelUpdate(model);
   const { resource: owner } = useModelShow(model, baseOwnerId);
 
   const [showAlert, setShowAlert] = useState(false);
@@ -67,7 +67,7 @@ export const EditOrganizationProfile = () => {
             <Alert color="danger" title={error.errors[0]} />
           )}
 
-          <SubmitButton isLoading={isLoading} disabled={!isDirty}>
+          <SubmitButton isLoading={isPending} disabled={!isDirty}>
             {`Update ${baseOwner.name}`}
           </SubmitButton>
         </Form>

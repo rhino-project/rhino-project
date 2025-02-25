@@ -1,7 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
 import { BaseAuthedPage } from '../BaseAuthedPage';
-import { useBaseOwnerPath, useParsedSearch } from '@rhino-project/core/hooks';
+import { useBaseOwnerPath } from '@rhino-project/core/hooks';
 import {
   hasOrganizationsModule,
   hasSubscriptionsModule
@@ -12,7 +12,7 @@ import { Outlet, useLocation } from '@tanstack/react-router';
 
 export const SettingsPage = () => {
   //Checking subscription payment related status
-  const { status, session_id } = useParsedSearch(); //FIXME use session_id for checking later
+  // const { status, session_id } = useParsedSearch(); //FIXME use session_id for checking later
   const { build } = useBaseOwnerPath();
   const { pathname } = useLocation();
 

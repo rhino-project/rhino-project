@@ -12,7 +12,7 @@ import { IconButton } from '../buttons';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
-  const { mutate, isLoading } = useModelEditContext();
+  const { mutate, isPending } = useModelEditContext();
   const { handleSubmit } = useFormContext();
 
   const onSuccess = useCallback(
@@ -31,7 +31,7 @@ export const ModelEditActionSave = ({ children, onSave, ...props }) => {
     <IconButton
       color="primary"
       icon="bi:save"
-      isLoading={isLoading}
+      isLoading={isPending}
       onPress={handleClick}
       {...props}
     >
@@ -104,6 +104,7 @@ export const ModelEditActionsBase = ({
 
   const computedDefaultActions = useMemo(
     () =>
+      // eslint-disable-next-line react/jsx-key
       [hasCancel && <ModelEditActionCancel />, <ModelEditActionSave />].filter(
         Boolean
       ),

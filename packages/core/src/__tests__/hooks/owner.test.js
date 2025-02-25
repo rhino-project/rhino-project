@@ -24,14 +24,14 @@ const Wrapper = ({ children, ...props }) => {
 };
 
 describe('useBaseOwner', () => {
-  test('exposes baseOwner from BaseOwnerContext when baseOwner is valid', () => {
+  test('exposes baseOwner from RhinoContext when baseOwner is valid', () => {
     const { result } = renderHook(() => useBaseOwner(), {
       wrapper: createWrapper(Wrapper, { value: validContext })
     });
     expect(result.current).toEqual(validContext.baseOwner);
   });
 
-  test('exposes user from BaseOwnerContext when user is null', () => {
+  test('exposes user from RhinoContext when user is null', () => {
     const { result } = renderHook(() => useBaseOwner(), {
       wrapper: createWrapper(Wrapper, { value: nullishContext })
     });
@@ -160,7 +160,7 @@ describe('useUsersRoles', () => {
     expect(result.current).toEqual([]);
   });
 
-  test('returns usersRoles stored in BaseOwnerContext, even if undefined', () => {
+  test('returns usersRoles stored in RhinoContext, even if undefined', () => {
     const context = {
       ...validContext,
       baseOwner: { ...validContext.baseOwner },

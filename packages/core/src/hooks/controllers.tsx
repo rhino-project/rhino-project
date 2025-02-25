@@ -1,4 +1,3 @@
-import qs from 'qs';
 import {
   useCallback,
   useContext,
@@ -17,7 +16,7 @@ import {
   merge,
   omit
 } from 'lodash-es';
-import { useForm } from 'react-hook-form';
+import { FieldErrors, useForm } from 'react-hook-form';
 import { ModelCreateContext } from '../components/models/ModelCreateProvider';
 import { ModelEditContext } from '../components/models/ModelEditProvider';
 import { ModelIndexContext } from '../components/models/ModelIndexProvider';
@@ -30,7 +29,6 @@ import {
   useModelShow,
   useModelUpdate
 } from './queries';
-import { withParams } from '../routes/withParams';
 import {
   getBaseOwnerFilters,
   getParentModel,
@@ -47,19 +45,36 @@ import { usePaths } from './paths';
 import { useBaseOwnerId } from './owner';
 import { ModelFiltersContext } from '../components/models/ModelFiltersProvider';
 import { yupFiltersFromAttribute } from '../utils/yup';
+import {
+  Resources,
+  RhinoResource,
+  RhinoResourceName,
+  RhinoResourceSpecifier,
+  RhinoResourceSpecifierToResource
+} from '..';
+import { UseMutationOptions, UseQueryOptions } from '@tanstack/react-query';
+import { AxiosRequestConfig } from 'axios';
+import { NetworkParamError } from '../lib';
 
 export const DEFAULT_LIMIT = 10;
 
-const useFormBuildErrors = () => {
-  const [errors, setErrors] = useState(null);
+const useFormBuildErrors = (): [
+  FieldErrors | undefined,
+  UseMutationOptions<unknown, Error, unknown>['onError']
+] => {
+  const [errors, setErrors] = useState<FieldErrors | undefined>(undefined);
 
-  const onError = useCallback((e) => {
+  const onError = useCallback((e: Error) => {
+    if (!(e instanceof NetworkParamError)) {
+      return;
+    }
+
     // Errors can be an array of strings or an object with keys
     // If it is an array of strings, we assume it is a base error
     if (Array.isArray(e.errors)) {
       setErrors({
+        // @ts-expect-error FIXME: need better typing
         root: {
-          type: 'manual',
           message: e.errors?.[0]
         }
       });
@@ -71,11 +86,12 @@ const useFormBuildErrors = () => {
 
       errorObj[key] = {
         type: 'manual',
+        // @ts-expect-error FIXME: need better typing
         message: e.errors[name][0]
       };
 
       return errorObj;
-    }, {});
+    }, {} as FieldErrors);
 
     setErrors(newErrors);
   }, []);
@@ -102,10 +118,17 @@ export const useModelIndexContext = () => {
 
 // https://chat.openai.com/share/55cc13f5-99ae-43f4-9781-15c0016861e9
 // Finds the keys unique to obj2
-const findDeepDifference = (obj1, obj2) => {
-  const differences = {};
+const findDeepDifference = (
+  obj1: Record<string, unknown>,
+  obj2: Record<string, unknown>
+) => {
+  const differences = {} as Record<string, unknown>;
 
-  const compare = (item1, item2, path = []) => {
+  const compare = (
+    item1: Record<string, unknown>,
+    item2: Record<string, unknown>,
+    path = []
+  ) => {
     if (isPlainObject(item2)) {
       Object.keys(item2).forEach((key) => {
         if (
@@ -113,33 +136,41 @@ const findDeepDifference = (obj1, obj2) => {
           !Object.prototype.hasOwnProperty.call(item1, key) ||
           isPlainObject(item2[key])
         ) {
+          // @ts-expect-error FIXME: need better typing
           compare(item1 && item1[key], item2[key], path.concat(key));
         }
       });
     } else if (
       !item1 ||
+      // @ts-expect-error FIXME: need better typing
       !Object.prototype.hasOwnProperty.call(item1, path[path.length - 1])
     ) {
       // Assign value only if the key does not exist in obj1
       let current = differences;
       for (let i = 0; i < path.length - 1; i++) {
+        // @ts-expect-error FIXME: need better typing
         if (!current[path[i]]) current[path[i]] = {};
+        // @ts-expect-error FIXME: need better typing
         current = current[path[i]];
       }
+      // @ts-expect-error FIXME: need better typing
       current[path[path.length - 1]] = item2;
     }
   };
 
   compare(obj1, obj2);
+
   return differences;
 };
 
 // https://chat.openai.com/share/55cc13f5-99ae-43f4-9781-15c0016861e9
 // Counts the number of leaf nodes in an object
-const countLeafNodes = (obj) => {
-  const reducer = (acc, value) => {
+const countLeafNodes = (obj: Record<string, unknown>) => {
+  const reducer = (acc: number, value: unknown): number => {
     if (isPlainObject(value)) {
-      return acc + Object.values(value).reduce(reducer, 0);
+      return (
+        acc + Object.values(value as Record<string, unknown>).reduce(reducer, 0)
+      );
     } else {
       return acc + 1;
     }
@@ -148,10 +179,31 @@ const countLeafNodes = (obj) => {
   return Object.values(obj).reduce(reducer, 0);
 };
 
+export type UseModelIndexControllerOptions<T extends RhinoResourceSpecifier> = {
+  defaultFiltersBaseOwner?: boolean;
+  defaultFilter?: object;
+  defaultLimit?: number;
+  defaultOffset?: number;
+  defaultOrder?: string;
+  defaultSearch?: string;
+  defaultGeospatial?: object;
+  model: T;
+  paths?: T extends RhinoResourceName
+    ? (keyof Resources[T])[]
+    : T['model'] extends RhinoResourceName
+      ? (keyof Resources[T['model']])[]
+      : never;
+  queryOptions?: Partial<UseQueryOptions<RhinoResourceSpecifierToResource<T>>>;
+  networkOptions?: Partial<AxiosRequestConfig>;
+  syncUrl?: boolean;
+};
+
 // Reset/change default state - when baseOwnerFilter changes for instance or tabbed filtering
 //      Does initial state need to be reset?
 // Count of filters
-export const useModelIndexController = (options) => {
+export const useModelIndexController = <T extends RhinoResourceSpecifier>(
+  options: UseModelIndexControllerOptions<T>
+) => {
   const model = useModel(options.model);
   const { syncUrl = true, defaultFiltersBaseOwner = true } = options;
   const baseOwnerId = useBaseOwnerId();
@@ -159,20 +211,27 @@ export const useModelIndexController = (options) => {
   const navigate = useNavigate();
   const location = useLocation();
   const defaultState = useRef({
-    filter: defaultFiltersBaseOwner
+    filter: (defaultFiltersBaseOwner
       ? merge(
           getBaseOwnerFilters(model, baseOwnerId),
           options?.defaultFilter
         ) ?? {}
-      : options?.defaultFilter ?? {},
+      : options?.defaultFilter ?? {}) as Record<string, unknown>,
     limit: options?.defaultLimit ?? DEFAULT_LIMIT,
     offset: options?.defaultOffset ?? 0,
     order: options?.defaultOrder ?? DEFAULT_SORT,
     search: options?.defaultSearch ?? '',
-    geospatial: options?.defaultGeospatial ?? {}
+    geospatial: (options?.defaultGeospatial ?? {}) as Record<string, unknown>
   });
 
-  const initialState = useRef(null);
+  const initialState = useRef<{
+    search?: string;
+    order?: string;
+    limit?: number;
+    offset?: number;
+    filter?: Record<string, unknown>;
+    geospatial?: Record<string, unknown>;
+  } | null>(null);
 
   // https://beta.reactjs.org/reference/react/useRef#avoiding-recreating-the-ref-contents
   if (initialState.current === null) {
@@ -184,11 +243,8 @@ export const useModelIndexController = (options) => {
     // over anything else. They cannot be changed by setting URL, nor by the UI, nor they render pills of their own.
     // The initial value of searchParams will be a merge of filters from the URL and the baseFiltes, the latter being able to
     // override anything in the URL.
-    const queryFromUrl = syncUrl
-      ? qs.parse(location.search, {
-          ignoreQueryPrefix: true
-        })
-      : {};
+
+    const queryFromUrl = syncUrl ? location.search : {};
 
     initialState.current = {
       search: queryFromUrl.search ?? defaultState.current?.search,
@@ -212,30 +268,35 @@ export const useModelIndexController = (options) => {
   }
 
   const [filter, internalSetFilter] = useState(
-    findDeepDifference(defaultState.current.filter, initialState.current.filter)
+    findDeepDifference(
+      defaultState.current.filter,
+      initialState.current.filter!
+    )
   );
-  const [fullFilter, setFullFilter] = useState(initialState.current.filter);
+  const [fullFilter, setFullFilter] = useState<Record<string, unknown>>(
+    initialState.current.filter!
+  );
   const [geospatial, internalSetGeospatial] = useState(
     findDeepDifference(
       defaultState.current.geospatial,
-      initialState.current.geospatial
+      initialState.current.geospatial!
     )
   );
   const [fullGeospatial, setFullGeospatial] = useState(
     initialState.current.geospatial
   );
-  const [limit, setLimit] = useState(initialState.current.limit);
-  const [offset, setOffset] = useState(initialState.current.offset);
-  const [order, setOrder] = useState(initialState.current.order);
-  const [search, setSearch] = useState(initialState.current.search);
+  const [limit, setLimit] = useState<number>(initialState.current.limit!);
+  const [offset, setOffset] = useState<number>(initialState.current.offset!);
+  const [order, setOrder] = useState<string>(initialState.current.order!);
+  const [search, setSearch] = useState<string>(initialState.current.search!);
 
-  const setFilter = useCallback((filter) => {
+  const setFilter = useCallback((filter: Record<string, unknown>) => {
     internalSetFilter(findDeepDifference(defaultState.current.filter, filter));
     setFullFilter(merge({}, filter ?? {}, defaultState.current?.filter));
   }, []);
 
   const setDefaultFilter = useCallback(
-    (defaultFilter) => {
+    (defaultFilter: Record<string, unknown>) => {
       const updatedDefaultFilter = defaultFiltersBaseOwner
         ? merge({}, getBaseOwnerFilters(model, baseOwnerId), defaultFilter)
         : defaultFilter;
@@ -245,6 +306,7 @@ export const useModelIndexController = (options) => {
       const newFilter = findDeepDifference(defaultState.current.filter, filter);
       const newFullFilter = merge({}, newFilter, defaultState.current?.filter);
 
+      // @ts-expect-error this will definitely be an object by now
       initialState.current.filter = newFullFilter;
 
       internalSetFilter(newFilter);
@@ -253,7 +315,7 @@ export const useModelIndexController = (options) => {
     [baseOwnerId, defaultFiltersBaseOwner, filter, model]
   );
 
-  const setGeospatial = useCallback((geospatial) => {
+  const setGeospatial = useCallback((geospatial: Record<string, unknown>) => {
     internalSetGeospatial(
       findDeepDifference(defaultState.current.geospatial, geospatial)
     );
@@ -263,7 +325,7 @@ export const useModelIndexController = (options) => {
   }, []);
 
   const setDefaultGeospatial = useCallback(
-    (defaultGeospatial) => {
+    (defaultGeospatial: Record<string, unknown>) => {
       defaultState.current.geospatial = defaultGeospatial ?? {};
 
       const newGeospatial = findDeepDifference(
@@ -276,6 +338,7 @@ export const useModelIndexController = (options) => {
         defaultState.current?.geospatial
       );
 
+      // @ts-expect-error this will definitely be an object by now
       initialState.current.geospatial = newFullGeospatial;
 
       internalSetGeospatial(newGeospatial);
@@ -307,6 +370,7 @@ export const useModelIndexController = (options) => {
 
   // Pagination
   const totalPages = useMemo(
+    // @ts-expect-error FIXME: fix me with bug in ModelPager
     () => Math.ceil(query.total / limit),
     [query.total, limit]
   );
@@ -328,7 +392,7 @@ export const useModelIndexController = (options) => {
   );
   const hasPrevPage = offset > 0;
   const hasNextPage = offset + limit < totalPages * limit;
-  const setPage = (page) => setOffset((page - 1) * limit);
+  const setPage = (page: number) => setOffset((page - 1) * limit);
 
   useEffect(() => {
     if (!syncUrl) return;
@@ -347,18 +411,19 @@ export const useModelIndexController = (options) => {
       )
     ) {
       // If the current state is the same as the default state, remove the query params from the URL but only if they are not already empty
-      if (location.search) navigate(withParams(location.pathname, {}));
+      if (location.search) navigate({ to: location.pathname, search: {} });
     } else {
-      navigate(
-        withParams(location.pathname, {
+      navigate({
+        to: location.pathname,
+        search: {
           filter,
           geospatial,
           limit,
           offset,
           order,
           search
-        })
-      );
+        }
+      });
     }
 
     // https://github.com/facebook/react/issues/22305#issuecomment-1113508762
@@ -366,13 +431,12 @@ export const useModelIndexController = (options) => {
   }, [syncUrl, filter, geospatial, fullFilter, search, limit, offset, order]);
 
   useEffect(
+    // @ts-expect-error this will definitely be an object by now
     () => setOffset(initialState.current.offset),
     [filter, geospatial, search, limit]
   );
 
   return {
-    model,
-    parentId: options?.parentId,
     defaultState: defaultState.current,
     initialState: initialState.current,
     order,
@@ -419,7 +483,7 @@ export const useModelShowContext = () => {
   return context;
 };
 
-const getViewablePaths = (model) =>
+const getViewablePaths = (model: RhinoResource) =>
   filter(model.properties, (a) => {
     return (
       !isIdentifier(a) &&
@@ -429,7 +493,22 @@ const getViewablePaths = (model) =>
     );
   }).map((a) => a.name);
 
-export const useModelShowController = (options) => {
+export type UseModelShowControllerOptions<T extends RhinoResourceSpecifier> = {
+  extraDefaultValues?: object;
+  model: T;
+  modelId: string | number;
+  paths?: T extends RhinoResourceName
+    ? (keyof Resources[T])[]
+    : T['model'] extends RhinoResourceName
+      ? (keyof Resources[T['model']])[]
+      : never;
+  queryOptions?: Partial<UseQueryOptions<RhinoResourceSpecifierToResource<T>>>;
+  networkOptions?: Partial<AxiosRequestConfig>;
+};
+
+export const useModelShowController = <T extends RhinoResourceSpecifier>(
+  options: UseModelShowControllerOptions<T>
+) => {
   const model = useModel(options.model);
   const { extraDefaultValues, modelId, paths } = options;
   const [errors, onError] = useFormBuildErrors();
@@ -469,7 +548,6 @@ export const useModelShowController = (options) => {
   });
 
   return {
-    model,
     modelId,
     methods,
     paths: computedPaths,
@@ -496,13 +574,37 @@ export const useModelCreateContext = () => {
 
 // We removed ownedBy from the creatable attributes because it is set automatically
 // We removed anyOf with more than one element because we don't support them automatically
-const getCreatablePaths = (model) =>
+const getCreatablePaths = (model: RhinoResource) =>
   getCreatableAttributes(model)
     .filter((a) => a.name !== model.ownedBy)
     .filter((a) => !a.anyOf || a.anyOf?.length <= 1)
     .map((a) => a.name);
 
-export const useModelCreateController = (options) => {
+export type UseModelCreateControllerOptions<T extends RhinoResourceSpecifier> =
+  {
+    autoFocus?:
+      | boolean
+      | (T extends RhinoResourceName
+          ? keyof Resources[T]['properties']
+          : T['model'] extends RhinoResourceName
+            ? keyof Resources[T['model']]['properties']
+            : never);
+    disabled?: boolean;
+    extraDefaultValues?: object;
+    model: T;
+    parentId: string | number;
+    paths?: T extends RhinoResourceName
+      ? (keyof Resources[T])[]
+      : T['model'] extends RhinoResourceName
+        ? (keyof Resources[T['model']])[]
+        : never;
+    queryOptions?: UseQueryOptions;
+    networkOptions?: AxiosRequestConfig;
+  };
+
+export const useModelCreateController = <T extends RhinoResourceSpecifier>(
+  options: UseModelCreateControllerOptions<T>
+) => {
   const model = useModel(options.model);
   const {
     extraDefaultValues,
@@ -538,8 +640,7 @@ export const useModelCreateController = (options) => {
 
   const methods = useForm({
     defaultValues,
-    disabled:
-      options?.disabled ?? (showParent.isInitialLoading || mutation.isLoading),
+    disabled: options?.disabled ?? (showParent.isLoading || mutation.isPending),
     errors,
     resolver,
     ...options
@@ -557,7 +658,6 @@ export const useModelCreateController = (options) => {
   }, [computedPaths, autoFocus, setFocus]);
 
   return {
-    model,
     parentId,
     parentModel,
     ...mutation,
@@ -581,12 +681,36 @@ export const useModelEditContext = () => {
 };
 
 // We removed ownedBy from the updatable attributes because it is set automatically
-const getEditablePaths = (model) =>
+const getEditablePaths = (model: RhinoResource) =>
   getUpdatableAttributes(model)
     .filter((a) => a.name !== model.ownedBy)
     .map((a) => a.name);
 
-export const useModelEditController = (options) => {
+export type UseModelEditControllerOptions<T extends RhinoResourceSpecifier> = {
+  autoFocus?:
+    | boolean
+    | (T extends RhinoResourceName
+        ? keyof Resources[T]['properties']
+        : T['model'] extends RhinoResourceName
+          ? keyof Resources[T['model']]['properties']
+          : never);
+  debounceDelay?: number;
+  disabled?: boolean;
+  extraDefaultValues?: object;
+  model: T;
+  modelId: string | number;
+  paths?: T extends RhinoResourceName
+    ? (keyof Resources[T])[]
+    : T['model'] extends RhinoResourceName
+      ? (keyof Resources[T['model']])[]
+      : never;
+  queryOptions?: UseQueryOptions;
+  networkOptions?: AxiosRequestConfig;
+};
+
+export const useModelEditController = <T extends RhinoResourceSpecifier>(
+  options: UseModelEditControllerOptions<T>
+) => {
   const model = useModel(options.model);
   const {
     modelId,
@@ -600,12 +724,14 @@ export const useModelEditController = (options) => {
 
   const mutation = useModelUpdate(model, { onError });
   const debouncedMutate = useDebouncedCallback(
-    (observation) => mutation.mutate(observation),
+    // @ts-expect-error FIXME: better typing
+    (data) => mutation.mutate(data),
     debounceDelay
   );
 
   // A modal for instance may not have a modelId yet
   const show = useModelShow(model, modelId, {
+    // @ts-expect-error FIXME: why enabled error?
     queryOptions: { enabled: !!modelId, ...queryOptions }
   });
 
@@ -626,8 +752,7 @@ export const useModelEditController = (options) => {
   const methods = useForm({
     defaultValues,
     errors,
-    disabled:
-      options?.disabled ?? (show.isInitialLoading || mutation.isLoading),
+    disabled: options?.disabled ?? (show.isLoading || mutation.isPending),
     resolver,
     values: resource,
     resetOptions: {
@@ -650,7 +775,6 @@ export const useModelEditController = (options) => {
   }, [computedPaths, autoFocus, setFocus]);
 
   return {
-    model,
     modelId,
     ...mutation,
     debouncedMutate,
@@ -673,8 +797,9 @@ export const useModelFiltersContext = () => {
   return context;
 };
 
-export const createFilteredObject = (obj) => {
-  const result = {};
+export const createFilteredObject = (obj: Record<string, unknown>) => {
+  const result = {} as Record<string, unknown>;
+
   // iterate through all keys in the object
   for (const key in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, key)) {
@@ -687,9 +812,13 @@ export const createFilteredObject = (obj) => {
         }
         // if the value is an object (but not an array), recursively call the function
         else if (typeof obj[key] === 'object') {
-          result[key] = createFilteredObject(obj[key]);
+          result[key] = createFilteredObject(
+            obj[key] as Record<string, unknown>
+          );
           // if the object is now empty, don't add it to the new object
-          if (Object.keys(result[key]).length === 0) {
+          if (
+            Object.keys(result[key] as Record<string, unknown>).length === 0
+          ) {
             delete result[key];
           }
         } else {
@@ -702,7 +831,14 @@ export const createFilteredObject = (obj) => {
   return result;
 };
 
-export const useModelFiltersController = (options) => {
+export type UseModelFiltersControllerOptions = {
+  extraDefaultValues?: object;
+  paths?: string[];
+};
+
+export const useModelFiltersController = (
+  options: UseModelFiltersControllerOptions
+) => {
   const { setFilter, initialState, model } = useModelIndexContext();
   const { extraDefaultValues, paths } = options;
   const [pills, setPills] = useState({});
@@ -749,14 +885,14 @@ export const useModelFiltersController = (options) => {
   }, [watch]);
 
   const setPill = useCallback(
-    (path, value) => {
+    (path: string, value: string) => {
       setPills((pills) => ({ ...pills, [path]: value }));
     },
     [setPills]
   );
 
   const resetPill = useCallback(
-    (path) => setPills((pills) => omit(pills, path)),
+    (path: string) => setPills((pills) => omit(pills, path)),
     [setPills]
   );
 

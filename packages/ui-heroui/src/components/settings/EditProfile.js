@@ -16,7 +16,7 @@ import { FormErrors } from '../forms';
 
 export const EditProfile = () => {
   const { model, resource: account } = useModelShow('account', null);
-  const { mutate, isLoading, isSuccess, error } = useModelUpdate(model);
+  const { mutate, isPending, isSuccess, error } = useModelUpdate(model);
 
   const [showAlert, setShowAlert] = useState(false);
   useEffect(() => setShowAlert(isSuccess), [isSuccess]);
@@ -35,7 +35,7 @@ export const EditProfile = () => {
 
   const methods = useForm({
     defaultValues,
-    disabled: isLoading,
+    disabled: isPending,
     values: account,
     mode: 'onBlur',
     resolver
@@ -66,7 +66,7 @@ export const EditProfile = () => {
             <Alert color="danger" title={error.errors[0]} />
           )}
 
-          <SubmitButton isLoading={isLoading} disabled={!isDirty}>
+          <SubmitButton isLoading={isPending} disabled={!isDirty}>
             Update Profile
           </SubmitButton>
         </Form>

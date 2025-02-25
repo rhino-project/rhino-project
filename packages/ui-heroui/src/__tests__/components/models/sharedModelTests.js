@@ -1,3 +1,4 @@
+import { ModelProvider } from '@rhino-project/core/components/models';
 import { render } from '@testing-library/react';
 import rhinoConfig from 'rhino.config';
 
@@ -30,7 +31,9 @@ export const sharedModelTests = (Component) => {
       .mockReturnValue({ user: { [overrideName]: Bar } });
 
     const { asFragment } = render(
-      <Component getValue={getBarValue} model="user" path="name" />
+      <ModelProvider model={{ model: 'user' }}>
+        <Component getValue={getBarValue} model="user" path="name" />
+      </ModelProvider>
     );
     expect(asFragment()).toMatchSnapshot();
   });

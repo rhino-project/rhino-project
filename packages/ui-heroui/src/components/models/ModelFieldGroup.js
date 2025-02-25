@@ -60,7 +60,7 @@ export const ModelFieldGroupBase = ({ overrides, ...originalProps }) => {
     ModelFieldFloat,
     ModelFieldInteger,
     ModelFieldIntegerSelect,
-    ModelFieldGroupJoinSimple,
+    // ModelFieldGroupJoinSimple,
     ModelFieldOwnerReference,
     ModelFieldPhone,
     ModelFieldReference,

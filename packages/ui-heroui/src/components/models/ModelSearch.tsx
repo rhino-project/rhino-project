@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { useModelIndexContext } from '@rhino-project/core/hooks';
-import { Input } from '@heroui/react';
+import { Input, InputProps } from '@heroui/react';
 
-export const ModelSearch = () => {
+export const ModelSearch = (props: Partial<InputProps>) => {
   const { search, setSearch } = useModelIndexContext();
   const [searchTerm, setSearchTerm] = useState(search);
   const debounced = useDebouncedCallback((newSearch) => {
@@ -11,7 +11,8 @@ export const ModelSearch = () => {
     return search;
   }, 200);
 
-  const handleChange = ({ target: { value } }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
     setSearchTerm(value);
 
     // If its a value, we debounce it, otherwise set immediately because
@@ -32,8 +33,7 @@ export const ModelSearch = () => {
       placeholder="Search"
       value={searchTerm}
       onChange={handleChange}
+      {...props}
     />
   );
 };
-
-ModelSearch.propTypes = {};
