@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import {
   Table as NTable,
+  Spinner,
   TableBody,
   TableCell,
   TableColumn,
@@ -26,7 +27,7 @@ const TableSortIndicator = ({ column }) => {
   );
 };
 
-export const Table = ({ table, onRowClick }) => {
+export const Table = ({ table, isLoading, onRowClick }) => {
   const handleRowClick = useCallback(
     (row) => {
       if (onRowClick) onRowClick(row);
@@ -60,7 +61,7 @@ export const Table = ({ table, onRowClick }) => {
           ))}
         </TableHeader>
       ))}
-      <TableBody>
+      <TableBody isLoading={isLoading} loadingContent={<Spinner />}>
         {table.getRowModel().rows.map((row) => (
           <TableRow
             key={row.id}
