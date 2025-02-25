@@ -25,6 +25,10 @@ module Rhino
       name || email
     end
 
+    def token_validation_response
+      to_caching_json
+    end
+
     def self.roles_for_auth(auth_owner, record = nil)
       return {} unless auth_owner
 
