@@ -3,16 +3,13 @@ import PropTypes from 'prop-types';
 
 import { useModelCreateContext } from '@rhino-project/core/hooks';
 import { useFormContext } from 'react-hook-form';
-import {
-  useBackHistory,
-  useBaseOwnerNavigation
-} from '@rhino-project/core/hooks';
+import { useBackHistory } from '@rhino-project/core/hooks';
 import { IconButton } from '../buttons';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '@rhino-project/core/hooks';
-import { getModelShowPath } from '@rhino-project/core/utils';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 
 export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
   const { isLoading, mutate } = useModelCreateContext();
@@ -44,18 +41,16 @@ export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
 };
 
 export const ModelCreateActionSaveShow = ({ onSave, ...props }) => {
-  const { model } = useModelCreateContext();
-  const { push } = useBaseOwnerNavigation();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSave = useCallback(
     (data) => {
-      const showPath = getModelShowPath(model, data.id);
-
       if (onSave) onSave(data);
 
-      push(showPath);
+      navigate({ from: location.pathname, to: `../${data.id}` });
     },
-    [model, push, onSave]
+    [onSave, navigate, location.pathname]
   );
 
   return <ModelCreateActionSave onSave={handleSave} {...props} />;

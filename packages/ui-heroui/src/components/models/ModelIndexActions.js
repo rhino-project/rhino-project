@@ -1,15 +1,12 @@
 import { Children, useCallback, useMemo, useState } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from '@tanstack/react-router';
 import { useModelIndexContext } from '@rhino-project/core/hooks';
-import { getModelCreatePath } from '@rhino-project/core/utils';
-import { useBaseOwnerNavigation } from '@rhino-project/core/hooks';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '@rhino-project/core/hooks';
 import { useBaseOwnerId } from '@rhino-project/core/hooks';
-import { withParams } from '../../routes/withParams';
 import { isBaseOwned } from '@rhino-project/core/utils';
 import { IconButton } from '../buttons';
 import { ModelCreateModal } from './ModelCreateModal';
@@ -18,7 +15,6 @@ import { useDisclosure } from '@heroui/react';
 
 export const ModelIndexActionCreate = ({ children, ...props }) => {
   const { model, parentId: contextParentId } = useModelIndexContext();
-  const baseOwnerNavigation = useBaseOwnerNavigation();
   const baseOwnerId = useBaseOwnerId();
   const location = useLocation();
 
@@ -30,22 +26,15 @@ export const ModelIndexActionCreate = ({ children, ...props }) => {
     return null;
   }, [model, contextParentId, baseOwnerId]);
 
-  const createPath = useMemo(
-    () =>
-      withParams(getModelCreatePath(model), {
-        back: location.pathname,
-        parentId
-      }),
-    [model, location.pathname, parentId]
-  );
-
-  const handleClick = useCallback(
-    () => baseOwnerNavigation.push(createPath),
-    [baseOwnerNavigation, createPath]
-  );
-
   return (
-    <IconButton color="primary" icon="bi:plus" onPress={handleClick} {...props}>
+    <IconButton
+      as={Link}
+      color="primary"
+      icon="bi:plus"
+      to={`${location.href}/new`}
+      search={{ back: location.pathname, parentId }}
+      {...props}
+    >
       {children || `Add ${model.readableName}`}
     </IconButton>
   );

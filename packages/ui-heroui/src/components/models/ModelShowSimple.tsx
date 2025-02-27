@@ -1,10 +1,25 @@
-import PropTypes from 'prop-types';
 import { useModelShowController } from '@rhino-project/core/hooks';
 import { ModelShowProvider } from '@rhino-project/core/components/models';
 import { useMemo } from 'react';
 import { CircularProgress } from '@heroui/react';
+import { Resources } from '@rhino-project/core';
 
-export const ModelShowSimple = ({ children, fallback = true, ...props }) => {
+export type UseModelShowControllerProps<T extends keyof Resources> = {
+  model: T;
+  modelId: string | number;
+  paths?: (keyof Resources[T])[];
+};
+
+export type ModelShowSimpleProps<T extends keyof Resources> = {
+  children: React.ReactNode;
+  fallback?: React.ReactNode | boolean;
+} & UseModelShowControllerProps<T>;
+
+export const ModelShowSimple = <T extends keyof Resources>({
+  children,
+  fallback = true,
+  ...props
+}: ModelShowSimpleProps<T>) => {
   const controller = useModelShowController(props);
   const { isInitialLoading } = controller;
 
@@ -20,11 +35,4 @@ export const ModelShowSimple = ({ children, fallback = true, ...props }) => {
   return (
     <ModelShowProvider {...controller}>{renderFallback}</ModelShowProvider>
   );
-};
-
-ModelShowSimple.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
 };

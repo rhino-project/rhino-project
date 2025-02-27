@@ -19,9 +19,7 @@ export const useSignInAction = () => {
   return useMutation({
     mutationFn: (data) =>
       networkApiCall(AUTH_CREATE_END_POINT, { method: 'post', data }),
-    onSuccess: (data) => {
-      logIn(data.data.data);
-    }
+    onSuccess: (data) => logIn(data.data.data)
   });
 };
 
@@ -31,9 +29,7 @@ export const useSignUpAction = () => {
   return useMutation({
     mutationFn: (data) =>
       networkApiCall(AUTH_BASE_PATH, { method: 'post', data }),
-    onSuccess: (data) => {
-      logIn(data.data.data);
-    }
+    onSuccess: (data) => logIn(data.data.data)
   });
 };
 
@@ -47,9 +43,7 @@ export const useAcceptInvitationAction = () => {
   return useMutation({
     mutationFn: (data) =>
       networkApiCall(AUTH_ACCEPT_PATH, { method: 'put', data }),
-    onSuccess: (data) => {
-      logIn(data.data.data);
-    }
+    onSuccess: (data) => logIn(data.data.data)
   });
 };
 
@@ -66,7 +60,7 @@ export const useSignOutAction = () => {
     onSuccess: logOut,
     onError: (error) => {
       if (error instanceof NetworkUnauthorizedError) {
-        logOut();
+        return logOut();
       }
     }
   });

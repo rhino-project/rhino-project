@@ -1,33 +1,20 @@
 import { Icon } from '@iconify/react';
 import {
-  useBaseOwnerNavigation,
-  useBaseOwner,
-  useBaseOwnerId,
-  useUserRoles,
-  useRootPath
-} from '@rhino-project/core/hooks';
-import {
   Button,
   Dropdown,
   DropdownTrigger,
   DropdownItem,
   DropdownMenu
 } from '@heroui/react';
+import { useRhinoContext } from '@rhino-project/core';
+import { useRouter } from '@tanstack/react-router';
 
 export const BaseOwnerSwitcher = () => {
-  const baseOwnerId = useBaseOwnerId();
-  const baseOwnerNavigation = useBaseOwnerNavigation();
-  const usersRoles = useUserRoles();
-  const baseOwner = useBaseOwner();
-  const rootPath = useRootPath();
+  const { baseOwner, usersRoles } = useRhinoContext();
+  const router = useRouter();
 
   // Only show the dropdown if there is more than one possible base owner
-  if (!baseOwnerId || !usersRoles || usersRoles.length <= 1) {
-    return null;
-  }
-
-  const handleClick = (baseOwnerClicked) =>
-    baseOwnerNavigation.push(rootPath, baseOwnerClicked.id);
+  if (!baseOwner?.id || !usersRoles || usersRoles.length <= 1) return null;
 
   return (
     <>
@@ -45,7 +32,12 @@ export const BaseOwnerSwitcher = () => {
           {usersRoles.map((ur) => (
             <DropdownItem
               key={ur.organization.id}
-              onClick={() => handleClick(ur.organization)}
+              onPress={() =>
+                router.navigate({
+                  to: '/$owner',
+                  params: { owner: ur.organization.id }
+                })
+              }
             >
               {ur.organization.name}
             </DropdownItem>

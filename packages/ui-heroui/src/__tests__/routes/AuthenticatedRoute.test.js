@@ -1,165 +1,51 @@
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
-import { AuthenticatedRoute } from '../../routes/AuthenticatedRoute';
-import * as routes from '@rhino-project/core/utils';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import axios from 'axios';
+import { QueryClient } from '@tanstack/react-query';
+import { NetworkingMock } from '../shared/mock';
+import { RhinoProvider, useRhinoContext } from '@rhino-project/core';
 
-const authenticatedState = {
-  initializing: false,
-  user: {}
-};
+vi.mock('axios');
+const networkingMock = new NetworkingMock();
+axios.mockImplementation(networkingMock.axiosMockImplementation());
 
-const unauthenticatedState = {
-  initializing: false,
-  user: null
-};
+describe('AuthenticatedRoute', () => {
+  const user = { id: 1, name: '', email: '' };
+  let queryClient;
 
-const initializingState = {
-  initializing: true
-};
+  function Wrapper({ children }) {
+    return (
+      <RhinoProvider queryClient={queryClient} forceStatic>
+        {children}
+      </RhinoProvider>
+    );
+  }
 
-let mockAuth;
-vi.mock('../../hooks/auth', () => ({
-  useAuth: vi.fn(() => mockAuth) //() => authMock
-}));
-
-vi.mock('../../components/logos', () => ({
-  SplashScreen: () => <div>__mockSplashScreen__</div>
-}));
-
-let mockPrevPath;
-let mockUnsetPrevPathFn;
-let mockSetPrevPathFn;
-vi.mock('../../utils/storage', () => ({
-  getPrevPathSession: () => mockPrevPath,
-  unsetPrevPathSession: () => mockUnsetPrevPathFn(),
-  setPrevPathSession: () => mockSetPrevPathFn()
-}));
-
-vi.spyOn(routes, 'getSessionCreatePath').mockImplementation(
-  () => '__mockSessionCreate__'
-);
-vi.spyOn(routes, 'getNonAuthenticatedAppPath').mockImplementation(
-  () => '/__notAuthenticated__'
-);
-
-function Wrapper({ children }) {
-  return (
-    <MemoryRouter initialEntries={['/__authenticated__']}>
-      <Routes>
-        <Route
-          path="/__authenticated__"
-          element={<AuthenticatedRoute>{children}</AuthenticatedRoute>}
-        />
-        <Route
-          path="/__mockPrevPath__"
-          element={<div>__mockPrevPathRoute__</div>}
-        />
-        <Route path="/__notAuthenticated__">
-          <Route
-            path="__mockSessionCreate__"
-            element={<div>__mockSessionCreateRoute__</div>}
-          />
-        </Route>
-      </Routes>
-    </MemoryRouter>
-  );
-}
-
-describe('routes/AuthenticatedRoute', () => {
-  describe('initializing', () => {
-    test.skip('renders SplashScreen', () => {
-      mockAuth = initializingState;
-      render(<div>should not render this</div>, {
-        wrapper: Wrapper
-      });
-      expect(screen.getByText('__mockSplashScreen__')).toBeTruthy();
+  beforeEach(() => {
+    queryClient = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: false
+        }
+      },
+      logger: {
+        error: () => {}
+      }
     });
   });
 
-  describe('authenticated', () => {
-    test.skip('renders children', () => {
-      mockAuth = authenticatedState;
-      mockPrevPath = '';
-      mockUnsetPrevPathFn = vi.fn();
-      render(<div>__should render children__</div>, {
-        wrapper: Wrapper
-      });
-      expect(screen.getByText('__should render children__')).toBeTruthy();
+  test('Invalidates router when user becomes null', async () => {
+    networkingMock.mockValidateSessionSuccess(user);
+    const { result } = renderHook(() => useRhinoContext(), {
+      wrapper: Wrapper
     });
 
-    describe('prevPath not empty', () => {
-      beforeEach(() => {
-        mockAuth = authenticatedState;
-        mockPrevPath = '/__mockPrevPath__';
-        mockUnsetPrevPathFn = vi.fn();
-      });
+    await waitFor(() => expect(result.current.user).toEqual(user));
 
-      test.skip("redirects to utils' prevPath", () => {
-        render(<div>should not render this</div>, {
-          wrapper: Wrapper
-        });
-        expect(screen.getByText('__mockPrevPathRoute__')).toBeTruthy();
-      });
-
-      test.skip('cleans prevPath', () => {
-        render(<div>should not render this</div>, {
-          wrapper: Wrapper
-        });
-        expect(mockUnsetPrevPathFn).toHaveBeenCalled();
-      });
+    networkingMock.mockValidateSessionFailure();
+    await act(async () => {
+      await queryClient.refetchQueries({ queryKey: ['session'] });
     });
 
-    describe('sign out', () => {
-      beforeEach(() => {
-        mockAuth = authenticatedState;
-        mockPrevPath = null;
-        mockSetPrevPathFn = vi.fn();
-        mockUnsetPrevPathFn = vi.fn();
-      });
-
-      test('does not change prevPath', () => {
-        const { rerender } = render(<div>any component</div>, {
-          wrapper: Wrapper
-        });
-        mockAuth = unauthenticatedState;
-        rerender();
-        expect(mockSetPrevPathFn).not.toHaveBeenCalled();
-        expect(mockUnsetPrevPathFn).not.toHaveBeenCalled();
-      });
-
-      test.skip('redirects to sign in page', () => {
-        const { rerender } = render(<div>any component</div>, {
-          wrapper: Wrapper
-        });
-        mockAuth = unauthenticatedState;
-        rerender();
-        expect(screen.getByText('__mockSessionCreateRoute__')).toBeTruthy();
-      });
-    });
-  });
-
-  describe('unauthenticated', () => {
-    beforeEach(() => {
-      mockAuth = unauthenticatedState;
-      mockSetPrevPathFn = vi.fn();
-    });
-
-    test.skip('redirects to sign in page', () => {
-      render(
-        <Wrapper>
-          <div>should not render this</div>
-        </Wrapper>
-      );
-      expect(screen.getByText('__mockSessionCreateRoute__')).toBeTruthy();
-    });
-
-    test.skip('sets prevPath', () => {
-      render(
-        <Wrapper>
-          <div>should not render this</div>
-        </Wrapper>
-      );
-      expect(mockSetPrevPathFn).toHaveBeenCalledWith();
-    });
+    await waitFor(() => expect(result.current.user).toBeNull());
   });
 });

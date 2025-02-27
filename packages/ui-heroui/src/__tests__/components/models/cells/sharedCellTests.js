@@ -1,8 +1,7 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import rhinoConfig from 'rhino.config';
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
+import { createWrapper, RouterWrapper } from '../../../shared/helpers';
 
 const getBarValue = () => 'bar';
 
@@ -13,27 +12,15 @@ export const sharedCellTests = (Component) => {
   const nullGetValue = () => null;
   const Bar = () => <div>Bar</div>;
 
-  const Wrapper = ({ children }) => {
-    const queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      }
-    });
-
+  const IndexWrapper = ({ children }) => {
     return (
-      <QueryClientProvider client={queryClient}>
-        <MemoryRouter>
-          <ModelIndexSimple
-            model="blog"
-            fallback={false}
-            queryOptions={{ disabled: true }}
-          >
-            {children}
-          </ModelIndexSimple>
-        </MemoryRouter>
-      </QueryClientProvider>
+      <ModelIndexSimple
+        model="blog"
+        fallback={false}
+        queryOptions={{ disabled: true }}
+      >
+        {children}
+      </ModelIndexSimple>
     );
   };
 
@@ -80,8 +67,10 @@ export const sharedCellTests = (Component) => {
     configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
 
     const { asFragment } = render(
-      <Component getValue={nullGetValue} path="id" />,
-      { wrapper: Wrapper }
+      <IndexWrapper>
+        <Component getValue={nullGetValue} path="id" />
+      </IndexWrapper>,
+      { wrapper: createWrapper(RouterWrapper, { initialEntries: ['/1'] }) }
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -90,8 +79,10 @@ export const sharedCellTests = (Component) => {
     configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
 
     const { asFragment } = render(
-      <Component empty="baz" getValue={nullGetValue} path="id" />,
-      { wrapper: Wrapper }
+      <IndexWrapper>
+        <Component empty="baz" getValue={nullGetValue} path="id" />
+      </IndexWrapper>,
+      { wrapper: createWrapper(RouterWrapper, { initialEntries: ['/1'] }) }
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -100,13 +91,15 @@ export const sharedCellTests = (Component) => {
     configSpy = vi.spyOn(rhinoConfig, 'components', 'get').mockReturnValue({});
 
     const { asFragment } = render(
-      <Component
-        empty="baz"
-        getValue={nullGetValue}
-        path="id"
-        className="dummy-class"
-      />,
-      { wrapper: Wrapper }
+      <IndexWrapper>
+        <Component
+          empty="baz"
+          getValue={nullGetValue}
+          path="id"
+          className="dummy-class"
+        />
+      </IndexWrapper>,
+      { wrapper: createWrapper(RouterWrapper, { initialEntries: ['/1'] }) }
     );
     expect(asFragment()).toMatchSnapshot();
   });

@@ -1,39 +1,37 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { render } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
 import { ModelFiltersSimple } from '../../../../components/models/ModelFiltersSimple';
 import { ModelIndexSimple } from '../../../../components/models/ModelIndexSimple';
 import { ModelFilterDate } from '../../../../components/models/filters/ModelFilterDate';
 import { FilterDate } from '../../../../Filter';
 import { CalendarDate } from '@internationalized/date';
+import { createWrapper, RouterWrapper } from '../../../shared/helpers';
 
 vi.mock('../../../../Filter', () => ({
   FilterDate: vi.fn(() => null)
 }));
 
 describe('ModelFilterDate', () => {
-  const Wrapper = ({ children, ...props }) => {
-    const queryClient = new QueryClient();
-
+  const IndexWrapper = ({ children }) => {
     return (
-      <MemoryRouter {...props}>
-        <QueryClientProvider client={queryClient}>
-          <ModelIndexSimple model="blog">
-            <ModelFiltersSimple>{children}</ModelFiltersSimple>
-          </ModelIndexSimple>
-        </QueryClientProvider>
-      </MemoryRouter>
+      <ModelIndexSimple model="blog">
+        <ModelFiltersSimple>{children}</ModelFiltersSimple>
+      </ModelIndexSimple>
     );
   };
 
-  beforeEach(() => {
-    vi.clearAllMocks();
+  const wrapper = createWrapper(RouterWrapper, {
+    initialEntries: ['/1']
   });
 
   it(`adds min as a prop`, () => {
-    render(<ModelFilterDate path="published_date_min" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterDate path="published_date_min" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterDate).toHaveBeenLastCalledWith(
       expect.objectContaining({
@@ -46,9 +44,14 @@ describe('ModelFilterDate', () => {
   });
 
   it(`adds min as a prop with exclusiveMinimum`, () => {
-    render(<ModelFilterDate path="published_date_min_exclusive" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterDate path="published_date_min_exclusive" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterDate).toHaveBeenLastCalledWith(
       expect.objectContaining({
@@ -61,9 +64,14 @@ describe('ModelFilterDate', () => {
   });
 
   it(`adds max as a prop`, () => {
-    render(<ModelFilterDate path="published_date_max" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterDate path="published_date_max" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterDate).toHaveBeenLastCalledWith(
       expect.objectContaining({
@@ -76,9 +84,14 @@ describe('ModelFilterDate', () => {
   });
 
   it(`adds max as a prop with exclusiveMaximum`, () => {
-    render(<ModelFilterDate path="published_date_max_exclusive" />, {
-      wrapper: Wrapper
-    });
+    render(
+      <IndexWrapper>
+        <ModelFilterDate path="published_date_max_exclusive" />
+      </IndexWrapper>,
+      {
+        wrapper
+      }
+    );
 
     expect(FilterDate).toHaveBeenLastCalledWith(
       expect.objectContaining({

@@ -1,17 +1,14 @@
 import { useCallback, useMemo } from 'react';
 
 import { BaseAuthedPage } from '../BaseAuthedPage';
-import { ChangePassword } from '../../components/settings/ChangePassword';
-import { EditProfile } from '../../components/settings/EditProfile';
-import { Subscription } from '../../components/settings/Subscription';
 import { useBaseOwnerPath, useParsedSearch } from '@rhino-project/core/hooks';
 import {
   hasOrganizationsModule,
   hasSubscriptionsModule
 } from '@rhino-project/core/utils';
-import { Route, Routes, useLocation } from 'react-router-dom';
 import { getAccountSettingsPath } from '@rhino-project/core/utils';
 import { Tab, Tabs } from '@heroui/react';
+import { Outlet, useLocation } from '@tanstack/react-router';
 
 export const SettingsPage = () => {
   //Checking subscription payment related status
@@ -25,18 +22,15 @@ export const SettingsPage = () => {
   );
 
   const settingsBuild = useCallback(
-    (tabId) => build(`${getAccountSettingsPath()}/${tabId}`),
+    (tabId) => build(`${getAccountSettingsPath()}${tabId ? `/${tabId}` : ''}`),
     [build]
   );
 
   return (
     <BaseAuthedPage>
+      <h3>Account Settings</h3>
       <Tabs selectedKey={pathname}>
-        <Tab
-          key={settingsBuild('profile')}
-          title="Profile"
-          href={settingsBuild('profile')}
-        />
+        <Tab key={settingsBuild()} title="Profile" href={settingsBuild()} />
         <Tab
           key={settingsBuild('password')}
           title="Password"
@@ -51,16 +45,7 @@ export const SettingsPage = () => {
         )}
       </Tabs>
       <div className="mt-4">
-        <Routes>
-          <Route path="profile" element={<EditProfile />} />
-          <Route path="password" element={<ChangePassword />} />
-          {showSubscriptions && (
-            <Route
-              path="subscription"
-              element={<Subscription status={status} session_id={session_id} />}
-            />
-          )}
-        </Routes>
+        <Outlet />
       </div>
     </BaseAuthedPage>
   );

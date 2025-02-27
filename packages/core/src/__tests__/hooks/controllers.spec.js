@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
 import { createWrapper } from '../shared/helpers';
 import {
@@ -13,6 +12,15 @@ import {
   useModelIndexController,
   useModelShowContext
 } from '../../hooks/controllers';
+import {
+  createMemoryHistory,
+  createRootRoute,
+  createRoute,
+  createRouter,
+  RouterProvider
+} from '@tanstack/react-router';
+
+window.scrollTo = vi.fn();
 
 // https://dev.to/alexclaes/test-a-hook-throwing-errors-in-react-18-with-renderhook-from-testing-library-20g8
 describe('useModelIndexContext', () => {
@@ -35,15 +43,31 @@ describe('useModelIndexContext', () => {
 describe('useModelIndexController', () => {
   const Wrapper = ({ children, ...props }) => {
     const queryClient = new QueryClient();
+    const history = createMemoryHistory({
+      ...props
+    });
+    const rootRoute = createRootRoute();
+    const indexRoute = createRoute({
+      getParentRoute: () => rootRoute,
+      path: '/'
+    });
+    const ownerRoute = createRoute({
+      getParentRoute: () => indexRoute,
+      path: '$owner',
+      component: () => <div>{children}</div>
+    });
+    const routeTree = rootRoute.addChildren([
+      indexRoute.addChildren([ownerRoute])
+    ]);
+    const defaultRouter = createRouter({
+      routeTree,
+      history
+    });
 
     return (
-      <MemoryRouter {...props}>
-        <QueryClientProvider client={queryClient}>
-          <Routes>
-            <Route path="/:baseOwnerId/*" element={<>{children}</>} />
-          </Routes>
-        </QueryClientProvider>
-      </MemoryRouter>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={defaultRouter} />
+      </QueryClientProvider>
     );
   };
 
@@ -220,10 +244,10 @@ describe('useModelIndexController', () => {
     );
     expect(result.current).toMatchObject({
       defaultState: { filter: { blog: { id: 1 } } },
-      initialState: { filter: { blog: { id: 1, published: 'true' } } },
-      filter: { blog: { published: 'true' } },
+      initialState: { filter: { blog: { id: 1, published: true } } },
+      filter: { blog: { published: true } },
       totalFilters: 1,
-      fullFilter: { blog: { id: 1, published: 'true' } },
+      fullFilter: { blog: { id: 1, published: true } },
       totalFullFilters: 2,
       limit: DEFAULT_LIMIT,
       offset: 0,
@@ -251,10 +275,10 @@ describe('useModelIndexController', () => {
     await waitFor(() => {
       expect(result.current).toMatchObject({
         defaultState: { filter: { blog: { id: 1 } } },
-        initialState: { filter: { blog: { id: 1, published: 'true' } } },
-        filter: { blog: { published: 'true' } },
+        initialState: { filter: { blog: { id: 1, published: true } } },
+        filter: { blog: { published: true } },
         totalFilters: 1,
-        fullFilter: { blog: { id: 1, published: 'true' } },
+        fullFilter: { blog: { id: 1, published: true } },
         totalFullFilters: 2,
         limit: DEFAULT_LIMIT,
         offset: 0,

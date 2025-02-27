@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import {
   cloneElement,
   isValidElement,
-  useCallback,
   useEffect,
   useMemo,
   useState
@@ -21,12 +20,12 @@ import {
 
 import { filter, isString } from 'lodash-es';
 import { useModelIndexContext } from '@rhino-project/core/hooks';
-import { useBaseOwnerNavigation } from '@rhino-project/core/hooks';
-import { getModelShowPath, isIdentifier } from '@rhino-project/core/utils';
+import { isIdentifier } from '@rhino-project/core/utils';
 import { Table } from '../table/Table';
 import { ModelCell } from './ModelCell';
 import { ModelFooter } from './ModelFooter';
 import { ModelHeader } from './ModelHeader';
+import { useLocation } from '@tanstack/react-router';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -74,8 +73,7 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
     results,
     setOrder
   } = useModelIndexContext();
-  const { baseRoute = '', paths, sortPaths } = props;
-  const baseOwnerNavigation = useBaseOwnerNavigation();
+  const { paths, sortPaths } = props;
   const [sorting, setSorting] = useState([]);
 
   const pathsOrDefault = useMemo(() => {
@@ -91,14 +89,6 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
   }, [paths, props.overrides?.ModelTable?.props?.paths, model]);
 
   const computedPaths = usePaths(pathsOrDefault, resources);
-
-  const handleRowClick = useCallback(
-    (row) =>
-      baseOwnerNavigation.push(
-        `${baseRoute}${getModelShowPath(model, row.original.id)}`
-      ),
-    [baseRoute, baseOwnerNavigation, model]
-  );
 
   const sortable = useMemo(
     () => sortPaths || getSortableAttributes(model).map((a) => a.name),
@@ -199,6 +189,8 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
     return results || Array(limit).fill({});
   }, [limit, results]);
 
+  const location = useLocation();
+
   const table = useReactTable({
     data,
     columns,
@@ -206,17 +198,21 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
     enableMultiSort: true,
     enableSortingRemoval: false,
     manualSorting: true,
+    meta: {
+      getRowProps: (row) => ({
+        href: `${location.pathname}/${row.original.id}`
+      })
+    },
     state: {
       sorting
     },
     onSortingChange: setSorting
   });
 
-  return <Table table={table} onRowClick={handleRowClick} {...props} />;
+  return <Table table={table} {...props} />;
 };
 
 ModelIndexTableBase.propTypes = {
-  baseRoute: PropTypes.string,
   overrides: PropTypes.object
 };
 

@@ -39,7 +39,11 @@ const config = defineConfig({
     preserveSymlinks: true,
     // https://github.com/vitejs/vite/discussions/15268
     mainFields: ['browser'],
-    dedupe: ['@tanstack/react-query', 'react-hook-form']
+    dedupe: [
+      '@tanstack/react-query',
+      'react-hook-form',
+      '@tanstack/react-router'
+    ]
   },
   test: {
     environment: 'jsdom',

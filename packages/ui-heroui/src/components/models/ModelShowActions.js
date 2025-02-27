@@ -1,6 +1,6 @@
 import { Children, useCallback, useMemo, useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from '@tanstack/react-router';
 import { useModelShowContext } from '@rhino-project/core/hooks';
 import { getModelShowPath } from '@rhino-project/core/utils';
 import { useBaseOwnerNavigation } from '@rhino-project/core/hooks';
@@ -8,32 +8,20 @@ import {
   useGlobalComponentForModel,
   useOverrides
 } from '@rhino-project/core/hooks';
-import { withParams } from '../../routes/withParams';
 import { getParentModel, isBaseOwned } from '@rhino-project/core/utils';
 import { IconButton } from '../buttons';
 import { ModelEditModal } from './ModelEditModal';
 
 export const ModelShowActionEdit = ({ children, ...props }) => {
-  const navigate = useNavigate();
-
-  const editPath = useMemo(
-    () =>
-      withParams('edit', {
-        back: location.pathname
-      }),
-    []
-  );
-
-  const handleClick = useCallback(
-    () => navigate(editPath),
-    [navigate, editPath]
-  );
+  const location = useLocation();
 
   return (
     <IconButton
+      as={Link}
       color="primary"
       icon="bi:pencil-square"
-      onClick={handleClick}
+      to={`${location.href}/edit`}
+      search={{ back: location.pathname }}
       {...props}
     >
       {children || 'Edit'}
@@ -68,6 +56,7 @@ export const ModelShowActionDelete = ({ children, ...props }) => {
     delete: { mutate }
   } = useModelShowContext();
   const navigate = useNavigate();
+  const location = useLocation();
   const baseOwnerNavigation = useBaseOwnerNavigation();
 
   const handleClick = useCallback(() => {
@@ -75,7 +64,7 @@ export const ModelShowActionDelete = ({ children, ...props }) => {
       mutate(resource.id, {
         onSuccess: () => {
           if (isBaseOwned(model)) {
-            navigate('..');
+            navigate({ from: location.pathname, to: '..' });
           } else {
             const parentModel = getParentModel(model);
             const parent = resource[parentModel.model];
@@ -84,7 +73,14 @@ export const ModelShowActionDelete = ({ children, ...props }) => {
         }
       });
     }
-  }, [resource, mutate, model, navigate, baseOwnerNavigation]);
+  }, [
+    resource,
+    mutate,
+    model,
+    navigate,
+    location.pathname,
+    baseOwnerNavigation
+  ]);
 
   return (
     <IconButton color="danger" icon="bi:trash" onClick={handleClick} {...props}>

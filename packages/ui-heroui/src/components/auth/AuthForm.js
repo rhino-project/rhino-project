@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
 import { useParsedSearch, useResolver } from '@rhino-project/core/hooks';
-import { LinkButton, SubmitButton } from '../buttons';
+import { SubmitButton } from '../buttons';
 import { FormProvider } from '@rhino-project/core/components/forms';
 import { useForm } from 'react-hook-form';
 import { FieldInput } from '../../FieldInput';
 import { FieldPassword } from '../../Field';
 import { Alert, Form } from '@heroui/react';
+import { RhinoLink } from '../../RhinoLink';
 
 const AuthField = (props) => (
   <FieldInput placeholder="Email" isRequired {...props} />
@@ -174,13 +175,13 @@ export const AuthForm = ({
 
         <div className="flex flex-col">
           {secondaryAction && (
-            <LinkButton
+            <RhinoLink
               className="mb-2 text-right"
               color="link"
               to={secondaryAction.url}
             >
               {secondaryAction.content}
-            </LinkButton>
+            </RhinoLink>
           )}
           <SubmitButton isLoading={loading}>{primaryAction}</SubmitButton>
         </div>

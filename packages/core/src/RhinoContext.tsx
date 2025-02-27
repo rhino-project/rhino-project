@@ -4,9 +4,9 @@ import React, {
   ReactNode,
   Suspense,
   useState,
-  useEffect,
   useCallback,
-  useMemo
+  useMemo,
+  useLayoutEffect
 } from 'react';
 import { OpenAPIV3_1 } from './rhino-openapi';
 import { Resources, RhinoResource } from './index';
@@ -24,8 +24,14 @@ import {
 } from './lib/networking';
 // import { useRollbarPerson } from '@rollbar/react';
 import { useRhinoConfig } from './config';
+import { hasOrganizationsModule } from './utils';
 
-type ValidateTokenUser = {
+export type SessionUserRoles = {
+  id: number;
+  organization: { id: number; [key: string]: unknown };
+};
+
+export type SessionUser = {
   id: number;
   provider: string;
   uid: string;
@@ -35,12 +41,13 @@ type ValidateTokenUser = {
   email: string | null;
   allow_password_change: boolean;
   approved: boolean;
+  users_roles?: SessionUserRoles[];
 };
 
-type ValidateTokenResponse = {
+export type SessionResponse = {
   data: {
     success: boolean;
-    data: ValidateTokenUser;
+    data: SessionUser | null;
   };
 };
 
@@ -50,17 +57,22 @@ export interface RhinoContextType {
 
   user: Resources['user'] | null;
   baseOwner: { id: number; [key: string]: unknown } | null;
-  initializing: boolean;
-  logIn: (user: ValidateTokenUser) => void;
+  setBaseOwner: (
+    baseOwner:
+      | SessionResponse['data']['data']
+      | SessionUserRoles['organization']
+      | null
+  ) => void;
+  usersRoles: SessionUserRoles[];
+  logIn: (user: SessionUser) => void;
   logOut: () => void;
-  refreshSession: () => Promise<unknown>;
-  resolving: boolean;
   resources: Record<keyof Resources, RhinoResource>;
   openApiSpec: OpenAPIV3_1.Document;
+  queryClient: QueryClient;
 }
 interface RhinoProviderProps {
   children: ReactNode;
-  forceStatic: boolean;
+  forceStatic?: boolean;
   queryClient: QueryClient;
 }
 
@@ -115,9 +127,12 @@ const fetchOpenApiSpec = async (
   )) as OpenAPIV3_1.Document;
 };
 
+const defaultQueryClient = new QueryClient({});
+
 export const RhinoContext = createContext<RhinoContextType>({
   baseOwner: null,
-  initializing: true,
+  setBaseOwner: undefined!,
+  usersRoles: [],
   logIn: () => {},
   logOut: () => {},
   openApiSpec: {
@@ -125,19 +140,27 @@ export const RhinoContext = createContext<RhinoContextType>({
     info: { title: 'Rhino OpenAPI', version: '0.0.0' },
     components: {}
   },
-  refreshSession: () => Promise.resolve(),
-  resolving: false,
   resources: {},
-  user: null
+  user: null,
+  queryClient: defaultQueryClient
 });
 
 export const useRhinoContext = () => useContext(RhinoContext);
 
-const RhinoContent: React.FC<Omit<RhinoProviderProps, 'queryClient'>> = ({
+const RhinoContent: React.FC<RhinoProviderProps> = ({
   children,
-  forceStatic = false
+  forceStatic = false,
+  ...props
 }) => {
   const { env } = useRhinoConfig();
+  const { queryClient } = props;
+  const isOrganization = hasOrganizationsModule();
+
+  const [user, setUser] = useState<SessionUser | null>(null);
+  const [baseOwner, setBaseOwner] = useState<
+    SessionUser | SessionUserRoles['organization'] | null
+  >(null);
+  const [usersRoles, setUsersRoles] = useState<SessionUserRoles[]>([]);
 
   // Load the OpenAPI spec from either the development end point or the static file written by the vite plugin
   const loadStatic = env.PROD || forceStatic;
@@ -150,42 +173,85 @@ const RhinoContent: React.FC<Omit<RhinoProviderProps, 'queryClient'>> = ({
   const resources = useMemo(() => hoistRhino(openApiSpec), [openApiSpec]);
 
   // Check for an active session
-  const { isError, isInitialLoading, isFetching, isSuccess, data, refetch } =
-    useQuery({
-      queryKey: AUTH_SESSION_KEY,
-      queryFn: ({ signal }): Promise<void | ValidateTokenResponse> =>
-        networkApiCall(AUTH_VALIDATE_TOKEN_END_POINT, { signal }),
-      retry: false
-    });
+  const { isError, isSuccess, data, refetch } = useQuery({
+    queryKey: AUTH_SESSION_KEY,
+    queryFn: async ({ signal }): Promise<void | SessionResponse> => {
+      try {
+        const data = await networkApiCall(AUTH_VALIDATE_TOKEN_END_POINT, {
+          signal
+        });
 
-  const [user, setUser] = useState<
-    ValidateTokenResponse['data']['data'] | null
-  >(null);
-  const [baseOwner] = useState(null);
-  const [initializing, setInitializing] = useState(true);
+        // await new Promise((resolve) => setTimeout(resolve, 5000));
+
+        return data;
+        // FIXME in RQ 5 there is a param to not throw an error to the boundary
+      } catch {
+        return { data: { success: false, data: null } };
+      }
+    },
+    retry: false,
+    suspense: true
+  });
 
   // FIXME: this should be sideloaded elsewhere
   // useRollbarPerson(user);
 
-  useEffect(() => {
-    if (isSuccess || isError) setInitializing(false);
-  }, [isSuccess, isError]);
+  // Enforce the user is set correctly before a render
+  // https://github.com/TanStack/router/blob/d372e99dd8a6eaeb65df63836170fd70aa2f09af/examples/react/kitchen-sink-file-based/src/routes/login.tsx#L27
+  useLayoutEffect(() => {
+    // If we have a user and we are not already set
+    // FIXME: Update if the user info changes?  ie not deep equal
+    if (isSuccess && data?.data.data && !user) {
+      const newUser = data.data.data;
+      setUser(newUser);
+      if (isOrganization) {
+        const usersRoles = newUser?.users_roles ?? [];
 
-  useEffect(() => {
-    if (isSuccess && data?.data.data) {
-      setUser(data.data.data);
-    } else if (isError) {
+        // FIXME: Where to handle no roles?
+        setBaseOwner(usersRoles?.[0]?.organization || null);
+        setUsersRoles(usersRoles);
+      } else {
+        setBaseOwner(newUser);
+        setUsersRoles([]);
+      }
+      // If there is an error, or we caught one, clear everything
+    } else if (isError || !data?.data.data) {
       setUser(null);
+      setBaseOwner(null);
+      setUsersRoles([]);
     }
-  }, [isError, isInitialLoading, isSuccess, data]);
+  }, [isError, isSuccess, data, isOrganization, user]);
 
-  const logOut = useCallback(() => {
+  const logIn = useCallback(
+    async (user: SessionUser) => {
+      setUser(user);
+      if (isOrganization) {
+        const usersRoles = user?.users_roles ?? [];
+
+        // FIXME: Where to handle no roles?
+        setBaseOwner(usersRoles?.[0]?.organization || null);
+        setUsersRoles(usersRoles);
+      } else {
+        setBaseOwner(user);
+        setUsersRoles([]);
+      }
+
+      // Ensure the session validation is up to date
+      await refetch();
+    },
+    [isOrganization, refetch]
+  );
+
+  const logOut = useCallback(async () => {
     setUser(null);
-  }, []);
+    setBaseOwner(null);
+    setUsersRoles([]);
 
-  const logIn = useCallback((user: ValidateTokenResponse['data']['data']) => {
-    setUser(user);
-  }, []);
+    // Ensure the session validation is up to date
+    await refetch();
+
+    queryClient.clear();
+  }, [queryClient, refetch]);
 
   return (
     <RhinoContext.Provider
@@ -193,13 +259,12 @@ const RhinoContent: React.FC<Omit<RhinoProviderProps, 'queryClient'>> = ({
         resources,
         openApiSpec: openApiSpec as OpenAPIV3_1.Document,
         baseOwner,
+        setBaseOwner,
+        usersRoles,
         user,
-        resolving: isFetching,
-        initializing,
         logOut,
         logIn,
-        // FIXME: still needed?
-        refreshSession: refetch
+        ...props
       }}
     >
       {children}
@@ -207,16 +272,14 @@ const RhinoContent: React.FC<Omit<RhinoProviderProps, 'queryClient'>> = ({
   );
 };
 
-const defaultQueryClient = new QueryClient({});
-
 export const RhinoProvider: React.FC<RhinoProviderProps> = ({
   queryClient = defaultQueryClient,
   ...props
 }) => {
   return (
-    <Suspense fallback={<div>Loading OpenAPI spec...</div>}>
+    <Suspense fallback="Rhino Context">
       <QueryClientProvider client={queryClient}>
-        <RhinoContent {...props} />
+        <RhinoContent queryClient={queryClient} {...props} />
       </QueryClientProvider>
     </Suspense>
   );

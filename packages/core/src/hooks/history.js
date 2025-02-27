@@ -1,6 +1,6 @@
 import qs from 'qs';
 import { useMemo } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useBaseOwnerId } from './owner';
 
 export const useParsedSearch = () => {
