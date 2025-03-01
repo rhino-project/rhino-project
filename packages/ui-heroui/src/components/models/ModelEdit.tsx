@@ -5,7 +5,7 @@ import { ModelEditActions } from './ModelEditActions';
 import { ModelEditSimple, ModelEditSimpleProps } from './ModelEditSimple';
 import { Resources } from '@rhino-project/core';
 
-export type ModelEditBaseProps<T extends keyof Resources> = Omit<
+export type ModelEditProps<T extends keyof Resources> = Omit<
   ModelEditSimpleProps<T>,
   'children'
 >;
@@ -25,5 +25,5 @@ export const ModelEditBase = <T extends keyof Resources>(
 };
 
 export const ModelEdit = <T extends keyof Resources>(
-  props: ModelEditBaseProps<T>
+  props: ModelEditProps<T>
 ) => useGlobalComponentForModel('ModelEdit', ModelEditBase, props);

@@ -6,13 +6,13 @@ import { ModelShowSimple, ModelShowSimpleProps } from './ModelShowSimple';
 import { ModelShowHeader } from './ModelShowHeader';
 import { Resources } from '@rhino-project/core';
 
-export type ModelShowBaseProps<T extends keyof Resources> = Omit<
+export type ModelShowProps<T extends keyof Resources> = Omit<
   ModelShowSimpleProps<T>,
   'children'
 >;
 
 export const ModelShowBase = <T extends keyof Resources>(
-  props: ModelShowBaseProps<T>
+  props: ModelShowProps<T>
 ) => {
   return (
     <ModelShowSimple {...props}>
@@ -27,5 +27,5 @@ export const ModelShowBase = <T extends keyof Resources>(
 };
 
 export const ModelShow = <T extends keyof Resources>(
-  props: ModelShowBaseProps<T>
+  props: ModelShowProps<T>
 ) => useGlobalComponentForModel('ModelShow', ModelShowBase, props);
