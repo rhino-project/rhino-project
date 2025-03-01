@@ -193,9 +193,6 @@ importers:
       lodash-es:
         specifier: 4.17.21
         version: 4.17.21
-      prop-types:
-        specifier: 15.8.1
-        version: 15.8.1
       qs:
         specifier: 6.14.0
         version: 6.14.0
