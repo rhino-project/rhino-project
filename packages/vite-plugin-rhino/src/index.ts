@@ -8,7 +8,6 @@ import { promisify } from 'node:util';
 
 const CONFIG_MODULE_ID = 'rhino.config';
 const MODELS_STATIC_MODULE_ID = 'models/static';
-const CUSTOM_ROUTES_MODULE_ID = 'routes/custom';
 
 const ENV_MODULE_ID = 'virtual:@rhino-project/core/config/env';
 const RESOLVED_ENV_MODULE_ID = '\0' + ENV_MODULE_ID;
@@ -101,8 +100,7 @@ export function RhinoProjectVite({
           'virtual:@rhino-project/core/config/assets',
           'rhino.config',
           'virtual:@rhino-project/core/config/env',
-          'models/static',
-          'routes/custom'
+          'models/static'
         ]
       },
 
@@ -282,9 +280,6 @@ export function RhinoProjectVite({
       } else if (id === MODELS_STATIC_MODULE_ID) {
         // Replace 'models/static' with the path to the local file
         return checkExtensions(resolvePath('models/static'));
-      } else if (id === CUSTOM_ROUTES_MODULE_ID) {
-        // Replace 'routes/custom' with the path to the local file
-        return checkExtensions(resolvePath('routes/custom'));
       } else if (id === ENV_MODULE_ID) {
         // Map the import to a virtual module ID
         return RESOLVED_ENV_MODULE_ID;
