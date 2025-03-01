@@ -25,10 +25,6 @@ export const packages = [
     packageDir: 'packages/core'
   },
   {
-    name: '@rhino-project/ui',
-    packageDir: 'packages/ui'
-  },
-  {
     name: '@rhino-project/ui-heroui',
     packageDir: 'packages/ui-heroui'
   }

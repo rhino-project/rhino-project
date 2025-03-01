@@ -14,7 +14,7 @@ import { cloneDeep } from 'lodash-es';
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery
+  useSuspenseQuery
 } from '@tanstack/react-query';
 import {
   AUTH_SESSION_KEY,
@@ -24,10 +24,11 @@ import {
 } from './lib/networking';
 // import { useRollbarPerson } from '@rollbar/react';
 import { useRhinoConfig } from './config';
-import { hasOrganizationsModule } from './utils';
+import modelLoader, { hoistRhino as modelHoistRhino } from './models';
 
 export type SessionUserRoles = {
   id: number;
+  role: { name: string };
   organization: { id: number; [key: string]: unknown };
 };
 
@@ -73,7 +74,7 @@ export interface RhinoContextType {
 interface RhinoProviderProps {
   children: ReactNode;
   forceStatic?: boolean;
-  queryClient: QueryClient;
+  queryClient?: QueryClient;
 }
 
 const OPENAPI_QUERY_KEY = ['openapi'];
@@ -147,14 +148,17 @@ export const RhinoContext = createContext<RhinoContextType>({
 
 export const useRhinoContext = () => useContext(RhinoContext);
 
-const RhinoContent: React.FC<RhinoProviderProps> = ({
+// Same as RhinoContext but with the queryClient required
+export type RhinoContentProps = RhinoProviderProps &
+  Required<Pick<RhinoProviderProps, 'queryClient'>>;
+
+const RhinoContent: React.FC<RhinoContentProps> = ({
   children,
   forceStatic = false,
   ...props
 }) => {
   const { env } = useRhinoConfig();
   const { queryClient } = props;
-  const isOrganization = hasOrganizationsModule();
 
   const [user, setUser] = useState<SessionUser | null>(null);
   const [baseOwner, setBaseOwner] = useState<
@@ -165,15 +169,23 @@ const RhinoContent: React.FC<RhinoProviderProps> = ({
   // Load the OpenAPI spec from either the development end point or the static file written by the vite plugin
   const loadStatic = env.PROD || forceStatic;
   const queryFn = useCallback(() => fetchOpenApiSpec(loadStatic), [loadStatic]);
-  const { data: openApiSpec } = useQuery({
+  const { data: openApiSpec } = useSuspenseQuery({
     queryKey: OPENAPI_QUERY_KEY,
-    queryFn,
-    suspense: true
+    queryFn
   });
-  const resources = useMemo(() => hoistRhino(openApiSpec), [openApiSpec]);
+  const resources = useMemo(() => {
+    modelLoader.api = modelHoistRhino(openApiSpec);
+
+    return hoistRhino(openApiSpec);
+  }, [openApiSpec]);
+
+  const isOrganization = useMemo(() => {
+    // @ts-expect-error hack for now
+    return openApiSpec?.info?.['x-rhino']?.modules?.['rhino_organizations'];
+  }, [openApiSpec]);
 
   // Check for an active session
-  const { isError, isSuccess, data, refetch } = useQuery({
+  const { isError, isSuccess, data, refetch } = useSuspenseQuery({
     queryKey: AUTH_SESSION_KEY,
     queryFn: async ({ signal }): Promise<void | SessionResponse> => {
       try {
@@ -189,8 +201,7 @@ const RhinoContent: React.FC<RhinoProviderProps> = ({
         return { data: { success: false, data: null } };
       }
     },
-    retry: false,
-    suspense: true
+    retry: false
   });
 
   // FIXME: this should be sideloaded elsewhere

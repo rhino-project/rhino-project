@@ -44,7 +44,7 @@ import {
   useModelDisplayAttachmentProps,
   useModelDisplayNumberInputProps
 } from './form';
-import { Resources, RhinoResourceName } from '@rhino-project/core';
+import { Resources } from '@rhino-project/core';
 
 // Attachment
 export const ModelDisplayAttachmentBase: React.FC<DisplayLinkProps> = (

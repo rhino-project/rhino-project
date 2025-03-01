@@ -84,7 +84,6 @@ export default mergeConfig(
     entry: [
       './src/index.ts',
       './src/config.tsx',
-      './src/contexts/index.js',
       './src/queries/index.js',
       './src/utils/index.js',
       './src/models/index.js',

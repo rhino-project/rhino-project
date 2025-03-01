@@ -1,51 +1,55 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
-import axios from 'axios';
-import { QueryClient } from '@tanstack/react-query';
-import { NetworkingMock } from '../shared/mock';
-import { RhinoProvider, useRhinoContext } from '@rhino-project/core';
+import { render } from '@testing-library/react';
+import { RhinoContext } from '@rhino-project/core';
+import { AuthenticatedRoute } from '../../routes';
+import {
+  createMemoryHistory,
+  createRootRoute,
+  createRoute,
+  createRouter,
+  RouterProvider
+} from '@tanstack/react-router';
+import { useAuth } from '@rhino-project/core/hooks';
 
-vi.mock('axios');
-const networkingMock = new NetworkingMock();
-axios.mockImplementation(networkingMock.axiosMockImplementation());
+const history = createMemoryHistory({ initialEntries: ['/'] });
+
+const rootRoute = createRootRoute();
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/',
+  component: () => <AuthenticatedRoute />
+});
+
+const routeTree = rootRoute.addChildren([indexRoute]);
+const defaultRouter = createRouter({
+  routeTree,
+  history
+});
+
+vi.spyOn(defaultRouter, 'invalidate');
+
+vi.mock('@rhino-project/core/hooks', () => ({
+  useAuth: vi.fn()
+}));
+
+// Create a helper to set the auth state
+function mockAuthState(user) {
+  vi.mocked(useAuth).mockReturnValue({ user });
+}
+
+export const RouterWrapper = () => {
+  return <RouterProvider router={defaultRouter} />;
+};
 
 describe('AuthenticatedRoute', () => {
-  const user = { id: 1, name: '', email: '' };
-  let queryClient;
+  test('Invalidates router when user null', async () => {
+    mockAuthState(null);
 
-  function Wrapper({ children }) {
-    return (
-      <RhinoProvider queryClient={queryClient} forceStatic>
-        {children}
-      </RhinoProvider>
+    render(
+      <RouterWrapper>
+        <RhinoContext.Provider />
+      </RouterWrapper>
     );
-  }
 
-  beforeEach(() => {
-    queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false
-        }
-      },
-      logger: {
-        error: () => {}
-      }
-    });
-  });
-
-  test('Invalidates router when user becomes null', async () => {
-    networkingMock.mockValidateSessionSuccess(user);
-    const { result } = renderHook(() => useRhinoContext(), {
-      wrapper: Wrapper
-    });
-
-    await waitFor(() => expect(result.current.user).toEqual(user));
-
-    networkingMock.mockValidateSessionFailure();
-    await act(async () => {
-      await queryClient.refetchQueries({ queryKey: ['session'] });
-    });
-
-    await waitFor(() => expect(result.current.user).toBeNull());
+    expect(defaultRouter.invalidate).toHaveBeenCalledOnce();
   });
 });

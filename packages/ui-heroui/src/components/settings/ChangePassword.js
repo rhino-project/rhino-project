@@ -8,7 +8,7 @@ export const ChangePassword = () => {
   const [showAlert, setShowAlert] = useState(false);
   const {
     mutate: userUpdate,
-    isLoading,
+    isPending,
     isSuccess,
     error
   } = useUserUpdateAction();
@@ -24,7 +24,7 @@ export const ChangePassword = () => {
         passwordField
         passwordConfirmField
         primaryAction="Change Password"
-        isLoading={isLoading}
+        isLoading={isPending}
         errors={error?.errors}
         onSubmit={handleSubmit}
       />

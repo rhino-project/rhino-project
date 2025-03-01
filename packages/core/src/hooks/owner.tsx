@@ -1,14 +1,8 @@
 import { merge } from 'lodash-es';
-import { createContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { getBaseOwnerFilters } from '../utils/models';
 import { useModel } from './models';
-import { useRhinoContext } from '..';
-
-export const BaseOwnerContext = createContext({
-  baseOwner: null,
-  resolving: true,
-  usersRoles: []
-});
+import { RhinoResourceSpecifier, useRhinoContext } from '..';
 
 export const useBaseOwner = () => {
   const { baseOwner } = useRhinoContext();
@@ -19,10 +13,13 @@ export const useBaseOwner = () => {
 export const useBaseOwnerId = () => {
   const baseOwner = useBaseOwner();
 
-  return useMemo(() => parseInt(baseOwner?.id), [baseOwner?.id]);
+  return useMemo(() => Number(baseOwner?.id), [baseOwner?.id]);
 };
 
-export const useBaseOwnerFilters = (model, options = {}) => {
+export const useBaseOwnerFilters = (
+  model: RhinoResourceSpecifier,
+  options: { extraFilters?: Record<string, unknown> } = {}
+) => {
   const baseOwnerId = useBaseOwnerId();
   const { extraFilters } = options;
   const modelObject = useModel(model);
@@ -35,15 +32,14 @@ export const useBaseOwnerFilters = (model, options = {}) => {
 
 export const useRoles = () => {
   const { usersRoles, baseOwner } = useRhinoContext();
+
   return useMemo(() => {
-    let roles = [];
-    if (baseOwner && Array.isArray(usersRoles)) {
-      roles = usersRoles
-        .filter((ur) => ur.organization?.id === baseOwner.id)
-        .map((ur) => ur.role?.name)
-        .filter(Boolean);
-    }
-    return roles;
+    return baseOwner && Array.isArray(usersRoles)
+      ? usersRoles
+          .filter((ur) => ur.organization?.id === baseOwner.id)
+          .map((ur) => ur.role?.name)
+          .filter(Boolean)
+      : [];
   }, [usersRoles, baseOwner]);
 };
 
@@ -53,13 +49,13 @@ export const useUserRoles = () => {
   return usersRoles;
 };
 
-export const useHasRoleOf = (role) => {
+export const useHasRoleOf = (role: string) => {
   const roles = useRoles();
 
   return useMemo(() => roles.some((el) => el === role), [roles, role]);
 };
 
-export const useHasRoleIn = (roleList) => {
+export const useHasRoleIn = (roleList: string[]) => {
   const roles = useRoles();
 
   return useMemo(
@@ -68,7 +64,7 @@ export const useHasRoleIn = (roleList) => {
   );
 };
 
-export const useUsersRoleWithRole = (role) => {
+export const useUsersRoleWithRole = (role: string) => {
   const usersRoles = useUserRoles();
 
   return useMemo(

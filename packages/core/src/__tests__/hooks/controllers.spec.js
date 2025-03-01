@@ -20,7 +20,12 @@ import {
   RouterProvider
 } from '@tanstack/react-router';
 
+// Avoid router errors because jsdom does not support window.scrollTo
 window.scrollTo = vi.fn();
+
+vi.mock('../../hooks/owner', () => ({
+  useBaseOwnerId: () => 1
+}));
 
 // https://dev.to/alexclaes/test-a-hook-throwing-errors-in-react-18-with-renderhook-from-testing-library-20g8
 describe('useModelIndexContext', () => {
@@ -177,7 +182,7 @@ describe('useModelIndexController', () => {
         }),
       {
         wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1/users?limit=17&offset=20&order=foo&search=bar']
+          initialEntries: ['/1/?limit=17&offset=20&order=foo&search=bar']
         })
       }
     );
@@ -211,7 +216,7 @@ describe('useModelIndexController', () => {
         }),
       {
         wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1/users?filter[blog][id]=2']
+          initialEntries: ['/1/?filter=%7B"blog"%3A%7B"id"%3A"2"%7D%7D']
         })
       }
     );
@@ -238,7 +243,7 @@ describe('useModelIndexController', () => {
         }),
       {
         wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1/users?filter[blog][published]=true']
+          initialEntries: ['/1/?filter=%7B"blog"%3A%7B"published"%3Atrue%7D%7D']
         })
       }
     );
@@ -266,7 +271,7 @@ describe('useModelIndexController', () => {
       {
         wrapper: createWrapper(Wrapper, {
           initialEntries: [
-            '/1/?filter[blog][published]=true&filter[blog][id]=2'
+            '/1/?filter=%7B"blog"%3A%7B"published"%3Atrue%2C"id"%3A2%7D%7D'
           ]
         })
       }

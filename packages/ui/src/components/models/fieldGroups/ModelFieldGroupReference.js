@@ -14,6 +14,7 @@ import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { FieldLayoutVerticalBase } from '../../forms/FieldLayoutVertical';
 import { FieldLayoutHorizontalBase } from '../../forms/FieldLayoutHorizontal';
 import { FieldLayoutFloatingBase } from '../../forms/FieldLayoutFloating';
+import { keepPreviousData } from '@tanstack/react-query';
 
 // FIXME: This might need to be refactored to use the useModelFieldGroup and/or have a generic typeahead component
 export const ModelFieldReferenceBaseInput = ({ model, ...props }) => {
@@ -54,7 +55,7 @@ export const ModelFieldReferenceBaseInput = ({ model, ...props }) => {
     queryOptions: {
       // Keep previous data so that the selected option doesn't disappear when selected
       // as the results are refetched with the new filter based on valString
-      keepPreviousData: true
+      placeholderData: keepPreviousData
     }
   });
 

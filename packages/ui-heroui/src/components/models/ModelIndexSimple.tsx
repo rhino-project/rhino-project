@@ -1,23 +1,25 @@
+import { ModelIndexProvider } from '@rhino-project/core/components/models';
 import {
-  useModelShowController,
-  UseModelShowControllerOptions
+  useModelIndexController,
+  UseModelIndexControllerOptions
 } from '@rhino-project/core/hooks';
-import { ModelShowProvider } from '@rhino-project/core/components/models';
 import { useMemo } from 'react';
 import { CircularProgress } from '@heroui/react';
 import { Resources } from '@rhino-project/core';
 
-export type ModelShowSimpleProps<T extends keyof Resources> = {
+export type ModelIndexSimpleProp<T extends keyof Resources> = {
   children: React.ReactNode;
   fallback?: React.ReactNode | boolean;
-} & UseModelShowControllerOptions<T>;
+} & UseModelIndexControllerOptions<T>;
 
-export const ModelShowSimple = <T extends keyof Resources>({
+export const ModelIndexSimple = <T extends keyof Resources>({
   children,
-  fallback = true,
+  fallback = false,
   ...props
-}: ModelShowSimpleProps<T>) => {
-  const controller = useModelShowController(props);
+}: ModelIndexSimpleProp<T>) => {
+  const controller = useModelIndexController({
+    ...props
+  });
   const { isLoading } = controller;
 
   // Fallback mirrors React 18 Suspense
@@ -30,6 +32,6 @@ export const ModelShowSimple = <T extends keyof Resources>({
   }, [children, fallback, isLoading]);
 
   return (
-    <ModelShowProvider {...controller}>{renderFallback}</ModelShowProvider>
+    <ModelIndexProvider {...controller}>{renderFallback}</ModelIndexProvider>
   );
 };

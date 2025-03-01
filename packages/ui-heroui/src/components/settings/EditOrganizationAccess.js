@@ -19,7 +19,7 @@ const RemoveButton = (props) => {
     row: { original }
   } = props;
   const {
-    delete: { mutate, isLoading }
+    delete: { mutate, isPending }
   } = useModelIndexContext();
 
   const handleClick = useCallback(
@@ -31,7 +31,7 @@ const RemoveButton = (props) => {
     <IconButton
       color="danger"
       icon="bi:trash"
-      disabled={isLoading}
+      disabled={isPending}
       onClick={handleClick}
     >
       Remove Access

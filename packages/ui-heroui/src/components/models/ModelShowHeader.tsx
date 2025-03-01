@@ -9,6 +9,7 @@ export const ModelShowHeaderBase = (props: ModelShowHeaderProps) => {
     resource: Record<string, unknown>;
   };
 
+  // @ts-expect-error FIXME: Type better - record instead of resource?
   return <ModelBreadcrumb resource={resource} {...props} />;
 };
 

@@ -57,6 +57,7 @@ import {
   AutocompleteItem,
   AutocompleteProps
 } from '@heroui/react';
+import { keepPreviousData } from '@tanstack/react-query';
 
 // Types
 export type ModelFieldProps = {
@@ -67,9 +68,9 @@ export type ModelFieldPhoneProps = FieldPhoneProps & ModelFieldProps;
 
 export type ModelFieldReferenceProps = AutocompleteProps & {
   path: string;
-  filter?: object;
-  limit?: number | string;
-  offset?: number | string;
+  filter?: Record<string, unknown>;
+  limit?: number;
+  offset?: number;
   order?: string;
 };
 export type ModelFieldOwnerReferenceProps = ModelFieldReferenceProps;
@@ -206,7 +207,7 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
     return { ...propsFilter, [identifier.name]: valString };
   }, [identifier.name, propsFilter, valString, value]);
 
-  const { results, isInitialLoading } = useModelIndex(refModel, {
+  const { results, isLoading } = useModelIndex(refModel, {
     search,
     filter,
     limit,
@@ -215,15 +216,16 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
     queryOptions: {
       // Keep previous data so that the selected option doesn't disappear when selected
       // as the results are refetched with the new filter based on valString
-      keepPreviousData: true
+      placeholderData: keepPreviousData
     }
   });
 
   return (
     <Autocomplete
       {...rhfProps}
-      isLoading={isInitialLoading}
+      isLoading={isLoading}
       onInputChange={setSearch}
+      // @ts-expect-error FIXME
       items={results || []}
       selectedKey={valString}
       onSelectionChange={(a) => onChange(a)}
@@ -232,8 +234,8 @@ export const ModelFieldReferenceBase: React.FC<ModelFieldReferenceProps> = ({
       isDisabled={disabled}
       {...fieldProps}
     >
-      {(item) => (
-        <AutocompleteItem key={item[identifier.name]}>
+      {(item: { [name: string]: unknown; display_name: string }) => (
+        <AutocompleteItem key={item[identifier.name] as string}>
           {item.display_name}
         </AutocompleteItem>
       )}

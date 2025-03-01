@@ -14,7 +14,6 @@ import {
 
 import {
   useGlobalComponentForModel,
-  useOverrides,
   usePaths
 } from '@rhino-project/core/hooks';
 
@@ -40,13 +39,6 @@ const getViewablePaths = (model) =>
     );
   }).map((a) => a.name);
 
-const defaultComponents = {
-  ModelHeader,
-  ModelCell,
-  ModelFooter,
-  Table
-};
-
 const isDesc = (order) => order?.charAt(0) === '-';
 
 const getSortableAttributes = (model) =>
@@ -59,20 +51,9 @@ const getSortableAttributes = (model) =>
       a.type === 'integer'
   );
 
-export const ModelIndexTableBase = ({ overrides, ...props }) => {
-  const { ModelHeader, ModelCell, ModelFooter, Table } = useOverrides(
-    defaultComponents,
-    overrides
-  );
-  const {
-    isInitialLoading,
-    limit,
-    model,
-    order,
-    resources,
-    results,
-    setOrder
-  } = useModelIndexContext();
+export const ModelIndexTableBase = (props) => {
+  const { isLoading, limit, model, order, resources, results, setOrder } =
+    useModelIndexContext();
   const { paths, sortPaths } = props;
   const [sorting, setSorting] = useState([]);
 
@@ -138,7 +119,7 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
 
         // Path is a string
         const cell = (info) =>
-          isInitialLoading ? (
+          isLoading ? (
             <div className="placeholder-glow">
               <span className="placeholder col-6"></span>
             </div>
@@ -162,8 +143,8 @@ export const ModelIndexTableBase = ({ overrides, ...props }) => {
           enableMultiSort: sortable.includes(path)
         });
       }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [computedPaths, isInitialLoading, model, sortable]
+
+    [computedPaths, isLoading, model, sortable]
   );
 
   useEffect(() => {

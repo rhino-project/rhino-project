@@ -99,6 +99,7 @@ export const FieldBooleanBase = React.forwardRef<
   return (
     <Checkbox
       // Form controller ref?
+      // @ts-expect-error FIXME: Imperative handle for ref sharing
       ref={ref}
       // FIXME is this right for editing? maybe only if isClearable
       isIndeterminate={value !== true && value !== false}
@@ -127,6 +128,7 @@ export const FieldBooleanIconBase = React.forwardRef<
     <Icon
       icon={value ? trueIcon : falseIcon}
       onClick={() => onChange(!value)}
+      // @ts-expect-error FIXME: Imperative handle for ref sharing
       ref={ref}
       {...fieldProps}
       {...props}
@@ -242,7 +244,7 @@ const FieldFileBase = <T extends FieldValues = FieldValues>({
       return;
     }
 
-    const newFiles = [];
+    const newFiles = [] as { signed_id: string; display_name: string }[];
 
     const uploaders = selectedFiles.map((file, idx) => {
       const uploader = new Uploader({ id: `${path}-${idx}` }, file, () => null);
@@ -262,10 +264,11 @@ const FieldFileBase = <T extends FieldValues = FieldValues>({
       );
   };
 
-  const handleRemoveFile = (fileToRemove) => {
+  const handleRemoveFile = (fileToRemove: { signed_id: string }) => {
     if (multiple && Array.isArray(value)) {
       const newFiles = value.filter(
-        (file) => file.signed_id !== fileToRemove.signed_id
+        (file: { signed_id: string }) =>
+          file.signed_id !== fileToRemove.signed_id
       );
       onChange(newFiles);
     } else {
@@ -298,28 +301,30 @@ const FieldFileBase = <T extends FieldValues = FieldValues>({
             </button>
           </div>
         )}
-        {files.map((file, index) => (
-          <div
-            key={`${file.display_name}-${index}`}
-            className="p-4 bg-default-50 rounded-lg flex items-center justify-between"
-          >
-            <div className="truncate flex-1">
-              <p className="text-sm font-medium text-foreground-500">
-                {file.display_name}
-              </p>
-              {/* <p className="text-sm text-gray-500">
+        {files.map(
+          (file: { display_name: string; signed_id: string }, index) => (
+            <div
+              key={`${file.display_name}-${index}`}
+              className="p-4 bg-default-50 rounded-lg flex items-center justify-between"
+            >
+              <div className="truncate flex-1">
+                <p className="text-sm font-medium text-foreground-500">
+                  {file.display_name}
+                </p>
+                {/* <p className="text-sm text-gray-500">
                 {(file.size / 1024 / 1024).toFixed(2)} MB
               </p> */}
+              </div>
+              <button
+                type="button"
+                onClick={() => handleRemoveFile(file)}
+                className="ml-4 text-default-500 hover:text-danger-600"
+              >
+                <Icon className="w-5 h-5" icon="bi:x" />
+              </button>
             </div>
-            <button
-              type="button"
-              onClick={() => handleRemoveFile(file)}
-              className="ml-4 text-default-500 hover:text-danger-600"
-            >
-              <Icon className="w-5 h-5" icon="bi:x" />
-            </button>
-          </div>
-        ))}
+          )
+        )}
       </div>
     );
   };
@@ -448,6 +453,7 @@ FieldStringBase.displayName = 'FieldStringBase';
 export const FieldTextBase = React.forwardRef<
   HTMLInputElement,
   FieldStringProps
+  // @ts-expect-error FIXME: Imperative handle for ref sharing
 >((props, ref) => <FieldTextarea ref={ref} {...props} />);
 FieldTextBase.displayName = 'FieldTextBase';
 

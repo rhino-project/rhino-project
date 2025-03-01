@@ -1,10 +1,7 @@
 import { useCallback, useMemo } from 'react';
 
 import { BaseAuthedPage } from '../BaseAuthedPage';
-import { EditOrganizationProfile } from '../../components/settings/EditOrganizationProfile';
-import { EditOrganizationAccess } from '../../components/settings/EditOrganizationAccess';
-import { Subscription } from '../../components/settings/Subscription';
-import { useBaseOwnerPath, useParsedSearch } from '@rhino-project/core/hooks';
+import { useBaseOwnerPath } from '@rhino-project/core/hooks';
 import {
   hasOrganizationsModule,
   hasSubscriptionsModule
@@ -15,7 +12,7 @@ import { Outlet, useLocation } from '@tanstack/react-router';
 
 export const OrganizationSettingsPage = () => {
   //Checking subscription payment related status
-  const { status, session_id } = useParsedSearch(); //FIXME use session_id for checking later
+  // const { status, session_id } = useParsedSearch(); //FIXME use session_id for checking later
   const { build } = useBaseOwnerPath();
 
   const showSubscriptions = useMemo(
@@ -24,7 +21,7 @@ export const OrganizationSettingsPage = () => {
   );
 
   const settingsBuild = useCallback(
-    (tabId) => build(`${getSettingsPath()}${tabId ? `/${tabId}` : ''}`),
+    (tabId: string) => build(`${getSettingsPath()}${tabId ? `/${tabId}` : ''}`),
     [build]
   );
 
@@ -33,7 +30,7 @@ export const OrganizationSettingsPage = () => {
   return (
     <BaseAuthedPage>
       <Tabs selectedKey={pathname}>
-        <Tab key={settingsBuild()} title="Profile" href={settingsBuild()} />
+        <Tab key={settingsBuild('')} title="Profile" href={settingsBuild('')} />
         <Tab
           key={settingsBuild('access')}
           title="Access"

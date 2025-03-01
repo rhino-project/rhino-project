@@ -10,6 +10,7 @@ import { useModelIndex } from '@rhino-project/core/hooks';
 import { compact } from 'lodash-es';
 import PropTypes from 'prop-types';
 import { useModelFiltersContext } from '@rhino-project/core/hooks';
+import { keepPreviousData } from '@tanstack/react-query';
 
 export const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
   const { filter, limit = 10, offset, order, search } = props;
@@ -50,7 +51,7 @@ export const ModelFilterReferenceTypeahead = ({ model, path, ...props }) => {
     offset,
     order,
     search: input || search,
-    queryOptions: { keepPreviousData: true }
+    queryOptions: { placeholderData: keepPreviousData }
   });
 
   const { setPill } = useModelFiltersContext();

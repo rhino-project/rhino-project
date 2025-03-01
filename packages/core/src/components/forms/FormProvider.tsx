@@ -1,9 +1,11 @@
-import PropTypes from 'prop-types';
-import { FormProvider as RHFFormProvider } from 'react-hook-form';
+import {
+  FormProviderProps,
+  FormProvider as RHFFormProvider
+} from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import env from '../../config/env';
 
-export const FormProvider = ({ children, ...props }) => {
+export const FormProvider = (props: FormProviderProps) => {
   const { control } = props;
 
   return (
@@ -19,11 +21,7 @@ export const FormProvider = ({ children, ...props }) => {
           }}
         />
       )}
-      <RHFFormProvider {...props}>{children}</RHFFormProvider>
+      <RHFFormProvider {...props} />
     </>
   );
-};
-
-FormProvider.propTypes = {
-  children: PropTypes.node
 };

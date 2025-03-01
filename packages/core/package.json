@@ -55,16 +55,6 @@
         "default": "./dist/cjs/config/env.cjs"
       }
     },
-    "./contexts": {
-      "import": {
-        "types": "./dist/esm/contexts/index.d.ts",
-        "default": "./dist/esm/contexts/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/contexts/index.d.cts",
-        "default": "./dist/cjs/contexts/index.cjs"
-      }
-    },
     "./queries": {
       "import": {
         "types": "./dist/esm/queries/index.d.ts",
@@ -204,10 +194,11 @@
     "@stripe/react-stripe-js": "2.1.0",
     "@stripe/stripe-js": "1.52.0",
     "@tanstack/react-router": "1.111.3",
+    "@types/qs": "^6.9.18",
     "axios": "1.7.4",
     "lodash-es": "4.17.21",
     "prop-types": "15.8.1",
-    "qs": "6.9.7",
+    "qs": "6.14.0",
     "react-hook-form": "7.49.2",
     "react-use": "17.5.1",
     "use-debounce": "10.0.4",
@@ -217,7 +208,7 @@
   "devDependencies": {
     "@babel/parser": "^7.17.0",
     "@babel/traverse": "^7.17.0",
-    "@tanstack/react-query-devtools": "4.32.6",
+    "@tanstack/react-query-devtools": "5.66.11",
     "@tanstack/react-table": "8.10.3",
     "@testing-library/dom": "10.0.0",
     "@testing-library/react": "16.1.0",
@@ -228,8 +219,8 @@
   },
   "peerDependencies": {
     "@rollbar/react": "0.11.2",
-    "@tanstack/react-query": "^4.32.6",
-    "@tanstack/react-query-devtools": "4.32.6",
+    "@tanstack/react-query": "5.66.11",
+    "@tanstack/react-query-devtools": "5.66.11",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-router-dom": "6.16.0",

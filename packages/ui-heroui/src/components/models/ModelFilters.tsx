@@ -1,6 +1,7 @@
 import {
   useModelFiltersContext,
   useModelFiltersController,
+  UseModelFiltersControllerOptions,
   useModelIndexContext
 } from '@rhino-project/core/hooks';
 import { useRenderPaths } from '../../hooks/renderPaths';
@@ -10,7 +11,7 @@ import { ModelFilter } from './ModelFilter';
 import { Chip, Link } from '@heroui/react';
 import { useCallback } from 'react';
 
-export const ModelFiltersPill = ({ path }) => {
+export const ModelFiltersPill = ({ path }: { path: string }) => {
   const {
     methods: { setValue },
     pills,
@@ -72,7 +73,7 @@ export const ModelFiltersForm = () => {
   return <>{renderPaths}</>;
 };
 
-export const ModelFiltersBase = (props) => {
+export const ModelFiltersBase = (props: UseModelFiltersControllerOptions) => {
   const controller = useModelFiltersController(props);
 
   return (
@@ -85,5 +86,5 @@ export const ModelFiltersBase = (props) => {
   );
 };
 
-export const ModelFilters = (props) =>
+export const ModelFilters = (props: UseModelFiltersControllerOptions) =>
   useGlobalComponentForModel('ModelFilters', ModelFiltersBase, props);

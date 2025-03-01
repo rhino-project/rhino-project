@@ -5,7 +5,7 @@ import {
 } from '@rhino-project/core/hooks';
 import { getModelAndAttributeFromPath } from '@rhino-project/core/utils';
 import { compact } from 'lodash-es';
-import { useCallback, useMemo } from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import {
   DisplayBooleanProps,
@@ -24,9 +24,10 @@ import { FieldSelectProps } from './FieldSelect';
 import { ModelFieldReferenceProps } from './ModelField';
 import { DisplayNumberInputProps } from './DisplayNumberInput';
 import { FieldNumberInputProps } from './FieldNumberInput';
+import { RhinoResource } from '@rhino-project/core';
 
 export const useModelFieldLabel = ({ path }: { path: string }) => {
-  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { model } = useModelContext();
   const { attribute } = useModelAndAttributeFromPath(model, path) as {
     attribute: { readableName: string };
   };
@@ -35,7 +36,7 @@ export const useModelFieldLabel = ({ path }: { path: string }) => {
 };
 
 export const useModelFieldClearable = ({ path }: { path: string }) => {
-  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { model } = useModelContext() as { model: RhinoResource };
   const { attribute } = useModelAndAttributeFromPath(model, path) as {
     attribute: { nullable: string | undefined };
   };
@@ -44,7 +45,7 @@ export const useModelFieldClearable = ({ path }: { path: string }) => {
 };
 
 export const useModelFieldRequired = ({ path }: { path: string }) => {
-  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { model } = useModelContext() as { model: RhinoResource };
   const { attribute } = useModelAndAttributeFromPath(model, path) as {
     attribute: { 'x-rhino-required': string | undefined };
   };
@@ -118,7 +119,7 @@ export const useModelFieldEnumProps = ({
   const { path } = props;
   const label = useModelFieldLabel(props);
   const isRequired = useModelFieldRequired(props);
-  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { model } = useModelContext() as { model: RhinoResource };
   const { attribute } = useModelAndAttributeFromPath(model, path) as {
     attribute: { enum: string[] };
   };
@@ -138,6 +139,7 @@ export const useModelFieldEnumProps = ({
 
   const accessor = useCallback((value: unknown) => value || null, []);
 
+  // @ts-expect-error FIXME: Type better
   return { accessor, children, label, isRequired, ...props };
 };
 
@@ -148,7 +150,7 @@ export const useModelFieldIntegerSelectProps = ({
   const { path } = props;
   const label = useModelFieldLabel(props);
   const isRequired = useModelFieldRequired(props);
-  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { model } = useModelContext() as { model: RhinoResource };
   const {
     attribute: { minimum, maximum }
   } = useModelAndAttributeFromPath(model, path) as {
@@ -172,10 +174,14 @@ export const useModelFieldIntegerSelectProps = ({
     []
   );
 
+  // @ts-expect-error FIXME: Type better
   return { accessor, children, label, isRequired, ...props };
 };
 
-export const useModelFieldFileProps = <T extends FieldFileProps>(
+export const useModelFieldFileProps = <
+  T extends Omit<FieldFileProps, 'label'> &
+    Partial<Pick<FieldFileProps, 'label'>>
+>(
   props: T
 ): T => {
   const label = useModelFieldLabel(props);
@@ -204,7 +210,7 @@ export const useModelFieldTimeProps = <T extends FieldTimeProps>(
 };
 
 export const useModelDisplayLabel = ({ path }: { path: string }) => {
-  const { model } = useModelContext() as { model: Record<string, unknown> };
+  const { model } = useModelContext() as { model: RhinoResource };
   const { attribute } = useModelAndAttributeFromPath(model, path) as {
     attribute: { readableName: string };
   };
@@ -295,7 +301,7 @@ export const useModelDisplayAttachmentImageProps = (
   };
 };
 
-export const useFilterField = (path, operator) => {
+export const useFilterField = (path: string, operator: string) => {
   const operatorPath = useMemo(
     () => compact([path, operator]).join('.'),
     [path, operator]
@@ -304,9 +310,10 @@ export const useFilterField = (path, operator) => {
   return { operatorPath };
 };
 
-const isDateRelated = (format) => ['date', 'time', 'datetime'].includes(format);
+const isDateRelated = (format: string) =>
+  ['date', 'time', 'datetime'].includes(format);
 
-const operatorToDateLabel = (operator) => {
+const operatorToDateLabel = (operator: string) => {
   switch (operator) {
     case 'diff':
       return 'not';
@@ -321,7 +328,7 @@ const operatorToDateLabel = (operator) => {
   }
 };
 
-const operatorToLabel = (format, operator) => {
+const operatorToLabel = (format: string, operator: string) => {
   if (isDateRelated(format)) return operatorToDateLabel(operator);
 
   switch (operator) {
@@ -339,7 +346,10 @@ const operatorToLabel = (format, operator) => {
   }
 };
 
-export const useModelFilterField = (path, options = {}) => {
+export const useModelFilterField = (
+  path: string,
+  options: { label?: ReactNode } = {}
+) => {
   const { model } = useModelContext();
 
   const [attributeModel, attribute, operator, plainPath] = useMemo(
@@ -347,7 +357,7 @@ export const useModelFilterField = (path, options = {}) => {
     [model, path]
   );
 
-  const filterField = useFilterField(plainPath, operator, options);
+  const filterField = useFilterField(plainPath, operator);
 
   const label = useMemo(() => {
     if (options?.label) return options.label;

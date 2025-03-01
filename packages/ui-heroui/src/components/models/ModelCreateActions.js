@@ -12,7 +12,7 @@ import {
 import { useLocation, useNavigate } from '@tanstack/react-router';
 
 export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
-  const { isLoading, mutate } = useModelCreateContext();
+  const { isPending, mutate } = useModelCreateContext();
   const { handleSubmit } = useFormContext();
 
   const onSuccess = useCallback(
@@ -31,7 +31,7 @@ export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
     <IconButton
       color="primary"
       icon="bi:save"
-      isLoading={isLoading}
+      isLoading={isPending}
       onPress={handleClick}
       {...props}
     >
@@ -129,6 +129,7 @@ export const ModelCreateActionsBase = ({
     () =>
       [
         hasCancel && <ModelCreateActionCancel />,
+        // eslint-disable-next-line react/jsx-key
         <ModelCreateActionSave />
       ].filter(Boolean),
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -11,7 +11,6 @@ import { isBaseOwned } from '@rhino-project/core/utils';
 import { IconButton } from '../buttons';
 import { ModelCreateModal } from './ModelCreateModal';
 import { ModelCreateModalActionSaveShow } from './ModelCreateModalActions';
-import { useDisclosure } from '@heroui/react';
 
 export const ModelIndexActionCreate = ({ children, ...props }) => {
   const { model, parentId: contextParentId } = useModelIndexContext();
@@ -47,7 +46,6 @@ const defaultModelComponents = {
 export const ModelIndexActionCreateModal = ({ overrides, ...props }) => {
   const { parent } = props;
   const { model } = useModelIndexContext();
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [modalOpen, setModalOpen] = useState(false);
   const baseOwnerId = useBaseOwnerId();
@@ -98,6 +96,7 @@ export const ModelIndexActionsBase = ({
   const { ModelIndexActionCreate } = useOverrides(defaultComponents, overrides);
 
   const computedDefaultActions = useMemo(
+    // eslint-disable-next-line react/jsx-key
     () => [<ModelIndexActionCreate />],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []

@@ -26,9 +26,9 @@ describe('auth/queries', () => {
       setup();
       result.current.main.mutate();
 
-      await waitFor(() => expect(result.current.main.isLoading).toBe(true));
+      await waitFor(() => expect(result.current.main.isPending).toBe(true));
 
-      await waitFor(() => expect(result.current.main.isLoading).toBe(false));
+      await waitFor(() => expect(result.current.main.isPending).toBe(false));
       expect(result.current.main.isSuccess).toBe(true);
     }
 
@@ -36,9 +36,9 @@ describe('auth/queries', () => {
       setup();
       result.current.main.mutate();
 
-      await waitFor(() => expect(result.current.main.isLoading).toBe(true));
+      await waitFor(() => expect(result.current.main.isPending).toBe(true));
 
-      await waitFor(() => expect(result.current.main.isLoading).toBe(false));
+      await waitFor(() => expect(result.current.main.isPending).toBe(false));
       expect(result.current.main.isError).toBe(true);
     }
 

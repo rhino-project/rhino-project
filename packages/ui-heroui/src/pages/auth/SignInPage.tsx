@@ -8,15 +8,17 @@ import { useRhinoConfig } from '@rhino-project/core/config';
 import { Alert } from '@heroui/react';
 import { RhinoLink } from '../../RhinoLink';
 
+// @ts-expect-error FIXME: typing properly
 export const SignInPage = (props) => {
   const { appName } = useRhinoConfig();
   const queryParams = useParsedSearch();
   const allowSignup = useSignupAllowed();
 
-  const { mutate: loginMutation, isLoading, error } = useSignInAction();
+  const { mutate: loginMutation, isPending, error } = useSignInAction();
 
   const confirmed = queryParams?.['account_confirmation_success'] === 'true';
 
+  // @ts-expect-error FIXME: typing properly
   const handleSubmit = (formValues) => loginMutation(formValues);
 
   const authDesc = (
@@ -40,13 +42,15 @@ export const SignInPage = (props) => {
           content: 'Forgot Password?',
           url: '/auth/reset-password'
         }}
-        loading={isLoading}
+        loading={isPending}
+        // @ts-expect-error FIXME: typing properly
         errors={error?.errors}
         onSubmit={handleSubmit}
         {...props}
       />
       {oauthProviders().length > 0 && <hr />}
       <div className="d-flex justify-content-center">
+        {/* @ts-expect-error FIXME: typing properly */}
         {oauthProviders().map((p) => (
           <OmniAuthButton
             key={p.name}
@@ -65,18 +69,3 @@ export const SignInPage = (props) => {
     </AuthPage>
   );
 };
-
-// SignInPage.propTypes = {
-//   description: PropTypes.node,
-//   children: PropTypes.node,
-//   currentPasswordField: PropTypes.bool,
-//   errors: PropTypes.array,
-//   emailField: PropTypes.bool,
-//   loading: PropTypes.bool,
-//   onSubmit: PropTypes.func,
-//   organizationField: PropTypes.bool,
-//   passwordField: PropTypes.bool,
-//   passwordConfirmField: PropTypes.bool,
-//   primaryAction: PropTypes.string,
-//   secondaryAction: PropTypes.object
-// };

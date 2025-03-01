@@ -8,7 +8,7 @@ import { Alert } from '@heroui/react';
 export const AcceptInvitationPage = (props) => {
   const {
     mutate: acceptAction,
-    isLoading,
+    isPending,
     error
   } = useAcceptInvitationAction();
   const params = useParsedSearch();
@@ -29,7 +29,7 @@ export const AcceptInvitationPage = (props) => {
         passwordField
         passwordConfirmField
         primaryAction="Set"
-        loading={isLoading}
+        loading={isPending}
         errors={error?.errors}
         onSubmit={handleSubmit}
         {...props}
