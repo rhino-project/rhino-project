@@ -60,8 +60,7 @@ const config = defineConfig({
       'virtual:@rhino-project/core/config/assets': resolve(
         'src/__tests__/shared/assets.js'
       ),
-      'models/static': resolve('src/__tests__/shared/modelFixtures.js'),
-      'routes/custom': resolve('src/__tests__/shared/customRoutes.js')
+      'models/static': resolve('src/__tests__/shared/modelFixtures.js')
     }
   }
 });
@@ -74,7 +73,6 @@ export default mergeConfig(
     externalDeps: [
       'react',
       'rhino.config',
-      'routes/custom',
       'models/static',
       'virtual:@rhino-project/core/config/assets',
       'virtual:@rhino-project/core/config/env'
