@@ -5,13 +5,13 @@ import { ModelCreateActions } from './ModelCreateActions';
 import { ModelCreateSimple, ModelCreateSimpleProps } from './ModelCreateSimple';
 import { Resources } from '@rhino-project/core';
 
-export type ModelCreateBaseProps<T extends keyof Resources> = Omit<
+export type ModelCreateProps<T extends keyof Resources> = Omit<
   ModelCreateSimpleProps<T>,
   'children'
 >;
 
 export const ModelCreateBase = <T extends keyof Resources>(
-  props: ModelCreateBaseProps<T>
+  props: ModelCreateProps<T>
 ) => {
   return (
     <ModelCreateSimple {...props}>
@@ -25,5 +25,5 @@ export const ModelCreateBase = <T extends keyof Resources>(
 };
 
 export const ModelCreate = <T extends keyof Resources>(
-  props: ModelCreateBaseProps<T>
+  props: ModelCreateProps<T>
 ) => useGlobalComponentForModel('ModelCreate', ModelCreateBase, props);

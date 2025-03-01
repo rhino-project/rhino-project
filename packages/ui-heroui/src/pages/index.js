@@ -1,8 +1,8 @@
 export * from './BaseAuthedPage';
 export * from './BasePage';
 
-export { Create as ModelCreatePage } from './model/Create';
-export { Edit as ModelEditPage } from './model/Edit';
-export { Index as ModelIndexPage } from './model/Index';
-export { Show as ModelShowPage } from './model/Show';
-export { ModelPage } from './model/ModelPage';
+export * from './model/ModelCreatePage';
+export * from './model/ModelEditPage';
+export * from './model/ModelIndexPage';
+export * from './model/ModelShowPage';
+export * from './model/ModelPage';

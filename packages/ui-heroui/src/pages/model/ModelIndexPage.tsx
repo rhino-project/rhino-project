@@ -5,7 +5,9 @@ import {
 } from '../../components/models/ModelIndex';
 import { ModelPage } from './ModelPage';
 
-export const Index = <T extends keyof Resources>(props: ModelIndexProps<T>) => {
+export const ModelIndexPage = <T extends keyof Resources>(
+  props: ModelIndexProps<T>
+) => {
   return (
     <ModelPage>
       <ModelIndex {...props} />
