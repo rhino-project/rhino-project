@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useUser } from './auth';
 import { useHasOrganizationsModule } from './models';
 import { useBaseOwner } from './owner';
+import { useLocation } from '@tanstack/react-router';
 
 export const usePageAnalytics = () => {
   const { pathname } = useLocation();
