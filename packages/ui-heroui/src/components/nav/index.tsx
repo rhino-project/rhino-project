@@ -6,13 +6,12 @@ import { map, uniqBy } from 'lodash-es';
 import { Link, LinkProps } from '@tanstack/react-router';
 import { RhinoResourceName } from '@rhino-project/core';
 
-export const NavSection = ({
-  title,
-  children
-}: {
-  title: string;
+export type NavSectionProps = {
+  title?: string;
   children: ReactNode;
-}) => {
+};
+
+export const NavSection = ({ title, children }: NavSectionProps) => {
   return (
     <li data-slot="base" role="presentation" className="relative mb-2 w-full">
       {title && (
@@ -28,14 +27,12 @@ export const NavSection = ({
   );
 };
 
-export const NavItem = ({
-  title,
-  icon,
-  ...props
-}: {
+export type NavItemProps = {
   title: string;
   icon: string;
-} & LinkProps) => {
+} & LinkProps;
+
+export const NavItem = ({ title, icon, ...props }: NavItemProps) => {
   return (
     <Link className="[&.active]:text-green-500" {...props}>
       <div className="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40 ">
@@ -49,7 +46,7 @@ export const NavItem = ({
 };
 
 export type ModelNavSectionProps = {
-  title: string;
+  title?: string;
   models?:
     | RhinoResourceName[]
     | ((roles: string[]) => RhinoResourceName[])
