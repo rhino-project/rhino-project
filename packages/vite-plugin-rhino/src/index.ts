@@ -150,11 +150,11 @@ export function RhinoProjectVite({
       // https://main.vitejs.dev/config/#using-environment-variables-in-config
       const env = loadEnv(CONFIG.mode, process.cwd(), '');
 
-      const apiRootPath = env.ROOT_URL;
+      const apiRootPath = env.RHINO_APP_URL;
       const logger = server.config.logger;
 
       if (!apiRootPath) {
-        logger.error('ROOT_URL environment variable is not defined.');
+        logger.error('RHINO_APP_URL environment variable is not defined.');
         return;
       }
 

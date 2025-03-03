@@ -37,7 +37,7 @@ Rails.application.configure do
   # Make template changes take effect immediately.
   config.action_mailer.perform_caching = false
 
-  config.action_mailer.default_url_options = { host: ENV['ROOT_URL'] }
+  config.action_mailer.default_url_options = { host: ENV['RHINO_APP_URL'] }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -80,5 +80,5 @@ Rails.application.configure do
 
   # Necessary for ActiveStorage integration
   # Rhino::Resource::ActiveStorageExtension#url needs this to be set
-  Rails.application.routes.default_url_options[:host] = ENV['ROOT_URL']
+  Rails.application.routes.default_url_options[:host] = ENV['RHINO_APP_URL']
 end
