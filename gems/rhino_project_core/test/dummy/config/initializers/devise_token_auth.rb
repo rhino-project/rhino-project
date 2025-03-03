@@ -66,6 +66,6 @@ DeviseTokenAuth.setup do |config|
   # send email, set it to true. (This is a setting for compatibility)
   # config.send_confirmation_email = true
 
-  config.default_confirm_success_url = "#{ENV['ROOT_URL']}/auth/signin"
-  config.default_password_reset_url = "#{ENV['ROOT_URL']}/auth/reset-password"
+  config.default_confirm_success_url = "#{ENV['RHINO_APP_URL']}/auth/signin"
+  config.default_password_reset_url = "#{ENV['RHINO_APP_URL']}/auth/reset-password"
 end
