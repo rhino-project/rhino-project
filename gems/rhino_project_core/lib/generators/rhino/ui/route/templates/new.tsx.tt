@@ -1,0 +1,17 @@
+import { ModelCreatePage } from '@rhino-project/ui-heroui';
+import { createFileRoute } from '@tanstack/react-router';
+
+export const Route = createFileRoute('<%= route_path %>new')({
+  validateSearch: (search: Record<string, unknown>): { parentId: number } => {
+    return {
+      parentId: Number(search?.parentId)
+    };
+  },
+  component: RouteComponent
+});
+
+function RouteComponent() {
+  const { parentId } = Route.useSearch();
+
+  return <ModelCreatePage model="<%= singular_table_name %>" parentId={parentId} />;
+}
