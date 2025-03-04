@@ -4,10 +4,8 @@ import {
   useModelShowPath
 } from '@rhino-project/core/hooks';
 import { CellLink } from '../../table/cells/CellLink';
-import {
-  useModelIndexContext,
-  useBaseOwnerPath
-} from '@rhino-project/core/hooks';
+import { useModelIndexContext } from '@rhino-project/core/hooks';
+import { useBaseOwnerPath } from '../../../hooks';
 
 export const ModelCellIdentifierBase = ({ children, getValue, ...props }) => {
   const { model } = useModelIndexContext();

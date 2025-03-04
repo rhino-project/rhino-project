@@ -125,16 +125,6 @@
         "default": "./dist/cjs/components/null/index.cjs"
       }
     },
-    "./components/analytics": {
-      "import": {
-        "types": "./dist/esm/components/analytics/index.d.ts",
-        "default": "./dist/esm/components/analytics/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/components/analytics/index.d.cts",
-        "default": "./dist/cjs/components/analytics/index.cjs"
-      }
-    },
     "./hooks": {
       "import": {
         "types": "./dist/esm/hooks/index.d.ts",

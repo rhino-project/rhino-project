@@ -5,8 +5,7 @@ import {
   useHasRoleOf,
   useUser,
   useAccountSettingsPath,
-  useSettingsPath,
-  useBaseOwnerPath
+  useSettingsPath
 } from '@rhino-project/core/hooks';
 import { useSignOutAction } from '@rhino-project/core/queries';
 import { hasOrganizationsModule } from '@rhino-project/core/utils';
@@ -17,6 +16,7 @@ import {
   DropdownMenu,
   User
 } from '@heroui/react';
+import { useBaseOwnerPath } from '../../hooks';
 
 export const AccountMenu = () => {
   const { mutate: signOutAction } = useSignOutAction();

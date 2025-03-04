@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 
-import { useParsedSearch, useResolver } from '@rhino-project/core/hooks';
+import { useResolver } from '@rhino-project/core/hooks';
 import { SubmitButton } from '../buttons';
 import { FormProvider } from '@rhino-project/core/components/forms';
 import { useForm } from 'react-hook-form';
@@ -10,6 +10,7 @@ import { FieldInput } from '../../FieldInput';
 import { FieldPassword } from '../../Field';
 import { Alert, Form } from '@heroui/react';
 import { RhinoLink } from '../../RhinoLink';
+import { useSearch } from '@tanstack/react-router';
 
 const AuthField = (props) => (
   <FieldInput placeholder="Email" isRequired {...props} />
@@ -30,8 +31,7 @@ export const AuthForm = ({
   errors,
   onSubmit
 }) => {
-  const queryParams = useParsedSearch();
-  const omniError = queryParams?.error;
+  const { error: omniError } = useSearch({ strict: false });
 
   // Autocomplete attributes to match Chrome standards
   // https://www.chromium.org/developers/design-documents/form-styles-that-chromium-understands/
