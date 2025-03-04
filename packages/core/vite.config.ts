@@ -89,7 +89,6 @@ export default mergeConfig(
       './src/components/index.js',
       './src/components/forms/index.js',
       './src/components/null/index.js',
-      './src/components/analytics/index.js',
       './src/components/models/index.js',
       './src/hooks/index.js',
       './src/lib/index.js'

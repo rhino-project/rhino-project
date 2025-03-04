@@ -1,8 +1,21 @@
 import { useEffect } from 'react';
-import { useUser } from './auth';
-import { useHasOrganizationsModule } from './models';
-import { useBaseOwner } from './owner';
 import { useLocation } from '@tanstack/react-router';
+import {
+  useBaseOwner,
+  useHasOrganizationsModule,
+  useUser
+} from '@rhino-project/core/hooks';
+
+// Declare the analytics property on the Window interface
+declare global {
+  interface Window {
+    analytics: {
+      page: (pathname: string) => void;
+      identify: (id: string, traits: { email: string }) => void;
+      group: (id: string, traits: { name: string }) => void;
+    };
+  }
+}
 
 export const usePageAnalytics = () => {
   const { pathname } = useLocation();
@@ -27,6 +40,8 @@ export const useGroupAnalytics = () => {
 
   useEffect(() => {
     if (enabled && baseOwner && window.analytics)
-      window.analytics.group(baseOwner.id, { name: baseOwner.name });
+      window.analytics.group(String(baseOwner.id), {
+        name: String(baseOwner.name)
+      });
   }, [enabled, baseOwner]);
 };
