@@ -183,7 +183,6 @@
     "@rails/activestorage": "8.0.100",
     "@stripe/react-stripe-js": "2.1.0",
     "@stripe/stripe-js": "1.52.0",
-    "@tanstack/react-router": "1.111.3",
     "@types/qs": "^6.9.18",
     "axios": "1.7.4",
     "lodash-es": "4.17.21",

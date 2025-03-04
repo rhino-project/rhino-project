@@ -6,5 +6,5 @@ export const Route = createFileRoute('<%= route_path %>')({
 });
 
 function RouteComponent() {
-  return <ModelIndexPage model="<%= singular_table_name %>" />;
+  return <ModelIndexPage model="<%= singular_table_name %>" syncUrl />;
 }

@@ -20,7 +20,7 @@ export const ModelShowActionEdit = ({ children, ...props }) => {
       as={Link}
       color="primary"
       icon="bi:pencil-square"
-      to={`${location.href}/edit`}
+      to={`${location.pathname}/edit`}
       search={{ back: location.pathname }}
       {...props}
     >

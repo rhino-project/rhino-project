@@ -6,7 +6,6 @@ import {
   useRef,
   useState
 } from 'react';
-import { useLocation, useNavigate } from '@tanstack/react-router';
 
 import {
   filter,
@@ -187,6 +186,14 @@ export type UseModelIndexControllerOptions<T extends RhinoResourceSpecifier> = {
   defaultOrder?: string;
   defaultSearch?: string;
   defaultGeospatial?: object;
+  initialState?: {
+    search?: string;
+    order?: string;
+    limit?: number;
+    offset?: number;
+    filter?: Record<string, unknown>;
+    geospatial?: Record<string, unknown>;
+  };
   model: T;
   paths?: T extends RhinoResourceName
     ? (keyof Resources[T])[]
@@ -195,7 +202,6 @@ export type UseModelIndexControllerOptions<T extends RhinoResourceSpecifier> = {
       : never;
   queryOptions?: Partial<UseQueryOptions<RhinoResourceSpecifierToResource<T>>>;
   networkOptions?: Partial<AxiosRequestConfig>;
-  syncUrl?: boolean;
 };
 
 // Reset/change default state - when baseOwnerFilter changes for instance or tabbed filtering
@@ -205,11 +211,9 @@ export const useModelIndexController = <T extends RhinoResourceSpecifier>(
   options: UseModelIndexControllerOptions<T>
 ) => {
   const model = useModel(options.model);
-  const { syncUrl = true, defaultFiltersBaseOwner = true } = options;
+  const { defaultFiltersBaseOwner = true } = options;
   const baseOwnerId = useBaseOwnerId();
 
-  const navigate = useNavigate();
-  const location = useLocation();
   const defaultState = useRef({
     filter: (defaultFiltersBaseOwner
       ? merge(
@@ -224,7 +228,7 @@ export const useModelIndexController = <T extends RhinoResourceSpecifier>(
     geospatial: (options?.defaultGeospatial ?? {}) as Record<string, unknown>
   });
 
-  const initialState = useRef<{
+  const storedInitialState = useRef<{
     search?: string;
     order?: string;
     limit?: number;
@@ -233,8 +237,8 @@ export const useModelIndexController = <T extends RhinoResourceSpecifier>(
     geospatial?: Record<string, unknown>;
   } | null>(null);
 
-  // https://beta.reactjs.org/reference/react/useRef#avoiding-recreating-the-ref-contents
-  if (initialState.current === null) {
+  // https://react.dev/reference/react/useRef#avoiding-recreating-the-ref-contents
+  if (storedInitialState.current === null) {
     // When computing the initial state of filters, the URL has precedence over the baseFilters for everything except filters.
     // That means that if baseFilter has { order: 'a' } and the URL has ?order=b, the initial state of searchParams will have
     // { order: 'b' }, as it is the order value in the URL.
@@ -244,24 +248,24 @@ export const useModelIndexController = <T extends RhinoResourceSpecifier>(
     // The initial value of searchParams will be a merge of filters from the URL and the baseFiltes, the latter being able to
     // override anything in the URL.
 
-    const queryFromUrl = syncUrl ? location.search : {};
+    const initialState = options.initialState ?? {};
 
-    initialState.current = {
-      search: queryFromUrl.search ?? defaultState.current?.search,
-      order: queryFromUrl.order ?? defaultState.current?.order,
-      limit: parseInt(queryFromUrl.limit) || defaultState.current?.limit,
-      offset: parseInt(queryFromUrl.offset) || defaultState.current?.offset,
+    storedInitialState.current = {
+      search: initialState.search ?? defaultState.current?.search,
+      order: initialState.order ?? defaultState.current?.order,
+      limit: initialState.limit || defaultState.current?.limit,
+      offset: initialState.offset || defaultState.current?.offset,
       // Merge the filters from the URL with the filters from the baseFilters, the latter having precedence
       // This handles cases such as project.client.id in the filters and project.id in the baseFilters
       // If we did not merge, the project.client.id would be lost
       filter: merge(
         {},
-        queryFromUrl.filter ?? {},
+        initialState.filter ?? {},
         defaultState.current?.filter
       ),
       geospatial: merge(
         {},
-        queryFromUrl.geospatial ?? {},
+        initialState.geospatial ?? {},
         defaultState.current?.geospatial
       )
     };
@@ -270,25 +274,29 @@ export const useModelIndexController = <T extends RhinoResourceSpecifier>(
   const [filter, internalSetFilter] = useState(
     findDeepDifference(
       defaultState.current.filter,
-      initialState.current.filter!
+      storedInitialState.current.filter!
     )
   );
   const [fullFilter, setFullFilter] = useState<Record<string, unknown>>(
-    initialState.current.filter!
+    storedInitialState.current.filter!
   );
   const [geospatial, internalSetGeospatial] = useState(
     findDeepDifference(
       defaultState.current.geospatial,
-      initialState.current.geospatial!
+      storedInitialState.current.geospatial!
     )
   );
   const [fullGeospatial, setFullGeospatial] = useState(
-    initialState.current.geospatial
+    storedInitialState.current.geospatial
   );
-  const [limit, setLimit] = useState<number>(initialState.current.limit!);
-  const [offset, setOffset] = useState<number>(initialState.current.offset!);
-  const [order, setOrder] = useState<string>(initialState.current.order!);
-  const [search, setSearch] = useState<string>(initialState.current.search!);
+  const [limit, setLimit] = useState<number>(storedInitialState.current.limit!);
+  const [offset, setOffset] = useState<number>(
+    storedInitialState.current.offset!
+  );
+  const [order, setOrder] = useState<string>(storedInitialState.current.order!);
+  const [search, setSearch] = useState<string>(
+    storedInitialState.current.search!
+  );
 
   const setFilter = useCallback((filter: Record<string, unknown>) => {
     internalSetFilter(findDeepDifference(defaultState.current.filter, filter));
@@ -394,10 +402,8 @@ export const useModelIndexController = <T extends RhinoResourceSpecifier>(
   const hasNextPage = offset + limit < totalPages * limit;
   const setPage = (page: number) => setOffset((page - 1) * limit);
 
-  useEffect(() => {
-    if (!syncUrl) return;
-
-    if (
+  const isEqualToDefault = useMemo(
+    () =>
       isEqual(
         {
           filter: fullFilter,
@@ -408,37 +414,20 @@ export const useModelIndexController = <T extends RhinoResourceSpecifier>(
           search
         },
         defaultState.current
-      )
-    ) {
-      // If the current state is the same as the default state, remove the query params from the URL but only if they are not already empty
-      if (location.search) navigate({ to: location.pathname, search: {} });
-    } else {
-      navigate({
-        to: location.pathname,
-        search: {
-          filter,
-          geospatial,
-          limit,
-          offset,
-          order,
-          search
-        }
-      });
-    }
-
-    // https://github.com/facebook/react/issues/22305#issuecomment-1113508762
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [syncUrl, filter, geospatial, fullFilter, search, limit, offset, order]);
+      ),
+    [fullFilter, fullGeospatial, limit, offset, order, search]
+  );
 
   useEffect(
-    // @ts-expect-error this will definitely be an object by now
-    () => setOffset(initialState.current.offset),
+    // This will definitely be set by now
+    () => setOffset(storedInitialState.current!.offset!),
     [filter, geospatial, search, limit]
   );
 
   return {
     defaultState: defaultState.current,
-    initialState: initialState.current,
+    initialState: storedInitialState.current,
+    isEqualToDefault,
     order,
     setOrder,
     search,
