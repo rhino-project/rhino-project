@@ -1,5 +1,6 @@
-import { useBaseOwnerPath, useRootPath } from '@rhino-project/core/hooks';
+import { useRootPath } from '@rhino-project/core/hooks';
 import { Link } from '@tanstack/react-router';
+import { useBaseOwnerPath } from '../../hooks';
 
 export const NotFoundPage = () => {
   const { build } = useBaseOwnerPath();

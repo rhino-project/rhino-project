@@ -1,22 +1,24 @@
 import { AuthForm } from '../../components/auth/AuthForm';
 import { OmniAuthButton } from '../../components/buttons/omniauth';
-import { useParsedSearch } from '@rhino-project/core/hooks';
 import { useSignInAction, useSignupAllowed } from '@rhino-project/core/queries';
 import { oauthProviders } from '@rhino-project/core/utils';
 import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/core/config';
 import { Alert } from '@heroui/react';
 import { RhinoLink } from '../../RhinoLink';
+import { useSearch } from '@tanstack/react-router';
 
 // @ts-expect-error FIXME: typing properly
 export const SignInPage = (props) => {
   const { appName } = useRhinoConfig();
-  const queryParams = useParsedSearch();
+  const { account_confirmation_success } = useSearch({
+    strict: false
+  });
   const allowSignup = useSignupAllowed();
 
   const { mutate: loginMutation, isPending, error } = useSignInAction();
 
-  const confirmed = queryParams?.['account_confirmation_success'] === 'true';
+  const confirmed = account_confirmation_success === 'true';
 
   // @ts-expect-error FIXME: typing properly
   const handleSubmit = (formValues) => loginMutation(formValues);

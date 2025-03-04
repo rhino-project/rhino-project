@@ -1,11 +1,11 @@
 import { AuthForm } from '../../components/auth/AuthForm';
 import { LinkButton } from '../../components/buttons';
-import { useParsedSearch } from '@rhino-project/core/hooks';
 import { useSessionCreatePath } from '@rhino-project/core/hooks';
 import { useResetPasswordAction } from '@rhino-project/core/queries';
 import { AuthPage } from './AuthPage';
 import PropTypes from 'prop-types';
 import { Alert } from '@heroui/react';
+import { useSearch } from '@tanstack/react-router';
 
 export const ResetPasswordPage = (props) => {
   const sessionCreatePath = useSessionCreatePath();
@@ -17,7 +17,7 @@ export const ResetPasswordPage = (props) => {
     error
   } = useResetPasswordAction();
 
-  const { reset_password_token } = useParsedSearch();
+  const { reset_password_token } = useSearch({ strict: false });
 
   const handleSubmit = (formValues) => {
     resetPasswordAction({ data: { ...formValues, reset_password_token } });

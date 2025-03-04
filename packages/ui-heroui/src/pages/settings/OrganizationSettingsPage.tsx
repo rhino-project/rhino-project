@@ -1,7 +1,6 @@
 import { useCallback, useMemo } from 'react';
 
 import { BaseAuthedPage } from '../BaseAuthedPage';
-import { useBaseOwnerPath } from '@rhino-project/core/hooks';
 import {
   hasOrganizationsModule,
   hasSubscriptionsModule
@@ -9,10 +8,9 @@ import {
 import { getSettingsPath } from '@rhino-project/core/utils';
 import { Tab, Tabs } from '@heroui/react';
 import { Outlet, useLocation } from '@tanstack/react-router';
+import { useBaseOwnerPath } from '../../hooks';
 
 export const OrganizationSettingsPage = () => {
-  //Checking subscription payment related status
-  // const { status, session_id } = useParsedSearch(); //FIXME use session_id for checking later
   const { build } = useBaseOwnerPath();
 
   const showSubscriptions = useMemo(

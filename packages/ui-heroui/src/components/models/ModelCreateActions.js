@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import { useModelCreateContext } from '@rhino-project/core/hooks';
 import { useFormContext } from 'react-hook-form';
-import { useBackHistory } from '@rhino-project/core/hooks';
 import { IconButton } from '../buttons';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '@rhino-project/core/hooks';
 import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useBackHistory } from '../../hooks';
 
 export const ModelCreateActionSave = ({ children, onSave, ...props }) => {
   const { isPending, mutate } = useModelCreateContext();

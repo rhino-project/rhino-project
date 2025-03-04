@@ -3,13 +3,13 @@ import { Children, useCallback, useMemo } from 'react';
 
 import { useFormContext } from 'react-hook-form';
 import { useModelEditContext } from '@rhino-project/core/hooks';
-import { useBackHistory } from '@rhino-project/core/hooks';
 import {
   useGlobalComponentForModel,
   useOverrides
 } from '@rhino-project/core/hooks';
 import { IconButton } from '../buttons';
 import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useBackHistory } from '../../hooks';
 
 export const ModelEditActionSave = ({ children, onSave, ...props }) => {
   const { mutate, isPending } = useModelEditContext();

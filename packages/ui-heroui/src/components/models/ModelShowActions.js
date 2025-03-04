@@ -3,7 +3,6 @@ import { Children, useCallback, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from '@tanstack/react-router';
 import { useModelShowContext } from '@rhino-project/core/hooks';
 import { getModelShowPath } from '@rhino-project/core/utils';
-import { useBaseOwnerNavigation } from '@rhino-project/core/hooks';
 import {
   useGlobalComponentForModel,
   useOverrides
@@ -11,6 +10,7 @@ import {
 import { getParentModel, isBaseOwned } from '@rhino-project/core/utils';
 import { IconButton } from '../buttons';
 import { ModelEditModal } from './ModelEditModal';
+import { useBaseOwnerNavigation } from '../../hooks';
 
 export const ModelShowActionEdit = ({ children, ...props }) => {
   const location = useLocation();

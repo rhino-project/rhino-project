@@ -1,11 +1,11 @@
 import { ReactNode, useMemo } from 'react';
 import {
-  useBaseOwnerPath,
   useGlobalComponentForModel,
   useModelContext
 } from '@rhino-project/core/hooks';
 import { BreadcrumbItem, Breadcrumbs, BreadcrumbsProps } from '@heroui/react';
 import { RhinoResource } from '@rhino-project/core';
+import { useBaseOwnerPath } from '../../hooks';
 
 export type ModelBreadcrumbProps = {
   lastItem?: ReactNode;

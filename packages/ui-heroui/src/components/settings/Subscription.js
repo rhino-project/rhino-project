@@ -21,10 +21,13 @@ import {
   CardHeader
 } from '@heroui/react';
 import { Icon } from '@iconify/react';
+import { useSearch } from '@tanstack/react-router';
 
-export const Subscription = ({ status, session_id }) => {
+export const Subscription = () => {
   const baseOwnerId = useBaseOwnerId();
   const queryClient = useQueryClient();
+  //Checking subscription payment related status
+  const { status, session_id } = useSearch({ strict: false });
 
   const { isLoading, data: { data: prices } = {} } = usePrices();
   const { isSuccess, data: { data: subscriptions } = {} } =
