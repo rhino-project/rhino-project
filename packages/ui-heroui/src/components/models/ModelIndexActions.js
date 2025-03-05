@@ -30,7 +30,7 @@ export const ModelIndexActionCreate = ({ children, ...props }) => {
       as={Link}
       color="primary"
       icon="bi:plus"
-      to={`${location.href}/new`}
+      to={`${location.pathname}/new`}
       search={{ back: location.pathname, parentId }}
       {...props}
     >
