@@ -8,7 +8,7 @@ import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/core/config';
 import PropTypes from 'prop-types';
 import { OmniAuthButton } from '../../components/buttons/omniauth';
-import { RhinoLink } from '../../RhinoLink';
+import { Link } from '@tanstack/react-router';
 
 export const SignUpPage = (props) => {
   const { appName } = useRhinoConfig();
@@ -21,8 +21,7 @@ export const SignUpPage = (props) => {
       <p>Enter your email address and password to create account.</p>
       <br />
       <p>
-        Already have a {appName} account?{' '}
-        <RhinoLink to="/auth/signin">Sign In</RhinoLink>
+        Already have a {appName} account? <Link to="/auth/signin">Sign In</Link>
       </p>
     </>
   );

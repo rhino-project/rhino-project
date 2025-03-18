@@ -5,8 +5,7 @@ import { oauthProviders } from '@rhino-project/core/utils';
 import { AuthPage } from './AuthPage';
 import { useRhinoConfig } from '@rhino-project/core/config';
 import { Alert } from '@heroui/react';
-import { RhinoLink } from '../../RhinoLink';
-import { useSearch } from '@tanstack/react-router';
+import { Link, useSearch } from '@tanstack/react-router';
 
 // @ts-expect-error FIXME: typing properly
 export const SignInPage = (props) => {
@@ -28,7 +27,7 @@ export const SignInPage = (props) => {
       <p>Enter your email address and password to sign in.</p>
       {allowSignup && (
         <p>
-          New to {appName}? <RhinoLink to="/auth/signup">Sign Up</RhinoLink>
+          New to {appName}? <Link to="/auth/signup">Sign Up</Link>
         </p>
       )}
     </>
