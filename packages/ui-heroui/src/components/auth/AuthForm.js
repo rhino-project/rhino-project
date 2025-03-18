@@ -9,8 +9,7 @@ import { useForm } from 'react-hook-form';
 import { FieldInput } from '../../FieldInput';
 import { FieldPassword } from '../../Field';
 import { Alert, Form } from '@heroui/react';
-import { RhinoLink } from '../../RhinoLink';
-import { useSearch } from '@tanstack/react-router';
+import { Link, useSearch } from '@tanstack/react-router';
 
 const AuthField = (props) => (
   <FieldInput placeholder="Email" isRequired {...props} />
@@ -175,13 +174,13 @@ export const AuthForm = ({
 
         <div className="flex flex-col">
           {secondaryAction && (
-            <RhinoLink
+            <Link
               className="mb-2 text-right"
               color="link"
               to={secondaryAction.url}
             >
               {secondaryAction.content}
-            </RhinoLink>
+            </Link>
           )}
           <SubmitButton isLoading={loading}>{primaryAction}</SubmitButton>
         </div>
