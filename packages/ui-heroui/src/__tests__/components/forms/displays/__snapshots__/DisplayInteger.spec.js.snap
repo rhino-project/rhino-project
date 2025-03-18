@@ -35,6 +35,7 @@ exports[`DisplayInteger > renders inside of model context 1`] = `
             name="dummy"
             readonly=""
             spellcheck="false"
+            tabindex="0"
             title=""
             type="text"
             value=""
@@ -52,7 +53,7 @@ exports[`DisplayInteger > renders inside of model context 1`] = `
             <button
               aria-controls="react-aria-:r1:"
               aria-label="Increase dummy"
-              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled before:h-6"
               data-disabled="true"
               data-slot="increase-button"
               disabled=""
@@ -80,7 +81,7 @@ exports[`DisplayInteger > renders inside of model context 1`] = `
             <button
               aria-controls="react-aria-:r1:"
               aria-label="Decrease dummy"
-              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled before:h-6"
               data-disabled="true"
               data-slot="decrease-button"
               disabled=""
@@ -148,6 +149,7 @@ exports[`DisplayInteger > should render the empty text when value is nullish 1`]
             name="dummy"
             readonly=""
             spellcheck="false"
+            tabindex="0"
             title=""
             type="text"
             value=""
@@ -165,7 +167,7 @@ exports[`DisplayInteger > should render the empty text when value is nullish 1`]
             <button
               aria-controls="react-aria-:ra:"
               aria-label="Increase dummy"
-              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled before:h-6"
               data-disabled="true"
               data-slot="increase-button"
               disabled=""
@@ -193,7 +195,7 @@ exports[`DisplayInteger > should render the empty text when value is nullish 1`]
             <button
               aria-controls="react-aria-:ra:"
               aria-label="Decrease dummy"
-              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled before:h-6"
               data-disabled="true"
               data-slot="decrease-button"
               disabled=""
@@ -261,6 +263,7 @@ exports[`DisplayInteger > should render the overridden empty text when value is 
             name="dummy"
             readonly=""
             spellcheck="false"
+            tabindex="0"
             title=""
             type="text"
             value=""
@@ -278,7 +281,7 @@ exports[`DisplayInteger > should render the overridden empty text when value is 
             <button
               aria-controls="react-aria-:rj:"
               aria-label="Increase dummy"
-              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled before:h-6"
               data-disabled="true"
               data-slot="increase-button"
               disabled=""
@@ -306,7 +309,7 @@ exports[`DisplayInteger > should render the overridden empty text when value is 
             <button
               aria-controls="react-aria-:rj:"
               aria-label="Decrease dummy"
-              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:h-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled"
+              class="z-0 group relative box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-small gap-2 rounded-medium opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none text-default-foreground data-[hover=true]:opacity-hover bg-transparent flex justify-center items-center before:absolute before:w-8 before:rounded-full after:shadow-small after:bg-background data-[focused=true]:z-10 min-w-5 w-5 h-5 overflow-visible transition-opacity data-[hover=true]:opacity-70 data-[pressed=true]:opacity-disabled before:h-6"
               data-disabled="true"
               data-slot="decrease-button"
               disabled=""

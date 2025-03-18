@@ -20,9 +20,18 @@ exports[`FieldTime > render with disabled 1`] = `
           aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
-          id="react-aria-:r19:"
+          id="react-aria-:r1h:"
           role="group"
+          style="unicode-bidi: isolate;"
         >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
           <div
             aria-disabled="true"
             aria-label="hour, dummy"
@@ -36,7 +45,7 @@ exports[`FieldTime > render with disabled 1`] = `
             data-placeholder="true"
             data-slot="segment"
             data-type="hour"
-            id="react-aria-:r1e:"
+            id="react-aria-:r1o:"
             role="spinbutton"
             style="caret-color: transparent;"
           >
@@ -63,7 +72,7 @@ exports[`FieldTime > render with disabled 1`] = `
             data-placeholder="true"
             data-slot="segment"
             data-type="minute"
-            id="react-aria-:r1i:"
+            id="react-aria-:r1s:"
             role="spinbutton"
             style="caret-color: transparent;"
           >
@@ -90,11 +99,19 @@ exports[`FieldTime > render with disabled 1`] = `
             data-placeholder="true"
             data-slot="segment"
             data-type="second"
-            id="react-aria-:r1m:"
+            id="react-aria-:r20:"
             role="spinbutton"
             style="caret-color: transparent;"
           >
             ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
           </div>
           <div
             aria-hidden="true"
@@ -117,7 +134,7 @@ exports[`FieldTime > render with disabled 1`] = `
             data-placeholder="true"
             data-slot="segment"
             data-type="dayPeriod"
-            id="react-aria-:r1q:"
+            id="react-aria-:r26:"
             role="spinbutton"
             style="caret-color: transparent;"
           >
@@ -156,9 +173,18 @@ exports[`FieldTime > render with place holder 1`] = `
           aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
-          id="react-aria-:rl:"
+          id="react-aria-:rp:"
           role="group"
+          style="unicode-bidi: isolate;"
         >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
           <div
             aria-label="hour, dummy"
             aria-valuemax="11"
@@ -173,7 +199,7 @@ exports[`FieldTime > render with place holder 1`] = `
             data-slot="segment"
             data-type="hour"
             enterkeyhint="next"
-            id="react-aria-:rq:"
+            id="react-aria-:r10:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -204,7 +230,7 @@ exports[`FieldTime > render with place holder 1`] = `
             data-slot="segment"
             data-type="minute"
             enterkeyhint="next"
-            id="react-aria-:ru:"
+            id="react-aria-:r14:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -235,7 +261,7 @@ exports[`FieldTime > render with place holder 1`] = `
             data-slot="segment"
             data-type="second"
             enterkeyhint="next"
-            id="react-aria-:r12:"
+            id="react-aria-:r18:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -243,6 +269,14 @@ exports[`FieldTime > render with place holder 1`] = `
             tabindex="0"
           >
             ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
           </div>
           <div
             aria-hidden="true"
@@ -266,7 +300,7 @@ exports[`FieldTime > render with place holder 1`] = `
             data-slot="segment"
             data-type="dayPeriod"
             enterkeyhint="next"
-            id="react-aria-:r16:"
+            id="react-aria-:r1e:"
             role="spinbutton"
             spellcheck="false"
             style="caret-color: transparent;"
@@ -306,9 +340,18 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
           aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
-          id="react-aria-:r2f:"
+          id="react-aria-:r2v:"
           role="group"
+          style="unicode-bidi: isolate;"
         >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
           <div
             aria-label="hour, dummy"
             aria-valuemax="11"
@@ -323,7 +366,7 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
             data-slot="segment"
             data-type="hour"
             enterkeyhint="next"
-            id="react-aria-:r2k:"
+            id="react-aria-:r36:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -354,7 +397,7 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
             data-slot="segment"
             data-type="minute"
             enterkeyhint="next"
-            id="react-aria-:r2o:"
+            id="react-aria-:r3a:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -385,7 +428,7 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
             data-slot="segment"
             data-type="second"
             enterkeyhint="next"
-            id="react-aria-:r2s:"
+            id="react-aria-:r3e:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -393,6 +436,14 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
             tabindex="0"
           >
             ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
           </div>
           <div
             aria-hidden="true"
@@ -416,7 +467,7 @@ exports[`FieldTime > renders empty with empty string date 1`] = `
             data-slot="segment"
             data-type="dayPeriod"
             enterkeyhint="next"
-            id="react-aria-:r30:"
+            id="react-aria-:r3k:"
             role="spinbutton"
             spellcheck="false"
             style="caret-color: transparent;"
@@ -456,9 +507,18 @@ exports[`FieldTime > renders empty with null date 1`] = `
           aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
-          id="react-aria-:r1s:"
+          id="react-aria-:r28:"
           role="group"
+          style="unicode-bidi: isolate;"
         >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
           <div
             aria-label="hour, dummy"
             aria-valuemax="11"
@@ -473,7 +533,7 @@ exports[`FieldTime > renders empty with null date 1`] = `
             data-slot="segment"
             data-type="hour"
             enterkeyhint="next"
-            id="react-aria-:r21:"
+            id="react-aria-:r2f:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -504,7 +564,7 @@ exports[`FieldTime > renders empty with null date 1`] = `
             data-slot="segment"
             data-type="minute"
             enterkeyhint="next"
-            id="react-aria-:r25:"
+            id="react-aria-:r2j:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -535,7 +595,7 @@ exports[`FieldTime > renders empty with null date 1`] = `
             data-slot="segment"
             data-type="second"
             enterkeyhint="next"
-            id="react-aria-:r29:"
+            id="react-aria-:r2n:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -543,6 +603,14 @@ exports[`FieldTime > renders empty with null date 1`] = `
             tabindex="0"
           >
             ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
           </div>
           <div
             aria-hidden="true"
@@ -566,7 +634,7 @@ exports[`FieldTime > renders empty with null date 1`] = `
             data-slot="segment"
             data-type="dayPeriod"
             enterkeyhint="next"
-            id="react-aria-:r2d:"
+            id="react-aria-:r2t:"
             role="spinbutton"
             spellcheck="false"
             style="caret-color: transparent;"
@@ -605,15 +673,25 @@ exports[`FieldTime > renders error 1`] = `
         data-slot="inner-wrapper"
       >
         <div
-          aria-describedby="react-aria-:r36:"
+          aria-describedby="react-aria-:r3q:"
           aria-label="dummy"
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input"
-          id="react-aria-:r32:"
+          id="react-aria-:r3m:"
           role="group"
+          style="unicode-bidi: isolate;"
         >
           <div
-            aria-describedby="react-aria-:r36:"
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-invalid="true"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
+            aria-describedby="react-aria-:r3q:"
             aria-invalid="true"
             aria-label="hour, dummy"
             aria-valuemax="11"
@@ -629,7 +707,7 @@ exports[`FieldTime > renders error 1`] = `
             data-slot="segment"
             data-type="hour"
             enterkeyhint="next"
-            id="react-aria-:r37:"
+            id="react-aria-:r3t:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -648,7 +726,7 @@ exports[`FieldTime > renders error 1`] = `
             :
           </div>
           <div
-            aria-describedby="react-aria-:r36:"
+            aria-describedby="react-aria-:r3q:"
             aria-invalid="true"
             aria-label="minute, dummy"
             aria-valuemax="59"
@@ -664,7 +742,7 @@ exports[`FieldTime > renders error 1`] = `
             data-slot="segment"
             data-type="minute"
             enterkeyhint="next"
-            id="react-aria-:r3b:"
+            id="react-aria-:r41:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -683,7 +761,7 @@ exports[`FieldTime > renders error 1`] = `
             :
           </div>
           <div
-            aria-describedby="react-aria-:r36:"
+            aria-describedby="react-aria-:r3q:"
             aria-invalid="true"
             aria-label="second, dummy"
             aria-valuemax="59"
@@ -699,7 +777,7 @@ exports[`FieldTime > renders error 1`] = `
             data-slot="segment"
             data-type="second"
             enterkeyhint="next"
-            id="react-aria-:r3f:"
+            id="react-aria-:r45:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -715,10 +793,19 @@ exports[`FieldTime > renders error 1`] = `
             data-slot="segment"
             data-type="literal"
           >
+            ⁩
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-invalid="true"
+            data-slot="segment"
+            data-type="literal"
+          >
              
           </div>
           <div
-            aria-describedby="react-aria-:r36:"
+            aria-describedby="react-aria-:r3q:"
             aria-invalid="true"
             aria-label="AM/PM, dummy"
             aria-valuemax="12"
@@ -734,7 +821,7 @@ exports[`FieldTime > renders error 1`] = `
             data-slot="segment"
             data-type="dayPeriod"
             enterkeyhint="next"
-            id="react-aria-:r3j:"
+            id="react-aria-:r4b:"
             role="spinbutton"
             spellcheck="false"
             style="caret-color: transparent;"
@@ -758,7 +845,7 @@ exports[`FieldTime > renders error 1`] = `
         <div
           class="text-tiny text-danger"
           data-slot="error-message"
-          id="react-aria-:r36:"
+          id="react-aria-:r3q:"
         >
           Error
         </div>
@@ -788,7 +875,16 @@ exports[`FieldTime > renders inside of model context 1`] = `
           data-slot="input"
           id="react-aria-:r1:"
           role="group"
+          style="unicode-bidi: isolate;"
         >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
           <div
             aria-label="hour, dummy"
             aria-valuemax="11"
@@ -803,7 +899,7 @@ exports[`FieldTime > renders inside of model context 1`] = `
             data-slot="segment"
             data-type="hour"
             enterkeyhint="next"
-            id="react-aria-:r6:"
+            id="react-aria-:r8:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -834,7 +930,7 @@ exports[`FieldTime > renders inside of model context 1`] = `
             data-slot="segment"
             data-type="minute"
             enterkeyhint="next"
-            id="react-aria-:ra:"
+            id="react-aria-:rc:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -865,7 +961,7 @@ exports[`FieldTime > renders inside of model context 1`] = `
             data-slot="segment"
             data-type="second"
             enterkeyhint="next"
-            id="react-aria-:re:"
+            id="react-aria-:rg:"
             inputmode="numeric"
             role="spinbutton"
             spellcheck="false"
@@ -873,6 +969,14 @@ exports[`FieldTime > renders inside of model context 1`] = `
             tabindex="0"
           >
             ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
           </div>
           <div
             aria-hidden="true"
@@ -896,7 +1000,7 @@ exports[`FieldTime > renders inside of model context 1`] = `
             data-slot="segment"
             data-type="dayPeriod"
             enterkeyhint="next"
-            id="react-aria-:ri:"
+            id="react-aria-:rm:"
             role="spinbutton"
             spellcheck="false"
             style="caret-color: transparent;"

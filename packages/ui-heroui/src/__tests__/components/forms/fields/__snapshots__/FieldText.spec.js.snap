@@ -62,6 +62,7 @@ exports[`FieldText > render with place holder 1`] = `
           id="react-aria-:r7:"
           name="dummy"
           placeholder="placeholder"
+          tabindex="0"
           title=""
         />
       </div>
@@ -95,6 +96,7 @@ exports[`FieldText > renders inside of model context 1`] = `
           data-slot="input"
           id="react-aria-:r1:"
           name="dummy"
+          tabindex="0"
           title=""
         />
       </div>

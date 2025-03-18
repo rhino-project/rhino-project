@@ -61,6 +61,7 @@ exports[`FieldDate > render with disabled 1`] = `
           data-slot="input-field"
           id="react-aria-:rp:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-disabled="true"
@@ -179,6 +180,7 @@ exports[`FieldDate > renders date string 1`] = `
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
           id="react-aria-:r2s:"
+          tabindex="0"
           type="button"
         >
           <svg
@@ -209,6 +211,7 @@ exports[`FieldDate > renders date string 1`] = `
           data-slot="input-field"
           id="react-aria-:r2u:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-describedby="react-aria-description-0"
@@ -334,6 +337,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
           id="react-aria-:r25:"
+          tabindex="0"
           type="button"
         >
           <svg
@@ -364,6 +368,7 @@ exports[`FieldDate > renders empty with empty string date 1`] = `
           data-slot="input-field"
           id="react-aria-:r27:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-label="month, dummy"
@@ -491,6 +496,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
           id="react-aria-:r1e:"
+          tabindex="0"
           type="button"
         >
           <svg
@@ -521,6 +527,7 @@ exports[`FieldDate > renders empty with null date 1`] = `
           data-slot="input-field"
           id="react-aria-:r1g:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-label="month, dummy"
@@ -652,6 +659,7 @@ exports[`FieldDate > renders error 1`] = `
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
           id="react-aria-:r3j:"
+          tabindex="0"
           type="button"
         >
           <svg
@@ -683,9 +691,10 @@ exports[`FieldDate > renders error 1`] = `
           data-slot="input-field"
           id="react-aria-:r3l:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
-            aria-describedby="react-aria-:r3q: react-aria-:r3q:"
+            aria-describedby="react-aria-:r3q:"
             aria-invalid="true"
             aria-label="month, dummy"
             aria-valuemax="12"
@@ -720,7 +729,7 @@ exports[`FieldDate > renders error 1`] = `
             /
           </div>
           <div
-            aria-describedby="react-aria-:r3q: react-aria-:r3q:"
+            aria-describedby="react-aria-:r3q:"
             aria-invalid="true"
             aria-label="day, dummy"
             aria-valuemax="28"
@@ -755,7 +764,7 @@ exports[`FieldDate > renders error 1`] = `
             /
           </div>
           <div
-            aria-describedby="react-aria-:r3q: react-aria-:r3q:"
+            aria-describedby="react-aria-:r3q:"
             aria-invalid="true"
             aria-label="year, dummy"
             aria-valuemax="9999"
@@ -833,6 +842,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-slot="selector-button"
           id="react-aria-:r0:"
+          tabindex="0"
           type="button"
         >
           <svg
@@ -863,6 +873,7 @@ exports[`FieldDate > renders inside of model context 1`] = `
           data-slot="input-field"
           id="react-aria-:r2:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-label="month, dummy"

@@ -46,6 +46,7 @@ exports[`ModelCreateForm > should allow paths to be directly overridden 1`] = `
             id="react-aria-:r1:"
             name="title"
             required=""
+            tabindex="0"
             title=""
             type="text"
             value=""
