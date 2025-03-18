@@ -12,6 +12,7 @@ exports[`ModelCellIdentifier > renders absolute link 1`] = `
         aria-describedby=""
         aria-label="Table"
         class="min-w-full h-auto table-auto w-full"
+        data-collection="react-aria-:r5:"
         id="react-aria-:r4:"
         role="grid"
         tabindex="0"
@@ -25,9 +26,11 @@ exports[`ModelCellIdentifier > renders absolute link 1`] = `
             role="row"
           >
             <th
+              aria-colindex="1"
               aria-describedby="react-aria-description-0"
               aria-sort="none"
               class="group/th px-3 h-10 align-middle bg-default-100 whitespace-nowrap text-foreground-500 text-tiny font-semibold first:rounded-s-lg last:rounded-e-lg data-[sortable=true]:cursor-pointer data-[hover=true]:text-foreground-400 outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-start"
+              data-collection="react-aria-:r5:"
               data-key="id"
               data-sortable="true"
               id="react-aria-:r4:-id"
@@ -74,17 +77,19 @@ exports[`ModelCellIdentifier > renders absolute link 1`] = `
           <tr
             aria-labelledby="react-aria-:r4:-0-id"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
+            data-collection="react-aria-:r5:"
             data-first="true"
             data-href="/1/1"
             data-key="0"
             data-last="true"
             href="/1/1"
-            id="react-aria-:r7:"
+            id="react-aria-:r8:"
             role="row"
             tabindex="-1"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
+              data-collection="react-aria-:r5:"
               data-key="0_id"
               id="react-aria-:r4:-0-id"
               role="rowheader"

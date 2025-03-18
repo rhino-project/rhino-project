@@ -60,6 +60,7 @@ exports[`DisplayDateTime > renders inside of model context 1`] = `
           data-slot="input-field"
           id="react-aria-:r3:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-label="month, dummy"
@@ -146,6 +147,14 @@ exports[`DisplayDateTime > renders inside of model context 1`] = `
             , 
           </div>
           <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
             aria-label="hour, dummy"
             aria-readonly="true"
             aria-valuemax="23"
@@ -158,7 +167,7 @@ exports[`DisplayDateTime > renders inside of model context 1`] = `
             data-placeholder="true"
             data-slot="segment"
             data-type="hour"
-            id="react-aria-:rq:"
+            id="react-aria-:rs:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
@@ -186,7 +195,7 @@ exports[`DisplayDateTime > renders inside of model context 1`] = `
             data-placeholder="true"
             data-slot="segment"
             data-type="minute"
-            id="react-aria-:ru:"
+            id="react-aria-:r10:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
@@ -214,12 +223,20 @@ exports[`DisplayDateTime > renders inside of model context 1`] = `
             data-placeholder="true"
             data-slot="segment"
             data-type="second"
-            id="react-aria-:r12:"
+            id="react-aria-:r14:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
           >
             ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
           </div>
           <div
             aria-hidden="true"
@@ -242,7 +259,7 @@ exports[`DisplayDateTime > renders inside of model context 1`] = `
             data-placeholder="true"
             data-slot="segment"
             data-type="dayPeriod"
-            id="react-aria-:r16:"
+            id="react-aria-:r1a:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
@@ -273,10 +290,10 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
   >
     <div
       aria-label="dummy"
-      aria-labelledby="react-aria-:r1c:"
+      aria-labelledby="react-aria-:r1g:"
       class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
       data-slot="input-wrapper"
-      id="react-aria-:r1c:"
+      id="react-aria-:r1g:"
       role="group"
     >
       <div
@@ -287,12 +304,12 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
           aria-expanded="false"
           aria-haspopup="dialog"
           aria-label="Calendar"
-          aria-labelledby="react-aria-:r19: react-aria-:r1c:"
+          aria-labelledby="react-aria-:r1d: react-aria-:r1g:"
           class="z-0 group relative inline-flex items-center justify-center box-border appearance-none select-none whitespace-nowrap font-normal subpixel-antialiased overflow-hidden tap-highlight-transparent data-[pressed=true]:scale-[0.97] outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 text-tiny gap-2 rounded-full opacity-disabled pointer-events-none px-0 !gap-0 transition-transform-colors-opacity motion-reduce:transition-none bg-transparent data-[hover=true]:bg-default/40 min-w-8 w-8 h-8 -mx-2 text-inherit"
           data-disabled="true"
           data-slot="selector-button"
           disabled=""
-          id="react-aria-:r19:"
+          id="react-aria-:r1d:"
           type="button"
         >
           <svg
@@ -321,8 +338,9 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
         <div
           class="flex h-full gap-x-0.5 w-full font-normal text-small"
           data-slot="input-field"
-          id="react-aria-:r1b:"
+          id="react-aria-:r1f:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-label="month, dummy"
@@ -337,7 +355,7 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
             data-placeholder="true"
             data-slot="segment"
             data-type="month"
-            id="react-aria-:r1m:"
+            id="react-aria-:r1q:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
@@ -365,7 +383,7 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
             data-placeholder="true"
             data-slot="segment"
             data-type="day"
-            id="react-aria-:r1q:"
+            id="react-aria-:r1u:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
@@ -393,7 +411,7 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
             data-placeholder="true"
             data-slot="segment"
             data-type="year"
-            id="react-aria-:r1u:"
+            id="react-aria-:r22:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
@@ -409,6 +427,14 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
             , 
           </div>
           <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
             aria-label="hour, dummy"
             aria-readonly="true"
             aria-valuemax="23"
@@ -421,7 +447,7 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
             data-placeholder="true"
             data-slot="segment"
             data-type="hour"
-            id="react-aria-:r22:"
+            id="react-aria-:r28:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
@@ -449,7 +475,7 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
             data-placeholder="true"
             data-slot="segment"
             data-type="minute"
-            id="react-aria-:r26:"
+            id="react-aria-:r2c:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
@@ -477,12 +503,20 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
             data-placeholder="true"
             data-slot="segment"
             data-type="second"
-            id="react-aria-:r2a:"
+            id="react-aria-:r2g:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"
           >
             ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
           </div>
           <div
             aria-hidden="true"
@@ -505,7 +539,7 @@ exports[`DisplayDateTime > should render the empty text when value is nullish 1`
             data-placeholder="true"
             data-slot="segment"
             data-type="dayPeriod"
-            id="react-aria-:r2e:"
+            id="react-aria-:r2m:"
             role="spinbutton"
             style="caret-color: transparent;"
             tabindex="0"

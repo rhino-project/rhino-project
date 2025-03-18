@@ -60,6 +60,7 @@ exports[`DisplayDate > renders inside of model context 1`] = `
           data-slot="input-field"
           id="react-aria-:r3:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-label="month, dummy"
@@ -211,6 +212,7 @@ exports[`DisplayDate > should render the empty text when value is nullish 1`] = 
           data-slot="input-field"
           id="react-aria-:rr:"
           role="presentation"
+          style="unicode-bidi: isolate;"
         >
           <div
             aria-label="month, dummy"

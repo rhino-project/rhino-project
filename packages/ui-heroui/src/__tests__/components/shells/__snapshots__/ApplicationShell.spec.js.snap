@@ -77,6 +77,7 @@ exports[`ApplicationShell > renders without crashing 1`] = `
                 class="inline-flex items-center justify-center gap-2 rounded-small outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 z-10 aria-expanded:scale-[0.97] aria-expanded:opacity-70 subpixel-antialiased transition-transform"
                 data-slot="trigger"
                 id="react-aria-:r0:"
+                tabindex="0"
                 type="button"
               >
                 <span
