@@ -1,14 +1,16 @@
-import env from 'virtual:@rhino-project/config/env';
+import { RhinoEnv } from './rhino-env';
 
 const RhinoRuntimeEnv: RhinoEnv = {
-  ...env,
+  ...window.rhino.env,
 
   // Compound env vars
   DESIGN_SYSTEM_ENABLED:
     process.env.NODE_ENV === 'development' ||
-    env.DESIGN_SYSTEM_ENABLED === 'true',
-  ROLLBAR_ENV: env.ROLLBAR_ENV || process.env.NODE_ENV || 'development',
+    String(window.rhino.env.DESIGN_SYSTEM_ENABLED) === 'true',
+  ROLLBAR_ENV:
+    window.rhino.env.ROLLBAR_ENV || process.env.NODE_ENV || 'development',
   ROLLBAR_ENABLED:
-    process.env.NODE_ENV === 'production' || env.ROLLBAR_ENABLED === 'true'
+    process.env.NODE_ENV === 'production' ||
+    String(window.rhino.env.ROLLBAR_ENABLED) === 'true'
 };
 export default RhinoRuntimeEnv;

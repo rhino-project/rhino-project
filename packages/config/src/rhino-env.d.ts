@@ -1,20 +1,20 @@
-interface ImportMetaEnv {
-  readonly VITE_DESIGN_SYSTEM_ENABLED: string;
-  readonly VITE_ROLLBAR_ACCESS_TOKEN: string;
-  readonly VITE_ROLLBAR_ENV: string;
-  readonly VITE_ROLLBAR_ENABLED: string;
-  readonly VITE_STRIPE_PUBLISHABLE_KEY: string;
-}
-
-interface RhinoEnv {
-  readonly BASE_URL: string;
-  readonly MODE: string;
-  readonly DEV: boolean;
-  readonly PROD: boolean;
-  readonly SSR: boolean;
+export interface RhinoEnv {
   readonly DESIGN_SYSTEM_ENABLED: boolean;
-  readonly ROLLBAR_ACCESS_TOKEN: string;
+  readonly ROLLBAR_ACCESS_TOKEN?: string;
   readonly ROLLBAR_ENV: string;
   readonly ROLLBAR_ENABLED: boolean;
-  readonly STRIPE_PUBLISHABLE_KEY: string;
+  readonly STRIPE_PUBLISHABLE_KEY?: string;
+}
+
+// Convert RhinoEnv to a type that can be used in the browser
+export type RhinoWindowEnv = {
+  readonly [K in keyof RhinoEnv]?: string;
+};
+
+declare global {
+  interface Window {
+    rhino: {
+      env: RhinoWindowEnv;
+    };
+  }
 }
