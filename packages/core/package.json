@@ -541,7 +541,7 @@
     "@testing-library/react": "14.0.0",
     "@types/lodash-es": "^4.17.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "jsdom": "24.1.1"
+    "jsdom": "26.0.0"
   },
   "peerDependencies": {
     "@rollbar/react": "0.11.2",
