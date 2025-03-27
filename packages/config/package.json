@@ -12,45 +12,29 @@
   "homepage": "https://rhino-project.org",
   "type": "module",
   "types": "dist/esm/index.d.ts",
-  "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
   "exports": {
     ".": {
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
       }
     },
     "./assets": {
       "import": {
         "types": "./dist/esm/assets.d.ts",
         "default": "./dist/esm/assets.js"
-      },
-      "require": {
-        "types": "./dist/cjs/assets.d.cts",
-        "default": "./dist/cjs/assets.cjs"
       }
     },
     "./env": {
       "import": {
         "types": "./dist/esm/env.d.ts",
         "default": "./dist/esm/env.js"
-      },
-      "require": {
-        "types": "./dist/cjs/env.d.cts",
-        "default": "./dist/cjs/env.cjs"
       }
     },
     "./rhino-env": {
       "import": {
         "types": "./dist/esm/rhino-env.d.ts"
-      },
-      "require": {
-        "types": "./dist/cjs/rhino-env.d.cts"
       }
     },
     "./package.json": "./package.json"
@@ -78,7 +62,7 @@
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.0",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "4.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rollup-plugin-copy": "^3.5.0"

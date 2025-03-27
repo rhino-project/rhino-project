@@ -1,4 +1,4 @@
-import { tanstackBuildConfig } from '@tanstack/config/build';
+import { tanstackViteConfig } from '@tanstack/config/vite';
 import { defineConfig, mergeConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import copy from 'rollup-plugin-copy';
@@ -27,13 +27,14 @@ const config = defineConfig({
 export default mergeConfig(
   // @ts-expect-error Rollup plugin used as a Vite plugin
   config,
-  tanstackBuildConfig({
+  tanstackViteConfig({
     entry: ['./src/index.ts', './src/env.ts', './src/assets.ts'],
     srcDir: './src',
     externalDeps: [
       'rhino.config',
       'virtual:@rhino-project/config/env',
       'virtual:@rhino-project/config/assets'
-    ]
+    ],
+    cjs: false
   })
 );
