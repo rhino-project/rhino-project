@@ -1,4 +1,15 @@
-import { RhinoEnv } from './rhino-env';
+// Convert RhinoEnv to a type that can be used in the browser
+export type RhinoWindowEnv = {
+  readonly [K in keyof RhinoEnv]?: string;
+};
+
+declare global {
+  interface Window {
+    rhino: {
+      env: RhinoWindowEnv;
+    };
+  }
+}
 
 const RhinoRuntimeEnv: RhinoEnv = {
   ...window.rhino.env,
