@@ -156,7 +156,6 @@ GEM
     brakeman (7.0.0)
       racc
     builder (3.3.0)
-    cgi (0.4.1)
     character_set (1.8.0)
     commonmarker (2.0.2.1-aarch64-linux)
     commonmarker (2.0.2.1-arm64-darwin)
@@ -564,7 +563,6 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.11)
   brakeman
-  cgi (>= 0.3.6)
   cssbundling-rails
   dartsass-rails
   debug (>= 1.1.0)
