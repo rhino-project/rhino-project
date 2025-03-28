@@ -1,4 +1,4 @@
-import { tanstackBuildConfig } from '@tanstack/config/build';
+import { tanstackViteConfig } from '@tanstack/config/vite';
 import { defineConfig, mergeConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import url from 'node:url';
@@ -63,7 +63,7 @@ const config = defineConfig({
 });
 
 export default mergeConfig(
-  tanstackBuildConfig({
+  tanstackViteConfig({
     entry: [
       './src/index.js',
       './src/contexts/index.js',
@@ -123,7 +123,8 @@ export default mergeConfig(
       'virtual:@rhino-project/config/assets',
       'routes/custom',
       'models/static'
-    ]
+    ],
+    cjs: false
   }),
   config
 );
