@@ -13,7 +13,7 @@ module RhinoSubscriptions
 
     initializer "rhino_subscriptions.register_module" do
       config.after_initialize do
-        if ENV["STRIPE_SECRET_KEY"]
+        if ENV["RHINO_STRIPE_SECRET_KEY"]
           Rhino.registered_modules[:rhino_subscriptions] = {
             version: RhinoSubscriptions::VERSION::STRING
           }
