@@ -23,10 +23,10 @@
     },
     "./style": {
       "import": {
-        "default": "./dist/style.css"
+        "default": "./dist/core.css"
       },
       "require": {
-        "default": "./dist/style.css"
+        "default": "./dist/core.css"
       }
     },
     "./contexts": {
