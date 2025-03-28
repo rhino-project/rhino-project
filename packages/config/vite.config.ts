@@ -30,11 +30,7 @@ export default mergeConfig(
   tanstackViteConfig({
     entry: ['./src/index.ts', './src/env.ts', './src/assets.ts'],
     srcDir: './src',
-    externalDeps: [
-      'rhino.config',
-      'virtual:@rhino-project/config/env',
-      'virtual:@rhino-project/config/assets'
-    ],
+    externalDeps: ['rhino.config', 'virtual:@rhino-project/config/assets'],
     cjs: false
   })
 );

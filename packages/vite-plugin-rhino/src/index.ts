@@ -9,8 +9,6 @@ const CONFIG_MODULE_ID = 'rhino.config';
 const MODELS_STATIC_MODULE_ID = 'models/static';
 const CUSTOM_ROUTES_MODULE_ID = 'routes/custom';
 
-const ENV_MODULE_ID = 'virtual:@rhino-project/config/env';
-const RESOLVED_ENV_MODULE_ID = '\0' + ENV_MODULE_ID;
 const ASSETS_MODULE_ID = 'virtual:@rhino-project/config/assets';
 const RESOLVED_ASSETS_MODULE_ID = '\0' + ASSETS_MODULE_ID;
 
@@ -97,7 +95,6 @@ export function RhinoProjectVite({
         exclude: [
           'virtual:@rhino-project/config/assets',
           'rhino.config',
-          'virtual:@rhino-project/config/env',
           'models/static',
           'routes/custom'
         ]
@@ -269,9 +266,6 @@ export function RhinoProjectVite({
       } else if (id === CUSTOM_ROUTES_MODULE_ID) {
         // Replace 'routes/custom' with the path to the local file
         return checkExtensions(resolvePath('routes/custom'));
-      } else if (id === ENV_MODULE_ID) {
-        // Map the import to a virtual module ID
-        return RESOLVED_ENV_MODULE_ID;
       } else if (id === ASSETS_MODULE_ID) {
         // Map the import to a virtual module ID
         return RESOLVED_ASSETS_MODULE_ID;
@@ -281,17 +275,7 @@ export function RhinoProjectVite({
     },
 
     load(id) {
-      if (id === RESOLVED_ENV_MODULE_ID) {
-        let envExports = `export default {`;
-        Object.keys(CONFIG.env).forEach((key) => {
-          const baseKey = key.replace(/^VITE_/, '');
-
-          envExports = envExports + `${baseKey}: import.meta.env.${key},`;
-        });
-        envExports = envExports + `}`;
-
-        return envExports;
-      } else if (id === RESOLVED_ASSETS_MODULE_ID) {
+      if (id === RESOLVED_ASSETS_MODULE_ID) {
         return `export default import.meta.glob("${intermediatePath() ? '/' + intermediatePath() : ''}/assets/**/*", { eager: true })`;
       }
 

@@ -119,7 +119,6 @@ export default mergeConfig(
     externalDeps: [
       'react',
       'rhino.config',
-      'virtual:@rhino-project/config/env',
       'virtual:@rhino-project/config/assets',
       'routes/custom',
       'models/static'
