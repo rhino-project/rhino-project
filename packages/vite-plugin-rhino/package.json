@@ -12,17 +12,12 @@
   "homepage": "https://github.com/rhino-project/rhino-project",
   "type": "module",
   "types": "dist/esm/index.d.ts",
-  "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
   "exports": {
     ".": {
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
       }
     },
     "./package.json": "./package.json"
@@ -39,6 +34,9 @@
   ],
   "engines": {
     "node": ">=18"
+  },
+  "peerDependencies": {
+    "vite": ">=6.0.0"
   },
   "files": [
     "dist",

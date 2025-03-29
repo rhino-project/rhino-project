@@ -23,7 +23,6 @@ import {
   networkApiCallOnlyData
 } from './lib/networking';
 // import { useRollbarPerson } from '@rollbar/react';
-import { useRhinoConfig } from './config';
 import modelLoader, { hoistRhino as modelHoistRhino } from './models';
 
 export type SessionUserRoles = {
@@ -157,7 +156,6 @@ const RhinoContent: React.FC<RhinoContentProps> = ({
   forceStatic = false,
   ...props
 }) => {
-  const { env } = useRhinoConfig();
   const { queryClient } = props;
 
   const [user, setUser] = useState<SessionUser | null>(null);
@@ -167,7 +165,7 @@ const RhinoContent: React.FC<RhinoContentProps> = ({
   const [usersRoles, setUsersRoles] = useState<SessionUserRoles[]>([]);
 
   // Load the OpenAPI spec from either the development end point or the static file written by the vite plugin
-  const loadStatic = env.PROD || forceStatic;
+  const loadStatic = process.env.NODE_ENV === 'production' || forceStatic;
   const queryFn = useCallback(() => fetchOpenApiSpec(loadStatic), [loadStatic]);
   const { data: openApiSpec } = useSuspenseQuery({
     queryKey: OPENAPI_QUERY_KEY,

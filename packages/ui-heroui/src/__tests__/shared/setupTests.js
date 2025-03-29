@@ -3,6 +3,8 @@ import modelLoader from '@rhino-project/core/models';
 // Force modelLoader to load models synchronously and then mock the api
 modelLoader.loadModels(true);
 
+window.rhino = { env: { PROD: true } };
+
 vi.mock('@rollbar/react', async () => {
   const actual = await vi.importActual('@rollbar/react');
   return {
