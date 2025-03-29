@@ -1,8 +1,10 @@
-import { defineConfig } from 'vitest/config';
+import { defineConfig, mergeConfig } from 'vitest/config';
+import { tanstackViteConfig } from '@tanstack/config/vite';
+import packageJson from './package.json';
 
-export default defineConfig({
+const config = defineConfig({
   test: {
-    name: 'eslint-plugin-rhino',
+    name: packageJson.name,
     dir: './src',
     watch: false,
     globals: true,
@@ -10,3 +12,12 @@ export default defineConfig({
     typecheck: { enabled: true }
   }
 });
+
+export default mergeConfig(
+  config,
+  tanstackViteConfig({
+    entry: './src/index.ts',
+    srcDir: './src',
+    exclude: ['./src/__tests__']
+  })
+);

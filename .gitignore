@@ -8,7 +8,6 @@ yarn.lock
 
 # builds
 types
-*/**/.tsup
 */**/build
 */**/dist
 */**/es
