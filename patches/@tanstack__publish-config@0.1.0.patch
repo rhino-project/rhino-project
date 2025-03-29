@@ -1,7 +1,7 @@
-diff --git a/packages/publish-config/src/index.d.ts b/packages/publish-config/src/index.d.ts
-index b372c59..b299e0b 100644
---- a/packages/publish-config/src/index.d.ts
-+++ b/packages/publish-config/src/index.d.ts
+diff --git a/src/index.d.ts b/src/index.d.ts
+index b372c59766d78404b3500445c90aaa32e37e2a74..b299e0bcd0a39896fc7b559af12ce2697f48a16e 100644
+--- a/src/index.d.ts
++++ b/src/index.d.ts
 @@ -31,6 +31,8 @@ export type Options = {
    tag?: string
    /** The GitHub token used to search for user metadata and make a GitHub release. */
@@ -11,10 +11,10 @@ index b372c59..b299e0b 100644
  }
  
  /** https://tanstack.com/config/latest/docs/publish */
-diff --git a/packages/publish-config/src/index.js b/packages/publish-config/src/index.js
-index 52d71fa..effec67 100644
---- a/packages/publish-config/src/index.js
-+++ b/packages/publish-config/src/index.js
+diff --git a/src/index.js b/src/index.js
+index 52d71fa2568f1c37875331cc97695ced5b69fa09..effec6798c715b8438347b9d2cece9a7a46ff199 100644
+--- a/src/index.js
++++ b/src/index.js
 @@ -45,7 +45,15 @@ function currentGitBranch() {
   * @returns {Promise<void>}
   */
