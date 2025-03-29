@@ -5,9 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  '@tanstack/publish-config':
-    hash: wtoh2hiycxdl4wtzlkkrem2vwm
-    path: patches/@tanstack__publish-config.patch
+  '@tanstack/publish-config@0.1.0':
+    hash: bnokebkyzwis6mhr7kpukibos4
+    path: patches/@tanstack__publish-config@0.1.0.patch
   fsevents@2.3.3:
     hash: bzr7m3vujgtcprwwbyghj7rvju
     path: patches/fsevents@2.3.3.patch
@@ -9181,7 +9181,7 @@ snapshots:
   '@tanstack/config@0.18.0(@types/node@22.13.14)(eslint@9.20.1(jiti@1.21.7))(rollup@4.38.0)(typescript@5.7.3)(vite@6.2.3(@types/node@22.13.14)(jiti@1.21.7)(yaml@2.7.0))':
     dependencies:
       '@tanstack/eslint-config': 0.1.0(eslint@9.20.1(jiti@1.21.7))(typescript@5.7.3)
-      '@tanstack/publish-config': 0.1.0(patch_hash=wtoh2hiycxdl4wtzlkkrem2vwm)
+      '@tanstack/publish-config': 0.1.0(patch_hash=bnokebkyzwis6mhr7kpukibos4)
       '@tanstack/typedoc-config': 0.2.0(typescript@5.7.3)
       '@tanstack/vite-config': 0.2.0(@types/node@22.13.14)(rollup@4.38.0)(typescript@5.7.3)(vite@6.2.3(@types/node@22.13.14)(jiti@1.21.7)(yaml@2.7.0))
     transitivePeerDependencies:
@@ -9216,7 +9216,7 @@ snapshots:
 
   '@tanstack/history@1.114.29': {}
 
-  '@tanstack/publish-config@0.1.0(patch_hash=wtoh2hiycxdl4wtzlkkrem2vwm)':
+  '@tanstack/publish-config@0.1.0(patch_hash=bnokebkyzwis6mhr7kpukibos4)':
     dependencies:
       '@commitlint/parse': 19.8.0
       jsonfile: 6.1.0

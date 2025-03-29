@@ -81,7 +81,7 @@
   "pnpm": {
     "patchedDependencies": {
       "fsevents@2.3.3": "patches/fsevents@2.3.3.patch",
-      "@tanstack/publish-config": "patches/@tanstack__publish-config.patch"
+      "@tanstack/publish-config@0.1.0": "patches/@tanstack__publish-config@0.1.0.patch"
     }
   }
 }
