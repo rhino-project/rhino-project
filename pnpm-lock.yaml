@@ -446,8 +446,8 @@ importers:
         specifier: 5.66.11
         version: 5.66.11(react@18.3.1)
       '@tanstack/react-router':
-        specifier: 1.111.3
-        version: 1.111.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 1.114.29
+        version: 1.114.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/react-table':
         specifier: 8.20.1
         version: 8.20.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2528,10 +2528,6 @@ packages:
     resolution: {integrity: sha512-OTRMhwidScQSA0xsc5OCtm3K/oAChe47jy1e4OY3VpXUnKrI7C8iwfQ9XDRdpdsRASH2xi6P5I0+7ksFBehaQQ==}
     engines: {node: '>=12'}
 
-  '@tanstack/history@1.99.13':
-    resolution: {integrity: sha512-JMd7USmnp8zV8BRGIjALqzPxazvKtQ7PGXQC7n39HpbqdsmfV2ePCzieO84IvN+mwsTrXErpbjI4BfKCa+ZNCg==}
-    engines: {node: '>=12'}
-
   '@tanstack/publish-config@0.1.0':
     resolution: {integrity: sha512-nI4F7/SpT6BMoigq1VmrrNe3A6Hsua9XcZNql+qzK2zJUOcKBRqMvC22n3eKcjsbZuWIFvkIC0ThsuBVYCKXfA==}
     engines: {node: '>=18'}
@@ -2553,8 +2549,8 @@ packages:
     peerDependencies:
       react: ^18 || ^19
 
-  '@tanstack/react-router@1.111.3':
-    resolution: {integrity: sha512-OsqAuExa4WF7+BbjENWlb4dHRousxU5jahJHUPyO0gaUcWwzaVloJKi8lTFTd1PWQ8waz5V7BedkV67hd8syUw==}
+  '@tanstack/react-router@1.114.29':
+    resolution: {integrity: sha512-5nNWQoVKP+HIuhIZImSwid5pdSFE/Ge8XEX068U/1SaivEX4of0DCyOh1qKsswelmBVvqHFmtY6/GN/8dVLrHw==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '>=18.0.0 || >=19.0.0'
@@ -9310,8 +9306,6 @@ snapshots:
 
   '@tanstack/history@1.114.29': {}
 
-  '@tanstack/history@1.99.13': {}
-
   '@tanstack/publish-config@0.1.0(patch_hash=wtoh2hiycxdl4wtzlkkrem2vwm)':
     dependencies:
       '@commitlint/parse': 19.8.0
@@ -9336,9 +9330,9 @@ snapshots:
       '@tanstack/query-core': 5.66.11
       react: 18.3.1
 
-  '@tanstack/react-router@1.111.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@tanstack/react-router@1.114.29(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@tanstack/history': 1.99.13
+      '@tanstack/history': 1.114.29
       '@tanstack/react-store': 0.7.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@tanstack/router-core': 1.114.29
       jsesc: 3.1.0
