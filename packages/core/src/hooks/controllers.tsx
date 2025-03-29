@@ -216,11 +216,11 @@ export const useModelIndexController = <T extends RhinoResourceSpecifier>(
 
   const defaultState = useRef({
     filter: (defaultFiltersBaseOwner
-      ? merge(
+      ? (merge(
           getBaseOwnerFilters(model, baseOwnerId),
           options?.defaultFilter
-        ) ?? {}
-      : options?.defaultFilter ?? {}) as Record<string, unknown>,
+        ) ?? {})
+      : (options?.defaultFilter ?? {})) as Record<string, unknown>,
     limit: options?.defaultLimit ?? DEFAULT_LIMIT,
     offset: options?.defaultOffset ?? 0,
     order: options?.defaultOrder ?? DEFAULT_SORT,

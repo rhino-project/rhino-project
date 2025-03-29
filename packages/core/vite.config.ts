@@ -1,4 +1,4 @@
-import { tanstackBuildConfig } from '@tanstack/config/build';
+import { tanstackViteConfig } from '@tanstack/config/vite';
 import { defineConfig, mergeConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import url from 'node:url';
@@ -36,7 +36,6 @@ const vitePlugin = (isProd: boolean): Plugin => ({
 const config = defineConfig({
   plugins: [
     vitePlugin(true),
-    // @ts-expect-error Rollup plugin used as a Vite plugin
     copy({
       targets: [
         { src: 'src/rhino-env.d.ts', dest: 'dist/esm' },
@@ -79,7 +78,7 @@ const config = defineConfig({
 });
 
 export default mergeConfig(
-  tanstackBuildConfig({
+  tanstackViteConfig({
     entry: [
       './src/index.ts',
       './src/config.tsx',
@@ -99,10 +98,9 @@ export default mergeConfig(
       'react',
       'rhino.config',
       'models/static',
-      'virtual:@rhino-project/core/config/assets',
-      'virtual:@rhino-project/core/config/env'
-    ]
+      'virtual:@rhino-project/core/config/assets'
+    ],
+    cjs: false
   }),
-  // @ts-expect-error Rollup plugin used as a Vite plugin
   config
 );

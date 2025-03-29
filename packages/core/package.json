@@ -12,145 +12,89 @@
   "homepage": "https://rhino-project.org",
   "type": "module",
   "types": "dist/esm/index.d.ts",
-  "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
   "exports": {
     ".": {
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
       }
     },
     "./config": {
       "import": {
         "types": "./dist/esm/config.d.ts",
         "default": "./dist/esm/config.js"
-      },
-      "require": {
-        "types": "./dist/cjs/config.d.cts",
-        "default": "./dist/cjs/config.cjs"
       }
     },
     "./config/assets": {
       "import": {
         "types": "./dist/esm/config/assets.d.ts",
         "default": "./dist/esm/config/assets.js"
-      },
-      "require": {
-        "types": "./dist/cjs/config/assets.d.cts",
-        "default": "./dist/cjs/config/assets.cjs"
       }
     },
     "./config/env": {
       "import": {
         "types": "./dist/esm/config/env.d.ts",
         "default": "./dist/esm/config/env.js"
-      },
-      "require": {
-        "types": "./dist/cjs/config/env.d.cts",
-        "default": "./dist/cjs/config/env.cjs"
       }
     },
     "./queries": {
       "import": {
         "types": "./dist/esm/queries/index.d.ts",
         "default": "./dist/esm/queries/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/queries/index.d.cts",
-        "default": "./dist/cjs/queries/index.cjs"
       }
     },
     "./utils": {
       "import": {
         "types": "./dist/esm/utils/index.d.ts",
         "default": "./dist/esm/utils/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/utils/index.d.cts",
-        "default": "./dist/cjs/utils/index.cjs"
       }
     },
     "./models": {
       "import": {
         "types": "./dist/esm/models/index.d.ts",
         "default": "./dist/esm/models/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/models/index.d.cts",
-        "default": "./dist/cjs/models/index.cjs"
       }
     },
     "./components/forms": {
       "import": {
         "types": "./dist/esm/components/forms/index.d.ts",
         "default": "./dist/esm/components/forms/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/components/forms/index.d.cts",
-        "default": "./dist/cjs/components/forms/index.cjs"
       }
     },
     "./components": {
       "import": {
         "types": "./dist/esm/components/index.d.ts",
         "default": "./dist/esm/components/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/components/index.d.cts",
-        "default": "./dist/cjs/components/index.cjs"
       }
     },
     "./components/models": {
       "import": {
         "types": "./dist/esm/components/models/index.d.ts",
         "default": "./dist/esm/components/models/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/components/models/index.d.cts",
-        "default": "./dist/cjs/components/models/index.cjs"
       }
     },
     "./components/null": {
       "import": {
         "types": "./dist/esm/components/null/index.d.ts",
         "default": "./dist/esm/components/null/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/components/null/index.d.cts",
-        "default": "./dist/cjs/components/null/index.cjs"
       }
     },
     "./hooks": {
       "import": {
         "types": "./dist/esm/hooks/index.d.ts",
         "default": "./dist/esm/hooks/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/hooks/index.d.cts",
-        "default": "./dist/cjs/hooks/index.cjs"
       }
     },
     "./lib": {
       "import": {
         "types": "./dist/esm/lib/index.d.ts",
         "default": "./dist/esm/lib/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/lib/index.d.cts",
-        "default": "./dist/cjs/lib/index.cjs"
       }
     },
     "./rhino-env": {
       "import": {
         "types": "./dist/esm/rhino-env.d.ts"
-      },
-      "require": {
-        "types": "./dist/cjs/rhino-env.d.cts"
       }
     },
     "./package.json": "./package.json"
@@ -184,13 +128,18 @@
     "@stripe/react-stripe-js": "2.1.0",
     "@stripe/stripe-js": "1.52.0",
     "@types/qs": "^6.9.18",
-    "axios": "1.7.4",
+    "@tanstack/react-table": "8.20.1",
+    "axios": "1.8.2",
+    "bootstrap": "5.3.3",
+    "bootstrap-icons": "1.11.3",
+    "classnames": "2.3.1",
+    "date-fns": "2.29.0",
     "lodash-es": "4.17.21",
     "qs": "6.14.0",
     "react-hook-form": "7.49.2",
     "react-use": "17.5.1",
     "use-debounce": "10.0.4",
-    "uuid": "8.3.2",
+    "uuid": "11.1.0",
     "yup": "1.3.3"
   },
   "devDependencies": {
@@ -201,8 +150,8 @@
     "@testing-library/dom": "10.0.0",
     "@testing-library/react": "16.1.0",
     "@types/lodash-es": "^4.17.0",
-    "@vitejs/plugin-react": "^4.2.1",
-    "jsdom": "24.1.1",
+    "@vitejs/plugin-react": "4.3.4",
+    "jsdom": "26.0.0",
     "rollup-plugin-copy": "^3.5.0"
   },
   "peerDependencies": {

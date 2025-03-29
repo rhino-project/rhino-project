@@ -150,7 +150,9 @@ export class NetworkingMock {
   async produceUnauthenticatedState({ queryClient, hook = () => null }) {
     function AuthWrapper({ children }) {
       return (
-        <RhinoProvider queryClient={queryClient}>{children}</RhinoProvider>
+        <RhinoProvider queryClient={queryClient} forceStatic>
+          {children}
+        </RhinoProvider>
       );
     }
 

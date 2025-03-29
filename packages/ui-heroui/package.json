@@ -12,26 +12,12 @@
   "homepage": "https://rhino-project.org",
   "type": "module",
   "types": "dist/esm/index.d.ts",
-  "main": "dist/cjs/index.cjs",
   "module": "dist/esm/index.js",
-  "style": "dist/styles.css",
   "exports": {
     ".": {
       "import": {
         "types": "./dist/esm/index.d.ts",
         "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "types": "./dist/cjs/index.d.cts",
-        "default": "./dist/cjs/index.cjs"
-      }
-    },
-    "./style": {
-      "import": {
-        "default": "./dist/style.css"
-      },
-      "require": {
-        "default": "./dist/style.css"
       }
     },
     "./package.json": "./package.json"

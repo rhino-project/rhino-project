@@ -12,11 +12,11 @@ concurrency:
 env:
   NX_CLOUD_ACCESS_TOKEN: ${{ secrets.NX_CLOUD_ACCESS_TOKEN }}
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
-  ROOT_URL: http://localhost:3000
+  RHINO_APP_URL: http://localhost:3000
   DB_NAME: rhino_project
   DB_USERNAME: rhino_project
   DB_PASSWORD: rhino_project
-  STRIPE_SECRET_KEY: 'FOR_TESTS'
+  RHINO_STRIPE_SECRET_KEY: 'FOR_TESTS'
 
 jobs:
   test-client:

@@ -1,6 +1,5 @@
 import { omit, pick } from 'lodash-es';
 import { useEffect, useId, useMemo } from 'react';
-import env from '../config/env';
 import { useUnmount } from 'react-use';
 
 export const RHINO_DEV_BROADCAST_CHANNEL = 'rhino_dev_channel';
@@ -66,7 +65,10 @@ export const useRhinoDevBroadcastSend = (
 ): void => {
   const id = useId();
   const bc = useMemo(
-    () => (env.DEV ? new BroadcastChannel(RHINO_DEV_BROADCAST_CHANNEL) : null),
+    () =>
+      process.env.NODE_ENV === 'development'
+        ? new BroadcastChannel(RHINO_DEV_BROADCAST_CHANNEL)
+        : null,
     []
   );
 

@@ -1,4 +1,4 @@
-import { tanstackBuildConfig } from '@tanstack/config/build';
+import { tanstackViteConfig } from '@tanstack/config/vite';
 import { defineConfig, mergeConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import url from 'node:url';
@@ -70,7 +70,7 @@ const config = defineConfig({
 });
 
 export default mergeConfig(
-  tanstackBuildConfig({
+  tanstackViteConfig({
     entry: ['./src/index.tsx'],
     exclude: ['./src/__tests__'],
     srcDir: './src',
@@ -80,7 +80,8 @@ export default mergeConfig(
       'models/static',
       'virtual:@rhino-project/core/config/assets',
       'virtual:@rhino-project/core/config/env'
-    ]
+    ],
+    cjs: false
   }),
   config
 );

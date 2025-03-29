@@ -600,7 +600,6 @@ export const useModelIndex = <T extends RhinoResourceSpecifier>(
     // Support direct search param injection
     // We don't unroll because we don't want to set undefined
     ALLOWED_INDEX_QUERY_OPTIONS.forEach((opt) => {
-      // @ts-expect-error the key is guaranteed to be in the options
       if (has(options, opt)) set(baseOptions, `params.${opt}`, options[opt]);
     });
 
