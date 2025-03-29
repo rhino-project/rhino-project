@@ -11,12 +11,4 @@ export * from './FilterGroup';
 export * from './FilterLabel';
 export * from './FilterLayoutVertical';
 export * from './FormErrors';
-
-import * as FP from './FormProvider';
-
-export const FormProvider =
-  process.env.NODE_ENV !== 'development'
-    ? function () {
-        return null;
-      }
-    : FP.FormProvider;
+export * from './FormProvider';

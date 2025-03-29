@@ -7,15 +7,17 @@ export const FormProvider = ({ children, ...props }) => {
 
   return (
     <>
-      <DevTool
-        control={control}
-        placement={'top-left'}
-        styles={{
-          button: {
-            width: '20px'
-          }
-        }}
-      />
+      {process.env.NODE_ENV === 'development' && (
+        <DevTool
+          control={control}
+          placement={'top-left'}
+          styles={{
+            button: {
+              width: '20px'
+            }
+          }}
+        />
+      )}
       <RHFFormProvider {...props}>{children}</RHFFormProvider>
     </>
   );
