@@ -5,7 +5,6 @@ import copy from 'rollup-plugin-copy';
 
 const config = defineConfig({
   plugins: [
-    // @ts-expect-error Rollup plugin used as a Vite plugin
     copy({
       targets: [
         { src: 'src/rhino-env.d.ts', dest: 'dist/esm' },
@@ -25,7 +24,6 @@ const config = defineConfig({
 });
 
 export default mergeConfig(
-  // @ts-expect-error Rollup plugin used as a Vite plugin
   config,
   tanstackViteConfig({
     entry: ['./src/index.ts', './src/env.ts', './src/assets.ts'],
