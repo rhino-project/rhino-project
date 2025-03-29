@@ -54,7 +54,7 @@
     "@rhino-project/core": "workspace:*",
     "@stripe/react-stripe-js": "2.1.0",
     "@stripe/stripe-js": "1.52.0",
-    "@tanstack/react-router": "1.111.3",
+    "@tanstack/react-router": "1.114.29",
     "@tanstack/react-table": "8.20.1",
     "axios": "1.7.4",
     "date-fns": "2.28.0",
