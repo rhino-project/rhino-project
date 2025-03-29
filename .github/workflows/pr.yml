@@ -16,7 +16,7 @@ env:
   DB_NAME: rhino_project
   DB_USERNAME: rhino_project
   DB_PASSWORD: rhino_project
-  STRIPE_SECRET_KEY: 'FOR_TESTS'
+  RHINO_STRIPE_SECRET_KEY: 'FOR_TESTS'
 
 jobs:
   test-client:
