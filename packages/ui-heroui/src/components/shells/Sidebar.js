@@ -17,7 +17,7 @@ export function Sidebar({
       ></div>
 
       <div
-        className={`relative flex h-full w-72 flex-1 flex-col bg-primary p-6 lg:translate-x-0 lg:static lg:inset-0 ${
+        className={`relative flex h-full w-72 flex-1 flex-col bg-primary p-6 lg:translate-x-0 lg:static lg:inset-0 z-30 ${
           isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'
         }`}
       >
