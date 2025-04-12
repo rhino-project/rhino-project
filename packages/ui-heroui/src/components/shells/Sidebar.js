@@ -10,7 +10,7 @@ export function Sidebar({
   return (
     <>
       <div
-        className={`fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden ${
+        className={`fixed inset-0 z-20 transition-opacity bg-primary opacity-50 lg:hidden ${
           isOpen ? 'block' : 'hidden'
         }`}
         onClick={toggleSidebar}

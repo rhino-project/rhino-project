@@ -14,7 +14,7 @@ export const ApplicationShellBase = ({
 
   return (
     <div className="relative flex h-full w-full items-start overflow-x-auto overflow-y-auto transition-colors duration-200 justify-start">
-      <div className="h-full sticky top-0">
+      <div className={`h-full sticky top-0 ${!sidebarOpen && 'lg:w-auto w-0'}`}>
         <Sidebar
           isOpen={sidebarOpen}
           toggleSidebar={() => setSidebarOpen(!sidebarOpen)}
@@ -24,12 +24,12 @@ export const ApplicationShellBase = ({
       </div>
 
       <div className="flex flex-col flex-1 overflow-hidden">
-        <header className="bg-white shadow-sm lg:hidden">
+        <header className="bg-background shadow-sm lg:hidden">
           <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="p-2 rounded-md text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+                className="p-2 rounded-md text-primary-foreground"
               >
                 <span className="sr-only">Open sidebar</span>
                 <Icon className="w-8" icon="bi:list" />
