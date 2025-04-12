@@ -12,7 +12,7 @@ exports[`ApplicationShell > renders without crashing 1`] = `
         class="fixed inset-0 z-20 transition-opacity bg-primary opacity-50 lg:hidden hidden"
       />
       <div
-        class="relative flex h-full w-72 flex-1 flex-col bg-primary p-6 lg:translate-x-0 lg:static lg:inset-0 -translate-x-full ease-in"
+        class="relative flex h-full w-72 flex-1 flex-col bg-primary p-6 lg:translate-x-0 lg:static lg:inset-0 z-30 -translate-x-full ease-in"
       >
         <div
           class="flex items-center justify-between flex-shrink-0 p-4"
