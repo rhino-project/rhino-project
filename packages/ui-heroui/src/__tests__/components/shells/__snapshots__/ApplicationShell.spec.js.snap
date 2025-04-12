@@ -6,10 +6,10 @@ exports[`ApplicationShell > renders without crashing 1`] = `
     class="relative flex h-full w-full items-start overflow-x-auto overflow-y-auto transition-colors duration-200 justify-start"
   >
     <div
-      class="h-full sticky top-0"
+      class="h-full sticky top-0 lg:w-auto w-0"
     >
       <div
-        class="fixed inset-0 z-20 transition-opacity bg-black opacity-50 lg:hidden hidden"
+        class="fixed inset-0 z-20 transition-opacity bg-primary opacity-50 lg:hidden hidden"
       />
       <div
         class="relative flex h-full w-72 flex-1 flex-col bg-primary p-6 lg:translate-x-0 lg:static lg:inset-0 -translate-x-full ease-in"
@@ -46,11 +46,10 @@ exports[`ApplicationShell > renders without crashing 1`] = `
               </span>
               <ul>
                 <a
-                  class="[&.active]:text-green-500"
                   href="/1/blog"
                 >
                   <div
-                    class="flex group gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40 "
+                    class="flex gap-2 items-center justify-between relative py-1.5 w-full box-border subpixel-antialiased cursor-pointer tap-highlight-transparent outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 data-[focus-visible=true]:dark:ring-offset-background-content1 hover:transition-colors hover:text-default-foreground data-[selectable=true]:focus:bg-default/40 data-[selectable=true]:focus:text-default-foreground px-3 min-h-11 rounded-large h-[44px] data-[selected=true]:bg-primary-400 dark:data-[selected=true]:bg-primary-300 hover:bg-primary-300/20 dark:hover:bg-primary-300/40 [.active_&]:bg-primary-300/20 dark:[.active_&]:bg-primary-300/40"
                   >
                     <span />
                     <span
@@ -128,7 +127,7 @@ exports[`ApplicationShell > renders without crashing 1`] = `
       class="flex flex-col flex-1 overflow-hidden"
     >
       <header
-        class="bg-white shadow-sm lg:hidden"
+        class="bg-background shadow-sm lg:hidden"
       >
         <div
           class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8"
@@ -137,7 +136,7 @@ exports[`ApplicationShell > renders without crashing 1`] = `
             class="flex items-center justify-between"
           >
             <button
-              class="p-2 rounded-md text-gray-500 hover:text-gray-800 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
+              class="p-2 rounded-md text-primary-foreground"
             >
               <span
                 class="sr-only"
