@@ -36,12 +36,12 @@ module Rhino
 
         private
           def route_file_path(file_name)
-            File.join(options[:routes_directory], options[:route_path], singular_table_name, file_name)
+            File.join(options[:routes_directory], options[:route_path], plural_table_name, file_name)
           end
 
           # Begin and end with a slash
           def route_path
-            File.join("/", options[:route_path], singular_table_name, "/")
+            File.join("/", options[:route_path], plural_table_name, "/")
           end
       end
     end
