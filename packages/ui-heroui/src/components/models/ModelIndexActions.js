@@ -43,7 +43,11 @@ const defaultModelComponents = {
   ModelCreateModalActionSave: ModelCreateModalActionSaveShow
 };
 
-export const ModelIndexActionCreateModal = ({ overrides, ...props }) => {
+export const ModelIndexActionCreateModal = ({
+  overrides,
+  children,
+  ...props
+}) => {
   const { parent } = props;
   const { model } = useModelIndexContext();
 
@@ -67,7 +71,14 @@ export const ModelIndexActionCreateModal = ({ overrides, ...props }) => {
 
   return (
     <>
-      <ModelIndexActionCreate onClick={handleClick} {...props} />
+      <IconButton
+        color="primary"
+        icon="bi:plus"
+        onPress={handleClick}
+        {...props}
+      >
+        {children || `Add ${model.readableName}`}
+      </IconButton>
       <ModelCreateModal
         overrides={{
           ModelCreateModalActions: {
