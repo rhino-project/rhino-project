@@ -136,7 +136,12 @@ export const ModelFieldGroupBase = ({ overrides, ...originalProps }) => {
       console.assert(false, 'No available field for ', attribute);
   }
 
-  return 'No field for this attribute type';
+  return (
+    <div>
+      No field for attribute type &apos;{attribute.type}&apos; and format &apos;
+      {attribute.format}&apos; - name &apos;{attribute.name}&apos;
+    </div>
+  );
 };
 
 export const ModelFieldGroup = (props) =>
