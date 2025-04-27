@@ -10,14 +10,14 @@ export function Sidebar({
   return (
     <>
       <div
-        className={`fixed inset-0 z-20 transition-opacity bg-primary opacity-50 lg:hidden ${
+        className={`fixed inset-0 z-20 transition-opacity bg-default opacity-50 lg:hidden ${
           isOpen ? 'block' : 'hidden'
         }`}
         onClick={toggleSidebar}
       ></div>
 
       <div
-        className={`relative flex h-full w-72 flex-1 flex-col bg-primary p-6 lg:translate-x-0 lg:static lg:inset-0 z-30 ${
+        className={`relative flex h-full w-72 flex-1 flex-col bg-default p-6 lg:translate-x-0 lg:static lg:inset-0 z-30 ${
           isOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'
         }`}
       >
