@@ -282,7 +282,7 @@ export const ModelFieldBoolean: React.FC<FieldBooleanProps> = (props) =>
 export const ModelFieldCountry: React.FC<ModelFieldProps> = (props) =>
   useGlobalComponentForAttribute(
     'ModelFieldCountry',
-    ModelFieldEnumBase,
+    ModelFieldCountryBase,
     props
   );
 
