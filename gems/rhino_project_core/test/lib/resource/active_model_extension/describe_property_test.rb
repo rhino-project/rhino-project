@@ -53,6 +53,8 @@ module ActiveModelExtension
       attribute :float_no_nil, :float
       attribute :integer_no_nil, :integer
 
+      rhino_property_canonical :string_inclusion
+
       validates :float_no_nil, numericality: true
       validates :integer_no_nil, numericality: { only_integer: true }
     end

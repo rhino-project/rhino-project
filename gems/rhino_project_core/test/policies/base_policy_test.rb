@@ -14,6 +14,7 @@ class Rhino::BasePolicyTest < Rhino::TestCase::Policy
     attribute :update_attr, :string
     attribute :show_attr, :string
 
+    rhino_property_canonical :id
     rhino_properties_read only: %i[show_attr]
     rhino_properties_create only: %i[create_attr]
     rhino_properties_update only: %i[update_attr]
@@ -43,7 +44,6 @@ class Rhino::BasePolicyTest < Rhino::TestCase::Policy
   %i[create show update].each do |action_type|
     test "#{testing_policy} permit correct params for #{action_type}" do
       expected = ["#{action_type}_attr"]
-      expected += ["display_name"] if action_type == :show
       ar = Rhino::BasePolicyTest::DummyModel.new
 
       assert_equal expected, policy_instance(@current_user, ar).send("permitted_attributes_for_#{action_type}")

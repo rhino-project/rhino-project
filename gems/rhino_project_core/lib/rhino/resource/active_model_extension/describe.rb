@@ -24,7 +24,9 @@ module Rhino
                 pluralReadableName: model_name.human.pluralize,
                 ownedBy: resource_owned_by,
                 singular: route_singular?,
-                path: "#{Rhino.namespace}/#{route_path}"
+                path: "#{Rhino.namespace}/#{route_path}",
+                canonical_property:,
+                canonical_order:
               },
               type: :object,
               properties:,

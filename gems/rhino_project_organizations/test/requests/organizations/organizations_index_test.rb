@@ -26,11 +26,6 @@ class OrganizationsIndexSerializationTest < Rhino::TestCase::OrganizationControl
     prepare_with_organization
     assert_equal @current_organization.name, parsed_response["results"][0]["name"]
   end
-
-  test "serializes display_name correctly" do
-    prepare_with_organization
-    assert_equal @current_organization.display_name, parsed_response["results"][0]["display_name"]
-  end
 end
 
 class OrganizationsIndexTimestampsSerializationTest < Rhino::TestCase::OrganizationControllerTest

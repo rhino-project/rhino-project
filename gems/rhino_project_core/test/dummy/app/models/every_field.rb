@@ -16,6 +16,7 @@ class EveryField < ApplicationRecord
   acts_as_taggable_on :tags
 
   rhino_owner_base
+  rhino_property_canonical :id
   rhino_references %i[user another_user every_manies every_manies_not_nested]
   rhino_properties_read except: %i[string_write_only]
   rhino_properties_format year: :year, year_required: :year, currency: :currency,

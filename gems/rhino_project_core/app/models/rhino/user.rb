@@ -9,6 +9,7 @@ module Rhino
     rhino_properties_read only: %i[id name nickname email image]
     rhino_properties_create only: %i[name nickname email]
     rhino_properties_update only: %i[name nickname]
+    rhino_property_canonical :email
 
     rhino_policy :user
 
@@ -19,10 +20,6 @@ module Rhino
     devise(*devise_modules_to_load)
 
     validates :email, uniqueness: { case_sensitive: false }
-
-    def display_name
-      name || email
-    end
 
     def self.roles_for_auth(auth_owner, record = nil)
       return {} unless auth_owner

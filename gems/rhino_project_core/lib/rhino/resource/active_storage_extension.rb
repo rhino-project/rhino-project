@@ -15,6 +15,7 @@ module Rhino
         attribute :representations, :json, default: {}
         attribute :variants, :json, default: {}
 
+        rhino_property_canonical :filename, order: "blob.filename"
         rhino_policy :active_storage_attachment
 
         def url(attachment = self, **options)
@@ -52,10 +53,6 @@ module Rhino
           return unless variable?
 
           representations
-        end
-
-        def display_name
-          filename.to_s
         end
       end
 

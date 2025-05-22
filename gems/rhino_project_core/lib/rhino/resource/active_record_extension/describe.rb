@@ -25,7 +25,9 @@ module Rhino
                 ownedBy: resource_owned_by,
                 singular: route_singular?,
                 path: route_api,
-                searchable: searchable?
+                searchable: searchable?,
+                canonical_property:,
+                canonical_order:
               },
               type: :object,
               properties:,

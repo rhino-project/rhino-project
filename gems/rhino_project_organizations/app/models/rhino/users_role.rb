@@ -4,6 +4,7 @@ module Rhino
   class UsersRole < ApplicationRecord
     self.abstract_class = true
 
+    rhino_property_canonical :id
     rhino_properties_update only: [:role]
 
     validate :ensure_at_least_one_admin, on: %i[update destroy], unless: :destroyed_by_association

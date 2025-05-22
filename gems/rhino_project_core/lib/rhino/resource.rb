@@ -8,6 +8,7 @@ require_relative "resource/routing"
 require_relative "resource/params"
 require_relative "resource/serialization"
 require_relative "resource/sieves"
+require_relative "resource/canonical_property"
 
 require_relative "../../app/policies/rhino/crud_policy"
 
@@ -23,19 +24,13 @@ module Rhino
     include Rhino::Resource::Params
     include Rhino::Resource::Serialization
     include Rhino::Resource::Sieves
+    include Rhino::Resource::CanonicalProperty
 
     included do
       class_attribute :_policy_class
 
       def owner
         send self.class.resource_owned_by
-      end
-
-      def display_name
-        return name if respond_to? :name
-        return title if respond_to? :title
-
-        nil
       end
     end
 

@@ -10,6 +10,7 @@ class Blog < ApplicationRecord
   has_one_attached :banner
 
   rhino_owner_base
+  rhino_property_canonical :title
   rhino_references %i[author organization category banner_attachment blog_posts]
   rhino_properties_write except: :author
   rhino_properties_format banner_attachment: :image

@@ -4,5 +4,6 @@ class AlternatePrimaryKey < ApplicationRecord
   belongs_to :user
 
   rhino_owner_base
+  rhino_property_canonical :name
   rhino_references %i[ user ]
 end

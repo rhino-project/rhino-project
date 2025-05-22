@@ -6,5 +6,6 @@ class DelegatedTypeComment < ApplicationRecord
   has_one :user, through: :delegated_type_entry
 
   rhino_owner_base
+  rhino_property_canonical :subject
   rhino_references %i[user]
 end

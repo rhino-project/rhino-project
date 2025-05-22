@@ -17,7 +17,7 @@ class OrganizationAccountControllerTest < Rhino::TestCase::OrganizationControlle
     patch_api account_path, params: { name: CHANGED_NAME }
 
     assert_response_ok
-    assert_equal expected_response.merge!("name" => CHANGED_NAME, "display_name" => CHANGED_NAME), parsed_response
+    assert_equal expected_response.merge!("name" => CHANGED_NAME), parsed_response
   end
 
   private
