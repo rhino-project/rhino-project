@@ -36,6 +36,17 @@ module Rhino
       end
     end
 
+    initializer "rhino.user_signup_tracking" do
+      ActiveSupport.on_load(:rhino_user) do
+        after_create_commit :track_sign_up
+
+        private
+          def track_sign_up
+            Rhino::SegmentHelper.track("Signed Up", self)
+          end
+      end
+    end
+
     initializer "rhino.active_record_extension" do
       ActiveSupport.on_load(:active_record) do
         require_relative "resource/active_record_extension"
