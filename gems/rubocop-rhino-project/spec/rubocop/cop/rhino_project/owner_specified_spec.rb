@@ -20,7 +20,7 @@ RSpec.describe RuboCop::Cop::RhinoProject::OwnerSpecified, :config do
       it "registers an offense" do
         expect_offense(<<~RUBY)
           class User < ApplicationRecord
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ActiveRecord models listed in rhino.rb must specify exactly one ownership method (rhino_owner_global, rhino_owner_reference, or rhino_owner :symbol).
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ActiveRecord models listed in rhino.rb must specify exactly one ownership method (rhino_owner_global, rhino_owner_base, or rhino_owner :symbol).
           end
         RUBY
       end
@@ -43,7 +43,7 @@ RSpec.describe RuboCop::Cop::RhinoProject::OwnerSpecified, :config do
           require "json"
 
           class User < ApplicationRecord
-          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ActiveRecord models listed in rhino.rb must specify exactly one ownership method (rhino_owner_global, rhino_owner_reference, or rhino_owner :symbol).
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ActiveRecord models listed in rhino.rb must specify exactly one ownership method (rhino_owner_global, rhino_owner_base, or rhino_owner :symbol).
             rhino_owner_global
             rhino_owner :organization
           end
