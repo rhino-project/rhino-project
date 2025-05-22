@@ -40,7 +40,7 @@ module RuboCop
             return if rhino_references_calls.count <= 1
 
             rhino_references_calls.each do |offending_call|
-              add_offense(offending_call, message: MSG)
+              add_offense(offending_call.loc.expression, message: MSG)
             end
           end
       end

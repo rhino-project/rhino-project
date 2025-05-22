@@ -25,13 +25,14 @@ module RuboCop
       #     rhino_references %i[user category]
       #   end
       #
-      class OwnerSpecified < Cop
-        MSG = "ActiveRecord models listed in rhino.rb must specify exactly one ownership method (rhino_owner_global, rhino_owner_reference, or rhino_owner :symbol)."
+      class OwnerSpecified < Base
+        MSG = "ActiveRecord models listed in rhino.rb must specify exactly one ownership method (rhino_owner_global, rhino_owner_base, or rhino_owner :symbol)."
 
         REQUIRED_METHODS = [:rhino_owner_global, :rhino_owner_base, :rhino_owner].freeze
 
-        def investigate(processed_source)
-          return unless applicable_model?(processed_source)
+        def on_new_investigation
+          # processed_source is automatically available in RuboCop v1 Base class
+          return unless applicable_model?
 
           class_node = find_class_node(processed_source.ast)
           return unless class_node
@@ -44,15 +45,15 @@ module RuboCop
         end
 
         private
-          def applicable_model?(processed_source)
-            model_name = extract_class_name(processed_source)
+          def applicable_model?
+            model_name = extract_class_name
 
-            return false if inherits_from_rhino?(processed_source)
+            return false if inherits_from_rhino?
 
             rhino_resources.include?(model_name)
           end
 
-          def extract_class_name(processed_source)
+          def extract_class_name
             class_node = find_class_node(processed_source.ast)
             return unless class_node
 
@@ -73,7 +74,7 @@ module RuboCop
           end
 
           # Check if the class inherits from a Rhino:: class
-          def inherits_from_rhino?(processed_source)
+          def inherits_from_rhino?
             class_node = find_class_node(processed_source.ast)
             return false unless class_node
 
