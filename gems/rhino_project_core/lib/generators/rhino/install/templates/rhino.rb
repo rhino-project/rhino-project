@@ -21,7 +21,7 @@ Rhino.setup do |config|
 
   # ==> Canonical Property Configuration
   # Override default properties for canonical property (default: %w[title name])
-  # config.canonical_defaults = %w[custom_field display_name]
+  # config.canonical_defaults += %w[my_usual_name]
 
   # The list of resources exposed in the API
   config.resources += ['User', 'Account']
