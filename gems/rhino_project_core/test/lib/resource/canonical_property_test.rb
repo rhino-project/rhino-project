@@ -53,8 +53,8 @@ module Rhino
       class TestModelWithInheritance < TestModelWithCanonical
       end
 
-      test "returns nil when no fallbacks available" do
-        assert_nil TestModel.canonical_property
+      test "returns identifier property when no fallbacks available" do
+        assert_equal TestModel.identifier_property, TestModel.canonical_property
       end
 
       test "uses name as fallback" do
@@ -62,7 +62,6 @@ module Rhino
       end
 
       test "uses title as fallback when name not available" do
-        puts "TestModelWithTitle.canonical_property.class: #{TestModelWithTitle.canonical_property.class}, #{TestModelWithTitle.canonical_property}"
         assert_equal "title", TestModelWithTitle.canonical_property
       end
 

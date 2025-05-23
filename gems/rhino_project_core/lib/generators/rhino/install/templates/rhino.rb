@@ -19,6 +19,10 @@ Rhino.setup do |config|
   # Authentication
   # config.allow_signup = true
 
+  # ==> Canonical Property Configuration
+  # Override default fallback properties for canonical property (default: %w[title name])
+  # config.canonical_fallbacks = %w[custom_field display_name]
+
   # The list of resources exposed in the API
   config.resources += ['User', 'Account']
 end
