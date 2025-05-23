@@ -7,13 +7,13 @@ class OgMetaTag < ApplicationRecord
   belongs_to :og_tag
 
   rhino_owner :blog_post
-  rhino_property_canonical :display_name, order: "og_tag.name,value"
+  rhino_property_canonical :tag_and_value, order: "og_tag.name,value"
   rhino_properties_write except: :tag_and_value
   rhino_references [{ blog_post: [:blog] }, :og_tag]
 
   validates :value, presence: true
 
-  def display_name
+  def tag_and_value
     "#{og_tag.name}:#{value}"
   end
 end
