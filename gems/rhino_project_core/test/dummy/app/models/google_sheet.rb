@@ -13,7 +13,6 @@ class GoogleSheet
   attribute :category, :string
 
   rhino_owner_base
-  rhino_property_canonical :title
   rhino_policy :admin
   # rhino_properties_write except: [:id]
 end

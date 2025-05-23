@@ -11,7 +11,6 @@ class BlogPost < ApplicationRecord
   acts_as_taggable_on :tags
 
   rhino_owner :blog
-  rhino_property_canonical :title
   rhino_references [:blog, { og_meta_tags: [:og_tag] }, :image_attachments]
 
   validates :title, presence: true
