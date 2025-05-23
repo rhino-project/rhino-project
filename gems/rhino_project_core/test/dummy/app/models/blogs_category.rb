@@ -5,10 +5,7 @@ class BlogsCategory < ApplicationRecord
   belongs_to :category
 
   rhino_owner :blog
-  rhino_property_canonical :display_name, order: "category.name"
   rhino_references %i[blog category]
 
   validates :category, uniqueness: { scope: :blog }
-
-  delegate :display_name, to: :category
 end
