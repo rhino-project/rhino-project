@@ -2,7 +2,7 @@
 
 module Rhino
   class Role < ApplicationRecord
-    attribute :display_name, :string, default: -> { name.titleize }
+    attribute :display_name, :string
 
     self.abstract_class = true
 
