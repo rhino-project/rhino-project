@@ -5,7 +5,6 @@ class ChildOne < ApplicationRecord
   has_one :grand_child_one, dependent: :destroy
 
   rhino_owner :parent
-  rhino_property_canonical :name
   rhino_references %i[parent grand_child_one]
 
   accepts_nested_attributes_for :grand_child_one, allow_destroy: true

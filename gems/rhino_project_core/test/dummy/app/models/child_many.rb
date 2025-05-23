@@ -5,7 +5,6 @@ class ChildMany < ApplicationRecord
   has_many :grand_child_manies, dependent: :destroy
 
   rhino_owner :parent
-  rhino_property_canonical :name
   rhino_references %i[parent grand_child_manies]
 
   accepts_nested_attributes_for :grand_child_manies, allow_destroy: true

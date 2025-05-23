@@ -5,7 +5,6 @@ module Rhino
     self.table_name = "users"
 
     rhino_owner_global
-    rhino_property_canonical :name
 
     rhino_routing only: %i[show update], singular: true
     rhino_controller :account

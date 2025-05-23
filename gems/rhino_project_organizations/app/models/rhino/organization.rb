@@ -6,7 +6,6 @@ module Rhino
 
     rhino_policy :organization
     rhino_properties_write only: :name
-    rhino_property_canonical :name
 
     after_create_commit :track_account_created
     after_destroy_commit :track_account_deleted
