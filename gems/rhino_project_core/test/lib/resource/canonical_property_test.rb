@@ -6,6 +6,7 @@ module Rhino
   module Resource
     class CanonicalPropertyTest < ActiveSupport::TestCase
       class TestModel < ApplicationRecord
+        self.abstract_class = true
         self.table_name = "dummies"
       end
 
