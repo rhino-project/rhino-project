@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 require "js_regex"
-require_relative "../canonical_property"
 
 module Rhino
   module Resource
     module ActiveRecordExtension
       module PropertiesDescribe
         extend ActiveSupport::Concern
-        include Rhino::Resource::CanonicalProperty
 
         class PolymorphicModelName
           include ActiveSupport::Inflector
