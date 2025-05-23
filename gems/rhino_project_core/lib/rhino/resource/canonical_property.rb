@@ -13,7 +13,7 @@ module Rhino
 
       class_methods do
         def canonical_property
-          self._canonical_property ||= find_fallback_property
+          self._canonical_property ||= find_default_property
         end
 
         def canonical_order
@@ -26,11 +26,15 @@ module Rhino
         end
 
         private
-          def find_fallback_property
-            fallback = Rhino.canonical_fallbacks.find { attribute_names.include?(it) }
-            fallback ||= identifier_property
-            Rails.logger.info("Using fallback canonical property '#{fallback}' for #{name}")
-            fallback
+          def find_default_property
+            default = Rhino.canonical_defaults.find { attribute_names.include?(it) }
+            if default
+              Rails.logger.info("Using default canonical property '#{default}' for #{name}")
+            else
+              default = identifier_property
+              Rails.logger.warn("No default canonical property found for #{name}, using identifier property '#{default}'")
+            end
+            default
           end
       end
     end
