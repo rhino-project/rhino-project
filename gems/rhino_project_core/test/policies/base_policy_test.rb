@@ -14,7 +14,6 @@ class Rhino::BasePolicyTest < Rhino::TestCase::Policy
     attribute :update_attr, :string
     attribute :show_attr, :string
 
-    rhino_property_canonical :id
     rhino_properties_read only: %i[show_attr]
     rhino_properties_create only: %i[create_attr]
     rhino_properties_update only: %i[update_attr]

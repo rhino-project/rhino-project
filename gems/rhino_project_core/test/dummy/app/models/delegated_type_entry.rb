@@ -6,7 +6,6 @@ class DelegatedTypeEntry < ApplicationRecord
   delegated_type :entryable, types: %w[DelegatedTypeMessage DelegatedTypeComment], dependent: :destroy
 
   rhino_owner_base
-  rhino_property_canonical :id
   rhino_references %i[user entryable]
 
   accepts_nested_attributes_for :entryable

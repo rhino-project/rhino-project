@@ -5,7 +5,6 @@ require "test_helper"
 class DescribeTestDummyModelBase < ApplicationRecord
   self.abstract_class = true
   self.table_name = "dummies"
-  rhino_property_canonical :id
 end
 
 class DescribeTestDummyModelSearchableComplete < DescribeTestDummyModelBase
