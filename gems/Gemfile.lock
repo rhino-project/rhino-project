@@ -286,7 +286,7 @@ GEM
       net-smtp
     marcel (1.0.4)
     mini_mime (1.1.5)
-    minitest (5.21.2)
+    minitest (5.25.5)
     minitest-bisect (1.7.0)
       minitest-server (~> 1.0)
       path_expander (~> 1.1)
@@ -572,7 +572,7 @@ DEPENDENCIES
   importmap-rails (>= 1.2.3)
   jsbundling-rails
   json (>= 2.0.0, != 2.7.0)
-  minitest (>= 5.15.0, < 5.22.0)
+  minitest (= 5.25.5)
   minitest-bisect
   minitest-ci
   minitest-retry
