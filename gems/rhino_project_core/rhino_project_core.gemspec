@@ -39,6 +39,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "devise", "4.9.4"
   spec.add_dependency "devise_token_auth", "1.2.5"
 
+  # Soft delete support
+  spec.add_dependency "discard", "1.4.0"
+
   # Friendly id slugs
   spec.add_dependency "friendly_id", "5.3.0"
 

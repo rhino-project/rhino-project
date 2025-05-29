@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_12_01_132901) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_29_230538) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -55,6 +55,15 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_01_132901) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_alternate_primary_keys_on_user_id"
+  end
+
+  create_table "blog_discards", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.datetime "discarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_blog_discards_on_user_id"
   end
 
   create_table "blog_dummies", force: :cascade do |t|
@@ -334,6 +343,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_12_01_132901) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "alternate_primary_keys", "users"
+  add_foreign_key "blog_discards", "users"
   add_foreign_key "blog_dummies", "blogs"
   add_foreign_key "blog_posts", "blogs"
   add_foreign_key "blogs", "users"
