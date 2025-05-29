@@ -22,7 +22,7 @@ class AccountControllerTest < Rhino::TestCase::ControllerTest
 
   private
     def expected_response(user = @current_user)
-      resp = user.to_caching_json.slice("id", "name", "nickname", "email", "image", "display_name")
+      resp = user.to_caching_json.slice("id", "name", "nickname", "email", "image")
       resp["can_current_user_edit"] = true
       resp["can_current_user_destroy"] = false
 

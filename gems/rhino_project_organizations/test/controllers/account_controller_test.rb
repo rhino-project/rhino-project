@@ -23,9 +23,9 @@ class OrganizationAccountControllerTest < Rhino::TestCase::OrganizationControlle
   private
     def expected_response(user = @current_user)
       account_user = Account.find(user.id)
-      resp = account_user.to_caching_json.slice("id", "name", "nickname", "email", "image", "users_roles", "display_name")
+      resp = account_user.to_caching_json.slice("id", "name", "nickname", "email", "image", "users_roles")
       resp["users_roles"] = resp["users_roles"].map do |ur|
-        ur.slice("id", "created_at", "updated_at", "role", "organization", "display_name").deep_transform_values do |rv|
+        ur.slice("id", "created_at", "updated_at", "role", "organization").deep_transform_values do |rv|
           rv.is_a?(ActiveSupport::TimeWithZone) ? rv.as_json : rv
         end
       end
