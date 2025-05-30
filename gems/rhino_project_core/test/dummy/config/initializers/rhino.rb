@@ -21,7 +21,7 @@ Rhino.setup do |config|
 
   # The list of resources exposed in the API
   config.resources += ['User', 'Account']
-  config.resources += ['Blog', 'BlogPost', 'BlogDummy', 'BlogsCategory', 'Category', 'OgMetaTag', 'GoogleSheet']
+  config.resources += ['Blog', 'BlogPost', 'BlogDiscard', 'BlogDummy', 'BlogsCategory', 'Category', 'OgMetaTag', 'GoogleSheet']
   config.resources += ['EveryField', 'EveryFieldDummy', 'EveryMany']
   config.resources += ['Parent', 'ChildOne', 'ChildMany', 'GrandChildOne', 'GrandChildMany']
   config.resources += ['DelegatedTypeEntry', 'DelegatedTypeMessage', 'DelegatedTypeComment']

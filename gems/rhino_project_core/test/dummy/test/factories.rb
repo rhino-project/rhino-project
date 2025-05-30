@@ -58,5 +58,10 @@ FactoryBot.define do
     name { FFaker::Name.name }
     user
   end
+
+  factory :blog_discard do
+    title { FFaker::Book.title }
+    user
+  end
 end
 # rubocop:enable Metrics/BlockLength
