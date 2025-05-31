@@ -5,11 +5,7 @@ Rails.application.routes.draw do
     mount_devise_token_auth_for 'User', at: "auth"
 
     Rhino.resource_classes.each do |m|
-      if m.route_singular?
-        resource m.route_key, path: m.route_path, controller: m.controller_name, only: m.routes, rhino_resource: m.name, format: false
-      else
-        resources m.route_key, path: m.route_path, controller: m.controller_name, only: m.routes, rhino_resource: m.name, format: false 
-      end
+      rhino_resources(m)
     end
   end
 

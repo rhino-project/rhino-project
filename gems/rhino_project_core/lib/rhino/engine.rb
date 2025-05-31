@@ -66,6 +66,11 @@ module Rhino
       end
     end
 
+    initializer "rhino.routing" do
+      require_relative "routing/mapper"
+      ActionDispatch::Routing::Mapper.include(Rhino::Routing::Mapper)
+    end
+
     # https://guides.rubyonrails.org/engines.html#overriding-models-and-controllers
     # Use root instead of Rails.root to scope for this engine
     initializer "rhino.overrides" do
