@@ -49,7 +49,8 @@ class ActiveRecordExtensionPropertyTest < ActiveSupport::TestCase
         readableName: "Tag List",
         readable: true,
         creatable: true,
-        updatable: true
+        updatable: true,
+        canonical: false
       },
       nullable: true,
       type: :array,

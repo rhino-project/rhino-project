@@ -75,8 +75,7 @@ module Rhino
                 params << prop
               end
 
-              # Display name is always allowed
-              params << "display_name"
+              params
             end
 
             def writeable_params(type, _refs = references) # rubocop:disable Metrics/CyclomaticComplexity

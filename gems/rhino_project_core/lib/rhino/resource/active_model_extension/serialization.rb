@@ -7,7 +7,7 @@ module Rhino
         extend ActiveSupport::Concern
 
         def to_caching_json
-          serializable_hash(methods: :display_name, include: references_for_serialization)
+          serializable_hash(include: references_for_serialization)
           # JSON.generate(hash)
         end
       end

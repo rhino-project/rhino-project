@@ -17,12 +17,12 @@ class AccountControllerTest < Rhino::TestCase::ControllerTest
     patch_api account_path, params: { name: CHANGED_NAME }
 
     assert_response_ok
-    assert_equal expected_response.merge!("name" => CHANGED_NAME, "display_name" => CHANGED_NAME), parsed_response
+    assert_equal expected_response.merge!("name" => CHANGED_NAME), parsed_response
   end
 
   private
     def expected_response(user = @current_user)
-      resp = user.to_caching_json.slice("id", "name", "nickname", "email", "image", "display_name")
+      resp = user.to_caching_json.slice("id", "name", "nickname", "email", "image")
       resp["can_current_user_edit"] = true
       resp["can_current_user_destroy"] = false
 

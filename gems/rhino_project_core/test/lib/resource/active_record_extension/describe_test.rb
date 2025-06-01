@@ -2,33 +2,32 @@
 
 require "test_helper"
 
-class DescribeTestDummyModelSearchableComplete < ApplicationRecord
+class DescribeTestDummyModelBase < ApplicationRecord
+  self.abstract_class = true
   self.table_name = "dummies"
+end
+
+class DescribeTestDummyModelSearchableComplete < DescribeTestDummyModelBase
   rhino_search [], { model: [:a_field] }
 end
 
-class DescribeTestDummyModelSearchableNested < ApplicationRecord
-  self.table_name = "dummies"
+class DescribeTestDummyModelSearchableNested < DescribeTestDummyModelBase
   rhino_search [], { model: { another_model: [:a_field] } }
 end
 
-class DescribeTestDummyModelSearchableEmpty < ApplicationRecord
-  self.table_name = "dummies"
+class DescribeTestDummyModelSearchableEmpty < DescribeTestDummyModelBase
   rhino_search []
 end
 
-class DescribeTestDummyModelSearchableNoFields < ApplicationRecord
-  self.table_name = "dummies"
+class DescribeTestDummyModelSearchableNoFields < DescribeTestDummyModelBase
   rhino_search [], { model: [] }
 end
 
-class DescribeTestDummyModelSearchableNestedEmpty < ApplicationRecord
-  self.table_name = "dummies"
+class DescribeTestDummyModelSearchableNestedEmpty < DescribeTestDummyModelBase
   rhino_search [], { model: { another_model: [] } }
 end
 
-class DescribeTestDummyModelNotSearchable < ApplicationRecord
-  self.table_name = "dummies"
+class DescribeTestDummyModelNotSearchable < DescribeTestDummyModelBase
 end
 
 class DescribeTest < ActiveSupport::TestCase

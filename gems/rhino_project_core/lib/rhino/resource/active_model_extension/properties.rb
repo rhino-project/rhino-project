@@ -37,7 +37,8 @@ module Rhino
                 readableName: name.titleize,
                 readable: read_properties.include?(property),
                 creatable: create_properties.include?(property),
-                updatable: update_properties.include?(property)
+                updatable: update_properties.include?(property),
+                canonical: name == canonical_property
               },
               readOnly: property_read_only?(name),
               writeOnly: property_write_only?(name),

@@ -8,6 +8,4 @@ class BlogsCategory < ApplicationRecord
   rhino_references %i[blog category]
 
   validates :category, uniqueness: { scope: :blog }
-
-  delegate :display_name, to: :category
 end

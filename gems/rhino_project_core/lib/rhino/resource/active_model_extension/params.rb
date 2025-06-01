@@ -39,8 +39,7 @@ module Rhino
                 params << prop
               end
 
-              # Display name is always allowed
-              params << "display_name"
+              params
             end
 
             # FIXME: Refs are not handled

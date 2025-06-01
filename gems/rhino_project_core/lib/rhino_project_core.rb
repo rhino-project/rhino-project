@@ -32,6 +32,9 @@ module Rhino
   # Whether to allow signup or not
   mattr_accessor :allow_signup, default: true
 
+  # Default properties for canonical property in order of preference
+  mattr_accessor :canonical_defaults, default: %w[title name]
+
   # sieves
   mattr_accessor :sieves
 
