@@ -72,12 +72,10 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
             data-first="true"
-            data-href="/1/undefined"
             data-key="0"
-            href="/1/undefined"
             id="react-aria-:r5:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -96,14 +94,12 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-1-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="1"
             data-middle="true"
             data-odd="true"
-            href="/1/undefined"
             id="react-aria-:r7:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -122,13 +118,11 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-2-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="2"
             data-middle="true"
-            href="/1/undefined"
             id="react-aria-:r9:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -147,14 +141,12 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-3-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="3"
             data-middle="true"
             data-odd="true"
-            href="/1/undefined"
             id="react-aria-:rb:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -173,13 +165,11 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-4-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="4"
             data-middle="true"
-            href="/1/undefined"
             id="react-aria-:rd:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -198,14 +188,12 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-5-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="5"
             data-middle="true"
             data-odd="true"
-            href="/1/undefined"
             id="react-aria-:rf:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -224,13 +212,11 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-6-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="6"
             data-middle="true"
-            href="/1/undefined"
             id="react-aria-:rh:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -249,14 +235,12 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-7-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="7"
             data-middle="true"
             data-odd="true"
-            href="/1/undefined"
             id="react-aria-:rj:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -275,13 +259,11 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-8-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="8"
             data-middle="true"
-            href="/1/undefined"
             id="react-aria-:rl:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
@@ -300,14 +282,12 @@ exports[`CellBoolean > renders inside of model context 1`] = `
             aria-labelledby="react-aria-:r1:-9-0"
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r2:"
-            data-href="/1/undefined"
             data-key="9"
             data-last="true"
             data-odd="true"
-            href="/1/undefined"
             id="react-aria-:rn:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"

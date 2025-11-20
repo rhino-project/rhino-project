@@ -79,13 +79,12 @@ exports[`ModelCellIdentifier > renders absolute link 1`] = `
             class="group/tr outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 cursor-pointer"
             data-collection="react-aria-:r5:"
             data-first="true"
-            data-href="/1/1"
             data-key="0"
             data-last="true"
-            href="/1/1"
+            data-row-link="/1/1"
             id="react-aria-:r8:"
             role="row"
-            tabindex="-1"
+            tabindex="0"
           >
             <td
               class="py-2 px-3 relative align-middle whitespace-normal text-small font-normal [&>*]:z-1 [&>*]:relative outline-none data-[focus-visible=true]:z-10 data-[focus-visible=true]:outline-2 data-[focus-visible=true]:outline-focus data-[focus-visible=true]:outline-offset-2 before:content-[''] before:absolute before:z-0 before:inset-0 before:opacity-0 data-[selected=true]:before:opacity-100 group-data-[disabled=true]/tr:text-foreground-300 group-data-[disabled=true]/tr:cursor-not-allowed before:bg-default/60 data-[selected=true]:text-default-foreground group-data-[odd=true]/tr:before:bg-default-100 group-data-[odd=true]/tr:before:opacity-100 group-data-[odd=true]/tr:before:-z-10 first:before:rounded-s-lg last:before:rounded-e-lg text-start group-data-[odd=true]/tr:data-[selected=true]/tr:before:bg-default/60"
