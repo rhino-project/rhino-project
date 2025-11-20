@@ -24,7 +24,7 @@ import { Table } from '../table/Table';
 import { ModelCell } from './ModelCell';
 import { ModelFooter } from './ModelFooter';
 import { ModelHeader } from './ModelHeader';
-import { useLocation } from '@tanstack/react-router';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -171,6 +171,7 @@ export const ModelIndexTableBase = (props) => {
   }, [limit, results]);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const table = useReactTable({
     data,
@@ -180,9 +181,26 @@ export const ModelIndexTableBase = (props) => {
     enableSortingRemoval: false,
     manualSorting: true,
     meta: {
-      getRowProps: (row) => ({
-        href: `${location.pathname}/${row.original.id}`
-      })
+      getRowProps: (row) => {
+        const recordId = row?.original?.id;
+        const target = recordId
+          ? `${location.pathname}/${recordId}`
+          : undefined;
+        return {
+          onClick: target ? () => navigate({ to: target }) : undefined,
+          onKeyDown: target
+            ? (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  navigate({ to: target });
+                }
+              }
+            : undefined,
+          role: 'row',
+          tabIndex: 0,
+          'data-row-link': target
+        };
+      }
     },
     state: {
       sorting
