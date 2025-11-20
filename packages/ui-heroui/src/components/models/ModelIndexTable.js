@@ -183,11 +183,11 @@ export const ModelIndexTableBase = (props) => {
     meta: {
       getRowProps: (row) => {
         const recordId = row?.original?.id;
-        const target = recordId ? `${location.pathname}/${recordId}` : undefined;
+        const target = recordId
+          ? `${location.pathname}/${recordId}`
+          : undefined;
         return {
-          onClick: target
-            ? () => navigate({ to: target })
-            : undefined,
+          onClick: target ? () => navigate({ to: target }) : undefined,
           onKeyDown: target
             ? (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
