@@ -8,10 +8,7 @@ import { ModelIndexTable } from '../models/ModelIndexTable';
 import { IconButton } from '../buttons';
 import { useModelIndexContext } from '@rhino-project/core/hooks';
 import { ModelCreateModal } from '../models/ModelCreateModal';
-import {
-  ModelIndexActions,
-  ModelIndexActionCreate
-} from '../models/ModelIndexActions';
+import { ModelIndexActions } from '../models/ModelIndexActions';
 import { ModelIndexSimple } from '../models/ModelIndexSimple';
 
 const RemoveButton = (props) => {
@@ -69,9 +66,9 @@ export const EditOrganizationAccess = () => {
   const actions = useMemo(() => {
     return [
       // eslint-disable-next-line react/jsx-key
-      <ModelIndexActionCreate onClick={handleAction}>
+      <IconButton color="primary" icon="bi:plus" onClick={handleAction}>
         Invite User
-      </ModelIndexActionCreate>
+      </IconButton>
     ];
   }, [handleAction]);
 

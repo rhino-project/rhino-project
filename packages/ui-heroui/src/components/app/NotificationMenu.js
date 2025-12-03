@@ -28,7 +28,7 @@ export const NotificationMenu = () => {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <div className="flex flex-row items-center gap-4 p-2">
+        <div className="flex flex-row items-center gap-4 p-2 cursor-pointer">
           <Badge
             color="primary"
             content={notifications?.count}

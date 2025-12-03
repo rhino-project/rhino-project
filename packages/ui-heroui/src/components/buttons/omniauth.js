@@ -1,28 +1,27 @@
 import { useMemo } from 'react';
-import { OmniIconButton } from './';
-
 import PropTypes from 'prop-types';
+import { OmniIconButton } from './index';
 
 const providerOverrides = {
   auth0: {
     name: 'Auth0',
-    icon: 'door-open'
+    icon: 'mdi:door-open'
   },
   azure_oauth2: {
     name: 'Microsoft',
-    icon: 'microsoft'
+    icon: 'mdi:microsoft'
   },
   developer: {
     name: 'Developer',
-    icon: 'code-square'
+    icon: 'mdi:code-square'
   },
   google_oauth2: {
     name: 'Google',
-    icon: 'google'
+    icon: 'mdi:google'
   },
   github_oauth2: {
     name: 'GitHub',
-    icon: 'github'
+    icon: 'mdi:github'
   }
 };
 
