@@ -9,7 +9,7 @@ import {
   useModelPathMemberBuild,
   useModelShow,
   useModelUpdate
-} from './queries.js';
+} from './queries';
 
 export const useModelMutationAction = (
   model,

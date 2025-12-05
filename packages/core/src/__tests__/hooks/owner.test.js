@@ -1,94 +1,55 @@
 import { renderHook } from '@testing-library/react';
 import { createWrapper } from '../shared/helpers';
 import {
-  BaseOwnerContext,
   useBaseOwner,
-  useBaseOwnerContext,
   useBaseOwnerId,
   useHasRoleOf,
   useRoles,
   useUserRoles,
   useUsersRoleWithRole
 } from '../../hooks/owner';
-
-const Wrapper = ({ children, ...props }) => (
-  <BaseOwnerContext.Provider {...props}>{children}</BaseOwnerContext.Provider>
-);
+import { RhinoContext } from '../..';
 
 const validContext = {
-  resolving: true,
   baseOwner: { id: 1, name: '' },
   usersRoles: [{ organization: { id: 1, name: '' }, role: { name: 'admin' } }]
 };
 
 const nullishContext = {
-  resolving: false,
   baseOwner: null
 };
 
-describe('useBaseOwnerContext', () => {
-  test('exposes BaseOwnerContext', () => {
-    const context = validContext;
-    const { result } = renderHook(() => useBaseOwnerContext(), {
-      wrapper: createWrapper(Wrapper, { value: context })
-    });
-    expect(result.current).toEqual(context);
-  });
-
-  test('exposes BaseOwnerContext when baseOwner is null', () => {
-    const context = nullishContext;
-    const { result } = renderHook(() => useBaseOwnerContext(), {
-      wrapper: createWrapper(Wrapper, { value: context })
-    });
-    expect(result.current).toEqual(context);
-  });
-});
+const Wrapper = ({ children, ...props }) => {
+  return <RhinoContext.Provider {...props}>{children}</RhinoContext.Provider>;
+};
 
 describe('useBaseOwner', () => {
-  test('exposes baseOwner from BaseOwnerContext when baseOwner is valid', () => {
-    const context = validContext;
+  test('exposes baseOwner from RhinoContext when baseOwner is valid', () => {
     const { result } = renderHook(() => useBaseOwner(), {
-      wrapper: createWrapper(Wrapper, { value: context })
+      wrapper: createWrapper(Wrapper, { value: validContext })
     });
-    expect(result.current).toEqual(context.baseOwner);
+    expect(result.current).toEqual(validContext.baseOwner);
   });
 
-  test('exposes user from BaseOwnerContext when user is null', () => {
-    const context = nullishContext;
+  test('exposes user from RhinoContext when user is null', () => {
     const { result } = renderHook(() => useBaseOwner(), {
-      wrapper: createWrapper(Wrapper, { value: context })
+      wrapper: createWrapper(Wrapper, { value: nullishContext })
     });
     expect(result.current).toBeNull();
   });
 });
 
-let mockParams;
-const mockUseParamsFn = vi.fn(() => mockParams);
-vi.mock('react-router-dom', () => ({
-  useParams: () => mockUseParamsFn()
-}));
-
 describe('useBaseOwnerId', () => {
-  test('returns the baseOwner id from useParams', () => {
-    mockParams = { baseOwnerId: 55 };
+  test('returns the baseOwner id', () => {
     const { result } = renderHook(() => useBaseOwnerId(), {
-      wrapper: Wrapper
+      wrapper: createWrapper(Wrapper, { value: validContext })
     });
-    expect(result.current).toBe(55);
+    expect(result.current).toBe(1);
   });
 
-  test('returns the baseOwner id from useParams when it is null', () => {
-    mockParams = { baseOwnerId: null };
+  test('returns the baseOwner id null', () => {
     const { result } = renderHook(() => useBaseOwnerId(), {
-      wrapper: Wrapper
-    });
-    expect(result.current).toBeNaN();
-  });
-
-  test('returns NaN as the baseOwner id from useParams when it is absent', () => {
-    mockParams = {};
-    const { result } = renderHook(() => useBaseOwnerId(), {
-      wrapper: Wrapper
+      wrapper: createWrapper(Wrapper, { value: nullishContext })
     });
     expect(result.current).toBeNaN();
   });
@@ -167,7 +128,7 @@ describe('useRoles', () => {
 });
 
 describe('useUsersRoles', () => {
-  test('returns usersRoles stored in BaseOwnerContext', () => {
+  test('returns usersRoles stored in RhinoContext', () => {
     const context = {
       ...validContext,
       baseOwner: { ...validContext.baseOwner },
@@ -187,7 +148,7 @@ describe('useUsersRoles', () => {
     ]);
   });
 
-  test('returns usersRoles stored in BaseOwnerContext, even if empty', () => {
+  test('returns usersRoles stored in RhinoContext, even if empty', () => {
     const context = {
       ...validContext,
       baseOwner: { ...validContext.baseOwner },
@@ -199,7 +160,7 @@ describe('useUsersRoles', () => {
     expect(result.current).toEqual([]);
   });
 
-  test('returns usersRoles stored in BaseOwnerContext, even if undefined', () => {
+  test('returns usersRoles stored in RhinoContext, even if undefined', () => {
     const context = {
       ...validContext,
       baseOwner: { ...validContext.baseOwner },

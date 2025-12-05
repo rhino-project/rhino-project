@@ -21,12 +21,12 @@ export const packages = [
     packageDir: 'packages/create-rhino-app'
   },
   {
-    name: '@rhino-project/config',
-    packageDir: 'packages/config'
-  },
-  {
     name: '@rhino-project/core',
     packageDir: 'packages/core'
+  },
+  {
+    name: '@rhino-project/ui-heroui',
+    packageDir: 'packages/ui-heroui'
   }
 ];
 

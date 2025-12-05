@@ -14,7 +14,6 @@ export const yupTypeFromAttribute = (attribute) => {
     case 'boolean':
       return yup.boolean();
     case 'decimal':
-    case 'float':
       return yup.number();
     case 'integer':
       return yup.number().integer();
@@ -48,6 +47,12 @@ const transformEmptyString = (value, originalValue) => {
   return value;
 };
 
+const transformEmptyNumber = (value, originalValue) => {
+  if (isNaN(originalValue) || originalValue === '') return null;
+
+  return value;
+};
+
 const transformFilterEmptyString = (value, originalValue) => {
   if (originalValue === '') return null;
 
@@ -69,7 +74,6 @@ export const yupDefaultFromAttributeType = (attribute) => {
       return false;
     case 'reference':
       return null;
-    case 'float':
     case 'integer':
     case 'number':
       return '';
@@ -92,14 +96,8 @@ export const yupDefaultFromAttributeType = (attribute) => {
   }
 };
 
-const TRANSFORMABLE_TYPES = [
-  'string',
-  'text',
-  'float',
-  'integer',
-  'number',
-  'decimal'
-];
+const NUMBER_TYPES = ['integer', 'number'];
+const TRANSFORMABLE_TYPES = ['string', 'text', 'integer', 'number', 'decimal'];
 
 export const yupValidatorsFromAttribute = (attribute) => {
   let ytype = yupTypeFromAttribute(attribute);
@@ -116,8 +114,13 @@ export const yupValidatorsFromAttribute = (attribute) => {
 
   // The defaults are an empty string, but we want to set them to null
   // for API and validation purposes
-  if (TRANSFORMABLE_TYPES.includes(attribute.type))
-    ytype = ytype.transform(transformEmptyString);
+  if (TRANSFORMABLE_TYPES.includes(attribute.type)) {
+    if (NUMBER_TYPES.includes(attribute.type)) {
+      ytype = ytype.transform(transformEmptyNumber);
+    } else {
+      ytype = ytype.transform(transformEmptyString);
+    }
+  }
 
   if (attribute['x-rhino-required']) ytype = ytype.required();
 
@@ -127,19 +130,21 @@ export const yupValidatorsFromAttribute = (attribute) => {
   if (attribute.minItems) ytype.min(attribute.minItems);
   if (attribute.maxItems) ytype.min(attribute.maxItems);
 
-  // For numbers and integers
-  if (attribute.minimum) {
-    if (attribute.exclusiveMinimum) {
-      ytype = ytype.moreThan(attribute.minimum);
-    } else {
-      ytype = ytype.min(attribute.minimum);
+  // For numbers and integers - date and time is a hack
+  if (NUMBER_TYPES.includes(attribute.type)) {
+    if (attribute.minimum) {
+      if (attribute.exclusiveMinimum) {
+        ytype = ytype.moreThan(attribute.minimum);
+      } else {
+        ytype = ytype.min(attribute.minimum);
+      }
     }
-  }
-  if (attribute.maximum) {
-    if (attribute.exclusiveMaximum) {
-      ytype = ytype.lessThan(attribute.maximum);
-    } else {
-      ytype = ytype.max(attribute.maximum);
+    if (attribute.maximum) {
+      if (attribute.exclusiveMaximum) {
+        ytype = ytype.lessThan(attribute.maximum);
+      } else {
+        ytype = ytype.max(attribute.maximum);
+      }
     }
   }
 

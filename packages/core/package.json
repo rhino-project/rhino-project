@@ -1,6 +1,6 @@
 {
   "name": "@rhino-project/core",
-  "version": "0.25.0-beta.17",
+  "version": "0.30.0-alpha.41",
   "description": "",
   "author": "JP Rosevear",
   "license": "MIT",
@@ -13,7 +13,6 @@
   "type": "module",
   "types": "dist/esm/index.d.ts",
   "module": "dist/esm/index.js",
-  "style": "dist/styles.css",
   "exports": {
     ".": {
       "import": {
@@ -21,18 +20,22 @@
         "default": "./dist/esm/index.js"
       }
     },
-    "./style": {
+    "./config": {
       "import": {
-        "default": "./dist/core.css"
-      },
-      "require": {
-        "default": "./dist/core.css"
+        "types": "./dist/esm/config.d.ts",
+        "default": "./dist/esm/config.js"
       }
     },
-    "./contexts": {
+    "./config/assets": {
       "import": {
-        "types": "./dist/esm/contexts/index.d.ts",
-        "default": "./dist/esm/contexts/index.js"
+        "types": "./dist/esm/config/assets.d.ts",
+        "default": "./dist/esm/config/assets.js"
+      }
+    },
+    "./config/env": {
+      "import": {
+        "types": "./dist/esm/config/env.d.ts",
+        "default": "./dist/esm/config/env.js"
       }
     },
     "./queries": {
@@ -53,94 +56,10 @@
         "default": "./dist/esm/models/index.js"
       }
     },
-    "./components/settings": {
-      "import": {
-        "types": "./dist/esm/components/settings/index.d.ts",
-        "default": "./dist/esm/components/settings/index.js"
-      }
-    },
-    "./components/pagination": {
-      "import": {
-        "types": "./dist/esm/components/pagination/index.d.ts",
-        "default": "./dist/esm/components/pagination/index.js"
-      }
-    },
-    "./components/forms/filters": {
-      "import": {
-        "types": "./dist/esm/components/forms/filters/index.d.ts",
-        "default": "./dist/esm/components/forms/filters/index.js"
-      }
-    },
-    "./components/forms/displays": {
-      "import": {
-        "types": "./dist/esm/components/forms/displays/index.d.ts",
-        "default": "./dist/esm/components/forms/displays/index.js"
-      }
-    },
-    "./components/forms/fieldGroups": {
-      "import": {
-        "types": "./dist/esm/components/forms/fieldGroups/index.d.ts",
-        "default": "./dist/esm/components/forms/fieldGroups/index.js"
-      }
-    },
     "./components/forms": {
       "import": {
         "types": "./dist/esm/components/forms/index.d.ts",
         "default": "./dist/esm/components/forms/index.js"
-      }
-    },
-    "./components/forms/displayGroups": {
-      "import": {
-        "types": "./dist/esm/components/forms/displayGroups/index.d.ts",
-        "default": "./dist/esm/components/forms/displayGroups/index.js"
-      }
-    },
-    "./components/forms/filterGroups": {
-      "import": {
-        "types": "./dist/esm/components/forms/filterGroups/index.d.ts",
-        "default": "./dist/esm/components/forms/filterGroups/index.js"
-      }
-    },
-    "./components/forms/fields": {
-      "import": {
-        "types": "./dist/esm/components/forms/fields/index.d.ts",
-        "default": "./dist/esm/components/forms/fields/index.js"
-      }
-    },
-    "./components/empties": {
-      "import": {
-        "types": "./dist/esm/components/empties/index.d.ts",
-        "default": "./dist/esm/components/empties/index.js"
-      }
-    },
-    "./components/buttons": {
-      "import": {
-        "types": "./dist/esm/components/buttons/index.d.ts",
-        "default": "./dist/esm/components/buttons/index.js"
-      }
-    },
-    "./components/app": {
-      "import": {
-        "types": "./dist/esm/components/app/index.d.ts",
-        "default": "./dist/esm/components/app/index.js"
-      }
-    },
-    "./components/auth": {
-      "import": {
-        "types": "./dist/esm/components/auth/index.d.ts",
-        "default": "./dist/esm/components/auth/index.js"
-      }
-    },
-    "./components/shells": {
-      "import": {
-        "types": "./dist/esm/components/shells/index.d.ts",
-        "default": "./dist/esm/components/shells/index.js"
-      }
-    },
-    "./components/logos": {
-      "import": {
-        "types": "./dist/esm/components/logos/index.d.ts",
-        "default": "./dist/esm/components/logos/index.js"
       }
     },
     "./components": {
@@ -149,118 +68,16 @@
         "default": "./dist/esm/components/index.js"
       }
     },
-    "./components/shared": {
-      "import": {
-        "types": "./dist/esm/components/shared/index.d.ts",
-        "default": "./dist/esm/components/shared/index.js"
-      }
-    },
-    "./components/models/filters": {
-      "import": {
-        "types": "./dist/esm/components/models/filters/index.d.ts",
-        "default": "./dist/esm/components/models/filters/index.js"
-      }
-    },
-    "./components/models/cells": {
-      "import": {
-        "types": "./dist/esm/components/models/cells/index.d.ts",
-        "default": "./dist/esm/components/models/cells/index.js"
-      }
-    },
-    "./components/models/fieldGroups": {
-      "import": {
-        "types": "./dist/esm/components/models/fieldGroups/index.d.ts",
-        "default": "./dist/esm/components/models/fieldGroups/index.js"
-      }
-    },
     "./components/models": {
       "import": {
         "types": "./dist/esm/components/models/index.d.ts",
         "default": "./dist/esm/components/models/index.js"
       }
     },
-    "./components/models/displayGroups": {
-      "import": {
-        "types": "./dist/esm/components/models/displayGroups/index.d.ts",
-        "default": "./dist/esm/components/models/displayGroups/index.js"
-      }
-    },
-    "./components/models/fields": {
-      "import": {
-        "types": "./dist/esm/components/models/fields/index.d.ts",
-        "default": "./dist/esm/components/models/fields/index.js"
-      }
-    },
-    "./components/alerts": {
-      "import": {
-        "types": "./dist/esm/components/alerts/index.d.ts",
-        "default": "./dist/esm/components/alerts/index.js"
-      }
-    },
-    "./components/checkboxes": {
-      "import": {
-        "types": "./dist/esm/components/checkboxes/index.d.ts",
-        "default": "./dist/esm/components/checkboxes/index.js"
-      }
-    },
     "./components/null": {
       "import": {
         "types": "./dist/esm/components/null/index.d.ts",
         "default": "./dist/esm/components/null/index.js"
-      }
-    },
-    "./components/layouts": {
-      "import": {
-        "types": "./dist/esm/components/layouts/index.d.ts",
-        "default": "./dist/esm/components/layouts/index.js"
-      }
-    },
-    "./components/table/cells": {
-      "import": {
-        "types": "./dist/esm/components/table/cells/index.d.ts",
-        "default": "./dist/esm/components/table/cells/index.js"
-      }
-    },
-    "./components/table": {
-      "import": {
-        "types": "./dist/esm/components/table/index.d.ts",
-        "default": "./dist/esm/components/table/index.js"
-      }
-    },
-    "./components/icons": {
-      "import": {
-        "types": "./dist/esm/components/icons/index.d.ts",
-        "default": "./dist/esm/components/icons/index.js"
-      }
-    },
-    "./components/devtool": {
-      "import": {
-        "types": "./dist/esm/components/devtool/index.d.ts",
-        "default": "./dist/esm/components/devtool/index.js"
-      }
-    },
-    "./components/nav": {
-      "import": {
-        "types": "./dist/esm/components/nav/index.d.ts",
-        "default": "./dist/esm/components/nav/index.js"
-      }
-    },
-    "./components/errors": {
-      "import": {
-        "types": "./dist/esm/components/errors/index.d.ts",
-        "default": "./dist/esm/components/errors/index.js"
-      }
-    },
-    "./components/breadcrumbs": {
-      "import": {
-        "types": "./dist/esm/components/breadcrumbs/index.d.ts",
-        "default": "./dist/esm/components/breadcrumbs/index.js"
-      }
-    },
-    "./components/analytics": {
-      "import": {
-        "types": "./dist/esm/components/analytics/index.d.ts",
-        "default": "./dist/esm/components/analytics/index.js"
       }
     },
     "./hooks": {
@@ -275,28 +92,9 @@
         "default": "./dist/esm/lib/index.js"
       }
     },
-    "./pages/settings": {
+    "./rhino-env": {
       "import": {
-        "types": "./dist/esm/pages/settings/index.d.ts",
-        "default": "./dist/esm/pages/settings/index.js"
-      }
-    },
-    "./pages/auth": {
-      "import": {
-        "types": "./dist/esm/pages/auth/index.d.ts",
-        "default": "./dist/esm/pages/auth/index.js"
-      }
-    },
-    "./pages": {
-      "import": {
-        "types": "./dist/esm/pages/index.d.ts",
-        "default": "./dist/esm/pages/index.js"
-      }
-    },
-    "./routes": {
-      "import": {
-        "types": "./dist/esm/routes/index.d.ts",
-        "default": "./dist/esm/routes/index.js"
+        "types": "./dist/esm/rhino-env.d.ts"
       }
     },
     "./package.json": "./package.json"
@@ -327,43 +125,36 @@
     "@hookform/resolvers": "3.3.2",
     "@rails/actioncable": "8.0.100",
     "@rails/activestorage": "8.0.100",
-    "@rhino-project/config": "workspace:*",
     "@stripe/react-stripe-js": "2.1.0",
     "@stripe/stripe-js": "1.52.0",
-    "@tanstack/react-table": "8.20.1",
+    "@types/qs": "^6.9.18",
     "axios": "1.8.2",
-    "bootstrap": "5.3.3",
-    "bootstrap-icons": "1.11.3",
-    "classnames": "2.3.1",
-    "date-fns": "2.29.0",
     "lodash-es": "4.17.21",
-    "prop-types": "15.8.1",
-    "qs": "6.9.7",
-    "react-bootstrap-typeahead": "6.3.2",
-    "react-datepicker": "4.8.0",
+    "qs": "6.14.0",
     "react-hook-form": "7.49.2",
-    "react-phone-input-2": "2.15.1",
     "react-use": "17.5.1",
-    "reactstrap": "^9.1.9",
     "use-debounce": "10.0.4",
-    "uuid": "8.3.2",
+    "uuid": "11.1.0",
     "yup": "1.3.3"
   },
   "devDependencies": {
     "@babel/parser": "^7.17.0",
     "@babel/traverse": "^7.17.0",
-    "@tanstack/react-query-devtools": "4.32.6",
-    "@testing-library/react": "14.0.0",
+    "@tanstack/react-query-devtools": "5.66.11",
+    "@tanstack/react-table": "8.20.1",
+    "@testing-library/dom": "10.0.0",
+    "@testing-library/react": "16.1.0",
     "@types/lodash-es": "^4.17.0",
     "@vitejs/plugin-react": "4.3.4",
-    "jsdom": "26.0.0"
+    "jsdom": "26.0.0",
+    "rollup-plugin-copy": "^3.5.0"
   },
   "peerDependencies": {
     "@rollbar/react": "0.11.2",
-    "@tanstack/react-query": "^4.32.6",
-    "@tanstack/react-query-devtools": "4.32.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "@tanstack/react-query": "5.66.11",
+    "@tanstack/react-query-devtools": "5.66.11",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-router-dom": "6.16.0",
     "rollbar": "2.26.2"
   }

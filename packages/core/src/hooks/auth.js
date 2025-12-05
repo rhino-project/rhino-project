@@ -1,8 +1,7 @@
-import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthContext';
+import { useRhinoContext } from '../RhinoContext';
 
 export const useAuth = () => {
-  return useContext(AuthContext);
+  return useRhinoContext();
 };
 
 export const useUser = () => {

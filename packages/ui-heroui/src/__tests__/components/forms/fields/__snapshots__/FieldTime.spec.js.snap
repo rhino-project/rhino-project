@@ -1,0 +1,1031 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`FieldTime > render with disabled 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full opacity-disabled pointer-events-none"
+    data-disabled="true"
+    data-slot="base"
+  >
+    <div
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full pointer-events-none transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
+    >
+      <div
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
+      >
+        <div
+          aria-disabled="true"
+          aria-label="dummy"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:r1h:"
+          role="group"
+          style="unicode-bidi: isolate;"
+        >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
+            aria-disabled="true"
+            aria-label="hour, dummy"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            id="react-aria-:r1o:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-disabled="true"
+            aria-label="minute, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            id="react-aria-:r1s:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-disabled="true"
+            aria-label="second, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            id="react-aria-:r20:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-disabled="true"
+            aria-label="AM/PM, dummy"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="false"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            id="react-aria-:r26:"
+            role="spinbutton"
+            style="caret-color: transparent;"
+          >
+            AM
+          </div>
+          <input
+            disabled=""
+            hidden=""
+            name="dummy"
+            title=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > render with place holder 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
+    data-slot="base"
+  >
+    <div
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
+    >
+      <div
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
+      >
+        <div
+          aria-label="dummy"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:rp:"
+          role="group"
+          style="unicode-bidi: isolate;"
+        >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
+            aria-label="hour, dummy"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            enterkeyhint="next"
+            id="react-aria-:r10:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="minute, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            enterkeyhint="next"
+            id="react-aria-:r14:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="second, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            enterkeyhint="next"
+            id="react-aria-:r18:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-label="AM/PM, dummy"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            enterkeyhint="next"
+            id="react-aria-:r1e:"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            AM
+          </div>
+          <input
+            hidden=""
+            name="dummy"
+            title=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > renders empty with empty string date 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
+    data-slot="base"
+  >
+    <div
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
+    >
+      <div
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
+      >
+        <div
+          aria-label="dummy"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:r2v:"
+          role="group"
+          style="unicode-bidi: isolate;"
+        >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
+            aria-label="hour, dummy"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            enterkeyhint="next"
+            id="react-aria-:r36:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="minute, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            enterkeyhint="next"
+            id="react-aria-:r3a:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="second, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            enterkeyhint="next"
+            id="react-aria-:r3e:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-label="AM/PM, dummy"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            enterkeyhint="next"
+            id="react-aria-:r3k:"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            AM
+          </div>
+          <input
+            hidden=""
+            name="dummy"
+            title=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > renders empty with null date 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
+    data-slot="base"
+  >
+    <div
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
+    >
+      <div
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
+      >
+        <div
+          aria-label="dummy"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:r28:"
+          role="group"
+          style="unicode-bidi: isolate;"
+        >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
+            aria-label="hour, dummy"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            enterkeyhint="next"
+            id="react-aria-:r2f:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="minute, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            enterkeyhint="next"
+            id="react-aria-:r2j:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="second, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            enterkeyhint="next"
+            id="react-aria-:r2n:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-label="AM/PM, dummy"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            enterkeyhint="next"
+            id="react-aria-:r2t:"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            AM
+          </div>
+          <input
+            hidden=""
+            name="dummy"
+            title=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > renders error 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
+    data-has-helper="true"
+    data-invalid="true"
+    data-slot="base"
+  >
+    <div
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
+    >
+      <div
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
+      >
+        <div
+          aria-describedby="react-aria-:r3q:"
+          aria-label="dummy"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:r3m:"
+          role="group"
+          style="unicode-bidi: isolate;"
+        >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-invalid="true"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
+            aria-describedby="react-aria-:r3q:"
+            aria-invalid="true"
+            aria-label="hour, dummy"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-invalid="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            enterkeyhint="next"
+            id="react-aria-:r3t:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-invalid="true"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-describedby="react-aria-:r3q:"
+            aria-invalid="true"
+            aria-label="minute, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-invalid="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            enterkeyhint="next"
+            id="react-aria-:r41:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-invalid="true"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-describedby="react-aria-:r3q:"
+            aria-invalid="true"
+            aria-label="second, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-invalid="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            enterkeyhint="next"
+            id="react-aria-:r45:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-invalid="true"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-invalid="true"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-describedby="react-aria-:r3q:"
+            aria-invalid="true"
+            aria-label="AM/PM, dummy"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-invalid="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            enterkeyhint="next"
+            id="react-aria-:r4b:"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            AM
+          </div>
+          <input
+            hidden=""
+            name="dummy"
+            title=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        class="hidden group-data-[has-helper=true]:flex p-1 flex-col gap-1.5 absolute top-[calc(100%_+_2px)] start-0"
+        data-slot="helper-wrapper"
+      >
+        <div
+          class="text-tiny text-danger"
+          data-slot="error-message"
+          id="react-aria-:r3q:"
+        >
+          Error
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[has-helper=true]:pb-[calc(theme(fontSize.tiny)_+8px)] gap-y-1.5 w-full"
+    data-slot="base"
+  >
+    <div
+      class="relative px-3 gap-3 inline-flex flex-row items-center cursor-text tap-highlight-transparent shadow-sm bg-default-100 hover:bg-default-200 focus-within:hover:bg-default-100 group-data-[invalid=true]:bg-danger-50 group-data-[invalid=true]:hover:bg-danger-100 group-data-[invalid=true]:focus-within:hover:bg-danger-50 h-10 min-h-10 rounded-medium w-full transition-background motion-reduce:transition-none !duration-150"
+      data-slot="input-wrapper"
+    >
+      <div
+        class="flex items-center text-default-400 w-full gap-x-2 h-6 group-data-[invalid=true]:text-danger"
+        data-slot="inner-wrapper"
+      >
+        <div
+          aria-label="dummy"
+          class="flex h-full gap-x-0.5 w-full font-normal text-small"
+          data-slot="input"
+          id="react-aria-:r1:"
+          role="group"
+          style="unicode-bidi: isolate;"
+        >
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁦
+          </div>
+          <div
+            aria-label="hour, dummy"
+            aria-valuemax="11"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="hour"
+            enterkeyhint="next"
+            id="react-aria-:r8:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="minute, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="minute"
+            enterkeyhint="next"
+            id="react-aria-:rc:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            :
+          </div>
+          <div
+            aria-label="second, dummy"
+            aria-valuemax="59"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="second"
+            enterkeyhint="next"
+            id="react-aria-:rg:"
+            inputmode="numeric"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            ––
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+            ⁩
+          </div>
+          <div
+            aria-hidden="true"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            data-slot="segment"
+            data-type="literal"
+          >
+             
+          </div>
+          <div
+            aria-label="AM/PM, dummy"
+            aria-valuemax="12"
+            aria-valuemin="0"
+            aria-valuenow="0"
+            aria-valuetext="Empty"
+            autocorrect="off"
+            class="group first:-ml-0.5 [&:not(:first-child)]:-ml-1 px-0.5 my-auto box-content tabular-nums text-start inline-block outline-none focus:shadow-sm rounded-md text-foreground-500 data-[editable=true]:text-foreground data-[editable=true]:data-[placeholder=true]:text-foreground-500 data-[invalid=true]:text-danger-300 data-[invalid=true]:data-[editable=true]:text-danger data-[invalid=true]:focus:bg-danger-400/50 dark:data-[invalid=true]:focus:bg-danger-400/20 data-[invalid=true]:data-[editable=true]:focus:text-danger focus:bg-default-400/50 data-[editable=true]:focus:text-default-foreground transition-colors motion-reduce:transition-none"
+            contenteditable="true"
+            data-editable="true"
+            data-placeholder="true"
+            data-slot="segment"
+            data-type="dayPeriod"
+            enterkeyhint="next"
+            id="react-aria-:rm:"
+            role="spinbutton"
+            spellcheck="false"
+            style="caret-color: transparent;"
+            tabindex="0"
+          >
+            AM
+          </div>
+          <input
+            hidden=""
+            name="dummy"
+            title=""
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`FieldTime > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

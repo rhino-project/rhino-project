@@ -1,0 +1,24 @@
+import { useMemo } from 'react';
+import { formatDistance, parseISO } from 'date-fns';
+import { useTableInheritedProps } from '@rhino-project/core/hooks';
+import { useGlobalComponent } from '@rhino-project/core/hooks';
+export const CellDateTimeDistanceBase = ({
+  baseDate,
+  empty = '-',
+  ...props
+}) => {
+  const computedBaseDate = useMemo(() => baseDate || new Date(), [baseDate]);
+  const { getValue, inheritedProps } = useTableInheritedProps(props);
+  const value = useMemo(() => {
+    if (!getValue()) return empty;
+
+    return formatDistance(parseISO(getValue()), computedBaseDate, {
+      addSuffix: true
+    });
+  }, [computedBaseDate, empty, getValue]);
+
+  return <div {...inheritedProps}>{value}</div>;
+};
+
+export const CellDateTimeDistance = (props) =>
+  useGlobalComponent('CellDateTimeDistance', CellDateTimeDistanceBase, props);

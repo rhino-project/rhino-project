@@ -9,7 +9,8 @@ module ActiveRecordExtension
     end
 
     test "identifier" do
-      assert_type("id", :identifier)
+      assert_type("id", :integer)
+      assert_format("id", :identifier)
     end
 
     test "string" do
@@ -66,31 +67,36 @@ module ActiveRecordExtension
     end
 
     test "float greater than" do
-      assert_type("float_gt", :float)
+      assert_type("float_gt", :number)
+      assert_format("flofloat_gtat_gte", :double)
       assert_equal(2, @description[:minimum])
       assert @description[:exclusiveMinimum]
     end
 
     test "float greater than or equal to" do
-      assert_type("float_gte", :float)
+      assert_type("float_gte", :number)
+      assert_format("float_gte", :double)
       assert_equal(2, @description[:minimum])
       assert_not @description[:exclusiveMinimum]
     end
 
     test "float less than" do
-      assert_type("float_lt", :float)
+      assert_type("float_lt", :number)
+      assert_format("float_lt", :double)
       assert_equal(2, @description[:maximum])
       assert @description[:exclusiveMaximum]
     end
 
     test "float less than or equal to" do
-      assert_type("float_lte", :float)
+      assert_type("float_lte", :number)
+      assert_format("float_lte", :double)
       assert_equal(2, @description[:maximum])
       assert_not @description[:exclusiveMaximum]
     end
 
     test "float in range" do
-      assert_type("float_in", :float)
+      assert_type("float_in", :number)
+      assert_format("float_in", :double)
       assert_equal(2, @description[:minimum])
       assert_equal(5, @description[:maximum])
       assert_not @description[:exclusiveMinimum]
@@ -130,7 +136,8 @@ module ActiveRecordExtension
     end
 
     test "float no nil" do
-      assert_type("float_no_nil", :float)
+      assert_type("float_no_nil", :number)
+      assert_format("float_no_nil", :double)
       assert_not @description[:nullable]
     end
 
@@ -140,17 +147,17 @@ module ActiveRecordExtension
     end
 
     test "date required" do
-      assert_type("date_required", "string")
+      assert_type("date_required", :string)
       assert_not @description[:nullable]
     end
 
     test "datetime required" do
-      assert_type("date_time_required", "string")
+      assert_type("date_time_required", :string)
       assert_not @description[:nullable]
     end
 
     test "time required" do
-      assert_type("time_required", "string")
+      assert_type("time_required", :string)
       assert_not @description[:nullable]
     end
 
@@ -204,9 +211,15 @@ module ActiveRecordExtension
 
     private
       def assert_type(property, type, model: EveryField)
-        @description = model.describe_property(property)
+        @description ||= model.describe_property(property)
 
         assert_equal(type, @description[:type])
+      end
+
+      def assert_format(property, format, model: EveryField)
+        @description ||= model.describe_property(property)
+
+        assert_equal(format, @description[:format])
       end
   end
 end

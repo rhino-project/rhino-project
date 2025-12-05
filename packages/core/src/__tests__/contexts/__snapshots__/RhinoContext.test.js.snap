@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RhinoContext > Renders children when authenticated (after suspense resolves) 1`] = `
+<DocumentFragment>
+  Should render
+</DocumentFragment>
+`;
+
+exports[`RhinoContext > Renders children when not authenticated (after suspense resolves) 1`] = `
+<DocumentFragment>
+  Should not render
+</DocumentFragment>
+`;

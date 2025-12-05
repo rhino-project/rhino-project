@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { act, renderHook, waitFor } from '@testing-library/react';
-import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { act, renderHook } from '@testing-library/react';
 
 import { createWrapper } from '../shared/helpers';
 import {
@@ -13,6 +12,10 @@ import {
   useModelIndexController,
   useModelShowContext
 } from '../../hooks/controllers';
+
+vi.mock('../../hooks/owner', () => ({
+  useBaseOwnerId: () => 1
+}));
 
 // https://dev.to/alexclaes/test-a-hook-throwing-errors-in-react-18-with-renderhook-from-testing-library-20g8
 describe('useModelIndexContext', () => {
@@ -33,17 +36,11 @@ describe('useModelIndexContext', () => {
 });
 
 describe('useModelIndexController', () => {
-  const Wrapper = ({ children, ...props }) => {
+  const Wrapper = ({ children }) => {
     const queryClient = new QueryClient();
 
     return (
-      <MemoryRouter {...props}>
-        <QueryClientProvider client={queryClient}>
-          <Routes>
-            <Route path="/:baseOwnerId/*" element={<>{children}</>} />
-          </Routes>
-        </QueryClientProvider>
-      </MemoryRouter>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     );
   };
 
@@ -51,9 +48,7 @@ describe('useModelIndexController', () => {
     const { result } = renderHook(
       () => useModelIndexController({ model: 'blog' }),
       {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1']
-        })
+        wrapper: createWrapper(Wrapper)
       }
     );
     expect(result.current).toMatchObject({
@@ -78,9 +73,7 @@ describe('useModelIndexController', () => {
           defaultFiltersBaseOwner: false
         }),
       {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1']
-        })
+        wrapper: createWrapper(Wrapper)
       }
     );
     expect(result.current).not.toMatchObject({
@@ -112,9 +105,7 @@ describe('useModelIndexController', () => {
           defaultSearch: 'baz'
         }),
       {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1']
-        })
+        wrapper: createWrapper(Wrapper)
       }
     );
     expect(result.current).toMatchObject({
@@ -131,176 +122,12 @@ describe('useModelIndexController', () => {
     });
   });
 
-  it('does not push empty search when search is already empty', () => {
-    renderHook(() => useModelIndexController({ model: 'user' }), {
-      wrapper: createWrapper(Wrapper, {
-        initialEntries: ['/1/users']
-      })
-    });
-    expect(history.length).toBe(1);
-  });
-
-  it('takes limit, offset, order and search params from url over passed in base parameters', () => {
-    const { result } = renderHook(
-      () =>
-        useModelIndexController({
-          model: 'user',
-          defaultFilter: { blog: { id: 1 } },
-          limit: 10,
-          offset: 30,
-          order: 'updated_at',
-          search: 'baz'
-        }),
-      {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1/users?limit=17&offset=20&order=foo&search=bar']
-        })
-      }
-    );
-
-    expect(result.current).toMatchObject({
-      defaultState: { filter: { blog: { id: 1 } } },
-      initialState: {
-        filter: { blog: { id: 1 } },
-        limit: 17,
-        offset: 20,
-        order: 'foo',
-        search: 'bar'
-      },
-      filter: {},
-      totalFilters: 0,
-      fullFilter: { blog: { id: 1 } },
-      totalFullFilters: 1,
-      limit: 17,
-      offset: 20,
-      order: 'foo',
-      search: 'bar'
-    });
-  });
-
-  it('takes filter from url with passed in base filter having precedence', () => {
-    const { result } = renderHook(
-      () =>
-        useModelIndexController({
-          model: 'user',
-          defaultFilter: { blog: { id: 1 } }
-        }),
-      {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1/users?filter[blog][id]=2']
-        })
-      }
-    );
-    expect(result.current).toMatchObject({
-      defaultState: { filter: { blog: { id: 1 } } },
-      initialState: { filter: { blog: { id: 1 } } },
-      filter: {},
-      totalFilters: 0,
-      fullFilter: { blog: { id: 1 } },
-      totalFullFilters: 1,
-      limit: DEFAULT_LIMIT,
-      offset: 0,
-      order: DEFAULT_SORT,
-      search: ''
-    });
-  });
-
-  it('merges nested filters from url', () => {
-    const { result } = renderHook(
-      () =>
-        useModelIndexController({
-          model: 'user',
-          defaultFilter: { blog: { id: 1 } }
-        }),
-      {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1/users?filter[blog][published]=true']
-        })
-      }
-    );
-    expect(result.current).toMatchObject({
-      defaultState: { filter: { blog: { id: 1 } } },
-      initialState: { filter: { blog: { id: 1, published: 'true' } } },
-      filter: { blog: { published: 'true' } },
-      totalFilters: 1,
-      fullFilter: { blog: { id: 1, published: 'true' } },
-      totalFullFilters: 2,
-      limit: DEFAULT_LIMIT,
-      offset: 0,
-      order: DEFAULT_SORT,
-      search: ''
-    });
-  });
-
-  it('merges nested filters from url with passed in base filter having precedence', async () => {
-    const { result } = renderHook(
-      () =>
-        useModelIndexController({
-          model: 'user',
-          defaultFilter: { blog: { id: 1 } }
-        }),
-      {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: [
-            '/1/?filter[blog][published]=true&filter[blog][id]=2'
-          ]
-        })
-      }
-    );
-
-    await waitFor(() => {
-      expect(result.current).toMatchObject({
-        defaultState: { filter: { blog: { id: 1 } } },
-        initialState: { filter: { blog: { id: 1, published: 'true' } } },
-        filter: { blog: { published: 'true' } },
-        totalFilters: 1,
-        fullFilter: { blog: { id: 1, published: 'true' } },
-        totalFullFilters: 2,
-        limit: DEFAULT_LIMIT,
-        offset: 0,
-        order: DEFAULT_SORT,
-        search: ''
-      });
-    });
-  });
-
-  it('does not merge from url when syncUrl is false', () => {
-    const { result } = renderHook(
-      () =>
-        useModelIndexController({
-          model: 'user',
-          syncUrl: false
-        }),
-      {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: [
-            '/1/?filter[blog][published]=true&offset=1&limit=2&search=bar&order=-baz'
-          ]
-        })
-      }
-    );
-    expect(result.current).toMatchObject({
-      defaultState: { filter: {} },
-      initialState: { filter: {} },
-      filter: {},
-      totalFilters: 0,
-      fullFilter: {},
-      totalFullFilters: 0,
-      limit: DEFAULT_LIMIT,
-      offset: 0,
-      order: DEFAULT_SORT,
-      search: ''
-    });
-  });
-
   it('changes offset when setPage is called', () => {
     const { result } = renderHook(
       () =>
         useModelIndexController({ model: 'user', filter: { blog: { id: 1 } } }),
       {
-        wrapper: createWrapper(Wrapper, {
-          initialEntries: ['/1']
-        })
+        wrapper: createWrapper(Wrapper)
       }
     );
     expect(result.current).toMatchObject({

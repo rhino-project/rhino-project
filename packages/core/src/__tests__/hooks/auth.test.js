@@ -1,5 +1,4 @@
 import { renderHook } from '@testing-library/react';
-import { AuthContext } from '../../contexts/AuthContext';
 import {
   useAuth,
   useAuthenticated,
@@ -7,9 +6,10 @@ import {
   useUserId
 } from '../../hooks/auth';
 import { createWrapper } from '../shared/helpers';
+import { RhinoContext } from '../..';
 
 const Wrapper = ({ children, ...props }) => (
-  <AuthContext.Provider {...props}>{children}</AuthContext.Provider>
+  <RhinoContext.Provider {...props}>{children}</RhinoContext.Provider>
 );
 
 const validContext = {

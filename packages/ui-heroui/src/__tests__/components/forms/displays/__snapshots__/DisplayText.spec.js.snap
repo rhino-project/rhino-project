@@ -1,0 +1,138 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DisplayText > renders inside of model context 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[hidden=true]:hidden w-full is-filled"
+    data-filled="true"
+    data-filled-within="true"
+    data-has-value="true"
+    data-readonly="true"
+    data-slot="base"
+  >
+    <div
+      class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium !h-auto transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background py-2 is-filled"
+      data-has-multiple-rows="true"
+      data-slot="input-wrapper"
+      style="cursor: text;"
+    >
+      <div
+        class="inline-flex w-full h-full box-border items-start group-data-[has-label=true]:items-start"
+        data-slot="inner-wrapper"
+      >
+        <textarea
+          aria-label="dummy"
+          aria-readonly="true"
+          autocomplete="off"
+          class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small resize-none data-[hide-scroll=true]:scrollbar-hide group-data-[has-value=true]:text-default-foreground transition-height !duration-100 motion-reduce:transition-none is-filled pe-0"
+          data-filled="true"
+          data-filled-within="true"
+          data-hide-scroll="true"
+          data-slot="input"
+          id="react-aria-:r1:"
+          name="dummy"
+          readonly=""
+          tabindex="0"
+          title=""
+        >
+          -
+        </textarea>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayText > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[hidden=true]:hidden w-full is-filled"
+    data-filled="true"
+    data-filled-within="true"
+    data-has-value="true"
+    data-readonly="true"
+    data-slot="base"
+  >
+    <div
+      class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium !h-auto transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background py-2 is-filled"
+      data-has-multiple-rows="true"
+      data-slot="input-wrapper"
+      style="cursor: text;"
+    >
+      <div
+        class="inline-flex w-full h-full box-border items-start group-data-[has-label=true]:items-start"
+        data-slot="inner-wrapper"
+      >
+        <textarea
+          aria-label="dummy"
+          aria-readonly="true"
+          autocomplete="off"
+          class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small resize-none data-[hide-scroll=true]:scrollbar-hide group-data-[has-value=true]:text-default-foreground transition-height !duration-100 motion-reduce:transition-none is-filled pe-0"
+          data-filled="true"
+          data-filled-within="true"
+          data-hide-scroll="true"
+          data-slot="input"
+          id="react-aria-:r7:"
+          name="dummy"
+          readonly=""
+          tabindex="0"
+          title=""
+        >
+          -
+        </textarea>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayText > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div
+    class="group flex flex-col data-[hidden=true]:hidden w-full is-filled"
+    data-filled="true"
+    data-filled-within="true"
+    data-has-value="true"
+    data-readonly="true"
+    data-slot="base"
+  >
+    <div
+      class="relative w-full inline-flex tap-highlight-transparent flex-row items-center shadow-sm px-3 gap-3 bg-default-100 data-[hover=true]:bg-default-200 group-data-[focus=true]:bg-default-100 h-10 min-h-10 rounded-medium !h-auto transition-background motion-reduce:transition-none !duration-150 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background py-2 is-filled"
+      data-has-multiple-rows="true"
+      data-slot="input-wrapper"
+      style="cursor: text;"
+    >
+      <div
+        class="inline-flex w-full h-full box-border items-start group-data-[has-label=true]:items-start"
+        data-slot="inner-wrapper"
+      >
+        <textarea
+          aria-label="dummy"
+          aria-readonly="true"
+          autocomplete="off"
+          class="w-full font-normal bg-transparent !outline-none placeholder:text-foreground-500 focus-visible:outline-none data-[has-start-content=true]:ps-1.5 data-[has-end-content=true]:pe-1.5 file:cursor-pointer file:bg-transparent file:border-0 autofill:bg-transparent bg-clip-text text-small resize-none data-[hide-scroll=true]:scrollbar-hide group-data-[has-value=true]:text-default-foreground transition-height !duration-100 motion-reduce:transition-none is-filled pe-0"
+          data-filled="true"
+          data-filled-within="true"
+          data-hide-scroll="true"
+          data-slot="input"
+          id="react-aria-:rd:"
+          name="dummy"
+          readonly=""
+          tabindex="0"
+          title=""
+        >
+          baz
+        </textarea>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`DisplayText > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

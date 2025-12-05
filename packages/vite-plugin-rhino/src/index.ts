@@ -1,15 +1,15 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import { readFile, writeFile } from 'node:fs/promises';
-import { execSync } from 'node:child_process';
+import { exec, execSync } from 'node:child_process';
 import { loadEnv, transformWithEsbuild } from 'vite';
 import type { Plugin, ResolvedConfig, ViteDevServer } from 'vite';
+import { promisify } from 'node:util';
 
 const CONFIG_MODULE_ID = 'rhino.config';
 const MODELS_STATIC_MODULE_ID = 'models/static';
-const CUSTOM_ROUTES_MODULE_ID = 'routes/custom';
 
-const ASSETS_MODULE_ID = 'virtual:@rhino-project/config/assets';
+const ASSETS_MODULE_ID = 'virtual:@rhino-project/core/config/assets';
 const RESOLVED_ASSETS_MODULE_ID = '\0' + ASSETS_MODULE_ID;
 
 // Taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
@@ -41,6 +41,8 @@ const esbuildRhinoPlugin = {
     });
   }
 };
+
+const execAsync = promisify(exec);
 
 export function RhinoProjectVite({
   enableJsxInJs = true,
@@ -80,7 +82,7 @@ export function RhinoProjectVite({
     enforce: 'pre',
     config: () => ({
       resolve: {
-        dedupe: ['@tanstack/react-query']
+        dedupe: ['@tanstack/react-query', '@tanstack/react-router']
       },
 
       // Backwards compatibility with create-react-app
@@ -93,17 +95,16 @@ export function RhinoProjectVite({
 
         // Exclude the modules that are replaced by local files or virtual modules
         exclude: [
-          'virtual:@rhino-project/config/assets',
+          'virtual:@rhino-project/core/config/assets',
           'rhino.config',
-          'models/static',
-          'routes/custom'
+          'models/static'
         ]
       },
 
       test: {
         server: {
           deps: {
-            inline: ['@rhino-project/config', '@rhino-project/core']
+            inline: ['@rhino-project/core']
           }
         }
       }
@@ -223,7 +224,8 @@ export function RhinoProjectVite({
       const watchPaths = [
         path.join(process.cwd(), 'app', 'models'),
         path.join(process.cwd(), 'db'),
-        path.join(process.cwd(), 'config', 'routes.rb')
+        path.join(process.cwd(), 'config', 'routes.rb'),
+        path.join(process.cwd(), 'app', 'frontend', 'models', 'static.js')
       ];
 
       watchPaths.forEach((watchPath) => {
@@ -234,8 +236,20 @@ export function RhinoProjectVite({
         }
       });
 
-      server.watcher.on('change', (changedPath: string) => {
-        if (watchPaths.some((watchPath) => changedPath.startsWith(watchPath))) {
+      server.watcher.on('change', async (changedPath: string) => {
+        if (changedPath.endsWith('app/frontend/models/static.js')) {
+          console.log('📝 Generating TypeScript definitions from OpenAPI...');
+          try {
+            await execAsync(
+              `npx openapi-typescript ${apiRootPath}/api/info/openapi -o app/frontend/models/models.d.ts`
+            );
+            console.log('✅ TypeScript definitions generated successfully');
+          } catch (error) {
+            console.error('❌ Error generating TypeScript definitions:', error);
+          }
+        } else if (
+          watchPaths.some((watchPath) => changedPath.startsWith(watchPath))
+        ) {
           logger.info(`File changed: ${changedPath}`, {
             timestamp: true
           });
@@ -263,9 +277,6 @@ export function RhinoProjectVite({
       } else if (id === MODELS_STATIC_MODULE_ID) {
         // Replace 'models/static' with the path to the local file
         return checkExtensions(resolvePath('models/static'));
-      } else if (id === CUSTOM_ROUTES_MODULE_ID) {
-        // Replace 'routes/custom' with the path to the local file
-        return checkExtensions(resolvePath('routes/custom'));
       } else if (id === ASSETS_MODULE_ID) {
         // Map the import to a virtual module ID
         return RESOLVED_ASSETS_MODULE_ID;

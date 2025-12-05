@@ -1,0 +1,97 @@
+import { useCallback, useMemo, useState } from 'react';
+
+import { useBaseOwnerId } from '@rhino-project/core/hooks';
+import { useModel } from '@rhino-project/core/hooks';
+import { ModelEditableCellReference } from '../models/cells/ModelEditableCellReference';
+import { ModelIndexHeader } from '../models/ModelIndexHeader';
+import { ModelIndexTable } from '../models/ModelIndexTable';
+import { IconButton } from '../buttons';
+import { useModelIndexContext } from '@rhino-project/core/hooks';
+import { ModelCreateModal } from '../models/ModelCreateModal';
+import { ModelIndexActions } from '../models/ModelIndexActions';
+import { ModelIndexSimple } from '../models/ModelIndexSimple';
+
+const RemoveButton = (props) => {
+  const {
+    row: { original }
+  } = props;
+  const {
+    delete: { mutate, isPending }
+  } = useModelIndexContext();
+
+  const handleClick = useCallback(
+    () => mutate(original.id),
+    [original.id, mutate]
+  );
+
+  return (
+    <IconButton
+      color="danger"
+      icon="bi:trash"
+      disabled={isPending}
+      onClick={handleClick}
+    >
+      Remove Access
+    </IconButton>
+  );
+};
+
+const cellPaths = [
+  'user.email',
+  'user.name',
+  // eslint-disable-next-line react/jsx-key
+  <ModelEditableCellReference id="role" path="role" />,
+  // eslint-disable-next-line react/jsx-key
+  <RemoveButton />
+];
+
+const sortPaths = ['user.email', 'user.name'];
+
+const overrides = {
+  ModelFilters: {
+    props: {
+      paths: ['role']
+    }
+  }
+};
+
+export const EditOrganizationAccess = () => {
+  const model = useModel('users_role');
+  const baseOwnerId = useBaseOwnerId();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleAction = useCallback(() => setModalOpen(true), [setModalOpen]);
+  const handleModalClose = () => setModalOpen(false);
+
+  const actions = useMemo(() => {
+    return [
+      // eslint-disable-next-line react/jsx-key
+      <IconButton color="primary" icon="bi:plus" onClick={handleAction}>
+        Invite User
+      </IconButton>
+    ];
+  }, [handleAction]);
+
+  return (
+    <>
+      <ModelIndexSimple model={model} order="user.email">
+        <div className="flex flex-col gap-3">
+          <ModelIndexHeader overrides={overrides} />
+          <hr />
+          <ModelIndexActions actions={actions} />
+          <ModelIndexTable
+            paths={cellPaths}
+            sortPaths={sortPaths}
+            onRowClick={null}
+          />
+        </div>
+      </ModelIndexSimple>
+      <ModelCreateModal
+        model="users_role_invite"
+        parentId={baseOwnerId}
+        isOpen={modalOpen}
+        onModalClose={handleModalClose}
+      />
+    </>
+  );
+};

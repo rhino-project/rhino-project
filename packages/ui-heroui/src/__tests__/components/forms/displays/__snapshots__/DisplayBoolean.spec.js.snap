@@ -1,0 +1,127 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`DisplayBoolean > renders inside of model context 1`] = `
+<DocumentFragment>
+  <label
+    aria-label="dummy"
+    class="group relative max-w-fit inline-flex items-center justify-start cursor-pointer tap-highlight-transparent p-2 -m-2 select-none"
+    data-indeterminate="true"
+    data-selected="true"
+  >
+    <input
+      aria-label="dummy"
+      aria-labelledby=":r1:"
+      class="font-inherit text-[100%] leading-[1.15] m-0 p-0 overflow-visible box-border absolute top-0 w-full h-full opacity-[0.0001] z-[1] cursor-pointer disabled:cursor-default"
+      tabindex="0"
+      title=""
+      type="checkbox"
+      value=""
+    />
+    <span
+      aria-hidden="true"
+      class="relative inline-flex items-center justify-center flex-shrink-0 overflow-hidden before:content-[''] before:absolute before:inset-0 before:border-solid before:border-2 before:box-border before:border-default after:content-[''] after:absolute after:inset-0 after:scale-50 after:opacity-0 after:origin-center group-data-[selected=true]:after:scale-100 group-data-[selected=true]:after:opacity-100 group-data-[hover=true]:before:bg-default-100 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background after:bg-primary after:text-primary-foreground text-primary-foreground w-5 h-5 me-2 rounded-[calc(theme(borderRadius.medium)*0.6)] before:rounded-[calc(theme(borderRadius.medium)*0.6)] after:rounded-[calc(theme(borderRadius.medium)*0.6)] before:transition-colors group-data-[pressed=true]:scale-95 transition-transform after:transition-transform-opacity after:!ease-linear after:!duration-200 motion-reduce:transition-none"
+    >
+      <svg
+        class="z-10 opacity-0 group-data-[selected=true]:opacity-100 pointer-events-none w-4 h-3 transition-opacity motion-reduce:transition-none"
+        stroke="currentColor"
+        stroke-width="3"
+        viewBox="0 0 24 24"
+      >
+        <line
+          x1="21"
+          x2="3"
+          y1="12"
+          y2="12"
+        />
+      </svg>
+    </span>
+  </label>
+</DocumentFragment>
+`;
+
+exports[`DisplayBoolean > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <label
+    aria-label="dummy"
+    class="group relative max-w-fit inline-flex items-center justify-start cursor-pointer tap-highlight-transparent p-2 -m-2 select-none"
+    data-indeterminate="true"
+    data-selected="true"
+  >
+    <input
+      aria-label="dummy"
+      aria-labelledby=":r3:"
+      class="font-inherit text-[100%] leading-[1.15] m-0 p-0 overflow-visible box-border absolute top-0 w-full h-full opacity-[0.0001] z-[1] cursor-pointer disabled:cursor-default"
+      tabindex="0"
+      title=""
+      type="checkbox"
+      value=""
+    />
+    <span
+      aria-hidden="true"
+      class="relative inline-flex items-center justify-center flex-shrink-0 overflow-hidden before:content-[''] before:absolute before:inset-0 before:border-solid before:border-2 before:box-border before:border-default after:content-[''] after:absolute after:inset-0 after:scale-50 after:opacity-0 after:origin-center group-data-[selected=true]:after:scale-100 group-data-[selected=true]:after:opacity-100 group-data-[hover=true]:before:bg-default-100 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background after:bg-primary after:text-primary-foreground text-primary-foreground w-5 h-5 me-2 rounded-[calc(theme(borderRadius.medium)*0.6)] before:rounded-[calc(theme(borderRadius.medium)*0.6)] after:rounded-[calc(theme(borderRadius.medium)*0.6)] before:transition-colors group-data-[pressed=true]:scale-95 transition-transform after:transition-transform-opacity after:!ease-linear after:!duration-200 motion-reduce:transition-none"
+    >
+      <svg
+        class="z-10 opacity-0 group-data-[selected=true]:opacity-100 pointer-events-none w-4 h-3 transition-opacity motion-reduce:transition-none"
+        stroke="currentColor"
+        stroke-width="3"
+        viewBox="0 0 24 24"
+      >
+        <line
+          x1="21"
+          x2="3"
+          y1="12"
+          y2="12"
+        />
+      </svg>
+    </span>
+  </label>
+</DocumentFragment>
+`;
+
+exports[`DisplayBoolean > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <label
+    aria-label="dummy"
+    class="group relative max-w-fit inline-flex items-center justify-start cursor-pointer tap-highlight-transparent p-2 -m-2 select-none"
+    data-indeterminate="true"
+    data-selected="true"
+    empty="baz"
+  >
+    <input
+      aria-label="dummy"
+      aria-labelledby=":r5:"
+      class="font-inherit text-[100%] leading-[1.15] m-0 p-0 overflow-visible box-border absolute top-0 w-full h-full opacity-[0.0001] z-[1] cursor-pointer disabled:cursor-default"
+      tabindex="0"
+      title=""
+      type="checkbox"
+      value=""
+    />
+    <span
+      aria-hidden="true"
+      class="relative inline-flex items-center justify-center flex-shrink-0 overflow-hidden before:content-[''] before:absolute before:inset-0 before:border-solid before:border-2 before:box-border before:border-default after:content-[''] after:absolute after:inset-0 after:scale-50 after:opacity-0 after:origin-center group-data-[selected=true]:after:scale-100 group-data-[selected=true]:after:opacity-100 group-data-[hover=true]:before:bg-default-100 outline-none group-data-[focus-visible=true]:z-10 group-data-[focus-visible=true]:ring-2 group-data-[focus-visible=true]:ring-focus group-data-[focus-visible=true]:ring-offset-2 group-data-[focus-visible=true]:ring-offset-background after:bg-primary after:text-primary-foreground text-primary-foreground w-5 h-5 me-2 rounded-[calc(theme(borderRadius.medium)*0.6)] before:rounded-[calc(theme(borderRadius.medium)*0.6)] after:rounded-[calc(theme(borderRadius.medium)*0.6)] before:transition-colors group-data-[pressed=true]:scale-95 transition-transform after:transition-transform-opacity after:!ease-linear after:!duration-200 motion-reduce:transition-none"
+    >
+      <svg
+        class="z-10 opacity-0 group-data-[selected=true]:opacity-100 pointer-events-none w-4 h-3 transition-opacity motion-reduce:transition-none"
+        stroke="currentColor"
+        stroke-width="3"
+        viewBox="0 0 24 24"
+      >
+        <line
+          x1="21"
+          x2="3"
+          y1="12"
+          y2="12"
+        />
+      </svg>
+    </span>
+  </label>
+</DocumentFragment>
+`;
+
+exports[`DisplayBoolean > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;

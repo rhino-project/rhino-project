@@ -1,0 +1,89 @@
+{
+  "name": "@rhino-project/ui-heroui",
+  "version": "0.30.0-alpha.41",
+  "description": "",
+  "author": "JP Rosevear",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhino-project/rhino-project.git",
+    "directory": "packages/ui"
+  },
+  "homepage": "https://rhino-project.org",
+  "type": "module",
+  "types": "dist/esm/index.d.ts",
+  "module": "dist/esm/index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/index.d.ts",
+        "default": "./dist/esm/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "clean": "rimraf ./dist && rimraf ./coverage",
+    "test:types": "tsc",
+    "test:lib": "vitest",
+    "test:lib:dev": "pnpm run test:lib --watch",
+    "test:build": "publint --strict",
+    "test:eslint": "eslint --max-warnings 0 ./src ",
+    "build": "vite build",
+    "extract:components": "node ./extractComponents.js",
+    "copy:fields": "node ./copyAndReplace.js",
+    "copy:displays": "node ./copyAndReplaceDisplay.js"
+  },
+  "keywords": [],
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@heroui/react": "2.7.5",
+    "@hookform/devtools": "4.3.1",
+    "@hookform/resolvers": "3.3.2",
+    "@iconify/react": "^5.2.0",
+    "@internationalized/date": "3.7.0",
+    "@rails/actioncable": "7.1.3-4",
+    "@rails/activestorage": "7.1.3-4",
+    "@rhino-project/core": "workspace:*",
+    "@stripe/react-stripe-js": "2.1.0",
+    "@stripe/stripe-js": "1.52.0",
+    "@tanstack/react-router": "1.114.29",
+    "@tanstack/react-table": "8.20.1",
+    "axios": "1.8.2",
+    "date-fns": "2.28.0",
+    "lodash-es": "4.17.21",
+    "prop-types": "15.7.2",
+    "qs": "6.14.0",
+    "react-hook-form": "7.49.2",
+    "react-international-phone": "^4.5.0",
+    "react-phone-input-2": "2.15.1",
+    "react-use": "17.5.1",
+    "use-debounce": "10.0.4",
+    "yup": "1.3.3"
+  },
+  "devDependencies": {
+    "@babel/parser": "^7.17.0",
+    "@babel/traverse": "^7.17.0",
+    "@tanstack/react-query-devtools": "5.66.11",
+    "@testing-library/dom": "10.0.0",
+    "@testing-library/react": "16.1.0",
+    "@types/lodash-es": "^4.17.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "jsdom": "24.1.1"
+  },
+  "peerDependencies": {
+    "@rollbar/react": "0.11.2",
+    "@tanstack/react-query": "5.66.11",
+    "@tanstack/react-query-devtools": "5.66.11",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "rollbar": "2.26.2"
+  }
+}

@@ -4,7 +4,7 @@ import staticModels from 'models/static';
 
 const MODEL_PATH = '/api/info/openapi';
 
-const hoistRhino = (data) => {
+export const hoistRhino = (data) => {
   each(Object.keys(data.components.schemas), (schema) => {
     const model_uplifted = {
       ...data.components.schemas[schema]['x-rhino-model']

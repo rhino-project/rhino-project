@@ -61,27 +61,35 @@ module Rhino
               }
             end
 
+            DATE_FORMATS = %i[datetime date time].freeze
             def property_type_and_format_attr(name)
-              atype = attribute_types[name.to_s].type
+              type = attribute_types[name.to_s].type
+              format = nil
 
               # The PG array delegates type to "subtype" which is the actual type of the array elements
               if attribute_types[name.to_s].is_a? ActiveRecord::ConnectionAdapters::PostgreSQL::OID::Array
                 return {
                   type: :array,
-                  items: {
-                    type: atype
-                  }
+                  items: { type: }
                 }
               end
 
-              if %i[datetime date time].include?(atype)
-                return {
-                  type: "string",
-                  format: atype
-                }
+              # Identifier is a special format for identification on the front end
+              format = :identifier if name == identifier_property
+
+              # Float is double precision in postgres by default
+              if type == :float
+                type = :number
+                format = :double
               end
 
-              { type: atype }
+              # Dates and times are strings
+              if DATE_FORMATS.include?(type)
+                format = type
+                type = :string
+              end
+
+              { type:, format: }.compact
             end
 
             def nested_array_options(name)
@@ -126,7 +134,6 @@ module Rhino
 
             def property_type_and_format(name) # rubocop:disable Metrics/AbcSize
               # Special cases
-              return { type: :identifier } if name == identifier_property
               return { type: :string } if defined_enums.key?(name)
 
               # FIXME: Hack for tags for now

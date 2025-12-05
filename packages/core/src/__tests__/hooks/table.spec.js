@@ -2,10 +2,10 @@ import { render } from '@testing-library/react';
 import { useTableInheritedProps } from '../../hooks/table';
 import {
   createColumnHelper,
+  flexRender,
   getCoreRowModel,
   useReactTable
 } from '@tanstack/react-table';
-import { Table } from '../../components/table/Table';
 
 const columnHelper = createColumnHelper();
 
@@ -29,7 +29,58 @@ const DummyTable = ({ cell }) => {
     getCoreRowModel: getCoreRowModel()
   });
 
-  return <Table table={table} />;
+  return (
+    <table>
+      <thead>
+        {table.getHeaderGroups().map((headerGroup) => (
+          <tr key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+              <th
+                key={header.id}
+                onClick={header.column.getToggleSortingHandler()}
+              >
+                <div className="d-flex flex-row gap-1">
+                  {header.isPlaceholder
+                    ? null
+                    : flexRender(
+                        header.column.columnDef.header,
+                        header.getContext()
+                      )}
+                </div>
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody>
+        {table.getRowModel().rows.map((row) => (
+          <tr key={row.id}>
+            {row.getVisibleCells().map((cell) => (
+              <td key={cell.id}>
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+      <tfoot>
+        {table.getFooterGroups().map((footerGroup) => (
+          <tr key={footerGroup.id}>
+            {footerGroup.headers.map((header) => (
+              <th key={header.id}>
+                {header.isPlaceholder
+                  ? null
+                  : flexRender(
+                      header.column.columnDef.footer,
+                      header.getContext()
+                    )}
+              </th>
+            ))}
+          </tr>
+        ))}
+      </tfoot>
+    </table>
+  );
 };
 
 describe('useTableInheritedProps', () => {

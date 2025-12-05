@@ -13,6 +13,14 @@ module DeviseTokenAuth::RegistrationsController::Extensions
       create_organization(resource) if Rhino.resources.include?("Organization")
     end
   end
+
+  # Get all the information just like the token_validation_response and sign_in
+  def render_create_success
+    render json: {
+      success: true,
+      data: resource_data(resource_json: @resource.token_validation_response)
+    }
+  end
 end
 
 class DeviseTokenAuth::RegistrationsController

@@ -1,0 +1,212 @@
+import { useEffect, useMemo } from 'react';
+import PropTypes from 'prop-types';
+import * as yup from 'yup';
+
+import { useResolver } from '@rhino-project/core/hooks';
+import { SubmitButton } from '../buttons';
+import { FormProvider } from '@rhino-project/core/components/forms';
+import { useForm } from 'react-hook-form';
+import { FieldInput } from '../../FieldInput';
+import { FieldPassword } from '../../Field';
+import { Alert, Form } from '@heroui/react';
+import { Link, useSearch } from '@tanstack/react-router';
+
+const AuthField = (props) => (
+  <FieldInput placeholder="Email" isRequired {...props} />
+);
+const AuthFieldPassword = (props) => (
+  <FieldPassword placeholder="Password" required {...props} />
+);
+
+export const AuthForm = ({
+  emailField,
+  currentPasswordField,
+  organizationField,
+  passwordField,
+  passwordConfirmField,
+  primaryAction,
+  secondaryAction,
+  loading,
+  errors,
+  onSubmit
+}) => {
+  const { error: omniError } = useSearch({ strict: false });
+
+  // Autocomplete attributes to match Chrome standards
+  // https://www.chromium.org/developers/design-documents/form-styles-that-chromium-understands/
+  const passwordDescriptor = useMemo(
+    () => `${currentPasswordField ? 'New ' : ''}Password`,
+    [currentPasswordField]
+  );
+
+  const passwordComplete = useMemo(
+    () => `${passwordConfirmField ? 'new' : 'current'}-password`,
+    [passwordConfirmField]
+  );
+
+  // Unused fields can't be set or they will cause errors
+  const schema = useMemo(() => {
+    let schema = yup.object().shape({});
+
+    if (emailField)
+      schema = schema.shape({
+        email: yup.string().label('Email').email().required().ensure()
+      });
+    if (currentPasswordField)
+      schema = schema.shape({
+        current_password: yup
+          .string()
+          .label(passwordDescriptor)
+          .required()
+          .ensure()
+      });
+    if (passwordField)
+      schema = schema.shape({
+        password: yup.string().label(passwordDescriptor).required().ensure()
+      });
+    if (passwordConfirmField)
+      schema = schema.shape({
+        password_confirmation: yup
+          .string()
+          .label('Confirm Password')
+          .oneOf([yup.ref('password'), null], 'Passwords must match')
+          .required()
+          .ensure()
+      });
+    if (organizationField)
+      schema = schema.shape({
+        organization: yup.string().label('Organization').ensure()
+      });
+
+    return schema;
+  }, [
+    emailField,
+    currentPasswordField,
+    organizationField,
+    passwordField,
+    passwordConfirmField,
+    passwordDescriptor
+  ]);
+
+  const defaultValues = useMemo(() => schema.default(), [schema]);
+  const resolver = useResolver(schema);
+
+  // Just use the first error for each field
+  const reducedErrors = useMemo(() => {
+    if (!errors) return null;
+
+    return Object.keys(errors).reduce((errorObj, name) => {
+      errorObj[name] = {
+        type: 'manual',
+        message: errors[name][0]
+      };
+      return errorObj;
+    }, {});
+  }, [errors]);
+
+  const methods = useForm({
+    defaultValues,
+    disabled: loading,
+    errors: reducedErrors,
+    mode: 'onBlur',
+    resolver
+  });
+  const { handleSubmit, setFocus } = methods;
+
+  // FIXME: shouldSelect: true does not seem to work - autocomplete issue?
+  useEffect(() => {
+    const focusOptions = { shouldSelect: true };
+
+    if (currentPasswordField) {
+      setFocus('current_password', focusOptions);
+    } else if (emailField) {
+      setFocus('email', focusOptions);
+    } else if (passwordField) {
+      setFocus('password', focusOptions);
+    }
+  }, [currentPasswordField, emailField, passwordField, setFocus]);
+
+  return (
+    <FormProvider {...methods}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        {currentPasswordField && (
+          <AuthFieldPassword
+            path="current_password"
+            label="Current Password"
+            autoComplete="current-password"
+          />
+        )}
+        {emailField && (
+          <AuthField
+            path="email"
+            label="Email"
+            autoComplete="username"
+            type="email"
+          />
+        )}
+        {passwordField && (
+          <AuthFieldPassword
+            path="password"
+            label={passwordDescriptor}
+            autoComplete={passwordComplete}
+          />
+        )}
+        {passwordConfirmField && (
+          <AuthFieldPassword
+            path="password_confirmation"
+            label={`Confirm ${passwordDescriptor}`}
+            autoComplete={passwordComplete}
+          />
+        )}
+        {organizationField && (
+          <AuthField
+            path="organization"
+            label="Organization"
+            placeholder="Organization"
+            autoComplete="organizaton"
+            required={false}
+          />
+        )}
+
+        {(Array.isArray(errors) || omniError) && (
+          <Alert color="danger" title={omniError || errors[0]} />
+        )}
+
+        <div className="flex flex-col">
+          {secondaryAction && (
+            <Link
+              className="mb-2 text-right"
+              color="link"
+              to={secondaryAction.url}
+            >
+              {secondaryAction.content}
+            </Link>
+          )}
+          <SubmitButton isLoading={loading}>{primaryAction}</SubmitButton>
+        </div>
+      </Form>
+    </FormProvider>
+  );
+};
+
+AuthForm.propTypes = {
+  currentPasswordField: PropTypes.bool.isRequired,
+  errors: PropTypes.object,
+  emailField: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  organizationField: PropTypes.bool.isRequired,
+  passwordField: PropTypes.bool.isRequired,
+  passwordConfirmField: PropTypes.bool.isRequired,
+  primaryAction: PropTypes.string.isRequired,
+  secondaryAction: PropTypes.object
+};
+
+AuthForm.defaultProps = {
+  currentPasswordField: false,
+  emailField: false,
+  loading: false,
+  organizationField: false,
+  passwordField: false,
+  passwordConfirmField: false
+};

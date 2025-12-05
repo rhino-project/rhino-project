@@ -1,0 +1,71 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ModelCellAttachmentImage > should render the component with className from inherited props 1`] = `
+<DocumentFragment>
+  <div
+    class="dummy-class"
+  >
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellAttachmentImage > should render the empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div>
+    -
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellAttachmentImage > should render the overridden empty text when value is nullish 1`] = `
+<DocumentFragment>
+  <div>
+    baz
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellAttachmentImage > should render with global override shorthand 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellAttachmentImage > should render with global override shorthand for model 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellAttachmentImage > should render with global override shorthand for model and attribute 1`] = `
+<DocumentFragment>
+  <div>
+    Bar
+  </div>
+</DocumentFragment>
+`;
+
+exports[`ModelCellAttachmentImage > uses passed in alt 1`] = `
+<DocumentFragment>
+  <img
+    alt="foo"
+    src="https://example.com/image.png"
+    style="height: 50px; max-width: 100%;"
+  />
+</DocumentFragment>
+`;
+
+exports[`ModelCellAttachmentImage > uses url for alt as fallback 1`] = `
+<DocumentFragment>
+  <img
+    alt="https://example.com/image.png"
+    src="https://example.com/image.png"
+    style="height: 50px; max-width: 100%;"
+  />
+</DocumentFragment>
+`;

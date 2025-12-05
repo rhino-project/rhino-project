@@ -8,9 +8,9 @@ module RubocopRhinoProject
 
   module VERSION
     MAJOR = 0
-    MINOR = 25
+    MINOR = 30
     TINY  = 0
-    PRE   = "beta.17"
+    PRE   = "alpha.36"
 
     STRING = [MAJOR, MINOR, TINY, PRE].compact.join(".")
   end
