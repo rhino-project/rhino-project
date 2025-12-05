@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
+import { OmniIconButton } from './';
 import PropTypes from 'prop-types';
-import { OmniIconButton } from './index';
 
 const providerOverrides = {
   auth0: {
