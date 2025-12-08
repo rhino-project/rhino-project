@@ -63,7 +63,7 @@
     "eslint-plugin-react-hooks": "5.1.0",
     "eslint-plugin-testing-library": "7.1.1",
     "git-log-parser": "^1.2.0",
-    "glob": "^10.3.10",
+    "glob": "^10.5.0",
     "globals": "15.15.0",
     "nx": "17.2.8",
     "postcss": "^8.5.1",
