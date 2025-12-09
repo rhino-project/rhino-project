@@ -50,8 +50,8 @@ jobs:
         run: pnpm run test:ci
       - name: Publish
         run: |
-          git config --global user.name 'JP Rosevear'
-          git config --global user.email 'jprosevear@users.noreply.github.com'
+          git config --global user.name 'Bruno Cipolla'
+          git config --global user.email 'brunocmoreira@users.noreply.github.com'
           npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
           pnpm run cipublish
         env:
