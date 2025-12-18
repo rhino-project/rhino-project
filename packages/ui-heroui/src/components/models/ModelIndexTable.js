@@ -13,6 +13,7 @@ import {
 } from 'react';
 
 import {
+  useBaseOwnerId,
   useGlobalComponentForModel,
   usePaths
 } from '@rhino-project/core/hooks';
@@ -24,7 +25,7 @@ import { Table } from '../table/Table';
 import { ModelCell } from './ModelCell';
 import { ModelFooter } from './ModelFooter';
 import { ModelHeader } from './ModelHeader';
-import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useNavigate } from '@tanstack/react-router';
 
 const getViewablePaths = (model) =>
   filter(model.properties, (a) => {
@@ -56,6 +57,7 @@ export const ModelIndexTableBase = (props) => {
     useModelIndexContext();
   const { paths, sortPaths } = props;
   const [sorting, setSorting] = useState([]);
+  const baseOwnerId = useBaseOwnerId();
 
   const pathsOrDefault = useMemo(() => {
     if (props.overrides?.ModelTable?.props?.paths)
@@ -170,7 +172,6 @@ export const ModelIndexTableBase = (props) => {
     return results || Array(limit).fill({});
   }, [limit, results]);
 
-  const location = useLocation();
   const navigate = useNavigate();
 
   const table = useReactTable({
@@ -184,7 +185,7 @@ export const ModelIndexTableBase = (props) => {
       getRowProps: (row) => {
         const recordId = row?.original?.id;
         const target = recordId
-          ? `${location.pathname}/${recordId}`
+          ? `/${baseOwnerId}/${model.model}/${recordId}`
           : undefined;
         return {
           onClick: target ? () => navigate({ to: target }) : undefined,
