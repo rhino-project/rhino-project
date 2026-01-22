@@ -7,6 +7,14 @@ import { ModelCellIdentifier } from '../../../../components/models/cells/ModellC
 import { createWrapper, RouterWrapper } from '../../../shared/helpers';
 import { sharedCellTests } from './sharedCellTests';
 
+vi.mock('@rhino-project/core/hooks', async (importOriginal) => {
+  const mod = await importOriginal();
+  return {
+    ...mod,
+    useBaseOwnerId: () => 1
+  };
+});
+
 describe('ModelCellIdentifier', () => {
   sharedCellTests(ModelCellIdentifier);
 

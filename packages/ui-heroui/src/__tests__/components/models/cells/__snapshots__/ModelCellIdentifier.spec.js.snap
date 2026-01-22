@@ -81,7 +81,7 @@ exports[`ModelCellIdentifier > renders absolute link 1`] = `
             data-first="true"
             data-key="0"
             data-last="true"
-            data-row-link="/1/1"
+            data-row-link="/1/blog/1"
             id="react-aria-:r8:"
             role="row"
             tabindex="0"
@@ -95,7 +95,7 @@ exports[`ModelCellIdentifier > renders absolute link 1`] = `
               tabindex="-1"
             >
               <a
-                href="/"
+                href="/1/blogs/1"
               >
                 1
               </a>
