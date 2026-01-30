@@ -130,7 +130,7 @@
     "@types/qs": "^6.9.18",
     "axios": "1.8.2",
     "lodash-es": "4.17.21",
-    "qs": "6.14.0",
+    "qs": "6.14.1",
     "react-hook-form": "7.49.2",
     "react-use": "17.5.1",
     "use-debounce": "10.0.4",
