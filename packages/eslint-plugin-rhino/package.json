@@ -45,7 +45,7 @@
     "@typescript-eslint/utils": "8.24.1"
   },
   "devDependencies": {
-    "eslint": "9.20.1"
+    "eslint": "9.26.0"
   },
   "peerDependencies": {
     "eslint": "^9.0.0"
