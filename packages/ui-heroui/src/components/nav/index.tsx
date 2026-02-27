@@ -1,5 +1,5 @@
 import { NavIcon } from '../icons';
-import { useGlobalComponent, useRoles } from '@rhino-project/core/hooks';
+import { useBaseOwnerId, useGlobalComponent, useRoles } from '@rhino-project/core/hooks';
 import { getBaseOwnedModels, getModel } from '@rhino-project/core/utils';
 import { ReactNode, useMemo } from 'react';
 import { map, uniqBy } from 'lodash-es';
@@ -58,7 +58,8 @@ export const ModelNavSectionBase = ({
   models = null
 }: ModelNavSectionProps) => {
   const roles = useRoles();
-
+  const ownerId = useBaseOwnerId();
+  
   const fullModels = useMemo(() => {
     if (!models) {
       return getBaseOwnedModels().filter(
@@ -98,7 +99,7 @@ export const ModelNavSectionBase = ({
         <NavItem
           key={m.model}
           title={m.pluralReadableName}
-          to={`/1/${m.model}`}
+          to={`/${ownerId}/${m.model}`}
           icon="bi:list"
         />
       ))}
