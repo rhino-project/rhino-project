@@ -204,7 +204,7 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
-    faraday (2.14.0)
+    faraday (2.14.1)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -278,7 +278,7 @@ GEM
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
-    logger (1.6.6)
+    logger (1.7.0)
     loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -303,7 +303,7 @@ GEM
       minitest (~> 5.16)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
-    net-http (0.8.0)
+    net-http (0.9.1)
       uri (>= 0.11.1)
     net-imap (0.5.12)
       date
@@ -540,7 +540,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unaccent (0.4.0)
     unicode-display_width (2.6.0)
-    uri (1.0.3)
+    uri (1.1.1)
     useragent (0.16.11)
     version_gem (1.1.9)
     warden (1.2.9)
