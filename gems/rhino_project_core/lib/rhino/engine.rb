@@ -37,6 +37,11 @@ module Rhino
       end
     end
 
+    config.before_initialize do
+      require_relative "routing/mapper"
+      ActionDispatch::Routing::Mapper.include(Rhino::Routing::Mapper)
+    end
+
     initializer "rhino.user_signup_tracking" do
       ActiveSupport.on_load(:rhino_user) do
         after_create_commit :track_sign_up
